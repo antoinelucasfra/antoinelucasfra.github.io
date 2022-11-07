@@ -1,0 +1,35 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "antoinelucasfra.github.io"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+
+title: "Antoine Lucas"
+image: picture.jpg
+about: 
+  template: jolla
+  image-shape: rounded
+  image-width: 15em
+  links:
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/antoinelucasdata/
+    - text: Twitter
+      href: https://twitter.com/antoineloucass
+    - text: GitHub
+      href: https://github.com/antoinelucasfra
+      
+      
