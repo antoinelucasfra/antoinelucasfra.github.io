@@ -8,6 +8,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/livecoding-algorithmic-music/index.html",
       "/posts/reproducibility-modern-tools/index.html",
       "/posts/why-curate-resources/index.html",
       "/posts/rv-modern-r-package-manager/index.html",

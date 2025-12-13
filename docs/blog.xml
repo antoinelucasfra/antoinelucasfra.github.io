@@ -17,6 +17,156 @@
 <generator>quarto-1.7.32</generator>
 <lastBuildDate>Thu, 12 Dec 2024 23:00:00 GMT</lastBuildDate>
 <item>
+  <title>When Code Becomes Music: The Art of Algorithmic Live Performance</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/livecoding-algorithmic-music/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="the-emergence-of-a-new-artistic-medium" class="level2">
+<h2 class="anchored" data-anchor-id="the-emergence-of-a-new-artistic-medium">The Emergence of a New Artistic Medium</h2>
+<p>What happens when you treat music not as a sequence of notes, but as a <em>program</em>? When the DJ booth becomes a terminal, and the dance floor responds to algorithms executed in real-time?</p>
+<p>This is the world of <strong>live coding</strong>—a practice where musicians write and modify code during performances, generating music through algorithmic patterns. It’s a fascinating convergence of computer science, musical composition, and performance art.</p>
+</section>
+<section id="strudel-music-in-your-browser" class="level2">
+<h2 class="anchored" data-anchor-id="strudel-music-in-your-browser">Strudel: Music in Your Browser</h2>
+<p><a href="https://strudel.cc">Strudel</a> is a browser-based live coding environment that brings this artistic practice to anyone with a web browser. Built as a JavaScript port of the legendary <a href="https://tidalcycles.org/">Tidal Cycles</a>, it allows you to create complex, evolving musical patterns with surprisingly minimal code.</p>
+<p>Here’s what a Strudel pattern might look like:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb1-1">$<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"[bd &lt;hh oh&gt;]*2"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bank</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tr909"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dec</span>(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span></code></pre></div>
+<p>This single line creates a drum pattern using the TR-909 drum machine sounds—a bass drum with alternating hi-hats. But the real magic lies in the notation: the <code>&lt;&gt;</code> brackets create alternatives, the <code>*2</code> doubles the pattern, and suddenly you’re not just programming, you’re <em>composing</em>.</p>
+</section>
+<section id="why-this-matters-for-data-scientists" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters-for-data-scientists">Why This Matters for Data Scientists</h2>
+<p>At first glance, live coding music might seem distant from data science. But look closer, and you’ll find striking parallels:</p>
+<section id="patterns-as-data-structures" class="level3">
+<h3 class="anchored" data-anchor-id="patterns-as-data-structures">1. Patterns as Data Structures</h3>
+<p>In Strudel, a musical pattern is essentially a time-indexed data structure. Just as we might think about time series data, live coders think about events distributed across cyclical time. The manipulation of these patterns—filtering, transforming, combining—mirrors the operations we perform on datasets.</p>
+</section>
+<section id="algorithmic-composition-as-generative-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="algorithmic-composition-as-generative-modeling">2. Algorithmic Composition as Generative Modeling</h3>
+<p>When a live coder writes:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">n</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"&lt;0!3 1*2&gt;"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set</span>(chords)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mode</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"root:g2"</span>)</span>
+<span id="cb2-2">  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">voicing</span>()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">s</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gm_acoustic_bass"</span>)</span></code></pre></div>
+<p>They’re essentially defining a generative model—rules that produce infinite variations within constraints. This is the same thinking behind procedural generation, Monte Carlo simulations, and generative AI.</p>
+</section>
+<section id="real-time-feedback-loops" class="level3">
+<h3 class="anchored" data-anchor-id="real-time-feedback-loops">3. Real-Time Feedback Loops</h3>
+<p>Live coding is the ultimate REPL experience. You modify code, hear the result immediately, adjust. This tight feedback loop is exactly what makes exploratory data analysis so powerful—and so satisfying.</p>
+</section>
+</section>
+<section id="the-vision-merging-worlds" class="level2">
+<h2 class="anchored" data-anchor-id="the-vision-merging-worlds">The Vision: Merging Worlds</h2>
+<p>I believe we’re at the cusp of a new creative paradigm where:</p>
+<ul>
+<li><p><strong>Data becomes music</strong>: Sonification transforms datasets into auditory experiences, making patterns literally <em>audible</em>. Stock market fluctuations, weather patterns, biological rhythms—all can become compositional material.</p></li>
+<li><p><strong>Algorithms become instruments</strong>: Just as guitars and synthesizers extended human musical capability, algorithmic tools create entirely new sonic possibilities that no human could execute manually.</p></li>
+<li><p><strong>DJing becomes programming</strong>: The DJ’s art of reading the room, mixing tracks, and creating flow translates into dynamic, responsive algorithms that can adapt to audience energy, time of day, or any data feed you can imagine.</p></li>
+<li><p><strong>Performance becomes collaboration</strong>: Between human and machine, between coder and audience, between prepared material and emergent behavior.</p></li>
+</ul>
+</section>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+<p>The beauty of Strudel is its accessibility. No installation required—just visit <a href="https://strudel.cc">strudel.cc</a> and start experimenting.</p>
+<p>Some entry points:</p>
+<ul>
+<li>The <a href="https://strudel.cc/workshop/getting-started/">interactive workshop</a> walks you through basics</li>
+<li>The <a href="https://strudel.cc/intro/showcase/">showcase</a> demonstrates what’s possible</li>
+<li>The <a href="https://discord.com/invite/HGEdXmRkzT">Discord community</a> welcomes newcomers</li>
+</ul>
+<p>For those with a data science background, pay particular attention to:</p>
+<ul>
+<li><strong>Signals</strong>: Continuous functions like <code>sine</code>, <code>rand</code>, and <code>perlin</code> noise that modulate parameters</li>
+<li><strong>Pattern effects</strong>: Transformations like <code>fast()</code>, <code>slow()</code>, <code>chunk()</code>, and <code>rarely()</code> that manipulate temporal structure</li>
+<li><strong>MIDI &amp; OSC</strong>: Connect Strudel to other software, hardware, or data sources</li>
+</ul>
+</section>
+<section id="beyond-entertainment" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-entertainment">Beyond Entertainment</h2>
+<p>This isn’t just about making cool sounds (though it is that). Live coding represents a different way of thinking about computation—one that prioritizes expressiveness, exploration, and real-time interaction over optimization and correctness.</p>
+<p>For data scientists accustomed to notebooks and static analyses, engaging with live coding can:</p>
+<ul>
+<li>Refresh your relationship with programming as a creative act</li>
+<li>Introduce new paradigms for thinking about temporal data</li>
+<li>Open doors to sonification as an analysis technique</li>
+<li>Connect you with a vibrant open-source community</li>
+</ul>
+</section>
+<section id="the-algorithmic-dj" class="level2">
+<h2 class="anchored" data-anchor-id="the-algorithmic-dj">The Algorithmic DJ</h2>
+<p>Picture this: a performance where real-time data feeds—social media sentiment, audience movement tracked via sensors, environmental data—modulate musical patterns. Where the “DJ” is both human and algorithm, making decisions together. Where the boundary between instrument and player, between creation and curation, becomes wonderfully blurred.</p>
+<p>This is not science fiction. Tools like Strudel make it possible today. The question is: what will you create?</p>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li><a href="https://strudel.cc">Strudel</a> — Browser-based live coding</li>
+<li><a href="https://tidalcycles.org/">Tidal Cycles</a> — The original Haskell-based pattern language</li>
+<li><a href="https://algorave.com/">Algorave</a> — The movement of algorithmic dance music</li>
+<li><a href="https://toplap.org/">TOPLAP</a> — The home of live coding</li>
+</ul>
+<hr>
+<p><em>The intersection of code and creativity is vast and largely unexplored. Whether you’re a musician curious about algorithms or a programmer curious about music, the door is open.</em></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Creative Coding</category>
+  <category>Music</category>
+  <category>Art</category>
+  <category>Data</category>
+  <guid>https://antoinelucasfra.github.io/posts/livecoding-algorithmic-music/</guid>
+  <pubDate>Thu, 12 Dec 2024 23:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/posts/livecoding-algorithmic-music/featured.png" medium="image" type="image/png"/>
+</item>
+<item>
   <title>The Reproducibility Quest: Modern Tools for R and Python Data Science</title>
   <dc:creator>Antoine Lucas</dc:creator>
   <link>https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/</link>

@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Antoine Lucas">
+<meta name="dcterms.date" content="2024-12-13">
+<meta name="description" content="Exploring the fusion of programming, DJing, and data-driven creativity through live coding tools like Strudel—where algorithms meet artistic expression.">
 
-<title>project-idea – Antoine Lucas</title>
+<title>When Code Becomes Music: The Art of Algorithmic Live Performance – Antoine Lucas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,31 +23,66 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../assets/images/profile.jpg" rel="icon" type="image/jpeg">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fe37189e6f3cfe4519150b7885fae39.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-02756c461d61228902c1a3b1c91cfe7a.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fe37189e6f3cfe4519150b7885fae39.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-819a935d116c0e18764efdaa144a7085.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-ca9fecda8b2f9cca933f2f7c4ee7e75b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-819a935d116c0e18764efdaa144a7085.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/images/profile.jpg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fe37189e6f3cfe4519150b7885fae39.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-02756c461d61228902c1a3b1c91cfe7a.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fe37189e6f3cfe4519150b7885fae39.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-819a935d116c0e18764efdaa144a7085.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ca9fecda8b2f9cca933f2f7c4ee7e75b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-819a935d116c0e18764efdaa144a7085.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,9 +112,9 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Antoine Lucas">
-<meta property="og:description" content="Data Scientist specializing in pharma and cosmetic industries — Portfolio, Blog, and Projects">
-<meta property="og:image" content="https://antoinelucasfra.github.io/sandbox/assets/images/profile.jpg">
+<meta property="og:title" content="When Code Becomes Music: The Art of Algorithmic Live Performance – Antoine Lucas">
+<meta property="og:description" content="Exploring the fusion of programming, DJing, and data-driven creativity through live coding tools like Strudel—where algorithms meet artistic expression.">
+<meta property="og:image" content="https://antoinelucasfra.github.io/posts/livecoding-algorithmic-music/featured.png">
 <meta property="og:site_name" content="Antoine Lucas">
 </head>
 
@@ -249,10 +287,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../assets/images/profile.jpg" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/images/profile.jpg" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Antoine Lucas</span>
     </a>
   </div>
@@ -263,19 +301,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../projects.html"> 
+    <a class="nav-link" href="../../projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resources.html"> 
+    <a class="nav-link" href="../../resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item compact">
@@ -305,100 +343,153 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#government-misconduct-tracker" id="toc-government-misconduct-tracker" class="nav-link active" data-scroll-target="#government-misconduct-tracker">government misconduct-tracker</a></li>
-  <li><a href="#clmimbing" id="toc-clmimbing" class="nav-link" data-scroll-target="#clmimbing">clmimbing</a></li>
-  <li><a href="#cultural-recommendations-websiteapp" id="toc-cultural-recommendations-websiteapp" class="nav-link" data-scroll-target="#cultural-recommendations-websiteapp">cultural recommendations website/app</a></li>
-  <li><a href="#skate-figure-recognition" id="toc-skate-figure-recognition" class="nav-link" data-scroll-target="#skate-figure-recognition">skate figure recognition</a></li>
-  <li><a href="#idee-blog-posts" id="toc-idee-blog-posts" class="nav-link" data-scroll-target="#idee-blog-posts">idee blog posts</a></li>
-  <li><a href="#resource-fetcher-adder" id="toc-resource-fetcher-adder" class="nav-link" data-scroll-target="#resource-fetcher-adder">resource fetcher &amp; adder</a></li>
-  <li><a href="#reciper-adder" id="toc-reciper-adder" class="nav-link" data-scroll-target="#reciper-adder">recipeR adder ?</a></li>
-  <li><a href="#eye-tracking-project" id="toc-eye-tracking-project" class="nav-link" data-scroll-target="#eye-tracking-project">eye tracking project</a></li>
-  <li><a href="#one-piece-character-recognition-and-analysis" id="toc-one-piece-character-recognition-and-analysis" class="nav-link" data-scroll-target="#one-piece-character-recognition-and-analysis">one piece character recognition and analysis</a></li>
-  <li><a href="#analyse-teamfighttactics-data-personal-and-global" id="toc-analyse-teamfighttactics-data-personal-and-global" class="nav-link" data-scroll-target="#analyse-teamfighttactics-data-personal-and-global">analyse teamfighttactics data (personal and global?)</a></li>
-  <li><a href="#analyse-boardgames-data" id="toc-analyse-boardgames-data" class="nav-link" data-scroll-target="#analyse-boardgames-data">analyse boardgames data</a>
+  <li><a href="#the-emergence-of-a-new-artistic-medium" id="toc-the-emergence-of-a-new-artistic-medium" class="nav-link active" data-scroll-target="#the-emergence-of-a-new-artistic-medium">The Emergence of a New Artistic Medium</a></li>
+  <li><a href="#strudel-music-in-your-browser" id="toc-strudel-music-in-your-browser" class="nav-link" data-scroll-target="#strudel-music-in-your-browser">Strudel: Music in Your Browser</a></li>
+  <li><a href="#why-this-matters-for-data-scientists" id="toc-why-this-matters-for-data-scientists" class="nav-link" data-scroll-target="#why-this-matters-for-data-scientists">Why This Matters for Data Scientists</a>
   <ul class="collapse">
-  <li><a href="#catan" id="toc-catan" class="nav-link" data-scroll-target="#catan">catan</a></li>
-  <li><a href="#wonders" id="toc-wonders" class="nav-link" data-scroll-target="#wonders">7 wonders</a></li>
-  <li><a href="#evolution" id="toc-evolution" class="nav-link" data-scroll-target="#evolution">evolution</a></li>
-  <li><a href="#harmonies" id="toc-harmonies" class="nav-link" data-scroll-target="#harmonies">harmonies ?</a></li>
+  <li><a href="#patterns-as-data-structures" id="toc-patterns-as-data-structures" class="nav-link" data-scroll-target="#patterns-as-data-structures">1. Patterns as Data Structures</a></li>
+  <li><a href="#algorithmic-composition-as-generative-modeling" id="toc-algorithmic-composition-as-generative-modeling" class="nav-link" data-scroll-target="#algorithmic-composition-as-generative-modeling">2. Algorithmic Composition as Generative Modeling</a></li>
+  <li><a href="#real-time-feedback-loops" id="toc-real-time-feedback-loops" class="nav-link" data-scroll-target="#real-time-feedback-loops">3. Real-Time Feedback Loops</a></li>
   </ul></li>
+  <li><a href="#the-vision-merging-worlds" id="toc-the-vision-merging-worlds" class="nav-link" data-scroll-target="#the-vision-merging-worlds">The Vision: Merging Worlds</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li><a href="#beyond-entertainment" id="toc-beyond-entertainment" class="nav-link" data-scroll-target="#beyond-entertainment">Beyond Entertainment</a></li>
+  <li><a href="#the-algorithmic-dj" id="toc-the-algorithmic-dj" class="nav-link" data-scroll-target="#the-algorithmic-dj">The Algorithmic DJ</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/sandbox/project-idea.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/posts/livecoding-algorithmic-music/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">When Code Becomes Music: The Art of Algorithmic Live Performance</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Creative Coding</div>
+    <div class="quarto-category">Music</div>
+    <div class="quarto-category">Art</div>
+    <div class="quarto-category">Data</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Exploring the fusion of programming, DJing, and data-driven creativity through live coding tools like Strudel—where algorithms meet artistic expression.
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
-<section id="government-misconduct-tracker" class="level1">
-<h1>government misconduct-tracker</h1>
-<p>Créer un site web avec toutes les “crasses” du gvt par catégorie/domaine politique ? (Envt, société,etc..) Que ce soit les affaires médiatisées comme contrôle abusif, etc.. + ajouter les promesses non tenues etc.. MAIS TOUT SOURCÉ ET LORSQUE AVÉRÉ –&gt; compilation et bien garder en mémoire le tout</p>
-<p>S’amuser a faire une prédiction (quand est ce que la prochaine dingz arrive ??)</p>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Antoine Lucas </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 13, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="the-emergence-of-a-new-artistic-medium" class="level2">
+<h2 class="anchored" data-anchor-id="the-emergence-of-a-new-artistic-medium">The Emergence of a New Artistic Medium</h2>
+<p>What happens when you treat music not as a sequence of notes, but as a <em>program</em>? When the DJ booth becomes a terminal, and the dance floor responds to algorithms executed in real-time?</p>
+<p>This is the world of <strong>live coding</strong>—a practice where musicians write and modify code during performances, generating music through algorithmic patterns. It’s a fascinating convergence of computer science, musical composition, and performance art.</p>
 </section>
-<section id="clmimbing" class="level1">
-<h1>clmimbing</h1>
-<p>GenAI / reproduction ultra fidèle/facilitée des prises d’escalades en mode indoor (cf mimic holds) –&gt; amener un big gap techno? –&gt; créer une base de données de prises d’escalade avec des scans 3D hyper précis –&gt; créer un algo de reproduction de prises d’escalade en 3D hyper fidèle –&gt; créer une interface utilisateur pour permettre aux grimpeurs de concevoir leurs propres murs d’escalade avec des prises personnalisées –&gt; possibilité d’intégrer des fonctionnalités de réalité augmentée pour visualiser les prises sur un mur –&gt; possibilité d’intégrer des fonctionnalités de réalité virtuelle pour simuler l’escalade avec les nouvelles prises –&gt; possibilité de créer une marketplace pour vendre les prises d’escalade personnalisées</p>
+<section id="strudel-music-in-your-browser" class="level2">
+<h2 class="anchored" data-anchor-id="strudel-music-in-your-browser">Strudel: Music in Your Browser</h2>
+<p><a href="https://strudel.cc">Strudel</a> is a browser-based live coding environment that brings this artistic practice to anyone with a web browser. Built as a JavaScript port of the legendary <a href="https://tidalcycles.org/">Tidal Cycles</a>, it allows you to create complex, evolving musical patterns with surprisingly minimal code.</p>
+<p>Here’s what a Strudel pattern might look like:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$<span class="op">:</span> <span class="fu">s</span>(<span class="st">"[bd &lt;hh oh&gt;]*2"</span>)<span class="op">.</span><span class="fu">bank</span>(<span class="st">"tr909"</span>)<span class="op">.</span><span class="fu">dec</span>(<span class="op">.</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This single line creates a drum pattern using the TR-909 drum machine sounds—a bass drum with alternating hi-hats. But the real magic lies in the notation: the <code>&lt;&gt;</code> brackets create alternatives, the <code>*2</code> doubles the pattern, and suddenly you’re not just programming, you’re <em>composing</em>.</p>
 </section>
-<section id="cultural-recommendations-websiteapp" class="level1">
-<h1>cultural recommendations website/app</h1>
-<p>Nouvelle feature ou blog perso sur recommandations tah les videos ytb de tournesol mais pour des articles, blogpost, documentaire, article scientifique ou tout documents revues par toute la communauté sur des avis et comparaison par paires (cf tournesol)</p>
-<p>nom : friendR –&gt; R with friend for everything but R onglet : partage de contenus –&gt; recommandation entre amis de contenus : nom du contenu (livre, manga,serie,nimporte), url, wikipedia, autre si besoin avec système de ranking selon apparition/croisement d autres source (+ pour fun mais biaisé ajouter des poids/coeffs selon ressemblance entre les gens (cf projection factorielle des qu on a des datas entre les gens) et laisser le choix si tu veux des contenus objectif basé uniquement sur le ranking apparition etc ou qqch de + personnalisé basé sur tes connexions avec les autres</p>
+<section id="why-this-matters-for-data-scientists" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters-for-data-scientists">Why This Matters for Data Scientists</h2>
+<p>At first glance, live coding music might seem distant from data science. But look closer, and you’ll find striking parallels:</p>
+<section id="patterns-as-data-structures" class="level3">
+<h3 class="anchored" data-anchor-id="patterns-as-data-structures">1. Patterns as Data Structures</h3>
+<p>In Strudel, a musical pattern is essentially a time-indexed data structure. Just as we might think about time series data, live coders think about events distributed across cyclical time. The manipulation of these patterns—filtering, transforming, combining—mirrors the operations we perform on datasets.</p>
 </section>
-<section id="skate-figure-recognition" class="level1">
-<h1>skate figure recognition</h1>
-<p>3e : skate recognition video and movement analytics –&gt; motivation and reason + connection avec Faire un modele DP de reco de figure de skate (video ducoup) avec en temps reel lecture des figures etc.. (ensuite peux s appliquer a n’importe quel truc sportif genre gym, danse etc.. pour reconnaitre des figures connues, utiliser GAN + contraintes musculaires humaines pour explorer d autres figures?) -aller chercher donnes étiquetés video ytb (batb,etc..)</p>
-<p>bien normaliser les videos (faire une suite de frame et prendre par ex 5 ou 10 frames pour toutes les figures et donc mettre en entrée du réseau des matrices “empilees” avec 3*Nbr de frames comme dimension (1 matrice par figure étiquetée) ou bien essayer de voir comment faire du traitement videi</p>
-<p>-essayer des GAN controlable pour ‘inventer’ de nouvelles figures possibles pour l homme</p>
-<p>alternative : un peu comme taff de langue des signes et taffer avec mediapipe sur reco des mouvements !</p>
+<section id="algorithmic-composition-as-generative-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="algorithmic-composition-as-generative-modeling">2. Algorithmic Composition as Generative Modeling</h3>
+<p>When a live coder writes:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n</span>(<span class="st">"&lt;0!3 1*2&gt;"</span>)<span class="op">.</span><span class="fu">set</span>(chords)<span class="op">.</span><span class="fu">mode</span>(<span class="st">"root:g2"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">voicing</span>()<span class="op">.</span><span class="fu">s</span>(<span class="st">"gm_acoustic_bass"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>They’re essentially defining a generative model—rules that produce infinite variations within constraints. This is the same thinking behind procedural generation, Monte Carlo simulations, and generative AI.</p>
 </section>
-<section id="idee-blog-posts" class="level1">
-<h1>idee blog posts</h1>
-<p>2e : organizeR histoire, motivations et comment ça a été fait, 4e article : comment comprendre et avoir confiance dans le score de l’algo? –&gt; article sur interprétabilité avec ce use-case.</p>
+<section id="real-time-feedback-loops" class="level3">
+<h3 class="anchored" data-anchor-id="real-time-feedback-loops">3. Real-Time Feedback Loops</h3>
+<p>Live coding is the ultimate REPL experience. You modify code, hear the result immediately, adjust. This tight feedback loop is exactly what makes exploratory data analysis so powerful—and so satisfying.</p>
 </section>
-<section id="resource-fetcher-adder" class="level1">
-<h1>resource fetcher &amp; adder</h1>
-<p>Resource fetcher/adder - type : je prend des notes sur keep (avec keep API) ou autres et hop ça va ajouter mon petit texte dans un fichier direct sur le git</p>
 </section>
-<section id="reciper-adder" class="level1">
-<h1>recipeR adder ?</h1>
+<section id="the-vision-merging-worlds" class="level2">
+<h2 class="anchored" data-anchor-id="the-vision-merging-worlds">The Vision: Merging Worlds</h2>
+<p>I believe we’re at the cusp of a new creative paradigm where:</p>
 <ul>
-<li>Ajout auto dans database recette –&gt; direct dans l’app recipeR potential data to scrap : https://www.lemonde.fr/les-decodeurs/article/2025/12/07/140-idees-de-recettes-vegetariennes-pour-les-fetes-de-fin-d-annee_6656360_4355770.html</li>
+<li><p><strong>Data becomes music</strong>: Sonification transforms datasets into auditory experiences, making patterns literally <em>audible</em>. Stock market fluctuations, weather patterns, biological rhythms—all can become compositional material.</p></li>
+<li><p><strong>Algorithms become instruments</strong>: Just as guitars and synthesizers extended human musical capability, algorithmic tools create entirely new sonic possibilities that no human could execute manually.</p></li>
+<li><p><strong>DJing becomes programming</strong>: The DJ’s art of reading the room, mixing tracks, and creating flow translates into dynamic, responsive algorithms that can adapt to audience energy, time of day, or any data feed you can imagine.</p></li>
+<li><p><strong>Performance becomes collaboration</strong>: Between human and machine, between coder and audience, between prepared material and emergent behavior.</p></li>
 </ul>
 </section>
-<section id="eye-tracking-project" class="level1">
-<h1>eye tracking project</h1>
-<p>Idée pour améliorer projet ingé :</p>
-<p>utiliser GAN pour interpréter les apprentissages des neurones a l échelle individuelle -bayesian optimsiation</p>
-<p>utilisation de l espace latent des GANs (controllable gans) pour forcer un trait de caractéristiques (sourire par ex ou quoi pour un truc de visages)</p>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+<p>The beauty of Strudel is its accessibility. No installation required—just visit <a href="https://strudel.cc">strudel.cc</a> and start experimenting.</p>
+<p>Some entry points:</p>
+<ul>
+<li>The <a href="https://strudel.cc/workshop/getting-started/">interactive workshop</a> walks you through basics</li>
+<li>The <a href="https://strudel.cc/intro/showcase/">showcase</a> demonstrates what’s possible</li>
+<li>The <a href="https://discord.com/invite/HGEdXmRkzT">Discord community</a> welcomes newcomers</li>
+</ul>
+<p>For those with a data science background, pay particular attention to:</p>
+<ul>
+<li><strong>Signals</strong>: Continuous functions like <code>sine</code>, <code>rand</code>, and <code>perlin</code> noise that modulate parameters</li>
+<li><strong>Pattern effects</strong>: Transformations like <code>fast()</code>, <code>slow()</code>, <code>chunk()</code>, and <code>rarely()</code> that manipulate temporal structure</li>
+<li><strong>MIDI &amp; OSC</strong>: Connect Strudel to other software, hardware, or data sources</li>
+</ul>
 </section>
-<section id="one-piece-character-recognition-and-analysis" class="level1">
-<h1>one piece character recognition and analysis</h1>
-<p>Idees app : - One piece nice charcater database (+ compter nbr de pages où ils apparaissent?? Gagnetondebat -&gt; fournit des infos sources des différents débats de société, organisés en catégories etc.. avec qqs graphs clés pour digérer l’info et qui pointe vers les sources + compléments infos + paragraphes rédigés avec les arguments idee : chat with a manga –&gt; make RAG with manga (e.g.&nbsp;one piece)</p>
+<section id="beyond-entertainment" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-entertainment">Beyond Entertainment</h2>
+<p>This isn’t just about making cool sounds (though it is that). Live coding represents a different way of thinking about computation—one that prioritizes expressiveness, exploration, and real-time interaction over optimization and correctness.</p>
+<p>For data scientists accustomed to notebooks and static analyses, engaging with live coding can:</p>
+<ul>
+<li>Refresh your relationship with programming as a creative act</li>
+<li>Introduce new paradigms for thinking about temporal data</li>
+<li>Open doors to sonification as an analysis technique</li>
+<li>Connect you with a vibrant open-source community</li>
+</ul>
 </section>
-<section id="analyse-teamfighttactics-data-personal-and-global" class="level1">
-<h1>analyse teamfighttactics data (personal and global?)</h1>
+<section id="the-algorithmic-dj" class="level2">
+<h2 class="anchored" data-anchor-id="the-algorithmic-dj">The Algorithmic DJ</h2>
+<p>Picture this: a performance where real-time data feeds—social media sentiment, audience movement tracked via sensors, environmental data—modulate musical patterns. Where the “DJ” is both human and algorithm, making decisions together. Where the boundary between instrument and player, between creation and curation, becomes wonderfully blurred.</p>
+<p>This is not science fiction. Tools like Strudel make it possible today. The question is: what will you create?</p>
 </section>
-<section id="analyse-boardgames-data" class="level1">
-<h1>analyse boardgames data</h1>
-<section id="catan" class="level2">
-<h2 class="anchored" data-anchor-id="catan">catan</h2>
-<p>to see which strategies work best</p>
-</section>
-<section id="wonders" class="level2">
-<h2 class="anchored" data-anchor-id="wonders">7 wonders</h2>
-<p>analyze card drafting strategies</p>
-</section>
-<section id="evolution" class="level2">
-<h2 class="anchored" data-anchor-id="evolution">evolution</h2>
-<p>analyze trait combinations and their effectiveness</p>
-</section>
-<section id="harmonies" class="level2">
-<h2 class="anchored" data-anchor-id="harmonies">harmonies ?</h2>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li><a href="https://strudel.cc">Strudel</a> — Browser-based live coding</li>
+<li><a href="https://tidalcycles.org/">Tidal Cycles</a> — The original Haskell-based pattern language</li>
+<li><a href="https://algorave.com/">Algorave</a> — The movement of algorithmic dance music</li>
+<li><a href="https://toplap.org/">TOPLAP</a> — The home of live coding</li>
+</ul>
+<hr>
+<p><em>The intersection of code and creativity is vast and largely unexplored. Whether you’re a musician curious about algorithms or a programmer curious about music, the door is open.</em></p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -827,7 +918,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
 <p>© 2025 Antoine Lucas.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/sandbox/project-idea.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/posts/livecoding-algorithmic-music/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
 </div>
