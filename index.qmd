@@ -1,0 +1,100 @@
+---
+title: "Antoine Lucas"
+subtitle: |
+  Data Scientist | Pharma & Cosmetic Industries
+image: assets/images/profile.jpg
+format:
+  html:
+    grid:
+      body-width: 800px
+about:
+  id: hero
+  template: solana
+  image-width: 12em
+  image-shape: round
+  links:
+    - icon: envelope
+      text: Email
+      href: "mailto:antoinelucas@example.com"
+    - icon: linkedin
+      text: LinkedIn
+      href: "https://www.linkedin.com/in/antoinelucasdata/"
+    - icon: twitter
+      text: Twitter
+      href: "https://twitter.com/antoineloucass"
+    - icon: github
+      text: GitHub
+      href: "https://github.com/antoinelucasfra"
+---
+
+:::: {#hero}
+::::
+
+:::: {.about-body}
+
+I am a **Data Scientist** with **5 years of experience** in the **pharmaceutical** and **cosmetic** industries.
+
+I specialize in leveraging data to drive insights, optimize processes, and support evidence-based decision-making in highly regulated environments.
+
+:::: {.highlight}
+
+I am **available** for freelance projects and consulting engagements.
+
+::::
+
+## 💼 What I Do
+
+I transform complex data challenges into actionable insights. My work spans:
+
+- **Clinical Trial Analytics** — Statistical analysis and reporting for clinical studies
+- **Formulation Optimization** — Data-driven approaches to product development
+- **Quality Control & Compliance** — Statistical process control and regulatory analytics
+- **Predictive Modeling** — Machine learning for demand forecasting and stability studies
+- **Data Visualization** — Clear, compelling dashboards and reports for stakeholders
+
+## 🔬 Industry Experience
+
+:::: {.highlight}
+
+**5+ years** working with leading pharma and cosmetic companies on data-driven solutions.
+
+::::
+
+My experience bridges laboratory data, manufacturing processes, and commercial analytics. I understand the unique challenges of working in regulated industries, including:
+
+- GxP compliance requirements
+- FDA/EMA regulatory frameworks
+- Stability testing and shelf-life prediction
+- Batch record analysis and deviation investigations
+
+## 🛠️ Technical Skills
+
+| Domain | Technologies |
+|--------|-------------|
+| **Programming** | R, Python, SQL |
+| **Data Analysis** | tidyverse, pandas, scikit-learn |
+| **Visualization** | ggplot2, Plotly, Shiny, Power BI |
+| **Reporting** | Quarto, R Markdown, Jupyter |
+| **Version Control** | Git, GitHub |
+| **Databases** | PostgreSQL, SQLite, Snowflake |
+| **Cloud** | AWS, Azure basics |
+
+## 🌟 Core Competencies {.interests}
+
+- Statistical Analysis & Hypothesis Testing
+- Machine Learning & Predictive Modeling
+- Time Series Analysis
+- Design of Experiments (DoE)
+- Data Pipeline Development
+- Technical Documentation
+- Cross-functional Collaboration
+
+## 🎓 Education {.education}
+
+- **M.Sc. in Data Science / Statistics**, *2019*
+  University Name, France
+
+- **B.Sc. in Mathematics / Applied Sciences**, *2017*
+  University Name, France
+
+::::

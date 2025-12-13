@@ -3,33 +3,71 @@ project:
   output-dir: docs
 
 website:
-  title: "antoinelucasfra.github.io"
+  title: "Antoine Lucas"
+  description: "Data Scientist specializing in pharma and cosmetic industries — Portfolio, Blog, and Projects"
+  favicon: assets/images/profile.jpg
+  image: assets/images/profile.jpg
+  site-url: https://antoinelucasfra.github.io
+  repo-url: https://github.com/antoinelucasfra/antoinelucasfra.github.io
+  repo-actions: [edit, issue]
+  open-graph: true
+  page-navigation: true
+  back-to-top-navigation: true
+  page-footer:
+    border: true
+    left: |
+      Powered by [Quarto](https://quarto.org).
+    center: |
+      &copy; 2025 Antoine Lucas.
+    right: |
+      License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    title: "Antoine Lucas"
+    search: true
+    background: dark
+    right:
+      - text: About
+        href: index.qmd
+      - text: Blog
+        href: blog.qmd
+      - text: Projects
+        href: projects.qmd
+      - text: Resources
+        href: resources.qmd
+      - icon: linkedin
+        href: "https://www.linkedin.com/in/antoinelucasdata/"
+      - icon: github
+        href: "https://github.com/antoinelucasfra"
+
+brand:
+  light: _brand-light.yml
+  dark: _brand-dark.yml
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    grid:
+      body-width: 1000px
+    theme:
+      light:
+        - cosmo
+        - brand
+        - assets/stylesheets/theme.scss
+      dark:
+        - cosmo
+        - brand
+        - assets/stylesheets/theme-dark.scss
+    lang: en
+    date-format: "MMMM D, YYYY"
+    highlight-style: github
+    code-copy: true
+    code-link: true
+    code-overflow: wrap
+    anchor-sections: true
+    link-external-newwindow: true
+    fig-align: center
     toc: true
 
-editor: visual
+lightbox: auto
 
-title: "Antoine Lucas"
-image: picture.jpg
-about: 
-  template: jolla
-  image-shape: rounded
-  image-width: 15em
-  links:
-    - text: LinkedIn
-      href: https://www.linkedin.com/in/antoinelucasdata/
-    - text: Twitter
-      href: https://twitter.com/antoineloucass
-    - text: GitHub
-      href: https://github.com/antoinelucasfra
-      
-      
+execute:
+  freeze: auto

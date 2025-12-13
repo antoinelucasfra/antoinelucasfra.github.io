@@ -1,0 +1,109 @@
+---
+title: "Getting Started with Quarto for Data Science Reports"
+description: "A beginner's guide to creating beautiful, reproducible reports using Quarto in your data science workflow."
+author: "Antoine Lucas"
+date: "2024-07-10"
+categories: [Quarto, Tutorial, Reproducibility]
+image: "featured.png"
+---
+
+## What is Quarto?
+
+Quarto is an open-source scientific and technical publishing system that lets you create:
+
+- Documents (HTML, PDF, Word)
+- Presentations
+- Websites and blogs
+- Books
+
+It supports multiple programming languages including R, Python, Julia, and Observable.
+
+## Getting Started
+
+### Installation
+
+Download Quarto from [quarto.org](https://quarto.org/docs/get-started/).
+
+### Your First Quarto Document
+
+Create a file named `report.qmd`:
+
+````markdown
+---
+title: "My First Report"
+author: "Antoine Lucas"
+date: today
+format: html
+---
+
+## Introduction
+
+This is my first Quarto document.
+
+```{{r}}
+library(ggplot2)
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "Car Weight vs. Fuel Efficiency")
+```
+````
+
+### Rendering
+
+```bash
+quarto render report.qmd
+```
+
+## Key Features
+
+### Code Execution Options
+
+```yaml
+#| echo: true      # Show the code
+#| eval: true      # Run the code
+#| warning: false  # Hide warnings
+#| fig-width: 8    # Figure width
+#| fig-height: 6   # Figure height
+```
+
+### Cross-References
+
+Reference figures, tables, and sections:
+
+```markdown
+See @fig-scatter for the visualization.
+
+```{{r}}
+#| label: fig-scatter
+#| fig-cap: "Scatter plot of weight vs mpg"
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
+```
+```
+
+### Callouts
+
+::: {.callout-note}
+This is a note callout for additional information.
+:::
+
+::: {.callout-warning}
+This is a warning callout for important caveats.
+:::
+
+## Benefits for Data Science
+
+1. **Single source of truth** — Code and narrative together
+2. **Multiple output formats** — One document, many formats
+3. **Reproducibility** — Anyone can re-run your analysis
+4. **Version control friendly** — Plain text format works well with Git
+
+## Conclusion
+
+Quarto is an excellent tool for creating reproducible data science reports. Start with simple documents and gradually explore its advanced features.
+
+## Resources
+
+- [Quarto Documentation](https://quarto.org/docs/guide/)
+- [Quarto Gallery](https://quarto.org/docs/gallery/)
+- [Awesome Quarto](https://github.com/mcanouil/awesome-quarto)

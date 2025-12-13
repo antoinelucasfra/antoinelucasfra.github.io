@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Antoine Lucas</title>
+<link>https://antoinelucasfra.github.io/blog.html</link>
+<atom:link href="https://antoinelucasfra.github.io/blog.xml" rel="self" type="application/rss+xml"/>
+<description>Data Scientist specializing in pharma and cosmetic industries — Portfolio, Blog, and Projects</description>
+<image>
+<url>https://antoinelucasfra.github.io/assets/images/profile.jpg</url>
+<title>Antoine Lucas</title>
+<link>https://antoinelucasfra.github.io/blog.html</link>
+</image>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Thu, 14 Nov 2024 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Building Reproducible Analyses in Pharma with R</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/reproducible-pharma-r/</link>
+  <description><![CDATA[ <section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In pharmaceutical data science, reproducibility isn’t just a best practice—it’s a regulatory requirement. This post explores how to build reproducible analysis workflows using R, renv, and Quarto.</p>
+</section><section id="why-reproducibility-matters-in-pharma" class="level2"><h2 class="anchored" data-anchor-id="why-reproducibility-matters-in-pharma">Why Reproducibility Matters in Pharma</h2>
+<p>Regulatory agencies like the FDA and EMA require that analytical work be:</p>
+<ul>
+<li>
+<strong>Documented</strong> — Clear records of what was done</li>
+<li>
+<strong>Traceable</strong> — Ability to follow the analysis from raw data to conclusions</li>
+<li>
+<strong>Reproducible</strong> — The same inputs should produce the same outputs</li>
+</ul></section><section id="key-tools-for-reproducibility" class="level2"><h2 class="anchored" data-anchor-id="key-tools-for-reproducibility">Key Tools for Reproducibility</h2>
+<section id="version-control-with-git" class="level3"><h3 class="anchored" data-anchor-id="version-control-with-git">1. Version Control with Git</h3>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> init</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> add .</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> commit <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-m</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Initial analysis setup"</span></span></code></pre></div>
+</section><section id="dependency-management-with-renv" class="level3"><h3 class="anchored" data-anchor-id="dependency-management-with-renv">2. Dependency Management with renv</h3>
+<div class="cell">
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Initialize renv for the project</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">renv</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rstudio.github.io/renv/reference/init.html">init</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Snapshot current dependencies</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">renv</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rstudio.github.io/renv/reference/snapshot.html">snapshot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Restore dependencies on a new machine</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">renv</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rstudio.github.io/renv/reference/restore.html">restore</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section><section id="pipeline-management-with-targets" class="level3"><h3 class="anchored" data-anchor-id="pipeline-management-with-targets">3. Pipeline Management with targets</h3>
+<div class="cell">
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://docs.ropensci.org/targets/">targets</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Define your analysis pipeline</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tar_target</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">raw_data</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data/clinical_data.csv"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tar_target</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">clean_data</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">clean_clinical_data</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">raw_data</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tar_target</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">analysis</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">run_statistical_analysis</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">clean_data</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tar_target</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">report</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">render_report</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">analysis</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section></section><section id="best-practices" class="level2"><h2 class="anchored" data-anchor-id="best-practices">Best Practices</h2>
+<ol type="1">
+<li>
+<strong>Use project-relative paths</strong> — Never use absolute paths</li>
+<li>
+<strong>Document your environment</strong> — Include session info in reports</li>
+<li>
+<strong>Validate data inputs</strong> — Check data quality before analysis</li>
+<li>
+<strong>Version control everything</strong> — Code, configuration, and documentation</li>
+</ol></section><section id="conclusion" class="level2"><h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Building reproducible analyses requires upfront investment but pays dividends in quality, compliance, and peace of mind.</p>
+</section><section id="session-info" class="level2"><h2 class="anchored" data-anchor-id="session-info">Session Info</h2>
+<div class="cell">
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>R</category>
+  <category>Pharma</category>
+  <category>Reproducibility</category>
+  <category>Best Practices</category>
+  <guid>https://antoinelucasfra.github.io/posts/reproducible-pharma-r/</guid>
+  <pubDate>Thu, 14 Nov 2024 23:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/posts/reproducible-pharma-r/featured.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Complete Development Setup Guide for R &amp; Python</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/dev-setup-guide/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This guide provides a complete and reproducible path to installing R &amp; Python along with a fully configured VS Code setup. It’s meant to be definitive and fully reproducible.</p>
+</section>
+<section id="first-you-need-to-install-r" class="level2">
+<h2 class="anchored" data-anchor-id="first-you-need-to-install-r">First you need to install R :</h2>
+<ul>
+<li>Recommended way : you can install R via rig which is an installation manager https://github.com/r-lib/rig</li>
+</ul>
+<p>With rig you can very easily install multiple and handle different R versions.</p>
+<ul>
+<li>you can follow the classic R installation via CRAN https://cran.rstudio.com/</li>
+</ul>
+</section>
+<section id="then-you-need-to-install-python" class="level2">
+<h2 class="anchored" data-anchor-id="then-you-need-to-install-python">Then you need to install python :</h2>
+<ul>
+<li><p>follow classic python installation, python is probably already available if you are with a linux system http://python.org/downloads/</p></li>
+<li><p>we recommend also to install pipx to handle python libvrary installation https://github.com/pypa/pipx</p></li>
+</ul>
+</section>
+<section id="then-we-need-to-install-our-favorite-ide-for-developing" class="level2">
+<h2 class="anchored" data-anchor-id="then-we-need-to-install-our-favorite-ide-for-developing">then we need to install our favorite IDE for developing</h2>
+<p>Here we VERY strongly recommend using vscode which allows a complete flexibility for developing in various languages (not only in R) : https://code.visualstudio.com/</p>
+<p>You can use any other IDE (Rstudio, Pycharm, etc…) but only the configurations of VScode will be developed, feel free to search for your own guides &amp; issues for other IDEs.</p>
+</section>
+<section id="now-we-can-install-various-tools-for-moden-development" class="level2">
+<h2 class="anchored" data-anchor-id="now-we-can-install-various-tools-for-moden-development">Now we can install various tools for moden development</h2>
+<p>In R, we are using installation with a modern oriented development workflow.</p>
+<p>To finish installation in vscode to have a complete R integration you need to follow the following steps : - follow R &amp; vscode https://code.visualstudio.com/docs/languages/r</p>
+<p>For this, we will be having various tools to ensure this workflow :</p>
+<ul>
+<li><p>first we’ll be using quarto for authoring, reporting and produce deliverables https://quarto.org/docs/get-started/ and you can install quarto vscode extention</p></li>
+<li><p>We can also install quarto wizard on vscode to healp us easy to use quarto extensions https://github.com/mcanouil/quarto-wizard</p></li>
+</ul>
+<p>To follow good principles of development, we’ll be using tools to ensure that everything is on track :</p>
+<p>For formatting/styling code :</p>
+<ul>
+<li><p>air for formatting R code https://posit-dev.github.io/air/editor-vscode.html (alternative to styler)</p></li>
+<li><p>ruff for formatting python code https://docs.astral.sh/ruff/</p></li>
+<li><p>prettier for any other languages https://prettier.io/</p></li>
+</ul>
+<p>For linting in both R &amp; python you have the errorlens extension that is very complete and useful https://marketplace.visualstudio.com/items/?itemName=usernamehw.errorlens</p>
+<p>For notebooks in python :</p>
+<ul>
+<li><p>if you want to use notebooks, we strongly recommend using https://github.com/marimo-team/marimo to write in notebooks</p></li>
+<li><p>otherwise there’s still the classic jupyter alternatives https://jupyter.org/</p></li>
+</ul>
+<p>There’s infinite possibilities for vscode extensions, please install them according to your needs and care for trusted publishers. Here’s an example command to list your installed extensions:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">code</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--list-extensions</span></span></code></pre></div>
+<p>For reproducible environments and library to manage and handle we have :</p>
+<ul>
+<li><p>uv in python, which is a (COMPLETE AND SUPERIOR) alternative to pyenv and other python pkg management tools https://docs.astral.sh/uv/</p></li>
+<li><p>renv to handle R pkg management which is the most common admitted tool to use in R community BUT there’s a new tool in town called rv https://github.com/A2-ai/ that is meant to be the uv for R</p></li>
+</ul>
+<p>other resources and setup R/VScode : https://rolkra.github.io/R-VSCode/ https://renkun.me/2022/03/06/my-recommendations-of-vs-code-extensions-for-r/ and more globally various blog posts : https://renkun.me/</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>R</category>
+  <category>Python</category>
+  <category>VS Code</category>
+  <category>Setup</category>
+  <category>Tutorial</category>
+  <guid>https://antoinelucasfra.github.io/posts/dev-setup-guide/</guid>
+  <pubDate>Mon, 14 Oct 2024 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Statistical Process Control for Cosmetic Manufacturing</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/spc-cosmetics-r/</link>
+  <description><![CDATA[ <section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Statistical Process Control (SPC) is essential for maintaining consistent product quality in cosmetic manufacturing. This post demonstrates how to implement SPC charts using R.</p>
+</section><section id="the-basics-of-spc" class="level2"><h2 class="anchored" data-anchor-id="the-basics-of-spc">The Basics of SPC</h2>
+<p>SPC uses control charts to monitor process behavior over time. Key concepts:</p>
+<ul>
+<li>
+<strong>Center Line (CL)</strong> — The process average</li>
+<li>
+<strong>Upper Control Limit (UCL)</strong> — CL + 3σ</li>
+<li>
+<strong>Lower Control Limit (LCL)</strong> — CL - 3σ</li>
+</ul></section><section id="implementing-control-charts-in-r" class="level2"><h2 class="anchored" data-anchor-id="implementing-control-charts-in-r">Implementing Control Charts in R</h2>
+<section id="x-bar-chart-example" class="level3"><h3 class="anchored" data-anchor-id="x-bar-chart-example">X-bar Chart Example</h3>
+<div class="cell">
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://github.com/luca-scr/qcc">qcc</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sample viscosity measurements from production batches</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">viscosity</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4520</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4535</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4510</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4525</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4540</span>,</span>
+<span>  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4515</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4530</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4505</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4545</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4520</span>,</span>
+<span>  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4525</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4510</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4535</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4515</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4530</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create groups (5 samples per subgroup)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">groups</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, each <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create X-bar chart</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">qcc</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">viscosity</span>, type <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"xbar"</span>, sizes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section><section id="r-chart-for-variability" class="level3"><h3 class="anchored" data-anchor-id="r-chart-for-variability">R Chart for Variability</h3>
+<div class="cell">
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># R chart for within-subgroup variability</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">qcc</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">viscosity</span>, type <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"R"</span>, sizes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+</section></section><section id="detecting-out-of-control-conditions" class="level2"><h2 class="anchored" data-anchor-id="detecting-out-of-control-conditions">Detecting Out-of-Control Conditions</h2>
+<p>Common patterns to watch for:</p>
+<ol type="1">
+<li>
+<strong>Points beyond control limits</strong> — Immediate investigation needed</li>
+<li>
+<strong>Run of 7+ points</strong> — Process shift detected</li>
+<li>
+<strong>Trends</strong> — Gradual drift in process</li>
+<li>
+<strong>Hugging the center line</strong> — Possible measurement issues</li>
+</ol></section><section id="creating-an-automated-spc-dashboard" class="level2"><h2 class="anchored" data-anchor-id="creating-an-automated-spc-dashboard">Creating an Automated SPC Dashboard</h2>
+<div class="cell">
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://shiny.posit.co/">shiny</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://github.com/luca-scr/qcc">qcc</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Simple Shiny app structure</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">ui</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html">titlePanel</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Production Quality Monitor"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarLayout</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarPanel</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html">selectInput</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"product"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Select Product:"</span>,</span>
+<span>                  choices <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Moisturizer A"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Serum B"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cleanser C"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">mainPanel</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"controlChart"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">server</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">input</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">output</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span>  <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">output</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">controlChart</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span>    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Generate control chart based on selected product</span></span>
+<span>    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ... chart generation code</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div>
+</div>
+</section><section id="conclusion" class="level2"><h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>SPC is a powerful tool for maintaining quality in cosmetic manufacturing. With R, you can automate monitoring and quickly detect process issues.</p>
+</section><section id="further-reading" class="level2"><h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<ul>
+<li>Montgomery, D.C. “Introduction to Statistical Quality Control”</li>
+<li>ISO 22716: Cosmetics Good Manufacturing Practices</li>
+</ul>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>R</category>
+  <category>Quality Control</category>
+  <category>Cosmetics</category>
+  <category>SPC</category>
+  <guid>https://antoinelucasfra.github.io/posts/spc-cosmetics-r/</guid>
+  <pubDate>Thu, 19 Sep 2024 22:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/posts/spc-cosmetics-r/featured.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Statistical Theory: Frequentist Methods Reference</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/stats-theory-frequentist/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This page serves as a reference for common frequentist statistical methods and their implementation in R.</p>
+</section>
+<section id="theory-on-statistical-tests" class="level2">
+<h2 class="anchored" data-anchor-id="theory-on-statistical-tests">Theory on Statistical Tests</h2>
+<p>Les différents tests statistiques : P-value : c’est la proba que le hasard peut expliquer tout seul 1 différence AU MOINS aussi importante que celle observée. Il y a 2 types d’hypothèses : • Neyman/pearson : l’hypothèse H0 : pa= pb et H1 : pa != pb avec par ex p=0.049 et p=0.00001 ont la MEME « force » de test • Fischer : pareil mais p=0.049 et p = 0.0000001 ont PAS DU TOUT la même force de test</p>
+<p>COMPARAISON DE 2 POURCENTAGES</p>
+<p>Prop.table(dataframe, ½) =regarde le % de 1ere variable // à 2eme (2/1 si inverse) • Test du chi-2 : chisq.test(x,y,correct=FALSE/TRUE) AVEC les hypothèses de validité (% loin de 0 et 100 et grand échantillon) • Test fischer si aucune hypothèse vérifiée : fisher.test(x,y)</p>
+<p>COMPARAISON DE 2 MOYENNES</p>
+<p>• Test de student : n30 avec une distribution normale. Diagramme de normalité : qqnorm() et qqline(x). Calcul variance : by(x,y,sd,na.rm=TRUE) T.test(x~y,var.equal=TRUE) si pas d’hypothèses : wilcox.test(x~y) Test nullité d’un coeff de corrélation, • Test nullité de corrélation entre 2 variables : 1 des 2 variables doit suivre la loi normale =pearson : cor.test(x,y) • Spearman(x,y,method= »spearman ») Comparaison de moyenne // à moyenne de référence • T.test(var,varfixe=XXXX) • Mcnemar.test(var avant, var après) POUR VAR QUALI • T.test (début,fin,paired=TRUE) POUR VAR QUANTI</p>
+<p>LE T-TEST ANALYSE LES ECARTS TYPES ET LE F-TEST ANALYSE LES MOYENNES</p>
+<p>TEST NON PARAMETRIQUES Test de wilcoxon : comparaison de K= 2 echantillons independants par rapport a une variable X de nature : Quantitative/Qualitative ordinale C’est le test de l’hypothèse selon laquelle les médianes de chacun de deux groupes de données sont proche Test de cruskal wallis : est une comparaison de K=3 échantillons. Ainsi, l’interprétation du test de Kruskal-Wallis est très similaire à une ANOVA paramétrique d’ordre Un, sauf qu’il est basé sur les rangs au lieu des moyennes.</p>
+<p>REGRESSION LINEAIRE SIMPLE (GENERALISATION DU TEST DE STUDENT) Modèle :lm(x~y,data= dataframe)</p>
+<p>REGRESSION LINEAIRE MULTIPLE :</p>
+<p>Les hypothèses à vérifier sont : normalité du bruit et terme résiduel, le bruit est indépendant des valeurs des autres variables, ABSENCE de corrélation évidente, interne avec le bruit Lm(x~y+w+z,data = dataframe) Var quanti = somme (var quanti ou binaire MAIS PAS QUALI) si on veut des quali=codage à la main Interactions entre 2 var = on met un * Analyse de variance/covariance = cas particulier de régression linéaire multiple : toutes les variables explicatives sont catégorielles ou quantitatives</p>
+<p>REGRESSION LOGISTIQUE</p>
+<p>Si la variable à expliquer est non quantitative : -logistique -transforme les variables Glm(modèle, data = …, family = « binomial ») -coeff lu dans estimate lire exp(valeur estimate) a un sens : odd-ratio pour la regresison multiple on rajoute des var explicatives</p>
+<p>Hypothèses : au moins 5 à 10 évènements par var explicatives Ex : si une var a expliquer a 54 individus, (age(1), trauma(1) et profession(7)) et 1 + 1 + 7 =9 <em>10(=nbr evenement) = 9054 donc c’est bon ! Ex : 1 + 1 +7 =9</em>5 = 45 54 - passe tout juste pas fou !</p>
+<p>Lien recap tests stats https://help.xlstat.com/s/article/guide-de-choix-de-test-statistique?language=fr</p>
+<p>ANALYSES DE DONNEES MULTIVARIEES (CF MOOC HUSSON ETC..)</p>
+<p>Tableau recap</p>
+<p>Recap de sensi et speci d’un test :</p>
+<p>Ensuite on définit la sensi comme : Sensi = VP/(VP+FN) c’est donc la proba que le test accepte H0 si elle est vraie Speci = VN/(VN+FP) c’est donc la proba que le test accepte H1 si elle est vraie Ensuite on a la VPP et la VPN : VPP : valeur prédite positive = VP/(VP+FP) et c’est la probabilité que H0 soit vraie lorsque le test conclu à son acceptation VPN : valeur prédite négative = VN/(VN+FN) et c’est la probabilité que H0 soit fausse lorsque le test conclu à son acceptation</p>
+<p>Courbe ROC : 1-sensi = f(1-speci) = taux de faux positifs = f(taux de vrais positifs) Et FP = 1- sensi FN = 1 – recall</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Statistics</category>
+  <category>Theory</category>
+  <category>R</category>
+  <category>Reference</category>
+  <guid>https://antoinelucasfra.github.io/posts/stats-theory-frequentist/</guid>
+  <pubDate>Mon, 19 Aug 2024 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Getting Started with Quarto for Data Science Reports</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/quarto-getting-started/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="what-is-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-quarto">What is Quarto?</h2>
+<p>Quarto is an open-source scientific and technical publishing system that lets you create:</p>
+<ul>
+<li>Documents (HTML, PDF, Word)</li>
+<li>Presentations</li>
+<li>Websites and blogs</li>
+<li>Books</li>
+</ul>
+<p>It supports multiple programming languages including R, Python, Julia, and Observable.</p>
+</section>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+<section id="installation" class="level3">
+<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<p>Download Quarto from <a href="https://quarto.org/docs/get-started/">quarto.org</a>.</p>
+</section>
+<section id="your-first-quarto-document" class="level3">
+<h3 class="anchored" data-anchor-id="your-first-quarto-document">Your First Quarto Document</h3>
+<p>Create a file named <code>report.qmd</code>:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb1-2"><span class="an" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">title:</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> "My First Report"</span></span>
+<span id="cb1-3"><span class="an" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">author:</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> "Antoine Lucas"</span></span>
+<span id="cb1-4"><span class="an" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">date:</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> today</span></span>
+<span id="cb1-5"><span class="an" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">format:</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> html</span></span>
+<span id="cb1-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">## Introduction</span></span>
+<span id="cb1-9"></span>
+<span id="cb1-10">This is my first Quarto document.</span>
+<span id="cb1-11"></span>
+<span id="cb1-12"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{r}</span></span>
+<span id="cb1-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb1-14"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(mtcars, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> wt, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> mpg)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Car Weight vs. Fuel Efficiency"</span>)</span>
+<span id="cb1-17"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span></code></pre></div>
+</section>
+<section id="rendering" class="level3">
+<h3 class="anchored" data-anchor-id="rendering">Rendering</h3>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> render report.qmd</span></code></pre></div>
+</section>
+</section>
+<section id="key-features" class="level2">
+<h2 class="anchored" data-anchor-id="key-features">Key Features</h2>
+<section id="code-execution-options" class="level3">
+<h3 class="anchored" data-anchor-id="code-execution-options">Code Execution Options</h3>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| echo: true      # Show the code</span></span>
+<span id="cb3-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| eval: true      # Run the code</span></span>
+<span id="cb3-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| warning: false  # Hide warnings</span></span>
+<span id="cb3-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| fig-width: 8    # Figure width</span></span>
+<span id="cb3-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| fig-height: 6   # Figure height</span></span></code></pre></div>
+</section>
+<section id="cross-references" class="level3">
+<h3 class="anchored" data-anchor-id="cross-references">Cross-References</h3>
+<p>Reference figures, tables, and sections:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1">See @fig-scatter for the visualization.</span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{r}</span></span>
+<span id="cb4-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| label: fig-scatter</span></span>
+<span id="cb4-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| fig-cap: "Scatter plot of weight vs mpg"</span></span>
+<span id="cb4-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(mtcars, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> wt, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> mpg)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>()</span></code></pre></div>
+<p>```</p>
+</section>
+<section id="callouts" class="level3">
+<h3 class="anchored" data-anchor-id="callouts">Callouts</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a note callout for additional information.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a warning callout for important caveats.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="benefits-for-data-science" class="level2">
+<h2 class="anchored" data-anchor-id="benefits-for-data-science">Benefits for Data Science</h2>
+<ol type="1">
+<li><strong>Single source of truth</strong> — Code and narrative together</li>
+<li><strong>Multiple output formats</strong> — One document, many formats</li>
+<li><strong>Reproducibility</strong> — Anyone can re-run your analysis</li>
+<li><strong>Version control friendly</strong> — Plain text format works well with Git</li>
+</ol>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Quarto is an excellent tool for creating reproducible data science reports. Start with simple documents and gradually explore its advanced features.</p>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li><a href="https://quarto.org/docs/guide/">Quarto Documentation</a></li>
+<li><a href="https://quarto.org/docs/gallery/">Quarto Gallery</a></li>
+<li><a href="https://github.com/mcanouil/awesome-quarto">Awesome Quarto</a></li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Quarto</category>
+  <category>Tutorial</category>
+  <category>Reproducibility</category>
+  <guid>https://antoinelucasfra.github.io/posts/quarto-getting-started/</guid>
+  <pubDate>Tue, 09 Jul 2024 22:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/posts/quarto-getting-started/featured.png" medium="image" type="image/png"/>
+</item>
+</channel>
+</rss>

@@ -1,9 +1,32 @@
 ---
-title: "About"
+title: "About This Site"
 ---
 
-About this site
+## About Me
 
-```{r}
-1 + 1
-```
+I'm Antoine Lucas, a Data Scientist with 5 years of experience in the pharmaceutical and cosmetic industries. This website serves as my professional portfolio and a place to share knowledge with the data science community.
+
+## About This Website
+
+This site is built with [Quarto](https://quarto.org/), an open-source scientific and technical publishing system. It's hosted on GitHub Pages and automatically deployed with each commit.
+
+### Features
+
+- 📝 **Blog** — Technical articles and tutorials
+- 💼 **Projects** — Portfolio of data science work
+- 📚 **Resources** — Curated learning materials
+
+## Contact
+
+I'm always interested in discussing data science challenges and opportunities. Feel free to reach out:
+
+- **Email**: [antoinelucas@example.com](mailto:antoinelucas@example.com)
+- **LinkedIn**: [linkedin.com/in/antoinelucasdata](https://www.linkedin.com/in/antoinelucasdata/)
+- **GitHub**: [github.com/antoinelucasfra](https://github.com/antoinelucasfra)
+- **Twitter**: [@antoineloucass](https://twitter.com/antoineloucass)
+
+## Colophon
+
+- Built with [Quarto](https://quarto.org/)
+- Hosted on [GitHub Pages](https://pages.github.com/)
+- Source code on [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io)

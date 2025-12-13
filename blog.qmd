@@ -1,0 +1,20 @@
+---
+title: "Blog"
+title-block-banner: true
+listing:
+  - id: posts
+    contents: posts
+    type: default
+    sort: "date desc"
+    categories: true
+    feed: true
+    filter-ui: true
+    sort-ui: true
+    page-size: 10
+    fields: [image, date, title, description, categories, reading-time]
+---
+
+Welcome to my blog where I share insights, tutorials, and thoughts on data science, statistics, and working in the pharma/cosmetic industries.
+
+:::: {#posts}
+::::

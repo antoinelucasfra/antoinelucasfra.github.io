@@ -1,0 +1,306 @@
+/*-- scss:defaults --*/
+
+// Brand colors - Navy & Gold theme (Trafalgar Law inspired) - Dark mode
+$brand-gold: #F5C518;
+$brand-gold-light: #FDD835;
+$brand-navy: #1a2a4a;
+$brand-navy-light: #2c3e50;
+$brand-navy-dark: #0d1b2a;
+$brand-blue: #3498db;
+$brand-blue-light: #5dade2;
+$brand-white: #ffffff;
+$brand-off-white: #f8f9fa;
+
+// Override Bootstrap colors with brand palette
+$primary: $brand-gold;
+$secondary: $brand-navy-light;
+$success: #2ecc71;
+$info: $brand-blue-light;
+$warning: $brand-gold;
+$danger: #e74c3c;
+
+$body-bg: $brand-navy-dark;
+$body-color: $brand-off-white;
+
+$link-color: $brand-gold;
+$link-hover-color: $brand-gold-light;
+
+// Navbar colors
+$navbar-dark-color: $brand-off-white;
+$navbar-dark-hover-color: $brand-gold;
+$navbar-dark-brand-color: $brand-gold;
+
+// Headings
+$headings-color: $brand-gold;
+
+/*-- scss:rules --*/
+
+// Smooth scrolling
+html {
+  scroll-behavior: smooth;
+}
+
+// Navbar brand styling
+.navbar-brand {
+  font-weight: 700;
+  color: $brand-gold !important;
+
+  &:hover {
+    color: $brand-gold-light !important;
+  }
+}
+
+// Navbar link styling
+.navbar-dark .navbar-nav .nav-link {
+  color: $brand-off-white;
+
+  &:hover,
+  &:focus {
+    color: $brand-gold !important;
+  }
+
+  &.active {
+    color: $brand-gold !important;
+  }
+}
+
+// Highlight boxes - dark mode
+.highlight {
+  background-color: rgba($brand-navy, 0.5);
+  border-left: 4px solid $brand-gold;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+// About body styling
+.about-body {
+  max-width: 800px;
+  margin: 2rem auto;
+
+  h2 {
+    margin-top: 2.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba($brand-gold, 0.3);
+    color: $brand-gold;
+  }
+}
+
+// Headings styling
+h1, h2, h3, h4, h5, h6 {
+  color: $brand-gold;
+}
+
+// Skills table styling - dark mode
+table {
+  width: 100%;
+  margin: 1rem 0;
+
+  th {
+    background-color: rgba($brand-gold, 0.15);
+    font-weight: 600;
+    color: $brand-gold;
+  }
+
+  td, th {
+    padding: 0.75rem;
+    border: 1px solid rgba($brand-gold, 0.2);
+  }
+
+  tr:nth-child(even) {
+    background-color: rgba($brand-navy, 0.3);
+  }
+}
+
+// Interest list styling
+.interests ul {
+  columns: 2;
+  column-gap: 2rem;
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    padding: 0.25rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+
+    &::before {
+      content: "•";
+      color: $brand-gold;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+// Education styling - dark mode
+.education ul {
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    padding: 0.75rem 0;
+    border-left: 3px solid $brand-gold;
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: rgba($brand-navy, 0.5);
+    border-radius: 0 0.25rem 0.25rem 0;
+  }
+}
+
+// Card styling for projects - dark mode
+.quarto-grid-item.card {
+  background-color: $brand-navy;
+  border: 1px solid rgba($brand-gold, 0.2);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba($brand-gold, 0.15);
+    border-color: $brand-gold;
+  }
+
+  .card-title {
+    color: $brand-gold;
+  }
+
+  .card-text {
+    color: $brand-off-white;
+  }
+}
+
+// Navbar customization
+.navbar {
+  background-color: $brand-navy-dark !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba($brand-gold, 0.2);
+}
+
+// Footer styling
+.footer {
+  margin-top: 3rem;
+  border-top-color: rgba($brand-gold, 0.2);
+}
+
+// Code block styling - dark mode
+pre.sourceCode {
+  border-radius: 0.5rem;
+  border: 1px solid rgba($brand-gold, 0.2);
+  background-color: $brand-navy;
+}
+
+code {
+  color: $brand-gold;
+  background-color: rgba($brand-navy, 0.8);
+}
+
+// Callout styling
+.callout {
+  border-radius: 0.5rem;
+  background-color: rgba($brand-navy, 0.5);
+}
+
+.callout-note {
+  border-left-color: $brand-gold;
+}
+
+// Blog post cards
+.listing-item {
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateX(4px);
+  }
+}
+
+// Button styling
+.btn-primary {
+  background-color: $brand-gold;
+  border-color: $brand-gold;
+  color: $brand-navy-dark;
+
+  &:hover {
+    background-color: $brand-gold-light;
+    border-color: $brand-gold-light;
+    color: $brand-navy-dark;
+  }
+}
+
+.btn-secondary {
+  background-color: $brand-navy-light;
+  border-color: $brand-gold;
+  color: $brand-gold;
+
+  &:hover {
+    background-color: $brand-gold;
+    border-color: $brand-gold;
+    color: $brand-navy-dark;
+  }
+}
+
+// Category badges
+.quarto-category {
+  background-color: rgba($brand-gold, 0.2);
+  color: $brand-gold;
+  border: 1px solid rgba($brand-gold, 0.4);
+
+  &:hover {
+    background-color: $brand-gold;
+    color: $brand-navy-dark;
+  }
+}
+
+// TOC styling
+.sidebar nav[role=doc-toc] ul > li > a {
+  color: $brand-off-white;
+
+  &.active {
+    border-left-color: $brand-gold;
+    color: $brand-gold;
+  }
+
+  &:hover {
+    color: $brand-gold;
+  }
+}
+
+// Search styling
+.aa-DetachedSearchButton {
+  border-color: rgba($brand-gold, 0.3);
+  background-color: rgba($brand-navy, 0.5);
+}
+
+// Quarto listing
+.quarto-listing {
+  .listing-title {
+    color: $brand-gold;
+  }
+
+  .listing-description {
+    color: $brand-off-white;
+  }
+}
+
+// Pagination
+.page-link {
+  background-color: $brand-navy;
+  border-color: rgba($brand-gold, 0.2);
+  color: $brand-off-white;
+
+  &:hover {
+    background-color: $brand-gold;
+    border-color: $brand-gold;
+    color: $brand-navy-dark;
+  }
+}
+
+.page-item.active .page-link {
+  background-color: $brand-gold;
+  border-color: $brand-gold;
+  color: $brand-navy-dark;
+}
