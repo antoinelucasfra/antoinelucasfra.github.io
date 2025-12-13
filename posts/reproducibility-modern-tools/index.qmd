@@ -1,0 +1,600 @@
+---
+title: "The Reproducibility Quest: Modern Tools for R and Python Data Science"
+description: "A comprehensive guide to achieving reproducible data science workflows using modern package managers, containerization, and environment control tools for both R and Python — plus how to scope the right level of reproducibility for your needs."
+author: "Antoine Lucas"
+date: "2024-12-13"
+categories: [R, Python, Reproducibility, DevContainers, Docker, Package Management, Best Practices]
+---
+
+## Introduction
+
+Reproducibility is the cornerstone of credible data science. Whether you're in academia, pharma, finance, or tech, the ability to recreate your analysis environment and results is essential. Yet achieving true reproducibility has historically been painful — a maze of version conflicts, missing dependencies, and the dreaded "works on my machine" syndrome.
+
+The good news? We're living in a golden age of reproducibility tooling. Both R and Python ecosystems have evolved dramatically, offering modern solutions that make reproducible workflows not just possible, but practical. This post explores the complete toolkit for reproducible data science in 2024 and beyond.
+
+But before diving into tools, let's address a crucial question: **how much reproducibility do you actually need?**
+
+---
+
+## The Reproducibility Spectrum: Scoping Your Needs
+
+Not every project requires the same level of reproducibility investment. A quick exploratory analysis for an internal meeting doesn't need the same rigor as a clinical trial submission to the FDA. Understanding where your project falls on this spectrum is essential for efficient resource allocation.
+
+### Levels of Reproducibility
+
+| Level | Description | Typical Use Cases | Investment |
+|-------|-------------|-------------------|------------|
+| **L1: Minimal** | Code runs on author's machine | Personal exploration, quick prototypes | Low |
+| **L2: Documented** | README with manual setup instructions | Team projects, handoffs | Low-Medium |
+| **L3: Lockfile** | Pinned package versions | Production analyses, shared projects | Medium |
+| **L4: Containerized** | Full environment specification | Regulated industries, long-term archives | Medium-High |
+| **L5: Fully Isolated** | Container + data versioning + workflow | Clinical trials, financial audits | High |
+
+### Scoping Questions
+
+Before setting up your reproducibility stack, ask:
+
+1. **Who needs to reproduce this?**
+   - Just me, in 6 months? → L2-L3
+   - My team? → L3
+   - External auditors? → L4-L5
+   - The entire scientific community? → L5
+
+2. **What's the regulatory context?**
+   - Internal exploration → L1-L2
+   - Published research → L3-L4
+   - Regulatory submission → L5
+
+3. **What's the project lifespan?**
+   - One-off analysis → L1-L2
+   - Quarterly reports → L3
+   - Multi-year project → L4-L5
+
+4. **What's the cost of failure?**
+   - Learning exercise → L1
+   - Business decision → L3
+   - Patient safety → L5
+
+### The Reproducibility Tax
+
+Every level of reproducibility adds friction:
+
+- **L1→L2**: Writing documentation (minutes)
+- **L2→L3**: Managing lockfiles, occasional dependency conflicts (hours)
+- **L3→L4**: Container setup, debugging build issues (days initially)
+- **L4→L5**: Data versioning, workflow management, CI/CD (ongoing effort)
+
+The goal is to pay the *right* amount of tax for your context — not more, not less.
+
+---
+
+## The Convergence: R and Python Are Aligning
+
+Something remarkable is happening: the R and Python ecosystems are converging on similar reproducibility paradigms. This isn't coincidental — it reflects hard-won lessons about what works.
+
+### Shared Principles
+
+Both communities have arrived at the same conclusions:
+
+1. **Declarative over imperative** — Define desired state, not installation steps
+2. **Lockfiles are essential** — Capture exact versions at installation time
+3. **TOML for configuration** — Human-readable, standardized format
+4. **Rust for tooling** — Performance matters for developer experience
+5. **Holistic resolution** — Solve the entire dependency tree before installing
+
+### The Modern Stack Comparison
+
+| Concept | Python | R | Convergence |
+|---------|--------|---|-------------|
+| Package manager | uv | rv | Both Rust, declarative, TOML-based |
+| Config file | `pyproject.toml` | `rproject.toml` | Same format, similar structure |
+| Lockfile | `uv.lock` | `rv.lock` | Same purpose, similar approach |
+| Version manager | uv, pyenv | rig | CLI-based, multiple versions |
+| Formatter | ruff | air | Fast, opinionated, Rust-based |
+| Containers | devcontainers | devcontainers + Rocker | Same specification |
+
+This convergence means skills transfer between languages, and polyglot projects become easier to manage.
+
+---
+
+## Package Management: The Foundation
+
+### Python: The uv Revolution
+
+[uv](https://docs.astral.sh/uv/) has fundamentally changed Python package management. Written in Rust, it's blazingly fast and consolidates what used to require multiple tools (pyenv, pip, virtualenv, pip-tools) into one coherent experience.
+
+```bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create a new project
+uv init my-analysis
+cd my-analysis
+
+# Add dependencies
+uv add pandas numpy scikit-learn matplotlib
+
+# Sync environment
+uv sync
+```
+
+The `pyproject.toml` becomes your single source of truth:
+
+```toml
+[project]
+name = "my-analysis"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "matplotlib>=3.7",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0",
+    "ruff>=0.1",
+]
+```
+
+Key features that make `uv` essential:
+
+- **Lockfile (`uv.lock`)** — Captures exact versions for reproducibility
+- **Python version management** — No need for separate pyenv
+- **Blazing fast** — 10-100x faster than pip
+- **Declarative** — Describe what you want, not how to get there
+
+```bash
+# uv can manage Python versions too
+uv python install 3.12
+uv python pin 3.11
+
+# Run scripts with automatic environment setup
+uv run python analysis.py
+```
+
+### R: The rv Revolution
+
+On the R side, [rv](https://a2-ai.github.io/rv-docs/) brings the same declarative philosophy. If you've been using `renv`, `rv` will feel like a significant upgrade.
+
+```bash
+# Install rv
+curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
+
+# Create a new project
+rv init my-analysis
+cd my-analysis
+
+# Add dependencies
+rv add tidyverse arrow DBI
+
+# Sync
+rv sync
+```
+
+Your `rproject.toml`:
+
+```toml
+[project]
+name = "my-analysis"
+r_version = "4.5"
+
+repositories = [
+    { alias = "PPM", url = "https://packagemanager.posit.co/cran/latest" },
+]
+
+dependencies = [
+    "tidyverse",
+    "arrow",
+    "DBI",
+]
+```
+
+### renv: The Established Alternative
+
+While `rv` is the future, [renv](https://rstudio.github.io/renv/) remains the most widely adopted solution:
+
+```r
+# Initialize renv
+renv::init()
+
+# Install packages as usual
+install.packages("tidyverse")
+
+# Snapshot your dependencies
+renv::snapshot()
+
+# Restore on another machine
+renv::restore()
+```
+
+The key difference: `renv` is reactive (snapshot after installation), while `rv` is declarative (define desired state, then sync).
+
+### When to Use What
+
+| Scenario | Python | R |
+|----------|--------|---|
+| New projects | uv | rv |
+| Legacy projects | pip + requirements.txt | renv |
+| Corporate environments | uv (or pip if restricted) | renv (more established) |
+| Bleeding edge | uv | rv |
+| Maximum compatibility | pip | renv |
+
+---
+
+## Language Version Management
+
+### R: rig
+
+[rig](https://github.com/r-lib/rig) is the R Installation Manager — think of it as pyenv for R:
+
+```bash
+# Install rig (macOS)
+brew tap r-lib/rig && brew install rig
+
+# Install rig (Linux)
+curl -L https://rig.r-lib.org/rig-linux-latest.tar.gz | sudo tar xz -C /usr/local
+
+# List available versions
+rig available
+
+# Install specific version
+rig add 4.5
+rig add 4.4
+
+# Switch between versions
+rig default 4.5
+
+# List installed versions
+rig list
+```
+
+### Python: uv or pyenv
+
+`uv` now handles Python version management directly:
+
+```bash
+# Install Python 3.12
+uv python install 3.12
+
+# Pin project to specific version
+uv python pin 3.11
+
+# List installed versions
+uv python list
+```
+
+Alternatively, [pyenv](https://github.com/pyenv/pyenv) remains a solid choice:
+
+```bash
+# Install pyenv
+curl https://pyenv.run | bash
+
+# Install Python version
+pyenv install 3.11.6
+
+# Set local version for project
+pyenv local 3.11.6
+```
+
+---
+
+## Environment Control: DevContainers
+
+Package managers handle libraries, but what about system dependencies? OpenSSL, GDAL, database drivers, C compilers... these often cause the most painful reproducibility issues.
+
+### What Are DevContainers?
+
+[Development Containers](https://containers.dev/) provide a complete, containerized development environment. They're Docker containers configured specifically for development, with full IDE integration.
+
+A `.devcontainer/devcontainer.json` defines your environment:
+
+```json
+{
+    "name": "R & Python Data Science",
+    "image": "ghcr.io/rocker-org/devcontainer/tidyverse:4.4",
+    "features": {
+        "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {},
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.11"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "REditorSupport.r",
+                "ms-python.python",
+                "quarto.quarto"
+            ],
+            "settings": {
+                "r.rterm.linux": "/usr/local/bin/R"
+            }
+        }
+    },
+    "postCreateCommand": "uv sync && rv sync"
+}
+```
+
+### When to Use DevContainers
+
+DevContainers are **L4 reproducibility** — use them when:
+
+- System dependencies are complex (geospatial, databases, specific compilers)
+- Team onboarding needs to be instant
+- You need CI/CD parity with development
+- Long-term archival is required
+
+Skip them when:
+
+- Pure R/Python with no system dependencies
+- Quick personal projects
+- Environments where Docker isn't available
+
+### R-Specific DevContainers with Rocker
+
+The [Rocker Project](https://rocker-project.org/) provides excellent base images:
+
+```json
+{
+    "name": "R Development",
+    "image": "ghcr.io/rocker-org/devcontainer/tidyverse:4.4",
+    "features": {
+        "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {},
+        "ghcr.io/rocker-org/devcontainer-features/rig:1": {}
+    }
+}
+```
+
+Available images:
+
+- `rocker/r-ver` — Base R
+- `rocker/tidyverse` — R + tidyverse packages
+- `rocker/verse` — tidyverse + LaTeX
+- `rocker/geospatial` — Includes GDAL, GEOS, PROJ
+
+### Multi-Language DevContainer
+
+For projects using both R and Python:
+
+```json
+{
+    "name": "R + Python Data Science",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {
+        "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}
+    },
+    "postCreateCommand": "rv sync && uv sync",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "REditorSupport.r",
+                "ms-python.python",
+                "quarto.quarto",
+                "posit.publisher"
+            ]
+        }
+    }
+}
+```
+
+With a custom Dockerfile:
+
+```dockerfile
+FROM ghcr.io/rocker-org/devcontainer/tidyverse:4.4
+
+# Install uv for Python
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install rv for R
+RUN curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    libgdal-dev \
+    && rm -rf /var/lib/apt/lists/*
+```
+
+---
+
+## Workflow Orchestration
+
+Beyond package management, you need tools to manage the execution flow of your analysis.
+
+### R: targets
+
+[targets](https://docs.ropensci.org/targets/) is a pipeline tool for R that tracks dependencies and caches results:
+
+```r
+# _targets.R
+library(targets)
+
+list(
+  tar_target(raw_data, read_csv("data/input.csv")),
+  tar_target(clean_data, clean_data(raw_data)),
+  tar_target(model, fit_model(clean_data)),
+  tar_target(report, render_report(model), format = "file")
+)
+```
+
+```bash
+# Run the pipeline
+Rscript -e "targets::tar_make()"
+
+# Visualize dependencies
+Rscript -e "targets::tar_visnetwork()"
+```
+
+### Python: Snakemake and DVC
+
+[Snakemake](https://snakemake.github.io/) for workflow management:
+
+```python
+# Snakefile
+rule all:
+    input: "results/final_report.html"
+
+rule clean_data:
+    input: "data/raw.csv"
+    output: "data/clean.csv"
+    script: "scripts/clean.py"
+
+rule train_model:
+    input: "data/clean.csv"
+    output: "models/model.pkl"
+    script: "scripts/train.py"
+```
+
+[DVC](https://dvc.org/) for data versioning:
+
+```bash
+# Initialize DVC
+dvc init
+
+# Track large data files
+dvc add data/large_dataset.csv
+
+# Push to remote storage
+dvc push
+
+# Pull data on another machine
+dvc pull
+```
+
+---
+
+## Documentation: Quarto
+
+[Quarto](https://quarto.org/) unifies documentation across R, Python, and Julia. A typical Quarto document combines markdown narrative with code chunks in either language.
+
+Key reproducibility feature: With `freeze: auto` in your YAML header, Quarto caches computational outputs, so documents can be re-rendered without re-executing all code — improving both reproducibility and build times.
+
+Quarto documents use fenced code blocks with language specifiers like `{python}` or `{r}` to indicate executable code, and can output to HTML, PDF, Word, and many other formats.
+
+---
+
+## Organizational Considerations
+
+### Team Standards
+
+Different teams within an organization may need different reproducibility levels:
+
+| Team | Typical Level | Rationale |
+|------|---------------|-----------|
+| Data Science R&D | L2-L3 | Fast iteration, exploration |
+| Production Analytics | L3-L4 | Reliability, handoffs |
+| Regulatory/Compliance | L4-L5 | Audit requirements |
+| External Publications | L4-L5 | Peer review, credibility |
+
+### Building a Reproducibility Culture
+
+1. **Start with templates** — Provide project templates at appropriate levels
+2. **Automate checks** — CI/CD that validates reproducibility
+3. **Document decisions** — Record *why* a certain level was chosen
+4. **Review periodically** — Projects may need to level up over time
+
+### The Cost-Benefit Reality
+
+The key insight: **match your investment to your actual needs**. Over-engineering reproducibility for a throwaway analysis wastes time. Under-engineering for a regulatory submission creates risk.
+
+As project risk and longevity increase, so should your reproducibility investment — from L1 (personal exploration) through L5 (regulatory/clinical).
+
+---
+
+## The Complete Reproducibility Checklist
+
+### Project Structure
+
+```text
+my-project/
+├── .devcontainer/
+│   └── devcontainer.json     # Container environment (L4+)
+├── .github/
+│   └── workflows/
+│       └── ci.yml            # Automated testing
+├── data/
+│   ├── raw/                  # Immutable raw data
+│   └── processed/            # Generated data (gitignored)
+├── src/                      # Source code
+├── notebooks/                # Exploratory work
+├── reports/                  # Quarto documents
+├── tests/                    # Unit tests
+├── _targets.R                # R pipeline (if using targets)
+├── pyproject.toml            # Python dependencies
+├── uv.lock                   # Python lockfile
+├── rproject.toml             # R dependencies
+├── rv.lock                   # R lockfile
+├── .gitignore
+└── README.md
+```
+
+### By Level
+
+**L1 (Minimal):**
+
+- Code in version control
+
+**L2 (Documented):**
+
+- README with setup instructions
+- List of required packages
+
+**L3 (Lockfile):**
+
+- `uv.lock` / `rv.lock` / `renv.lock`
+- Language version specified
+- CI that runs tests
+
+**L4 (Containerized):**
+
+- DevContainer configuration
+- System dependencies documented
+- CI uses same container
+
+**L5 (Fully Isolated):**
+
+- Data versioning (DVC)
+- Workflow management (targets/Snakemake)
+- Complete audit trail
+- Archived container images
+
+---
+
+## Summary: The Modern Reproducibility Toolkit
+
+| Need | Python | R |
+|------|--------|---|
+| Package management | uv | rv, renv |
+| Version management | uv, pyenv | rig |
+| Containerization | devcontainers | devcontainers + Rocker |
+| Workflow | Snakemake, DVC | targets |
+| Documentation | Quarto, Jupyter | Quarto |
+| Formatting | ruff | air |
+| Linting | ruff | lintr |
+
+## Conclusion
+
+Reproducibility is no longer optional — it's table stakes for professional data science. The tooling has matured to the point where reproducible workflows are not just possible but practical.
+
+But remember: **reproducibility is a spectrum, not a binary**. The right approach depends on your context — who needs to reproduce the work, for how long, and at what stakes.
+
+Start with package management (`uv` for Python, `rv` or `renv` for R), add language version control (`rig`, `uv python`), and when system dependencies become complex, embrace devcontainers. Layer in workflow tools like `targets` or Snakemake for complex pipelines, and document everything with Quarto.
+
+The investment in reproducibility pays dividends: faster onboarding, fewer "works on my machine" incidents, easier debugging, and the confidence that your results can be verified and trusted. Just make sure you're investing the right amount for your actual needs.
+
+## Resources
+
+- [uv Documentation](https://docs.astral.sh/uv/)
+- [rv Documentation](https://a2-ai.github.io/rv-docs/)
+- [renv Documentation](https://rstudio.github.io/renv/)
+- [rig - R Installation Manager](https://github.com/r-lib/rig)
+- [DevContainers Specification](https://containers.dev/)
+- [Rocker Project](https://rocker-project.org/)
+- [targets Package](https://docs.ropensci.org/targets/)
+- [Quarto](https://quarto.org/)
+- [DVC - Data Version Control](https://dvc.org/)
+- [Snakemake](https://snakemake.github.io/)

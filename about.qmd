@@ -1,5 +1,10 @@
 ---
 title: "About This Site"
+image: assets/images/profile-pic.jpg
+about:
+  template: trestles
+  image-shape: round
+  image-width: 200px
 ---
 
 ## About Me

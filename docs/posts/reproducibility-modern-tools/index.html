@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Antoine Lucas">
+<meta name="dcterms.date" content="2024-12-13">
+<meta name="description" content="A comprehensive guide to achieving reproducible data science workflows using modern package managers, containerization, and environment control tools for both R and Python — plus how to scope the right level of reproducibility for your needs.">
+
+<title>The Reproducibility Quest: Modern Tools for R and Python Data Science – Antoine Lucas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/images/profile.jpg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fe37189e6f3cfe4519150b7885fae39.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-02756c461d61228902c1a3b1c91cfe7a.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fe37189e6f3cfe4519150b7885fae39.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-819a935d116c0e18764efdaa144a7085.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ca9fecda8b2f9cca933f2f7c4ee7e75b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-819a935d116c0e18764efdaa144a7085.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="The Reproducibility Quest: Modern Tools for R and Python Data Science – Antoine Lucas">
+<meta property="og:description" content="A comprehensive guide to achieving reproducible data science workflows using modern package managers, containerization, and environment control tools for both R and Python — plus how to scope the right level of reproducibility for your needs.">
+<meta property="og:image" content="https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/assets/images/profile.jpg">
+<meta property="og:site_name" content="Antoine Lucas">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/images/profile.jpg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Antoine Lucas</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/antoinelucasdata/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/antoinelucasfra"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#the-reproducibility-spectrum-scoping-your-needs" id="toc-the-reproducibility-spectrum-scoping-your-needs" class="nav-link" data-scroll-target="#the-reproducibility-spectrum-scoping-your-needs">The Reproducibility Spectrum: Scoping Your Needs</a>
+  <ul class="collapse">
+  <li><a href="#levels-of-reproducibility" id="toc-levels-of-reproducibility" class="nav-link" data-scroll-target="#levels-of-reproducibility">Levels of Reproducibility</a></li>
+  <li><a href="#scoping-questions" id="toc-scoping-questions" class="nav-link" data-scroll-target="#scoping-questions">Scoping Questions</a></li>
+  <li><a href="#the-reproducibility-tax" id="toc-the-reproducibility-tax" class="nav-link" data-scroll-target="#the-reproducibility-tax">The Reproducibility Tax</a></li>
+  </ul></li>
+  <li><a href="#the-convergence-r-and-python-are-aligning" id="toc-the-convergence-r-and-python-are-aligning" class="nav-link" data-scroll-target="#the-convergence-r-and-python-are-aligning">The Convergence: R and Python Are Aligning</a>
+  <ul class="collapse">
+  <li><a href="#shared-principles" id="toc-shared-principles" class="nav-link" data-scroll-target="#shared-principles">Shared Principles</a></li>
+  <li><a href="#the-modern-stack-comparison" id="toc-the-modern-stack-comparison" class="nav-link" data-scroll-target="#the-modern-stack-comparison">The Modern Stack Comparison</a></li>
+  </ul></li>
+  <li><a href="#package-management-the-foundation" id="toc-package-management-the-foundation" class="nav-link" data-scroll-target="#package-management-the-foundation">Package Management: The Foundation</a>
+  <ul class="collapse">
+  <li><a href="#python-the-uv-revolution" id="toc-python-the-uv-revolution" class="nav-link" data-scroll-target="#python-the-uv-revolution">Python: The uv Revolution</a></li>
+  <li><a href="#r-the-rv-revolution" id="toc-r-the-rv-revolution" class="nav-link" data-scroll-target="#r-the-rv-revolution">R: The rv Revolution</a></li>
+  <li><a href="#renv-the-established-alternative" id="toc-renv-the-established-alternative" class="nav-link" data-scroll-target="#renv-the-established-alternative">renv: The Established Alternative</a></li>
+  <li><a href="#when-to-use-what" id="toc-when-to-use-what" class="nav-link" data-scroll-target="#when-to-use-what">When to Use What</a></li>
+  </ul></li>
+  <li><a href="#language-version-management" id="toc-language-version-management" class="nav-link" data-scroll-target="#language-version-management">Language Version Management</a>
+  <ul class="collapse">
+  <li><a href="#r-rig" id="toc-r-rig" class="nav-link" data-scroll-target="#r-rig">R: rig</a></li>
+  <li><a href="#python-uv-or-pyenv" id="toc-python-uv-or-pyenv" class="nav-link" data-scroll-target="#python-uv-or-pyenv">Python: uv or pyenv</a></li>
+  </ul></li>
+  <li><a href="#environment-control-devcontainers" id="toc-environment-control-devcontainers" class="nav-link" data-scroll-target="#environment-control-devcontainers">Environment Control: DevContainers</a>
+  <ul class="collapse">
+  <li><a href="#what-are-devcontainers" id="toc-what-are-devcontainers" class="nav-link" data-scroll-target="#what-are-devcontainers">What Are DevContainers?</a></li>
+  <li><a href="#when-to-use-devcontainers" id="toc-when-to-use-devcontainers" class="nav-link" data-scroll-target="#when-to-use-devcontainers">When to Use DevContainers</a></li>
+  <li><a href="#r-specific-devcontainers-with-rocker" id="toc-r-specific-devcontainers-with-rocker" class="nav-link" data-scroll-target="#r-specific-devcontainers-with-rocker">R-Specific DevContainers with Rocker</a></li>
+  <li><a href="#multi-language-devcontainer" id="toc-multi-language-devcontainer" class="nav-link" data-scroll-target="#multi-language-devcontainer">Multi-Language DevContainer</a></li>
+  </ul></li>
+  <li><a href="#workflow-orchestration" id="toc-workflow-orchestration" class="nav-link" data-scroll-target="#workflow-orchestration">Workflow Orchestration</a>
+  <ul class="collapse">
+  <li><a href="#r-targets" id="toc-r-targets" class="nav-link" data-scroll-target="#r-targets">R: targets</a></li>
+  <li><a href="#python-snakemake-and-dvc" id="toc-python-snakemake-and-dvc" class="nav-link" data-scroll-target="#python-snakemake-and-dvc">Python: Snakemake and DVC</a></li>
+  </ul></li>
+  <li><a href="#documentation-quarto" id="toc-documentation-quarto" class="nav-link" data-scroll-target="#documentation-quarto">Documentation: Quarto</a></li>
+  <li><a href="#organizational-considerations" id="toc-organizational-considerations" class="nav-link" data-scroll-target="#organizational-considerations">Organizational Considerations</a>
+  <ul class="collapse">
+  <li><a href="#team-standards" id="toc-team-standards" class="nav-link" data-scroll-target="#team-standards">Team Standards</a></li>
+  <li><a href="#building-a-reproducibility-culture" id="toc-building-a-reproducibility-culture" class="nav-link" data-scroll-target="#building-a-reproducibility-culture">Building a Reproducibility Culture</a></li>
+  <li><a href="#the-cost-benefit-reality" id="toc-the-cost-benefit-reality" class="nav-link" data-scroll-target="#the-cost-benefit-reality">The Cost-Benefit Reality</a></li>
+  </ul></li>
+  <li><a href="#the-complete-reproducibility-checklist" id="toc-the-complete-reproducibility-checklist" class="nav-link" data-scroll-target="#the-complete-reproducibility-checklist">The Complete Reproducibility Checklist</a>
+  <ul class="collapse">
+  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure">Project Structure</a></li>
+  <li><a href="#by-level" id="toc-by-level" class="nav-link" data-scroll-target="#by-level">By Level</a></li>
+  </ul></li>
+  <li><a href="#summary-the-modern-reproducibility-toolkit" id="toc-summary-the-modern-reproducibility-toolkit" class="nav-link" data-scroll-target="#summary-the-modern-reproducibility-toolkit">Summary: The Modern Reproducibility Toolkit</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/posts/reproducibility-modern-tools/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The Reproducibility Quest: Modern Tools for R and Python Data Science</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Reproducibility</div>
+    <div class="quarto-category">DevContainers</div>
+    <div class="quarto-category">Docker</div>
+    <div class="quarto-category">Package Management</div>
+    <div class="quarto-category">Best Practices</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A comprehensive guide to achieving reproducible data science workflows using modern package managers, containerization, and environment control tools for both R and Python — plus how to scope the right level of reproducibility for your needs.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Antoine Lucas </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 13, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Reproducibility is the cornerstone of credible data science. Whether you’re in academia, pharma, finance, or tech, the ability to recreate your analysis environment and results is essential. Yet achieving true reproducibility has historically been painful — a maze of version conflicts, missing dependencies, and the dreaded “works on my machine” syndrome.</p>
+<p>The good news? We’re living in a golden age of reproducibility tooling. Both R and Python ecosystems have evolved dramatically, offering modern solutions that make reproducible workflows not just possible, but practical. This post explores the complete toolkit for reproducible data science in 2024 and beyond.</p>
+<p>But before diving into tools, let’s address a crucial question: <strong>how much reproducibility do you actually need?</strong></p>
+<hr>
+</section>
+<section id="the-reproducibility-spectrum-scoping-your-needs" class="level2">
+<h2 class="anchored" data-anchor-id="the-reproducibility-spectrum-scoping-your-needs">The Reproducibility Spectrum: Scoping Your Needs</h2>
+<p>Not every project requires the same level of reproducibility investment. A quick exploratory analysis for an internal meeting doesn’t need the same rigor as a clinical trial submission to the FDA. Understanding where your project falls on this spectrum is essential for efficient resource allocation.</p>
+<section id="levels-of-reproducibility" class="level3">
+<h3 class="anchored" data-anchor-id="levels-of-reproducibility">Levels of Reproducibility</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Description</th>
+<th>Typical Use Cases</th>
+<th>Investment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>L1: Minimal</strong></td>
+<td>Code runs on author’s machine</td>
+<td>Personal exploration, quick prototypes</td>
+<td>Low</td>
+</tr>
+<tr class="even">
+<td><strong>L2: Documented</strong></td>
+<td>README with manual setup instructions</td>
+<td>Team projects, handoffs</td>
+<td>Low-Medium</td>
+</tr>
+<tr class="odd">
+<td><strong>L3: Lockfile</strong></td>
+<td>Pinned package versions</td>
+<td>Production analyses, shared projects</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td><strong>L4: Containerized</strong></td>
+<td>Full environment specification</td>
+<td>Regulated industries, long-term archives</td>
+<td>Medium-High</td>
+</tr>
+<tr class="odd">
+<td><strong>L5: Fully Isolated</strong></td>
+<td>Container + data versioning + workflow</td>
+<td>Clinical trials, financial audits</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="scoping-questions" class="level3">
+<h3 class="anchored" data-anchor-id="scoping-questions">Scoping Questions</h3>
+<p>Before setting up your reproducibility stack, ask:</p>
+<ol type="1">
+<li><strong>Who needs to reproduce this?</strong>
+<ul>
+<li>Just me, in 6 months? → L2-L3</li>
+<li>My team? → L3</li>
+<li>External auditors? → L4-L5</li>
+<li>The entire scientific community? → L5</li>
+</ul></li>
+<li><strong>What’s the regulatory context?</strong>
+<ul>
+<li>Internal exploration → L1-L2</li>
+<li>Published research → L3-L4</li>
+<li>Regulatory submission → L5</li>
+</ul></li>
+<li><strong>What’s the project lifespan?</strong>
+<ul>
+<li>One-off analysis → L1-L2</li>
+<li>Quarterly reports → L3</li>
+<li>Multi-year project → L4-L5</li>
+</ul></li>
+<li><strong>What’s the cost of failure?</strong>
+<ul>
+<li>Learning exercise → L1</li>
+<li>Business decision → L3</li>
+<li>Patient safety → L5</li>
+</ul></li>
+</ol>
+</section>
+<section id="the-reproducibility-tax" class="level3">
+<h3 class="anchored" data-anchor-id="the-reproducibility-tax">The Reproducibility Tax</h3>
+<p>Every level of reproducibility adds friction:</p>
+<ul>
+<li><strong>L1→L2</strong>: Writing documentation (minutes)</li>
+<li><strong>L2→L3</strong>: Managing lockfiles, occasional dependency conflicts (hours)</li>
+<li><strong>L3→L4</strong>: Container setup, debugging build issues (days initially)</li>
+<li><strong>L4→L5</strong>: Data versioning, workflow management, CI/CD (ongoing effort)</li>
+</ul>
+<p>The goal is to pay the <em>right</em> amount of tax for your context — not more, not less.</p>
+<hr>
+</section>
+</section>
+<section id="the-convergence-r-and-python-are-aligning" class="level2">
+<h2 class="anchored" data-anchor-id="the-convergence-r-and-python-are-aligning">The Convergence: R and Python Are Aligning</h2>
+<p>Something remarkable is happening: the R and Python ecosystems are converging on similar reproducibility paradigms. This isn’t coincidental — it reflects hard-won lessons about what works.</p>
+<section id="shared-principles" class="level3">
+<h3 class="anchored" data-anchor-id="shared-principles">Shared Principles</h3>
+<p>Both communities have arrived at the same conclusions:</p>
+<ol type="1">
+<li><strong>Declarative over imperative</strong> — Define desired state, not installation steps</li>
+<li><strong>Lockfiles are essential</strong> — Capture exact versions at installation time</li>
+<li><strong>TOML for configuration</strong> — Human-readable, standardized format</li>
+<li><strong>Rust for tooling</strong> — Performance matters for developer experience</li>
+<li><strong>Holistic resolution</strong> — Solve the entire dependency tree before installing</li>
+</ol>
+</section>
+<section id="the-modern-stack-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="the-modern-stack-comparison">The Modern Stack Comparison</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 24%">
+<col style="width: 9%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Python</th>
+<th>R</th>
+<th>Convergence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Package manager</td>
+<td>uv</td>
+<td>rv</td>
+<td>Both Rust, declarative, TOML-based</td>
+</tr>
+<tr class="even">
+<td>Config file</td>
+<td><code>pyproject.toml</code></td>
+<td><code>rproject.toml</code></td>
+<td>Same format, similar structure</td>
+</tr>
+<tr class="odd">
+<td>Lockfile</td>
+<td><code>uv.lock</code></td>
+<td><code>rv.lock</code></td>
+<td>Same purpose, similar approach</td>
+</tr>
+<tr class="even">
+<td>Version manager</td>
+<td>uv, pyenv</td>
+<td>rig</td>
+<td>CLI-based, multiple versions</td>
+</tr>
+<tr class="odd">
+<td>Formatter</td>
+<td>ruff</td>
+<td>air</td>
+<td>Fast, opinionated, Rust-based</td>
+</tr>
+<tr class="even">
+<td>Containers</td>
+<td>devcontainers</td>
+<td>devcontainers + Rocker</td>
+<td>Same specification</td>
+</tr>
+</tbody>
+</table>
+<p>This convergence means skills transfer between languages, and polyglot projects become easier to manage.</p>
+<hr>
+</section>
+</section>
+<section id="package-management-the-foundation" class="level2">
+<h2 class="anchored" data-anchor-id="package-management-the-foundation">Package Management: The Foundation</h2>
+<section id="python-the-uv-revolution" class="level3">
+<h3 class="anchored" data-anchor-id="python-the-uv-revolution">Python: The uv Revolution</h3>
+<p><a href="https://docs.astral.sh/uv/">uv</a> has fundamentally changed Python package management. Written in Rust, it’s blazingly fast and consolidates what used to require multiple tools (pyenv, pip, virtualenv, pip-tools) into one coherent experience.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install uv</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new project</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init my-analysis</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-analysis</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add dependencies</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add pandas numpy scikit-learn matplotlib</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Sync environment</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>pyproject.toml</code> becomes your single source of truth:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my-analysis"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.11"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pandas&gt;=2.0"</span><span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numpy&gt;=1.24"</span><span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"scikit-learn&gt;=1.3"</span><span class="op">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"matplotlib&gt;=3.7"</span><span class="op">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.uv]</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="dt">dev-dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pytest&gt;=7.0"</span><span class="op">,</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ruff&gt;=0.1"</span><span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Key features that make <code>uv</code> essential:</p>
+<ul>
+<li><strong>Lockfile (<code>uv.lock</code>)</strong> — Captures exact versions for reproducibility</li>
+<li><strong>Python version management</strong> — No need for separate pyenv</li>
+<li><strong>Blazing fast</strong> — 10-100x faster than pip</li>
+<li><strong>Declarative</strong> — Describe what you want, not how to get there</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># uv can manage Python versions too</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> python install 3.12</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> python pin 3.11</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run scripts with automatic environment setup</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python analysis.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="r-the-rv-revolution" class="level3">
+<h3 class="anchored" data-anchor-id="r-the-rv-revolution">R: The rv Revolution</h3>
+<p>On the R side, <a href="https://a2-ai.github.io/rv-docs/">rv</a> brings the same declarative philosophy. If you’ve been using <code>renv</code>, <code>rv</code> will feel like a significant upgrade.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install rv</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sSL</span> https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh <span class="kw">|</span> <span class="fu">bash</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new project</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">rv</span> init my-analysis</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-analysis</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add dependencies</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">rv</span> add tidyverse arrow DBI</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Sync</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">rv</span> sync</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Your <code>rproject.toml</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my-analysis"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">r_version</span> <span class="op">=</span> <span class="st">"4.5"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">repositories</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">{ </span><span class="dt">alias</span><span class="op"> =</span> <span class="st">"PPM"</span><span class="op">, </span><span class="dt">url</span><span class="op"> =</span> <span class="st">"https://packagemanager.posit.co/cran/latest"</span><span class="op"> },</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tidyverse"</span><span class="op">,</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"arrow"</span><span class="op">,</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DBI"</span><span class="op">,</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="renv-the-established-alternative" class="level3">
+<h3 class="anchored" data-anchor-id="renv-the-established-alternative">renv: The Established Alternative</h3>
+<p>While <code>rv</code> is the future, <a href="https://rstudio.github.io/renv/">renv</a> remains the most widely adopted solution:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize renv</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages as usual</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Snapshot your dependencies</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Restore on another machine</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The key difference: <code>renv</code> is reactive (snapshot after installation), while <code>rv</code> is declarative (define desired state, then sync).</p>
+</section>
+<section id="when-to-use-what" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-use-what">When to Use What</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 38%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th>Python</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>New projects</td>
+<td>uv</td>
+<td>rv</td>
+</tr>
+<tr class="even">
+<td>Legacy projects</td>
+<td>pip + requirements.txt</td>
+<td>renv</td>
+</tr>
+<tr class="odd">
+<td>Corporate environments</td>
+<td>uv (or pip if restricted)</td>
+<td>renv (more established)</td>
+</tr>
+<tr class="even">
+<td>Bleeding edge</td>
+<td>uv</td>
+<td>rv</td>
+</tr>
+<tr class="odd">
+<td>Maximum compatibility</td>
+<td>pip</td>
+<td>renv</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="language-version-management" class="level2">
+<h2 class="anchored" data-anchor-id="language-version-management">Language Version Management</h2>
+<section id="r-rig" class="level3">
+<h3 class="anchored" data-anchor-id="r-rig">R: rig</h3>
+<p><a href="https://github.com/r-lib/rig">rig</a> is the R Installation Manager — think of it as pyenv for R:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install rig (macOS)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> tap r-lib/rig <span class="kw">&amp;&amp;</span> <span class="ex">brew</span> install rig</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install rig (Linux)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> https://rig.r-lib.org/rig-linux-latest.tar.gz <span class="kw">|</span> <span class="fu">sudo</span> tar xz <span class="at">-C</span> /usr/local</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># List available versions</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> available</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Install specific version</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> add 4.5</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> add 4.4</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Switch between versions</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> default 4.5</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># List installed versions</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="python-uv-or-pyenv" class="level3">
+<h3 class="anchored" data-anchor-id="python-uv-or-pyenv">Python: uv or pyenv</h3>
+<p><code>uv</code> now handles Python version management directly:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Python 3.12</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> python install 3.12</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Pin project to specific version</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> python pin 3.11</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># List installed versions</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> python list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternatively, <a href="https://github.com/pyenv/pyenv">pyenv</a> remains a solid choice:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install pyenv</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> https://pyenv.run <span class="kw">|</span> <span class="fu">bash</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Python version</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pyenv</span> install 3.11.6</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set local version for project</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pyenv</span> local 3.11.6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="environment-control-devcontainers" class="level2">
+<h2 class="anchored" data-anchor-id="environment-control-devcontainers">Environment Control: DevContainers</h2>
+<p>Package managers handle libraries, but what about system dependencies? OpenSSL, GDAL, database drivers, C compilers… these often cause the most painful reproducibility issues.</p>
+<section id="what-are-devcontainers" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-devcontainers">What Are DevContainers?</h3>
+<p><a href="https://containers.dev/">Development Containers</a> provide a complete, containerized development environment. They’re Docker containers configured specifically for development, with full IDE integration.</p>
+<p>A <code>.devcontainer/devcontainer.json</code> defines your environment:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"R &amp; Python Data Science"</span><span class="fu">,</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"image"</span><span class="fu">:</span> <span class="st">"ghcr.io/rocker-org/devcontainer/tidyverse:4.4"</span><span class="fu">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"features"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1"</span><span class="fu">:</span> <span class="fu">{},</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"ghcr.io/devcontainers/features/python:1"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"3.11"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"customizations"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"vscode"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"extensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>                <span class="st">"REditorSupport.r"</span><span class="ot">,</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>                <span class="st">"ms-python.python"</span><span class="ot">,</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">"quarto.quarto"</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>            <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"settings"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"r.rterm.linux"</span><span class="fu">:</span> <span class="st">"/usr/local/bin/R"</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">}</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"uv sync &amp;&amp; rv sync"</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-devcontainers" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-use-devcontainers">When to Use DevContainers</h3>
+<p>DevContainers are <strong>L4 reproducibility</strong> — use them when:</p>
+<ul>
+<li>System dependencies are complex (geospatial, databases, specific compilers)</li>
+<li>Team onboarding needs to be instant</li>
+<li>You need CI/CD parity with development</li>
+<li>Long-term archival is required</li>
+</ul>
+<p>Skip them when:</p>
+<ul>
+<li>Pure R/Python with no system dependencies</li>
+<li>Quick personal projects</li>
+<li>Environments where Docker isn’t available</li>
+</ul>
+</section>
+<section id="r-specific-devcontainers-with-rocker" class="level3">
+<h3 class="anchored" data-anchor-id="r-specific-devcontainers-with-rocker">R-Specific DevContainers with Rocker</h3>
+<p>The <a href="https://rocker-project.org/">Rocker Project</a> provides excellent base images:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"R Development"</span><span class="fu">,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"image"</span><span class="fu">:</span> <span class="st">"ghcr.io/rocker-org/devcontainer/tidyverse:4.4"</span><span class="fu">,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"features"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1"</span><span class="fu">:</span> <span class="fu">{},</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"ghcr.io/rocker-org/devcontainer-features/rig:1"</span><span class="fu">:</span> <span class="fu">{}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Available images:</p>
+<ul>
+<li><code>rocker/r-ver</code> — Base R</li>
+<li><code>rocker/tidyverse</code> — R + tidyverse packages</li>
+<li><code>rocker/verse</code> — tidyverse + LaTeX</li>
+<li><code>rocker/geospatial</code> — Includes GDAL, GEOS, PROJ</li>
+</ul>
+</section>
+<section id="multi-language-devcontainer" class="level3">
+<h3 class="anchored" data-anchor-id="multi-language-devcontainer">Multi-Language DevContainer</h3>
+<p>For projects using both R and Python:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"R + Python Data Science"</span><span class="fu">,</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"build"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"dockerfile"</span><span class="fu">:</span> <span class="st">"Dockerfile"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"features"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1"</span><span class="fu">:</span> <span class="fu">{}</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"postCreateCommand"</span><span class="fu">:</span> <span class="st">"rv sync &amp;&amp; uv sync"</span><span class="fu">,</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"customizations"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"vscode"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"extensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                <span class="st">"REditorSupport.r"</span><span class="ot">,</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>                <span class="st">"ms-python.python"</span><span class="ot">,</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">"quarto.quarto"</span><span class="ot">,</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">"posit.publisher"</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            <span class="ot">]</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With a custom Dockerfile:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ghcr.io/rocker-org/devcontainer/tidyverse:4.4</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Install uv for Python</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Install rv for R</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">curl</span> <span class="at">-sSL</span> https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh <span class="kw">|</span> <span class="fu">bash</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># System dependencies</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> <span class="dt">\</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    libpq-dev <span class="dt">\</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    libgdal-dev <span class="dt">\</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> <span class="at">-rf</span> /var/lib/apt/lists/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="workflow-orchestration" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-orchestration">Workflow Orchestration</h2>
+<p>Beyond package management, you need tools to manage the execution flow of your analysis.</p>
+<section id="r-targets" class="level3">
+<h3 class="anchored" data-anchor-id="r-targets">R: targets</h3>
+<p><a href="https://docs.ropensci.org/targets/">targets</a> is a pipeline tool for R that tracks dependencies and caches results:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _targets.R</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(raw_data, <span class="fu">read_csv</span>(<span class="st">"data/input.csv"</span>)),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(clean_data, <span class="fu">clean_data</span>(raw_data)),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(model, <span class="fu">fit_model</span>(clean_data)),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tar_target</span>(report, <span class="fu">render_report</span>(model), <span class="at">format =</span> <span class="st">"file"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the pipeline</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"targets::tar_make()"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize dependencies</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"targets::tar_visnetwork()"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="python-snakemake-and-dvc" class="level3">
+<h3 class="anchored" data-anchor-id="python-snakemake-and-dvc">Python: Snakemake and DVC</h3>
+<p><a href="https://snakemake.github.io/">Snakemake</a> for workflow management:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Snakefile</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>rule <span class="bu">all</span>:</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span>: <span class="st">"results/final_report.html"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>rule clean_data:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span>: <span class="st">"data/raw.csv"</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    output: <span class="st">"data/clean.csv"</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    script: <span class="st">"scripts/clean.py"</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>rule train_model:</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span>: <span class="st">"data/clean.csv"</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    output: <span class="st">"models/model.pkl"</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    script: <span class="st">"scripts/train.py"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="https://dvc.org/">DVC</a> for data versioning:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize DVC</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> init</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Track large data files</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> add data/large_dataset.csv</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Push to remote storage</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> push</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull data on another machine</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> pull</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="documentation-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="documentation-quarto">Documentation: Quarto</h2>
+<p><a href="https://quarto.org/">Quarto</a> unifies documentation across R, Python, and Julia. A typical Quarto document combines markdown narrative with code chunks in either language.</p>
+<p>Key reproducibility feature: With <code>freeze: auto</code> in your YAML header, Quarto caches computational outputs, so documents can be re-rendered without re-executing all code — improving both reproducibility and build times.</p>
+<p>Quarto documents use fenced code blocks with language specifiers like <code>{python}</code> or <code>{r}</code> to indicate executable code, and can output to HTML, PDF, Word, and many other formats.</p>
+<hr>
+</section>
+<section id="organizational-considerations" class="level2">
+<h2 class="anchored" data-anchor-id="organizational-considerations">Organizational Considerations</h2>
+<section id="team-standards" class="level3">
+<h3 class="anchored" data-anchor-id="team-standards">Team Standards</h3>
+<p>Different teams within an organization may need different reproducibility levels:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Team</th>
+<th>Typical Level</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Science R&amp;D</td>
+<td>L2-L3</td>
+<td>Fast iteration, exploration</td>
+</tr>
+<tr class="even">
+<td>Production Analytics</td>
+<td>L3-L4</td>
+<td>Reliability, handoffs</td>
+</tr>
+<tr class="odd">
+<td>Regulatory/Compliance</td>
+<td>L4-L5</td>
+<td>Audit requirements</td>
+</tr>
+<tr class="even">
+<td>External Publications</td>
+<td>L4-L5</td>
+<td>Peer review, credibility</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="building-a-reproducibility-culture" class="level3">
+<h3 class="anchored" data-anchor-id="building-a-reproducibility-culture">Building a Reproducibility Culture</h3>
+<ol type="1">
+<li><strong>Start with templates</strong> — Provide project templates at appropriate levels</li>
+<li><strong>Automate checks</strong> — CI/CD that validates reproducibility</li>
+<li><strong>Document decisions</strong> — Record <em>why</em> a certain level was chosen</li>
+<li><strong>Review periodically</strong> — Projects may need to level up over time</li>
+</ol>
+</section>
+<section id="the-cost-benefit-reality" class="level3">
+<h3 class="anchored" data-anchor-id="the-cost-benefit-reality">The Cost-Benefit Reality</h3>
+<p>The key insight: <strong>match your investment to your actual needs</strong>. Over-engineering reproducibility for a throwaway analysis wastes time. Under-engineering for a regulatory submission creates risk.</p>
+<p>As project risk and longevity increase, so should your reproducibility investment — from L1 (personal exploration) through L5 (regulatory/clinical).</p>
+<hr>
+</section>
+</section>
+<section id="the-complete-reproducibility-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="the-complete-reproducibility-checklist">The Complete Reproducibility Checklist</h2>
+<section id="project-structure" class="level3">
+<h3 class="anchored" data-anchor-id="project-structure">Project Structure</h3>
+<pre class="text"><code>my-project/
+├── .devcontainer/
+│   └── devcontainer.json     # Container environment (L4+)
+├── .github/
+│   └── workflows/
+│       └── ci.yml            # Automated testing
+├── data/
+│   ├── raw/                  # Immutable raw data
+│   └── processed/            # Generated data (gitignored)
+├── src/                      # Source code
+├── notebooks/                # Exploratory work
+├── reports/                  # Quarto documents
+├── tests/                    # Unit tests
+├── _targets.R                # R pipeline (if using targets)
+├── pyproject.toml            # Python dependencies
+├── uv.lock                   # Python lockfile
+├── rproject.toml             # R dependencies
+├── rv.lock                   # R lockfile
+├── .gitignore
+└── README.md</code></pre>
+</section>
+<section id="by-level" class="level3">
+<h3 class="anchored" data-anchor-id="by-level">By Level</h3>
+<p><strong>L1 (Minimal):</strong></p>
+<ul>
+<li>Code in version control</li>
+</ul>
+<p><strong>L2 (Documented):</strong></p>
+<ul>
+<li>README with setup instructions</li>
+<li>List of required packages</li>
+</ul>
+<p><strong>L3 (Lockfile):</strong></p>
+<ul>
+<li><code>uv.lock</code> / <code>rv.lock</code> / <code>renv.lock</code></li>
+<li>Language version specified</li>
+<li>CI that runs tests</li>
+</ul>
+<p><strong>L4 (Containerized):</strong></p>
+<ul>
+<li>DevContainer configuration</li>
+<li>System dependencies documented</li>
+<li>CI uses same container</li>
+</ul>
+<p><strong>L5 (Fully Isolated):</strong></p>
+<ul>
+<li>Data versioning (DVC)</li>
+<li>Workflow management (targets/Snakemake)</li>
+<li>Complete audit trail</li>
+<li>Archived container images</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="summary-the-modern-reproducibility-toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="summary-the-modern-reproducibility-toolkit">Summary: The Modern Reproducibility Toolkit</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Need</th>
+<th>Python</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Package management</td>
+<td>uv</td>
+<td>rv, renv</td>
+</tr>
+<tr class="even">
+<td>Version management</td>
+<td>uv, pyenv</td>
+<td>rig</td>
+</tr>
+<tr class="odd">
+<td>Containerization</td>
+<td>devcontainers</td>
+<td>devcontainers + Rocker</td>
+</tr>
+<tr class="even">
+<td>Workflow</td>
+<td>Snakemake, DVC</td>
+<td>targets</td>
+</tr>
+<tr class="odd">
+<td>Documentation</td>
+<td>Quarto, Jupyter</td>
+<td>Quarto</td>
+</tr>
+<tr class="even">
+<td>Formatting</td>
+<td>ruff</td>
+<td>air</td>
+</tr>
+<tr class="odd">
+<td>Linting</td>
+<td>ruff</td>
+<td>lintr</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Reproducibility is no longer optional — it’s table stakes for professional data science. The tooling has matured to the point where reproducible workflows are not just possible but practical.</p>
+<p>But remember: <strong>reproducibility is a spectrum, not a binary</strong>. The right approach depends on your context — who needs to reproduce the work, for how long, and at what stakes.</p>
+<p>Start with package management (<code>uv</code> for Python, <code>rv</code> or <code>renv</code> for R), add language version control (<code>rig</code>, <code>uv python</code>), and when system dependencies become complex, embrace devcontainers. Layer in workflow tools like <code>targets</code> or Snakemake for complex pipelines, and document everything with Quarto.</p>
+<p>The investment in reproducibility pays dividends: faster onboarding, fewer “works on my machine” incidents, easier debugging, and the confidence that your results can be verified and trusted. Just make sure you’re investing the right amount for your actual needs.</p>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li><a href="https://docs.astral.sh/uv/">uv Documentation</a></li>
+<li><a href="https://a2-ai.github.io/rv-docs/">rv Documentation</a></li>
+<li><a href="https://rstudio.github.io/renv/">renv Documentation</a></li>
+<li><a href="https://github.com/r-lib/rig">rig - R Installation Manager</a></li>
+<li><a href="https://containers.dev/">DevContainers Specification</a></li>
+<li><a href="https://rocker-project.org/">Rocker Project</a></li>
+<li><a href="https://docs.ropensci.org/targets/">targets Package</a></li>
+<li><a href="https://quarto.org/">Quarto</a></li>
+<li><a href="https://dvc.org/">DVC - Data Version Control</a></li>
+<li><a href="https://snakemake.github.io/">Snakemake</a></li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/antoinelucasfra\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Powered by <a href="https://quarto.org">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>© 2025 Antoine Lucas.</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/posts/reproducibility-modern-tools/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
