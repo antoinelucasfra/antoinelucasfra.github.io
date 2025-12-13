@@ -17,6 +17,1645 @@
 <generator>quarto-1.7.32</generator>
 <lastBuildDate>Thu, 12 Dec 2024 23:00:00 GMT</lastBuildDate>
 <item>
+  <title>The Reproducibility Quest: Modern Tools for R and Python Data Science</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Reproducibility is the cornerstone of credible data science. Whether you’re in academia, pharma, finance, or tech, the ability to recreate your analysis environment and results is essential. Yet achieving true reproducibility has historically been painful — a maze of version conflicts, missing dependencies, and the dreaded “works on my machine” syndrome.</p>
+<p>The good news? We’re living in a golden age of reproducibility tooling. Both R and Python ecosystems have evolved dramatically, offering modern solutions that make reproducible workflows not just possible, but practical. This post explores the complete toolkit for reproducible data science in 2024 and beyond.</p>
+<p>But before diving into tools, let’s address a crucial question: <strong>how much reproducibility do you actually need?</strong></p>
+<hr>
+</section>
+<section id="the-reproducibility-spectrum-scoping-your-needs" class="level2">
+<h2 class="anchored" data-anchor-id="the-reproducibility-spectrum-scoping-your-needs">The Reproducibility Spectrum: Scoping Your Needs</h2>
+<p>Not every project requires the same level of reproducibility investment. A quick exploratory analysis for an internal meeting doesn’t need the same rigor as a clinical trial submission to the FDA. Understanding where your project falls on this spectrum is essential for efficient resource allocation.</p>
+<section id="levels-of-reproducibility" class="level3">
+<h3 class="anchored" data-anchor-id="levels-of-reproducibility">Levels of Reproducibility</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Level</th>
+<th>Description</th>
+<th>Typical Use Cases</th>
+<th>Investment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>L1: Minimal</strong></td>
+<td>Code runs on author’s machine</td>
+<td>Personal exploration, quick prototypes</td>
+<td>Low</td>
+</tr>
+<tr class="even">
+<td><strong>L2: Documented</strong></td>
+<td>README with manual setup instructions</td>
+<td>Team projects, handoffs</td>
+<td>Low-Medium</td>
+</tr>
+<tr class="odd">
+<td><strong>L3: Lockfile</strong></td>
+<td>Pinned package versions</td>
+<td>Production analyses, shared projects</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td><strong>L4: Containerized</strong></td>
+<td>Full environment specification</td>
+<td>Regulated industries, long-term archives</td>
+<td>Medium-High</td>
+</tr>
+<tr class="odd">
+<td><strong>L5: Fully Isolated</strong></td>
+<td>Container + data versioning + workflow</td>
+<td>Clinical trials, financial audits</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="scoping-questions" class="level3">
+<h3 class="anchored" data-anchor-id="scoping-questions">Scoping Questions</h3>
+<p>Before setting up your reproducibility stack, ask:</p>
+<ol type="1">
+<li><strong>Who needs to reproduce this?</strong>
+<ul>
+<li>Just me, in 6 months? → L2-L3</li>
+<li>My team? → L3</li>
+<li>External auditors? → L4-L5</li>
+<li>The entire scientific community? → L5</li>
+</ul></li>
+<li><strong>What’s the regulatory context?</strong>
+<ul>
+<li>Internal exploration → L1-L2</li>
+<li>Published research → L3-L4</li>
+<li>Regulatory submission → L5</li>
+</ul></li>
+<li><strong>What’s the project lifespan?</strong>
+<ul>
+<li>One-off analysis → L1-L2</li>
+<li>Quarterly reports → L3</li>
+<li>Multi-year project → L4-L5</li>
+</ul></li>
+<li><strong>What’s the cost of failure?</strong>
+<ul>
+<li>Learning exercise → L1</li>
+<li>Business decision → L3</li>
+<li>Patient safety → L5</li>
+</ul></li>
+</ol>
+</section>
+<section id="the-reproducibility-tax" class="level3">
+<h3 class="anchored" data-anchor-id="the-reproducibility-tax">The Reproducibility Tax</h3>
+<p>Every level of reproducibility adds friction:</p>
+<ul>
+<li><strong>L1→L2</strong>: Writing documentation (minutes)</li>
+<li><strong>L2→L3</strong>: Managing lockfiles, occasional dependency conflicts (hours)</li>
+<li><strong>L3→L4</strong>: Container setup, debugging build issues (days initially)</li>
+<li><strong>L4→L5</strong>: Data versioning, workflow management, CI/CD (ongoing effort)</li>
+</ul>
+<p>The goal is to pay the <em>right</em> amount of tax for your context — not more, not less.</p>
+<hr>
+</section>
+</section>
+<section id="the-convergence-r-and-python-are-aligning" class="level2">
+<h2 class="anchored" data-anchor-id="the-convergence-r-and-python-are-aligning">The Convergence: R and Python Are Aligning</h2>
+<p>Something remarkable is happening: the R and Python ecosystems are converging on similar reproducibility paradigms. This isn’t coincidental — it reflects hard-won lessons about what works.</p>
+<section id="shared-principles" class="level3">
+<h3 class="anchored" data-anchor-id="shared-principles">Shared Principles</h3>
+<p>Both communities have arrived at the same conclusions:</p>
+<ol type="1">
+<li><strong>Declarative over imperative</strong> — Define desired state, not installation steps</li>
+<li><strong>Lockfiles are essential</strong> — Capture exact versions at installation time</li>
+<li><strong>TOML for configuration</strong> — Human-readable, standardized format</li>
+<li><strong>Rust for tooling</strong> — Performance matters for developer experience</li>
+<li><strong>Holistic resolution</strong> — Solve the entire dependency tree before installing</li>
+</ol>
+</section>
+<section id="the-modern-stack-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="the-modern-stack-comparison">The Modern Stack Comparison</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 24%">
+<col style="width: 9%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Python</th>
+<th>R</th>
+<th>Convergence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Package manager</td>
+<td>uv</td>
+<td>rv</td>
+<td>Both Rust, declarative, TOML-based</td>
+</tr>
+<tr class="even">
+<td>Config file</td>
+<td><code>pyproject.toml</code></td>
+<td><code>rproject.toml</code></td>
+<td>Same format, similar structure</td>
+</tr>
+<tr class="odd">
+<td>Lockfile</td>
+<td><code>uv.lock</code></td>
+<td><code>rv.lock</code></td>
+<td>Same purpose, similar approach</td>
+</tr>
+<tr class="even">
+<td>Version manager</td>
+<td>uv, pyenv</td>
+<td>rig</td>
+<td>CLI-based, multiple versions</td>
+</tr>
+<tr class="odd">
+<td>Formatter</td>
+<td>ruff</td>
+<td>air</td>
+<td>Fast, opinionated, Rust-based</td>
+</tr>
+<tr class="even">
+<td>Containers</td>
+<td>devcontainers</td>
+<td>devcontainers + Rocker</td>
+<td>Same specification</td>
+</tr>
+</tbody>
+</table>
+<p>This convergence means skills transfer between languages, and polyglot projects become easier to manage.</p>
+<hr>
+</section>
+</section>
+<section id="package-management-the-foundation" class="level2">
+<h2 class="anchored" data-anchor-id="package-management-the-foundation">Package Management: The Foundation</h2>
+<section id="python-the-uv-revolution" class="level3">
+<h3 class="anchored" data-anchor-id="python-the-uv-revolution">Python: The uv Revolution</h3>
+<p><a href="https://docs.astral.sh/uv/">uv</a> has fundamentally changed Python package management. Written in Rust, it’s blazingly fast and consolidates what used to require multiple tools (pyenv, pip, virtualenv, pip-tools) into one coherent experience.</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install uv</span></span>
+<span id="cb1-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">curl</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sh</span></span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a new project</span></span>
+<span id="cb1-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">uv</span> init my-analysis</span>
+<span id="cb1-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> my-analysis</span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add dependencies</span></span>
+<span id="cb1-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">uv</span> add pandas numpy scikit-learn matplotlib</span>
+<span id="cb1-10"></span>
+<span id="cb1-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sync environment</span></span>
+<span id="cb1-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">uv</span> sync</span></code></pre></div>
+<p>The <code>pyproject.toml</code> becomes your single source of truth:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb2-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[project]</span></span>
+<span id="cb2-2"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">name</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"my-analysis"</span></span>
+<span id="cb2-3"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">version</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"0.1.0"</span></span>
+<span id="cb2-4"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">requires-python</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"&gt;=3.11"</span></span>
+<span id="cb2-5"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">dependencies</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span></span>
+<span id="cb2-6">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pandas&gt;=2.0"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-7">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"numpy&gt;=1.24"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-8">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"scikit-learn&gt;=1.3"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-9">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"matplotlib&gt;=3.7"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-10"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span></span>
+<span id="cb2-11"></span>
+<span id="cb2-12"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[tool.uv]</span></span>
+<span id="cb2-13"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">dev-dependencies</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span></span>
+<span id="cb2-14">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pytest&gt;=7.0"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-15">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ruff&gt;=0.1"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-16"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span></span></code></pre></div>
+<p>Key features that make <code>uv</code> essential:</p>
+<ul>
+<li><strong>Lockfile (<code>uv.lock</code>)</strong> — Captures exact versions for reproducibility</li>
+<li><strong>Python version management</strong> — No need for separate pyenv</li>
+<li><strong>Blazing fast</strong> — 10-100x faster than pip</li>
+<li><strong>Declarative</strong> — Describe what you want, not how to get there</li>
+</ul>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># uv can manage Python versions too</span></span>
+<span id="cb3-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">uv</span> python install 3.12</span>
+<span id="cb3-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">uv</span> python pin 3.11</span>
+<span id="cb3-4"></span>
+<span id="cb3-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Run scripts with automatic environment setup</span></span>
+<span id="cb3-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">uv</span> run python analysis.py</span></code></pre></div>
+</section>
+<section id="r-the-rv-revolution" class="level3">
+<h3 class="anchored" data-anchor-id="r-the-rv-revolution">R: The rv Revolution</h3>
+<p>On the R side, <a href="https://a2-ai.github.io/rv-docs/">rv</a> brings the same declarative philosophy. If you’ve been using <code>renv</code>, <code>rv</code> will feel like a significant upgrade.</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install rv</span></span>
+<span id="cb4-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">curl</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-sSL</span> https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bash</span></span>
+<span id="cb4-3"></span>
+<span id="cb4-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a new project</span></span>
+<span id="cb4-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">rv</span> init my-analysis</span>
+<span id="cb4-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> my-analysis</span>
+<span id="cb4-7"></span>
+<span id="cb4-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add dependencies</span></span>
+<span id="cb4-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">rv</span> add tidyverse arrow DBI</span>
+<span id="cb4-10"></span>
+<span id="cb4-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sync</span></span>
+<span id="cb4-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">rv</span> sync</span></code></pre></div>
+<p>Your <code>rproject.toml</code>:</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb5-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[project]</span></span>
+<span id="cb5-2"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">name</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"my-analysis"</span></span>
+<span id="cb5-3"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">r_version</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"4.5"</span></span>
+<span id="cb5-4"></span>
+<span id="cb5-5"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">repositories</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span></span>
+<span id="cb5-6">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{ </span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">alias</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PPM"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">, </span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">url</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://packagemanager.posit.co/cran/latest"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"> },</span></span>
+<span id="cb5-7"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span></span>
+<span id="cb5-8"></span>
+<span id="cb5-9"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">dependencies</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span></span>
+<span id="cb5-10">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tidyverse"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb5-11">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"arrow"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb5-12">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"DBI"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb5-13"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span></span></code></pre></div>
+</section>
+<section id="renv-the-established-alternative" class="level3">
+<h3 class="anchored" data-anchor-id="renv-the-established-alternative">renv: The Established Alternative</h3>
+<p>While <code>rv</code> is the future, <a href="https://rstudio.github.io/renv/">renv</a> remains the most widely adopted solution:</p>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Initialize renv</span></span>
+<span id="cb6-2">renv<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">init</span>()</span>
+<span id="cb6-3"></span>
+<span id="cb6-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install packages as usual</span></span>
+<span id="cb6-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install.packages</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tidyverse"</span>)</span>
+<span id="cb6-6"></span>
+<span id="cb6-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Snapshot your dependencies</span></span>
+<span id="cb6-8">renv<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">snapshot</span>()</span>
+<span id="cb6-9"></span>
+<span id="cb6-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Restore on another machine</span></span>
+<span id="cb6-11">renv<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">restore</span>()</span></code></pre></div>
+<p>The key difference: <code>renv</code> is reactive (snapshot after installation), while <code>rv</code> is declarative (define desired state, then sync).</p>
+</section>
+<section id="when-to-use-what" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-use-what">When to Use What</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 38%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th>Python</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>New projects</td>
+<td>uv</td>
+<td>rv</td>
+</tr>
+<tr class="even">
+<td>Legacy projects</td>
+<td>pip + requirements.txt</td>
+<td>renv</td>
+</tr>
+<tr class="odd">
+<td>Corporate environments</td>
+<td>uv (or pip if restricted)</td>
+<td>renv (more established)</td>
+</tr>
+<tr class="even">
+<td>Bleeding edge</td>
+<td>uv</td>
+<td>rv</td>
+</tr>
+<tr class="odd">
+<td>Maximum compatibility</td>
+<td>pip</td>
+<td>renv</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="language-version-management" class="level2">
+<h2 class="anchored" data-anchor-id="language-version-management">Language Version Management</h2>
+<section id="r-rig" class="level3">
+<h3 class="anchored" data-anchor-id="r-rig">R: rig</h3>
+<p><a href="https://github.com/r-lib/rig">rig</a> is the R Installation Manager — think of it as pyenv for R:</p>
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install rig (macOS)</span></span>
+<span id="cb7-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">brew</span> tap r-lib/rig <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">&amp;&amp;</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">brew</span> install rig</span>
+<span id="cb7-3"></span>
+<span id="cb7-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install rig (Linux)</span></span>
+<span id="cb7-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">curl</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-L</span> https://rig.r-lib.org/rig-linux-latest.tar.gz <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> tar xz <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-C</span> /usr/local</span>
+<span id="cb7-6"></span>
+<span id="cb7-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># List available versions</span></span>
+<span id="cb7-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">rig</span> available</span>
+<span id="cb7-9"></span>
+<span id="cb7-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install specific version</span></span>
+<span id="cb7-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">rig</span> add 4.5</span>
+<span id="cb7-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">rig</span> add 4.4</span>
+<span id="cb7-13"></span>
+<span id="cb7-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Switch between versions</span></span>
+<span id="cb7-15"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">rig</span> default 4.5</span>
+<span id="cb7-16"></span>
+<span id="cb7-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># List installed versions</span></span>
+<span id="cb7-18"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">rig</span> list</span></code></pre></div>
+</section>
+<section id="python-uv-or-pyenv" class="level3">
+<h3 class="anchored" data-anchor-id="python-uv-or-pyenv">Python: uv or pyenv</h3>
+<p><code>uv</code> now handles Python version management directly:</p>
+<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install Python 3.12</span></span>
+<span id="cb8-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">uv</span> python install 3.12</span>
+<span id="cb8-3"></span>
+<span id="cb8-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pin project to specific version</span></span>
+<span id="cb8-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">uv</span> python pin 3.11</span>
+<span id="cb8-6"></span>
+<span id="cb8-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># List installed versions</span></span>
+<span id="cb8-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">uv</span> python list</span></code></pre></div>
+<p>Alternatively, <a href="https://github.com/pyenv/pyenv">pyenv</a> remains a solid choice:</p>
+<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install pyenv</span></span>
+<span id="cb9-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">curl</span> https://pyenv.run <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bash</span></span>
+<span id="cb9-3"></span>
+<span id="cb9-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install Python version</span></span>
+<span id="cb9-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pyenv</span> install 3.11.6</span>
+<span id="cb9-6"></span>
+<span id="cb9-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Set local version for project</span></span>
+<span id="cb9-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pyenv</span> local 3.11.6</span></code></pre></div>
+<hr>
+</section>
+</section>
+<section id="environment-control-devcontainers" class="level2">
+<h2 class="anchored" data-anchor-id="environment-control-devcontainers">Environment Control: DevContainers</h2>
+<p>Package managers handle libraries, but what about system dependencies? OpenSSL, GDAL, database drivers, C compilers… these often cause the most painful reproducibility issues.</p>
+<section id="what-are-devcontainers" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-devcontainers">What Are DevContainers?</h3>
+<p><a href="https://containers.dev/">Development Containers</a> provide a complete, containerized development environment. They’re Docker containers configured specifically for development, with full IDE integration.</p>
+<p>A <code>.devcontainer/devcontainer.json</code> defines your environment:</p>
+<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb10-2">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"name"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"R &amp; Python Data Science"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb10-3">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"image"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ghcr.io/rocker-org/devcontainer/tidyverse:4.4"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb10-4">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"features"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb10-5">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{},</span></span>
+<span id="cb10-6">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"ghcr.io/devcontainers/features/python:1"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb10-7">            <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"version"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"3.11"</span></span>
+<span id="cb10-8">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb10-9">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb10-10">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"customizations"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb10-11">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"vscode"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb10-12">            <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"extensions"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">[</span></span>
+<span id="cb10-13">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"REditorSupport.r"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb10-14">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ms-python.python"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb10-15">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"quarto.quarto"</span></span>
+<span id="cb10-16">            <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">]</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb10-17">            <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"settings"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb10-18">                <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"r.rterm.linux"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/usr/local/bin/R"</span></span>
+<span id="cb10-19">            <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb10-20">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb10-21">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb10-22">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"postCreateCommand"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"uv sync &amp;&amp; rv sync"</span></span>
+<span id="cb10-23"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div>
+</section>
+<section id="when-to-use-devcontainers" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-use-devcontainers">When to Use DevContainers</h3>
+<p>DevContainers are <strong>L4 reproducibility</strong> — use them when:</p>
+<ul>
+<li>System dependencies are complex (geospatial, databases, specific compilers)</li>
+<li>Team onboarding needs to be instant</li>
+<li>You need CI/CD parity with development</li>
+<li>Long-term archival is required</li>
+</ul>
+<p>Skip them when:</p>
+<ul>
+<li>Pure R/Python with no system dependencies</li>
+<li>Quick personal projects</li>
+<li>Environments where Docker isn’t available</li>
+</ul>
+</section>
+<section id="r-specific-devcontainers-with-rocker" class="level3">
+<h3 class="anchored" data-anchor-id="r-specific-devcontainers-with-rocker">R-Specific DevContainers with Rocker</h3>
+<p>The <a href="https://rocker-project.org/">Rocker Project</a> provides excellent base images:</p>
+<div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb11-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb11-2">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"name"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"R Development"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb11-3">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"image"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ghcr.io/rocker-org/devcontainer/tidyverse:4.4"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb11-4">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"features"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb11-5">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{},</span></span>
+<span id="cb11-6">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"ghcr.io/rocker-org/devcontainer-features/rig:1"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{}</span></span>
+<span id="cb11-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb11-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div>
+<p>Available images:</p>
+<ul>
+<li><code>rocker/r-ver</code> — Base R</li>
+<li><code>rocker/tidyverse</code> — R + tidyverse packages</li>
+<li><code>rocker/verse</code> — tidyverse + LaTeX</li>
+<li><code>rocker/geospatial</code> — Includes GDAL, GEOS, PROJ</li>
+</ul>
+</section>
+<section id="multi-language-devcontainer" class="level3">
+<h3 class="anchored" data-anchor-id="multi-language-devcontainer">Multi-Language DevContainer</h3>
+<p>For projects using both R and Python:</p>
+<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb12-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb12-2">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"name"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"R + Python Data Science"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb12-3">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"build"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb12-4">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"dockerfile"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Dockerfile"</span></span>
+<span id="cb12-5">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb12-6">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"features"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb12-7">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{}</span></span>
+<span id="cb12-8">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">},</span></span>
+<span id="cb12-9">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"postCreateCommand"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"rv sync &amp;&amp; uv sync"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb12-10">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"customizations"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb12-11">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"vscode"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb12-12">            <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">"extensions"</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">:</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">[</span></span>
+<span id="cb12-13">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"REditorSupport.r"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb12-14">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ms-python.python"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb12-15">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"quarto.quarto"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb12-16">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"posit.publisher"</span></span>
+<span id="cb12-17">            <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">]</span></span>
+<span id="cb12-18">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb12-19">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb12-20"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div>
+<p>With a custom Dockerfile:</p>
+<div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb13-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">FROM</span> ghcr.io/rocker-org/devcontainer/tidyverse:4.4</span>
+<span id="cb13-2"></span>
+<span id="cb13-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install uv for Python</span></span>
+<span id="cb13-4"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">RUN</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">curl</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sh</span></span>
+<span id="cb13-5"></span>
+<span id="cb13-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Install rv for R</span></span>
+<span id="cb13-7"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">RUN</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">curl</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-sSL</span> https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">|</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bash</span></span>
+<span id="cb13-8"></span>
+<span id="cb13-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># System dependencies</span></span>
+<span id="cb13-10"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">RUN</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">apt-get</span> update <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">&amp;&amp;</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">apt-get</span> install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-y</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb13-11">    libpq-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb13-12">    libgdal-dev <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb13-13">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">&amp;&amp;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rm</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-rf</span> /var/lib/apt/lists/<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span></span></code></pre></div>
+<hr>
+</section>
+</section>
+<section id="workflow-orchestration" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-orchestration">Workflow Orchestration</h2>
+<p>Beyond package management, you need tools to manage the execution flow of your analysis.</p>
+<section id="r-targets" class="level3">
+<h3 class="anchored" data-anchor-id="r-targets">R: targets</h3>
+<p><a href="https://docs.ropensci.org/targets/">targets</a> is a pipeline tool for R that tracks dependencies and caches results:</p>
+<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># _targets.R</span></span>
+<span id="cb14-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(targets)</span>
+<span id="cb14-3"></span>
+<span id="cb14-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb14-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tar_target</span>(raw_data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data/input.csv"</span>)),</span>
+<span id="cb14-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tar_target</span>(clean_data, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">clean_data</span>(raw_data)),</span>
+<span id="cb14-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tar_target</span>(model, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fit_model</span>(clean_data)),</span>
+<span id="cb14-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tar_target</span>(report, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">render_report</span>(model), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">format =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"file"</span>)</span>
+<span id="cb14-9">)</span></code></pre></div>
+<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Run the pipeline</span></span>
+<span id="cb15-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Rscript</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-e</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"targets::tar_make()"</span></span>
+<span id="cb15-3"></span>
+<span id="cb15-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Visualize dependencies</span></span>
+<span id="cb15-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Rscript</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-e</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"targets::tar_visnetwork()"</span></span></code></pre></div>
+</section>
+<section id="python-snakemake-and-dvc" class="level3">
+<h3 class="anchored" data-anchor-id="python-snakemake-and-dvc">Python: Snakemake and DVC</h3>
+<p><a href="https://snakemake.github.io/">Snakemake</a> for workflow management:</p>
+<div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Snakefile</span></span>
+<span id="cb16-2">rule <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">all</span>:</span>
+<span id="cb16-3">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">input</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"results/final_report.html"</span></span>
+<span id="cb16-4"></span>
+<span id="cb16-5">rule clean_data:</span>
+<span id="cb16-6">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">input</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data/raw.csv"</span></span>
+<span id="cb16-7">    output: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data/clean.csv"</span></span>
+<span id="cb16-8">    script: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"scripts/clean.py"</span></span>
+<span id="cb16-9"></span>
+<span id="cb16-10">rule train_model:</span>
+<span id="cb16-11">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">input</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data/clean.csv"</span></span>
+<span id="cb16-12">    output: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"models/model.pkl"</span></span>
+<span id="cb16-13">    script: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"scripts/train.py"</span></span></code></pre></div>
+<p><a href="https://dvc.org/">DVC</a> for data versioning:</p>
+<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Initialize DVC</span></span>
+<span id="cb17-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">dvc</span> init</span>
+<span id="cb17-3"></span>
+<span id="cb17-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Track large data files</span></span>
+<span id="cb17-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">dvc</span> add data/large_dataset.csv</span>
+<span id="cb17-6"></span>
+<span id="cb17-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Push to remote storage</span></span>
+<span id="cb17-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">dvc</span> push</span>
+<span id="cb17-9"></span>
+<span id="cb17-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pull data on another machine</span></span>
+<span id="cb17-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">dvc</span> pull</span></code></pre></div>
+<hr>
+</section>
+</section>
+<section id="documentation-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="documentation-quarto">Documentation: Quarto</h2>
+<p><a href="https://quarto.org/">Quarto</a> unifies documentation across R, Python, and Julia. A typical Quarto document combines markdown narrative with code chunks in either language.</p>
+<p>Key reproducibility feature: With <code>freeze: auto</code> in your YAML header, Quarto caches computational outputs, so documents can be re-rendered without re-executing all code — improving both reproducibility and build times.</p>
+<p>Quarto documents use fenced code blocks with language specifiers like <code>{python}</code> or <code>{r}</code> to indicate executable code, and can output to HTML, PDF, Word, and many other formats.</p>
+<hr>
+</section>
+<section id="organizational-considerations" class="level2">
+<h2 class="anchored" data-anchor-id="organizational-considerations">Organizational Considerations</h2>
+<section id="team-standards" class="level3">
+<h3 class="anchored" data-anchor-id="team-standards">Team Standards</h3>
+<p>Different teams within an organization may need different reproducibility levels:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Team</th>
+<th>Typical Level</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Science R&amp;D</td>
+<td>L2-L3</td>
+<td>Fast iteration, exploration</td>
+</tr>
+<tr class="even">
+<td>Production Analytics</td>
+<td>L3-L4</td>
+<td>Reliability, handoffs</td>
+</tr>
+<tr class="odd">
+<td>Regulatory/Compliance</td>
+<td>L4-L5</td>
+<td>Audit requirements</td>
+</tr>
+<tr class="even">
+<td>External Publications</td>
+<td>L4-L5</td>
+<td>Peer review, credibility</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="building-a-reproducibility-culture" class="level3">
+<h3 class="anchored" data-anchor-id="building-a-reproducibility-culture">Building a Reproducibility Culture</h3>
+<ol type="1">
+<li><strong>Start with templates</strong> — Provide project templates at appropriate levels</li>
+<li><strong>Automate checks</strong> — CI/CD that validates reproducibility</li>
+<li><strong>Document decisions</strong> — Record <em>why</em> a certain level was chosen</li>
+<li><strong>Review periodically</strong> — Projects may need to level up over time</li>
+</ol>
+</section>
+<section id="the-cost-benefit-reality" class="level3">
+<h3 class="anchored" data-anchor-id="the-cost-benefit-reality">The Cost-Benefit Reality</h3>
+<p>The key insight: <strong>match your investment to your actual needs</strong>. Over-engineering reproducibility for a throwaway analysis wastes time. Under-engineering for a regulatory submission creates risk.</p>
+<p>As project risk and longevity increase, so should your reproducibility investment — from L1 (personal exploration) through L5 (regulatory/clinical).</p>
+<hr>
+</section>
+</section>
+<section id="the-complete-reproducibility-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="the-complete-reproducibility-checklist">The Complete Reproducibility Checklist</h2>
+<section id="project-structure" class="level3">
+<h3 class="anchored" data-anchor-id="project-structure">Project Structure</h3>
+<pre class="text"><code>my-project/
+├── .devcontainer/
+│   └── devcontainer.json     # Container environment (L4+)
+├── .github/
+│   └── workflows/
+│       └── ci.yml            # Automated testing
+├── data/
+│   ├── raw/                  # Immutable raw data
+│   └── processed/            # Generated data (gitignored)
+├── src/                      # Source code
+├── notebooks/                # Exploratory work
+├── reports/                  # Quarto documents
+├── tests/                    # Unit tests
+├── _targets.R                # R pipeline (if using targets)
+├── pyproject.toml            # Python dependencies
+├── uv.lock                   # Python lockfile
+├── rproject.toml             # R dependencies
+├── rv.lock                   # R lockfile
+├── .gitignore
+└── README.md</code></pre>
+</section>
+<section id="by-level" class="level3">
+<h3 class="anchored" data-anchor-id="by-level">By Level</h3>
+<p><strong>L1 (Minimal):</strong></p>
+<ul>
+<li>Code in version control</li>
+</ul>
+<p><strong>L2 (Documented):</strong></p>
+<ul>
+<li>README with setup instructions</li>
+<li>List of required packages</li>
+</ul>
+<p><strong>L3 (Lockfile):</strong></p>
+<ul>
+<li><code>uv.lock</code> / <code>rv.lock</code> / <code>renv.lock</code></li>
+<li>Language version specified</li>
+<li>CI that runs tests</li>
+</ul>
+<p><strong>L4 (Containerized):</strong></p>
+<ul>
+<li>DevContainer configuration</li>
+<li>System dependencies documented</li>
+<li>CI uses same container</li>
+</ul>
+<p><strong>L5 (Fully Isolated):</strong></p>
+<ul>
+<li>Data versioning (DVC)</li>
+<li>Workflow management (targets/Snakemake)</li>
+<li>Complete audit trail</li>
+<li>Archived container images</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="summary-the-modern-reproducibility-toolkit" class="level2">
+<h2 class="anchored" data-anchor-id="summary-the-modern-reproducibility-toolkit">Summary: The Modern Reproducibility Toolkit</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Need</th>
+<th>Python</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Package management</td>
+<td>uv</td>
+<td>rv, renv</td>
+</tr>
+<tr class="even">
+<td>Version management</td>
+<td>uv, pyenv</td>
+<td>rig</td>
+</tr>
+<tr class="odd">
+<td>Containerization</td>
+<td>devcontainers</td>
+<td>devcontainers + Rocker</td>
+</tr>
+<tr class="even">
+<td>Workflow</td>
+<td>Snakemake, DVC</td>
+<td>targets</td>
+</tr>
+<tr class="odd">
+<td>Documentation</td>
+<td>Quarto, Jupyter</td>
+<td>Quarto</td>
+</tr>
+<tr class="even">
+<td>Formatting</td>
+<td>ruff</td>
+<td>air</td>
+</tr>
+<tr class="odd">
+<td>Linting</td>
+<td>ruff</td>
+<td>lintr</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Reproducibility is no longer optional — it’s table stakes for professional data science. The tooling has matured to the point where reproducible workflows are not just possible but practical.</p>
+<p>But remember: <strong>reproducibility is a spectrum, not a binary</strong>. The right approach depends on your context — who needs to reproduce the work, for how long, and at what stakes.</p>
+<p>Start with package management (<code>uv</code> for Python, <code>rv</code> or <code>renv</code> for R), add language version control (<code>rig</code>, <code>uv python</code>), and when system dependencies become complex, embrace devcontainers. Layer in workflow tools like <code>targets</code> or Snakemake for complex pipelines, and document everything with Quarto.</p>
+<p>The investment in reproducibility pays dividends: faster onboarding, fewer “works on my machine” incidents, easier debugging, and the confidence that your results can be verified and trusted. Just make sure you’re investing the right amount for your actual needs.</p>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li><a href="https://docs.astral.sh/uv/">uv Documentation</a></li>
+<li><a href="https://a2-ai.github.io/rv-docs/">rv Documentation</a></li>
+<li><a href="https://rstudio.github.io/renv/">renv Documentation</a></li>
+<li><a href="https://github.com/r-lib/rig">rig - R Installation Manager</a></li>
+<li><a href="https://containers.dev/">DevContainers Specification</a></li>
+<li><a href="https://rocker-project.org/">Rocker Project</a></li>
+<li><a href="https://docs.ropensci.org/targets/">targets Package</a></li>
+<li><a href="https://quarto.org/">Quarto</a></li>
+<li><a href="https://dvc.org/">DVC - Data Version Control</a></li>
+<li><a href="https://snakemake.github.io/">Snakemake</a></li>
+</ul>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>R</category>
+  <category>Python</category>
+  <category>Reproducibility</category>
+  <category>DevContainers</category>
+  <category>Docker</category>
+  <category>Package Management</category>
+  <category>Best Practices</category>
+  <guid>https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/</guid>
+  <pubDate>Thu, 12 Dec 2024 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/why-curate-resources/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="the-knowledge-debt-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-knowledge-debt-problem">The Knowledge Debt Problem</h2>
+<p>If you work in data science, statistics, machine learning, or AI, you know the feeling: you look away for a month, and suddenly there’s a new paradigm, a new library that makes your favorite tool obsolete, or a paper that fundamentally changes how we think about a problem.</p>
+<p>The field moves fast. Uncomfortably fast.</p>
+<ul>
+<li><strong>Statistics</strong>: New causal inference methods, Bayesian workflows, and effect estimation techniques emerge continuously</li>
+<li><strong>Machine Learning</strong>: Architecture innovations, training techniques, and interpretability methods evolve monthly</li>
+<li><strong>Generative AI</strong>: The pace since 2022 has been unprecedented — LLMs, diffusion models, multimodal systems</li>
+<li><strong>Tooling</strong>: Package managers, reproducibility tools, and development workflows get better every year</li>
+<li><strong>Best practices</strong>: What was considered “production-ready” five years ago may now be technical debt</li>
+</ul>
+<p>This creates what I call <strong>knowledge debt</strong> — the gap between what you know and what’s available. Unlike technical debt, knowledge debt compounds silently. You don’t realize you’re behind until you try to solve a problem and discover everyone else is using tools you’ve never heard of.</p>
+<hr>
+</section>
+<section id="the-bookmark-graveyard" class="level2">
+<h2 class="anchored" data-anchor-id="the-bookmark-graveyard">The Bookmark Graveyard</h2>
+<p>Like many practitioners, I used to save interesting links in browser bookmarks. The result? Thousands of unorganized, unsearchable, forgotten URLs. A digital graveyard of good intentions.</p>
+<p>The problems with bookmarks:</p>
+<ol type="1">
+<li><strong>No context</strong> — Why did I save this? What problem does it solve?</li>
+<li><strong>No categorization</strong> — Is this about Bayesian statistics or Shiny deployment?</li>
+<li><strong>No language filtering</strong> — Is this R, Python, or language-agnostic?</li>
+<li><strong>No discoverability</strong> — I can’t browse by topic when exploring</li>
+<li><strong>Link rot</strong> — URLs die, and I never know until I need them</li>
+</ol>
+<p>I needed something better: a structured, searchable, categorized collection that I could actually <em>use</em>.</p>
+<hr>
+</section>
+<section id="building-the-resources-catalog" class="level2">
+<h2 class="anchored" data-anchor-id="building-the-resources-catalog">Building the Resources Catalog</h2>
+<p>That’s why I created the <a href="../../projects/resources_catalog.html">Resources Catalog</a> — a curated collection of data science resources organized by type, language, and category.</p>
+<section id="the-philosophy" class="level3">
+<h3 class="anchored" data-anchor-id="the-philosophy">The Philosophy</h3>
+<p>The catalog isn’t trying to be comprehensive. The internet already has “awesome lists” with thousands of links. Instead, it reflects my actual learning journey:</p>
+<ul>
+<li><strong>Books</strong> that shaped how I think about problems</li>
+<li><strong>Packages</strong> that I’ve found genuinely useful in practice</li>
+<li><strong>Blogs</strong> from practitioners who write thoughtfully</li>
+<li><strong>Papers</strong> that introduced important concepts</li>
+<li><strong>Courses</strong> that are worth the time investment</li>
+<li><strong>Tools</strong> that improve my daily workflow</li>
+</ul>
+</section>
+<section id="organization-principles" class="level3">
+<h3 class="anchored" data-anchor-id="organization-principles">Organization Principles</h3>
+<p>Each resource is tagged with:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Type</strong></td>
+<td>Book, Blog, Package, Course, Paper, Website, Video, Community</td>
+</tr>
+<tr class="even">
+<td><strong>Language</strong></td>
+<td>R, Python, Other (for language-agnostic resources)</td>
+</tr>
+<tr class="odd">
+<td><strong>Category</strong></td>
+<td>Topic areas like Statistics, Machine Learning, Bayesian, Shiny, Visualization</td>
+</tr>
+</tbody>
+</table>
+<p>This structure means I can quickly answer questions like:</p>
+<ul>
+<li>“What are the best resources for learning Bayesian statistics in R?”</li>
+<li>“Which blogs should I follow for Python machine learning?”</li>
+<li>“What packages exist for Shiny production deployment?”</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="the-domains-that-matter" class="level2">
+<h2 class="anchored" data-anchor-id="the-domains-that-matter">The Domains That Matter</h2>
+<p>Looking at my catalog, some patterns emerge. These are the domains where staying current has the highest return on investment:</p>
+<section id="statistical-methodology" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-methodology">1. Statistical Methodology</h3>
+<p>Statistics isn’t static. Recent years have seen significant advances in:</p>
+<ul>
+<li><strong>Causal inference</strong>: Moving beyond correlation to actual causal claims</li>
+<li><strong>Bayesian workflows</strong>: Stan, brms, and probabilistic programming</li>
+<li><strong>Mixed models</strong>: Proper handling of hierarchical/longitudinal data</li>
+<li><strong>Effect estimation</strong>: Beyond p-values to effect sizes and uncertainty</li>
+</ul>
+<p>Resources like <a href="https://github.com/rmcelreath/stat_rethinking_2022">Statistical Rethinking</a>, the <a href="https://www.r-causal.org/">R-Causal community</a>, and blogs from <a href="http://www.stat.columbia.edu/~gelman/">Andrew Gelman</a> help me stay grounded in what statistical practice should look like.</p>
+</section>
+<section id="machine-learning-deep-learning" class="level3">
+<h3 class="anchored" data-anchor-id="machine-learning-deep-learning">2. Machine Learning &amp; Deep Learning</h3>
+<p>The ML landscape shifts constantly:</p>
+<ul>
+<li><strong>Transformers everywhere</strong>: From NLP to computer vision to time series</li>
+<li><strong>Foundation models</strong>: Pre-trained models as starting points</li>
+<li><strong>Interpretability</strong>: Understanding what models actually learn</li>
+<li><strong>MLOps</strong>: Taking models from notebooks to production</li>
+</ul>
+<p>Resources like <a href="https://huggingface.co/">Hugging Face</a>, <a href="https://course.fast.ai/">Fast.ai</a>, and <a href="https://wandb.ai/site">Weights &amp; Biases</a> keep me connected to modern practice.</p>
+</section>
+<section id="generative-ai-llms" class="level3">
+<h3 class="anchored" data-anchor-id="generative-ai-llms">3. Generative AI &amp; LLMs</h3>
+<p>The post-2022 explosion requires active attention:</p>
+<ul>
+<li><strong>Model capabilities</strong>: What can LLMs actually do reliably?</li>
+<li><strong>Prompt engineering</strong>: How to get useful outputs</li>
+<li><strong>Integration patterns</strong>: Using LLMs in applications</li>
+<li><strong>Limitations and risks</strong>: What they can’t do and when they fail</li>
+</ul>
+<p>Following the <a href="https://huggingface.co/blog">Hugging Face blog</a>, research labs like <a href="https://www.deepmind.com/blog">DeepMind</a>, and practitioners on social media helps filter signal from hype.</p>
+</section>
+<section id="reproducibility-devops" class="level3">
+<h3 class="anchored" data-anchor-id="reproducibility-devops">4. Reproducibility &amp; DevOps</h3>
+<p>How we build software keeps improving:</p>
+<ul>
+<li><strong>Package management</strong>: uv, renv, rv</li>
+<li><strong>Containerization</strong>: Docker, devcontainers</li>
+<li><strong>Version control</strong>: Git workflows, CI/CD</li>
+<li><strong>Documentation</strong>: Quarto, literate programming</li>
+</ul>
+<p>The <a href="https://the-turing-way.netlify.app/welcome.html">Turing Way</a>, <a href="https://ropensci.org/">rOpenSci</a>, and tool-specific documentation keep me current on best practices.</p>
+</section>
+<section id="visualization-communication" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-communication">5. Visualization &amp; Communication</h3>
+<p>Data is only useful if you can communicate it:</p>
+<ul>
+<li><strong>ggplot2 ecosystem</strong>: Extensions, themes, customization</li>
+<li><strong>Interactive visualizations</strong>: Plotly, htmlwidgets, Shiny</li>
+<li><strong>Dashboard design</strong>: Layout, UX, performance</li>
+<li><strong>Storytelling</strong>: How to structure data narratives</li>
+</ul>
+<p>Resources like <a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a>, the <a href="https://r-graph-gallery.com/">R Graph Gallery</a>, and blogs from visualization practitioners help me communicate better.</p>
+<hr>
+</section>
+</section>
+<section id="a-learning-system-not-just-a-list" class="level2">
+<h2 class="anchored" data-anchor-id="a-learning-system-not-just-a-list">A Learning System, Not Just a List</h2>
+<p>The catalog is part of a broader learning system:</p>
+<section id="capture" class="level3">
+<h3 class="anchored" data-anchor-id="capture">1. Capture</h3>
+<p>When I encounter something interesting — a blog post, a package, a paper — I add it to the catalog immediately. The friction is low: just add a row to a CSV file.</p>
+</section>
+<section id="categorize" class="level3">
+<h3 class="anchored" data-anchor-id="categorize">2. Categorize</h3>
+<p>Tagging forces me to think: What domain is this? What language? What problem does it solve? This metacognition helps retention.</p>
+</section>
+<section id="review" class="level3">
+<h3 class="anchored" data-anchor-id="review">3. Review</h3>
+<p>Periodically, I browse the catalog by category. This surfaces forgotten resources and helps me notice patterns (e.g., “I’ve saved a lot about Bayesian methods lately — maybe I should actually learn brms properly”).</p>
+</section>
+<section id="apply" class="level3">
+<h3 class="anchored" data-anchor-id="apply">4. Apply</h3>
+<p>The ultimate test: when facing a problem, can I find a relevant resource quickly? If yes, the system works. If not, I need to improve my categorization or add missing resources.</p>
+</section>
+<section id="share" class="level3">
+<h3 class="anchored" data-anchor-id="share">5. Share</h3>
+<p>Making the catalog public creates accountability. It also helps others who are on similar learning journeys.</p>
+<hr>
+</section>
+</section>
+<section id="the-curators-mindset" class="level2">
+<h2 class="anchored" data-anchor-id="the-curators-mindset">The Curator’s Mindset</h2>
+<p>Maintaining a resource collection requires a specific mindset:</p>
+<section id="be-selective" class="level3">
+<h3 class="anchored" data-anchor-id="be-selective">Be Selective</h3>
+<p>Not everything deserves a spot. The catalog should answer: “If I had limited time to learn about X, where would I start?” Adding everything dilutes value.</p>
+</section>
+<section id="accept-impermanence" class="level3">
+<h3 class="anchored" data-anchor-id="accept-impermanence">Accept Impermanence</h3>
+<p>Links die. Tools become obsolete. The catalog needs maintenance. I periodically verify links and remove resources that are no longer relevant.</p>
+</section>
+<section id="embrace-serendipity" class="level3">
+<h3 class="anchored" data-anchor-id="embrace-serendipity">Embrace Serendipity</h3>
+<p>Some of the best discoveries come from browsing adjacent categories. The structured format enables this kind of exploration.</p>
+</section>
+<section id="balance-depth-and-breadth" class="level3">
+<h3 class="anchored" data-anchor-id="balance-depth-and-breadth">Balance Depth and Breadth</h3>
+<p>Some domains need deep coverage (statistics, R programming). Others just need a few trusted entry points (specific libraries, niche topics).</p>
+<hr>
+</section>
+</section>
+<section id="starting-your-own" class="level2">
+<h2 class="anchored" data-anchor-id="starting-your-own">Starting Your Own</h2>
+<p>If you want to build a similar system, start simple:</p>
+<ol type="1">
+<li><strong>Choose a format</strong>: Spreadsheet, notion, obsidian, or a simple CSV like mine</li>
+<li><strong>Define your categories</strong>: What domains do you care about?</li>
+<li><strong>Start capturing</strong>: Add resources as you encounter them</li>
+<li><strong>Review regularly</strong>: Browse your collection monthly</li>
+<li><strong>Share if useful</strong>: Others might benefit; you’ll be motivated to maintain it</li>
+</ol>
+<p>The key insight: <strong>curation is a skill</strong>. Like any skill, it improves with practice. Your first version will be imperfect. That’s fine — iterate.</p>
+<hr>
+</section>
+<section id="the-compound-interest-of-learning" class="level2">
+<h2 class="anchored" data-anchor-id="the-compound-interest-of-learning">The Compound Interest of Learning</h2>
+<p>Staying current isn’t about knowing everything. It’s about:</p>
+<ul>
+<li><strong>Knowing where to look</strong> when you need something</li>
+<li><strong>Recognizing patterns</strong> across domains</li>
+<li><strong>Building on foundations</strong> rather than starting from scratch each time</li>
+<li><strong>Connecting ideas</strong> from different fields</li>
+</ul>
+<p>A well-maintained resource collection is infrastructure for this kind of continuous learning. It’s an investment that compounds over time.</p>
+<p>The pace of change in data science, ML, and AI isn’t slowing down. Having a system to navigate that change — rather than being overwhelmed by it — is increasingly valuable.</p>
+<p>Browse my <a href="../../projects/resources_catalog.html">Resources Catalog</a>. Fork it, adapt it, build your own. The goal isn’t to have <em>my</em> collection — it’s to have <em>a</em> collection that serves your learning journey.</p>
+<hr>
+</section>
+<section id="resources-for-resource-curation" class="level2">
+<h2 class="anchored" data-anchor-id="resources-for-resource-curation">Resources for Resource Curation</h2>
+<p>Some meta-resources on learning and knowledge management:</p>
+<ul>
+<li><a href="https://the-turing-way.netlify.app/">The Turing Way</a> — Community handbook for reproducible research</li>
+<li><a href="https://www.bigbookofr.com/">Big Book of R</a> — An excellent curated collection of R resources</li>
+<li><a href="https://github.com/sindresorhus/awesome">Awesome Lists</a> — The original curated list concept</li>
+<li><a href="https://www.buildingasecondbrain.com/">Second Brain</a> — Methodology for personal knowledge management</li>
+<li><a href="https://github.com/aaronwangy/Data-Science-Cheatsheet">Data Science Cheatsheet</a> — Condensed reference material</li>
+</ul>
+<hr>
+<p><em>The <a href="../../projects/resources_catalog.html">Resources Catalog</a> is continuously updated. Contributions welcome via <a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io">GitHub</a>.</em></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Data Science</category>
+  <category>Machine Learning</category>
+  <category>GenAI</category>
+  <category>Resources</category>
+  <category>Lifelong Learning</category>
+  <category>Best Practices</category>
+  <guid>https://antoinelucasfra.github.io/posts/why-curate-resources/</guid>
+  <pubDate>Thu, 12 Dec 2024 23:00:00 GMT</pubDate>
+</item>
+<item>
   <title>rv: The Modern R Package Manager for Reproducible Workflows</title>
   <dc:creator>Antoine Lucas</dc:creator>
   <link>https://antoinelucasfra.github.io/posts/rv-modern-r-package-manager/</link>

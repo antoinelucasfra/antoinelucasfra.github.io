@@ -1,0 +1,226 @@
+---
+title: "Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog"
+description: "In data science, machine learning, and AI, the pace of change is relentless. Here's why I maintain a curated collection of resources — and why you might want to do the same."
+author: "Antoine Lucas"
+date: "2024-12-13"
+categories: [Data Science, Machine Learning, GenAI, Resources, Lifelong Learning, Best Practices]
+---
+
+## The Knowledge Debt Problem
+
+If you work in data science, statistics, machine learning, or AI, you know the feeling: you look away for a month, and suddenly there's a new paradigm, a new library that makes your favorite tool obsolete, or a paper that fundamentally changes how we think about a problem.
+
+The field moves fast. Uncomfortably fast.
+
+- **Statistics**: New causal inference methods, Bayesian workflows, and effect estimation techniques emerge continuously
+- **Machine Learning**: Architecture innovations, training techniques, and interpretability methods evolve monthly
+- **Generative AI**: The pace since 2022 has been unprecedented — LLMs, diffusion models, multimodal systems
+- **Tooling**: Package managers, reproducibility tools, and development workflows get better every year
+- **Best practices**: What was considered "production-ready" five years ago may now be technical debt
+
+This creates what I call **knowledge debt** — the gap between what you know and what's available. Unlike technical debt, knowledge debt compounds silently. You don't realize you're behind until you try to solve a problem and discover everyone else is using tools you've never heard of.
+
+---
+
+## The Bookmark Graveyard
+
+Like many practitioners, I used to save interesting links in browser bookmarks. The result? Thousands of unorganized, unsearchable, forgotten URLs. A digital graveyard of good intentions.
+
+The problems with bookmarks:
+
+1. **No context** — Why did I save this? What problem does it solve?
+2. **No categorization** — Is this about Bayesian statistics or Shiny deployment?
+3. **No language filtering** — Is this R, Python, or language-agnostic?
+4. **No discoverability** — I can't browse by topic when exploring
+5. **Link rot** — URLs die, and I never know until I need them
+
+I needed something better: a structured, searchable, categorized collection that I could actually *use*.
+
+---
+
+## Building the Resources Catalog
+
+That's why I created the [Resources Catalog](/projects/resources_catalog.qmd) — a curated collection of data science resources organized by type, language, and category.
+
+### The Philosophy
+
+The catalog isn't trying to be comprehensive. The internet already has "awesome lists" with thousands of links. Instead, it reflects my actual learning journey:
+
+- **Books** that shaped how I think about problems
+- **Packages** that I've found genuinely useful in practice
+- **Blogs** from practitioners who write thoughtfully
+- **Papers** that introduced important concepts
+- **Courses** that are worth the time investment
+- **Tools** that improve my daily workflow
+
+### Organization Principles
+
+Each resource is tagged with:
+
+| Field | Purpose |
+|-------|---------|
+| **Type** | Book, Blog, Package, Course, Paper, Website, Video, Community |
+| **Language** | R, Python, Other (for language-agnostic resources) |
+| **Category** | Topic areas like Statistics, Machine Learning, Bayesian, Shiny, Visualization |
+
+This structure means I can quickly answer questions like:
+
+- "What are the best resources for learning Bayesian statistics in R?"
+- "Which blogs should I follow for Python machine learning?"
+- "What packages exist for Shiny production deployment?"
+
+---
+
+## The Domains That Matter
+
+Looking at my catalog, some patterns emerge. These are the domains where staying current has the highest return on investment:
+
+### 1. Statistical Methodology
+
+Statistics isn't static. Recent years have seen significant advances in:
+
+- **Causal inference**: Moving beyond correlation to actual causal claims
+- **Bayesian workflows**: Stan, brms, and probabilistic programming
+- **Mixed models**: Proper handling of hierarchical/longitudinal data
+- **Effect estimation**: Beyond p-values to effect sizes and uncertainty
+
+Resources like [Statistical Rethinking](https://github.com/rmcelreath/stat_rethinking_2022), the [R-Causal community](https://www.r-causal.org/), and blogs from [Andrew Gelman](http://www.stat.columbia.edu/~gelman/) help me stay grounded in what statistical practice should look like.
+
+### 2. Machine Learning & Deep Learning
+
+The ML landscape shifts constantly:
+
+- **Transformers everywhere**: From NLP to computer vision to time series
+- **Foundation models**: Pre-trained models as starting points
+- **Interpretability**: Understanding what models actually learn
+- **MLOps**: Taking models from notebooks to production
+
+Resources like [Hugging Face](https://huggingface.co/), [Fast.ai](https://course.fast.ai/), and [Weights & Biases](https://wandb.ai/site) keep me connected to modern practice.
+
+### 3. Generative AI & LLMs
+
+The post-2022 explosion requires active attention:
+
+- **Model capabilities**: What can LLMs actually do reliably?
+- **Prompt engineering**: How to get useful outputs
+- **Integration patterns**: Using LLMs in applications
+- **Limitations and risks**: What they can't do and when they fail
+
+Following the [Hugging Face blog](https://huggingface.co/blog), research labs like [DeepMind](https://www.deepmind.com/blog), and practitioners on social media helps filter signal from hype.
+
+### 4. Reproducibility & DevOps
+
+How we build software keeps improving:
+
+- **Package management**: uv, renv, rv
+- **Containerization**: Docker, devcontainers
+- **Version control**: Git workflows, CI/CD
+- **Documentation**: Quarto, literate programming
+
+The [Turing Way](https://the-turing-way.netlify.app/welcome.html), [rOpenSci](https://ropensci.org/), and tool-specific documentation keep me current on best practices.
+
+### 5. Visualization & Communication
+
+Data is only useful if you can communicate it:
+
+- **ggplot2 ecosystem**: Extensions, themes, customization
+- **Interactive visualizations**: Plotly, htmlwidgets, Shiny
+- **Dashboard design**: Layout, UX, performance
+- **Storytelling**: How to structure data narratives
+
+Resources like [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/), the [R Graph Gallery](https://r-graph-gallery.com/), and blogs from visualization practitioners help me communicate better.
+
+---
+
+## A Learning System, Not Just a List
+
+The catalog is part of a broader learning system:
+
+### 1. Capture
+
+When I encounter something interesting — a blog post, a package, a paper — I add it to the catalog immediately. The friction is low: just add a row to a CSV file.
+
+### 2. Categorize
+
+Tagging forces me to think: What domain is this? What language? What problem does it solve? This metacognition helps retention.
+
+### 3. Review
+
+Periodically, I browse the catalog by category. This surfaces forgotten resources and helps me notice patterns (e.g., "I've saved a lot about Bayesian methods lately — maybe I should actually learn brms properly").
+
+### 4. Apply
+
+The ultimate test: when facing a problem, can I find a relevant resource quickly? If yes, the system works. If not, I need to improve my categorization or add missing resources.
+
+### 5. Share
+
+Making the catalog public creates accountability. It also helps others who are on similar learning journeys.
+
+---
+
+## The Curator's Mindset
+
+Maintaining a resource collection requires a specific mindset:
+
+### Be Selective
+
+Not everything deserves a spot. The catalog should answer: "If I had limited time to learn about X, where would I start?" Adding everything dilutes value.
+
+### Accept Impermanence
+
+Links die. Tools become obsolete. The catalog needs maintenance. I periodically verify links and remove resources that are no longer relevant.
+
+### Embrace Serendipity
+
+Some of the best discoveries come from browsing adjacent categories. The structured format enables this kind of exploration.
+
+### Balance Depth and Breadth
+
+Some domains need deep coverage (statistics, R programming). Others just need a few trusted entry points (specific libraries, niche topics).
+
+---
+
+## Starting Your Own
+
+If you want to build a similar system, start simple:
+
+1. **Choose a format**: Spreadsheet, notion, obsidian, or a simple CSV like mine
+2. **Define your categories**: What domains do you care about?
+3. **Start capturing**: Add resources as you encounter them
+4. **Review regularly**: Browse your collection monthly
+5. **Share if useful**: Others might benefit; you'll be motivated to maintain it
+
+The key insight: **curation is a skill**. Like any skill, it improves with practice. Your first version will be imperfect. That's fine — iterate.
+
+---
+
+## The Compound Interest of Learning
+
+Staying current isn't about knowing everything. It's about:
+
+- **Knowing where to look** when you need something
+- **Recognizing patterns** across domains
+- **Building on foundations** rather than starting from scratch each time
+- **Connecting ideas** from different fields
+
+A well-maintained resource collection is infrastructure for this kind of continuous learning. It's an investment that compounds over time.
+
+The pace of change in data science, ML, and AI isn't slowing down. Having a system to navigate that change — rather than being overwhelmed by it — is increasingly valuable.
+
+Browse my [Resources Catalog](/projects/resources_catalog.qmd). Fork it, adapt it, build your own. The goal isn't to have *my* collection — it's to have *a* collection that serves your learning journey.
+
+---
+
+## Resources for Resource Curation
+
+Some meta-resources on learning and knowledge management:
+
+- [The Turing Way](https://the-turing-way.netlify.app/) — Community handbook for reproducible research
+- [Big Book of R](https://www.bigbookofr.com/) — An excellent curated collection of R resources
+- [Awesome Lists](https://github.com/sindresorhus/awesome) — The original curated list concept
+- [Second Brain](https://www.buildingasecondbrain.com/) — Methodology for personal knowledge management
+- [Data Science Cheatsheet](https://github.com/aaronwangy/Data-Science-Cheatsheet) — Condensed reference material
+
+---
+
+*The [Resources Catalog](/projects/resources_catalog.qmd) is continuously updated. Contributions welcome via [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io).*

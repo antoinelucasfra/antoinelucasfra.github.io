@@ -8,6 +8,8 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/reproducibility-modern-tools/index.html",
+      "/posts/why-curate-resources/index.html",
       "/posts/rv-modern-r-package-manager/index.html",
       "/posts/reproducible-pharma-r/index.html",
       "/posts/dev-setup-guide/index.html",
