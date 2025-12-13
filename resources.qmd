@@ -1,0 +1,32 @@
+---
+title: "Resources"
+title-block-banner: true
+---
+
+Looking for data science resources? Check out the [📚 Resources Catalog](/projects/resources_catalog.qmd) — a searchable collection of 200+ curated links for R, Python, and beyond.
+
+## Quick Links
+
+### R Programming
+- [Tidyverse](https://www.tidyverse.org/) - Collection of R packages for data science
+- [R for Data Science](https://r4ds.had.co.nz/) - Free online book
+- [RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/) - Quick reference guides
+
+### Python Data Science
+- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - Free online book
+- [Pandas Documentation](https://pandas.pydata.org/docs/) - Data manipulation library
+- [Scikit-learn](https://scikit-learn.org/) - Machine learning in Python
+
+### Pharma & Clinical Trials
+- [R/Pharma](https://rinpharma.com/) - R in Pharmaceutical Industry
+- [CDISC](https://www.cdisc.org/) - Clinical Data Interchange Standards
+- [ICH Guidelines](https://www.ich.org/page/ich-guidelines) - International Council for Harmonisation
+
+### Visualization
+- [ggplot2](https://ggplot2.tidyverse.org/) - Grammar of graphics for R
+- [Plotly](https://plotly.com/) - Interactive visualizations
+- [Shiny](https://shiny.rstudio.com/) - Web applications with R
+
+---
+
+For a comprehensive searchable catalog of all resources, visit the **[Resources Catalog](/projects/resources_catalog.qmd)**.

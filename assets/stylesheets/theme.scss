@@ -1,0 +1,250 @@
+/*-- scss:defaults --*/
+
+// Brand colors - Navy & Gold theme (Trafalgar Law inspired)
+$brand-gold: #F5C518;
+$brand-gold-light: #FDD835;
+$brand-navy: #1a2a4a;
+$brand-navy-light: #2c3e50;
+$brand-navy-dark: #0d1b2a;
+$brand-blue: #3498db;
+$brand-white: #ffffff;
+$brand-off-white: #f8f9fa;
+
+// Override Bootstrap colors with brand palette
+$primary: $brand-navy;
+$secondary: $brand-gold;
+$success: #28a745;
+$info: $brand-blue;
+$warning: $brand-gold;
+$danger: #dc3545;
+
+$body-bg: $brand-white;
+$body-color: $brand-navy;
+
+$link-color: $brand-navy;
+$link-hover-color: $brand-gold;
+
+// Navbar colors
+$navbar-dark-color: $brand-white;
+$navbar-dark-hover-color: $brand-gold;
+$navbar-dark-brand-color: $brand-gold;
+
+// Headings
+$headings-color: $brand-navy;
+
+/*-- scss:rules --*/
+
+// Smooth scrolling
+html {
+  scroll-behavior: smooth;
+}
+
+// Navbar brand styling
+.navbar-brand {
+  font-weight: 700;
+
+  &:hover {
+    color: $brand-gold !important;
+  }
+}
+
+// Navbar link styling
+.navbar-dark .navbar-nav .nav-link {
+  &:hover,
+  &:focus {
+    color: $brand-gold !important;
+  }
+
+  &.active {
+    color: $brand-gold !important;
+  }
+}
+
+// Highlight boxes
+.highlight {
+  background-color: rgba($brand-gold, 0.1);
+  border-left: 4px solid $brand-gold;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+// About body styling
+.about-body {
+  max-width: 800px;
+  margin: 2rem auto;
+
+  h2 {
+    margin-top: 2.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba($brand-navy, 0.2);
+    color: $brand-navy;
+  }
+}
+
+// Headings styling
+h1, h2, h3, h4, h5, h6 {
+  color: $brand-navy;
+}
+
+// Skills table styling
+table {
+  width: 100%;
+  margin: 1rem 0;
+
+  th {
+    background-color: rgba($brand-navy, 0.05);
+    font-weight: 600;
+    color: $brand-navy;
+  }
+
+  td, th {
+    padding: 0.75rem;
+    border: 1px solid rgba($brand-navy, 0.15);
+  }
+}
+
+// Interest list styling
+.interests ul {
+  columns: 2;
+  column-gap: 2rem;
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    padding: 0.25rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+
+    &::before {
+      content: "•";
+      color: $brand-gold;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+// Education styling
+.education ul {
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    padding: 0.75rem 0;
+    border-left: 3px solid $brand-gold;
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: rgba($brand-navy, 0.02);
+    border-radius: 0 0.25rem 0.25rem 0;
+  }
+}
+
+// Card styling for projects
+.quarto-grid-item.card {
+  border: 1px solid rgba($brand-navy, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba($brand-navy, 0.15);
+    border-color: $brand-gold;
+  }
+
+  .card-title {
+    color: $brand-navy;
+  }
+}
+
+// Navbar customization
+.navbar {
+  background-color: $brand-navy !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// Footer styling
+.footer {
+  margin-top: 3rem;
+  border-top-color: rgba($brand-navy, 0.1);
+}
+
+// Code block styling
+pre.sourceCode {
+  border-radius: 0.5rem;
+  border: 1px solid rgba($brand-navy, 0.15);
+}
+
+code {
+  color: $brand-navy;
+  background-color: rgba($brand-navy, 0.05);
+}
+
+// Callout styling
+.callout {
+  border-radius: 0.5rem;
+}
+
+.callout-note {
+  border-left-color: $brand-gold;
+}
+
+// Blog post cards
+.listing-item {
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateX(4px);
+  }
+}
+
+// Button styling
+.btn-primary {
+  background-color: $brand-navy;
+  border-color: $brand-navy;
+
+  &:hover {
+    background-color: $brand-gold;
+    border-color: $brand-gold;
+    color: $brand-navy;
+  }
+}
+
+.btn-secondary {
+  background-color: $brand-gold;
+  border-color: $brand-gold;
+  color: $brand-navy;
+
+  &:hover {
+    background-color: $brand-navy;
+    border-color: $brand-navy;
+    color: $brand-white;
+  }
+}
+
+// Category badges
+.quarto-category {
+  background-color: rgba($brand-gold, 0.15);
+  color: $brand-navy;
+  border: 1px solid rgba($brand-gold, 0.3);
+
+  &:hover {
+    background-color: $brand-gold;
+    color: $brand-navy;
+  }
+}
+
+// TOC styling
+.sidebar nav[role=doc-toc] ul > li > a.active {
+  border-left-color: $brand-gold;
+  color: $brand-navy;
+}
+
+// Search styling
+.aa-DetachedSearchButton {
+  border-color: rgba($brand-white, 0.3);
+}

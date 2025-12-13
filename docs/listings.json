@@ -1,0 +1,18 @@
+[
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/resources_catalog.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/posts/reproducible-pharma-r/index.html",
+      "/posts/dev-setup-guide/index.html",
+      "/posts/spc-cosmetics-r/index.html",
+      "/posts/stats-theory-frequentist/index.html",
+      "/posts/quarto-getting-started/index.html"
+    ]
+  }
+]

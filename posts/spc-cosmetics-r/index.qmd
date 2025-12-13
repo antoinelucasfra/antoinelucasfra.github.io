@@ -1,0 +1,98 @@
+---
+title: "Statistical Process Control for Cosmetic Manufacturing"
+description: "How to implement SPC charts in R for quality monitoring in cosmetic product manufacturing."
+author: "Antoine Lucas"
+date: "2024-09-20"
+categories: [R, Quality Control, Cosmetics, SPC]
+image: "featured.png"
+---
+
+## Introduction
+
+Statistical Process Control (SPC) is essential for maintaining consistent product quality in cosmetic manufacturing. This post demonstrates how to implement SPC charts using R.
+
+## The Basics of SPC
+
+SPC uses control charts to monitor process behavior over time. Key concepts:
+
+- **Center Line (CL)** — The process average
+- **Upper Control Limit (UCL)** — CL + 3σ
+- **Lower Control Limit (LCL)** — CL - 3σ
+
+## Implementing Control Charts in R
+
+### X-bar Chart Example
+
+```{r}
+#| eval: false
+library(qcc)
+
+# Sample viscosity measurements from production batches
+viscosity <- c(
+  4520, 4535, 4510, 4525, 4540,
+  4515, 4530, 4505, 4545, 4520,
+  4525, 4510, 4535, 4515, 4530
+)
+
+# Create groups (5 samples per subgroup)
+groups <- rep(1:3, each = 5)
+
+# Create X-bar chart
+qcc(viscosity, type = "xbar", sizes = 5)
+```
+
+### R Chart for Variability
+
+```{r}
+#| eval: false
+# R chart for within-subgroup variability
+qcc(viscosity, type = "R", sizes = 5)
+```
+
+## Detecting Out-of-Control Conditions
+
+Common patterns to watch for:
+
+1. **Points beyond control limits** — Immediate investigation needed
+2. **Run of 7+ points** — Process shift detected
+3. **Trends** — Gradual drift in process
+4. **Hugging the center line** — Possible measurement issues
+
+## Creating an Automated SPC Dashboard
+
+```{r}
+#| eval: false
+library(shiny)
+library(qcc)
+library(ggplot2)
+
+# Simple Shiny app structure
+ui <- fluidPage(
+  titlePanel("Production Quality Monitor"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("product", "Select Product:",
+                  choices = c("Moisturizer A", "Serum B", "Cleanser C"))
+    ),
+    mainPanel(
+      plotOutput("controlChart")
+    )
+  )
+)
+
+server <- function(input, output) {
+  output$controlChart <- renderPlot({
+    # Generate control chart based on selected product
+    # ... chart generation code
+  })
+}
+```
+
+## Conclusion
+
+SPC is a powerful tool for maintaining quality in cosmetic manufacturing. With R, you can automate monitoring and quickly detect process issues.
+
+## Further Reading
+
+- Montgomery, D.C. "Introduction to Statistical Quality Control"
+- ISO 22716: Cosmetics Good Manufacturing Practices

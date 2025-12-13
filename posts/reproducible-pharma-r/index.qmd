@@ -1,0 +1,77 @@
+---
+title: "Building Reproducible Analyses in Pharma with R"
+description: "A practical guide to creating reproducible data analysis workflows in regulated pharmaceutical environments using R and Quarto."
+author: "Antoine Lucas"
+date: "2024-11-15"
+categories: [R, Pharma, Reproducibility, Best Practices]
+image: "featured.png"
+---
+
+## Introduction
+
+In pharmaceutical data science, reproducibility isn't just a best practice—it's a regulatory requirement. This post explores how to build reproducible analysis workflows using R, renv, and Quarto.
+
+## Why Reproducibility Matters in Pharma
+
+Regulatory agencies like the FDA and EMA require that analytical work be:
+
+- **Documented** — Clear records of what was done
+- **Traceable** — Ability to follow the analysis from raw data to conclusions
+- **Reproducible** — The same inputs should produce the same outputs
+
+## Key Tools for Reproducibility
+
+### 1. Version Control with Git
+
+```bash
+git init
+git add .
+git commit -m "Initial analysis setup"
+```
+
+### 2. Dependency Management with renv
+
+```{r}
+#| eval: false
+# Initialize renv for the project
+renv::init()
+
+# Snapshot current dependencies
+renv::snapshot()
+
+# Restore dependencies on a new machine
+renv::restore()
+```
+
+### 3. Pipeline Management with targets
+
+```{r}
+#| eval: false
+library(targets)
+
+# Define your analysis pipeline
+list(
+  tar_target(raw_data, read_csv("data/clinical_data.csv")),
+  tar_target(clean_data, clean_clinical_data(raw_data)),
+  tar_target(analysis, run_statistical_analysis(clean_data)),
+  tar_target(report, render_report(analysis))
+)
+```
+
+## Best Practices
+
+1. **Use project-relative paths** — Never use absolute paths
+2. **Document your environment** — Include session info in reports
+3. **Validate data inputs** — Check data quality before analysis
+4. **Version control everything** — Code, configuration, and documentation
+
+## Conclusion
+
+Building reproducible analyses requires upfront investment but pays dividends in quality, compliance, and peace of mind.
+
+## Session Info
+
+```{r}
+#| eval: false
+sessionInfo()
+```

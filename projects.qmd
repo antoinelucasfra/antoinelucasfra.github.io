@@ -1,0 +1,67 @@
+---
+title: "Projects"
+title-block-banner: true
+listing:
+  - id: projects
+    contents:
+      - path: projects/resources_catalog.qmd
+        image: assets/images/project-placeholder.png
+        title: "📚 Resources Catalog"
+        description: "A curated and searchable collection of 200+ data science resources for R, Python, and beyond. Filter by type, language, and category."
+        date: "2025-12-13"
+        categories: [R, Python, Resources]
+
+      - path: https://github.com/antoinelucasfra
+        image: assets/images/project-placeholder.png
+        title: "Clinical Trial Dashboard"
+        description: "Interactive Shiny dashboard for monitoring clinical trial metrics, patient enrollment, and safety signals in real-time."
+        date: "2024-06-15"
+        categories: [R, Shiny, Healthcare]
+
+      - path: https://github.com/antoinelucasfra
+        image: assets/images/project-placeholder.png
+        title: "Formulation Optimization Tool"
+        description: "Machine learning model to predict optimal formulation parameters based on ingredient properties and stability requirements."
+        date: "2024-03-20"
+        categories: [Python, ML, Cosmetics]
+
+      - path: https://github.com/antoinelucasfra
+        image: assets/images/project-placeholder.png
+        title: "Quality Control Analytics"
+        description: "Automated statistical process control system for manufacturing quality metrics with real-time alerting."
+        date: "2023-11-10"
+        categories: [R, SPC, Pharma]
+
+      - path: https://github.com/antoinelucasfra
+        image: assets/images/project-placeholder.png
+        title: "Stability Prediction Model"
+        description: "Predictive model for accelerated stability testing, reducing time-to-market for new formulations."
+        date: "2023-08-05"
+        categories: [Python, ML, Cosmetics]
+
+      - path: https://github.com/antoinelucasfra
+        image: assets/images/project-placeholder.png
+        title: "Supply Chain Demand Forecasting"
+        description: "Time series forecasting system for pharmaceutical supply chain optimization using Prophet and XGBoost."
+        date: "2023-05-22"
+        categories: [Python, Forecasting, Pharma]
+
+      - path: https://github.com/antoinelucasfra
+        image: assets/images/project-placeholder.png
+        title: "Batch Record Analyzer"
+        description: "NLP-powered tool for extracting insights from manufacturing batch records and identifying deviation patterns."
+        date: "2023-02-14"
+        categories: [Python, NLP, Pharma]
+
+    type: grid
+    sort: "date desc"
+    categories: true
+    filter-ui: true
+    page-size: 9
+    fields: [image, title, description, categories]
+---
+
+A selection of data science projects I've worked on in the pharma and cosmetic industries.
+
+:::: {#projects}
+::::

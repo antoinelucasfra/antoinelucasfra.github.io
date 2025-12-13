@@ -1,9 +1,338 @@
 [
   {
+    "objectID": "TODO.html",
+    "href": "TODO.html",
+    "title": "Antoine Lucas",
+    "section": "",
+    "text": "todo list :\n\ncréer brand.yml à mon image perso\nrecup/tri/agregaer toutes les ressources dans un dossier (récup sources du dossier it&m + pc it&m cf mission sanofi, loreal, msio)\nutiliser rag pour résumer toutes ces ressources et ce faire des cheatsheets sur ces savoirs\ncréer site web perso : cf inspi mcanouil\ncréer rseourceR website/page (cf quarto extensions inspi or nrennie tablepage)\ntrier lien + sanofi export\npolish website\ninclude cv, about, projects, blog tabs\nexplain in blog posts the projects (shiny app for meetups, skate deep learning/huggingface + show quarto R/python integration)\npolish websites globally todo list :\ncréer brand.yml à mon image perso\nrecup/tri/agregaer toutes les ressources dans un dossier (récup sources du dossier it&m + pc it&m cf mission sanofi, loreal, msio)\nutiliser rag pour résumer toutes ces ressources et ce faire des cheatsheets sur ces savoirs)\ncréer site web perso : cf inspi mcanouil\ntrier lien + sanofi export\ninclude cv, about, projects, blog tabs\nexplain in blog posts the projects (shiny app for meetups, skate deep learning/huggingface + show quarto R/python integration)\n\n\nfetch all links from all sources (words docs, google keeps, chrome windows, etc…)\nsort all the links into categories (methods/random forest, IT/linux stuffs, deployment/kubernetes, etc…)\n\n\nget value from the links –&gt; explaining what’s the use and redacting small examples about what can be done\nmake A REAL STATISTICAL COURSES or point out to this + a R for beginners/sthg like this\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "A selection of data science projects I’ve worked on in the pharma and cosmetic industries.\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n📚 Resources Catalog\n\n\n\nR\n\nPython\n\nResources\n\n\n\nA curated and searchable collection of 200+ data science resources for R, Python, and beyond. Filter by type, language, and category.\n\n\n\n\n\n\n\n\n\n\n\n\nClinical Trial Dashboard\n\n\n\nR\n\nShiny\n\nHealthcare\n\n\n\nInteractive Shiny dashboard for monitoring clinical trial metrics, patient enrollment, and safety signals in real-time.\n\n\n\n\n\n\n\n\n\n\n\n\nFormulation Optimization Tool\n\n\n\nPython\n\nML\n\nCosmetics\n\n\n\nMachine learning model to predict optimal formulation parameters based on ingredient properties and stability requirements.\n\n\n\n\n\n\n\n\n\n\n\n\nQuality Control Analytics\n\n\n\nR\n\nSPC\n\nPharma\n\n\n\nAutomated statistical process control system for manufacturing quality metrics with real-time alerting.\n\n\n\n\n\n\n\n\n\n\n\n\nStability Prediction Model\n\n\n\nPython\n\nML\n\nCosmetics\n\n\n\nPredictive model for accelerated stability testing, reducing time-to-market for new formulations.\n\n\n\n\n\n\n\n\n\n\n\n\nSupply Chain Demand Forecasting\n\n\n\nPython\n\nForecasting\n\nPharma\n\n\n\nTime series forecasting system for pharmaceutical supply chain optimization using Prophet and XGBoost.\n\n\n\n\n\n\n\n\n\n\n\n\nBatch Record Analyzer\n\n\n\nPython\n\nNLP\n\nPharma\n\n\n\nNLP-powered tool for extracting insights from manufacturing batch records and identifying deviation patterns.\n\n\n\n\n\nNo matching items\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "posts/reproducible-pharma-r/index.html",
+    "href": "posts/reproducible-pharma-r/index.html",
+    "title": "Building Reproducible Analyses in Pharma with R",
+    "section": "",
+    "text": "In pharmaceutical data science, reproducibility isn’t just a best practice—it’s a regulatory requirement. This post explores how to build reproducible analysis workflows using R, renv, and Quarto."
+  },
+  {
+    "objectID": "posts/reproducible-pharma-r/index.html#introduction",
+    "href": "posts/reproducible-pharma-r/index.html#introduction",
+    "title": "Building Reproducible Analyses in Pharma with R",
+    "section": "",
+    "text": "In pharmaceutical data science, reproducibility isn’t just a best practice—it’s a regulatory requirement. This post explores how to build reproducible analysis workflows using R, renv, and Quarto."
+  },
+  {
+    "objectID": "posts/reproducible-pharma-r/index.html#why-reproducibility-matters-in-pharma",
+    "href": "posts/reproducible-pharma-r/index.html#why-reproducibility-matters-in-pharma",
+    "title": "Building Reproducible Analyses in Pharma with R",
+    "section": "Why Reproducibility Matters in Pharma",
+    "text": "Why Reproducibility Matters in Pharma\nRegulatory agencies like the FDA and EMA require that analytical work be:\n\n\nDocumented — Clear records of what was done\n\nTraceable — Ability to follow the analysis from raw data to conclusions\n\nReproducible — The same inputs should produce the same outputs"
+  },
+  {
+    "objectID": "posts/reproducible-pharma-r/index.html#key-tools-for-reproducibility",
+    "href": "posts/reproducible-pharma-r/index.html#key-tools-for-reproducibility",
+    "title": "Building Reproducible Analyses in Pharma with R",
+    "section": "Key Tools for Reproducibility",
+    "text": "Key Tools for Reproducibility\n1. Version Control with Git\ngit init\ngit add .\ngit commit -m \"Initial analysis setup\"\n2. Dependency Management with renv\n\n# Initialize renv for the project\nrenv::init()\n\n# Snapshot current dependencies\nrenv::snapshot()\n\n# Restore dependencies on a new machine\nrenv::restore()\n\n3. Pipeline Management with targets\n\nlibrary(targets)\n\n# Define your analysis pipeline\nlist(\n  tar_target(raw_data, read_csv(\"data/clinical_data.csv\")),\n  tar_target(clean_data, clean_clinical_data(raw_data)),\n  tar_target(analysis, run_statistical_analysis(clean_data)),\n  tar_target(report, render_report(analysis))\n)"
+  },
+  {
+    "objectID": "posts/reproducible-pharma-r/index.html#best-practices",
+    "href": "posts/reproducible-pharma-r/index.html#best-practices",
+    "title": "Building Reproducible Analyses in Pharma with R",
+    "section": "Best Practices",
+    "text": "Best Practices\n\n\nUse project-relative paths — Never use absolute paths\n\nDocument your environment — Include session info in reports\n\nValidate data inputs — Check data quality before analysis\n\nVersion control everything — Code, configuration, and documentation"
+  },
+  {
+    "objectID": "posts/reproducible-pharma-r/index.html#conclusion",
+    "href": "posts/reproducible-pharma-r/index.html#conclusion",
+    "title": "Building Reproducible Analyses in Pharma with R",
+    "section": "Conclusion",
+    "text": "Conclusion\nBuilding reproducible analyses requires upfront investment but pays dividends in quality, compliance, and peace of mind."
+  },
+  {
+    "objectID": "posts/reproducible-pharma-r/index.html#session-info",
+    "href": "posts/reproducible-pharma-r/index.html#session-info",
+    "title": "Building Reproducible Analyses in Pharma with R",
+    "section": "Session Info",
+    "text": "Session Info\n\nsessionInfo()"
+  },
+  {
+    "objectID": "posts/spc-cosmetics-r/index.html",
+    "href": "posts/spc-cosmetics-r/index.html",
+    "title": "Statistical Process Control for Cosmetic Manufacturing",
+    "section": "",
+    "text": "Statistical Process Control (SPC) is essential for maintaining consistent product quality in cosmetic manufacturing. This post demonstrates how to implement SPC charts using R."
+  },
+  {
+    "objectID": "posts/spc-cosmetics-r/index.html#introduction",
+    "href": "posts/spc-cosmetics-r/index.html#introduction",
+    "title": "Statistical Process Control for Cosmetic Manufacturing",
+    "section": "",
+    "text": "Statistical Process Control (SPC) is essential for maintaining consistent product quality in cosmetic manufacturing. This post demonstrates how to implement SPC charts using R."
+  },
+  {
+    "objectID": "posts/spc-cosmetics-r/index.html#the-basics-of-spc",
+    "href": "posts/spc-cosmetics-r/index.html#the-basics-of-spc",
+    "title": "Statistical Process Control for Cosmetic Manufacturing",
+    "section": "The Basics of SPC",
+    "text": "The Basics of SPC\nSPC uses control charts to monitor process behavior over time. Key concepts:\n\n\nCenter Line (CL) — The process average\n\nUpper Control Limit (UCL) — CL + 3σ\n\nLower Control Limit (LCL) — CL - 3σ"
+  },
+  {
+    "objectID": "posts/spc-cosmetics-r/index.html#implementing-control-charts-in-r",
+    "href": "posts/spc-cosmetics-r/index.html#implementing-control-charts-in-r",
+    "title": "Statistical Process Control for Cosmetic Manufacturing",
+    "section": "Implementing Control Charts in R",
+    "text": "Implementing Control Charts in R\nX-bar Chart Example\n\nlibrary(qcc)\n\n# Sample viscosity measurements from production batches\nviscosity &lt;- c(\n  4520, 4535, 4510, 4525, 4540,\n  4515, 4530, 4505, 4545, 4520,\n  4525, 4510, 4535, 4515, 4530\n)\n\n# Create groups (5 samples per subgroup)\ngroups &lt;- rep(1:3, each = 5)\n\n# Create X-bar chart\nqcc(viscosity, type = \"xbar\", sizes = 5)\n\nR Chart for Variability\n\n# R chart for within-subgroup variability\nqcc(viscosity, type = \"R\", sizes = 5)"
+  },
+  {
+    "objectID": "posts/spc-cosmetics-r/index.html#detecting-out-of-control-conditions",
+    "href": "posts/spc-cosmetics-r/index.html#detecting-out-of-control-conditions",
+    "title": "Statistical Process Control for Cosmetic Manufacturing",
+    "section": "Detecting Out-of-Control Conditions",
+    "text": "Detecting Out-of-Control Conditions\nCommon patterns to watch for:\n\n\nPoints beyond control limits — Immediate investigation needed\n\nRun of 7+ points — Process shift detected\n\nTrends — Gradual drift in process\n\nHugging the center line — Possible measurement issues"
+  },
+  {
+    "objectID": "posts/spc-cosmetics-r/index.html#creating-an-automated-spc-dashboard",
+    "href": "posts/spc-cosmetics-r/index.html#creating-an-automated-spc-dashboard",
+    "title": "Statistical Process Control for Cosmetic Manufacturing",
+    "section": "Creating an Automated SPC Dashboard",
+    "text": "Creating an Automated SPC Dashboard\n\nlibrary(shiny)\nlibrary(qcc)\nlibrary(ggplot2)\n\n# Simple Shiny app structure\nui &lt;- fluidPage(\n  titlePanel(\"Production Quality Monitor\"),\n  sidebarLayout(\n    sidebarPanel(\n      selectInput(\"product\", \"Select Product:\",\n                  choices = c(\"Moisturizer A\", \"Serum B\", \"Cleanser C\"))\n    ),\n    mainPanel(\n      plotOutput(\"controlChart\")\n    )\n  )\n)\n\nserver &lt;- function(input, output) {\n  output$controlChart &lt;- renderPlot({\n    # Generate control chart based on selected product\n    # ... chart generation code\n  })\n}"
+  },
+  {
+    "objectID": "posts/spc-cosmetics-r/index.html#conclusion",
+    "href": "posts/spc-cosmetics-r/index.html#conclusion",
+    "title": "Statistical Process Control for Cosmetic Manufacturing",
+    "section": "Conclusion",
+    "text": "Conclusion\nSPC is a powerful tool for maintaining quality in cosmetic manufacturing. With R, you can automate monitoring and quickly detect process issues."
+  },
+  {
+    "objectID": "posts/spc-cosmetics-r/index.html#further-reading",
+    "href": "posts/spc-cosmetics-r/index.html#further-reading",
+    "title": "Statistical Process Control for Cosmetic Manufacturing",
+    "section": "Further Reading",
+    "text": "Further Reading\n\nMontgomery, D.C. “Introduction to Statistical Quality Control”\nISO 22716: Cosmetics Good Manufacturing Practices"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "About This Site",
     "section": "",
-    "text": "1 + 1\n\n[1] 2"
+    "text": "I’m Antoine Lucas, a Data Scientist with 5 years of experience in the pharmaceutical and cosmetic industries. This website serves as my professional portfolio and a place to share knowledge with the data science community."
+  },
+  {
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "About This Site",
+    "section": "",
+    "text": "I’m Antoine Lucas, a Data Scientist with 5 years of experience in the pharmaceutical and cosmetic industries. This website serves as my professional portfolio and a place to share knowledge with the data science community."
+  },
+  {
+    "objectID": "about.html#about-this-website",
+    "href": "about.html#about-this-website",
+    "title": "About This Site",
+    "section": "About This Website",
+    "text": "About This Website\nThis site is built with Quarto, an open-source scientific and technical publishing system. It’s hosted on GitHub Pages and automatically deployed with each commit.\n\nFeatures\n\n📝 Blog — Technical articles and tutorials\n💼 Projects — Portfolio of data science work\n📚 Resources — Curated learning materials"
+  },
+  {
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "About This Site",
+    "section": "Contact",
+    "text": "Contact\nI’m always interested in discussing data science challenges and opportunities. Feel free to reach out:\n\nEmail: antoinelucas@example.com\nLinkedIn: linkedin.com/in/antoinelucasdata\nGitHub: github.com/antoinelucasfra\nTwitter: @antoineloucass"
+  },
+  {
+    "objectID": "about.html#colophon",
+    "href": "about.html#colophon",
+    "title": "About This Site",
+    "section": "Colophon",
+    "text": "Colophon\n\nBuilt with Quarto\nHosted on GitHub Pages\nSource code on GitHub"
+  },
+  {
+    "objectID": "projects/resources_catalog.html",
+    "href": "projects/resources_catalog.html",
+    "title": "📚 Resources Catalog",
+    "section": "",
+    "text": "This resource list was last updated on Dec 13, 2025. Use the search box and filters to find resources by type, language, or category.\n\n\n\n\n\n\n\n\n\n\n\n\n\nContributing\n\n\n\nWant to add a resource? Edit the data/resources.csv file and submit a PR on GitHub.\n\n\nLinks to external websites are provided for convenience and informational purposes only.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Welcome to my blog where I share insights, tutorials, and thoughts on data science, statistics, and working in the pharma/cosmetic industries.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nBuilding Reproducible Analyses in Pharma with R\n\n\n\nR\n\nPharma\n\nReproducibility\n\nBest Practices\n\n\n\nA practical guide to creating reproducible data analysis workflows in regulated pharmaceutical environments using R and Quarto.\n\n\n\n\n\nNovember 15, 2024\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\nComplete Development Setup Guide for R & Python\n\n\n\nR\n\nPython\n\nVS Code\n\nSetup\n\nTutorial\n\n\n\nA comprehensive guide to setting up R, Python, and VS Code for modern data science development workflows.\n\n\n\n\n\nOctober 15, 2024\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nStatistical Process Control for Cosmetic Manufacturing\n\n\n\nR\n\nQuality Control\n\nCosmetics\n\nSPC\n\n\n\nHow to implement SPC charts in R for quality monitoring in cosmetic product manufacturing.\n\n\n\n\n\nSeptember 20, 2024\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nStatistical Theory: Frequentist Methods Reference\n\n\n\nStatistics\n\nTheory\n\nR\n\nReference\n\n\n\nA comprehensive reference guide to frequentist statistical tests, from basic comparisons to regression models.\n\n\n\n\n\nAugust 20, 2024\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nGetting Started with Quarto for Data Science Reports\n\n\n\nQuarto\n\nTutorial\n\nReproducibility\n\n\n\nA beginner’s guide to creating beautiful, reproducible reports using Quarto in your data science workflow.\n\n\n\n\n\nJuly 10, 2024\n\n2 min\n\n\n\n\nNo matching items\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
+    "section": "",
+    "text": "Looking for data science resources? Check out the 📚 Resources Catalog — a searchable collection of 200+ curated links for R, Python, and beyond."
+  },
+  {
+    "objectID": "resources.html#quick-links",
+    "href": "resources.html#quick-links",
+    "title": "Resources",
+    "section": "Quick Links",
+    "text": "Quick Links\n\nR Programming\n\nTidyverse - Collection of R packages for data science\nR for Data Science - Free online book\nRStudio Cheatsheets - Quick reference guides\n\n\n\nPython Data Science\n\nPython Data Science Handbook - Free online book\nPandas Documentation - Data manipulation library\nScikit-learn - Machine learning in Python\n\n\n\nPharma & Clinical Trials\n\nR/Pharma - R in Pharmaceutical Industry\nCDISC - Clinical Data Interchange Standards\nICH Guidelines - International Council for Harmonisation\n\n\n\nVisualization\n\nggplot2 - Grammar of graphics for R\nPlotly - Interactive visualizations\nShiny - Web applications with R\n\n\nFor a comprehensive searchable catalog of all resources, visit the Resources Catalog."
+  },
+  {
+    "objectID": "posts/stats-theory-frequentist/index.html",
+    "href": "posts/stats-theory-frequentist/index.html",
+    "title": "Statistical Theory: Frequentist Methods Reference",
+    "section": "",
+    "text": "This page serves as a reference for common frequentist statistical methods and their implementation in R."
+  },
+  {
+    "objectID": "posts/stats-theory-frequentist/index.html#introduction",
+    "href": "posts/stats-theory-frequentist/index.html#introduction",
+    "title": "Statistical Theory: Frequentist Methods Reference",
+    "section": "",
+    "text": "This page serves as a reference for common frequentist statistical methods and their implementation in R."
+  },
+  {
+    "objectID": "posts/stats-theory-frequentist/index.html#theory-on-statistical-tests",
+    "href": "posts/stats-theory-frequentist/index.html#theory-on-statistical-tests",
+    "title": "Statistical Theory: Frequentist Methods Reference",
+    "section": "Theory on Statistical Tests",
+    "text": "Theory on Statistical Tests\nLes différents tests statistiques : P-value : c’est la proba que le hasard peut expliquer tout seul 1 différence AU MOINS aussi importante que celle observée. Il y a 2 types d’hypothèses : • Neyman/pearson : l’hypothèse H0 : pa= pb et H1 : pa != pb avec par ex p=0.049 et p=0.00001 ont la MEME « force » de test • Fischer : pareil mais p=0.049 et p = 0.0000001 ont PAS DU TOUT la même force de test\nCOMPARAISON DE 2 POURCENTAGES\nProp.table(dataframe, ½) =regarde le % de 1ere variable // à 2eme (2/1 si inverse) • Test du chi-2 : chisq.test(x,y,correct=FALSE/TRUE) AVEC les hypothèses de validité (% loin de 0 et 100 et grand échantillon) • Test fischer si aucune hypothèse vérifiée : fisher.test(x,y)\nCOMPARAISON DE 2 MOYENNES\n• Test de student : n30 avec une distribution normale. Diagramme de normalité : qqnorm() et qqline(x). Calcul variance : by(x,y,sd,na.rm=TRUE) T.test(x~y,var.equal=TRUE) si pas d’hypothèses : wilcox.test(x~y) Test nullité d’un coeff de corrélation, • Test nullité de corrélation entre 2 variables : 1 des 2 variables doit suivre la loi normale =pearson : cor.test(x,y) • Spearman(x,y,method= »spearman ») Comparaison de moyenne // à moyenne de référence • T.test(var,varfixe=XXXX) • Mcnemar.test(var avant, var après) POUR VAR QUALI • T.test (début,fin,paired=TRUE) POUR VAR QUANTI\nLE T-TEST ANALYSE LES ECARTS TYPES ET LE F-TEST ANALYSE LES MOYENNES\nTEST NON PARAMETRIQUES Test de wilcoxon : comparaison de K= 2 echantillons independants par rapport a une variable X de nature : Quantitative/Qualitative ordinale C’est le test de l’hypothèse selon laquelle les médianes de chacun de deux groupes de données sont proche Test de cruskal wallis : est une comparaison de K=3 échantillons. Ainsi, l’interprétation du test de Kruskal-Wallis est très similaire à une ANOVA paramétrique d’ordre Un, sauf qu’il est basé sur les rangs au lieu des moyennes.\nREGRESSION LINEAIRE SIMPLE (GENERALISATION DU TEST DE STUDENT) Modèle :lm(x~y,data= dataframe)\nREGRESSION LINEAIRE MULTIPLE :\nLes hypothèses à vérifier sont : normalité du bruit et terme résiduel, le bruit est indépendant des valeurs des autres variables, ABSENCE de corrélation évidente, interne avec le bruit Lm(x~y+w+z,data = dataframe) Var quanti = somme (var quanti ou binaire MAIS PAS QUALI) si on veut des quali=codage à la main Interactions entre 2 var = on met un * Analyse de variance/covariance = cas particulier de régression linéaire multiple : toutes les variables explicatives sont catégorielles ou quantitatives\nREGRESSION LOGISTIQUE\nSi la variable à expliquer est non quantitative : -logistique -transforme les variables Glm(modèle, data = …, family = « binomial ») -coeff lu dans estimate lire exp(valeur estimate) a un sens : odd-ratio pour la regresison multiple on rajoute des var explicatives\nHypothèses : au moins 5 à 10 évènements par var explicatives Ex : si une var a expliquer a 54 individus, (age(1), trauma(1) et profession(7)) et 1 + 1 + 7 =9 10(=nbr evenement) = 9054 donc c’est bon ! Ex : 1 + 1 +7 =95 = 45 54 - passe tout juste pas fou !\nLien recap tests stats https://help.xlstat.com/s/article/guide-de-choix-de-test-statistique?language=fr\nANALYSES DE DONNEES MULTIVARIEES (CF MOOC HUSSON ETC..)\nTableau recap\nRecap de sensi et speci d’un test :\nEnsuite on définit la sensi comme : Sensi = VP/(VP+FN) c’est donc la proba que le test accepte H0 si elle est vraie Speci = VN/(VN+FP) c’est donc la proba que le test accepte H1 si elle est vraie Ensuite on a la VPP et la VPN : VPP : valeur prédite positive = VP/(VP+FP) et c’est la probabilité que H0 soit vraie lorsque le test conclu à son acceptation VPN : valeur prédite négative = VN/(VN+FN) et c’est la probabilité que H0 soit fausse lorsque le test conclu à son acceptation\nCourbe ROC : 1-sensi = f(1-speci) = taux de faux positifs = f(taux de vrais positifs) Et FP = 1- sensi FN = 1 – recall"
+  },
+  {
+    "objectID": "posts/dev-setup-guide/index.html",
+    "href": "posts/dev-setup-guide/index.html",
+    "title": "Complete Development Setup Guide for R & Python",
+    "section": "",
+    "text": "This guide provides a complete and reproducible path to installing R & Python along with a fully configured VS Code setup. It’s meant to be definitive and fully reproducible."
+  },
+  {
+    "objectID": "posts/dev-setup-guide/index.html#introduction",
+    "href": "posts/dev-setup-guide/index.html#introduction",
+    "title": "Complete Development Setup Guide for R & Python",
+    "section": "",
+    "text": "This guide provides a complete and reproducible path to installing R & Python along with a fully configured VS Code setup. It’s meant to be definitive and fully reproducible."
+  },
+  {
+    "objectID": "posts/dev-setup-guide/index.html#first-you-need-to-install-r",
+    "href": "posts/dev-setup-guide/index.html#first-you-need-to-install-r",
+    "title": "Complete Development Setup Guide for R & Python",
+    "section": "First you need to install R :",
+    "text": "First you need to install R :\n\nRecommended way : you can install R via rig which is an installation manager https://github.com/r-lib/rig\n\nWith rig you can very easily install multiple and handle different R versions.\n\nyou can follow the classic R installation via CRAN https://cran.rstudio.com/"
+  },
+  {
+    "objectID": "posts/dev-setup-guide/index.html#then-you-need-to-install-python",
+    "href": "posts/dev-setup-guide/index.html#then-you-need-to-install-python",
+    "title": "Complete Development Setup Guide for R & Python",
+    "section": "Then you need to install python :",
+    "text": "Then you need to install python :\n\nfollow classic python installation, python is probably already available if you are with a linux system http://python.org/downloads/\nwe recommend also to install pipx to handle python libvrary installation https://github.com/pypa/pipx"
+  },
+  {
+    "objectID": "posts/dev-setup-guide/index.html#then-we-need-to-install-our-favorite-ide-for-developing",
+    "href": "posts/dev-setup-guide/index.html#then-we-need-to-install-our-favorite-ide-for-developing",
+    "title": "Complete Development Setup Guide for R & Python",
+    "section": "then we need to install our favorite IDE for developing",
+    "text": "then we need to install our favorite IDE for developing\nHere we VERY strongly recommend using vscode which allows a complete flexibility for developing in various languages (not only in R) : https://code.visualstudio.com/\nYou can use any other IDE (Rstudio, Pycharm, etc…) but only the configurations of VScode will be developed, feel free to search for your own guides & issues for other IDEs."
+  },
+  {
+    "objectID": "posts/dev-setup-guide/index.html#now-we-can-install-various-tools-for-moden-development",
+    "href": "posts/dev-setup-guide/index.html#now-we-can-install-various-tools-for-moden-development",
+    "title": "Complete Development Setup Guide for R & Python",
+    "section": "Now we can install various tools for moden development",
+    "text": "Now we can install various tools for moden development\nIn R, we are using installation with a modern oriented development workflow.\nTo finish installation in vscode to have a complete R integration you need to follow the following steps : - follow R & vscode https://code.visualstudio.com/docs/languages/r\nFor this, we will be having various tools to ensure this workflow :\n\nfirst we’ll be using quarto for authoring, reporting and produce deliverables https://quarto.org/docs/get-started/ and you can install quarto vscode extention\nWe can also install quarto wizard on vscode to healp us easy to use quarto extensions https://github.com/mcanouil/quarto-wizard\n\nTo follow good principles of development, we’ll be using tools to ensure that everything is on track :\nFor formatting/styling code :\n\nair for formatting R code https://posit-dev.github.io/air/editor-vscode.html (alternative to styler)\nruff for formatting python code https://docs.astral.sh/ruff/\nprettier for any other languages https://prettier.io/\n\nFor linting in both R & python you have the errorlens extension that is very complete and useful https://marketplace.visualstudio.com/items/?itemName=usernamehw.errorlens\nFor notebooks in python :\n\nif you want to use notebooks, we strongly recommend using https://github.com/marimo-team/marimo to write in notebooks\notherwise there’s still the classic jupyter alternatives https://jupyter.org/\n\nThere’s infinite possibilities for vscode extensions, please install them according to your needs and care for trusted publishers. Here’s an example command to list your installed extensions:\ncode --list-extensions\nFor reproducible environments and library to manage and handle we have :\n\nuv in python, which is a (COMPLETE AND SUPERIOR) alternative to pyenv and other python pkg management tools https://docs.astral.sh/uv/\nrenv to handle R pkg management which is the most common admitted tool to use in R community BUT there’s a new tool in town called rv https://github.com/A2-ai/ that is meant to be the uv for R\n\nother resources and setup R/VScode : https://rolkra.github.io/R-VSCode/ https://renkun.me/2022/03/06/my-recommendations-of-vs-code-extensions-for-r/ and more globally various blog posts : https://renkun.me/"
+  },
+  {
+    "objectID": "posts/quarto-getting-started/index.html",
+    "href": "posts/quarto-getting-started/index.html",
+    "title": "Getting Started with Quarto for Data Science Reports",
+    "section": "",
+    "text": "Quarto is an open-source scientific and technical publishing system that lets you create:\n\nDocuments (HTML, PDF, Word)\nPresentations\nWebsites and blogs\nBooks\n\nIt supports multiple programming languages including R, Python, Julia, and Observable."
+  },
+  {
+    "objectID": "posts/quarto-getting-started/index.html#what-is-quarto",
+    "href": "posts/quarto-getting-started/index.html#what-is-quarto",
+    "title": "Getting Started with Quarto for Data Science Reports",
+    "section": "",
+    "text": "Quarto is an open-source scientific and technical publishing system that lets you create:\n\nDocuments (HTML, PDF, Word)\nPresentations\nWebsites and blogs\nBooks\n\nIt supports multiple programming languages including R, Python, Julia, and Observable."
+  },
+  {
+    "objectID": "posts/quarto-getting-started/index.html#getting-started",
+    "href": "posts/quarto-getting-started/index.html#getting-started",
+    "title": "Getting Started with Quarto for Data Science Reports",
+    "section": "Getting Started",
+    "text": "Getting Started\n\nInstallation\nDownload Quarto from quarto.org.\n\n\nYour First Quarto Document\nCreate a file named report.qmd:\n---\ntitle: \"My First Report\"\nauthor: \"Antoine Lucas\"\ndate: today\nformat: html\n---\n\n## Introduction\n\nThis is my first Quarto document.\n\n```{r}\nlibrary(ggplot2)\nggplot(mtcars, aes(x = wt, y = mpg)) +\n  geom_point() +\n  labs(title = \"Car Weight vs. Fuel Efficiency\")\n```\n\n\nRendering\nquarto render report.qmd"
+  },
+  {
+    "objectID": "posts/quarto-getting-started/index.html#key-features",
+    "href": "posts/quarto-getting-started/index.html#key-features",
+    "title": "Getting Started with Quarto for Data Science Reports",
+    "section": "Key Features",
+    "text": "Key Features\n\nCode Execution Options\n#| echo: true      # Show the code\n#| eval: true      # Run the code\n#| warning: false  # Hide warnings\n#| fig-width: 8    # Figure width\n#| fig-height: 6   # Figure height\n\n\nCross-References\nReference figures, tables, and sections:\nSee @fig-scatter for the visualization.\n\n```{r}\n#| label: fig-scatter\n#| fig-cap: \"Scatter plot of weight vs mpg\"\nggplot(mtcars, aes(x = wt, y = mpg)) +\n  geom_point()\n```\n\n\nCallouts\n\n\n\n\n\n\nNote\n\n\n\nThis is a note callout for additional information.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThis is a warning callout for important caveats."
+  },
+  {
+    "objectID": "posts/quarto-getting-started/index.html#benefits-for-data-science",
+    "href": "posts/quarto-getting-started/index.html#benefits-for-data-science",
+    "title": "Getting Started with Quarto for Data Science Reports",
+    "section": "Benefits for Data Science",
+    "text": "Benefits for Data Science\n\nSingle source of truth — Code and narrative together\nMultiple output formats — One document, many formats\nReproducibility — Anyone can re-run your analysis\nVersion control friendly — Plain text format works well with Git"
+  },
+  {
+    "objectID": "posts/quarto-getting-started/index.html#conclusion",
+    "href": "posts/quarto-getting-started/index.html#conclusion",
+    "title": "Getting Started with Quarto for Data Science Reports",
+    "section": "Conclusion",
+    "text": "Conclusion\nQuarto is an excellent tool for creating reproducible data science reports. Start with simple documents and gradually explore its advanced features."
+  },
+  {
+    "objectID": "posts/quarto-getting-started/index.html#resources",
+    "href": "posts/quarto-getting-started/index.html#resources",
+    "title": "Getting Started with Quarto for Data Science Reports",
+    "section": "Resources",
+    "text": "Resources\n\nQuarto Documentation\nQuarto Gallery\nAwesome Quarto"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Antoine Lucas",
+    "section": "",
+    "text": "Email\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Twitter\n  \n  \n    \n     GitHub"
+  },
+  {
+    "objectID": "index.html#what-i-do",
+    "href": "index.html#what-i-do",
+    "title": "Antoine Lucas",
+    "section": "💼 What I Do",
+    "text": "💼 What I Do\nI transform complex data challenges into actionable insights. My work spans:\n\nClinical Trial Analytics — Statistical analysis and reporting for clinical studies\nFormulation Optimization — Data-driven approaches to product development\nQuality Control & Compliance — Statistical process control and regulatory analytics\nPredictive Modeling — Machine learning for demand forecasting and stability studies\nData Visualization — Clear, compelling dashboards and reports for stakeholders"
+  },
+  {
+    "objectID": "index.html#industry-experience",
+    "href": "index.html#industry-experience",
+    "title": "Antoine Lucas",
+    "section": "🔬 Industry Experience",
+    "text": "🔬 Industry Experience\n\n5+ years working with leading pharma and cosmetic companies on data-driven solutions.\n\nMy experience bridges laboratory data, manufacturing processes, and commercial analytics. I understand the unique challenges of working in regulated industries, including:\n\nGxP compliance requirements\nFDA/EMA regulatory frameworks\nStability testing and shelf-life prediction\nBatch record analysis and deviation investigations"
+  },
+  {
+    "objectID": "index.html#technical-skills",
+    "href": "index.html#technical-skills",
+    "title": "Antoine Lucas",
+    "section": "🛠️ Technical Skills",
+    "text": "🛠️ Technical Skills\n\n\n\nDomain\nTechnologies\n\n\n\n\nProgramming\nR, Python, SQL\n\n\nData Analysis\ntidyverse, pandas, scikit-learn\n\n\nVisualization\nggplot2, Plotly, Shiny, Power BI\n\n\nReporting\nQuarto, R Markdown, Jupyter\n\n\nVersion Control\nGit, GitHub\n\n\nDatabases\nPostgreSQL, SQLite, Snowflake\n\n\nCloud\nAWS, Azure basics"
+  },
+  {
+    "objectID": "index.html#core-competencies",
+    "href": "index.html#core-competencies",
+    "title": "Antoine Lucas",
+    "section": "🌟 Core Competencies",
+    "text": "🌟 Core Competencies\n\nStatistical Analysis & Hypothesis Testing\nMachine Learning & Predictive Modeling\nTime Series Analysis\nDesign of Experiments (DoE)\nData Pipeline Development\nTechnical Documentation\nCross-functional Collaboration"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Antoine Lucas",
+    "section": "🎓 Education",
+    "text": "🎓 Education\n\nM.Sc. in Data Science / Statistics, 2019 University Name, France\nB.Sc. in Mathematics / Applied Sciences, 2017 University Name, France"
   }
 ]

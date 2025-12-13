@@ -1,0 +1,212 @@
+---
+title: "📚 Resources Catalog"
+subtitle: "A curated collection of data science resources for R, Python, and beyond."
+format:
+  html:
+    toc: true
+    page-layout: full
+execute:
+  eval: true
+  echo: false
+engine: knitr
+---
+
+```{css, echo = FALSE}
+select {
+  background-color: var(--bs-body-bg);
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  border-radius: 3px;
+  color: var(--bs-body-color);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 400;
+  margin: 0;
+  outline-style: solid;
+  outline-width: 0;
+  padding: 5px 7px;
+  width: 100%;
+}
+
+/* Reactable theme overrides for light/dark mode */
+.reactable {
+  background-color: var(--bs-body-bg) !important;
+  color: var(--bs-body-color);
+}
+
+.reactable .rt-table {
+  background-color: var(--bs-body-bg) !important;
+}
+
+.reactable .rt-thead {
+  background-color: var(--bs-primary) !important;
+  color: white !important;
+}
+
+.reactable .rt-th {
+  background-color: var(--bs-primary) !important;
+  color: white !important;
+  border-color: var(--bs-primary) !important;
+}
+
+.reactable .rt-tbody {
+  background-color: var(--bs-body-bg) !important;
+}
+
+/* Force ALL rows to have dark background - override inline styles */
+.reactable .rt-tbody .rt-tr {
+  background-color: var(--bs-body-bg) !important;
+}
+
+.reactable .rt-tbody .rt-tr-striped {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Force all cells to inherit background */
+.reactable .rt-tbody .rt-td {
+  background-color: transparent !important;
+}
+
+.reactable .rt-tbody .rt-tr:hover {
+  background-color: rgba(245, 197, 24, 0.15) !important;
+}
+
+.reactable .rt-td {
+  border-color: var(--bs-border-color, rgba(128, 128, 128, 0.2));
+  color: var(--bs-body-color);
+}
+
+.reactable .rt-search {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border-color: var(--bs-border-color, rgba(128, 128, 128, 0.2));
+}
+
+.reactable .rt-pagination {
+  color: var(--bs-body-color);
+}
+
+.reactable .rt-pagination-button {
+  color: var(--bs-body-color);
+}
+
+.reactable .rt-pagination-button:hover {
+  background-color: var(--bs-secondary-bg, rgba(128, 128, 128, 0.1));
+}
+
+.reactable a {
+  color: var(--bs-link-color);
+}
+
+.reactable a:hover {
+  color: var(--bs-link-hover-color);
+}
+
+/* Filter inputs in dark mode */
+.reactable .rt-thead .rt-th input,
+.reactable .rt-thead .rt-th select {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border-color: rgba(128, 128, 128, 0.3);
+}
+```
+
+This resource list was last updated on `r format(Sys.time(), '%b %d, %Y')`.
+Use the search box and filters to find resources by type, language, or category.
+
+```{r}
+#| message: false
+#| warning: false
+
+resources <- readr::read_delim(
+  here::here("data", "resources.csv"),
+  delim = ";",
+  show_col_types = FALSE
+) |>
+  dplyr::mutate(
+    link_text = stringr::str_remove_all(link, "https://|http://|/$"),
+    link_text = stringr::str_trunc(link_text, 40),
+    link = glue::glue("<a href='{link}' target='_blank'>{link_text}</a>")
+  ) |>
+  dplyr::select(-link_text) |>
+  dplyr::mutate(
+    category = stringr::str_replace_all(category, ";", ", ")
+  ) |>
+  dplyr::rename(
+    Type = type,
+    Title = title,
+    Link = link,
+    Language = language,
+    Category = category
+  )
+```
+
+```{r}
+#| message: false
+
+library(htmltools)
+
+filter_fct <- function(values, name) {
+  tags$select(
+    tags$option(value = "", "All"),
+    purrr::map(sort(unique(values)), tags$option),
+    onchange = glue::glue(
+      "Reactable.setFilter(
+        'resources-tbl',
+        '{name}',
+        event.target.value
+      )"
+    )
+  )
+}
+```
+
+```{r}
+resources |>
+  dplyr::arrange(Type, Title) |>
+  reactable::reactable(
+    columns = list(
+      Type = reactable::colDef(
+        name = "Type",
+        filterInput = filter_fct,
+        maxWidth = 120
+      ),
+      Title = reactable::colDef(
+        name = "Title",
+        minWidth = 180
+      ),
+      Link = reactable::colDef(
+        name = "Link",
+        html = TRUE,
+        minWidth = 200
+      ),
+      Language = reactable::colDef(
+        name = "Language",
+        filterInput = filter_fct,
+        maxWidth = 120
+      ),
+      Category = reactable::colDef(
+        name = "Category",
+        minWidth = 150
+      )
+    ),
+    searchable = TRUE,
+    striped = TRUE,
+    pagination = TRUE,
+    defaultPageSize = 25,
+    elementId = "resources-tbl",
+    filterable = TRUE,
+    sortable = TRUE,
+    showSortable = TRUE,
+    highlight = TRUE,
+    bordered = TRUE
+  )
+```
+
+<br>
+
+::: {.callout-note}
+## Contributing
+Want to add a resource? Edit the `data/resources.csv` file and submit a PR on [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io).
+:::
+
+Links to external websites are provided for convenience and informational purposes only.
