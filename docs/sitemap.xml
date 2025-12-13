@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://antoinelucasfra.github.io/TODO.html</loc>
-    <lastmod>2025-12-13T18:01:29.228Z</lastmod>
+    <lastmod>2025-12-13T19:06:41.479Z</lastmod>
   </url>
   <url>
     <loc>https://antoinelucasfra.github.io/projects.html</loc>
@@ -47,5 +47,9 @@
   <url>
     <loc>https://antoinelucasfra.github.io/index.html</loc>
     <lastmod>2025-12-13T18:12:10.149Z</lastmod>
+  </url>
+  <url>
+    <loc>https://antoinelucasfra.github.io/posts/rv-modern-r-package-manager/index.html</loc>
+    <lastmod>2025-12-13T19:16:06.763Z</lastmod>
   </url>
 </urlset>
