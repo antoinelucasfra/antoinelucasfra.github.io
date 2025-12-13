@@ -165,7 +165,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Welcome to my blog where I share insights, tutorials, and thoughts on data science, statistics, and working in the pharma/cosmetic industries.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nThe Reproducibility Quest: Modern Tools for R and Python Data Science\n\n\n\nR\n\nPython\n\nReproducibility\n\nDevContainers\n\nDocker\n\nPackage Management\n\nBest Practices\n\n\n\nA comprehensive guide to achieving reproducible data science workflows using modern package managers, containerization, and environment control tools for both R and Python — plus how to scope the right level of reproducibility for your needs.\n\n\n\n\n\nDecember 13, 2024\n\n13 min\n\n\n\n\n\n\n\n\n\n\n\nStaying Current in a Fast-Moving Field: Why I Built a Resources Catalog\n\n\n\nData Science\n\nMachine Learning\n\nGenAI\n\nResources\n\nLifelong Learning\n\nBest Practices\n\n\n\nIn data science, machine learning, and AI, the pace of change is relentless. Here’s why I maintain a curated collection of resources — and why you might want to do the same.\n\n\n\n\n\nDecember 13, 2024\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nrv: The Modern R Package Manager for Reproducible Workflows\n\n\n\nR\n\nPackage Management\n\nReproducibility\n\nRust\n\nModern Workflow\n\n\n\nDiscover rv, the new declarative R package manager written in Rust. Learn how it compares to renv, draws inspiration from Python’s uv, and pairs with rig for a modern R development workflow.\n\n\n\n\n\nDecember 13, 2024\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nBuilding Reproducible Analyses in Pharma with R\n\n\n\nR\n\nPharma\n\nReproducibility\n\nBest Practices\n\n\n\nA practical guide to creating reproducible data analysis workflows in regulated pharmaceutical environments using R and Quarto.\n\n\n\n\n\nNovember 15, 2024\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\nComplete Development Setup Guide for R & Python\n\n\n\nR\n\nPython\n\nVS Code\n\nSetup\n\nTutorial\n\n\n\nA comprehensive guide to setting up R, Python, and VS Code for modern data science development workflows.\n\n\n\n\n\nOctober 15, 2024\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nStatistical Process Control for Cosmetic Manufacturing\n\n\n\nR\n\nQuality Control\n\nCosmetics\n\nSPC\n\n\n\nHow to implement SPC charts in R for quality monitoring in cosmetic product manufacturing.\n\n\n\n\n\nSeptember 20, 2024\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nStatistical Theory: Frequentist Methods Reference\n\n\n\nStatistics\n\nTheory\n\nR\n\nReference\n\n\n\nA comprehensive reference guide to frequentist statistical tests, from basic comparisons to regression models.\n\n\n\n\n\nAugust 20, 2024\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nGetting Started with Quarto for Data Science Reports\n\n\n\nQuarto\n\nTutorial\n\nReproducibility\n\n\n\nA beginner’s guide to creating beautiful, reproducible reports using Quarto in your data science workflow.\n\n\n\n\n\nJuly 10, 2024\n\n2 min\n\n\n\n\nNo matching items\n\n\n\n\n\n Back to top"
+    "text": "Welcome to my blog where I share insights, tutorials, and thoughts on data science, statistics, and working in the pharma/cosmetic industries.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nWhen Code Becomes Music: The Art of Algorithmic Live Performance\n\n\n\nCreative Coding\n\nMusic\n\nArt\n\nData\n\n\n\nExploring the fusion of programming, DJing, and data-driven creativity through live coding tools like Strudel—where algorithms meet artistic expression.\n\n\n\n\n\nDecember 13, 2024\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nThe Reproducibility Quest: Modern Tools for R and Python Data Science\n\n\n\nR\n\nPython\n\nReproducibility\n\nDevContainers\n\nDocker\n\nPackage Management\n\nBest Practices\n\n\n\nA comprehensive guide to achieving reproducible data science workflows using modern package managers, containerization, and environment control tools for both R and Python — plus how to scope the right level of reproducibility for your needs.\n\n\n\n\n\nDecember 13, 2024\n\n13 min\n\n\n\n\n\n\n\n\n\n\n\nStaying Current in a Fast-Moving Field: Why I Built a Resources Catalog\n\n\n\nData Science\n\nMachine Learning\n\nGenAI\n\nResources\n\nLifelong Learning\n\nBest Practices\n\n\n\nIn data science, machine learning, and AI, the pace of change is relentless. Here’s why I maintain a curated collection of resources — and why you might want to do the same.\n\n\n\n\n\nDecember 13, 2024\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nrv: The Modern R Package Manager for Reproducible Workflows\n\n\n\nR\n\nPackage Management\n\nReproducibility\n\nRust\n\nModern Workflow\n\n\n\nDiscover rv, the new declarative R package manager written in Rust. Learn how it compares to renv, draws inspiration from Python’s uv, and pairs with rig for a modern R development workflow.\n\n\n\n\n\nDecember 13, 2024\n\n7 min\n\n\n\n\n\n\n\n\n\n\n\nBuilding Reproducible Analyses in Pharma with R\n\n\n\nR\n\nPharma\n\nReproducibility\n\nBest Practices\n\n\n\nA practical guide to creating reproducible data analysis workflows in regulated pharmaceutical environments using R and Quarto.\n\n\n\n\n\nNovember 15, 2024\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\nComplete Development Setup Guide for R & Python\n\n\n\nR\n\nPython\n\nVS Code\n\nSetup\n\nTutorial\n\n\n\nA comprehensive guide to setting up R, Python, and VS Code for modern data science development workflows.\n\n\n\n\n\nOctober 15, 2024\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nStatistical Process Control for Cosmetic Manufacturing\n\n\n\nR\n\nQuality Control\n\nCosmetics\n\nSPC\n\n\n\nHow to implement SPC charts in R for quality monitoring in cosmetic product manufacturing.\n\n\n\n\n\nSeptember 20, 2024\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nStatistical Theory: Frequentist Methods Reference\n\n\n\nStatistics\n\nTheory\n\nR\n\nReference\n\n\n\nA comprehensive reference guide to frequentist statistical tests, from basic comparisons to regression models.\n\n\n\n\n\nAugust 20, 2024\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nGetting Started with Quarto for Data Science Reports\n\n\n\nQuarto\n\nTutorial\n\nReproducibility\n\n\n\nA beginner’s guide to creating beautiful, reproducible reports using Quarto in your data science workflow.\n\n\n\n\n\nJuly 10, 2024\n\n2 min\n\n\n\n\nNo matching items\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "resources.html",
@@ -543,7 +543,7 @@
     "href": "sandbox/project-idea.html",
     "title": "government misconduct-tracker",
     "section": "",
-    "text": "government misconduct-tracker\nCréer un site web avec toutes les “crasses” du gvt par catégorie/domaine politique ? (Envt, société,etc..) Que ce soit les affaires médiatisées comme contrôle abusif, etc.. + ajouter les promesses non tenues etc.. MAIS TOUT SOURCÉ ET LORSQUE AVÉRÉ –&gt; compilation et bien garder en mémoire le tout\nS’amuser a faire une prédiction (quand est ce que la prochaine dingz arrive ??)\n\n\nclmimbing\nGenAI / reproduction ultra fidèle/facilitée des prises d’escalades en mode indoor (cf mimic holds) –&gt; amener un big gap techno? –&gt; créer une base de données de prises d’escalade avec des scans 3D hyper précis –&gt; créer un algo de reproduction de prises d’escalade en 3D hyper fidèle –&gt; créer une interface utilisateur pour permettre aux grimpeurs de concevoir leurs propres murs d’escalade avec des prises personnalisées –&gt; possibilité d’intégrer des fonctionnalités de réalité augmentée pour visualiser les prises sur un mur –&gt; possibilité d’intégrer des fonctionnalités de réalité virtuelle pour simuler l’escalade avec les nouvelles prises –&gt; possibilité de créer une marketplace pour vendre les prises d’escalade personnalisées\n\n\ncultural recommendations website/app\nNouvelle feature ou blog perso sur recommandations tah les videos ytb de tournesol mais pour des articles, blogpost, documentaire, article scientifique ou tout documents revues par toute la communauté sur des avis et comparaison par paires (cf tournesol)\nnom : friendR –&gt; R with friend for everything but R onglet : partage de contenus –&gt; recommandation entre amis de contenus : nom du contenu (livre, manga,serie,nimporte), url, wikipedia, autre si besoin avec système de ranking selon apparition/croisement d autres source (+ pour fun mais biaisé ajouter des poids/coeffs selon ressemblance entre les gens (cf projection factorielle des qu on a des datas entre les gens) et laisser le choix si tu veux des contenus objectif basé uniquement sur le ranking apparition etc ou qqch de + personnalisé basé sur tes connexions avec les autres\n\n\nskate figure recognition\n3e : skate recognition video and movement analytics –&gt; motivation and reason + connection avec Faire un modele DP de reco de figure de skate (video ducoup) avec en temps reel lecture des figures etc.. (ensuite peux s appliquer a n’importe quel truc sportif genre gym, danse etc.. pour reconnaitre des figures connues, utiliser GAN + contraintes musculaires humaines pour explorer d autres figures?) -aller chercher donnes étiquetés video ytb (batb,etc..)\nbien normaliser les videos (faire une suite de frame et prendre par ex 5 ou 10 frames pour toutes les figures et donc mettre en entrée du réseau des matrices “empilees” avec 3*Nbr de frames comme dimension (1 matrice par figure étiquetée) ou bien essayer de voir comment faire du traitement videi\n-essayer des GAN controlable pour ‘inventer’ de nouvelles figures possibles pour l homme\nalternative : un peu comme taff de langue des signes et taffer avec mediapipe sur reco des mouvements !\n\n\nidee blog posts\n2e : organizeR histoire, motivations et comment ça a été fait, 4e article : comment comprendre et avoir confiance dans le score de l’algo? –&gt; article sur interprétabilité avec ce use-case.\n\n\nresource fetcher & adder\nResource fetcher/adder - type : je prend des notes sur keep (avec keep API) ou autres et hop ça va ajouter mon petit texte dans un fichier direct sur le git\n\n\neye tracking project\nIdée pour améliorer projet ingé :\nutiliser GAN pour interpréter les apprentissages des neurones a l échelle individuelle -bayesian optimsiation\nutilisation de l espace latent des GANs (controllable gans) pour forcer un trait de caractéristiques (sourire par ex ou quoi pour un truc de visages)\n\n\n\n\n Back to top"
+    "text": "Créer un site web avec toutes les “crasses” du gvt par catégorie/domaine politique ? (Envt, société,etc..) Que ce soit les affaires médiatisées comme contrôle abusif, etc.. + ajouter les promesses non tenues etc.. MAIS TOUT SOURCÉ ET LORSQUE AVÉRÉ –&gt; compilation et bien garder en mémoire le tout\nS’amuser a faire une prédiction (quand est ce que la prochaine dingz arrive ??)"
   },
   {
     "objectID": "posts/why-curate-resources/index.html",
@@ -614,5 +614,96 @@
     "title": "Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog",
     "section": "Resources for Resource Curation",
     "text": "Resources for Resource Curation\nSome meta-resources on learning and knowledge management:\n\nThe Turing Way — Community handbook for reproducible research\nBig Book of R — An excellent curated collection of R resources\nAwesome Lists — The original curated list concept\nSecond Brain — Methodology for personal knowledge management\nData Science Cheatsheet — Condensed reference material\n\n\nThe Resources Catalog is continuously updated. Contributions welcome via GitHub."
+  },
+  {
+    "objectID": "posts/livecoding-algorithmic-music/index.html",
+    "href": "posts/livecoding-algorithmic-music/index.html",
+    "title": "When Code Becomes Music: The Art of Algorithmic Live Performance",
+    "section": "",
+    "text": "What happens when you treat music not as a sequence of notes, but as a program? When the DJ booth becomes a terminal, and the dance floor responds to algorithms executed in real-time?\nThis is the world of live coding—a practice where musicians write and modify code during performances, generating music through algorithmic patterns. It’s a fascinating convergence of computer science, musical composition, and performance art."
+  },
+  {
+    "objectID": "posts/livecoding-algorithmic-music/index.html#the-emergence-of-a-new-artistic-medium",
+    "href": "posts/livecoding-algorithmic-music/index.html#the-emergence-of-a-new-artistic-medium",
+    "title": "When Code Becomes Music: The Art of Algorithmic Live Performance",
+    "section": "",
+    "text": "What happens when you treat music not as a sequence of notes, but as a program? When the DJ booth becomes a terminal, and the dance floor responds to algorithms executed in real-time?\nThis is the world of live coding—a practice where musicians write and modify code during performances, generating music through algorithmic patterns. It’s a fascinating convergence of computer science, musical composition, and performance art."
+  },
+  {
+    "objectID": "posts/livecoding-algorithmic-music/index.html#strudel-music-in-your-browser",
+    "href": "posts/livecoding-algorithmic-music/index.html#strudel-music-in-your-browser",
+    "title": "When Code Becomes Music: The Art of Algorithmic Live Performance",
+    "section": "Strudel: Music in Your Browser",
+    "text": "Strudel: Music in Your Browser\nStrudel is a browser-based live coding environment that brings this artistic practice to anyone with a web browser. Built as a JavaScript port of the legendary Tidal Cycles, it allows you to create complex, evolving musical patterns with surprisingly minimal code.\nHere’s what a Strudel pattern might look like:\n$: s(\"[bd &lt;hh oh&gt;]*2\").bank(\"tr909\").dec(.4)\nThis single line creates a drum pattern using the TR-909 drum machine sounds—a bass drum with alternating hi-hats. But the real magic lies in the notation: the &lt;&gt; brackets create alternatives, the *2 doubles the pattern, and suddenly you’re not just programming, you’re composing."
+  },
+  {
+    "objectID": "posts/livecoding-algorithmic-music/index.html#why-this-matters-for-data-scientists",
+    "href": "posts/livecoding-algorithmic-music/index.html#why-this-matters-for-data-scientists",
+    "title": "When Code Becomes Music: The Art of Algorithmic Live Performance",
+    "section": "Why This Matters for Data Scientists",
+    "text": "Why This Matters for Data Scientists\nAt first glance, live coding music might seem distant from data science. But look closer, and you’ll find striking parallels:\n\n1. Patterns as Data Structures\nIn Strudel, a musical pattern is essentially a time-indexed data structure. Just as we might think about time series data, live coders think about events distributed across cyclical time. The manipulation of these patterns—filtering, transforming, combining—mirrors the operations we perform on datasets.\n\n\n2. Algorithmic Composition as Generative Modeling\nWhen a live coder writes:\nn(\"&lt;0!3 1*2&gt;\").set(chords).mode(\"root:g2\")\n  .voicing().s(\"gm_acoustic_bass\")\nThey’re essentially defining a generative model—rules that produce infinite variations within constraints. This is the same thinking behind procedural generation, Monte Carlo simulations, and generative AI.\n\n\n3. Real-Time Feedback Loops\nLive coding is the ultimate REPL experience. You modify code, hear the result immediately, adjust. This tight feedback loop is exactly what makes exploratory data analysis so powerful—and so satisfying."
+  },
+  {
+    "objectID": "posts/livecoding-algorithmic-music/index.html#the-vision-merging-worlds",
+    "href": "posts/livecoding-algorithmic-music/index.html#the-vision-merging-worlds",
+    "title": "When Code Becomes Music: The Art of Algorithmic Live Performance",
+    "section": "The Vision: Merging Worlds",
+    "text": "The Vision: Merging Worlds\nI believe we’re at the cusp of a new creative paradigm where:\n\nData becomes music: Sonification transforms datasets into auditory experiences, making patterns literally audible. Stock market fluctuations, weather patterns, biological rhythms—all can become compositional material.\nAlgorithms become instruments: Just as guitars and synthesizers extended human musical capability, algorithmic tools create entirely new sonic possibilities that no human could execute manually.\nDJing becomes programming: The DJ’s art of reading the room, mixing tracks, and creating flow translates into dynamic, responsive algorithms that can adapt to audience energy, time of day, or any data feed you can imagine.\nPerformance becomes collaboration: Between human and machine, between coder and audience, between prepared material and emergent behavior."
+  },
+  {
+    "objectID": "posts/livecoding-algorithmic-music/index.html#getting-started",
+    "href": "posts/livecoding-algorithmic-music/index.html#getting-started",
+    "title": "When Code Becomes Music: The Art of Algorithmic Live Performance",
+    "section": "Getting Started",
+    "text": "Getting Started\nThe beauty of Strudel is its accessibility. No installation required—just visit strudel.cc and start experimenting.\nSome entry points:\n\nThe interactive workshop walks you through basics\nThe showcase demonstrates what’s possible\nThe Discord community welcomes newcomers\n\nFor those with a data science background, pay particular attention to:\n\nSignals: Continuous functions like sine, rand, and perlin noise that modulate parameters\nPattern effects: Transformations like fast(), slow(), chunk(), and rarely() that manipulate temporal structure\nMIDI & OSC: Connect Strudel to other software, hardware, or data sources"
+  },
+  {
+    "objectID": "posts/livecoding-algorithmic-music/index.html#beyond-entertainment",
+    "href": "posts/livecoding-algorithmic-music/index.html#beyond-entertainment",
+    "title": "When Code Becomes Music: The Art of Algorithmic Live Performance",
+    "section": "Beyond Entertainment",
+    "text": "Beyond Entertainment\nThis isn’t just about making cool sounds (though it is that). Live coding represents a different way of thinking about computation—one that prioritizes expressiveness, exploration, and real-time interaction over optimization and correctness.\nFor data scientists accustomed to notebooks and static analyses, engaging with live coding can:\n\nRefresh your relationship with programming as a creative act\nIntroduce new paradigms for thinking about temporal data\nOpen doors to sonification as an analysis technique\nConnect you with a vibrant open-source community"
+  },
+  {
+    "objectID": "posts/livecoding-algorithmic-music/index.html#the-algorithmic-dj",
+    "href": "posts/livecoding-algorithmic-music/index.html#the-algorithmic-dj",
+    "title": "When Code Becomes Music: The Art of Algorithmic Live Performance",
+    "section": "The Algorithmic DJ",
+    "text": "The Algorithmic DJ\nPicture this: a performance where real-time data feeds—social media sentiment, audience movement tracked via sensors, environmental data—modulate musical patterns. Where the “DJ” is both human and algorithm, making decisions together. Where the boundary between instrument and player, between creation and curation, becomes wonderfully blurred.\nThis is not science fiction. Tools like Strudel make it possible today. The question is: what will you create?"
+  },
+  {
+    "objectID": "posts/livecoding-algorithmic-music/index.html#resources",
+    "href": "posts/livecoding-algorithmic-music/index.html#resources",
+    "title": "When Code Becomes Music: The Art of Algorithmic Live Performance",
+    "section": "Resources",
+    "text": "Resources\n\nStrudel — Browser-based live coding\nTidal Cycles — The original Haskell-based pattern language\nAlgorave — The movement of algorithmic dance music\nTOPLAP — The home of live coding\n\n\nThe intersection of code and creativity is vast and largely unexplored. Whether you’re a musician curious about algorithms or a programmer curious about music, the door is open."
+  },
+  {
+    "objectID": "sandbox/project-idea.html#catan",
+    "href": "sandbox/project-idea.html#catan",
+    "title": "government misconduct-tracker",
+    "section": "catan",
+    "text": "catan\nto see which strategies work best"
+  },
+  {
+    "objectID": "sandbox/project-idea.html#wonders",
+    "href": "sandbox/project-idea.html#wonders",
+    "title": "government misconduct-tracker",
+    "section": "7 wonders",
+    "text": "7 wonders\nanalyze card drafting strategies"
+  },
+  {
+    "objectID": "sandbox/project-idea.html#evolution",
+    "href": "sandbox/project-idea.html#evolution",
+    "title": "government misconduct-tracker",
+    "section": "evolution",
+    "text": "evolution\nanalyze trait combinations and their effectiveness"
+  },
+  {
+    "objectID": "sandbox/project-idea.html#harmonies",
+    "href": "sandbox/project-idea.html#harmonies",
+    "title": "government misconduct-tracker",
+    "section": "harmonies ?",
+    "text": "harmonies ?"
   }
 ]
