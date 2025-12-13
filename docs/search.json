@@ -4,7 +4,7 @@
     "href": "TODO.html",
     "title": "Antoine Lucas",
     "section": "",
-    "text": "todo list :\n\ncréer brand.yml à mon image perso\nrecup/tri/agregaer toutes les ressources dans un dossier (récup sources du dossier it&m + pc it&m cf mission sanofi, loreal, msio)\nutiliser rag pour résumer toutes ces ressources et ce faire des cheatsheets sur ces savoirs\ncréer site web perso : cf inspi mcanouil\ncréer rseourceR website/page (cf quarto extensions inspi or nrennie tablepage)\ntrier lien + sanofi export\npolish website\ninclude cv, about, projects, blog tabs\nexplain in blog posts the projects (shiny app for meetups, skate deep learning/huggingface + show quarto R/python integration)\npolish websites globally todo list :\ncréer brand.yml à mon image perso\nrecup/tri/agregaer toutes les ressources dans un dossier (récup sources du dossier it&m + pc it&m cf mission sanofi, loreal, msio)\nutiliser rag pour résumer toutes ces ressources et ce faire des cheatsheets sur ces savoirs)\ncréer site web perso : cf inspi mcanouil\ntrier lien + sanofi export\ninclude cv, about, projects, blog tabs\nexplain in blog posts the projects (shiny app for meetups, skate deep learning/huggingface + show quarto R/python integration)\n\n\nfetch all links from all sources (words docs, google keeps, chrome windows, etc…)\nsort all the links into categories (methods/random forest, IT/linux stuffs, deployment/kubernetes, etc…)\n\n\nget value from the links –&gt; explaining what’s the use and redacting small examples about what can be done\nmake A REAL STATISTICAL COURSES or point out to this + a R for beginners/sthg like this\n\n\n\n\n Back to top"
+    "text": "todo list :\n\ncréer brand.yml à mon image perso\nrecup/tri/agregaer toutes les ressources dans un dossier (récup sources du dossier it&m + pc it&m cf mission sanofi, loreal, msio)\nutiliser rag pour résumer toutes ces ressources et ce faire des cheatsheets sur ces savoirs)\ncréer site web perso : cf inspi mcanouil\ntrier lien + sanofi export\ninclude cv, about, projects, blog tabs\nexplain in blog posts the projects (shiny app for meetups, skate deep learning/huggingface)\n\n\nfetch all links from all sources (words docs, google keeps, chrome windows, etc…)\nsort all the links into categories (methods/random forest, IT/linux stuffs, deployment/kubernetes, etc…)\n\n\nget value from the links –&gt; explaining what’s the use and redacting small examples about what can be done\nmake A REAL STATISTICAL COURSES or point out to this + an R for beginners tutorial\n\n\n\n\n Back to top"
   },
   {
     "objectID": "projects.html",
@@ -165,7 +165,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Welcome to my blog where I share insights, tutorials, and thoughts on data science, statistics, and working in the pharma/cosmetic industries.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nBuilding Reproducible Analyses in Pharma with R\n\n\n\nR\n\nPharma\n\nReproducibility\n\nBest Practices\n\n\n\nA practical guide to creating reproducible data analysis workflows in regulated pharmaceutical environments using R and Quarto.\n\n\n\n\n\nNovember 15, 2024\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\nComplete Development Setup Guide for R & Python\n\n\n\nR\n\nPython\n\nVS Code\n\nSetup\n\nTutorial\n\n\n\nA comprehensive guide to setting up R, Python, and VS Code for modern data science development workflows.\n\n\n\n\n\nOctober 15, 2024\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nStatistical Process Control for Cosmetic Manufacturing\n\n\n\nR\n\nQuality Control\n\nCosmetics\n\nSPC\n\n\n\nHow to implement SPC charts in R for quality monitoring in cosmetic product manufacturing.\n\n\n\n\n\nSeptember 20, 2024\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nStatistical Theory: Frequentist Methods Reference\n\n\n\nStatistics\n\nTheory\n\nR\n\nReference\n\n\n\nA comprehensive reference guide to frequentist statistical tests, from basic comparisons to regression models.\n\n\n\n\n\nAugust 20, 2024\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nGetting Started with Quarto for Data Science Reports\n\n\n\nQuarto\n\nTutorial\n\nReproducibility\n\n\n\nA beginner’s guide to creating beautiful, reproducible reports using Quarto in your data science workflow.\n\n\n\n\n\nJuly 10, 2024\n\n2 min\n\n\n\n\nNo matching items\n\n\n\n\n\n Back to top"
+    "text": "Welcome to my blog where I share insights, tutorials, and thoughts on data science, statistics, and working in the pharma/cosmetic industries.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nrv: The Modern R Package Manager for Reproducible Workflows\n\n\n\nR\n\nPackage Management\n\nReproducibility\n\nRust\n\nModern Workflow\n\n\n\nDiscover rv, the new declarative R package manager written in Rust. Learn how it compares to renv, draws inspiration from Python’s uv, and pairs with rig for a modern R development workflow.\n\n\n\n\n\nDecember 13, 2024\n\n6 min\n\n\n\n\n\n\n\n\n\n\n\nBuilding Reproducible Analyses in Pharma with R\n\n\n\nR\n\nPharma\n\nReproducibility\n\nBest Practices\n\n\n\nA practical guide to creating reproducible data analysis workflows in regulated pharmaceutical environments using R and Quarto.\n\n\n\n\n\nNovember 15, 2024\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\nComplete Development Setup Guide for R & Python\n\n\n\nR\n\nPython\n\nVS Code\n\nSetup\n\nTutorial\n\n\n\nA comprehensive guide to setting up R, Python, and VS Code for modern data science development workflows.\n\n\n\n\n\nOctober 15, 2024\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\nStatistical Process Control for Cosmetic Manufacturing\n\n\n\nR\n\nQuality Control\n\nCosmetics\n\nSPC\n\n\n\nHow to implement SPC charts in R for quality monitoring in cosmetic product manufacturing.\n\n\n\n\n\nSeptember 20, 2024\n\n2 min\n\n\n\n\n\n\n\n\n\n\n\nStatistical Theory: Frequentist Methods Reference\n\n\n\nStatistics\n\nTheory\n\nR\n\nReference\n\n\n\nA comprehensive reference guide to frequentist statistical tests, from basic comparisons to regression models.\n\n\n\n\n\nAugust 20, 2024\n\n4 min\n\n\n\n\n\n\n\n\n\n\n\nGetting Started with Quarto for Data Science Reports\n\n\n\nQuarto\n\nTutorial\n\nReproducibility\n\n\n\nA beginner’s guide to creating beautiful, reproducible reports using Quarto in your data science workflow.\n\n\n\n\n\nJuly 10, 2024\n\n2 min\n\n\n\n\nNo matching items\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "resources.html",
@@ -334,5 +334,110 @@
     "title": "Antoine Lucas",
     "section": "🎓 Education",
     "text": "🎓 Education\n\nM.Sc. in Data Science / Statistics, 2019 University Name, France\nB.Sc. in Mathematics / Applied Sciences, 2017 University Name, France"
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html",
+    "href": "posts/rv-modern-r-package-manager/index.html",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "",
+    "text": "The R ecosystem has long relied on renv for dependency management, but a new challenger has emerged: rv — a declarative R package manager written in Rust that promises faster, more reproducible package installations.\nIf you’ve been following the Python ecosystem, you’ve likely heard of uv, the blazingly fast Python package manager from Astral. rv brings that same philosophy to R: declarative configuration, fast execution, and true reproducibility."
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#introduction",
+    "href": "posts/rv-modern-r-package-manager/index.html#introduction",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "",
+    "text": "The R ecosystem has long relied on renv for dependency management, but a new challenger has emerged: rv — a declarative R package manager written in Rust that promises faster, more reproducible package installations.\nIf you’ve been following the Python ecosystem, you’ve likely heard of uv, the blazingly fast Python package manager from Astral. rv brings that same philosophy to R: declarative configuration, fast execution, and true reproducibility."
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#what-is-rv",
+    "href": "posts/rv-modern-r-package-manager/index.html#what-is-rv",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "What is rv?",
+    "text": "What is rv?\nrv is an R package manager that takes a fundamentally different approach from traditional tools:\n\nDeclarative — You describe the desired state of your project, not the steps to get there\nWritten in Rust — Compiled for speed (25x faster than alternatives in benchmarks)\nHolistic resolution — Resolves the entire dependency tree before installing anything\nLock at install time — Captures all installation information when it happens, not retroactively\n\n# Install rv (Linux/macOS)\ncurl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash\n\n# Or with Homebrew (macOS)\nbrew tap a2-ai/homebrew-tap\nbrew install rv"
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#the-problem-with-iterative-installation",
+    "href": "posts/rv-modern-r-package-manager/index.html#the-problem-with-iterative-installation",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "The Problem with Iterative Installation",
+    "text": "The Problem with Iterative Installation\nTraditional R package management (including renv) follows an iterative pattern:\n# Typical iterative workflow\ninstall.packages(\"dplyr\")\ninstall.packages(\"ggplot2\")\n# ... more packages ...\nrenv::snapshot()  # Capture state after the fact\nThis creates two fundamental issues:\n\nIncompatible versions — Packages installed at different times may have conflicting dependencies\nLost context — By the time you snapshot, information about how packages were installed is lost"
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#rvs-declarative-approach",
+    "href": "posts/rv-modern-r-package-manager/index.html#rvs-declarative-approach",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "rv’s Declarative Approach",
+    "text": "rv’s Declarative Approach\nWith rv, you declare what you want in a rproject.toml file:\n[project]\nname = \"my-analysis\"\nr_version = \"4.5\"\n\nrepositories = [\n    { alias = \"PPM\", url = \"https://packagemanager.posit.co/cran/latest\" },\n]\n\ndependencies = [\n    \"dplyr\",\n    \"ggplot2\",\n    \"tidyr\",\n]\nThen synchronize your project:\nrv sync\nThat’s it. rv resolves the complete dependency tree, ensures compatibility, installs everything, and creates a lockfile — all in one atomic operation."
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#quick-start",
+    "href": "posts/rv-modern-r-package-manager/index.html#quick-start",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "Quick Start",
+    "text": "Quick Start\n\nInitialize a New Project\nrv init my-project\ncd my-project\nThis creates the following structure:\nmy-project/\n├── rv/\n│   ├── library/\n│   ├── scripts/\n│   │   ├── activate.R\n│   │   └── rvr.R\n│   └── .gitignore\n├── .Rprofile\n├── rproject.toml\n└── rv.lock\n\n\nAdd Dependencies\nEdit rproject.toml or use the CLI:\nrv add dplyr ggplot2 tidyverse\n\n\nCheck What Will Happen\nBefore installing, preview the changes:\nrv plan\n\n\nSynchronize\nrv sync"
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#key-commands",
+    "href": "posts/rv-modern-r-package-manager/index.html#key-commands",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "Key Commands",
+    "text": "Key Commands\n\n\n\nCommand\nDescription\n\n\n\n\nrv init\nInitialize a new project\n\n\nrv sync\nSynchronize packages with config\n\n\nrv add &lt;pkg&gt;\nAdd package to config and sync\n\n\nrv plan\nPreview what sync would do\n\n\nrv upgrade\nUpdate packages (ignores lockfile)\n\n\nrv tree\nShow dependency tree\n\n\nrv migrate renv\nMigrate from renv project"
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#rv-vs-renv-a-comparison",
+    "href": "posts/rv-modern-r-package-manager/index.html#rv-vs-renv-a-comparison",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "rv vs renv: A Comparison",
+    "text": "rv vs renv: A Comparison\n\n\n\n\n\n\n\n\nFeature\nrenv\nrv\n\n\n\n\nInstallation\nIterative\nDeclarative\n\n\nLock timing\nAfter installation (snapshot)\nAt installation\n\n\nCompatibility check\nNone (trust the process)\nFull tree resolution\n\n\nWritten in\nR\nRust\n\n\nSpeed\nSlower\n~25x faster\n\n\nConfig format\nR code + JSON lockfile\nTOML + lockfile\n\n\n\n\nMigrating from renv\nIf you have an existing renv project:\nrv migrate renv\nThis converts your renv.lock to an rv configuration."
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#the-uv-parallel-modern-package-management",
+    "href": "posts/rv-modern-r-package-manager/index.html#the-uv-parallel-modern-package-management",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "The uv Parallel: Modern Package Management",
+    "text": "The uv Parallel: Modern Package Management\nThe parallels between rv and Python’s uv are striking and intentional:\n\n\n\nConcept\nPython (uv)\nR (rv)\n\n\n\n\nConfig file\npyproject.toml\nrproject.toml\n\n\nLock file\nuv.lock\nrv.lock\n\n\nSync command\nuv sync\nrv sync\n\n\nAdd package\nuv add\nrv add\n\n\nWritten in\nRust\nRust\n\n\nPhilosophy\nDeclarative, fast\nDeclarative, fast\n\n\n\nBoth tools share the same vision:\n\nSpeed through Rust — Compiled performance beats interpreted languages\nDeclarative configuration — Describe the end state, not the steps\nReproducibility first — Lockfiles capture everything needed to recreate the environment\nModern DX — Clear CLI, helpful error messages, predictable behavior"
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#a-modern-r-workflow-rig-rv",
+    "href": "posts/rv-modern-r-package-manager/index.html#a-modern-r-workflow-rig-rv",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "A Modern R Workflow: rig + rv",
+    "text": "A Modern R Workflow: rig + rv\nCombining rv with rig (the R installation manager) creates a powerful, modern workflow:\n\n1. Manage R Versions with rig\n# Install rig (macOS)\nbrew tap r-lib/rig\nbrew install rig\n\n# Or Linux\ncurl -L https://rig.r-lib.org/rig-linux-latest.tar.gz | sudo tar xz -C /usr/local\n\n# List available R versions\nrig available\n\n# Install a specific version\nrig add 4.5\n\n# Set default version\nrig default 4.5\n\n# List installed versions\nrig list\n\n\n2. Manage Packages with rv\n# Initialize project with current R version\nrv init my-analysis\n\n# rv automatically detects R version from rig\ncat rproject.toml\n# [project]\n# r_version = \"4.5\"\n# ...\n\n\n3. The Complete Workflow\n# 1. Ensure you have the right R version\nrig add 4.5\nrig default 4.5\n\n# 2. Create a new project\nrv init data-analysis\ncd data-analysis\n\n# 3. Add your dependencies\nrv add tidyverse arrow DBI\n\n# 4. Start working\nR\n# &gt; library(tidyverse)  # Just works!\n\n\nProject-Specific R Versions\nThe r_version field in rproject.toml ensures teammates use the correct R version:\n[project]\nname = \"critical-analysis\"\nr_version = \"4.4\"  # Pin to R 4.4.x\nWith rig, switching is trivial:\nrig switch 4.4\nrv sync"
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#advanced-configuration",
+    "href": "posts/rv-modern-r-package-manager/index.html#advanced-configuration",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "Advanced Configuration",
+    "text": "Advanced Configuration\n\nSpecify Package Sources\ndependencies = [\n    \"dplyr\",\n    { name = \"mypackage\", git = \"https://github.com/org/mypackage.git\", tag = \"v1.0.0\" },\n    { name = \"internal\", repository = \"Internal\" },\n]\n\nrepositories = [\n    { alias = \"PPM\", url = \"https://packagemanager.posit.co/cran/latest\" },\n    { alias = \"Internal\", url = \"https://internal.company.com/r-packages\" },\n]\n\n\nBinary vs Source\nrv intelligently handles binary and source installations, with options to configure per-package:\ndependencies = [\n    { name = \"arrow\", source = true },  # Force source compilation\n]\n\n\nConfigure Compilation\n[project.packages_env_vars.arrow]\nARROW_WITH_S3 = \"ON\"\nARROW_WITH_GCS = \"ON\"\n\n[project.configure_args]\nsf = [\"--with-proj-share=/usr/local/share/proj\"]"
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#why-this-matters-for-reproducibility",
+    "href": "posts/rv-modern-r-package-manager/index.html#why-this-matters-for-reproducibility",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "Why This Matters for Reproducibility",
+    "text": "Why This Matters for Reproducibility\nThe combination of declarative package management (rv) and explicit R version management (rig) solves the two hardest problems in reproducibility:\n\n“Works on my machine” → Lockfile captures exact package versions and sources\n“Which R version?” → r_version in config + rig for installation\n\nFor regulated environments (pharma, finance, etc.), this is transformative:\n# Clone a project\ngit clone https://github.com/org/clinical-analysis\ncd clinical-analysis\n\n# Set up exact R version\nrig add $(grep r_version rproject.toml | cut -d'\"' -f2)\n\n# Restore exact package environment\nrv sync\n\n# ✅ Identical environment, guaranteed"
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#getting-started-today",
+    "href": "posts/rv-modern-r-package-manager/index.html#getting-started-today",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "Getting Started Today",
+    "text": "Getting Started Today\n\nInstall rig for R version management:\nbrew tap r-lib/rig && brew install rig\nInstall rv for package management:\ncurl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash\nCreate your first project:\nrv init my-project\ncd my-project\nrv add tidyverse\nrv sync"
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#conclusion",
+    "href": "posts/rv-modern-r-package-manager/index.html#conclusion",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "Conclusion",
+    "text": "Conclusion\nrv represents a paradigm shift in R package management — from iterative, reactive tooling to declarative, proactive workflows. Combined with rig for R version management, it provides a modern development experience on par with what Python developers enjoy with uv and pyenv.\nThe R ecosystem is evolving. Tools like rv, rig, and air (the new R formatter) are bringing modern development practices to R. If you value reproducibility, speed, and developer experience, give rv a try."
+  },
+  {
+    "objectID": "posts/rv-modern-r-package-manager/index.html#resources",
+    "href": "posts/rv-modern-r-package-manager/index.html#resources",
+    "title": "rv: The Modern R Package Manager for Reproducible Workflows",
+    "section": "Resources",
+    "text": "Resources\n\nrv Documentation\nrv GitHub Repository\nrig - R Installation Manager\nuv - Python Package Manager\nair - R Code Formatter"
   }
 ]

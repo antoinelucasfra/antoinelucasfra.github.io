@@ -8,6 +8,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/rv-modern-r-package-manager/index.html",
       "/posts/reproducible-pharma-r/index.html",
       "/posts/dev-setup-guide/index.html",
       "/posts/spc-cosmetics-r/index.html",

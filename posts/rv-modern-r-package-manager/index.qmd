@@ -1,0 +1,347 @@
+---
+title: "rv: The Modern R Package Manager for Reproducible Workflows"
+description: "Discover rv, the new declarative R package manager written in Rust. Learn how it compares to renv, draws inspiration from Python's uv, and pairs with rig for a modern R development workflow."
+author: "Antoine Lucas"
+date: "2024-12-13"
+categories: [R, Package Management, Reproducibility, Rust, Modern Workflow]
+image: "featured.png"
+---
+
+## Introduction
+
+I've been using `renv` for years to manage R dependencies, and while it gets the job done, I've always felt something was missing. The iterative workflow, the occasional dependency conflicts, the slow installations... it works, but it doesn't feel *modern*.
+
+Then I discovered **rv** — a declarative R package manager written in Rust — and it immediately clicked. If you've been following the Python ecosystem like I have, you've probably seen [uv](https://docs.astral.sh/uv/) revolutionize Python package management. Well, `rv` brings that same philosophy to R: **declarative configuration, fast execution, and true reproducibility**. This is exactly what I've been waiting for.
+
+## What is rv?
+
+`rv` is an R package manager that takes a fundamentally different approach from traditional tools:
+
+- **Declarative** — You describe the *desired state* of your project, not the steps to get there
+- **Written in Rust** — Compiled for speed (25x faster than alternatives in benchmarks)
+- **Holistic resolution** — Resolves the entire dependency tree before installing anything
+- **Lock at install time** — Captures all installation information when it happens, not retroactively
+
+```bash
+# Install rv (Linux/macOS)
+curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
+
+# Or with Homebrew (macOS)
+brew tap a2-ai/homebrew-tap
+brew install rv
+```
+
+## The Problem with Iterative Installation
+
+If you've used R long enough, you've probably experienced this frustration. Traditional R package management (including `renv`) follows an **iterative pattern**:
+
+```r
+# The workflow we all know too well
+install.packages("dplyr")
+install.packages("ggplot2")
+# ... more packages ...
+renv::snapshot()  # Capture state after the fact
+```
+
+I've run into two issues with this approach more times than I can count:
+
+1. **Incompatible versions** — Packages installed at different times may have conflicting dependencies. How many times have you had a working project break after updating one package?
+2. **Lost context** — By the time you snapshot, information about *how* packages were installed is lost. Where did that package come from again?
+
+## rv's Declarative Approach
+
+With `rv`, you declare what you want in a `rproject.toml` file:
+
+```toml
+[project]
+name = "my-analysis"
+r_version = "4.5"
+
+repositories = [
+    { alias = "PPM", url = "https://packagemanager.posit.co/cran/latest" },
+]
+
+dependencies = [
+    "dplyr",
+    "ggplot2",
+    "tidyr",
+]
+```
+
+Then synchronize your project:
+
+```bash
+rv sync
+```
+
+That's it. Seriously. `rv` resolves the complete dependency tree, ensures compatibility, installs everything, and creates a lockfile — all in one atomic operation. The first time I ran this, I was genuinely surprised at how fast it was.
+
+## Quick Start
+
+### Initialize a New Project
+
+```bash
+rv init my-project
+cd my-project
+```
+
+This creates the following structure:
+
+```
+my-project/
+├── rv/
+│   ├── library/
+│   ├── scripts/
+│   │   ├── activate.R
+│   │   └── rvr.R
+│   └── .gitignore
+├── .Rprofile
+├── rproject.toml
+└── rv.lock
+```
+
+### Add Dependencies
+
+Edit `rproject.toml` or use the CLI:
+
+```bash
+rv add dplyr ggplot2 tidyverse
+```
+
+### Check What Will Happen
+
+Before installing, preview the changes:
+
+```bash
+rv plan
+```
+
+### Synchronize
+
+```bash
+rv sync
+```
+
+## Key Commands
+
+| Command | Description |
+|---------|-------------|
+| `rv init` | Initialize a new project |
+| `rv sync` | Synchronize packages with config |
+| `rv add <pkg>` | Add package to config and sync |
+| `rv plan` | Preview what sync would do |
+| `rv upgrade` | Update packages (ignores lockfile) |
+| `rv tree` | Show dependency tree |
+| `rv migrate renv` | Migrate from renv project |
+
+## rv vs renv: A Comparison
+
+| Feature | renv | rv |
+|---------|------|-----|
+| Installation | Iterative | Declarative |
+| Lock timing | After installation (snapshot) | At installation |
+| Compatibility check | None (trust the process) | Full tree resolution |
+| Written in | R | Rust |
+| Speed | Slower | ~25x faster |
+| Config format | R code + JSON lockfile | TOML + lockfile |
+
+### Migrating from renv
+
+If you have an existing `renv` project:
+
+```bash
+rv migrate renv
+```
+
+This converts your `renv.lock` to an `rv` configuration.
+
+## The uv Parallel: Modern Package Management
+
+As someone who works in both R and Python, I find the parallels between `rv` and Python's `uv` striking — and clearly intentional:
+
+| Concept | Python (uv) | R (rv) |
+|---------|-------------|--------|
+| Config file | `pyproject.toml` | `rproject.toml` |
+| Lock file | `uv.lock` | `rv.lock` |
+| Sync command | `uv sync` | `rv sync` |
+| Add package | `uv add` | `rv add` |
+| Written in | Rust | Rust |
+| Philosophy | Declarative, fast | Declarative, fast |
+
+Both tools share the same vision, and honestly, it's refreshing to see R catching up:
+
+- **Speed through Rust** — Compiled performance beats interpreted languages
+- **Declarative configuration** — Describe the end state, not the steps
+- **Reproducibility first** — Lockfiles capture everything needed to recreate the environment
+- **Modern DX** — Clear CLI, helpful error messages, predictable behavior
+
+## A Modern R Workflow: rig + rv
+
+Here's where things get really exciting for me. Combining `rv` with [rig](https://github.com/r-lib/rig) (the R installation manager) gives you a workflow that finally feels on par with modern Python development:
+
+### 1. Manage R Versions with rig
+
+```bash
+# Install rig (macOS)
+brew tap r-lib/rig
+brew install rig
+
+# Or Linux
+curl -L https://rig.r-lib.org/rig-linux-latest.tar.gz | sudo tar xz -C /usr/local
+
+# List available R versions
+rig available
+
+# Install a specific version
+rig add 4.5
+
+# Set default version
+rig default 4.5
+
+# List installed versions
+rig list
+```
+
+### 2. Manage Packages with rv
+
+```bash
+# Initialize project with current R version
+rv init my-analysis
+
+# rv automatically detects R version from rig
+cat rproject.toml
+# [project]
+# r_version = "4.5"
+# ...
+```
+
+### 3. The Complete Workflow
+
+```bash
+# 1. Ensure you have the right R version
+rig add 4.5
+rig default 4.5
+
+# 2. Create a new project
+rv init data-analysis
+cd data-analysis
+
+# 3. Add your dependencies
+rv add tidyverse arrow DBI
+
+# 4. Start working
+R
+# > library(tidyverse)  # Just works!
+```
+
+### Project-Specific R Versions
+
+The `r_version` field in `rproject.toml` ensures teammates use the correct R version:
+
+```toml
+[project]
+name = "critical-analysis"
+r_version = "4.4"  # Pin to R 4.4.x
+```
+
+With `rig`, switching is trivial:
+
+```bash
+rig switch 4.4
+rv sync
+```
+
+## Advanced Configuration
+
+### Specify Package Sources
+
+```toml
+dependencies = [
+    "dplyr",
+    { name = "mypackage", git = "https://github.com/org/mypackage.git", tag = "v1.0.0" },
+    { name = "internal", repository = "Internal" },
+]
+
+repositories = [
+    { alias = "PPM", url = "https://packagemanager.posit.co/cran/latest" },
+    { alias = "Internal", url = "https://internal.company.com/r-packages" },
+]
+```
+
+### Binary vs Source
+
+`rv` intelligently handles binary and source installations, with options to configure per-package:
+
+```toml
+dependencies = [
+    { name = "arrow", source = true },  # Force source compilation
+]
+```
+
+### Configure Compilation
+
+```toml
+[project.packages_env_vars.arrow]
+ARROW_WITH_S3 = "ON"
+ARROW_WITH_GCS = "ON"
+
+[project.configure_args]
+sf = ["--with-proj-share=/usr/local/share/proj"]
+```
+
+## Why This Matters for Reproducibility
+
+Having worked in pharma, I know how critical reproducibility is — it's not just nice to have, it's a regulatory requirement. The combination of declarative package management (`rv`) and explicit R version management (`rig`) solves the two problems I've spent countless hours debugging:
+
+1. **"Works on my machine"** → Lockfile captures exact package versions and sources
+2. **"Which R version?"** → `r_version` in config + `rig` for installation
+
+For regulated environments (pharma, finance, etc.), this is transformative:
+
+```bash
+# Clone a project
+git clone https://github.com/org/clinical-analysis
+cd clinical-analysis
+
+# Set up exact R version
+rig add $(grep r_version rproject.toml | cut -d'"' -f2)
+
+# Restore exact package environment
+rv sync
+
+# ✅ Identical environment, guaranteed
+```
+
+## Getting Started Today
+
+1. **Install rig** for R version management:
+   ```bash
+   brew tap r-lib/rig && brew install rig
+   ```
+
+2. **Install rv** for package management:
+   ```bash
+   curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
+   ```
+
+3. **Create your first project**:
+   ```bash
+   rv init my-project
+   cd my-project
+   rv add tidyverse
+   rv sync
+   ```
+
+## Conclusion
+
+I'm genuinely excited about `rv`. It represents a paradigm shift in R package management — from iterative, reactive tooling to declarative, proactive workflows. Combined with `rig` for R version management, it finally gives us a modern development experience on par with what Python developers have enjoyed with `uv` and `pyenv`.
+
+The R ecosystem is evolving, and I'm here for it. Tools like `rv`, `rig`, and [air](https://posit-dev.github.io/air/) (the new R formatter) are bringing modern development practices to R. If you value reproducibility, speed, and developer experience like I do, give `rv` a try. I think you'll be as impressed as I was.
+
+## Resources
+
+- [rv Documentation](https://a2-ai.github.io/rv-docs/)
+- [rv GitHub Repository](https://github.com/a2-ai/rv)
+- [rig - R Installation Manager](https://github.com/r-lib/rig)
+- [uv - Python Package Manager](https://docs.astral.sh/uv/)
+- [air - R Code Formatter](https://posit-dev.github.io/air/)
