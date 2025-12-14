@@ -705,5 +705,61 @@
     "title": "government misconduct-tracker",
     "section": "harmonies ?",
     "text": "harmonies ?"
+  },
+  {
+    "objectID": "projects/academic_projects.html",
+    "href": "projects/academic_projects.html",
+    "title": "Academic Projects",
+    "section": "",
+    "text": "A collection of projects completed during my final year of engineering school (M2), covering machine learning, data visualization, statistical analysis, and web application development."
+  },
+  {
+    "objectID": "projects/academic_projects.html#machine-learning-statistics",
+    "href": "projects/academic_projects.html#machine-learning-statistics",
+    "title": "Academic Projects",
+    "section": "🧠 Machine Learning & Statistics",
+    "text": "🧠 Machine Learning & Statistics\n\n\n\n\n\n\nEye-Tracking Analysis\n\n\n\nTechnologies: R, Statistical Modeling, Signal Processing\nAnalysis of eye-tracking data to understand visual attention patterns. This project involved processing gaze data, computing fixation metrics, and applying statistical methods to draw insights from visual behavior experiments. We have conducted the project from the protocol development to the data analysis and the report writing with data harvesting using Tobii Pro Lab software and statistical analysis in R.\n View on GitHub\n\n\n\n\n\n\n\n\nMachine Learning Project\n\n\n\n\n\n\n\n\n\n📅 M1 Project\n\n\n\nThis project was completed during the first year of Master’s degree (M1), not during the final year.\n\n\nTechnologies: Python, Scikit-learn, Pandas, NumPy\nA comprehensive machine learning project covering the full ML pipeline: data preprocessing, feature engineering, model selection, hyperparameter tuning, and evaluation. Applied various algorithms including regression, classification, and ensemble methods.\n View on GitHub\n\n\n\n\n\n\n\n\nCo-Inertia Analysis\n\n\n\nTechnologies: R, Multivariate Statistics, ade4\nImplementation and application of co-inertia analysis methods for studying relationships between two data tables. This project explored coupling structures between datasets using factorial methods. Presentation of the project with xaringan html slides.\n View on GitHub"
+  },
+  {
+    "objectID": "projects/academic_projects.html#data-visualization",
+    "href": "projects/academic_projects.html#data-visualization",
+    "title": "Academic Projects",
+    "section": "📊 Data Visualization",
+    "text": "📊 Data Visualization\n\n\n\n\n\n\nInteractive Visualization Project\n\n\n\nTechnologies: R, JavaScript, HTML/CSS\nDevelopment of interactive data visualizations to communicate complex information effectively. Focus on user experience, storytelling with data, and creating engaging visual narratives.\n View on GitHub"
+  },
+  {
+    "objectID": "projects/academic_projects.html#web-applications",
+    "href": "projects/academic_projects.html#web-applications",
+    "title": "Academic Projects",
+    "section": "🌐 Web Applications",
+    "text": "🌐 Web Applications\n\n\n\n\n\n\nShiny Web Application (M2)\n\n\n\nTechnologies: R, Shiny, shinydashboard, ggplot2\nDevelopment of an interactive web application using R Shiny for data exploration and visualization. The application provides dynamic filtering, real-time computations, and responsive visualizations.\n View on GitHub"
+  },
+  {
+    "objectID": "projects/academic_projects.html#data-engineering",
+    "href": "projects/academic_projects.html#data-engineering",
+    "title": "Academic Projects",
+    "section": "🔧 Data Engineering",
+    "text": "🔧 Data Engineering\n\n\n\n\n\n\nRedis Database Project\n\n\n\nTechnologies: Redis, Python, NoSQL\nImplementation of a data solution using Redis, an in-memory data structure store. This project covered key-value operations, data persistence, caching strategies, and real-time data handling.\n View on GitHub"
+  },
+  {
+    "objectID": "projects/academic_projects.html#skills-developed",
+    "href": "projects/academic_projects.html#skills-developed",
+    "title": "Academic Projects",
+    "section": "Skills Developed",
+    "text": "Skills Developed\n\n\nLanguages\n\nR\nPython\nJavaScript\nSQL\n\n\n\nFrameworks & Tools\n\nShiny / shinydashboard\nScikit-learn\nggplot2\nRmarkdown\n\n\n\nMethods\n\nMachine Learning\nMultivariate Statistics\nData Visualization\nNoSQL Databases"
+  },
+  {
+    "objectID": "sandbox/project-idea.html#for-r-with-quarto-live",
+    "href": "sandbox/project-idea.html#for-r-with-quarto-live",
+    "title": "government misconduct-tracker",
+    "section": "for R with quarto-live",
+    "text": "for R with quarto-live\ndata manipulation, visualization with ggplot2, dplyr, etc.. in-depth tutorials on specific topics statistical modeling with lm(), glm(), etc.."
+  },
+  {
+    "objectID": "sandbox/project-idea.html#for-python-with-pyodide",
+    "href": "sandbox/project-idea.html#for-python-with-pyodide",
+    "title": "government misconduct-tracker",
+    "section": "for python with pyodide",
+    "text": "for python with pyodide\neasy data manipulation with polars, plotnine, etc.. in-depth tutorials on specific topics statistical modeling with statsmodels, scikit-learn, etc.. machine learning with scikit-learn, tensorflow, etc.."
   }
 ]
