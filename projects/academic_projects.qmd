@@ -1,0 +1,139 @@
+---
+title: "Academic Projects"
+subtitle: "Engineering School – Final Year (2020-2021)"
+title-block-banner: true
+toc: true
+toc-depth: 2
+---
+
+A collection of projects completed during my final year of engineering school (M2), covering machine learning, data visualization, statistical analysis, and web application development.
+
+---
+
+## 🧠 Machine Learning & Statistics
+
+::: {.callout-note appearance="minimal" icon=false}
+
+### Eye-Tracking Analysis
+
+**Technologies:** R, Statistical Modeling, Signal Processing
+
+Analysis of eye-tracking data to understand visual attention patterns. This project involved processing gaze data, computing fixation metrics, and applying statistical methods to draw insights from visual behavior experiments.
+We have conducted the project from the protocol development to the data analysis and the report writing with data harvesting using Tobii Pro Lab software and statistical analysis in R.
+
+[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/eye-tracking_M2){.btn .btn-dark .btn-sm}
+
+:::
+
+::: {.callout-note appearance="minimal" icon=false}
+
+### Machine Learning Project
+
+**Technologies:** Python, Scikit-learn, Pandas, NumPy
+
+::: {.callout-caution}
+## 📅 M1 Project
+This project was completed during the first year of Master's degree (M1), not during the final year.
+:::
+
+A comprehensive machine learning project covering the full ML pipeline: data preprocessing, feature engineering, model selection, hyperparameter tuning, and evaluation. Applied various algorithms including regression, classification, and ensemble methods.
+
+[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/ML_project_M1){.btn .btn-dark .btn-sm}
+
+:::
+
+::: {.callout-note appearance="minimal" icon=false}
+
+### Co-Inertia Analysis
+
+**Technologies:** R, Multivariate Statistics, ade4
+
+Implementation and application of co-inertia analysis methods for studying relationships between two data tables. This project explored coupling structures between datasets using factorial methods.
+Presentation of the project with xaringan html slides.
+
+[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/co-inertia_project){.btn .btn-dark .btn-sm}
+
+:::
+
+---
+
+## 📊 Data Visualization
+
+::: {.callout-tip appearance="minimal" icon=false}
+
+### Interactive Visualization Project
+
+**Technologies:** R, JavaScript, HTML/CSS
+
+Development of interactive data visualizations to communicate complex information effectively. Focus on user experience, storytelling with data, and creating engaging visual narratives.
+
+[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/visu_project){.btn .btn-dark .btn-sm}
+
+:::
+
+---
+
+## 🌐 Web Applications
+
+::: {.callout-important appearance="minimal" icon=false}
+
+### Shiny Web Application (M2)
+
+**Technologies:** R, Shiny, shinydashboard, ggplot2
+
+Development of an interactive web application using R Shiny for data exploration and visualization. The application provides dynamic filtering, real-time computations, and responsive visualizations.
+
+[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/shinyappM2Proj){.btn .btn-dark .btn-sm}
+
+:::
+
+---
+
+## 🔧 Data Engineering
+
+::: {.callout-warning appearance="minimal" icon=false}
+
+### Redis Database Project
+
+**Technologies:** Redis, Python, NoSQL
+
+Implementation of a data solution using Redis, an in-memory data structure store. This project covered key-value operations, data persistence, caching strategies, and real-time data handling.
+
+[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/redis_project){.btn .btn-dark .btn-sm}
+
+:::
+
+---
+
+## Skills Developed
+
+::: {.grid}
+
+::: {.g-col-6 .g-col-md-4}
+**Languages**
+
+- R
+- Python
+- JavaScript
+- SQL
+:::
+
+::: {.g-col-6 .g-col-md-4}
+**Frameworks & Tools**
+
+- Shiny / shinydashboard
+- Scikit-learn
+- ggplot2
+- Rmarkdown
+:::
+
+::: {.g-col-6 .g-col-md-4}
+**Methods**
+
+- Machine Learning
+- Multivariate Statistics
+- Data Visualization
+- NoSQL Databases
+:::
+
+:::
