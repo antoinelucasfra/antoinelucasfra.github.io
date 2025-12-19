@@ -33,7 +33,7 @@ website:
       - text: Projects
         href: projects.qmd
       - text: Resources
-        href: resources.qmd
+        href: projects/resources_catalog.qmd
       - icon: linkedin
         href: "https://www.linkedin.com/in/antoinelucasdata/"
       - icon: github

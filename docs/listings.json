@@ -1,11 +1,5 @@
 [
   {
-    "listing": "/projects.html",
-    "items": [
-      "/projects/resources_catalog.html"
-    ]
-  },
-  {
     "listing": "/blog.html",
     "items": [
       "/posts/livecoding-algorithmic-music/index.html",
@@ -17,6 +11,12 @@
       "/posts/spc-cosmetics-r/index.html",
       "/posts/stats-theory-frequentist/index.html",
       "/posts/quarto-getting-started/index.html"
+    ]
+  },
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/resources_catalog.html"
     ]
   }
 ]
