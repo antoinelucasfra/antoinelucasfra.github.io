@@ -75,6 +75,30 @@ select {
   color: var(--bs-body-color);
 }
 
+/* Make cells wrap and use compact spacing */
+.reactable .rt-td {
+  white-space: normal !important;
+  word-break: break-word;
+  padding-top: .45rem;
+  padding-bottom: .45rem;
+}
+
+/* Light / dark stripe adjustments */
+:root {
+  --table-row-stripe-light: rgba(0, 0, 0, 0.03);
+  --table-row-stripe-dark: rgba(255, 255, 255, 0.02);
+}
+@media (prefers-color-scheme: dark) {
+  .reactable .rt-tbody .rt-tr:nth-child(even) {
+    background-color: var(--table-row-stripe-dark) !important;
+  }
+}
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+  .reactable .rt-tbody .rt-tr:nth-child(even) {
+    background-color: var(--table-row-stripe-light) !important;
+  }
+}
+
 .reactable .rt-search {
   background-color: var(--bs-body-bg);
   color: var(--bs-body-color);
@@ -99,6 +123,12 @@ select {
 
 .reactable a:hover {
   color: var(--bs-link-hover-color);
+}
+
+/* Ensure link cells wrap and are readable in both themes */
+.reactable .rt-td a {
+  word-break: break-word;
+  color: var(--bs-link-color) !important;
 }
 
 /* Filter inputs in dark mode */
@@ -172,12 +202,14 @@ resources |>
       ),
       Title = reactable::colDef(
         name = "Title",
-        minWidth = 180
+        minWidth = 180,
+        style = list(whiteSpace = "normal", wordBreak = "break-word")
       ),
       Link = reactable::colDef(
         name = "Link",
         html = TRUE,
-        minWidth = 200
+        minWidth = 200,
+        style = list(whiteSpace = "normal", wordBreak = "break-word")
       ),
       Language = reactable::colDef(
         name = "Language",
@@ -186,13 +218,17 @@ resources |>
       ),
       Category = reactable::colDef(
         name = "Category",
-        minWidth = 150
+        minWidth = 150,
+        style = list(whiteSpace = "normal", wordBreak = "break-word")
       )
     ),
     searchable = TRUE,
     striped = TRUE,
     pagination = TRUE,
+    showPageSizeOptions = TRUE,
+    pageSizeOptions = c(10, 25, 50, 100),
     defaultPageSize = 25,
+    compact = TRUE,
     elementId = "resources-tbl",
     filterable = TRUE,
     sortable = TRUE,
