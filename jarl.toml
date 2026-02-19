@@ -1,0 +1,11 @@
+# jarl.toml — R linter configuration
+# https://jarl.etiennebacher.com
+
+[lints]
+# Currently using lintr defaults as the baseline.
+# Uncomment and customise rules as the migration from lintr progresses.
+
+# Example rule overrides:
+# assignment_linter = "error"        # enforce <- over =
+# line_length_linter = { length = 100 }  # match air.toml line-width
+# object_name_linter = "warning"     # snake_case enforcement
