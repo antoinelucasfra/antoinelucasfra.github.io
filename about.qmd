@@ -1,37 +1,47 @@
 ---
-title: "About This Site"
-image: assets/images/profile-pic.jpg
-about:
-  template: trestles
-  image-shape: round
-  image-width: 200px
+title: "About"
+format:
+  html:
+    toc: true
+    grid:
+      body-width: 820px
 ---
 
-## About Me
+## How I got here
 
-I'm Antoine Lucas, a Data Scientist with 5 years of experience in the pharmaceutical and cosmetic industries. This website serves as my professional portfolio and a place to share knowledge with the data science community.
+I didn't start out planning to become a data scientist. I studied agronomy engineering at AgroParisTech — which is fundamentally about applying science to complex living systems — and during my statistics courses I realized that the analytical side was what excited me most. Not just running models, but understanding *why* a method works, and what it can and can't tell you about the real world.
 
-## About This Website
+After finishing both my engineering degree and a master's in applied mathematics and statistics in 2021, I joined **Astek / IT&M Stats**, a consultancy that places statisticians and data scientists inside large R&D organizations. That structure has shaped how I work: every 12–18 months, a new domain, a new team, a new set of constraints. It forces you to get good at context-switching, at earning trust quickly, and at building things that work without you being there to explain them.
 
-This site is built with [Quarto](https://quarto.org/), an open-source scientific and technical publishing system. It's hosted on GitHub Pages and automatically deployed with each commit.
+My first mission was at **L'Oréal R&D** — two years of clinical biostatistics on ingredient efficacy and molecular safety studies. I covered hundreds of analyses, learned what a 2-week turnaround really means under pressure, and built internal tooling that helped the team move faster. It was a good introduction to regulated science: the kind of work where you can't hand-wave uncertainty.
 
-### Features
+Then **Sanofi R&D**, where I shifted from pure analysis to building. I designed and shipped a full R Shiny platform for managing pilot manufacturing chains across 100+ clinical projects — took on the Scrum Master role alongside the development work. That was the project that taught me that *useful* software is harder to build than *correct* software.
 
-- 📝 **Blog** — Technical articles and tutorials
-- 💼 **Projects** — Portfolio of data science work
-- 📚 **Resources** — Curated learning materials
+After Sanofi, a stint at **Abolis**, a microbiome biotech startup. Six months, full autonomy, multi-omics data pipelines, no hand-holding. Very different energy from a pharma company, and I learned a lot from it.
 
-## Contact
+Now I'm at **Chanel Parfums Beauté R&D**, working on machine learning and computer vision for fragrance and cosmetics development. Still on mission via Astek/IT&M Stats, but this is the most technically ambitious role so far — models that go into production, tools that scientists depend on daily.
 
-I'm always interested in discussing data science challenges and opportunities. Feel free to reach out:
+## What I care about at work
 
-- **Email**: [antoinelucas@example.com](mailto:antoinelucas@example.com)
+**Working at the interface, not the edges.** The most useful position is between the domain experts (chemists, clinicians, biologists) and the data/software systems. People who sit purely on one side often build the wrong things. My agronomy background genuinely helps here — I can read a protocol, understand an experimental design, and push back when the question being asked can't be answered with the data available.
+
+**Tooling that disappears.** The best internal tools are the ones that become invisible — people just use them. A dashboard that requires a walkthrough every time is a failed tool. I spend a lot of time thinking about UX in contexts (scientific apps, internal platforms) where it's usually ignored.
+
+**Rigor over speed, mostly.** Working in pharma and cosmetics R&D means results matter. Not in an abstract "good science" way — in a "this goes into a regulatory submission" or "this product formula ships to production" way. I've developed a healthy caution about overfitting, about p-values, about claims that outrun the data. The constraints of regulated industries aren't obstacles; they're clarifying.
+
+**Open source tools.** R, Python, Quarto, Git. I'm a strong believer in reproducible, documented workflows — partly because it's the right way to do science, partly because I've seen what happens to analyses that aren't.
+
+## This site
+
+Built with [Quarto](https://quarto.org/), hosted on GitHub Pages, deployed automatically on every commit. Custom navy & gold theme (light + dark mode). Source is [on GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io).
+
+The blog is for things I've worked out and want to write down — not polished tutorials necessarily, but honest field notes from applied data science work.
+
+## Get in touch
+
+- **Email**: [antoine.lucas.fra@gmail.com](mailto:antoine.lucas.fra@gmail.com)
 - **LinkedIn**: [linkedin.com/in/antoinelucasdata](https://www.linkedin.com/in/antoinelucasdata/)
 - **GitHub**: [github.com/antoinelucasfra](https://github.com/antoinelucasfra)
-- **Twitter**: [@antoineloucass](https://twitter.com/antoineloucass)
+- **Twitter/X**: [@antoineloucass](https://twitter.com/antoineloucass)
 
-## Colophon
-
-- Built with [Quarto](https://quarto.org/)
-- Hosted on [GitHub Pages](https://pages.github.com/)
-- Source code on [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io)
+Content on this site is licensed under [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) unless stated otherwise.
