@@ -25,3 +25,45 @@ More projects are in the works. In the meantime, the blog is a better indicator 
 
 ::: {#projects}
 :::
+
+---
+
+## Academic & Open-Source
+
+::: {.callout-note appearance="minimal" icon=false}
+
+### SkateJudge
+
+**Technologies:** TypeScript · LLM evaluation
+
+A skateboard trick identifier and judge app powered by LLM-based evaluation. An experiment in applying language models to sports analysis and real-time classification.
+
+[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/SkateJudge){.btn .btn-dark .btn-sm}
+
+:::
+
+::: {.callout-note appearance="minimal" icon=false}
+
+### Eye-Tracking Analysis
+
+**Technologies:** R · Statistical Modelling · Signal Processing
+
+Analysis of eye-tracking data to understand visual attention patterns, from protocol design to data harvesting (Tobii Pro Lab) and full statistical analysis in R. Academic project, M2 — 3 forks.
+
+[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/eye-tracking_M2){.btn .btn-dark .btn-sm}
+
+:::
+
+::: {.callout-note appearance="minimal" icon=false}
+
+### This Website
+
+**Technologies:** Quarto · R · GitHub Actions · GitHub Pages
+
+Source code for this portfolio site — blog, projects, resources catalog, and CV. Custom navy & gold theme, automatic deployment on push to main.
+
+[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io){.btn .btn-dark .btn-sm}
+
+:::
+
+See also: [Academic projects from engineering school →](projects/academic_projects.qmd)
