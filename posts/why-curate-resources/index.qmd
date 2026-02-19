@@ -4,6 +4,7 @@ description: "In data science, machine learning, and AI, the pace of change is r
 author: "Antoine Lucas"
 date: "2024-12-13"
 categories: [Data Science, Machine Learning, GenAI, Resources, Lifelong Learning, Best Practices]
+image: "featured.png"
 ---
 
 ## The Knowledge Debt Problem

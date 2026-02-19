@@ -4,9 +4,9 @@ project:
 
 website:
   title: "Antoine Lucas"
-  description: "Data Scientist specializing in pharma and cosmetic industries — Portfolio, Blog, and Projects"
-  favicon: assets/images/profile.jpg
-  image: assets/images/profile.jpg
+  description: "Data Scientist & ML Engineer in pharma and cosmetic industries — Portfolio, Blog, and Projects"
+  favicon: assets/images/profile-pic.jpg
+  image: assets/images/profile-pic.jpg
   site-url: https://antoinelucasfra.github.io
   repo-url: https://github.com/antoinelucasfra/antoinelucasfra.github.io
   repo-actions: [edit, issue]
@@ -18,30 +18,31 @@ website:
     left: |
       Powered by [Quarto](https://quarto.org).
     center: |
-      &copy; 2025 Antoine Lucas.
+      &copy; 2026 Antoine Lucas.
     right: |
       License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
   navbar:
     title: "Antoine Lucas"
     search: true
     background: dark
-    right:
-      - text: About
-        href: index.qmd
+    left:
       - text: Blog
         href: blog.qmd
       - text: Projects
         href: projects.qmd
-      - text: Resources
-        href: projects/resources_catalog.qmd
+      - text: CV
+        href: cv.qmd
+      - text: About
+        href: about.qmd
+    right:
       - icon: linkedin
         href: "https://www.linkedin.com/in/antoinelucasdata/"
+        aria-label: LinkedIn
       - icon: github
         href: "https://github.com/antoinelucasfra"
+        aria-label: GitHub
 
-brand:
-  light: _brand-light.yml
-  dark: _brand-dark.yml
+brand: _brand.yml
 
 format:
   html:

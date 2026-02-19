@@ -4,6 +4,7 @@ description: "A comprehensive reference guide to frequentist statistical tests, 
 author: "Antoine Lucas"
 date: "2024-08-20"
 categories: [Statistics, Theory, R, Reference]
+image: "featured.png"
 ---
 
 ## Introduction

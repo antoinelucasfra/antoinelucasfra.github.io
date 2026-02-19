@@ -1,114 +1,434 @@
 /*-- scss:defaults --*/
 
-// Brand colors - Navy & Gold theme (Trafalgar Law inspired)
-$brand-gold: #F5C518;
-$brand-gold-light: #FDD835;
-$brand-navy: #1a2a4a;
-$brand-navy-light: #2c3e50;
-$brand-navy-dark: #0d1b2a;
-$brand-blue: #3498db;
-$brand-white: #ffffff;
-$brand-off-white: #f8f9fa;
+// NOTE: $brand-* variables are defined in the brand layer, which runs AFTER
+// this defaults section in Quarto's SCSS layering. Use literal hex values here.
 
-// Override Bootstrap colors with brand palette
-$primary: $brand-navy;
-$secondary: $brand-gold;
-$success: #28a745;
-$info: $brand-blue;
-$warning: $brand-gold;
-$danger: #dc3545;
+// Palette (matching _brand.yml)
+$palette-navy:       #0d1b2a;
+$palette-navy-mid:   #1a2a4a;
+$palette-navy-muted: #2c3e50;
+$palette-gold:       #F5C518;
+$palette-gold-light: #FFD94A;
+$palette-snow:       #F8F9FA;
+$palette-smoke:      #E9ECEF;
+$palette-slate:      #6C757D;
+$palette-ink:        #1C2833;
+$palette-teal:       #17A89E;
+$palette-crimson:    #C0392B;
 
-$body-bg: $brand-white;
-$body-color: $brand-navy;
+// Bootstrap semantic overrides (light mode)
+$primary:   $palette-navy-mid;
+$secondary: $palette-slate;
+$success:   $palette-teal;
+$info:      $palette-teal;
+$warning:   $palette-gold;
+$danger:    $palette-crimson;
 
-$link-color: $brand-navy;
-$link-hover-color: $brand-gold;
+$body-bg:    $palette-snow;
+$body-color: $palette-ink;
 
-// Navbar colors
-$navbar-dark-color: $brand-white;
-$navbar-dark-hover-color: $brand-gold;
-$navbar-dark-brand-color: $brand-gold;
+$link-color:       $palette-navy-mid;
+$link-hover-color: $palette-gold;
 
-// Headings
-$headings-color: $brand-navy;
+$headings-color:    $palette-navy-mid;
+$headings-font-weight: 700;
+
+$navbar-dark-color:       $palette-snow;
+$navbar-dark-hover-color: $palette-gold;
+$navbar-dark-brand-color: $palette-gold;
+
+$border-radius: 0.375rem;
+
+$font-size-base: 1.0rem;
+$line-height-base: 1.7;
 
 /*-- scss:rules --*/
 
-// Smooth scrolling
+// ── Base ──────────────────────────────────────────────────────────────────
+
 html {
   scroll-behavior: smooth;
 }
 
-// Navbar brand styling
+body {
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+}
+
+// ── Navbar ────────────────────────────────────────────────────────────────
+
+.navbar {
+  background-color: $palette-navy !important;
+  border-bottom: 2px solid $palette-gold;
+  box-shadow: 0 2px 12px rgba($palette-navy, 0.18);
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
 .navbar-brand {
-  font-weight: 700;
+  font-family: "Sora", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: $palette-gold !important;
+  font-size: 1.1rem;
+
+  &:hover { color: $palette-gold-light !important; }
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+
+  &:hover, &:focus { color: $palette-gold !important; }
+  &.active          { color: $palette-gold !important; }
+}
+
+// ── Hero grid layout ──────────────────────────────────────────────────────
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin: 3rem 0 2.5rem 0;
+  padding: 2.5rem 2rem;
+  background: linear-gradient(135deg, rgba($palette-navy, 0.04) 0%, rgba($palette-navy-mid, 0.03) 100%);
+  border-radius: 1rem;
+  border: 1px solid rgba($palette-navy-mid, 0.08);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 2rem 1.25rem;
+  }
+}
+
+.hero-photo-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-img {
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid $palette-gold;
+  box-shadow: 0 8px 32px rgba($palette-navy, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    color: $brand-gold !important;
+    transform: scale(1.03);
+    box-shadow: 0 12px 40px rgba($palette-navy, 0.28);
   }
 }
 
-// Navbar link styling
-.navbar-dark .navbar-nav .nav-link {
-  &:hover,
-  &:focus {
-    color: $brand-gold !important;
-  }
+.hero-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
 
-  &.active {
-    color: $brand-gold !important;
+.hero-name {
+  font-family: "Sora", sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: $palette-navy-mid;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.25rem 0;
+}
+
+.hero-tagline {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $palette-navy-muted;
+  margin: 0;
+}
+
+.hero-location {
+  font-size: 0.9rem;
+  color: $palette-slate;
+  margin: 0 0 0.75rem 0;
+
+  &::before {
+    content: "📍 ";
+    font-size: 0.8em;
   }
 }
 
-// Highlight boxes
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.35em 0.9em;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background-color: rgba($palette-navy-mid, 0.07);
+  color: $palette-navy-mid !important;
+  border: 1px solid rgba($palette-navy-mid, 0.15);
+  text-decoration: none !important;
+  transition: background-color 0.18s, border-color 0.18s, color 0.18s, transform 0.18s;
+
+  &:hover {
+    background-color: $palette-gold;
+    border-color: $palette-gold;
+    color: $palette-navy !important;
+    transform: translateY(-1px);
+  }
+
+  i { font-size: 0.95em; }
+}
+
+.hero-link-cv {
+  background-color: $palette-navy-mid;
+  color: $palette-snow !important;
+  border-color: $palette-navy-mid;
+
+  &:hover {
+    background-color: $palette-gold;
+    border-color: $palette-gold;
+    color: $palette-navy !important;
+  }
+}
+
+// ── Section headings ──────────────────────────────────────────────────────
+
+.section-heading {
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba($palette-gold, 0.4);
+  color: $palette-navy-mid;
+  font-family: "Sora", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+// ── What I do grid ────────────────────────────────────────────────────────
+
+.what-i-do {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1.25rem 0 2rem 0;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wid-item {
+  padding: 1.25rem 1.5rem;
+  background: rgba($palette-navy-mid, 0.03);
+  border: 1px solid rgba($palette-navy-mid, 0.09);
+  border-left: 3px solid $palette-gold;
+  border-radius: 0 0.5rem 0.5rem 0;
+  transition: border-left-color 0.2s, background-color 0.2s, transform 0.2s;
+
+  &:hover {
+    border-left-color: $palette-navy-mid;
+    background: rgba($palette-navy-mid, 0.06);
+    transform: translateX(2px);
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $palette-navy-mid;
+    margin: 0 0 0.5rem 0;
+    font-family: "Sora", sans-serif;
+    letter-spacing: -0.01em;
+    border: none !important;
+    padding: 0 !important;
+
+    &::after { display: none; }
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: rgba($palette-ink, 0.8);
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+// ── Skills section ────────────────────────────────────────────────────────
+
+.skill-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.25rem 0 2rem 0;
+}
+
+.skill-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  > p {
+    min-width: 140px;
+    margin: 0;
+    padding-top: 0.25rem;
+    flex-shrink: 0;
+
+    > strong {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: $palette-slate;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+  }
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: rgba($palette-gold, 0.1);
+  color: $palette-navy-mid;
+  border: 1px solid rgba($palette-gold, 0.28);
+  transition: background-color 0.15s, color 0.15s;
+
+  &:hover {
+    background-color: $palette-gold;
+    color: $palette-navy;
+    cursor: default;
+  }
+}
+
+// ── Highlight callout box ─────────────────────────────────────────────────
+
 .highlight {
-  background-color: rgba($brand-gold, 0.1);
-  border-left: 4px solid $brand-gold;
+  background-color: rgba($palette-gold, 0.08);
+  border-left: 4px solid $palette-gold;
   padding: 1rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 0 0.5rem 0.5rem 0;
 
-  p {
-    margin-bottom: 0;
+  p { margin-bottom: 0; }
+}
+
+// ── Site nav footer links (homepage) ──────────────────────────────────────
+
+.site-nav-footer {
+  margin: 2.5rem 0 1rem;
+  font-size: 0.9rem;
+  color: $palette-slate;
+
+  a {
+    color: $palette-navy-mid;
+    font-weight: 500;
+
+    &:hover { color: $palette-gold; }
+
+    i { margin-right: 0.25em; }
   }
 }
 
-// About body styling
+// ── Headings ──────────────────────────────────────────────────────────────
+
+h1, h2, h3, h4, h5, h6 {
+  color: $palette-navy-mid;
+  font-family: "Sora", sans-serif;
+}
+
+h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  margin-top: 1.75rem;
+}
+
+// ── About body (about.qmd) ────────────────────────────────────────────────
+
 .about-body {
-  max-width: 800px;
+  max-width: 820px;
   margin: 2rem auto;
 
   h2 {
     margin-top: 2.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid rgba($brand-navy, 0.2);
-    color: $brand-navy;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid rgba($palette-gold, 0.35);
+    color: $palette-navy-mid;
   }
 }
 
-// Headings styling
-h1, h2, h3, h4, h5, h6 {
-  color: $brand-navy;
-}
+// ── Tables ────────────────────────────────────────────────────────────────
 
-// Skills table styling
 table {
   width: 100%;
   margin: 1rem 0;
 
   th {
-    background-color: rgba($brand-navy, 0.05);
+    background-color: rgba($palette-navy-mid, 0.06);
     font-weight: 600;
-    color: $brand-navy;
+    color: $palette-navy-mid;
+    font-family: "Sora", sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
   td, th {
-    padding: 0.75rem;
-    border: 1px solid rgba($brand-navy, 0.15);
+    padding: 0.7rem 0.85rem;
+    border: 1px solid rgba($palette-navy-mid, 0.12);
   }
 }
 
-// Interest list styling
+// ── Education / timeline list ─────────────────────────────────────────────
+
+.education ul {
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    padding: 0.75rem 1rem;
+    border-left: 3px solid $palette-gold;
+    margin-bottom: 0.5rem;
+    background-color: rgba($palette-navy-mid, 0.02);
+    border-radius: 0 0.375rem 0.375rem 0;
+    transition: border-color 0.2s;
+
+    &:hover { border-left-color: $palette-navy-mid; }
+  }
+}
+
+// ── Interests / competencies columns ─────────────────────────────────────
+
 .interests ul {
   columns: 2;
   column-gap: 2rem;
@@ -116,135 +436,453 @@ table {
   padding-left: 0;
 
   li {
-    padding: 0.25rem 0;
+    padding: 0.2rem 0 0.2rem 1.4rem;
     position: relative;
-    padding-left: 1.5rem;
 
     &::before {
-      content: "•";
-      color: $brand-gold;
-      font-weight: bold;
+      content: "▸";
+      color: $palette-gold;
+      font-size: 0.75em;
       position: absolute;
       left: 0;
+      top: 0.25em;
     }
   }
 }
 
-// Education styling
-.education ul {
-  list-style-type: none;
-  padding-left: 0;
+// ── Project cards ────────────────────────────────────────────────────────
 
-  li {
-    padding: 0.75rem 0;
-    border-left: 3px solid $brand-gold;
-    padding-left: 1rem;
-    margin-bottom: 0.5rem;
-    background-color: rgba($brand-navy, 0.02);
-    border-radius: 0 0.25rem 0.25rem 0;
+.quarto-grid-item.card {
+  border: 1px solid rgba($palette-navy-mid, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba($palette-navy, 0.12);
+    border-color: $palette-gold;
   }
+
+  .card-title { color: $palette-navy-mid; font-family: "Sora", sans-serif; }
 }
 
-// Card styling for projects
-.quarto-grid-item.card {
-  border: 1px solid rgba($brand-navy, 0.1);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+// ── Blog listing (grid) ───────────────────────────────────────────────────
+
+.quarto-listing-cols-3 .card {
+  border: 1px solid rgba($palette-navy-mid, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+  border-radius: 0.5rem;
+  overflow: hidden;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba($brand-navy, 0.15);
-    border-color: $brand-gold;
+    box-shadow: 0 10px 24px rgba($palette-navy, 0.13);
+    border-color: rgba($palette-gold, 0.5);
+  }
+
+  .card-img-top {
+    border-bottom: 2px solid rgba($palette-gold, 0.2);
   }
 
   .card-title {
-    color: $brand-navy;
+    font-family: "Sora", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $palette-navy-mid;
   }
+
+  .card-text { font-size: 0.85rem; color: rgba($palette-ink, 0.75); }
 }
 
-// Navbar customization
-.navbar {
-  background-color: $brand-navy !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// ── Blog listing (list fallback) ──────────────────────────────────────────
+
+.listing-item {
+  transition: transform 0.15s ease;
+  &:hover { transform: translateX(4px); }
 }
 
-// Footer styling
-.footer {
-  margin-top: 3rem;
-  border-top-color: rgba($brand-navy, 0.1);
-}
+// ── Code ──────────────────────────────────────────────────────────────────
 
-// Code block styling
 pre.sourceCode {
   border-radius: 0.5rem;
-  border: 1px solid rgba($brand-navy, 0.15);
+  border: 1px solid rgba($palette-navy-mid, 0.14);
 }
 
 code {
-  color: $brand-navy;
-  background-color: rgba($brand-navy, 0.05);
+  color: $palette-navy-mid;
+  background-color: rgba($palette-navy-mid, 0.05);
+  border-radius: 0.25rem;
+  padding: 0.1em 0.35em;
 }
 
-// Callout styling
-.callout {
-  border-radius: 0.5rem;
-}
+// ── Callouts ──────────────────────────────────────────────────────────────
 
-.callout-note {
-  border-left-color: $brand-gold;
-}
+.callout          { border-radius: 0.5rem; }
+.callout-note     { border-left-color: $palette-gold; }
+.callout-tip      { border-left-color: $palette-teal; }
+.callout-warning  { border-left-color: $palette-gold; }
+.callout-caution  { border-left-color: $palette-crimson; }
 
-// Blog post cards
-.listing-item {
-  transition: transform 0.2s ease;
+// ── Buttons ──────────────────────────────────────────────────────────────
 
-  &:hover {
-    transform: translateX(4px);
-  }
-}
-
-// Button styling
 .btn-primary {
-  background-color: $brand-navy;
-  border-color: $brand-navy;
+  background-color: $palette-navy-mid;
+  border-color: $palette-navy-mid;
 
   &:hover {
-    background-color: $brand-gold;
-    border-color: $brand-gold;
-    color: $brand-navy;
+    background-color: $palette-gold;
+    border-color: $palette-gold;
+    color: $palette-navy;
   }
 }
 
 .btn-secondary {
-  background-color: $brand-gold;
-  border-color: $brand-gold;
-  color: $brand-navy;
+  background-color: $palette-gold;
+  border-color: $palette-gold;
+  color: $palette-navy;
 
   &:hover {
-    background-color: $brand-navy;
-    border-color: $brand-navy;
-    color: $brand-white;
+    background-color: $palette-navy-mid;
+    border-color: $palette-navy-mid;
+    color: $palette-snow;
   }
 }
 
-// Category badges
+// ── Category / tag badges ─────────────────────────────────────────────────
+
 .quarto-category {
-  background-color: rgba($brand-gold, 0.15);
-  color: $brand-navy;
-  border: 1px solid rgba($brand-gold, 0.3);
+  background-color: rgba($palette-gold, 0.12);
+  color: $palette-navy-mid;
+  border: 1px solid rgba($palette-gold, 0.3);
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
 
   &:hover {
-    background-color: $brand-gold;
-    color: $brand-navy;
+    background-color: $palette-gold;
+    color: $palette-navy;
+    border-color: $palette-gold;
   }
 }
 
-// TOC styling
-.sidebar nav[role=doc-toc] ul > li > a.active {
-  border-left-color: $brand-gold;
-  color: $brand-navy;
+// ── TOC ───────────────────────────────────────────────────────────────────
+
+.sidebar nav[role=doc-toc] ul > li > a {
+  &.active {
+    border-left-color: $palette-gold;
+    color: $palette-navy-mid;
+    font-weight: 600;
+  }
 }
 
-// Search styling
-.aa-DetachedSearchButton {
-  border-color: rgba($brand-white, 0.3);
+// ── Footer ────────────────────────────────────────────────────────────────
+
+.footer {
+  margin-top: 3rem;
+  border-top: 1px solid rgba($palette-navy-mid, 0.12);
+  font-size: 0.85rem;
+  color: $palette-slate;
+}
+
+// ── Title block banner ────────────────────────────────────────────────────
+
+.quarto-title-banner {
+  background: linear-gradient(135deg, $palette-navy 0%, $palette-navy-mid 100%);
+  color: $palette-snow;
+  border-bottom: 3px solid $palette-gold;
+
+  .quarto-title h1,
+  .quarto-title-subtitle { color: $palette-snow; }
+}
+
+// ── Pagination ───────────────────────────────────────────────────────────
+
+.page-link {
+  color: $palette-navy-mid;
+  border-color: rgba($palette-navy-mid, 0.2);
+
+  &:hover {
+    background-color: $palette-gold;
+    border-color: $palette-gold;
+    color: $palette-navy;
+  }
+}
+
+.page-item.active .page-link {
+  background-color: $palette-navy-mid;
+  border-color: $palette-navy-mid;
+}
+
+// ── CV page ───────────────────────────────────────────────────────────────
+
+.cv-page {
+  max-width: 860px;
+  margin: 0.75rem auto 3rem;
+  padding: 0 0.5rem;
+  font-family: "DM Sans", sans-serif;
+  color: $palette-ink;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────
+
+.cv-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  padding: 1.75rem 0 1.25rem;
+}
+
+.cv-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cv-name {
+  font-family: "Sora", sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: $palette-navy-mid;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0 0 0.2rem 0;
+  border: none !important;
+  padding: 0 !important;
+  &::after { display: none !important; }
+}
+
+.cv-title {
+  font-family: "Sora", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: $palette-navy-muted;
+  margin: 0 0 0.15rem 0;
+}
+
+.cv-subtitle {
+  font-size: 0.875rem;
+  color: $palette-slate;
+  margin: 0 0 0.75rem 0;
+}
+
+.cv-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.25rem;
+
+  a {
+    font-size: 0.82rem;
+    color: $palette-navy-mid !important;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    font-weight: 500;
+    transition: color 0.15s;
+    &:hover { color: $palette-gold !important; }
+    i { font-size: 0.88em; }
+  }
+}
+
+.cv-header-photo { flex-shrink: 0; }
+
+.cv-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid $palette-gold;
+  box-shadow: 0 4px 18px rgba($palette-navy, 0.16);
+  display: block;
+}
+
+// ── Gold rule ─────────────────────────────────────────────────────────────
+
+.cv-rule {
+  height: 3px;
+  background: $palette-gold;
+  border-radius: 2px;
+  margin: 0 0 1.1rem;
+}
+
+// ── Summary ───────────────────────────────────────────────────────────────
+
+.cv-summary {
+  font-size: 0.9rem;
+  line-height: 1.72;
+  color: rgba($palette-ink, 0.82);
+  margin-bottom: 1.75rem;
+  padding: 0.85rem 1.1rem;
+  background: rgba($palette-navy-mid, 0.03);
+  border-left: 3px solid rgba($palette-gold, 0.55);
+  border-radius: 0 0.375rem 0.375rem 0;
+}
+
+// ── Section titles ────────────────────────────────────────────────────────
+
+.cv-section-title {
+  font-family: "Sora", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: $palette-navy-mid;
+  margin: 1.75rem 0 0.65rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1.5px solid $palette-gold;
+  border-top: none !important;
+}
+
+.cv-page > .cv-section-title:first-of-type { margin-top: 0; }
+
+// ── Entries (experience & education) ─────────────────────────────────────
+
+.cv-entry {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba($palette-navy-mid, 0.07);
+  &:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.cv-entry-edu {
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.cv-entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+
+  // Quarto wraps .cv-period span in a <p>
+  > p {
+    margin: 0;
+    flex-shrink: 0;
+  }
+}
+
+.cv-entry-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+
+  // Quarto wraps inline spans in a <p>; make it a flex column too
+  > p {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin: 0;
+  }
+}
+
+.cv-role {
+  font-family: "Sora", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: $palette-navy-mid;
+  line-height: 1.25;
+  display: block;
+}
+
+.cv-org {
+  font-size: 0.83rem;
+  font-style: italic;
+  color: $palette-slate;
+  line-height: 1.3;
+  display: block;
+}
+
+.cv-period {
+  font-size: 0.78rem;
+  color: $palette-slate;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 0.18rem;
+  font-weight: 500;
+}
+
+// ── Bullet lists inside cv-entry (native markdown renders as plain <ul>) ──
+
+.cv-entry ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1.05em;
+    font-size: 0.875rem;
+    line-height: 1.62;
+    color: rgba($palette-ink, 0.82);
+    margin-bottom: 0.28rem;
+
+    &::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      top: 0.08em;
+      color: $palette-gold;
+      font-size: 0.72em;
+      line-height: inherit;
+    }
+
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+// ── Skills grid ───────────────────────────────────────────────────────────
+
+.cv-skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+
+.cv-skill-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.cv-skill-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $palette-slate;
+  line-height: 1.5;
+  padding-top: 0.1rem;
+}
+
+.cv-skill-value {
+  font-size: 0.875rem;
+  color: rgba($palette-ink, 0.82);
+  line-height: 1.55;
+}
+
+// ── Certifications & Languages (inline pair) ──────────────────────────────
+
+.cv-inline-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2.5rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cv-inline-text {
+  font-size: 0.875rem;
+  color: rgba($palette-ink, 0.82);
+  margin: 0;
+  line-height: 1.55;
 }
