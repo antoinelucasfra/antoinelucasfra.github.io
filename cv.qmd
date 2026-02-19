@@ -1,0 +1,243 @@
+---
+title: "Curriculum Vitae"
+format:
+  html:
+    toc: false
+    page-layout: full
+    format-links:
+      - format: typst
+        text: Download PDF
+        icon: file-pdf
+  typst:
+    output-file: cv.pdf
+    margin:
+      x: 1.3cm
+      y: 1.2cm
+    fontsize: 10pt
+---
+
+```{=html}
+<div class="cv-page">
+
+  <header class="cv-header">
+    <div class="cv-header-text">
+      <h1 class="cv-name">Antoine Lucas</h1>
+      <p class="cv-title">Data Scientist &amp; ML Engineer</p>
+      <p class="cv-subtitle">Pharma · Cosmetics · Biotech · Paris, France</p>
+      <div class="cv-contacts">
+        <a href="mailto:antoine.lucas.fra@gmail.com">
+          <i class="bi bi-envelope-fill"></i>&nbsp;antoine.lucas.fra@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/antoinelucasdata" target="_blank">
+          <i class="bi bi-linkedin"></i>&nbsp;linkedin.com/in/antoinelucasdata
+        </a>
+        <a href="https://github.com/antoinelucasfra" target="_blank">
+          <i class="bi bi-github"></i>&nbsp;github.com/antoinelucasfra
+        </a>
+      </div>
+    </div>
+    <div class="cv-header-photo">
+      <img src="assets/images/profile-pic.jpg" alt="Antoine Lucas" class="cv-photo" />
+    </div>
+  </header>
+
+  <div class="cv-rule"></div>
+
+  <p class="cv-summary">
+    Data Scientist &amp; ML Engineer with 5+ years building production-grade data solutions in
+    regulated industries — pharma, cosmetics, and biotech. Expertise spans statistical
+    modelling, Design of Experiments, applied ML (computer vision, NLP), and multi-omics
+    analysis. Proven track record translating complex scientific questions into end-to-end
+    systems: from study design and model development through to validated deployment and
+    stakeholder training. Strong communicator bridging wet-lab science, software engineering,
+    and business.
+  </p>
+```
+
+```{=typst}
+#set text(font: "Ubuntu Sans", size: 10pt)
+
+= Antoine Lucas
+*Data Scientist & ML Engineer* | Pharma · Cosmetics · Biotech · Paris, France
+
+antoine.lucas.fra\@gmail.com | linkedin.com/in/antoinelucasdata | github.com/antoinelucasfra
+
+---
+
+Data Scientist & ML Engineer with 5+ years building production-grade data solutions in regulated industries — pharma, cosmetics, and biotech. Expertise spans statistical modelling, Design of Experiments, applied ML (computer vision, NLP), and multi-omics analysis. Proven track record translating complex scientific questions into end-to-end systems: from study design and model development through to validated deployment and stakeholder training.
+```
+
+```{=html}
+  <h2 class="cv-section-title">Experience</h2>
+```
+
+```{=typst}
+== Experience
+```
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+[**Data Scientist & ML Engineer**]{.cv-role}
+[*Chanel Parfums Beauté R&D · via Astek / IT&M Stats*]{.cv-org}
+:::
+[Sep 2025 – present]{.cv-period}
+:::
+
+- Designed and deployed computer vision models (texture classification, colour analysis) and NLP pipelines (olfactory descriptor mining from scientific literature) for fragrance and cosmetics formulation R&D
+- Modelled sensory and physico-chemical properties with PLS regression, Gaussian processes, and Bayesian optimisation to accelerate ingredient screening cycles
+- Built DoE workflows (mixture designs, response-surface methods) cutting required experiments per formulation cycle by 30–40%
+- Engineered MLOps infrastructure: model versioning with DVC, drift monitoring, fully reproducible pipelines (Docker + GitHub Actions) in a GxP-adjacent environment
+- Delivered R Shiny dashboards covering sensory scoring, spectral data visualisation, and interactive experiment planning for R&D scientists
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+[**Data Scientist — Internal & Consulting**]{.cv-role}
+[*Astek / IT&M Stats*]{.cv-org}
+:::
+[May – Sep 2025]{.cv-period}
+:::
+
+- Developed reusable internal R packages and Quarto automated reporting templates, cutting analyst turnaround time by ~25% across consulting engagements
+- Led internal upskilling programme on tidymodels, causal inference, and reproducible research for 8 statistical consultants
+- Scoped and prototyped ML solutions for pre-sales client engagements in pharma and agri-food verticals
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+[**Data Scientist — Multi-omics**]{.cv-role}
+[*Abolis · Microbiome Studio · via Astek / IT&M Stats*]{.cv-org}
+:::
+[Dec 2024 – May 2025]{.cv-period}
+:::
+
+- Built end-to-end multi-omics pipelines (metagenomics, metatranscriptomics, metabolomics) from raw sequencing reads to biological interpretation across 4 agro-industry studies
+- Applied PERMANOVA, sparse PLS-DA, and co-occurrence network analysis to characterise 100+ microbial interactions and identify key functional drivers
+- Packaged analyses as reproducible Quarto reports; integrated results into the client's production SaaS platform via a REST API
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+[**Data Scientist / Scrum Master**]{.cv-role}
+[*Sanofi R&D · via Astek / IT&M Stats*]{.cv-org}
+:::
+[Jul 2023 – Nov 2024]{.cv-period}
+:::
+
+- Architected and delivered a full R Shiny platform (golem) managing pilot manufacturing chains for 100+ GxP clinical projects — 50+ daily active users across 3 departments
+- Designed the data model, module architecture, and automated validation report generation to satisfy GxP audit-trail requirements (IQ/OQ/PQ on Posit Connect)
+- Owned the full delivery lifecycle: user-story workshops → agile sprints → UAT → IQ/OQ documentation → production deployment
+- Led a 6-person cross-functional team (data scientists, developers, QA); managed sprint planning and alignment with 5+ senior sponsors
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+[**Biostatistician**]{.cv-role}
+[*L'Oréal R&D · via Astek / IT&M Stats*]{.cv-org}
+:::
+[Oct 2021 – Jul 2023]{.cv-period}
+:::
+
+- Delivered 100+ statistical analyses on ingredient efficacy (hydration, anti-ageing biomarkers) and molecular safety (QSAR, genotoxicity) across cosmetic and dermocosmetic pipelines
+- Designed and analysed clinical and semi-clinical studies from protocol writing through regulatory-grade reports — consistent 2-week delivery cycle
+- Built internal R tooling (survival analysis, mixed-effects models, automated Rmarkdown reporting) adopted as standard across the biostatistics team
+- Mentored 2 junior analysts and 1 intern; co-authored methodology guides on non-inferiority testing and adaptive designs
+:::
+
+```{=html}
+  <h2 class="cv-section-title">Education</h2>
+```
+
+```{=typst}
+== Education
+```
+
+::: {.cv-entry .cv-entry-edu}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+[**Diplôme d'Ingénieur — Statistiques appliquées aux Sciences de la Vie**]{.cv-role}
+[*Agrocampus Ouest*]{.cv-org}
+:::
+[2021]{.cv-period}
+:::
+:::
+
+::: {.cv-entry .cv-entry-edu}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+[**Master — Mathématiques Appliquées · Statistiques**]{.cv-role}
+[*Université Paris-Saclay*]{.cv-org}
+:::
+[2021]{.cv-period}
+:::
+:::
+
+```{=html}
+  <h2 class="cv-section-title">Technical Skills</h2>
+  <div class="cv-skills-grid">
+    <div class="cv-skill-row">
+      <span class="cv-skill-label">Languages</span>
+      <span class="cv-skill-value">R · Python · SQL · Bash</span>
+    </div>
+    <div class="cv-skill-row">
+      <span class="cv-skill-label">ML &amp; Stats</span>
+      <span class="cv-skill-value">scikit-learn · tidymodels · XGBoost · Bayesian optimisation · DoE · PLS · PERMANOVA · survival analysis</span>
+    </div>
+    <div class="cv-skill-row">
+      <span class="cv-skill-label">Apps &amp; Viz</span>
+      <span class="cv-skill-value">R Shiny (golem) · ggplot2 · Plotly · Quarto · Power BI</span>
+    </div>
+    <div class="cv-skill-row">
+      <span class="cv-skill-label">CV / NLP</span>
+      <span class="cv-skill-value">PyTorch · OpenCV · Hugging Face · sentence-transformers</span>
+    </div>
+    <div class="cv-skill-row">
+      <span class="cv-skill-label">MLOps</span>
+      <span class="cv-skill-value">Docker · GitHub Actions · Posit Connect · DVC · renv · uv</span>
+    </div>
+    <div class="cv-skill-row">
+      <span class="cv-skill-label">Domains</span>
+      <span class="cv-skill-value">GxP · IQ/OQ/PQ · Clinical biostatistics · Multi-omics · Cosmetic R&amp;D</span>
+    </div>
+  </div>
+  <div class="cv-inline-sections">
+    <div class="cv-inline-section">
+      <h2 class="cv-section-title">Certifications</h2>
+      <p class="cv-inline-text">Scrum Master — Agilbee (2023)</p>
+    </div>
+    <div class="cv-inline-section">
+      <h2 class="cv-section-title">Languages</h2>
+      <p class="cv-inline-text">French (native) · English (fluent, professional)</p>
+    </div>
+  </div>
+</div>
+```
+
+```{=typst}
+== Technical Skills
+
+*Languages:* R · Python · SQL · Bash
+
+*ML & Stats:* scikit-learn · tidymodels · XGBoost · Bayesian optimisation · DoE · PLS · PERMANOVA · survival analysis
+
+*Apps & Viz:* R Shiny (golem) · ggplot2 · Plotly · Quarto · Power BI
+
+*CV / NLP:* PyTorch · OpenCV · Hugging Face · sentence-transformers
+
+*MLOps:* Docker · GitHub Actions · Posit Connect · DVC · renv · uv
+
+*Domains:* GxP · IQ/OQ/PQ · Clinical biostatistics · Multi-omics · Cosmetic R&D
+
+== Certifications
+
+Scrum Master — Agilbee (2023)
+
+== Languages
+
+French (native) · English (fluent, professional)
+```

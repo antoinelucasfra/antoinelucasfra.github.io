@@ -1,248 +1,976 @@
 ---
-title: "📚 Resources Catalog"
+title: "Resources Catalog"
 subtitle: "A curated collection of data science resources for R, Python, and beyond."
 format:
   html:
-    toc: true
+    toc: false
     page-layout: full
 execute:
-  eval: true
   echo: false
-engine: knitr
+  freeze: false
 ---
 
-```{css, echo = FALSE}
-select {
+```{css, echo=FALSE}
+/* ── Quick filter chips ──────────────────────────────────────────────────── */
+.filter-chip {
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  border: 1.5px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+}
+
+.filter-chip:focus {
+  box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.35);
+  outline: none;
+}
+
+.filter-chip.active {
+  background-color: #1a2a4a !important;
+  border-color: #1a2a4a !important;
+  color: #fff !important;
+}
+
+[data-bs-theme="dark"] .filter-chip.active {
+  background-color: #F5C518 !important;
+  border-color: #F5C518 !important;
+  color: #1a2a4a !important;
+}
+
+/* ── Controls bar ────────────────────────────────────────────────────────── */
+.controls-wrapper {
   background-color: var(--bs-body-bg);
-  border: 1px solid rgba(128, 128, 128, 0.2);
-  border-radius: 3px;
+  border-radius: 0.5rem;
+  border: 1px solid var(--bs-border-color, rgba(128, 128, 128, 0.2));
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.controls-search-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.controls-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.controls-bottom-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filter-section-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color, #6c757d);
+  align-self: center;
+  white-space: nowrap;
+}
+
+.filter-divider {
+  width: 1px;
+  height: 1.4rem;
+  background-color: var(--bs-border-color, rgba(128, 128, 128, 0.25));
+  align-self: center;
+  flex-shrink: 0;
+}
+
+/* ── Search input ────────────────────────────────────────────────────────── */
+.resource-search-wrap {
+  flex: 1 1 280px;
+  min-width: 200px;
+}
+
+.resource-search-wrap .input-group-text {
+  background-color: var(--bs-body-bg);
+  border-color: var(--bs-border-color, rgba(128, 128, 128, 0.25));
+  color: var(--bs-secondary-color);
+}
+
+.resource-search-wrap input[type="text"] {
+  background-color: var(--bs-body-bg);
+  border-color: var(--bs-border-color, rgba(128, 128, 128, 0.25));
   color: var(--bs-body-color);
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: 400;
-  margin: 0;
-  outline-style: solid;
-  outline-width: 0;
-  padding: 5px 7px;
-  width: 100%;
+  font-size: 0.85rem;
 }
 
-/* Reactable theme overrides for light/dark mode */
-.reactable {
-  background-color: var(--bs-body-bg) !important;
+.resource-search-wrap input[type="text"]:focus {
+  border-color: #F5C518;
+  box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.2);
+}
+
+/* ── Type select ─────────────────────────────────────────────────────────── */
+#type-filter {
+  background-color: var(--bs-body-bg);
+  border: 1.5px solid var(--bs-border-color, rgba(128, 128, 128, 0.25));
+  border-radius: 0.375rem;
+  color: var(--bs-body-color);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.25rem 1.8rem 0.25rem 0.75rem;
+  max-width: 180px;
+  cursor: pointer;
+}
+
+#type-filter:focus {
+  border-color: #F5C518;
+  box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.2);
+  outline: none;
+}
+
+/* ── View toggle ─────────────────────────────────────────────────────────── */
+.view-toggle-label {
+  cursor: pointer;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.78rem;
+  color: var(--bs-body-color);
+  border: 1.5px solid var(--bs-border-color, rgba(128, 128, 128, 0.25));
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.btn-check:checked + .view-toggle-label {
+  background-color: #1a2a4a;
+  border-color: #1a2a4a;
+  color: #fff;
+}
+
+[data-bs-theme="dark"] .btn-check:checked + .view-toggle-label {
+  background-color: #F5C518;
+  border-color: #F5C518;
+  color: #1a2a4a;
+}
+
+/* ── Counter ─────────────────────────────────────────────────────────────── */
+.catalog-counter {
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color, #6c757d);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.catalog-counter strong {
   color: var(--bs-body-color);
 }
 
-.reactable .rt-table {
-  background-color: var(--bs-body-bg) !important;
+/* ── Resource cards ──────────────────────────────────────────────────────── */
+.resource-card {
+  border: 1px solid var(--bs-border-color, rgba(128, 128, 128, 0.2));
+  border-radius: 0.5rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  background-color: var(--bs-body-bg);
 }
 
-.reactable .rt-thead {
-  background-color: var(--bs-primary) !important;
-  color: white !important;
+.resource-card:hover {
+  border-color: #F5C518;
+  box-shadow: 0 2px 10px rgba(245, 197, 24, 0.15);
 }
 
-.reactable .rt-th {
-  background-color: var(--bs-primary) !important;
-  color: white !important;
-  border-color: var(--bs-primary) !important;
+.resource-card .card-body {
+  padding: 0.85rem;
 }
 
-.reactable .rt-tbody {
-  background-color: var(--bs-body-bg) !important;
+.resource-title a {
+  color: var(--bs-body-color) !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  line-height: 1.35;
 }
 
-/* Force ALL rows to have dark background - override inline styles */
-.reactable .rt-tbody .rt-tr {
-  background-color: var(--bs-body-bg) !important;
+.resource-title a:hover {
+  color: #1a2a4a !important;
+  text-decoration: underline;
 }
 
-.reactable .rt-tbody .rt-tr-striped {
-  background-color: rgba(255, 255, 255, 0.03) !important;
+[data-bs-theme="dark"] .resource-title a:hover {
+  color: #F5C518 !important;
 }
 
-/* Force all cells to inherit background */
-.reactable .rt-tbody .rt-td {
-  background-color: transparent !important;
+/* ── Resource list items ─────────────────────────────────────────────────── */
+.resource-item {
+  background-color: var(--bs-body-bg);
+  border-color: var(--bs-border-color, rgba(128, 128, 128, 0.2)) !important;
+  transition: background-color 0.12s ease;
+  padding: 0.6rem 0.85rem !important;
 }
 
-.reactable .rt-tbody .rt-tr:hover {
-  background-color: rgba(245, 197, 24, 0.15) !important;
+.resource-item:hover {
+  background-color: rgba(245, 197, 24, 0.06) !important;
 }
 
-.reactable .rt-td {
-  border-color: var(--bs-border-color, rgba(128, 128, 128, 0.2));
+.resource-item .resource-title a {
+  font-size: 0.87rem;
+}
+
+/* ── Resource type badges ────────────────────────────────────────────────── */
+.resource-type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  padding: 0.2em 0.55em;
+  flex-shrink: 0;
+}
+
+/* ── Language & category chips ───────────────────────────────────────────── */
+.chip {
+  display: inline-block;
+  padding: 0.1rem 0.42rem;
+  font-size: 0.66rem;
+  font-weight: 500;
+  border-radius: 999px;
+  margin: 0.08rem 0.1rem 0.08rem 0;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+.chip-r {
+  background-color: rgba(26, 87, 157, 0.13);
+  color: #1a579d;
+  border: 1px solid rgba(26, 87, 157, 0.22);
+}
+
+.chip-python {
+  background-color: rgba(55, 125, 34, 0.13);
+  color: #3a7a20;
+  border: 1px solid rgba(55, 125, 34, 0.22);
+}
+
+.chip-julia {
+  background-color: rgba(149, 57, 191, 0.13);
+  color: #8b33b3;
+  border: 1px solid rgba(149, 57, 191, 0.22);
+}
+
+.chip-other {
+  background-color: rgba(108, 117, 125, 0.1);
+  color: #555f6a;
+  border: 1px solid rgba(108, 117, 125, 0.18);
+}
+
+.chip-cat {
+  background-color: rgba(26, 42, 74, 0.07);
   color: var(--bs-body-color);
+  border: 1px solid rgba(26, 42, 74, 0.14);
 }
 
-/* Make cells wrap and use compact spacing */
-.reactable .rt-td {
-  white-space: normal !important;
-  word-break: break-word;
-  padding-top: .45rem;
-  padding-bottom: .45rem;
+[data-bs-theme="dark"] .chip-r {
+  background-color: rgba(26, 87, 157, 0.28);
+  color: #7ab8f5;
+  border-color: rgba(26, 87, 157, 0.4);
 }
 
-/* Light / dark stripe adjustments */
-:root {
-  --table-row-stripe-light: rgba(0, 0, 0, 0.03);
-  --table-row-stripe-dark: rgba(255, 255, 255, 0.02);
+[data-bs-theme="dark"] .chip-python {
+  background-color: rgba(55, 125, 34, 0.28);
+  color: #90d070;
+  border-color: rgba(55, 125, 34, 0.4);
 }
-@media (prefers-color-scheme: dark) {
-  .reactable .rt-tbody .rt-tr:nth-child(even) {
-    background-color: var(--table-row-stripe-dark) !important;
+
+[data-bs-theme="dark"] .chip-julia {
+  background-color: rgba(149, 57, 191, 0.28);
+  color: #d49bf5;
+  border-color: rgba(149, 57, 191, 0.4);
+}
+
+[data-bs-theme="dark"] .chip-other {
+  background-color: rgba(108, 117, 125, 0.2);
+  color: #adb5bd;
+  border-color: rgba(108, 117, 125, 0.3);
+}
+
+[data-bs-theme="dark"] .chip-cat {
+  background-color: rgba(245, 197, 24, 0.08);
+  color: #e8c040;
+  border-color: rgba(245, 197, 24, 0.2);
+}
+
+/* ── Category expand toggle ──────────────────────────────────────────────── */
+.category-expand-toggle {
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--bs-secondary-color, #6c757d);
+  background: transparent;
+  border: 1px solid var(--bs-border-color, rgba(128, 128, 128, 0.2));
+  border-radius: 999px;
+  padding: 0.08rem 0.38rem;
+  cursor: pointer;
+  line-height: 1.5;
+  vertical-align: middle;
+  transition: all 0.12s ease;
+  white-space: nowrap;
+}
+
+.category-expand-toggle:hover {
+  border-color: #1a2a4a;
+  color: #1a2a4a;
+}
+
+[data-bs-theme="dark"] .category-expand-toggle:hover {
+  border-color: #F5C518;
+  color: #F5C518;
+}
+
+/* ── Grid & list containers ──────────────────────────────────────────────── */
+#grid-view-container .grid {
+  --bs-columns: 1;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.85rem;
+}
+
+@media (min-width: 576px) {
+  #grid-view-container .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
-  .reactable .rt-tbody .rt-tr:nth-child(even) {
-    background-color: var(--table-row-stripe-light) !important;
+
+@media (min-width: 992px) {
+  #grid-view-container .grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.reactable .rt-search {
-  background-color: var(--bs-body-bg);
-  color: var(--bs-body-color);
-  border-color: var(--bs-border-color, rgba(128, 128, 128, 0.2));
+@media (min-width: 1400px) {
+  #grid-view-container .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
-.reactable .rt-pagination {
-  color: var(--bs-body-color);
+#list-view-container .list-group-item:first-child {
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
-.reactable .rt-pagination-button {
-  color: var(--bs-body-color);
+#list-view-container .list-group-item:last-child {
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
-.reactable .rt-pagination-button:hover {
-  background-color: var(--bs-secondary-bg, rgba(128, 128, 128, 0.1));
-}
-
-.reactable a {
-  color: var(--bs-link-color);
-}
-
-.reactable a:hover {
-  color: var(--bs-link-hover-color);
-}
-
-/* Ensure link cells wrap and are readable in both themes */
-.reactable .rt-td a {
-  word-break: break-word;
-  color: var(--bs-link-color) !important;
-}
-
-/* Filter inputs in dark mode */
-.reactable .rt-thead .rt-th input,
-.reactable .rt-thead .rt-th select {
-  background-color: var(--bs-body-bg);
-  color: var(--bs-body-color);
-  border-color: rgba(128, 128, 128, 0.3);
+/* ── No-results message ──────────────────────────────────────────────────── */
+#no-results-msg {
+  display: none;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--bs-secondary-color, #6c757d);
+  font-size: 0.9rem;
 }
 ```
 
-This resource list was last updated on `r format(Sys.time(), '%b %d, %Y')`.
-Use the search box and filters to find resources by type, language, or category.
-
-```{r}
+```{r setup}
 #| message: false
 #| warning: false
 
-resources <- readr::read_delim(
+library(dplyr)
+library(stringr)
+library(purrr)
+library(htmltools)
+
+# ── Load data ─────────────────────────────────────────────────────────────────
+resources_raw <- readr::read_delim(
   here::here("data", "resources.csv"),
   delim = ";",
   show_col_types = FALSE
-) |>
-  dplyr::mutate(
-    link_text = stringr::str_remove_all(link, "https://|http://|/$"),
-    link_text = stringr::str_trunc(link_text, 40),
-    link = glue::glue("<a href='{link}' target='_blank'>{link_text}</a>")
-  ) |>
-  dplyr::select(-link_text) |>
-  dplyr::mutate(
-    category = stringr::str_replace_all(category, ";", ", ")
-  ) |>
-  dplyr::rename(
-    Type = type,
-    Title = title,
-    Link = link,
-    Language = language,
-    Category = category
+)
+
+# ── Super-category rules (priority-ordered) ───────────────────────────────────
+super_rules <- list(
+  "Machine Learning & AI" = c(
+    "machine learning", "deep learning", "nlp", "computer vision",
+    "neural", "transformer", "gan", "llm", "llms", "diffusion",
+    "mlops", "ai", "artificial intelligence", "reinforcement learning",
+    "classification", "clustering", "feature engineering"
+  ),
+  "Statistics" = c(
+    "statistics", "bayesian", "bayesian statistics", "mixed model",
+    "mixed models", "meta-analysis", "survival", "longitudinal",
+    "glmm", "causal", "spc", "regression", "econometrics",
+    "time series", "factor analysis", "probability", "inference",
+    "frequentist", "sampling", "simulation"
+  ),
+  "R & Shiny" = c(
+    "shiny", "r markdown", "quarto", "renv", "golem", "ggplot2",
+    "tidyverse", "web development", "ggplot", "flexdashboard",
+    "pkgdown", "renv", "testthat", "devtools", "usethis",
+    "programming", "r package", "tidyr", "purrr", "dplyr"
+  ),
+  "Data Visualization" = c(
+    "visualization", "data visualization", "charts", "gallery",
+    "color", "dashboard", "dashboards", "plot", "mapping",
+    "cartography", "infographic", "d3", "plotly", "leaflet",
+    "ggplot2", "highcharts", "vega"
+  ),
+  "Python & DevOps" = c(
+    "python", "docker", "git", "github actions", "deployment",
+    "reproducibility", "workflow", "best practices", "devops",
+    "kubernetes", "terraform", "ci/cd", "containers",
+    "version control", "github", "automation"
+  ),
+  "Education" = c(
+    "tutorial", "course", "education", "guide", "reference",
+    "learning", "book", "books", "presentation", "presentations",
+    "workshop", "cheatsheet", "exercises"
+  ),
+  "Community & Events" = c(
+    "community", "conference", "forum", "french", "social",
+    "newsletter", "blog", "meetup", "podcast"
+  ),
+  "Life Sciences" = c(
+    "pharma", "clinical", "ecology", "bioinformatics", "psychology",
+    "genetics", "biomedical", "behavioral", "neuroscience", "health",
+    "epidemiology", "genomics", "proteomics"
+  ),
+  "Research" = c(
+    "research", "paper", "preprint", "journal", "academic",
+    "arxiv", "publication", "reproducible research", "open science"
   )
-```
+)
 
-```{r}
-#| message: false
+assign_super <- function(category_str) {
+  if (is.na(category_str) || category_str == "") return("General")
+  cats <- str_split_1(category_str, ";") |> str_trim() |> tolower()
+  for (name in names(super_rules)) {
+    if (any(cats %in% super_rules[[name]])) return(name)
+  }
+  "General"
+}
 
-library(htmltools)
+# ── Clean & prepare resources ─────────────────────────────────────────────────
+resources <- resources_raw |>
+  mutate(
+    language = str_replace_all(language, ",\\s*", ";"),
+    super = map_chr(category, assign_super)
+  ) |>
+  arrange(type, title)
 
-filter_fct <- function(values, name) {
-  tags$select(
-    tags$option(value = "", "All"),
-    purrr::map(sort(unique(values)), tags$option),
-    onchange = glue::glue(
-      "Reactable.setFilter(
-        'resources-tbl',
-        '{name}',
-        event.target.value
-      )"
-    )
+n_total <- nrow(resources)
+all_types <- sort(unique(resources$type))
+
+# ── Type badge color mapping ──────────────────────────────────────────────────
+type_color <- function(type) {
+  switch(type,
+    "Package" = , "Tool" = , "App" = , "Platform" = , "Repository" = "primary",
+    "Course" = , "Tutorial" = , "Guide" = , "Workshop" = "success",
+    "Book" = , "Documentation" = , "Paper" = , "Journal" = ,
+    "Magazine" = , "Slides" = "info",
+    "Blog" = , "Website" = , "Video" = , "Gallery" = "warning",
+    "Community" = , "Forum" = , "Conference" = , "Social" = ,
+    "Newsletter" = "secondary",
+    "dark"
   )
 }
+
+# ── Language chip helper ──────────────────────────────────────────────────────
+lang_chip <- function(lang_str) {
+  if (is.na(lang_str) || lang_str == "") return(NULL)
+  parts <- str_split_1(lang_str, ";") |> str_trim()
+  map(parts, function(l) {
+    cls <- switch(tolower(l),
+      r = "chip chip-r",
+      python = "chip chip-python",
+      julia = "chip chip-julia",
+      "chip chip-other"
+    )
+    tags$span(class = cls, l)
+  })
+}
+
+# ── Category chips helper (max visible + expand toggle) ───────────────────────
+cat_chips <- function(cat_str, uid, max_shown = 3L) {
+  if (is.na(cat_str) || cat_str == "") return(NULL)
+  parts <- str_split_1(cat_str, ";") |> str_trim()
+  n <- length(parts)
+  shown <- parts[seq_len(min(max_shown, n))]
+  extra <- if (n > max_shown) parts[(max_shown + 1L):n] else character(0L)
+  extra_id <- paste0("extra-", uid)
+
+  visible_chips <- map(shown, function(c) tags$span(class = "chip chip-cat", c))
+
+  if (length(extra) == 0L) {
+    return(visible_chips)
+  }
+
+  extra_chips <- map(extra, function(c) {
+    tags$span(
+      class = "chip chip-cat d-none",
+      `data-extra` = extra_id,
+      c
+    )
+  })
+
+  expand_btn <- tags$button(
+    class = "category-expand-toggle",
+    `data-id` = extra_id,
+    paste0("+", length(extra))
+  )
+
+  list(visible_chips, extra_chips, expand_btn)
+}
+
+# ── Build one card + one list item ────────────────────────────────────────────
+make_resource <- function(i) {
+  row <- resources[i, ]
+  type <- row$type
+  title_text <- row$title
+  link <- row$link
+  lang_str <- row$language
+  cat_str <- row$category
+  super <- row$super
+
+  # Filtering attributes (all lowercase for simple JS string matching)
+  data_attrs <- list(
+    `data-type` = tolower(type),
+    `data-language` = tolower(lang_str),
+    `data-categories` = tolower(cat_str),
+    `data-super` = tolower(super)
+  )
+
+  lchips <- lang_chip(lang_str)
+  cchips <- cat_chips(cat_str, i)
+  badge <- tags$span(
+    class = paste0("badge resource-type bg-", type_color(type)),
+    type
+  )
+  title_link <- tags$a(
+    href = link,
+    target = "_blank",
+    rel = "noopener noreferrer",
+    title_text
+  )
+
+  # ── Grid card ──────────────────────────────────────────────────────────────
+  grid_item <- do.call(tags$div, c(
+    list(class = "g-col"),
+    data_attrs,
+    list(
+      tags$div(
+        class = "card resource-card h-100",
+        tags$div(
+          class = "card-body",
+          tags$div(
+            class = "d-flex justify-content-between align-items-start mb-2",
+            badge,
+            tags$div(class = "d-flex flex-wrap gap-1 justify-content-end", lchips)
+          ),
+          tags$div(
+            class = "resource-title mb-2",
+            title_link
+          ),
+          tags$div(
+            class = "cat-chips",
+            style = "line-height: 1.9;",
+            cchips
+          )
+        )
+      )
+    )
+  ))
+
+  # ── List item ──────────────────────────────────────────────────────────────
+  list_item <- do.call(tags$li, c(
+    list(class = "list-group-item resource-item"),
+    data_attrs,
+    list(
+      tags$div(
+        class = "d-flex align-items-center gap-2 flex-wrap",
+        badge,
+        tags$span(class = "resource-title flex-grow-1", title_link),
+        tags$div(class = "d-flex gap-1 flex-wrap flex-shrink-0", lchips)
+      ),
+      tags$div(
+        class = "cat-chips mt-1",
+        style = "line-height: 1.9;",
+        cchips
+      )
+    )
+  ))
+
+  list(grid = grid_item, list = list_item)
+}
+
+# ── Render all resources ──────────────────────────────────────────────────────
+all_resources <- map(seq_len(nrow(resources)), make_resource)
+grid_items <- map(all_resources, "grid")
+list_items <- map(all_resources, "list")
 ```
 
-```{r}
-resources |>
-  dplyr::arrange(Type, Title) |>
-  reactable::reactable(
-    columns = list(
-      Type = reactable::colDef(
-        name = "Type",
-        filterInput = filter_fct,
-        maxWidth = 120
+```{r controls}
+# ── Build controls HTML ───────────────────────────────────────────────────────
+
+# Language filter chips
+lang_chip_defs <- list(
+  list(value = "r",      label = "R",      color = "color: #1a579d; border-color: rgba(26,87,157,0.4);"),
+  list(value = "python", label = "Python", color = "color: #3a7a20; border-color: rgba(55,125,34,0.4);"),
+  list(value = "julia",  label = "Julia",  color = "color: #8b33b3; border-color: rgba(149,57,191,0.4);"),
+  list(value = "other",  label = "Other",  color = "color: #555f6a; border-color: rgba(108,117,125,0.35);")
+)
+
+# Super-category filter chips
+super_chip_defs <- list(
+  list(value = "machine learning & ai", label = "ML & AI"),
+  list(value = "statistics",            label = "Statistics"),
+  list(value = "r & shiny",             label = "R & Shiny"),
+  list(value = "data visualization",    label = "Viz"),
+  list(value = "python & devops",       label = "Python & DevOps"),
+  list(value = "education",             label = "Education"),
+  list(value = "community & events",    label = "Community"),
+  list(value = "life sciences",         label = "Life Sciences"),
+  list(value = "research",              label = "Research"),
+  list(value = "general",              label = "General")
+)
+
+make_chip <- function(value, label, extra_style = NULL) {
+  attrs <- list(
+    class = "btn filter-chip",
+    `data-filter-group` = if (value %in% map_chr(lang_chip_defs, "value")) "language" else "super",
+    `data-filter-value` = value,
+    `aria-pressed` = "false"
+  )
+  if (!is.null(extra_style)) attrs$style <- extra_style
+  do.call(tags$button, c(attrs, list(label)))
+}
+
+lang_chips_html <- map(lang_chip_defs, function(d) {
+  make_chip(d$value, d$label, d$color)
+})
+
+super_chips_html <- map(super_chip_defs, function(d) {
+  attrs <- list(
+    class = "btn filter-chip",
+    `data-filter-group` = "super",
+    `data-filter-value` = d$value,
+    `aria-pressed` = "false"
+  )
+  do.call(tags$button, c(attrs, list(d$label)))
+})
+
+type_options <- c(
+  list(tags$option(value = "", "All types")),
+  map(all_types, function(t) tags$option(value = tolower(t), t))
+)
+
+tagList(
+  tags$div(
+    class = "controls-wrapper",
+    # Row 1: search + view toggle
+    tags$div(
+      class = "controls-search-row",
+      tags$div(
+        class = "resource-search-wrap input-group",
+        tags$span(
+          class = "input-group-text",
+          tags$i(class = "bi bi-search")
+        ),
+        tags$input(
+          type = "text",
+          id = "resource-search",
+          class = "form-control",
+          placeholder = paste0("Search ", n_total, " resources by title or category\u2026"),
+          `aria-label` = "Search resources"
+        )
       ),
-      Title = reactable::colDef(
-        name = "Title",
-        minWidth = 180,
-        style = list(whiteSpace = "normal", wordBreak = "break-word")
-      ),
-      Link = reactable::colDef(
-        name = "Link",
-        html = TRUE,
-        minWidth = 200,
-        style = list(whiteSpace = "normal", wordBreak = "break-word")
-      ),
-      Language = reactable::colDef(
-        name = "Language",
-        filterInput = filter_fct,
-        maxWidth = 120
-      ),
-      Category = reactable::colDef(
-        name = "Category",
-        minWidth = 150,
-        style = list(whiteSpace = "normal", wordBreak = "break-word")
+      # View toggle
+      tags$div(
+        class = "d-flex gap-1 flex-shrink-0",
+        tags$input(
+          type = "radio",
+          class = "btn-check",
+          name = "view-toggle",
+          id = "grid-view-btn",
+          checked = NA
+        ),
+        tags$label(
+          class = "view-toggle-label",
+          `for` = "grid-view-btn",
+          tags$i(class = "bi bi-grid-3x3-gap me-1"),
+          "Grid"
+        ),
+        tags$input(
+          type = "radio",
+          class = "btn-check",
+          name = "view-toggle",
+          id = "list-view-btn"
+        ),
+        tags$label(
+          class = "view-toggle-label",
+          `for` = "list-view-btn",
+          tags$i(class = "bi bi-list-ul me-1"),
+          "List"
+        )
       )
     ),
-    searchable = TRUE,
-    striped = TRUE,
-    pagination = TRUE,
-    showPageSizeOptions = TRUE,
-    pageSizeOptions = c(10, 25, 50, 100),
-    defaultPageSize = 25,
-    compact = TRUE,
-    elementId = "resources-tbl",
-    filterable = TRUE,
-    sortable = TRUE,
-    showSortable = TRUE,
-    highlight = TRUE,
-    bordered = TRUE
+    # Row 2: language chips
+    tags$div(
+      class = "controls-chips-row",
+      tags$span(class = "filter-section-label", "Language"),
+      tags$div(class = "filter-divider"),
+      lang_chips_html
+    ),
+    # Row 3: super-category chips
+    tags$div(
+      class = "controls-chips-row",
+      tags$span(class = "filter-section-label", "Topic"),
+      tags$div(class = "filter-divider"),
+      super_chips_html
+    ),
+    # Row 4: type dropdown + clear + counter
+    tags$div(
+      class = "controls-bottom-row",
+      do.call(tags$select, c(list(id = "type-filter"), type_options)),
+      tags$button(
+        id = "clear-filters",
+        class = "btn btn-sm",
+        style = "font-size: 0.78rem; border: 1.5px solid var(--bs-border-color, rgba(128,128,128,0.25)); border-radius: 0.375rem; padding: 0.25rem 0.65rem;",
+        tags$i(class = "bi bi-x-circle me-1"),
+        "Clear"
+      ),
+      tags$div(
+        class = "catalog-counter",
+        "Showing ",
+        tags$strong(id = "resources-count", as.character(n_total)),
+        " of ",
+        tags$strong(as.character(n_total)),
+        " resources"
+      )
+    )
   )
+)
 ```
 
-<br>
+```{r cards}
+# ── Grid + List views ─────────────────────────────────────────────────────────
+tagList(
+  # Grid view
+  tags$div(
+    id = "grid-view-container",
+    tags$div(
+      class = "grid",
+      grid_items
+    )
+  ),
+  # List view (hidden by default)
+  tags$div(
+    id = "list-view-container",
+    class = "d-none",
+    tags$ul(
+      class = "list-group",
+      list_items
+    )
+  ),
+  # No results message
+  tags$div(
+    id = "no-results-msg",
+    tags$i(class = "bi bi-search me-2"),
+    "No resources match your current filters.",
+    tags$button(
+      id = "no-results-clear",
+      class = "btn btn-link btn-sm p-0 ms-2",
+      style = "font-size: inherit;",
+      "Clear filters"
+    )
+  )
+)
+```
+
+```{=html}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // ── Cache DOM elements ────────────────────────────────────────────────────
+  const searchInput     = document.getElementById('resource-search');
+  const typeSelect      = document.getElementById('type-filter');
+  const clearBtn        = document.getElementById('clear-filters');
+  const noResultsClear  = document.getElementById('no-results-clear');
+  const noResultsMsg    = document.getElementById('no-results-msg');
+  const gridContainer   = document.getElementById('grid-view-container');
+  const listContainer   = document.getElementById('list-view-container');
+  const gridViewBtn     = document.getElementById('grid-view-btn');
+  const listViewBtn     = document.getElementById('list-view-btn');
+  const countEl         = document.getElementById('resources-count');
+
+  if (!searchInput || !gridContainer || !listContainer) return;
+
+  // ── Active filter state ───────────────────────────────────────────────────
+  const activeFilters = { language: new Set(), super: new Set() };
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
+  function getGridWrappers() {
+    return Array.from(gridContainer.querySelectorAll('.g-col'));
+  }
+  function getListWrappers() {
+    return Array.from(listContainer.querySelectorAll('.list-group-item'));
+  }
+  function getCardFromWrapper(wrapper) {
+    return wrapper.querySelector('.resource-card') || wrapper;
+  }
+  function getItemFromWrapper(wrapper) {
+    return wrapper.classList.contains('resource-item') ? wrapper
+      : wrapper.querySelector('.resource-item');
+  }
+
+  // ── Core filter + search logic ────────────────────────────────────────────
+  function applyAll() {
+    const query     = searchInput.value.trim().toLowerCase();
+    const typeVal   = typeSelect.value.toLowerCase();
+    const langSet   = activeFilters.language;
+    const superSet  = activeFilters.super;
+
+    const gridWrappers = getGridWrappers();
+    const listWrappers = getListWrappers();
+    let visible = 0;
+
+    gridWrappers.forEach(function (wrapper, idx) {
+      const card     = getCardFromWrapper(wrapper);
+      const listWrap = listWrappers[idx];
+
+      let show = true;
+
+      // Search
+      if (show && query) {
+        const titleEl = card ? card.querySelector('.resource-title a') : wrapper.querySelector('.resource-title a');
+        const title   = titleEl ? titleEl.textContent.toLowerCase() : '';
+        const cats    = (wrapper.dataset.categories || '').toLowerCase();
+        show = title.includes(query) || cats.includes(query);
+      }
+
+      // Type dropdown
+      if (show && typeVal) {
+        show = (wrapper.dataset.type || '') === typeVal;
+      }
+
+      // Language chips (OR: any selected language must appear)
+      if (show && langSet.size > 0) {
+        const langs = (wrapper.dataset.language || '').split(';').map(function (s) {
+          return s.trim().toLowerCase();
+        });
+        show = Array.from(langSet).some(function (f) {
+          return langs.includes(f);
+        });
+      }
+
+      // Super-category chips (OR: any selected super must match)
+      if (show && superSet.size > 0) {
+        const sup = (wrapper.dataset.super || '').toLowerCase();
+        show = superSet.has(sup);
+      }
+
+      wrapper.style.display = show ? '' : 'none';
+      if (listWrap) listWrap.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    // Update counter
+    if (countEl) countEl.textContent = visible;
+
+    // Show/hide no-results message
+    if (noResultsMsg) {
+      noResultsMsg.style.display = visible === 0 ? 'block' : 'none';
+    }
+  }
+
+  // ── Search (debounced) ────────────────────────────────────────────────────
+  function debounce(fn, ms) {
+    var t;
+    return function () {
+      clearTimeout(t);
+      t = setTimeout(fn, ms);
+    };
+  }
+
+  searchInput.addEventListener('input', debounce(applyAll, 280));
+
+  // ── Type dropdown ─────────────────────────────────────────────────────────
+  typeSelect.addEventListener('change', applyAll);
+
+  // ── Filter chips (event delegation) ──────────────────────────────────────
+  document.addEventListener('click', function (e) {
+    var chip = e.target.closest('.filter-chip');
+    if (!chip) return;
+    var group = chip.dataset.filterGroup;
+    var value = chip.dataset.filterValue;
+    if (!group || !value) return;
+
+    if (chip.classList.contains('active')) {
+      chip.classList.remove('active');
+      chip.setAttribute('aria-pressed', 'false');
+      activeFilters[group].delete(value);
+    } else {
+      chip.classList.add('active');
+      chip.setAttribute('aria-pressed', 'true');
+      activeFilters[group].add(value);
+    }
+    applyAll();
+  });
+
+  // ── Clear all filters ─────────────────────────────────────────────────────
+  function clearAll() {
+    searchInput.value = '';
+    typeSelect.value  = '';
+    activeFilters.language.clear();
+    activeFilters.super.clear();
+    document.querySelectorAll('.filter-chip.active').forEach(function (c) {
+      c.classList.remove('active');
+      c.setAttribute('aria-pressed', 'false');
+    });
+    applyAll();
+  }
+
+  clearBtn.addEventListener('click', clearAll);
+  if (noResultsClear) noResultsClear.addEventListener('click', clearAll);
+
+  // ── View toggle ───────────────────────────────────────────────────────────
+  if (gridViewBtn) {
+    gridViewBtn.addEventListener('change', function () {
+      if (this.checked) {
+        gridContainer.classList.remove('d-none');
+        listContainer.classList.add('d-none');
+      }
+    });
+  }
+  if (listViewBtn) {
+    listViewBtn.addEventListener('change', function () {
+      if (this.checked) {
+        listContainer.classList.remove('d-none');
+        gridContainer.classList.add('d-none');
+      }
+    });
+  }
+
+  // ── Category expand toggle (event delegation) ─────────────────────────────
+  document.body.addEventListener('click', function (e) {
+    var btn = e.target.closest('.category-expand-toggle');
+    if (!btn) return;
+    e.stopPropagation();
+    var targetId = btn.getAttribute('data-id');
+    var extras   = document.querySelectorAll('[data-extra="' + targetId + '"]');
+    extras.forEach(function (badge) { badge.classList.remove('d-none'); });
+    btn.style.display = 'none';
+  });
+
+  // Initial render
+  applyAll();
+});
+</script>
+```
 
 ::: {.callout-note}
 ## Contributing
-Want to add a resource? Edit the `data/resources.csv` file and submit a PR on [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io).
+Want to add a resource? Edit `data/resources.csv` and open a PR on [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io).
 :::
 
-Links to external websites are provided for convenience and informational purposes only.
+*Links to external websites are provided for convenience and informational purposes only.*

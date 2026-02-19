@@ -1,0 +1,73 @@
+# Light mode brand configuration
+
+meta:
+  name: Antoine Lucas
+  link: https://antoinelucasfra.github.io
+
+color:
+  palette:
+    # Primary colors from the image
+    gold: "#F5C518"
+    gold-light: "#FDD835"
+    gold-dark: "#C9A000"
+
+    # Navy blues from the coat
+    navy: "#1a2a4a"
+    navy-light: "#2c3e50"
+    navy-dark: "#0d1b2a"
+
+    # Accent blues
+    blue: "#3498db"
+    blue-light: "#5dade2"
+    blue-dark: "#2980b9"
+
+    # Neutrals
+    white: "#ffffff"
+    off-white: "#f8f9fa"
+    light-grey: "#e9ecef"
+    grey: "#6c757d"
+    dark-grey: "#343a40"
+    black: "#111111"
+
+  foreground: navy
+  background: white
+  primary: navy
+  secondary: gold
+  tertiary: blue
+  success: "#28a745"
+  info: blue
+  warning: gold
+  danger: "#dc3545"
+  light: off-white
+  dark: navy-dark
+  link: navy
+
+logo:
+  medium: assets/images/profile-pic.jpg
+
+typography:
+  fonts:
+    - family: "Inter"
+      source: google
+    - family: "JetBrains Mono"
+      source: google
+  base: Inter
+  headings:
+    family: Inter
+    weight: 700
+    color: navy
+  monospace: JetBrains Mono
+  monospace-inline:
+    color: navy
+    background-color: light
+  monospace-block:
+    background-color: off-white
+
+defaults:
+  bootstrap:
+    defaults:
+      navbar-bg: $brand-navy
+      navbar-fg: $brand-white
+      link-decoration: none
+      link-hover-decoration: underline
+      border-radius: 0.375rem

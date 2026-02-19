@@ -4,17 +4,19 @@ title-block-banner: true
 listing:
   - id: posts
     contents: posts
-    type: default
+    type: grid
+    grid-columns: 3
+    image-height: 180px
     sort: "date desc"
     categories: true
     feed: true
     filter-ui: true
     sort-ui: true
-    page-size: 10
+    page-size: 9
     fields: [image, date, title, description, categories, reading-time]
 ---
 
-Welcome to my blog where I share insights, tutorials, and thoughts on data science, statistics, and working in the pharma/cosmetic industries.
+Field notes from applied data science in pharma and cosmetics R&D. Mostly R and Python, usually statistics, occasionally opinions. I write when I've worked something out and it seems worth documenting — for my future self as much as anyone else.
 
 :::: {#posts}
 ::::

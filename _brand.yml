@@ -1,0 +1,101 @@
+# _brand.yml — Antoine Lucas personal website
+# Identity: modern data scientist portfolio, minimal, confident.
+# Visual DNA: deep navy + warm gold — clean, high-contrast, slightly One Piece-inspired.
+
+meta:
+  name: Antoine Lucas
+  link:
+    home: https://antoinelucasfra.github.io
+    github: https://github.com/antoinelucasfra
+    linkedin: https://www.linkedin.com/in/antoinelucasdata/
+
+color:
+  palette:
+    # ── Core two-color system ──────────────────────────────────────────────
+    navy:       "#0d1b2a"   # deepest background / hero dark
+    navy-mid:   "#1a2a4a"   # surfaces, cards, navbar
+    navy-muted: "#2c3e50"   # borders, secondary surfaces
+
+    gold:       "#F5C518"   # primary accent — warm, authoritative
+    gold-light: "#FFD94A"   # hover states, active indicators
+
+    # ── Neutrals ──────────────────────────────────────────────────────────
+    white:      "#FFFFFF"
+    snow:       "#F8F9FA"   # light page background
+    smoke:      "#E9ECEF"   # subtle dividers
+    slate:      "#6C757D"   # muted text, meta info
+    ink:        "#1C2833"   # body text on light background
+
+    # ── Semantic accents ──────────────────────────────────────────────────
+    teal:       "#17A89E"   # success / info — contrasts navy without clashing gold
+    crimson:    "#C0392B"   # danger / error
+
+  # ── Light mode theme ────────────────────────────────────────────────────
+  foreground: ink
+  background: snow
+  primary:    navy-mid
+  secondary:  slate
+  tertiary:   smoke
+  success:    teal
+  info:       teal
+  warning:    gold
+  danger:     crimson
+  light:      snow
+  dark:       navy
+  link:       navy-mid
+
+typography:
+  fonts:
+    # Display / headings — bold, editorial, chapter-title energy
+    - family: "Sora"
+      source: google
+      weight: [400, 600, 700, 800]
+      style: normal
+
+    # Body — clean, highly legible, modern neutral
+    - family: "DM Sans"
+      source: google
+      weight: [300, 400, 500, 600]
+      style: [normal, italic]
+
+    # Monospace — technical, precise
+    - family: "JetBrains Mono"
+      source: google
+      weight: [400, 500]
+      style: normal
+
+  base:
+    family: "DM Sans"
+    size: 1rem
+    weight: 400
+    line-height: 1.7
+
+  headings:
+    family: "Sora"
+    weight: 700
+    color: navy-mid
+    line-height: 1.2
+
+  monospace:
+    family: "JetBrains Mono"
+    size: 0.875em
+
+  monospace-inline:
+    color: navy-mid
+    background-color: smoke
+
+  monospace-block:
+    color: snow
+    background-color: navy
+
+  link:
+    color: navy-mid
+    decoration: none
+
+defaults:
+  bootstrap:
+    defaults:
+      enable-rounded: true
+      border-radius: "0.375rem"
+      link-decoration: none
+      link-hover-decoration: none
