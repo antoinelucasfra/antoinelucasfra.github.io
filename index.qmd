@@ -19,7 +19,7 @@ Antoine Lucas
 :::
 
 ::: {.hero-tagline}
-Data Scientist & ML Engineer
+Biostatistician & Data Scientist
 :::
 
 ::: {.hero-location}
@@ -125,8 +125,8 @@ Everything in Git, documented, runnable in 6 months with `renv::restore()` or `u
 
 ## Education {.section-heading .education}
 
-- **Diplôme d'Ingénieur en Agronomie** — *Statistiques appliquées aux Sciences de la Vie* · AgroParisTech · *2021*
-- **Master en Mathématiques Appliquées, Statistiques** · *2021*
+- **Diplôme d'Ingénieur — Statistiques appliquées aux Sciences de la Vie** — *Institut Agro - Agrocampus Ouest, Rennes* · *2021*
+- **Master en Mathématiques Appliquées, Statistiques** — *Université Paris-Saclay* · *2021*
 
 ---
 

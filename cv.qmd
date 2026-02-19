@@ -22,7 +22,7 @@ format:
   <header class="cv-header">
     <div class="cv-header-text">
       <h1 class="cv-name">Antoine Lucas</h1>
-      <p class="cv-title">Data Scientist &amp; ML Engineer</p>
+      <p class="cv-title">Biostatistician &amp; Data Scientist</p>
       <p class="cv-subtitle">Pharma · Cosmetics · Biotech · Paris, France</p>
       <div class="cv-contacts">
         <a href="mailto:antoine.lucas.fra@gmail.com">
@@ -44,7 +44,7 @@ format:
   <div class="cv-rule"></div>
 
   <p class="cv-summary">
-    Data Scientist &amp; ML Engineer with 5+ years building production-grade data solutions in
+    Biostatistician &amp; Data Scientist with 5+ years building production-grade data solutions in
     regulated industries — pharma, cosmetics, and biotech. Expertise spans statistical
     modelling, Design of Experiments, applied ML (computer vision, NLP), and multi-omics
     analysis. Proven track record translating complex scientific questions into end-to-end
@@ -58,13 +58,13 @@ format:
 #set text(font: "Ubuntu Sans", size: 10pt)
 
 = Antoine Lucas
-*Data Scientist & ML Engineer* | Pharma · Cosmetics · Biotech · Paris, France
+*Biostatistician & Data Scientist* | Pharma · Cosmetics · Biotech · Paris, France
 
 antoine.lucas.fra\@gmail.com | linkedin.com/in/antoinelucasdata | github.com/antoinelucasfra
 
 ---
 
-Data Scientist & ML Engineer with 5+ years building production-grade data solutions in regulated industries — pharma, cosmetics, and biotech. Expertise spans statistical modelling, Design of Experiments, applied ML (computer vision, NLP), and multi-omics analysis. Proven track record translating complex scientific questions into end-to-end systems: from study design and model development through to validated deployment and stakeholder training.
+Biostatistician & Data Scientist with 5+ years building production-grade data solutions in regulated industries — pharma, cosmetics, and biotech. Expertise spans statistical modelling, Design of Experiments, applied ML (computer vision, NLP), and multi-omics analysis. Proven track record translating complex scientific questions into end-to-end systems: from study design and model development through to validated deployment and stakeholder training.
 ```
 
 ```{=html}
@@ -161,7 +161,7 @@ Data Scientist & ML Engineer with 5+ years building production-grade data soluti
 ::: {.cv-entry-head}
 ::: {.cv-entry-meta}
 [**Diplôme d'Ingénieur — Statistiques appliquées aux Sciences de la Vie**]{.cv-role}
-[*Agrocampus Ouest*]{.cv-org}
+[*Institut Agro - Agrocampus Ouest, Rennes*]{.cv-org}
 :::
 [2021]{.cv-period}
 :::

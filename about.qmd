@@ -9,7 +9,7 @@ format:
 
 ## How I got here
 
-I didn't start out planning to become a data scientist. I studied agronomy engineering at AgroParisTech — which is fundamentally about applying science to complex living systems — and during my statistics courses I realized that the analytical side was what excited me most. Not just running models, but understanding *why* a method works, and what it can and can't tell you about the real world.
+I didn't start out planning to become a data scientist. I studied agronomy engineering at **Institut Agro - Agrocampus Ouest** (Rennes) — which is fundamentally about applying science to complex living systems — and during my statistics courses I realized that the analytical side was what excited me most. Not just running models, but understanding *why* a method works, and what it can and can't tell you about the real world.
 
 After finishing both my engineering degree and a master's in applied mathematics and statistics in 2021, I joined **Astek / IT&M Stats**, a consultancy that places statisticians and data scientists inside large R&D organizations. That structure has shaped how I work: every 12–18 months, a new domain, a new team, a new set of constraints. It forces you to get good at context-switching, at earning trust quickly, and at building things that work without you being there to explain them.
 
