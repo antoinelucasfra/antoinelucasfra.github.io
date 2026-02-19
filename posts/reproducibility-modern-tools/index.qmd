@@ -4,6 +4,7 @@ description: "A comprehensive guide to achieving reproducible data science workf
 author: "Antoine Lucas"
 date: "2024-12-13"
 categories: [R, Python, Reproducibility, DevContainers, Docker, Package Management, Best Practices]
+image: "featured.png"
 ---
 
 ## Introduction
