@@ -30,20 +30,24 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./assets/images/profile.jpg" rel="icon" type="image/jpeg">
+<link href="./assets/images/profile-pic.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-9fe37189e6f3cfe4519150b7885fae39.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-02756c461d61228902c1a3b1c91cfe7a.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-9fe37189e6f3cfe4519150b7885fae39.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b35538417311420d789a15d7d09748c3.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-e27dde91bf2ae04cbde3e23b6b1d387c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b35538417311420d789a15d7d09748c3.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b20ebd31e365947f137362bc6315cc9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-0034ada60e6baa5c6a13a98455ba6ae4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-b20ebd31e365947f137362bc6315cc9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bf0cb9d1d16deb78c92ff8dade16b5df.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c18f9c891b9bc4a2db350fceee645f42.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bf0cb9d1d16deb78c92ff8dade16b5df.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,8 +78,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="Antoine Lucas">
-<meta property="og:description" content="Data Scientist | Pharma &amp; Cosmetic Industries">
-<meta property="og:image" content="https://antoinelucasfra.github.io/assets/images/profile.jpg">
+<meta property="og:description" content="Data Scientist &amp; ML Engineer in pharma and cosmetic industries — Portfolio, Blog, and Projects">
+<meta property="og:image" content="https://antoinelucasfra.github.io/assets/images/profile-pic.jpg">
 <meta property="og:site_name" content="Antoine Lucas">
 </head>
 
@@ -248,9 +252,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/images/profile.jpg" alt="" class="navbar-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Antoine Lucas</span>
     </a>
@@ -260,11 +261,7 @@ ul.task-list li input[type="checkbox"] {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">About</span></a>
-  </li>  
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Blog</span></a>
@@ -274,16 +271,22 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects/resources_catalog.html"> 
-<span class="menu-text">Resources</span></a>
+    <a class="nav-link" href="./cv.html"> 
+<span class="menu-text">CV</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/antoinelucasdata/"> <i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/antoinelucasdata/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/antoinelucasfra"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/antoinelucasfra"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -301,142 +304,122 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
-
-
-
-<div class="quarto-about-solana column-body">
-  <div class="about-entity">
-    <div class="entity-contents">
-      <header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Antoine Lucas</h1>
-<p class="subtitle lead"></p><p>Data Scientist | Pharma &amp; Cosmetic Industries</p><p></p>
 </div>
+
+
+
 <div class="quarto-title-meta">
+
+    
+  
+    
   </div>
-</header> <div class="about-links">
-  <a href="mailto:antoinelucas@example.com" class="about-link" rel="" target="">
-    <i class="bi bi-envelope"></i>
-     <span class="about-link-text">Email</span>
-  </a>
-  <a href="https://www.linkedin.com/in/antoinelucasdata/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://twitter.com/antoineloucass" class="about-link" rel="" target="">
-    <i class="bi bi-twitter"></i>
-     <span class="about-link-text">Twitter</span>
-  </a>
-  <a href="https://github.com/antoinelucasfra" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
-</div>
-      <div class="about-contents"><div id="hero">
-</div></div>
-    </div>
-    <img src="assets/images/profile.jpg" class="about-image
-  round " style="height: 12em; width: 12em;">
-  </div>
-</div>
+  
 
-<div class="about-body">
-<p>I am a <strong>Data Scientist</strong> with <strong>5 years of experience</strong> in the <strong>pharmaceutical</strong> and <strong>cosmetic</strong> industries.</p>
-<p>I specialize in leveraging data to drive insights, optimize processes, and support evidence-based decision-making in highly regulated environments.</p>
+
+</header>
+
+
+<div class="hero-grid">
+<div class="hero-photo-col">
+<p><a href="assets/images/profile-pic.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="assets/images/profile-pic.jpg" class="hero-img img-fluid"></a></p>
+</div>
+<div class="hero-text-col">
+<div class="hero-name">
+<p>Antoine Lucas</p>
+</div>
+<div class="hero-tagline">
+<p>Data Scientist &amp; ML Engineer</p>
+</div>
+<div class="hero-location">
+<p>Pharma &amp; Cosmetic R&amp;D · Paris</p>
+</div>
+<div class="hero-links">
+<p><a href="mailto:antoine.lucas.fra@gmail.com" class="hero-link"><i class="bi bi-envelope"></i> Email</a> <a href="https://www.linkedin.com/in/antoinelucasdata/" class="hero-link"><i class="bi bi-linkedin"></i> LinkedIn</a> <a href="https://github.com/antoinelucasfra" class="hero-link"><i class="bi bi-github"></i> GitHub</a> <a href="https://twitter.com/antoineloucass" class="hero-link"><i class="bi bi-twitter"></i> Twitter</a> <a href="./cv.html" class="hero-link hero-link-cv"><i class="bi bi-file-earmark-person"></i> CV</a></p>
+</div>
+</div>
+</div>
+<hr>
+<p>I trained as an agronomy engineer, specialized in applied statistics, and somehow ended up building machine learning systems for Chanel’s fragrance R&amp;D. The path made sense at each step, even if it doesn’t look obvious on paper.</p>
+<p>For the past 4+ years I’ve been embedded in R&amp;D and clinical teams at <strong>L’Oréal</strong>, <strong>Sanofi</strong>, <strong>Abolis</strong> (microbiome biotech), and now <strong>Chanel Parfums Beauté</strong> — always at the intersection of data and experimental science.</p>
 <div class="highlight">
-<p>I am <strong>available</strong> for freelance projects and consulting engagements.</p>
+<p>Currently <strong>Data Scientist &amp; ML Engineer at Chanel Parfums Beauté R&amp;D</strong>, on mission via Astek / IT&amp;M Stats. Building ML and computer vision tools for fragrance and cosmetics research.</p>
 </div>
-<section id="what-i-do" class="level2">
-<h2 data-anchor-id="what-i-do">💼 What I Do</h2>
-<p>I transform complex data challenges into actionable insights. My work spans:</p>
-<ul>
-<li><strong>Clinical Trial Analytics</strong> — Statistical analysis and reporting for clinical studies</li>
-<li><strong>Formulation Optimization</strong> — Data-driven approaches to product development</li>
-<li><strong>Quality Control &amp; Compliance</strong> — Statistical process control and regulatory analytics</li>
-<li><strong>Predictive Modeling</strong> — Machine learning for demand forecasting and stability studies</li>
-<li><strong>Data Visualization</strong> — Clear, compelling dashboards and reports for stakeholders</li>
-</ul>
+<section id="what-i-do" class="level2 section-heading">
+<h2 class="section-heading anchored" data-anchor-id="what-i-do">What I do</h2>
+<div class="what-i-do">
+<section id="statistical-modeling-analysis" class="level3 wid-item">
+<h3 class="anchored" data-anchor-id="statistical-modeling-analysis">Statistical modeling &amp; analysis</h3>
+<p>From design of experiments and mixed models to biostatistics in GxP environments. I cover the full analytical chain — from raw assay data to interpretation for regulatory submissions.</p>
 </section>
-<section id="industry-experience" class="level2">
-<h2 data-anchor-id="industry-experience">🔬 Industry Experience</h2>
-<div class="highlight">
-<p><strong>5+ years</strong> working with leading pharma and cosmetic companies on data-driven solutions.</p>
+<section id="r-shiny-applications" class="level3 wid-item">
+<h3 class="anchored" data-anchor-id="r-shiny-applications">R Shiny applications</h3>
+<p>I build internal tools that scientists actually want to use. Dashboards for QC monitoring, SPC, pilot manufacturing, clinical data management. The measure of success is whether the app disappears — people just use it.</p>
+</section>
+<section id="machine-learning-computer-vision" class="level3 wid-item">
+<h3 class="anchored" data-anchor-id="machine-learning-computer-vision">Machine learning &amp; computer vision</h3>
+<p>Predictive models in fragrance formulation, image classification pipelines, NLP for raw material descriptions. Production-grade tools that go into daily research workflows.</p>
+</section>
+<section id="reproducible-data-science" class="level3 wid-item">
+<h3 class="anchored" data-anchor-id="reproducible-data-science">Reproducible data science</h3>
+<p>Everything in Git, documented, runnable in 6 months with <code>renv::restore()</code> or <code>uv sync</code>. I’m opinionated about this because I’ve seen what happens when you’re not.</p>
+</section>
 </div>
-<p>My experience bridges laboratory data, manufacturing processes, and commercial analytics. I understand the unique challenges of working in regulated industries, including:</p>
+</section>
+<section id="skills" class="level2 section-heading">
+<h2 class="section-heading anchored" data-anchor-id="skills">Skills</h2>
+<div class="skill-section">
+<div class="skill-group">
+<p><strong>Languages</strong></p>
+<div class="skill-pills">
+<p><span class="pill">R</span> <span class="pill">Python</span> <span class="pill">SQL</span> <span class="pill">Bash</span></p>
+</div>
+</div>
+<div class="skill-group">
+<p><strong>R ecosystem</strong></p>
+<div class="skill-pills">
+<p><span class="pill">Shiny</span> <span class="pill">Tidyverse</span> <span class="pill">ggplot2</span> <span class="pill">renv</span> <span class="pill">Quarto</span> <span class="pill">targets</span></p>
+</div>
+</div>
+<div class="skill-group">
+<p><strong>Python ecosystem</strong></p>
+<div class="skill-pills">
+<p><span class="pill">PyTorch</span> <span class="pill">scikit-learn</span> <span class="pill">OpenCV</span> <span class="pill">Pandas</span> <span class="pill">uv</span></p>
+</div>
+</div>
+<div class="skill-group">
+<p><strong>Methods</strong></p>
+<div class="skill-pills">
+<p><span class="pill">DoE</span> <span class="pill">Mixed Models</span> <span class="pill">SPC</span> <span class="pill">Survival Analysis</span> <span class="pill">PLS</span> <span class="pill">Computer Vision</span> <span class="pill">NLP</span></p>
+</div>
+</div>
+<div class="skill-group">
+<p><strong>Environments</strong></p>
+<div class="skill-pills">
+<p><span class="pill">GxP / Regulated</span> <span class="pill">Docker</span> <span class="pill">Git</span> <span class="pill">GitHub Actions</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="education" class="level2 section-heading education">
+<h2 class="section-heading education anchored" data-anchor-id="education">Education</h2>
 <ul>
-<li>GxP compliance requirements</li>
-<li>FDA/EMA regulatory frameworks</li>
-<li>Stability testing and shelf-life prediction</li>
-<li>Batch record analysis and deviation investigations</li>
+<li><strong>Diplôme d’Ingénieur en Agronomie</strong> — <em>Statistiques appliquées aux Sciences de la Vie</em> · AgroParisTech · <em>2021</em></li>
+<li><strong>Master en Mathématiques Appliquées, Statistiques</strong> · <em>2021</em></li>
 </ul>
-</section>
-<section id="technical-skills" class="level2">
-<h2 data-anchor-id="technical-skills">🛠️ Technical Skills</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Domain</th>
-<th>Technologies</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Programming</strong></td>
-<td>R, Python, SQL</td>
-</tr>
-<tr class="even">
-<td><strong>Data Analysis</strong></td>
-<td>tidyverse, pandas, scikit-learn</td>
-</tr>
-<tr class="odd">
-<td><strong>Visualization</strong></td>
-<td>ggplot2, Plotly, Shiny, Power BI</td>
-</tr>
-<tr class="even">
-<td><strong>Reporting</strong></td>
-<td>Quarto, R Markdown, Jupyter</td>
-</tr>
-<tr class="odd">
-<td><strong>Version Control</strong></td>
-<td>Git, GitHub</td>
-</tr>
-<tr class="even">
-<td><strong>Databases</strong></td>
-<td>PostgreSQL, SQLite, Snowflake</td>
-</tr>
-<tr class="odd">
-<td><strong>Cloud</strong></td>
-<td>AWS, Azure basics</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="core-competencies" class="level2 interests">
-<h2 class="interests" data-anchor-id="core-competencies">🌟 Core Competencies</h2>
-<ul>
-<li>Statistical Analysis &amp; Hypothesis Testing</li>
-<li>Machine Learning &amp; Predictive Modeling</li>
-<li>Time Series Analysis</li>
-<li>Design of Experiments (DoE)</li>
-<li>Data Pipeline Development</li>
-<li>Technical Documentation</li>
-<li>Cross-functional Collaboration</li>
-</ul>
-</section>
-<section id="education" class="level2 education">
-<h2 class="education" data-anchor-id="education">🎓 Education</h2>
-<ul>
-<li><p><strong>M.Sc. in Data Science / Statistics</strong>, <em>2019</em> University Name, France</p></li>
-<li><p><strong>B.Sc. in Mathematics / Applied Sciences</strong>, <em>2017</em> University Name, France</p></li>
-</ul>
-</section>
+<hr>
+<div class="site-nav-footer">
+<p><a href="./blog.html"><i class="bi bi-pen"></i> Blog</a> — field notes from real work · <a href="./projects.html"><i class="bi bi-folder"></i> Projects</a> · <a href="./cv.html"><i class="bi bi-file-text"></i> Full CV</a></p>
 </div>
 
 
-
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -454,6 +437,13 @@ ul.task-list li input[type="checkbox"] {
       window.document.body.appendChild(a);
     }
     setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -856,13 +846,45 @@ ul.task-list li input[type="checkbox"] {
 <p>Powered by <a href="https://quarto.org">Quarto</a>.</p>
 </div>   
     <div class="nav-footer-center">
-<p>© 2025 Antoine Lucas.</p>
+<p>© 2026 Antoine Lucas.</p>
 <div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
