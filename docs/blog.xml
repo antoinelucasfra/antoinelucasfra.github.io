@@ -8,9 +8,9 @@
 <title>Antoine Lucas</title>
 <link>https://antoinelucasfra.github.io/blog.html</link>
 <atom:link href="https://antoinelucasfra.github.io/blog.xml" rel="self" type="application/rss+xml"/>
-<description>Data Scientist specializing in pharma and cosmetic industries — Portfolio, Blog, and Projects</description>
+<description>Data Scientist &amp; ML Engineer in pharma and cosmetic industries — Portfolio, Blog, and Projects</description>
 <image>
-<url>https://antoinelucasfra.github.io/assets/images/profile.jpg</url>
+<url>https://antoinelucasfra.github.io/assets/images/profile-pic.jpg</url>
 <title>Antoine Lucas</title>
 <link>https://antoinelucasfra.github.io/blog.html</link>
 </image>
@@ -164,7 +164,7 @@ font-style: inherit;">"gm_acoustic_bass"</span>)</span></code></pre></div>
   <category>Data</category>
   <guid>https://antoinelucasfra.github.io/posts/livecoding-algorithmic-music/</guid>
   <pubDate>Thu, 12 Dec 2024 23:00:00 GMT</pubDate>
-  <media:content url="https://antoinelucasfra.github.io/posts/livecoding-algorithmic-music/featured.png" medium="image" type="image/png"/>
+  <media:content url="https://antoinelucasfra.github.io/posts/livecoding-algorithmic-music/featured.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>The Reproducibility Quest: Modern Tools for R and Python Data Science</title>
@@ -1554,6 +1554,7 @@ font-style: inherit;">dvc</span> pull</span></code></pre></div>
   <category>Best Practices</category>
   <guid>https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/</guid>
   <pubDate>Thu, 12 Dec 2024 23:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/featured.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog</title>
@@ -1804,6 +1805,7 @@ font-style: inherit;">dvc</span> pull</span></code></pre></div>
   <category>Best Practices</category>
   <guid>https://antoinelucasfra.github.io/posts/why-curate-resources/</guid>
   <pubDate>Thu, 12 Dec 2024 23:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/posts/why-curate-resources/featured.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>rv: The Modern R Package Manager for Reproducible Workflows</title>
@@ -2621,7 +2623,7 @@ font-style: inherit;">rv</span> sync</span></code></pre></div></li>
   <category>Modern Workflow</category>
   <guid>https://antoinelucasfra.github.io/posts/rv-modern-r-package-manager/</guid>
   <pubDate>Thu, 12 Dec 2024 23:00:00 GMT</pubDate>
-  <media:content url="https://antoinelucasfra.github.io/posts/rv-modern-r-package-manager/featured.png" medium="image" type="image/png"/>
+  <media:content url="https://antoinelucasfra.github.io/posts/rv-modern-r-package-manager/featured.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>Building Reproducible Analyses in Pharma with R</title>
@@ -2824,7 +2826,7 @@ font-style: inherit;">)</span></span></code></pre></div>
   <category>Best Practices</category>
   <guid>https://antoinelucasfra.github.io/posts/reproducible-pharma-r/</guid>
   <pubDate>Thu, 14 Nov 2024 23:00:00 GMT</pubDate>
-  <media:content url="https://antoinelucasfra.github.io/posts/reproducible-pharma-r/featured.png" medium="image" type="image/png"/>
+  <media:content url="https://antoinelucasfra.github.io/posts/reproducible-pharma-r/featured.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>Complete Development Setup Guide for R &amp; Python</title>
@@ -2908,6 +2910,7 @@ font-style: inherit;">--list-extensions</span></span></code></pre></div>
   <category>Tutorial</category>
   <guid>https://antoinelucasfra.github.io/posts/dev-setup-guide/</guid>
   <pubDate>Mon, 14 Oct 2024 22:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/posts/dev-setup-guide/featured.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>Statistical Process Control for Cosmetic Manufacturing</title>
@@ -3248,7 +3251,7 @@ font-style: inherit;">}</span></span></code></pre></div>
   <category>SPC</category>
   <guid>https://antoinelucasfra.github.io/posts/spc-cosmetics-r/</guid>
   <pubDate>Thu, 19 Sep 2024 22:00:00 GMT</pubDate>
-  <media:content url="https://antoinelucasfra.github.io/posts/spc-cosmetics-r/featured.png" medium="image" type="image/png"/>
+  <media:content url="https://antoinelucasfra.github.io/posts/spc-cosmetics-r/featured.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>Statistical Theory: Frequentist Methods Reference</title>
@@ -3296,6 +3299,7 @@ font-style: inherit;">}</span></span></code></pre></div>
   <category>Reference</category>
   <guid>https://antoinelucasfra.github.io/posts/stats-theory-frequentist/</guid>
   <pubDate>Mon, 19 Aug 2024 22:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/posts/stats-theory-frequentist/featured.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>Getting Started with Quarto for Data Science Reports</title>
@@ -3510,7 +3514,7 @@ Warning
   <category>Reproducibility</category>
   <guid>https://antoinelucasfra.github.io/posts/quarto-getting-started/</guid>
   <pubDate>Tue, 09 Jul 2024 22:00:00 GMT</pubDate>
-  <media:content url="https://antoinelucasfra.github.io/posts/quarto-getting-started/featured.png" medium="image" type="image/png"/>
+  <media:content url="https://antoinelucasfra.github.io/posts/quarto-getting-started/featured.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 </channel>
 </rss>
