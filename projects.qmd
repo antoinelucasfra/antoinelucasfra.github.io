@@ -19,7 +19,7 @@ listing:
     fields: [image, title, description, categories]
 ---
 
-A selection of data science work I've done and am willing to write about publicly. Most of what I build is under NDA — this is the part that isn't.
+A selection of data science work I've done and am willing to write about publicly. Most of what I build is under NDA or involves proprietary data — client work, production tools for fragrance R&D, clinical data platforms — none of it can be shared. This is the part that can be.
 
 More projects are in the works. In the meantime, the blog is a better indicator of what I'm actually working on.
 
@@ -29,18 +29,6 @@ More projects are in the works. In the meantime, the blog is a better indicator 
 ---
 
 ## Academic & Open-Source
-
-::: {.callout-note appearance="minimal" icon=false}
-
-### SkateJudge
-
-**Technologies:** TypeScript · LLM evaluation
-
-A skateboard trick identifier and judge app powered by LLM-based evaluation. An experiment in applying language models to sports analysis and real-time classification.
-
-[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/SkateJudge){.btn .btn-dark .btn-sm}
-
-:::
 
 ::: {.callout-note appearance="minimal" icon=false}
 

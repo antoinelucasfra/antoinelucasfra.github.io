@@ -5,6 +5,7 @@ author: "Antoine Lucas"
 date: "2024-09-20"
 categories: [R, Quality Control, Cosmetics, SPC]
 image: "featured.png"
+draft: true
 ---
 
 ## Introduction

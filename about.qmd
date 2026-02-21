@@ -23,19 +23,19 @@ Now I'm at **Chanel Parfums Beauté R&D**, working on machine learning and compu
 
 ## What I care about at work
 
-**Working at the interface, not the edges.** The most useful position is between the domain experts (chemists, clinicians, biologists) and the data/software systems. People who sit purely on one side often build the wrong things. My agronomy background genuinely helps here — I can read a protocol, understand an experimental design, and push back when the question being asked can't be answered with the data available.
+**Working at the interface, not the edges.** The most useful position is between the domain experts (chemists, clinicians, biologists) and the data/software systems. People who sit purely on one side often build the wrong things. My agronomy background genuinely helps here — I can read a protocol, understand an experimental design, and push back when the question being asked can't be answered with the data available. I find these cross-functional, partner roles genuinely more interesting than working in isolation.
 
 **Tooling that disappears.** The best internal tools are the ones that become invisible — people just use them. A dashboard that requires a walkthrough every time is a failed tool. I spend a lot of time thinking about UX in contexts (scientific apps, internal platforms) where it's usually ignored.
 
 **Rigor over speed, mostly.** Working in pharma and cosmetics R&D means results matter. Not in an abstract "good science" way — in a "this goes into a regulatory submission" or "this product formula ships to production" way. I've developed a healthy caution about overfitting, about p-values, about claims that outrun the data. The constraints of regulated industries aren't obstacles; they're clarifying.
 
-**Open source tools.** R, Python, Quarto, Git. I'm a strong believer in reproducible, documented workflows — partly because it's the right way to do science, partly because I've seen what happens to analyses that aren't.
+**Understanding models, not just using them.** I'm drawn to the deeper mathematical and statistical machinery underneath the tools I reach for daily. Not for its own sake, but because I've found that understanding *why* a method works — its assumptions, its failure modes, its relationship to other approaches — makes you better at the judgment calls that actually matter.
 
-## This site
+**Explainability and the limits of black boxes.** In regulated R&D, a model you can't explain is often a model you can't use. But beyond compliance, I'm genuinely interested in interpretable ML and AI as a research area — not as a constraint to work around, but as a more honest representation of what we actually know.
 
-Built with [Quarto](https://quarto.org/), hosted on GitHub Pages, deployed automatically on every commit. Custom navy & gold theme (light + dark mode). Source is [on GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io).
+**Staying current without being credulous.** I keep a fairly active scientific watch (*veille scientifique*) — following the methods literature in biostatistics, computational biology, and ML engineering. I try to distinguish between tools that have earned their place and things that are interesting but not yet ready. The field moves fast enough that this requires active effort.
 
-The blog is for things I've worked out and want to write down — not polished tutorials necessarily, but honest field notes from applied data science work.
+**Open source tools and reproducible workflows.** R, Python, Quarto, Git, Docker. Reproducibility is not just a technical preference — it's a practical requirement in regulated science, and it's how you avoid the slow-motion disasters that come from analyses nobody can reconstruct. I've seen what happens to work that wasn't built this way.
 
 ## Get in touch
 
