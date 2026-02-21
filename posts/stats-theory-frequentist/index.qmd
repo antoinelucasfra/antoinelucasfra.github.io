@@ -1,52 +1,190 @@
 ---
-title: "Statistical Theory: Frequentist Methods Reference"
-description: "A comprehensive reference guide to frequentist statistical tests, from basic comparisons to regression models."
+title: "Statistical Tests Demystified: A Practical Guide for Scientists and Engineers"
+description: "A clear, jargon-light walkthrough of frequentist statistics — p-values, error types, test selection, regression, and the things textbooks don't tell you. Written for scientists and engineers who need to use statistics correctly, not just mechanically."
 author: "Antoine Lucas"
-date: "2024-08-20"
-categories: [Statistics, Theory, R, Reference]
+date: "2026-02-21"
+categories: [Statistics, Tutorial, R, Reference, Biostatistics]
 image: "featured.png"
 ---
 
-## Introduction
+## Why this matters
 
-This page serves as a reference for common frequentist statistical methods and their implementation in R.
+A few years ago I reviewed an internal report where an ingredient had been declared "effective" based on a p-value of 0.048 from a one-sample t-test on n=6 measurements. The analyst had run the right test, got a significant result, and written a conclusion. The problem: the study was powered to detect an effect three times larger than the one they claimed to have found, the variance was enormous, and the confidence interval ran from "meaningless effect" to "implausibly large effect".
 
-## Theory on Statistical Tests
+The statistical test had been applied correctly. The statistical reasoning had failed entirely.
 
-Les différents tests statistiques : P-value : c’est la proba que le hasard peut expliquer tout seul 1 différence AU MOINS aussi importante que celle observée. Il y a 2 types d’hypothèses : • Neyman/pearson : l’hypothèse H0 : pa= pb et H1 : pa != pb avec par ex p=0.049 et p=0.00001 ont la MEME « force » de test • Fischer : pareil mais p=0.049 et p = 0.0000001 ont PAS DU TOUT la même force de test
+This post is for the scientists, engineers, and product people who run statistical tests, interpret the results, and make decisions based on them — but who didn't train as statisticians. The goal isn't to make you a statistician. It's to give you enough understanding to avoid the category of mistake above, to ask better questions, and to know when to call someone who does this professionally.
 
-COMPARAISON DE 2 POURCENTAGES
+---
 
-Prop.table(dataframe, ½) =regarde le % de 1ere variable // à 2eme (2/1 si inverse) • Test du chi-2 : chisq.test(x,y,correct=FALSE/TRUE) AVEC les hypothèses de validité (% loin de 0 et 100 et grand échantillon) • Test fischer si aucune hypothèse vérifiée : fisher.test(x,y)
+## The one idea everything builds on
 
-COMPARAISON DE 2 MOYENNES
+The entire edifice of frequentist statistics rests on one uncomfortable idea: **we can't prove things, we can only assess how surprising our data would be if nothing was happening.**
 
-• Test de student : n30 avec une distribution normale. Diagramme de normalité : qqnorm() et qqline(x). Calcul variance : by(x,y,sd,na.rm=TRUE) T.test(x\~y,var.equal=TRUE) si pas d’hypothèses : wilcox.test(x\~y) Test nullité d’un coeff de corrélation, • Test nullité de corrélation entre 2 variables : 1 des 2 variables doit suivre la loi normale =pearson : cor.test(x,y) • Spearman(x,y,method= »spearman ») Comparaison de moyenne // à moyenne de référence • T.test(var,varfixe=XXXX) • Mcnemar.test(var avant, var après) POUR VAR QUALI • T.test (début,fin,paired=TRUE) POUR VAR QUANTI
+The formal name for "nothing is happening" is the null hypothesis, H₀. Examples:
 
-LE T-TEST ANALYSE LES ECARTS TYPES ET LE F-TEST ANALYSE LES MOYENNES
+- H₀: this ingredient has no effect on skin hydration
+- H₀: the two manufacturing batches have the same mean viscosity
+- H₀: age and disease severity are unrelated
 
-TEST NON PARAMETRIQUES Test de wilcoxon : comparaison de K= 2 echantillons independants par rapport a une variable X de nature : Quantitative/Qualitative ordinale C'est le test de l'hypothèse selon laquelle les médianes de chacun de deux groupes de données sont proche Test de cruskal wallis : est une comparaison de K=3 échantillons. Ainsi, l'interprétation du test de Kruskal-Wallis est très similaire à une ANOVA paramétrique d'ordre Un, sauf qu'il est basé sur les rangs au lieu des moyennes.
+The **p-value** is the probability of observing data at least as extreme as yours, *assuming H₀ is true*. That's it. It is not:
 
-REGRESSION LINEAIRE SIMPLE (GENERALISATION DU TEST DE STUDENT) Modèle :lm(x\~y,data= dataframe)
+- The probability that your result is due to chance
+- The probability that H₀ is true
+- A measure of the size or importance of an effect
+- A reproducibility guarantee
 
-REGRESSION LINEAIRE MULTIPLE :
+A worked example. You're testing whether a new moisturiser increases skin hydration vs. a placebo. You recruit 40 volunteers (20 per group), measure hydration at baseline and after 4 weeks, compute the difference, and run a t-test. You get p = 0.032.
 
-Les hypothèses à vérifier sont : normalité du bruit et terme résiduel, le bruit est indépendant des valeurs des autres variables, ABSENCE de corrélation évidente, interne avec le bruit Lm(x\~y+w+z,data = dataframe) Var quanti = somme (var quanti ou binaire MAIS PAS QUALI) si on veut des quali=codage à la main Interactions entre 2 var = on met un \* Analyse de variance/covariance = cas particulier de régression linéaire multiple : toutes les variables explicatives sont catégorielles ou quantitatives
+What this means: if the ingredient truly had no effect, you'd see a difference this large or larger about 3.2% of the time by random chance alone. It's reasonably unlikely, so you reject H₀.
 
-REGRESSION LOGISTIQUE
+What this doesn't tell you: how big the effect is, whether it's clinically meaningful, whether you'd get the same result in a different population, or whether you'll replicate it in the next study.
 
-Si la variable à expliquer est non quantitative : -logistique -transforme les variables Glm(modèle, data = …, family = « binomial ») -coeff lu dans estimate lire exp(valeur estimate) a un sens : odd-ratio pour la regresison multiple on rajoute des var explicatives
+---
 
-Hypothèses : au moins 5 à 10 évènements par var explicatives Ex : si une var a expliquer a 54 individus, (age(1), trauma(1) et profession(7)) et 1 + 1 + 7 =9 *10(=nbr evenement) = 9054 donc c’est bon ! Ex : 1 + 1 +7 =9*5 = 45 54 - passe tout juste pas fou !
+## Type I and Type II errors
 
-Lien recap tests stats https://help.xlstat.com/s/article/guide-de-choix-de-test-statistique?language=fr
+Every statistical test makes one of four kinds of decision. The truth is binary (effect exists or not), and your conclusion is binary (significant or not). This gives a 2×2 table:
 
-ANALYSES DE DONNEES MULTIVARIEES (CF MOOC HUSSON ETC..)
+|  | H₀ true (no effect) | H₀ false (effect exists) |
+|---|---|---|
+| **Test significant** | False positive (Type I, α) | True positive (power) |
+| **Test not significant** | True negative | False negative (Type II, β) |
 
-Tableau recap
+**Type I error (α):** You conclude there's an effect when there isn't one. The false alarm. By convention, α = 0.05, meaning you accept a 5% chance of this per test.
 
-Recap de sensi et speci d’un test :
+**Type II error (β):** You miss a real effect. The missed detection. Power = 1 − β. A study with 80% power has a 20% chance of missing a real effect of the specified size.
 
-Ensuite on définit la sensi comme : Sensi = VP/(VP+FN) c’est donc la proba que le test accepte H0 si elle est vraie Speci = VN/(VN+FP) c’est donc la proba que le test accepte H1 si elle est vraie Ensuite on a la VPP et la VPN : VPP : valeur prédite positive = VP/(VP+FP) et c’est la probabilité que H0 soit vraie lorsque le test conclu à son acceptation VPN : valeur prédite négative = VN/(VN+FN) et c’est la probabilité que H0 soit fausse lorsque le test conclu à son acceptation
+The fire alarm analogy: α is the rate at which the alarm goes off when there's no fire. β is the rate at which there's a fire and the alarm doesn't go off. You want both low. They trade off against each other for a fixed sample size.
 
-Courbe ROC : 1-sensi = f(1-speci) = taux de faux positifs = f(taux de vrais positifs) Et FP = 1- sensi FN = 1 – recall
+From these four cells you can derive four quantities that are far more useful than p-values in applied work:
+
+- **Sensitivity** = TP / (TP + FN) — probability the test fires when the effect is real
+- **Specificity** = TN / (TN + FP) — probability the test stays quiet when there's no effect
+- **PPV** (positive predictive value) = TP / (TP + FP) — probability the effect is real given significance
+- **NPV** (negative predictive value) = TN / (TN + FN) — probability there's no effect given non-significance
+
+PPV is the one people most often forget to think about. In a field where most tested hypotheses are false (say, early-stage drug screening), even a specific test produces a lot of false positives. This is part of the replication crisis.
+
+---
+
+## Choosing the right test
+
+The most common source of error is not the calculation — R will do that correctly. It's choosing the wrong test for the question. Here's the key decision table:
+
+| Situation | Test | R function |
+|---|---|---|
+| Compare 2 group means, normal, equal variance | Student's t-test | `t.test(x ~ g, var.equal = TRUE)` |
+| Compare 2 group means, normal, unequal variance | Welch's t-test (default) | `t.test(x ~ g)` |
+| Compare 2 group means, non-normal or small n | Wilcoxon rank-sum | `wilcox.test(x ~ g)` |
+| Compare >2 group means, normal | One-way ANOVA | `aov(x ~ g)` then `TukeyHSD()` |
+| Compare >2 group means, non-normal | Kruskal-Wallis | `kruskal.test(x ~ g)` |
+| Paired measurements (before/after) | Paired t-test | `t.test(before, after, paired = TRUE)` |
+| Paired, non-normal | Wilcoxon signed-rank | `wilcox.test(before, after, paired = TRUE)` |
+| Two proportions | Chi-squared | `prop.test(c(x1, x2), c(n1, n2))` |
+| Two proportions, small counts | Fisher's exact | `fisher.test(matrix(...))` |
+| Correlation, normal | Pearson | `cor.test(x, y)` |
+| Correlation, non-normal or ordinal | Spearman | `cor.test(x, y, method = "spearman")` |
+
+Three questions to navigate this table:
+
+1. **What is your outcome variable?** Continuous, binary, count, or ordinal?
+2. **How many groups are you comparing?** Two or more?
+3. **Are observations independent?** Or paired/repeated?
+
+If you're unsure whether your data is "normal enough" for a parametric test: with n ≥ 30 per group, the central limit theorem covers you for most practical purposes. Below 30, check with a QQ-plot (`qqnorm()` + `qqline()`) and use a non-parametric alternative if in doubt. The non-parametric versions lose some power but make fewer assumptions.
+
+---
+
+## The regression family
+
+Tests of means and proportions cover simple comparisons. When you have multiple predictors, covariates to control for, or a continuous outcome you want to model, you need regression.
+
+### Linear regression
+
+Models a continuous outcome as a linear function of one or more predictors. Use when: your outcome is continuous and approximately normal given the predictors. The fundamental model is `lm(outcome ~ predictor1 + predictor2, data = df)`. Interactions between two variables are added with `*`: `lm(outcome ~ A * B)` fits main effects for A and B plus the A×B interaction.
+
+The assumptions to check: residuals normally distributed (QQ-plot of residuals), constant variance (residuals vs. fitted values plot), no multicollinearity among predictors (variance inflation factor). Missing any of these doesn't make the coefficients wrong — it makes the standard errors and p-values wrong.
+
+### Logistic regression
+
+When your outcome is binary (success/failure, present/absent), linear regression is inappropriate — it predicts outside [0, 1] and the residuals are non-normal by construction. Logistic regression models the log-odds of the outcome. In R: `glm(outcome ~ predictors, family = binomial)`. Coefficients are on the log-odds scale; exponentiate them (`exp(coef(model))`) to get odds ratios, which are more interpretable.
+
+The key assumption that's often violated: logistic regression requires approximately 10 outcome events per predictor variable. If you have 50 cases of a disease and 8 predictors, you're on the edge. Be conservative.
+
+### Mixed models
+
+When observations are not independent — repeated measures on the same subjects, patients nested within hospitals, batches within production runs — standard regression underestimates uncertainty because it ignores the correlation structure. Mixed models (also called multilevel or hierarchical models) handle this by estimating both fixed effects (the parameters you care about) and random effects (the structure that creates correlation).
+
+In R, `lme4::lmer()` for continuous outcomes and `lme4::glmer()` for binary. These models require more thought to specify correctly — but using a standard regression when you have clustered data is not a conservative choice, it's a wrong one.
+
+---
+
+## What p-values don't tell you
+
+### Effect size
+
+A p-value tells you whether an effect is detectable. Effect size tells you whether it matters. With large enough n, any effect, no matter how trivially small, will be statistically significant. Standard effect size measures:
+
+- **Cohen's d** for mean differences: d = (μ₁ − μ₂) / pooled SD. Small = 0.2, medium = 0.5, large = 0.8.
+- **η²** (eta-squared) for ANOVA: proportion of variance explained.
+- **Odds ratio** for logistic regression: how much more likely the outcome is per unit increase in a predictor.
+
+Always report effect sizes alongside p-values. "Statistically significant, p = 0.03" without an effect size is an incomplete result.
+
+### Confidence intervals
+
+A 95% confidence interval is a range of plausible values for the true parameter. It's constructed so that, under repeated sampling, 95% of intervals computed this way would contain the true value. A wide confidence interval — even if it excludes zero — tells you the estimate is imprecise. In clinical or formulation work, precision matters as much as significance.
+
+The confidence interval carries more information than the p-value. It tells you the direction, the magnitude, and the precision of the estimate simultaneously.
+
+### Multiple comparisons
+
+Every test you run at α = 0.05 has a 5% false positive rate. Run 20 tests and you expect one false positive just by chance. This is not a hypothetical problem — it's routine in omics data, sensory profiling panels, and screening experiments.
+
+Common corrections:
+
+- **Bonferroni**: divide α by the number of tests. Conservative but simple.
+- **Benjamini-Hochberg (FDR)**: controls the expected proportion of false positives among significant results. Less conservative, more appropriate for discovery contexts.
+
+In R: `p.adjust(p_values, method = "BH")` for Benjamini-Hochberg. Use it whenever you're reporting more than 5 or so tests simultaneously.
+
+---
+
+## ROC curves
+
+When you have a continuous classifier (a model score, a biomarker value, a threshold parameter) and a binary outcome, the ROC (Receiver Operating Characteristic) curve shows the trade-off between sensitivity and specificity across all possible thresholds.
+
+The area under the ROC curve (AUC) summarises classifier performance in a single number. AUC = 0.5 is a random classifier. AUC = 1.0 is a perfect classifier. In practice:
+
+- AUC > 0.9: excellent discrimination
+- AUC 0.7–0.9: acceptable
+- AUC 0.5–0.7: poor
+
+In R: `pROC::roc(outcome, score)` then `auc()`. The ROC curve is useful precisely because it's threshold-agnostic — you can choose the operating threshold based on your acceptable trade-off between false positives and false negatives after seeing the curve, rather than committing upfront.
+
+One caution: AUC is an average over all thresholds. In some applications (rare event detection, high-cost false positives), the area under the precision-recall curve is more informative.
+
+---
+
+## Quick reference glossary
+
+**p-value** — Probability of observing data this extreme or more extreme, given H₀ is true. Not the probability that H₀ is true.
+
+**Null hypothesis (H₀)** — The baseline assumption of no effect, no difference, no relationship.
+
+**Type I error (α)** — Rejecting H₀ when it's true. False positive. Conventionally set to 0.05.
+
+**Type II error (β)** — Failing to reject H₀ when it's false. False negative. Power = 1 − β.
+
+**Power** — Probability of detecting a true effect of a given size. Increases with sample size and effect size, decreases with variance.
+
+**Effect size** — A standardised measure of the magnitude of an effect, independent of sample size.
+
+**Confidence interval** — A range of plausible values for the true parameter. Width reflects estimation precision.
+
+**ANOVA** — Analysis of variance. Tests whether at least one group mean differs from the others. Does not tell you which groups differ — you need post-hoc tests (e.g. Tukey HSD) for that.
+
+**Odds ratio** — In logistic regression, the multiplicative change in the odds of the outcome per unit increase in a predictor. OR = 1 means no effect. OR > 1 means increased odds. OR < 1 means decreased odds.
+
+**FDR** — False discovery rate. The expected proportion of significant results that are false positives. Used when running many tests simultaneously (genomics, screening, sensory analysis).

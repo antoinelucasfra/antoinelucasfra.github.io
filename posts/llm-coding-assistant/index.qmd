@@ -1,0 +1,304 @@
+---
+title: "LLM-Assisted Development: A Data Scientist's Field Guide"
+author: "Antoine Lucas"
+date: "2026-02-21"
+categories: [AI Tools, GitHub Copilot, LLM, Development, VS Code, Ollama, Workflow]
+description: "Honest notes on a three-layer AI stack — Copilot, OpenCode, and Ollama — from daily use in pharma and cosmetics R&D. Real gains, real failure modes."
+---
+
+## Honest preamble
+
+This is not a "become a 10x developer with AI" post. I've been using LLM-assisted tools daily for over a year across pharma, biotech, and cosmetics R&D contexts, and the reality is more nuanced than the hype suggests.
+
+The genuine gains: faster boilerplate, quicker navigation of unfamiliar APIs, less context-switching when writing documentation. The real failure modes: overconfidence in generated statistical logic, package version hallucinations, and a subtle drift toward writing code you don't fully understand because it looked plausible.
+
+My stack has settled into three layers, each with a different trust level and appropriate use case. I'll walk through each one, then close with the things I've learned not to delegate to a model.
+
+---
+
+## The three-layer stack
+
+| Layer | Tool | Trust level | Best for |
+|---|---|---|---|
+| Inline completion | GitHub Copilot | Medium | Boilerplate, repetitive patterns, docstrings |
+| Agentic / repo-level | [OpenCode](https://opencode.ai) | Medium-High | Scaffolding, refactoring, multi-file tasks |
+| Local / private | Ollama + Continue | Low-Medium | Sensitive data contexts, offline work |
+
+Each layer has a different footprint. Copilot is always on — it suggests as you type. OpenCode operates at the repository level, understanding file structure and multi-step tasks. Ollama stays on-device, which matters when you're working with patient data or proprietary formulations.
+
+---
+
+## GitHub Copilot
+
+### Setup
+
+Install two extensions in VS Code:
+
+- `GitHub.copilot` — inline completions
+- `GitHub.copilot-chat` — sidebar chat and inline `/explain`, `/fix`, `/doc`
+
+That's it. The defaults are good. The one thing worth doing immediately is writing a `.github/copilot-instructions.md` file at your project root.
+
+### `copilot-instructions.md`
+
+This file is the most underused feature of Copilot. It is injected into every chat prompt and shapes completions without you having to re-explain context. For a typical R + Python data science project, mine looks like this:
+
+```markdown
+# Project: Ingredient Efficacy Analysis
+
+## Context
+Biostatistics project for L'Oréal R&D.
+R (primary) + Python (secondary, ML pipeline).
+Regulated context: results feed into regulatory submissions.
+
+## R conventions
+- tidyverse style throughout
+- Use `air` for formatting (never `styler`)
+- Package management: `renv` — always `renv::snapshot()` after install
+- Statistical tests: mixed models via `lme4`/`nlme`, never base `aov()` for repeated measures
+- Report with `quarto` — `.qmd` files, never `.Rmd`
+
+## Python conventions
+- `uv` for dependency management (never `pip install` directly)
+- `ruff` for formatting and linting
+- Type hints on all function signatures
+
+## What NOT to do
+- Never suggest `p.adjust()` without context — ask which correction is appropriate
+- Never suggest `lm()` on repeated measures data without flagging the assumption violation
+- Never install packages outside of `renv::install()` / `uv add`
+```
+
+The effect is immediate. Copilot stops suggesting `library(ggplot2)` when you already have a `tidyverse` import pattern, and it stops proposing base R testing functions when your project conventions are explicit.
+
+### Inline completions
+
+A few patterns that work well:
+
+- **Data wrangling skeletons.** Start typing `df |> filter(` and Copilot will often complete the condition correctly from context. Accept with Tab, verify the column name.
+- **Test stubs.** Write the function name and a comment like `# Test: returns NA for empty input`, then let Copilot draft the `testthat::test_that()` block.
+- **Docstrings.** Place the cursor above a function definition and type `#'` — Copilot completes the roxygen skeleton from the function signature.
+
+### Where Copilot earns its keep
+
+- Boilerplate ggplot2 themes and axis formatting
+- `dplyr`/`tidyr` pipelines for reshaping
+- Writing repetitive unit tests once you've shown the pattern
+- SQL query generation from a clear English description
+
+### Where it fails
+
+- **Statistical model selection.** Do not ask Copilot whether to use a mixed model or a GEE for your longitudinal data. It will give you a plausible-sounding answer that may be wrong for your specific design. This requires domain judgment.
+- **P-value interpretation.** I've seen Copilot generate commentary like "the result is highly significant (p = 0.03)" in a context where 0.03 is borderline given the multiple testing burden. It doesn't know your correction strategy.
+- **Regulatory logic.** Any code that feeds into a regulatory document needs human-authored logic. Don't let Copilot scaffold the decision rules.
+
+---
+
+## OpenCode
+
+[OpenCode](https://opencode.ai) is a terminal-based agentic coding assistant. Where Copilot works at the line or block level, OpenCode operates across files and repositories. It can read your project structure, write new files, run commands, and execute multi-step tasks from a single prompt.
+
+The key difference in practice: Copilot completes what you're typing. OpenCode acts on what you describe.
+
+### `AGENTS.md`
+
+The same principle as `copilot-instructions.md` applies here, but with more scope. OpenCode reads `AGENTS.md` at the project root (and any subdirectory `AGENTS.md` files) to understand context, conventions, and constraints. A minimal but useful template:
+
+```markdown
+# AGENTS.md
+
+## Context
+R + Python data science project. Regulated context (pharma R&D).
+
+## Conventions
+- R: tidyverse, air formatter, renv for packages
+- Python: uv, ruff, type hints
+- Git: conventional commits (feat/fix/docs/refactor/test/chore)
+
+## Hard rules
+- Never install R packages without updating renv.lock
+- Never edit files in docs/ — generated output only
+- Never commit .Rhistory, .DS_Store, renv/library/
+- Statistical model selection is never delegated to AI
+```
+
+This file is worth spending 20 minutes on at project start. It will save you from correcting the same mistakes across a hundred interactions.
+
+### Workflow patterns that work
+
+- **Scaffolding a new module.** "Create an R script that reads a CSV, validates column types, and returns a cleaned tibble. Use our standard error handling pattern from `R/utils.R`." OpenCode reads `utils.R` and applies the pattern.
+- **Refactoring.** "Refactor all uses of `read.csv()` to `readr::read_csv()` across the project, and update the function signatures to use `col_types` explicitly." Multi-file, handles it.
+- **Test generation.** "Write `testthat` tests for every exported function in `R/analysis.R`. Each test should cover the happy path and one edge case."
+- **Documentation passes.** "Add roxygen2 documentation to all undocumented functions in `R/`."
+
+### When Copilot is better
+
+OpenCode has overhead. For single-line completions, tab-completing a dplyr pipeline, or quickly looking up a function signature — Copilot is faster. Use OpenCode when the task has enough scope that describing it in prose is more efficient than typing it yourself.
+
+---
+
+## Ollama
+
+Ollama runs LLMs locally. No data leaves your machine. For teams working with clinical trial data, patient samples, proprietary formulations, or anything subject to GDPR or GxP data governance, this matters.
+
+Cloud LLM providers — including GitHub Copilot — process your code on external servers. In most enterprise pharma environments, this is either explicitly prohibited or sits in a legal grey zone. Ollama sidesteps this entirely.
+
+### Setup
+
+```bash
+# Install Ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Pull a model
+ollama pull deepseek-coder-v2
+ollama pull phi4
+```
+
+Then install the [Continue](https://www.continue.dev/) VS Code extension (`Continue.continue`) and add a model config to `.continue/config.json`:
+
+```json
+{
+  "models": [
+    {
+      "title": "DeepSeek Coder V2 (local)",
+      "provider": "ollama",
+      "model": "deepseek-coder-v2",
+      "apiBase": "http://localhost:11434"
+    },
+    {
+      "title": "Phi-4 (local)",
+      "provider": "ollama",
+      "model": "phi4",
+      "apiBase": "http://localhost:11434"
+    }
+  ]
+}
+```
+
+### Model selection
+
+| Model | Size | Good for |
+|---|---|---|
+| `deepseek-coder-v2` | 16B | General coding, R, Python, SQL |
+| `phi4` | 14B | Reasoning tasks, smaller footprint |
+| `llama3.2` | 3B | Fast completions on low-resource machines |
+
+### The honest capability gap
+
+Local models at 14–16B parameters are meaningfully behind frontier cloud models (GPT-4o, Claude Sonnet) on complex reasoning, long-context tasks, and nuanced code generation. On a 16GB laptop, `deepseek-coder-v2` is noticeably slower than Copilot and produces more corrections-needed output.
+
+The trade-off is clear: if your data governance constraints are real, the capability gap is the price you pay. For boilerplate generation on non-sensitive projects, the gap is small enough to be acceptable.
+
+---
+
+## Do's and don'ts
+
+### Do
+
+- **Write `AGENTS.md` and `copilot-instructions.md` before writing any prompts.** Five minutes of upfront context saves hours of correction downstream.
+- **Use AI for the first 80% of boilerplate.** The last 20% — the logic that's specific to your domain — write yourself.
+- **Read every diff before accepting.** Every single one. This is not optional. Models produce plausible-looking errors.
+- **Write your tests against your own spec, then use AI to fill in the test bodies.** Never let AI define what "correct" means for your analysis.
+- **Treat AI output as a junior PR.** You'd review a junior colleague's code carefully. Same standard applies.
+
+### Don't
+
+- **Delegate statistical test or model selection.** This requires domain knowledge the model does not have — experimental design, distributional assumptions, multiple testing context.
+- **Use cloud tools on patient data, proprietary formulations, or anything under NDA.** Even if the provider claims not to train on your data, your organization's data governance policy likely has an opinion.
+- **Accept code you don't understand.** If you can't explain what a generated block does, you cannot debug it when it breaks in production.
+- **Rely on AI for package version advice.** Training cutoffs mean models routinely suggest deprecated APIs. Always check the current documentation.
+- **Use AI to draft regulatory documents without expert review.** ICH E9, ISO 14971, 21 CFR Part 11 — these are not contexts for generated text without thorough human authorship and review.
+
+---
+
+## Configs
+
+### `.github/copilot-instructions.md` — R + Python data science project
+
+```markdown
+# Copilot Instructions
+
+## Stack
+R (primary) + Python (ML pipeline). Quarto for reporting.
+Package management: renv (R), uv (Python).
+Formatters: air (R), ruff (Python).
+
+## R conventions
+- tidyverse style: pipe operator |>, tibbles, no base R data frames
+- Statistical modelling: lme4 for mixed models, survival for time-to-event
+- Reporting: quarto .qmd, not .Rmd
+- Never suggest: setwd(), attach(), T/F instead of TRUE/FALSE
+
+## Python conventions  
+- Type hints on all function signatures
+- dataclasses or pydantic for data structures
+- Never suggest: pip install — always uv add
+
+## Sensitive context
+This project may handle R&D data. Do not suggest cloud storage solutions
+or external API calls without flagging the data governance implications.
+```
+
+### Minimal `AGENTS.md` template
+
+```markdown
+# AGENTS.md
+
+## Project
+[One-line description]
+
+## Stack
+[Languages, frameworks, key libraries]
+
+## Conventions
+- [Formatter and linter]
+- [Package manager]
+- [Git commit style]
+
+## Hard rules
+- [Things that must never happen]
+- [Files that must never be edited manually]
+
+## Domain context
+[Anything the AI needs to know to avoid producing wrong-domain outputs]
+```
+
+### Ollama + Continue `config.json`
+
+```json
+{
+  "models": [
+    {
+      "title": "DeepSeek Coder V2",
+      "provider": "ollama",
+      "model": "deepseek-coder-v2",
+      "apiBase": "http://localhost:11434",
+      "contextLength": 16384
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "Phi-4",
+    "provider": "ollama",
+    "model": "phi4",
+    "apiBase": "http://localhost:11434"
+  },
+  "slashCommands": [
+    {"name": "edit", "description": "Edit highlighted code"},
+    {"name": "explain", "description": "Explain the selected code"}
+  ]
+}
+```
+
+---
+
+## The deeper question
+
+The most significant shift LLM tools have introduced is not writing speed — it's the reading-to-writing ratio. A larger fraction of programming time is now spent reading and evaluating generated code rather than writing from scratch. This is not obviously an improvement. Writing forces you to think through the logic. Reading generated output creates a plausible-enough illusion of understanding that can be hard to distinguish from the real thing.
+
+There is a cognitive load trap. When a model produces a correct-looking solution quickly, it is easy to accept it without the slower thinking that would catch a subtle statistical error or an off-by-one in a loop. The speed gain is real; the risk is that you externalize the thinking that was doing useful work.
+
+The reproducibility paradox is related: you can reproduce the output (run the code again, get the same result), but you often cannot reproduce the reasoning. Why was this model chosen? Why this correction method? If the answer is "the AI suggested it," that's not a defensible answer in a regulated context, and it's not a good answer in a scientific one either.
+
+My honest read on where this leaves data scientists: the value of domain judgment has increased, not decreased. Anyone can now produce working boilerplate quickly. What differentiates good analytical work is the judgment about what question to ask, what method is appropriate, and what the result actually means — none of which AI tools handle well. Junior data scientists may find AI tools make them look more productive while slowing their development of that judgment. Senior practitioners benefit most, because they have the domain knowledge to catch the errors and direct the tools effectively.
+
+Use the tools. Read everything they produce. Keep the judgment to yourself.

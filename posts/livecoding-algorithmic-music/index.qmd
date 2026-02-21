@@ -5,7 +5,7 @@ author: "Antoine Lucas"
 date: "2024-12-13"
 categories: [Creative Coding, Music, Art, Data]
 image: "featured.png"
-draft: false
+draft: true
 ---
 
 ## The Emergence of a New Artistic Medium
