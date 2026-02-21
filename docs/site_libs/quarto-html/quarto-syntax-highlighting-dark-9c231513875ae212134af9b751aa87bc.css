@@ -36,10 +36,6 @@
   --quarto-font-monospace: JetBrains Mono;
 }
 
-:root {
-  --quarto-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
 /* syntax highlight based on Pandoc's rules */
 pre > code.sourceCode > span {
   color: #e1e4e8;
@@ -211,4 +207,4 @@ code span.wa {
   content: "</";
 }
 
-/*# sourceMappingURL=58ea8f76aca0cfa20febfcd7a3eae4c8.css.map */
+/*# sourceMappingURL=6b8a04e326adfc8e183db2fa420f60b3.css.map */
