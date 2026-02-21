@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,18 +35,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-b35538417311420d789a15d7d09748c3.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-e27dde91bf2ae04cbde3e23b6b1d387c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-b35538417311420d789a15d7d09748c3.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-9c231513875ae212134af9b751aa87bc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b77a505b74d47a02cb5c242c70751739.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-1e87ddc8620b7be0ba315cbaa648dfe3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-b77a505b74d47a02cb5c242c70751739.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-76d2d4fcc4dbe6e675b19e215a6aebc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec411e02d77ae912d574064a51843836.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-76d2d4fcc4dbe6e675b19e215a6aebc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -118,7 +119,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -376,7 +377,13 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#academic-open-source" id="toc-academic-open-source" class="nav-link active" data-scroll-target="#academic-open-source">Academic &amp; Open-Source</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/projects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVzb3VyY2Vz">Resources <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -386,11 +393,11 @@ window.Quarto = {
 
 
 
-<p>A selection of data science work I’ve done and am willing to write about publicly. Most of what I build is under NDA — this is the part that isn’t.</p>
+<p>A selection of data science work I’ve done and am willing to write about publicly. Most of what I build is under NDA or involves proprietary data — client work, production tools for fragrance R&amp;D, clinical data platforms — none of it can be shared. This is the part that can be.</p>
 <p>More projects are in the works. In the meantime, the blog is a better indicator of what I’m actually working on.</p>
 <div id="listing-projects" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="UiUyQ1B5dGhvbiUyQ1Jlc291cmNlcw==" data-listing-date-sort="1765580400000" data-listing-file-modified-sort="1771461502116" data-listing-reading-time-sort="24" data-listing-word-count-sort="4621">
+<div class="g-col-1" data-index="0" data-categories="UiUyQ1B5dGhvbiUyQ1Jlc291cmNlcw==" data-listing-date-sort="1765580400000" data-listing-file-modified-sort="1771462170528" data-listing-reading-time-sort="24" data-listing-word-count-sort="4621">
 <a href="./projects/resources_catalog.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -418,9 +425,44 @@ Resources Catalog
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
+<hr>
+<section id="academic-open-source" class="level2">
+<h2 class="anchored" data-anchor-id="academic-open-source">Academic &amp; Open-Source</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Eye-Tracking Analysis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Technologies:</strong> R · Statistical Modelling · Signal Processing</p>
+<p>Analysis of eye-tracking data to understand visual attention patterns, from protocol design to data harvesting (Tobii Pro Lab) and full statistical analysis in R. Academic project, M2 — 3 forks.</p>
+<p><a href="https://github.com/antoinelucasfra/eye-tracking_M2" class="btn btn-dark btn-sm"><i class="bi bi-github"></i> View on GitHub</a></p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>This Website
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Technologies:</strong> Quarto · R · GitHub Actions · GitHub Pages</p>
+<p>Source code for this portfolio site — blog, projects, resources catalog, and CV. Custom navy &amp; gold theme, automatic deployment on push to main.</p>
+<p><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io" class="btn btn-dark btn-sm"><i class="bi bi-github"></i> View on GitHub</a></p>
+</div>
+</div>
+<p>See also: <a href="./projects/academic_projects.html">Academic projects from engineering school →</a></p>
 
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -487,13 +529,14 @@ Resources Catalog
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -848,7 +891,7 @@ Resources Catalog
 </div>   
     <div class="nav-footer-center">
 <p>© 2026 Antoine Lucas.</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/projects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/projects.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
 </div>

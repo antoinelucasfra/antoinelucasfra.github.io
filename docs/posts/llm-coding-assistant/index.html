@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Antoine Lucas">
+<meta name="dcterms.date" content="2026-02-21">
+<meta name="description" content="Honest notes on a three-layer AI stack — Copilot, OpenCode, and Ollama — from daily use in pharma and cosmetics R&amp;D. Real gains, real failure modes.">
+
+<title>LLM-Assisted Development: A Data Scientist’s Field Guide – Antoine Lucas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/images/profile-pic.jpg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9c231513875ae212134af9b751aa87bc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-76d2d4fcc4dbe6e675b19e215a6aebc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ec411e02d77ae912d574064a51843836.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-76d2d4fcc4dbe6e675b19e215a6aebc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="LLM-Assisted Development: A Data Scientist’s Field Guide – Antoine Lucas">
+<meta property="og:description" content="Honest notes on a three-layer AI stack — Copilot, OpenCode, and Ollama — from daily use in pharma and cosmetics R&amp;D. Real gains, real failure modes.">
+<meta property="og:image" content="https://antoinelucasfra.github.io/posts/llm-coding-assistant/assets/images/profile-pic.jpg">
+<meta property="og:site_name" content="Antoine Lucas">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Antoine Lucas</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/antoinelucasdata/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/antoinelucasfra"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#honest-preamble" id="toc-honest-preamble" class="nav-link active" data-scroll-target="#honest-preamble">Honest preamble</a></li>
+  <li><a href="#the-three-layer-stack" id="toc-the-three-layer-stack" class="nav-link" data-scroll-target="#the-three-layer-stack">The three-layer stack</a></li>
+  <li><a href="#github-copilot" id="toc-github-copilot" class="nav-link" data-scroll-target="#github-copilot">GitHub Copilot</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#copilot-instructions.md" id="toc-copilot-instructions.md" class="nav-link" data-scroll-target="#copilot-instructions.md"><code>copilot-instructions.md</code></a></li>
+  <li><a href="#inline-completions" id="toc-inline-completions" class="nav-link" data-scroll-target="#inline-completions">Inline completions</a></li>
+  <li><a href="#where-copilot-earns-its-keep" id="toc-where-copilot-earns-its-keep" class="nav-link" data-scroll-target="#where-copilot-earns-its-keep">Where Copilot earns its keep</a></li>
+  <li><a href="#where-it-fails" id="toc-where-it-fails" class="nav-link" data-scroll-target="#where-it-fails">Where it fails</a></li>
+  </ul></li>
+  <li><a href="#opencode" id="toc-opencode" class="nav-link" data-scroll-target="#opencode">OpenCode</a>
+  <ul class="collapse">
+  <li><a href="#agents.md" id="toc-agents.md" class="nav-link" data-scroll-target="#agents.md"><code>AGENTS.md</code></a></li>
+  <li><a href="#workflow-patterns-that-work" id="toc-workflow-patterns-that-work" class="nav-link" data-scroll-target="#workflow-patterns-that-work">Workflow patterns that work</a></li>
+  <li><a href="#when-copilot-is-better" id="toc-when-copilot-is-better" class="nav-link" data-scroll-target="#when-copilot-is-better">When Copilot is better</a></li>
+  </ul></li>
+  <li><a href="#ollama" id="toc-ollama" class="nav-link" data-scroll-target="#ollama">Ollama</a>
+  <ul class="collapse">
+  <li><a href="#setup-1" id="toc-setup-1" class="nav-link" data-scroll-target="#setup-1">Setup</a></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model selection</a></li>
+  <li><a href="#the-honest-capability-gap" id="toc-the-honest-capability-gap" class="nav-link" data-scroll-target="#the-honest-capability-gap">The honest capability gap</a></li>
+  </ul></li>
+  <li><a href="#dos-and-donts" id="toc-dos-and-donts" class="nav-link" data-scroll-target="#dos-and-donts">Do’s and don’ts</a>
+  <ul class="collapse">
+  <li><a href="#do" id="toc-do" class="nav-link" data-scroll-target="#do">Do</a></li>
+  <li><a href="#dont" id="toc-dont" class="nav-link" data-scroll-target="#dont">Don’t</a></li>
+  </ul></li>
+  <li><a href="#configs" id="toc-configs" class="nav-link" data-scroll-target="#configs">Configs</a>
+  <ul class="collapse">
+  <li><a href="#githubcopilot-instructions.md-r-python-data-science-project" id="toc-githubcopilot-instructions.md-r-python-data-science-project" class="nav-link" data-scroll-target="#githubcopilot-instructions.md-r-python-data-science-project"><code>.github/copilot-instructions.md</code> — R + Python data science project</a></li>
+  <li><a href="#minimal-agents.md-template" id="toc-minimal-agents.md-template" class="nav-link" data-scroll-target="#minimal-agents.md-template">Minimal <code>AGENTS.md</code> template</a></li>
+  <li><a href="#ollama-continue-config.json" id="toc-ollama-continue-config.json" class="nav-link" data-scroll-target="#ollama-continue-config.json">Ollama + Continue <code>config.json</code></a></li>
+  </ul></li>
+  <li><a href="#the-deeper-question" id="toc-the-deeper-question" class="nav-link" data-scroll-target="#the-deeper-question">The deeper question</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/posts/llm-coding-assistant/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">LLM-Assisted Development: A Data Scientist’s Field Guide</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">AI Tools</div>
+    <div class="quarto-category">GitHub Copilot</div>
+    <div class="quarto-category">LLM</div>
+    <div class="quarto-category">Development</div>
+    <div class="quarto-category">VS Code</div>
+    <div class="quarto-category">Ollama</div>
+    <div class="quarto-category">Workflow</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Honest notes on a three-layer AI stack — Copilot, OpenCode, and Ollama — from daily use in pharma and cosmetics R&amp;D. Real gains, real failure modes.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Antoine Lucas </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="honest-preamble" class="level2">
+<h2 class="anchored" data-anchor-id="honest-preamble">Honest preamble</h2>
+<p>This is not a “become a 10x developer with AI” post. I’ve been using LLM-assisted tools daily for over a year across pharma, biotech, and cosmetics R&amp;D contexts, and the reality is more nuanced than the hype suggests.</p>
+<p>The genuine gains: faster boilerplate, quicker navigation of unfamiliar APIs, less context-switching when writing documentation. The real failure modes: overconfidence in generated statistical logic, package version hallucinations, and a subtle drift toward writing code you don’t fully understand because it looked plausible.</p>
+<p>My stack has settled into three layers, each with a different trust level and appropriate use case. I’ll walk through each one, then close with the things I’ve learned not to delegate to a model.</p>
+<hr>
+</section>
+<section id="the-three-layer-stack" class="level2">
+<h2 class="anchored" data-anchor-id="the-three-layer-stack">The three-layer stack</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Tool</th>
+<th>Trust level</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inline completion</td>
+<td>GitHub Copilot</td>
+<td>Medium</td>
+<td>Boilerplate, repetitive patterns, docstrings</td>
+</tr>
+<tr class="even">
+<td>Agentic / repo-level</td>
+<td><a href="https://opencode.ai">OpenCode</a></td>
+<td>Medium-High</td>
+<td>Scaffolding, refactoring, multi-file tasks</td>
+</tr>
+<tr class="odd">
+<td>Local / private</td>
+<td>Ollama + Continue</td>
+<td>Low-Medium</td>
+<td>Sensitive data contexts, offline work</td>
+</tr>
+</tbody>
+</table>
+<p>Each layer has a different footprint. Copilot is always on — it suggests as you type. OpenCode operates at the repository level, understanding file structure and multi-step tasks. Ollama stays on-device, which matters when you’re working with patient data or proprietary formulations.</p>
+<hr>
+</section>
+<section id="github-copilot" class="level2">
+<h2 class="anchored" data-anchor-id="github-copilot">GitHub Copilot</h2>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Install two extensions in VS Code:</p>
+<ul>
+<li><code>GitHub.copilot</code> — inline completions</li>
+<li><code>GitHub.copilot-chat</code> — sidebar chat and inline <code>/explain</code>, <code>/fix</code>, <code>/doc</code></li>
+</ul>
+<p>That’s it. The defaults are good. The one thing worth doing immediately is writing a <code>.github/copilot-instructions.md</code> file at your project root.</p>
+</section>
+<section id="copilot-instructions.md" class="level3">
+<h3 class="anchored" data-anchor-id="copilot-instructions.md"><code>copilot-instructions.md</code></h3>
+<p>This file is the most underused feature of Copilot. It is injected into every chat prompt and shapes completions without you having to re-explain context. For a typical R + Python data science project, mine looks like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Project: Ingredient Efficacy Analysis</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Context</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Biostatistics project for L'Oréal R&amp;D.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>R (primary) + Python (secondary, ML pipeline).</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Regulated context: results feed into regulatory submissions.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## R conventions</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tidyverse style throughout</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use <span class="in">`air`</span> for formatting (never <span class="in">`styler`</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Package management: <span class="in">`renv`</span> — always <span class="in">`renv::snapshot()`</span> after install</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Statistical tests: mixed models via <span class="in">`lme4`</span>/<span class="in">`nlme`</span>, never base <span class="in">`aov()`</span> for repeated measures</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Report with <span class="in">`quarto`</span> — <span class="in">`.qmd`</span> files, never <span class="in">`.Rmd`</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python conventions</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`uv`</span> for dependency management (never <span class="in">`pip install`</span> directly)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`ruff`</span> for formatting and linting</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Type hints on all function signatures</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## What NOT to do</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest <span class="in">`p.adjust()`</span> without context — ask which correction is appropriate</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest <span class="in">`lm()`</span> on repeated measures data without flagging the assumption violation</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never install packages outside of <span class="in">`renv::install()`</span> / <span class="in">`uv add`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The effect is immediate. Copilot stops suggesting <code>library(ggplot2)</code> when you already have a <code>tidyverse</code> import pattern, and it stops proposing base R testing functions when your project conventions are explicit.</p>
+</section>
+<section id="inline-completions" class="level3">
+<h3 class="anchored" data-anchor-id="inline-completions">Inline completions</h3>
+<p>A few patterns that work well:</p>
+<ul>
+<li><strong>Data wrangling skeletons.</strong> Start typing <code>df |&gt; filter(</code> and Copilot will often complete the condition correctly from context. Accept with Tab, verify the column name.</li>
+<li><strong>Test stubs.</strong> Write the function name and a comment like <code># Test: returns NA for empty input</code>, then let Copilot draft the <code>testthat::test_that()</code> block.</li>
+<li><strong>Docstrings.</strong> Place the cursor above a function definition and type <code>#'</code> — Copilot completes the roxygen skeleton from the function signature.</li>
+</ul>
+</section>
+<section id="where-copilot-earns-its-keep" class="level3">
+<h3 class="anchored" data-anchor-id="where-copilot-earns-its-keep">Where Copilot earns its keep</h3>
+<ul>
+<li>Boilerplate ggplot2 themes and axis formatting</li>
+<li><code>dplyr</code>/<code>tidyr</code> pipelines for reshaping</li>
+<li>Writing repetitive unit tests once you’ve shown the pattern</li>
+<li>SQL query generation from a clear English description</li>
+</ul>
+</section>
+<section id="where-it-fails" class="level3">
+<h3 class="anchored" data-anchor-id="where-it-fails">Where it fails</h3>
+<ul>
+<li><strong>Statistical model selection.</strong> Do not ask Copilot whether to use a mixed model or a GEE for your longitudinal data. It will give you a plausible-sounding answer that may be wrong for your specific design. This requires domain judgment.</li>
+<li><strong>P-value interpretation.</strong> I’ve seen Copilot generate commentary like “the result is highly significant (p = 0.03)” in a context where 0.03 is borderline given the multiple testing burden. It doesn’t know your correction strategy.</li>
+<li><strong>Regulatory logic.</strong> Any code that feeds into a regulatory document needs human-authored logic. Don’t let Copilot scaffold the decision rules.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="opencode" class="level2">
+<h2 class="anchored" data-anchor-id="opencode">OpenCode</h2>
+<p><a href="https://opencode.ai">OpenCode</a> is a terminal-based agentic coding assistant. Where Copilot works at the line or block level, OpenCode operates across files and repositories. It can read your project structure, write new files, run commands, and execute multi-step tasks from a single prompt.</p>
+<p>The key difference in practice: Copilot completes what you’re typing. OpenCode acts on what you describe.</p>
+<section id="agents.md" class="level3">
+<h3 class="anchored" data-anchor-id="agents.md"><code>AGENTS.md</code></h3>
+<p>The same principle as <code>copilot-instructions.md</code> applies here, but with more scope. OpenCode reads <code>AGENTS.md</code> at the project root (and any subdirectory <code>AGENTS.md</code> files) to understand context, conventions, and constraints. A minimal but useful template:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># AGENTS.md</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Context</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>R + Python data science project. Regulated context (pharma R&amp;D).</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conventions</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R: tidyverse, air formatter, renv for packages</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python: uv, ruff, type hints</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Git: conventional commits (feat/fix/docs/refactor/test/chore)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hard rules</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never install R packages without updating renv.lock</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never edit files in docs/ — generated output only</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never commit .Rhistory, .DS_Store, renv/library/</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Statistical model selection is never delegated to AI</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This file is worth spending 20 minutes on at project start. It will save you from correcting the same mistakes across a hundred interactions.</p>
+</section>
+<section id="workflow-patterns-that-work" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-patterns-that-work">Workflow patterns that work</h3>
+<ul>
+<li><strong>Scaffolding a new module.</strong> “Create an R script that reads a CSV, validates column types, and returns a cleaned tibble. Use our standard error handling pattern from <code>R/utils.R</code>.” OpenCode reads <code>utils.R</code> and applies the pattern.</li>
+<li><strong>Refactoring.</strong> “Refactor all uses of <code>read.csv()</code> to <code>readr::read_csv()</code> across the project, and update the function signatures to use <code>col_types</code> explicitly.” Multi-file, handles it.</li>
+<li><strong>Test generation.</strong> “Write <code>testthat</code> tests for every exported function in <code>R/analysis.R</code>. Each test should cover the happy path and one edge case.”</li>
+<li><strong>Documentation passes.</strong> “Add roxygen2 documentation to all undocumented functions in <code>R/</code>.”</li>
+</ul>
+</section>
+<section id="when-copilot-is-better" class="level3">
+<h3 class="anchored" data-anchor-id="when-copilot-is-better">When Copilot is better</h3>
+<p>OpenCode has overhead. For single-line completions, tab-completing a dplyr pipeline, or quickly looking up a function signature — Copilot is faster. Use OpenCode when the task has enough scope that describing it in prose is more efficient than typing it yourself.</p>
+<hr>
+</section>
+</section>
+<section id="ollama" class="level2">
+<h2 class="anchored" data-anchor-id="ollama">Ollama</h2>
+<p>Ollama runs LLMs locally. No data leaves your machine. For teams working with clinical trial data, patient samples, proprietary formulations, or anything subject to GDPR or GxP data governance, this matters.</p>
+<p>Cloud LLM providers — including GitHub Copilot — process your code on external servers. In most enterprise pharma environments, this is either explicitly prohibited or sits in a legal grey zone. Ollama sidesteps this entirely.</p>
+<section id="setup-1" class="level3">
+<h3 class="anchored" data-anchor-id="setup-1">Setup</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Ollama</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://ollama.com/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull a model</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull deepseek-coder-v2</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull phi4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then install the <a href="https://www.continue.dev/">Continue</a> VS Code extension (<code>Continue.continue</code>) and add a model config to <code>.continue/config.json</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"models"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"DeepSeek Coder V2 (local)"</span><span class="fu">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"deepseek-coder-v2"</span><span class="fu">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Phi-4 (local)"</span><span class="fu">,</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"phi4"</span><span class="fu">,</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="model-selection" class="level3">
+<h3 class="anchored" data-anchor-id="model-selection">Model selection</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Size</th>
+<th>Good for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>deepseek-coder-v2</code></td>
+<td>16B</td>
+<td>General coding, R, Python, SQL</td>
+</tr>
+<tr class="even">
+<td><code>phi4</code></td>
+<td>14B</td>
+<td>Reasoning tasks, smaller footprint</td>
+</tr>
+<tr class="odd">
+<td><code>llama3.2</code></td>
+<td>3B</td>
+<td>Fast completions on low-resource machines</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-honest-capability-gap" class="level3">
+<h3 class="anchored" data-anchor-id="the-honest-capability-gap">The honest capability gap</h3>
+<p>Local models at 14–16B parameters are meaningfully behind frontier cloud models (GPT-4o, Claude Sonnet) on complex reasoning, long-context tasks, and nuanced code generation. On a 16GB laptop, <code>deepseek-coder-v2</code> is noticeably slower than Copilot and produces more corrections-needed output.</p>
+<p>The trade-off is clear: if your data governance constraints are real, the capability gap is the price you pay. For boilerplate generation on non-sensitive projects, the gap is small enough to be acceptable.</p>
+<hr>
+</section>
+</section>
+<section id="dos-and-donts" class="level2">
+<h2 class="anchored" data-anchor-id="dos-and-donts">Do’s and don’ts</h2>
+<section id="do" class="level3">
+<h3 class="anchored" data-anchor-id="do">Do</h3>
+<ul>
+<li><strong>Write <code>AGENTS.md</code> and <code>copilot-instructions.md</code> before writing any prompts.</strong> Five minutes of upfront context saves hours of correction downstream.</li>
+<li><strong>Use AI for the first 80% of boilerplate.</strong> The last 20% — the logic that’s specific to your domain — write yourself.</li>
+<li><strong>Read every diff before accepting.</strong> Every single one. This is not optional. Models produce plausible-looking errors.</li>
+<li><strong>Write your tests against your own spec, then use AI to fill in the test bodies.</strong> Never let AI define what “correct” means for your analysis.</li>
+<li><strong>Treat AI output as a junior PR.</strong> You’d review a junior colleague’s code carefully. Same standard applies.</li>
+</ul>
+</section>
+<section id="dont" class="level3">
+<h3 class="anchored" data-anchor-id="dont">Don’t</h3>
+<ul>
+<li><strong>Delegate statistical test or model selection.</strong> This requires domain knowledge the model does not have — experimental design, distributional assumptions, multiple testing context.</li>
+<li><strong>Use cloud tools on patient data, proprietary formulations, or anything under NDA.</strong> Even if the provider claims not to train on your data, your organization’s data governance policy likely has an opinion.</li>
+<li><strong>Accept code you don’t understand.</strong> If you can’t explain what a generated block does, you cannot debug it when it breaks in production.</li>
+<li><strong>Rely on AI for package version advice.</strong> Training cutoffs mean models routinely suggest deprecated APIs. Always check the current documentation.</li>
+<li><strong>Use AI to draft regulatory documents without expert review.</strong> ICH E9, ISO 14971, 21 CFR Part 11 — these are not contexts for generated text without thorough human authorship and review.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="configs" class="level2">
+<h2 class="anchored" data-anchor-id="configs">Configs</h2>
+<section id="githubcopilot-instructions.md-r-python-data-science-project" class="level3">
+<h3 class="anchored" data-anchor-id="githubcopilot-instructions.md-r-python-data-science-project"><code>.github/copilot-instructions.md</code> — R + Python data science project</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Copilot Instructions</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stack</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>R (primary) + Python (ML pipeline). Quarto for reporting.</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Package management: renv (R), uv (Python).</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Formatters: air (R), ruff (Python).</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## R conventions</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tidyverse style: pipe operator |&gt;, tibbles, no base R data frames</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Statistical modelling: lme4 for mixed models, survival for time-to-event</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reporting: quarto .qmd, not .Rmd</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest: setwd(), attach(), T/F instead of TRUE/FALSE</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python conventions  </span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Type hints on all function signatures</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>dataclasses or pydantic for data structures</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest: pip install — always uv add</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sensitive context</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>This project may handle R&amp;D data. Do not suggest cloud storage solutions</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>or external API calls without flagging the data governance implications.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="minimal-agents.md-template" class="level3">
+<h3 class="anchored" data-anchor-id="minimal-agents.md-template">Minimal <code>AGENTS.md</code> template</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># AGENTS.md</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">One-line description</span><span class="co">]</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stack</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Languages, frameworks, key libraries</span><span class="co">]</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conventions</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Formatter and linter</span><span class="co">]</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Package manager</span><span class="co">]</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Git commit style</span><span class="co">]</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hard rules</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Things that must never happen</span><span class="co">]</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Files that must never be edited manually</span><span class="co">]</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Domain context</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Anything the AI needs to know to avoid producing wrong-domain outputs</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="ollama-continue-config.json" class="level3">
+<h3 class="anchored" data-anchor-id="ollama-continue-config.json">Ollama + Continue <code>config.json</code></h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"models"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"DeepSeek Coder V2"</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"deepseek-coder-v2"</span><span class="fu">,</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span><span class="fu">,</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"contextLength"</span><span class="fu">:</span> <span class="dv">16384</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"tabAutocompleteModel"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Phi-4"</span><span class="fu">,</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"phi4"</span><span class="fu">,</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"slashCommands"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span> <span class="st">"edit"</span><span class="fu">,</span> <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Edit highlighted code"</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span> <span class="st">"explain"</span><span class="fu">,</span> <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Explain the selected code"</span><span class="fu">}</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="the-deeper-question" class="level2">
+<h2 class="anchored" data-anchor-id="the-deeper-question">The deeper question</h2>
+<p>The most significant shift LLM tools have introduced is not writing speed — it’s the reading-to-writing ratio. A larger fraction of programming time is now spent reading and evaluating generated code rather than writing from scratch. This is not obviously an improvement. Writing forces you to think through the logic. Reading generated output creates a plausible-enough illusion of understanding that can be hard to distinguish from the real thing.</p>
+<p>There is a cognitive load trap. When a model produces a correct-looking solution quickly, it is easy to accept it without the slower thinking that would catch a subtle statistical error or an off-by-one in a loop. The speed gain is real; the risk is that you externalize the thinking that was doing useful work.</p>
+<p>The reproducibility paradox is related: you can reproduce the output (run the code again, get the same result), but you often cannot reproduce the reasoning. Why was this model chosen? Why this correction method? If the answer is “the AI suggested it,” that’s not a defensible answer in a regulated context, and it’s not a good answer in a scientific one either.</p>
+<p>My honest read on where this leaves data scientists: the value of domain judgment has increased, not decreased. Anyone can now produce working boilerplate quickly. What differentiates good analytical work is the judgment about what question to ask, what method is appropriate, and what the result actually means — none of which AI tools handle well. Junior data scientists may find AI tools make them look more productive while slowing their development of that judgment. Senior practitioners benefit most, because they have the domain knowledge to catch the errors and direct the tools effectively.</p>
+<p>Use the tools. Read everything they produce. Keep the judgment to yourself.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/antoinelucasfra\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Powered by <a href="https://quarto.org">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>© 2026 Antoine Lucas.</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/posts/llm-coding-assistant/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
