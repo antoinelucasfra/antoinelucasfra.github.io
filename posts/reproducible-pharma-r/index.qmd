@@ -5,6 +5,7 @@ author: "Antoine Lucas"
 date: "2024-11-15"
 categories: [R, Pharma, Reproducibility, Best Practices]
 image: "featured.png"
+draft: true
 ---
 
 ## Introduction

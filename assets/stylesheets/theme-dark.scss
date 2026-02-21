@@ -620,3 +620,59 @@ code {
   border-color: $palette-gold;
   color: $palette-navy;
 }
+
+// ── CV page (dark mode overrides) ────────────────────────────────────────
+
+.cv-page {
+  color: $palette-snow;
+}
+
+.cv-name {
+  color: $palette-gold;
+}
+
+.cv-title {
+  color: $palette-snow;
+}
+
+.cv-subtitle {
+  color: rgba($palette-snow, 0.65);
+}
+
+.cv-org,
+.cv-period,
+.cv-skill-label {
+  color: rgba($palette-snow, 0.65);
+}
+
+.cv-role {
+  color: $palette-snow;
+}
+
+.cv-section-title {
+  color: $palette-snow;
+}
+
+.cv-summary {
+  color: rgba($palette-snow, 0.82);
+  background: rgba($palette-navy-mid, 0.5);
+}
+
+.cv-entry ul li {
+  color: rgba($palette-snow, 0.82);
+}
+
+.cv-skill-value,
+.cv-inline-text {
+  color: rgba($palette-snow, 0.82);
+}
+
+.cv-contacts a {
+  color: $palette-gold !important;
+
+  &:hover { color: $palette-gold-light !important; }
+}
+
+.cv-entry {
+  border-bottom-color: rgba($palette-snow, 0.08);
+}
