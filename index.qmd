@@ -126,7 +126,7 @@ Everything in Git, documented, runnable in 6 months with `renv::restore()` or `u
 ## Education {.section-heading .education}
 
 - **Diplôme d'Ingénieur — Statistiques appliquées aux Sciences de la Vie** — *Institut Agro - Agrocampus Ouest, Rennes* · *2021*
-- **Master en Mathématiques Appliquées, Statistiques** — *Université Paris-Saclay* · *2021*
+- **Master — Mathématiques Appliquées · Statistiques** — *INSA Rennes · Agrocampus Ouest · Université Rennes 2 · ENSAI · ENSAE (joint programme)* · *2021*
 
 ---
 

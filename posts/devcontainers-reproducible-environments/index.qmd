@@ -1,0 +1,279 @@
+---
+title: "Reproducible Environments for Everyone: DevContainers for Data Science Teams"
+author: "Antoine Lucas"
+date: "2026-02-21"
+categories: [DevContainers, Docker, R, Python, Reproducibility, VS Code]
+description: "How to use devcontainers and a pre-built personal image to give every team member — including non-developers — an identical, zero-setup R + Python environment."
+---
+
+## The problem
+
+"It works on my machine" is an old joke in software engineering. In data science teams it's still a weekly occurrence, and it's worse because the people affected are often not software engineers. A biostatistician or computational biologist should not need to spend two hours debugging a Quarto render failure caused by a missing system dependency or a mismatched R version.
+
+The gap between "the analysis worked on the statistician's laptop" and "the analysis can be reproduced six months later by a different person" is a real reproducibility problem in R&D contexts. `renv` locks R packages. `uv` locks Python packages. But neither handles the runtime environment: R version, system libraries, Quarto CLI version, or the formatter that enforces code style.
+
+DevContainers solve this layer. Every team member opens the project and gets exactly the same environment — the same R version, the same tools, the same VS Code configuration — in one click, without any manual setup.
+
+---
+
+## Terminology
+
+A **devcontainer** is a Docker container configured specifically for development. The [Dev Container specification](https://containers.dev/) defines a `devcontainer.json` file that tells VS Code (or any compatible tool) how to build or pull a container image and configure the development environment inside it.
+
+Key concepts:
+
+- **`devcontainer.json`** — the configuration file at `.devcontainer/devcontainer.json`. Specifies the image, features to install, VS Code extensions, and editor settings.
+- **Devcontainer features** — composable installation units. Each feature is a self-contained script that installs a specific tool or set of tools into the container. Features can be published to GHCR or kept as local scripts.
+- **Pre-built image vs. build-on-open** — you can either reference a pre-built Docker image (`"image": "ghcr.io/..."`) or define a `Dockerfile` and build the image when the devcontainer opens. Pre-built is faster and more reproducible; build-on-open is useful during development of the image itself.
+
+---
+
+## Pre-built image strategy
+
+The most important decision in a devcontainer setup for a team is: **pre-build the image**. If every team member rebuilds the image on first open, you pay the build cost repeatedly (10–20 minutes for a full R + Python image is not unusual), and you risk divergence when upstream base images change.
+
+The strategy:
+
+1. Define a `Dockerfile` — often a single line
+2. Configure a CI workflow that builds and pushes the image to GHCR on changes to `.devcontainer/**`
+3. Reference the pre-built image in `devcontainer.json` with a `build` fallback for first-time setup
+
+The `Dockerfile` for this setup is literally one line (plus a build arg for flexibility):
+
+```dockerfile
+ARG IMAGE=ghcr.io/r-lib/rig/r:latest
+FROM ${IMAGE}
+```
+
+The base image (`ghcr.io/r-lib/rig/r:latest`) is maintained by the `rig` project and provides a clean Ubuntu image with R installed via `rig`. Everything else — Quarto, Python, uv, air, R packages — is layered on by devcontainer features.
+
+The CI workflow (`.github/workflows/build-push.yml`) handles building and publishing:
+
+```yaml
+name: Build and push devcontainer image
+
+on:
+  push:
+    branches: [main]
+    paths: [".devcontainer/**"]
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/antoinelucasfra/quarto-devcontainer
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,prefix=sha-
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .devcontainer
+          file: .devcontainer/Dockerfile
+          build-args: IMAGE=ghcr.io/r-lib/rig/r:latest
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          platforms: linux/amd64,linux/arm64
+```
+
+A few things worth noting:
+
+- **Multi-platform build** (`linux/amd64,linux/arm64`) ensures the image works on both Intel/AMD machines and Apple Silicon Macs without emulation.
+- **GHA layer cache** (`cache-from/to: type=gha`) cuts rebuild time significantly — typically from 15+ minutes to 2–3 minutes on incremental changes.
+- **SHA tags** (`type=sha,prefix=sha-`) give you immutable image references for pinning. `latest` is convenient; `sha-abc1234` is reproducible.
+
+---
+
+## Custom local feature
+
+The devcontainer features ecosystem has hundreds of published features for common tools. But for project-specific combinations, a **local feature** — stored in your repository under `./features/` — is the right approach. It gives you full control without the overhead of publishing to GHCR.
+
+My local feature (`./features/quarto-computing-dependencies`) installs the full computing stack needed for Quarto-based R + Python data science:
+
+- **uv** — Python package manager (Astral). Installed system-wide to `/usr/local/bin`.
+- **air** — R formatter CLI (Posit). The same formatter the VS Code extension uses, available in the terminal and CI.
+- **jarl** — R linter CLI. Lightweight, fast, pairs well with air.
+- **R packages** — installed via `pak`, supports both CRAN names and GitHub refs (`user/repo@tag`).
+- **Python packages** — installed system-wide via `uv pip install --system`.
+
+The feature's `devcontainer-feature.json` defines its options:
+
+```json
+{
+  "id": "quarto-computing-dependencies",
+  "version": "2.0.0",
+  "name": "Install Computing Dependencies for Quarto",
+  "options": {
+    "rDeps": {
+      "type": "string",
+      "default": "rmarkdown",
+      "description": "Comma-separated R packages to install via pak. Supports CRAN names and GitHub refs."
+    },
+    "pythonDeps": {
+      "type": "string",
+      "default": "jupyter,papermill,marimo",
+      "description": "Comma-separated Python packages to install via uv pip install --system."
+    },
+    "uvVersion": { "type": "string", "default": "latest" },
+    "airVersion": { "type": "string", "default": "latest" },
+    "jarlVersion": { "type": "string", "default": "latest" }
+  }
+}
+```
+
+And the installation is handled by `install.sh`. The R package installation step shows the pattern:
+
+```bash
+install_r_deps() {
+  local deps=$1
+  # Convert comma-separated list to a quoted R vector: a,b,c → "a","b","c"
+  local r_vec
+  r_vec=$(echo "${deps}" | sed 's/,/","/g')
+  su "${USERNAME}" -c "Rscript -e 'pak::pkg_install(c(\"${r_vec}\"), upgrade = FALSE)'"
+}
+```
+
+Installing as the non-root remote user (`su "${USERNAME}"`) matters here — R packages installed as root end up in a system library that can conflict with `renv`.
+
+The composability is the main benefit of the feature pattern. You can use this same feature across different projects, passing different `rDeps` and `pythonDeps` strings without duplicating installation logic.
+
+---
+
+## `devcontainer.json` walkthrough
+
+Here is the full `devcontainer.json` for this setup:
+
+```json
+{
+  "name": "Quarto R+Python",
+  "image": "ghcr.io/antoinelucasfra/quarto-devcontainer:latest",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".",
+    "args": { "IMAGE": "ghcr.io/r-lib/rig/r:latest" }
+  },
+  "remoteUser": "vscode",
+  "features": {
+    "./features/quarto-computing-dependencies": {
+      "rDeps": "rmarkdown,knitr,languageserver,nx10/httpgd@v2.0.3,prompt,tidyverse,ggplot2,gt",
+      "pythonDeps": "jupyter,papermill,marimo,marimo[recommended]"
+    },
+    "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {
+      "version": "release",
+      "installTinyTex": "true",
+      "installChromium": "false"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "quarto.quarto", "mcanouil.quarto-wizard",
+        "REditorSupport.r", "Posit.air-vscode",
+        "ms-python.python", "charliermarsh.ruff", "astral-sh.ty",
+        "ms-toolsai.jupyter", "marimo-team.vscode-marimo"
+      ],
+      "settings": {
+        "r.useRenvLibPath": true,
+        "[r]": {
+          "editor.defaultFormatter": "Posit.air-vscode",
+          "editor.formatOnSave": true
+        },
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.formatOnSave": true
+        },
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+        "editor.rulers": [72]
+      }
+    }
+  }
+}
+```
+
+Key choices:
+
+- `"image"` references the pre-built image. The `"build"` block is a fallback — if the image pull fails (first-time setup, network issue), VS Code falls back to building locally.
+- `"remoteUser": "vscode"` — the non-root user that runs in the container. R packages and uv installs respect this.
+- The `quarto-cli` feature installs TinyTeX (`installTinyTex: "true"`) so PDF output works without any additional setup.
+- `"r.useRenvLibPath": true` — tells the R VS Code extension to use the project's `renv` library, so `renv::restore()` and the extension's package index stay in sync.
+- Format-on-save is enabled for both R (air) and Python (ruff). This is not optional — it enforces consistent style automatically without anyone having to think about it.
+
+---
+
+## Making it work for non-developers
+
+The setup above sounds like a lot of infrastructure. The experience from the user's side is:
+
+1. Install VS Code and the Dev Containers extension (`ms-vscode-remote.remote-containers`).
+2. Install Docker Desktop.
+3. Open the project folder in VS Code.
+4. Click "Reopen in Container" when prompted.
+5. Wait ~2 minutes for the pre-built image to pull and features to install (first time only; subsequent opens are instant).
+6. Work normally.
+
+That's it. No `install.packages()`, no Python virtualenv management, no Quarto CLI version mismatch, no TinyTeX setup. The environment is identical to everyone else's on the team.
+
+For a team of biostatisticians or computational biologists who are comfortable with R but not with devops tooling, this is a significant reduction in onboarding friction. The alternative is a 10-page "Environment Setup" document that is never fully correct.
+
+---
+
+## CI/CD for the image
+
+The `build-push.yml` workflow deserves a closer look, because this is where the reproducibility guarantee is maintained over time.
+
+The workflow triggers on any change to `.devcontainer/**` — meaning whenever you update `devcontainer.json`, the `Dockerfile`, or the local feature scripts, a new image is built and pushed. Team members get the updated environment on their next container rebuild.
+
+The multi-platform build (`linux/amd64,linux/arm64`) handles the growing heterogeneity of developer hardware. If you skip this, Apple Silicon users either get emulation (slow) or a different image (not reproducible). Buildx with `docker/build-push-action@v6` handles cross-compilation transparently.
+
+GHA layer caching (`type=gha`) is essential for iteration speed. The base image layers are cached; only the changed layers rebuild. A change to `install.sh` that only modifies the R package list typically rebuilds in under 3 minutes rather than 15.
+
+---
+
+## Practical tips
+
+**Pin image tags in production.** The `devcontainer.json` above uses `latest`. This is convenient for development — you always get the newest image. For a project that needs to be reproducible for audit or regulatory purposes, pin to a SHA tag:
+
+```json
+"image": "ghcr.io/antoinelucasfra/quarto-devcontainer:sha-abc1234"
+```
+
+SHA tags are generated automatically by `docker/metadata-action` on every build. Find the right tag in your GHCR package page.
+
+**Test with the `devcontainer` CLI.** Before pushing changes to the feature or image, test locally:
+
+```bash
+npm install -g @devcontainers/cli
+devcontainer build --workspace-folder .
+devcontainer up --workspace-folder .
+```
+
+This catches errors in `install.sh` without triggering a full CI build.
+
+**Iterate on the feature without rebuilding the full image.** If you're modifying `install.sh` frequently, comment out the `"image"` line temporarily and use only the `"build"` block. This rebuilds from the base image each time, which is slower but lets you test feature changes without publishing to GHCR.
+
+**Keep `renv.lock` and the devcontainer in sync.** The devcontainer installs a baseline set of R packages. Project-specific packages live in `renv.lock`. When `renv::restore()` runs inside the container, it installs on top of the baseline. This separation works well — the baseline handles heavy system dependencies (like `tidyverse`, which takes several minutes to compile from source), while `renv` handles project-specific versioned packages quickly.

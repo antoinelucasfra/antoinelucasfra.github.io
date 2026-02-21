@@ -1,9 +1,9 @@
 ---
 title: "The Reproducibility Quest: Modern Tools for R and Python Data Science"
-description: "A comprehensive guide to achieving reproducible data science workflows using modern package managers, containerization, and environment control tools for both R and Python — plus how to scope the right level of reproducibility for your needs."
+description: "A comprehensive guide to achieving reproducible data science workflows — environment setup, package management, containerization, and what reproducibility actually means in GxP-regulated pharma contexts."
 author: "Antoine Lucas"
-date: "2024-12-13"
-categories: [R, Python, Reproducibility, DevContainers, Docker, Package Management, Best Practices]
+date: "2026-02-21"
+categories: [R, Python, Reproducibility, DevContainers, Docker, Package Management, Best Practices, VS Code, GxP, Pharma, Setup]
 image: "featured.png"
 ---
 
@@ -11,9 +11,94 @@ image: "featured.png"
 
 Reproducibility is the cornerstone of credible data science. Whether you're in academia, pharma, finance, or tech, the ability to recreate your analysis environment and results is essential. Yet achieving true reproducibility has historically been painful — a maze of version conflicts, missing dependencies, and the dreaded "works on my machine" syndrome.
 
-The good news? We're living in a golden age of reproducibility tooling. Both R and Python ecosystems have evolved dramatically, offering modern solutions that make reproducible workflows not just possible, but practical. This post explores the complete toolkit for reproducible data science in 2024 and beyond.
+The good news? We're living in a golden age of reproducibility tooling. Both R and Python ecosystems have evolved dramatically, offering modern solutions that make reproducible workflows not just possible, but practical. This post covers the complete picture: from setting up a solid development environment in the first place, through package management and containerization, to what reproducibility actually requires when you're working under regulatory constraints.
 
 But before diving into tools, let's address a crucial question: **how much reproducibility do you actually need?**
+
+---
+
+## Setting Up Your Environment
+
+Before you can have a reproducible workflow, you need a consistent development environment. This matters more than most people realise — subtle differences between machines (R versions, system libraries, editor settings) cause problems that are hard to debug and impossible to prevent without a baseline setup.
+
+### VS Code as your polyglot IDE
+
+If you write both R and Python, VS Code is the only reasonable choice. RStudio is excellent for pure R work but does not handle Python well. PyCharm goes the other way. VS Code handles both, plus Quarto, plus Bash, plus whatever else you need.
+
+The extensions that actually matter for a data science setup:
+
+| Extension | Purpose |
+|---|---|
+| `REditorSupport.r` | R language support, inline output, completion |
+| `Posit.air-vscode` | R formatter (air) — format-on-save |
+| `ms-python.python` | Python language support |
+| `charliermarsh.ruff` | Python formatter + linter (ruff) — format-on-save |
+| `quarto.quarto` | Quarto rendering, preview, syntax |
+| `mcanouil.quarto-wizard` | Extension manager for Quarto |
+| `ms-toolsai.jupyter` | Jupyter kernel support |
+| `marimo-team.vscode-marimo` | marimo reactive notebook support |
+| `usernamehw.errorlens` | Inline linting errors (R and Python) |
+
+A minimal `settings.json` that wires everything together:
+
+```json
+{
+  "[r]": {
+    "editor.defaultFormatter": "Posit.air-vscode",
+    "editor.formatOnSave": true
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
+  },
+  "r.useRenvLibPath": true,
+  "r.rterm.option": ["--no-save", "--no-restore-data", "--quiet"],
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "editor.rulers": [88]
+}
+```
+
+### R: install via rig, not CRAN
+
+[rig](https://github.com/r-lib/rig) is the R Installation Manager. Install it once, then install and switch between R versions cleanly:
+
+```bash
+# macOS
+brew tap r-lib/rig && brew install rig
+
+# Linux
+curl -L https://rig.r-lib.org/rig-linux-latest.tar.gz | sudo tar xz -C /usr/local
+
+# Install a specific R version
+rig add 4.5
+rig default 4.5
+```
+
+Never install R by downloading from CRAN. `rig` makes version switching trivial and doesn't pollute your system.
+
+### Python: install via uv, not the system Python
+
+[uv](https://docs.astral.sh/uv/) manages Python versions and virtual environments. The system Python should never be touched for project work:
+
+```bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install and pin a Python version for a project
+uv python install 3.12
+uv python pin 3.12
+```
+
+### Formatting and linting
+
+- **R:** `air` — a Rust-based formatter from Posit. Fast, opinionated, and it replaces `styler`. Never use `formatR`. Configure via `air.toml` at project root.
+- **Python:** `ruff` — formatter and linter in one. Replaces `black`, `isort`, `flake8`. Configure via `pyproject.toml`.
+
+Both integrate with VS Code for format-on-save. This matters for reproducibility in a non-obvious way: consistent formatting means diffs are about logic, not whitespace, which makes code review and change tracking actually useful.
+
+### Notebooks: marimo over Jupyter
+
+If you write Python notebooks, [marimo](https://marimo.io/) is worth evaluating. It's reactive (cells re-execute when their dependencies change), stores notebooks as pure Python scripts (Git-friendly, no JSON blob), and has a better story for reproducibility than classical Jupyter. For R, Quarto documents are the right answer for anything that isn't pure exploration.
 
 ---
 
@@ -506,11 +591,65 @@ As project risk and longevity increase, so should your reproducibility investmen
 
 ---
 
+## Regulated Environments: Reproducibility in Pharma and GxP
+
+Everything above applies to all data science work. But if you operate in a regulated environment — pharma, medical devices, clinical research — there are additional requirements that change the calculus significantly.
+
+### What FDA and EMA actually expect
+
+The FDA's 21 CFR Part 11 and EMA's comparable guidance don't prescribe specific tools. What they require is an audit trail: given a result in a regulatory submission, you must be able to demonstrate exactly which code, which data, and which environment produced it — and reproduce it on demand.
+
+In practice, this means:
+
+- **Every analysis is traceable to a specific software version.** Not "R 4.x", but "R 4.4.2 with renv lockfile pinned to commit `abc123`".
+- **Changes are documented.** A git history is not optional; it's part of the validation evidence.
+- **The environment is validated.** IQ (Installation Qualification), OQ (Operational Qualification), PQ (Performance Qualification) aren't bureaucratic theatre — they're the documented proof that your platform behaves as expected.
+
+### sessionInfo() is necessary but not sufficient
+
+`sessionInfo()` is the minimum. It tells you what packages were loaded in the R session at the time of analysis. Include it at the end of every regulatory-grade report:
+
+```r
+sessionInfo()
+```
+
+But `sessionInfo()` alone doesn't let you reproduce the environment. It describes it. To actually restore it, you need a lockfile.
+
+### renv + Docker as a practical IQ/OQ/PQ story
+
+The validation stack for a Shiny platform running on Posit Connect looks like this when done right:
+
+1. **renv** — lockfile in the repository, pinned to an exact snapshot date. `renv::restore()` gives any auditor the exact library used in production.
+2. **Docker** — the base image is pinned (`rocker/r-ver:4.4.2`, not `rocker/r-ver:latest`). This ensures system libraries are frozen, not just R packages.
+3. **GitHub Actions** — CI runs the test suite and renders key reports on every push. The green CI badge is part of the OQ evidence.
+4. **Posit Connect** — deployment is version-controlled. Each deployed bundle has a manifest and can be rolled back.
+
+The IQ document answers: *"Is the software correctly installed?"* — covered by the Docker image build log and the `renv::restore()` log.
+
+The OQ document answers: *"Does it perform as specified?"* — covered by the automated test suite.
+
+The PQ document answers: *"Does it perform as required in production?"* — covered by UAT sign-off and monitoring dashboards.
+
+This isn't a heavy process once it's set up. The overhead is in the documentation, not the tooling. The tooling is Git, renv, Docker, and a CI runner — none of which require purchasing a validated platform.
+
+### The practical minimum for regulatory R work
+
+If you're not running a full validated platform but still need to produce defensible analyses (clinical biostatistics reports, ingredient safety dossiers, etc.):
+
+1. **Git** — every script in version control, analysis tied to a commit hash
+2. **renv** — lockfile committed alongside the code
+3. **`sessionInfo()` in every report** — as a footer, not optional
+4. **Quarto with `freeze: auto`** — computational outputs frozen and committed; the rendered report is reproducible without re-executing
+
+This gets you to L3/L4 on the reproducibility spectrum at low overhead. It won't satisfy IQ/OQ/PQ for a validated system, but it satisfies the traceability requirement for analytical work and will hold up to a reasonably thorough audit.
+
+---
+
 ## The Complete Reproducibility Checklist
 
 ### Project Structure
 
-```text
+```
 my-project/
 ├── .devcontainer/
 │   └── devcontainer.json     # Container environment (L4+)

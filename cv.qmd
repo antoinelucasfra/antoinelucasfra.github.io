@@ -4,16 +4,6 @@ format:
   html:
     toc: false
     page-layout: full
-    format-links:
-      - format: typst
-        text: Download PDF
-        icon: file-pdf
-  typst:
-    output-file: cv.pdf
-    margin:
-      x: 1.3cm
-      y: 1.2cm
-    fontsize: 10pt
 ---
 
 ```{=html}
@@ -33,6 +23,9 @@ format:
         </a>
         <a href="https://github.com/antoinelucasfra" target="_blank">
           <i class="bi bi-github"></i>&nbsp;github.com/antoinelucasfra
+        </a>
+        <a href="cv.pdf" target="_blank">
+          <i class="bi bi-file-earmark-pdf"></i>&nbsp;Download PDF
         </a>
       </div>
     </div>
@@ -54,25 +47,8 @@ format:
   </p>
 ```
 
-```{=typst}
-#set text(font: "Ubuntu Sans", size: 10pt)
-
-= Antoine Lucas
-*Biostatistician & Data Scientist* | Pharma · Cosmetics · Biotech · Paris, France
-
-antoine.lucas.fra\@gmail.com | linkedin.com/in/antoinelucasdata | github.com/antoinelucasfra
-
----
-
-Biostatistician & Data Scientist with 5+ years building production-grade data solutions in regulated industries — pharma, cosmetics, and biotech. Expertise spans statistical modelling, Design of Experiments, applied ML (computer vision, NLP), and multi-omics analysis. Proven track record translating complex scientific questions into end-to-end systems: from study design and model development through to validated deployment and stakeholder training.
-```
-
 ```{=html}
   <h2 class="cv-section-title">Experience</h2>
-```
-
-```{=typst}
-== Experience
 ```
 
 ::: {.cv-entry}
@@ -89,6 +65,8 @@ Biostatistician & Data Scientist with 5+ years building production-grade data so
 - Built DoE workflows (mixture designs, response-surface methods) cutting required experiments per formulation cycle by 30–40%
 - Engineered MLOps infrastructure: model versioning with DVC, drift monitoring, fully reproducible pipelines (Docker + GitHub Actions) in a GxP-adjacent environment
 - Delivered R Shiny dashboards covering sensory scoring, spectral data visualisation, and interactive experiment planning for R&D scientists
+- Responsible for data science platform tooling: Azure ML, Posit Connect, Databricks — provisioning, access governance, and lifecycle management
+- Owner and maintainer of a 20+ app catalog (R Shiny, Streamlit) used daily by R&D scientists
 :::
 
 ::: {.cv-entry}
@@ -103,6 +81,7 @@ Biostatistician & Data Scientist with 5+ years building production-grade data so
 - Developed reusable internal R packages and Quarto automated reporting templates, cutting analyst turnaround time by ~25% across consulting engagements
 - Led internal upskilling programme on tidymodels, causal inference, and reproducible research for 8 statistical consultants
 - Scoped and prototyped ML solutions for pre-sales client engagements in pharma and agri-food verticals
+- Fine-tuned a Phi-3 LLM (Microsoft) on open Hugging Face datasets for fake news detection and climate claim proof retrieval — full pipeline from data preparation to evaluation
 :::
 
 ::: {.cv-entry}
@@ -114,9 +93,10 @@ Biostatistician & Data Scientist with 5+ years building production-grade data so
 [Dec 2024 – May 2025]{.cv-period}
 :::
 
-- Built end-to-end multi-omics pipelines (metagenomics, metatranscriptomics, metabolomics) from raw sequencing reads to biological interpretation across 4 agro-industry studies
-- Applied PERMANOVA, sparse PLS-DA, and co-occurrence network analysis to characterise 100+ microbial interactions and identify key functional drivers
-- Packaged analyses as reproducible Quarto reports; integrated results into the client's production SaaS platform via a REST API
+- Fast-paced 8-person startup contributing to a SaaS product (FastAPI Python backend, Vue.js front-end), with full individual autonomy
+- Delivered end-to-end pipelines in R and Python for tabular and large-scale omics data (genomics, transcriptomics, metabolomics)
+- Applied PERMANOVA, sparse PLS-DA, and co-occurrence network analysis to characterise microbial interactions and identify key functional drivers
+- Integrated analysis outputs into the production SaaS platform via REST API
 :::
 
 ::: {.cv-entry}
@@ -131,7 +111,8 @@ Biostatistician & Data Scientist with 5+ years building production-grade data so
 - Architected and delivered a full R Shiny platform (golem) managing pilot manufacturing chains for 100+ GxP clinical projects — 50+ daily active users across 3 departments
 - Designed the data model, module architecture, and automated validation report generation to satisfy GxP audit-trail requirements (IQ/OQ/PQ on Posit Connect)
 - Owned the full delivery lifecycle: user-story workshops → agile sprints → UAT → IQ/OQ documentation → production deployment
-- Led a 6-person cross-functional team (data scientists, developers, QA); managed sprint planning and alignment with 5+ senior sponsors
+- Sole developer on the engineering side, working directly with 5+ senior sponsors across R&D and manufacturing
+- Mentored 1 intern on building Shiny application modules
 :::
 
 ::: {.cv-entry}
@@ -153,10 +134,6 @@ Biostatistician & Data Scientist with 5+ years building production-grade data so
   <h2 class="cv-section-title">Education</h2>
 ```
 
-```{=typst}
-== Education
-```
-
 ::: {.cv-entry .cv-entry-edu}
 ::: {.cv-entry-head}
 ::: {.cv-entry-meta}
@@ -171,7 +148,7 @@ Biostatistician & Data Scientist with 5+ years building production-grade data so
 ::: {.cv-entry-head}
 ::: {.cv-entry-meta}
 [**Master — Mathématiques Appliquées · Statistiques**]{.cv-role}
-[*Université Paris-Saclay*]{.cv-org}
+[*INSA Rennes · Agrocampus Ouest · Université Rennes 2 · ENSAI · ENSAE (joint programme)*]{.cv-org}
 :::
 [2021]{.cv-period}
 :::
@@ -198,7 +175,7 @@ Biostatistician & Data Scientist with 5+ years building production-grade data so
     </div>
     <div class="cv-skill-row">
       <span class="cv-skill-label">MLOps</span>
-      <span class="cv-skill-value">Docker · GitHub Actions · Posit Connect · DVC · renv · uv</span>
+      <span class="cv-skill-value">Docker · GitHub Actions · Posit Connect · Azure ML · Databricks · DVC · renv · uv</span>
     </div>
     <div class="cv-skill-row">
       <span class="cv-skill-label">Domains</span>
@@ -208,6 +185,7 @@ Biostatistician & Data Scientist with 5+ years building production-grade data so
   <div class="cv-inline-sections">
     <div class="cv-inline-section">
       <h2 class="cv-section-title">Certifications</h2>
+      <p class="cv-inline-text">GitHub Foundations — GitHub (2024)</p>
       <p class="cv-inline-text">Scrum Master — Agilbee (2023)</p>
     </div>
     <div class="cv-inline-section">
@@ -216,28 +194,4 @@ Biostatistician & Data Scientist with 5+ years building production-grade data so
     </div>
   </div>
 </div>
-```
-
-```{=typst}
-== Technical Skills
-
-*Languages:* R · Python · SQL · Bash
-
-*ML & Stats:* scikit-learn · tidymodels · XGBoost · Bayesian optimisation · DoE · PLS · PERMANOVA · survival analysis
-
-*Apps & Viz:* R Shiny (golem) · ggplot2 · Plotly · Quarto · Power BI
-
-*CV / NLP:* PyTorch · OpenCV · Hugging Face · sentence-transformers
-
-*MLOps:* Docker · GitHub Actions · Posit Connect · DVC · renv · uv
-
-*Domains:* GxP · IQ/OQ/PQ · Clinical biostatistics · Multi-omics · Cosmetic R&D
-
-== Certifications
-
-Scrum Master — Agilbee (2023)
-
-== Languages
-
-French (native) · English (fluent, professional)
 ```
