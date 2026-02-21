@@ -2,14 +2,12 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/posts/livecoding-algorithmic-music/index.html",
+      "/posts/stats-theory-frequentist/index.html",
       "/posts/reproducibility-modern-tools/index.html",
+      "/posts/devcontainers-reproducible-environments/index.html",
+      "/posts/llm-coding-assistant/index.html",
       "/posts/why-curate-resources/index.html",
       "/posts/rv-modern-r-package-manager/index.html",
-      "/posts/reproducible-pharma-r/index.html",
-      "/posts/dev-setup-guide/index.html",
-      "/posts/spc-cosmetics-r/index.html",
-      "/posts/stats-theory-frequentist/index.html",
       "/posts/quarto-getting-started/index.html"
     ]
   },
