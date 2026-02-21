@@ -2,15 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Antoine Lucas">
-<meta name="dcterms.date" content="2024-08-20">
-<meta name="description" content="A comprehensive reference guide to frequentist statistical tests, from basic comparisons to regression models.">
+<meta name="dcterms.date" content="2026-02-21">
+<meta name="description" content="A clear, jargon-light walkthrough of frequentist statistics — p-values, error types, test selection, regression, and the things textbooks don’t tell you. Written for scientists and engineers who need to use statistics correctly, not just mechanically.">
 
-<title>Statistical Theory: Frequentist Methods Reference – Antoine Lucas</title>
+<title>Statistical Tests Demystified: A Practical Guide for Scientists and Engineers – Antoine Lucas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -36,18 +36,19 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../assets/images/profile-pic.jpg" rel="icon" type="image/jpeg">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b35538417311420d789a15d7d09748c3.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-e27dde91bf2ae04cbde3e23b6b1d387c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b35538417311420d789a15d7d09748c3.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9c231513875ae212134af9b751aa87bc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b77a505b74d47a02cb5c242c70751739.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-1e87ddc8620b7be0ba315cbaa648dfe3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-b77a505b74d47a02cb5c242c70751739.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-76d2d4fcc4dbe6e675b19e215a6aebc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ec411e02d77ae912d574064a51843836.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-76d2d4fcc4dbe6e675b19e215a6aebc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,8 +78,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Statistical Theory: Frequentist Methods Reference – Antoine Lucas">
-<meta property="og:description" content="A comprehensive reference guide to frequentist statistical tests, from basic comparisons to regression models.">
+<meta property="og:title" content="Statistical Tests Demystified: A Practical Guide for Scientists and Engineers – Antoine Lucas">
+<meta property="og:description" content="A clear, jargon-light walkthrough of frequentist statistics — p-values, error types, test selection, regression, and the things textbooks don’t tell you. Written for scientists and engineers who need to use statistics correctly, not just mechanically.">
 <meta property="og:image" content="https://antoinelucasfra.github.io/posts/stats-theory-frequentist/featured.png">
 <meta property="og:site_name" content="Antoine Lucas">
 <meta property="og:image:height" content="420">
@@ -309,8 +310,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#theory-on-statistical-tests" id="toc-theory-on-statistical-tests" class="nav-link" data-scroll-target="#theory-on-statistical-tests">Theory on Statistical Tests</a></li>
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link active" data-scroll-target="#why-this-matters">Why this matters</a></li>
+  <li><a href="#the-one-idea-everything-builds-on" id="toc-the-one-idea-everything-builds-on" class="nav-link" data-scroll-target="#the-one-idea-everything-builds-on">The one idea everything builds on</a></li>
+  <li><a href="#type-i-and-type-ii-errors" id="toc-type-i-and-type-ii-errors" class="nav-link" data-scroll-target="#type-i-and-type-ii-errors">Type I and Type II errors</a></li>
+  <li><a href="#choosing-the-right-test" id="toc-choosing-the-right-test" class="nav-link" data-scroll-target="#choosing-the-right-test">Choosing the right test</a></li>
+  <li><a href="#the-regression-family" id="toc-the-regression-family" class="nav-link" data-scroll-target="#the-regression-family">The regression family</a>
+  <ul class="collapse">
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear regression</a></li>
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic regression</a></li>
+  <li><a href="#mixed-models" id="toc-mixed-models" class="nav-link" data-scroll-target="#mixed-models">Mixed models</a></li>
+  </ul></li>
+  <li><a href="#what-p-values-dont-tell-you" id="toc-what-p-values-dont-tell-you" class="nav-link" data-scroll-target="#what-p-values-dont-tell-you">What p-values don’t tell you</a>
+  <ul class="collapse">
+  <li><a href="#effect-size" id="toc-effect-size" class="nav-link" data-scroll-target="#effect-size">Effect size</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals">Confidence intervals</a></li>
+  <li><a href="#multiple-comparisons" id="toc-multiple-comparisons" class="nav-link" data-scroll-target="#multiple-comparisons">Multiple comparisons</a></li>
+  </ul></li>
+  <li><a href="#roc-curves" id="toc-roc-curves" class="nav-link" data-scroll-target="#roc-curves">ROC curves</a></li>
+  <li><a href="#quick-reference-glossary" id="toc-quick-reference-glossary" class="nav-link" data-scroll-target="#quick-reference-glossary">Quick reference glossary</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/posts/stats-theory-frequentist/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -320,18 +337,19 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Statistical Theory: Frequentist Methods Reference</h1>
+<h1 class="title">Statistical Tests Demystified: A Practical Guide for Scientists and Engineers</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Statistics</div>
-    <div class="quarto-category">Theory</div>
+    <div class="quarto-category">Tutorial</div>
     <div class="quarto-category">R</div>
     <div class="quarto-category">Reference</div>
+    <div class="quarto-category">Biostatistics</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    A comprehensive reference guide to frequentist statistical tests, from basic comparisons to regression models.
+    A clear, jargon-light walkthrough of frequentist statistics — p-values, error types, test selection, regression, and the things textbooks don’t tell you. Written for scientists and engineers who need to use statistics correctly, not just mechanically.
   </div>
 </div>
 
@@ -348,7 +366,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 20, 2024</p>
+      <p class="date">February 21, 2026</p>
     </div>
   </div>
   
@@ -360,31 +378,233 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This page serves as a reference for common frequentist statistical methods and their implementation in R.</p>
+<section id="why-this-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters">Why this matters</h2>
+<p>A few years ago I reviewed an internal report where an ingredient had been declared “effective” based on a p-value of 0.048 from a one-sample t-test on n=6 measurements. The analyst had run the right test, got a significant result, and written a conclusion. The problem: the study was powered to detect an effect three times larger than the one they claimed to have found, the variance was enormous, and the confidence interval ran from “meaningless effect” to “implausibly large effect”.</p>
+<p>The statistical test had been applied correctly. The statistical reasoning had failed entirely.</p>
+<p>This post is for the scientists, engineers, and product people who run statistical tests, interpret the results, and make decisions based on them — but who didn’t train as statisticians. The goal isn’t to make you a statistician. It’s to give you enough understanding to avoid the category of mistake above, to ask better questions, and to know when to call someone who does this professionally.</p>
+<hr>
 </section>
-<section id="theory-on-statistical-tests" class="level2">
-<h2 class="anchored" data-anchor-id="theory-on-statistical-tests">Theory on Statistical Tests</h2>
-<p>Les différents tests statistiques : P-value : c’est la proba que le hasard peut expliquer tout seul 1 différence AU MOINS aussi importante que celle observée. Il y a 2 types d’hypothèses : • Neyman/pearson : l’hypothèse H0 : pa= pb et H1 : pa != pb avec par ex p=0.049 et p=0.00001 ont la MEME « force » de test • Fischer : pareil mais p=0.049 et p = 0.0000001 ont PAS DU TOUT la même force de test</p>
-<p>COMPARAISON DE 2 POURCENTAGES</p>
-<p>Prop.table(dataframe, ½) =regarde le % de 1ere variable // à 2eme (2/1 si inverse) • Test du chi-2 : chisq.test(x,y,correct=FALSE/TRUE) AVEC les hypothèses de validité (% loin de 0 et 100 et grand échantillon) • Test fischer si aucune hypothèse vérifiée : fisher.test(x,y)</p>
-<p>COMPARAISON DE 2 MOYENNES</p>
-<p>• Test de student : n30 avec une distribution normale. Diagramme de normalité : qqnorm() et qqline(x). Calcul variance : by(x,y,sd,na.rm=TRUE) T.test(x~y,var.equal=TRUE) si pas d’hypothèses : wilcox.test(x~y) Test nullité d’un coeff de corrélation, • Test nullité de corrélation entre 2 variables : 1 des 2 variables doit suivre la loi normale =pearson : cor.test(x,y) • Spearman(x,y,method= »spearman ») Comparaison de moyenne // à moyenne de référence • T.test(var,varfixe=XXXX) • Mcnemar.test(var avant, var après) POUR VAR QUALI • T.test (début,fin,paired=TRUE) POUR VAR QUANTI</p>
-<p>LE T-TEST ANALYSE LES ECARTS TYPES ET LE F-TEST ANALYSE LES MOYENNES</p>
-<p>TEST NON PARAMETRIQUES Test de wilcoxon : comparaison de K= 2 echantillons independants par rapport a une variable X de nature : Quantitative/Qualitative ordinale C’est le test de l’hypothèse selon laquelle les médianes de chacun de deux groupes de données sont proche Test de cruskal wallis : est une comparaison de K=3 échantillons. Ainsi, l’interprétation du test de Kruskal-Wallis est très similaire à une ANOVA paramétrique d’ordre Un, sauf qu’il est basé sur les rangs au lieu des moyennes.</p>
-<p>REGRESSION LINEAIRE SIMPLE (GENERALISATION DU TEST DE STUDENT) Modèle :lm(x~y,data= dataframe)</p>
-<p>REGRESSION LINEAIRE MULTIPLE :</p>
-<p>Les hypothèses à vérifier sont : normalité du bruit et terme résiduel, le bruit est indépendant des valeurs des autres variables, ABSENCE de corrélation évidente, interne avec le bruit Lm(x~y+w+z,data = dataframe) Var quanti = somme (var quanti ou binaire MAIS PAS QUALI) si on veut des quali=codage à la main Interactions entre 2 var = on met un * Analyse de variance/covariance = cas particulier de régression linéaire multiple : toutes les variables explicatives sont catégorielles ou quantitatives</p>
-<p>REGRESSION LOGISTIQUE</p>
-<p>Si la variable à expliquer est non quantitative : -logistique -transforme les variables Glm(modèle, data = …, family = « binomial ») -coeff lu dans estimate lire exp(valeur estimate) a un sens : odd-ratio pour la regresison multiple on rajoute des var explicatives</p>
-<p>Hypothèses : au moins 5 à 10 évènements par var explicatives Ex : si une var a expliquer a 54 individus, (age(1), trauma(1) et profession(7)) et 1 + 1 + 7 =9 <em>10(=nbr evenement) = 9054 donc c’est bon ! Ex : 1 + 1 +7 =9</em>5 = 45 54 - passe tout juste pas fou !</p>
-<p>Lien recap tests stats https://help.xlstat.com/s/article/guide-de-choix-de-test-statistique?language=fr</p>
-<p>ANALYSES DE DONNEES MULTIVARIEES (CF MOOC HUSSON ETC..)</p>
-<p>Tableau recap</p>
-<p>Recap de sensi et speci d’un test :</p>
-<p>Ensuite on définit la sensi comme : Sensi = VP/(VP+FN) c’est donc la proba que le test accepte H0 si elle est vraie Speci = VN/(VN+FP) c’est donc la proba que le test accepte H1 si elle est vraie Ensuite on a la VPP et la VPN : VPP : valeur prédite positive = VP/(VP+FP) et c’est la probabilité que H0 soit vraie lorsque le test conclu à son acceptation VPN : valeur prédite négative = VN/(VN+FN) et c’est la probabilité que H0 soit fausse lorsque le test conclu à son acceptation</p>
-<p>Courbe ROC : 1-sensi = f(1-speci) = taux de faux positifs = f(taux de vrais positifs) Et FP = 1- sensi FN = 1 – recall</p>
+<section id="the-one-idea-everything-builds-on" class="level2">
+<h2 class="anchored" data-anchor-id="the-one-idea-everything-builds-on">The one idea everything builds on</h2>
+<p>The entire edifice of frequentist statistics rests on one uncomfortable idea: <strong>we can’t prove things, we can only assess how surprising our data would be if nothing was happening.</strong></p>
+<p>The formal name for “nothing is happening” is the null hypothesis, H₀. Examples:</p>
+<ul>
+<li>H₀: this ingredient has no effect on skin hydration</li>
+<li>H₀: the two manufacturing batches have the same mean viscosity</li>
+<li>H₀: age and disease severity are unrelated</li>
+</ul>
+<p>The <strong>p-value</strong> is the probability of observing data at least as extreme as yours, <em>assuming H₀ is true</em>. That’s it. It is not:</p>
+<ul>
+<li>The probability that your result is due to chance</li>
+<li>The probability that H₀ is true</li>
+<li>A measure of the size or importance of an effect</li>
+<li>A reproducibility guarantee</li>
+</ul>
+<p>A worked example. You’re testing whether a new moisturiser increases skin hydration vs.&nbsp;a placebo. You recruit 40 volunteers (20 per group), measure hydration at baseline and after 4 weeks, compute the difference, and run a t-test. You get p = 0.032.</p>
+<p>What this means: if the ingredient truly had no effect, you’d see a difference this large or larger about 3.2% of the time by random chance alone. It’s reasonably unlikely, so you reject H₀.</p>
+<p>What this doesn’t tell you: how big the effect is, whether it’s clinically meaningful, whether you’d get the same result in a different population, or whether you’ll replicate it in the next study.</p>
+<hr>
+</section>
+<section id="type-i-and-type-ii-errors" class="level2">
+<h2 class="anchored" data-anchor-id="type-i-and-type-ii-errors">Type I and Type II errors</h2>
+<p>Every statistical test makes one of four kinds of decision. The truth is binary (effect exists or not), and your conclusion is binary (significant or not). This gives a 2×2 table:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>H₀ true (no effect)</th>
+<th>H₀ false (effect exists)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Test significant</strong></td>
+<td>False positive (Type I, α)</td>
+<td>True positive (power)</td>
+</tr>
+<tr class="even">
+<td><strong>Test not significant</strong></td>
+<td>True negative</td>
+<td>False negative (Type II, β)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Type I error (α):</strong> You conclude there’s an effect when there isn’t one. The false alarm. By convention, α = 0.05, meaning you accept a 5% chance of this per test.</p>
+<p><strong>Type II error (β):</strong> You miss a real effect. The missed detection. Power = 1 − β. A study with 80% power has a 20% chance of missing a real effect of the specified size.</p>
+<p>The fire alarm analogy: α is the rate at which the alarm goes off when there’s no fire. β is the rate at which there’s a fire and the alarm doesn’t go off. You want both low. They trade off against each other for a fixed sample size.</p>
+<p>From these four cells you can derive four quantities that are far more useful than p-values in applied work:</p>
+<ul>
+<li><strong>Sensitivity</strong> = TP / (TP + FN) — probability the test fires when the effect is real</li>
+<li><strong>Specificity</strong> = TN / (TN + FP) — probability the test stays quiet when there’s no effect</li>
+<li><strong>PPV</strong> (positive predictive value) = TP / (TP + FP) — probability the effect is real given significance</li>
+<li><strong>NPV</strong> (negative predictive value) = TN / (TN + FN) — probability there’s no effect given non-significance</li>
+</ul>
+<p>PPV is the one people most often forget to think about. In a field where most tested hypotheses are false (say, early-stage drug screening), even a specific test produces a lot of false positives. This is part of the replication crisis.</p>
+<hr>
+</section>
+<section id="choosing-the-right-test" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-the-right-test">Choosing the right test</h2>
+<p>The most common source of error is not the calculation — R will do that correctly. It’s choosing the wrong test for the question. Here’s the key decision table:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Test</th>
+<th>R function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Compare 2 group means, normal, equal variance</td>
+<td>Student’s t-test</td>
+<td><code>t.test(x ~ g, var.equal = TRUE)</code></td>
+</tr>
+<tr class="even">
+<td>Compare 2 group means, normal, unequal variance</td>
+<td>Welch’s t-test (default)</td>
+<td><code>t.test(x ~ g)</code></td>
+</tr>
+<tr class="odd">
+<td>Compare 2 group means, non-normal or small n</td>
+<td>Wilcoxon rank-sum</td>
+<td><code>wilcox.test(x ~ g)</code></td>
+</tr>
+<tr class="even">
+<td>Compare &gt;2 group means, normal</td>
+<td>One-way ANOVA</td>
+<td><code>aov(x ~ g)</code> then <code>TukeyHSD()</code></td>
+</tr>
+<tr class="odd">
+<td>Compare &gt;2 group means, non-normal</td>
+<td>Kruskal-Wallis</td>
+<td><code>kruskal.test(x ~ g)</code></td>
+</tr>
+<tr class="even">
+<td>Paired measurements (before/after)</td>
+<td>Paired t-test</td>
+<td><code>t.test(before, after, paired = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td>Paired, non-normal</td>
+<td>Wilcoxon signed-rank</td>
+<td><code>wilcox.test(before, after, paired = TRUE)</code></td>
+</tr>
+<tr class="even">
+<td>Two proportions</td>
+<td>Chi-squared</td>
+<td><code>prop.test(c(x1, x2), c(n1, n2))</code></td>
+</tr>
+<tr class="odd">
+<td>Two proportions, small counts</td>
+<td>Fisher’s exact</td>
+<td><code>fisher.test(matrix(...))</code></td>
+</tr>
+<tr class="even">
+<td>Correlation, normal</td>
+<td>Pearson</td>
+<td><code>cor.test(x, y)</code></td>
+</tr>
+<tr class="odd">
+<td>Correlation, non-normal or ordinal</td>
+<td>Spearman</td>
+<td><code>cor.test(x, y, method = "spearman")</code></td>
+</tr>
+</tbody>
+</table>
+<p>Three questions to navigate this table:</p>
+<ol type="1">
+<li><strong>What is your outcome variable?</strong> Continuous, binary, count, or ordinal?</li>
+<li><strong>How many groups are you comparing?</strong> Two or more?</li>
+<li><strong>Are observations independent?</strong> Or paired/repeated?</li>
+</ol>
+<p>If you’re unsure whether your data is “normal enough” for a parametric test: with n ≥ 30 per group, the central limit theorem covers you for most practical purposes. Below 30, check with a QQ-plot (<code>qqnorm()</code> + <code>qqline()</code>) and use a non-parametric alternative if in doubt. The non-parametric versions lose some power but make fewer assumptions.</p>
+<hr>
+</section>
+<section id="the-regression-family" class="level2">
+<h2 class="anchored" data-anchor-id="the-regression-family">The regression family</h2>
+<p>Tests of means and proportions cover simple comparisons. When you have multiple predictors, covariates to control for, or a continuous outcome you want to model, you need regression.</p>
+<section id="linear-regression" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression">Linear regression</h3>
+<p>Models a continuous outcome as a linear function of one or more predictors. Use when: your outcome is continuous and approximately normal given the predictors. The fundamental model is <code>lm(outcome ~ predictor1 + predictor2, data = df)</code>. Interactions between two variables are added with <code>*</code>: <code>lm(outcome ~ A * B)</code> fits main effects for A and B plus the A×B interaction.</p>
+<p>The assumptions to check: residuals normally distributed (QQ-plot of residuals), constant variance (residuals vs.&nbsp;fitted values plot), no multicollinearity among predictors (variance inflation factor). Missing any of these doesn’t make the coefficients wrong — it makes the standard errors and p-values wrong.</p>
+</section>
+<section id="logistic-regression" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression">Logistic regression</h3>
+<p>When your outcome is binary (success/failure, present/absent), linear regression is inappropriate — it predicts outside [0, 1] and the residuals are non-normal by construction. Logistic regression models the log-odds of the outcome. In R: <code>glm(outcome ~ predictors, family = binomial)</code>. Coefficients are on the log-odds scale; exponentiate them (<code>exp(coef(model))</code>) to get odds ratios, which are more interpretable.</p>
+<p>The key assumption that’s often violated: logistic regression requires approximately 10 outcome events per predictor variable. If you have 50 cases of a disease and 8 predictors, you’re on the edge. Be conservative.</p>
+</section>
+<section id="mixed-models" class="level3">
+<h3 class="anchored" data-anchor-id="mixed-models">Mixed models</h3>
+<p>When observations are not independent — repeated measures on the same subjects, patients nested within hospitals, batches within production runs — standard regression underestimates uncertainty because it ignores the correlation structure. Mixed models (also called multilevel or hierarchical models) handle this by estimating both fixed effects (the parameters you care about) and random effects (the structure that creates correlation).</p>
+<p>In R, <code>lme4::lmer()</code> for continuous outcomes and <code>lme4::glmer()</code> for binary. These models require more thought to specify correctly — but using a standard regression when you have clustered data is not a conservative choice, it’s a wrong one.</p>
+<hr>
+</section>
+</section>
+<section id="what-p-values-dont-tell-you" class="level2">
+<h2 class="anchored" data-anchor-id="what-p-values-dont-tell-you">What p-values don’t tell you</h2>
+<section id="effect-size" class="level3">
+<h3 class="anchored" data-anchor-id="effect-size">Effect size</h3>
+<p>A p-value tells you whether an effect is detectable. Effect size tells you whether it matters. With large enough n, any effect, no matter how trivially small, will be statistically significant. Standard effect size measures:</p>
+<ul>
+<li><strong>Cohen’s d</strong> for mean differences: d = (μ₁ − μ₂) / pooled SD. Small = 0.2, medium = 0.5, large = 0.8.</li>
+<li><strong>η²</strong> (eta-squared) for ANOVA: proportion of variance explained.</li>
+<li><strong>Odds ratio</strong> for logistic regression: how much more likely the outcome is per unit increase in a predictor.</li>
+</ul>
+<p>Always report effect sizes alongside p-values. “Statistically significant, p = 0.03” without an effect size is an incomplete result.</p>
+</section>
+<section id="confidence-intervals" class="level3">
+<h3 class="anchored" data-anchor-id="confidence-intervals">Confidence intervals</h3>
+<p>A 95% confidence interval is a range of plausible values for the true parameter. It’s constructed so that, under repeated sampling, 95% of intervals computed this way would contain the true value. A wide confidence interval — even if it excludes zero — tells you the estimate is imprecise. In clinical or formulation work, precision matters as much as significance.</p>
+<p>The confidence interval carries more information than the p-value. It tells you the direction, the magnitude, and the precision of the estimate simultaneously.</p>
+</section>
+<section id="multiple-comparisons" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-comparisons">Multiple comparisons</h3>
+<p>Every test you run at α = 0.05 has a 5% false positive rate. Run 20 tests and you expect one false positive just by chance. This is not a hypothetical problem — it’s routine in omics data, sensory profiling panels, and screening experiments.</p>
+<p>Common corrections:</p>
+<ul>
+<li><strong>Bonferroni</strong>: divide α by the number of tests. Conservative but simple.</li>
+<li><strong>Benjamini-Hochberg (FDR)</strong>: controls the expected proportion of false positives among significant results. Less conservative, more appropriate for discovery contexts.</li>
+</ul>
+<p>In R: <code>p.adjust(p_values, method = "BH")</code> for Benjamini-Hochberg. Use it whenever you’re reporting more than 5 or so tests simultaneously.</p>
+<hr>
+</section>
+</section>
+<section id="roc-curves" class="level2">
+<h2 class="anchored" data-anchor-id="roc-curves">ROC curves</h2>
+<p>When you have a continuous classifier (a model score, a biomarker value, a threshold parameter) and a binary outcome, the ROC (Receiver Operating Characteristic) curve shows the trade-off between sensitivity and specificity across all possible thresholds.</p>
+<p>The area under the ROC curve (AUC) summarises classifier performance in a single number. AUC = 0.5 is a random classifier. AUC = 1.0 is a perfect classifier. In practice:</p>
+<ul>
+<li>AUC &gt; 0.9: excellent discrimination</li>
+<li>AUC 0.7–0.9: acceptable</li>
+<li>AUC 0.5–0.7: poor</li>
+</ul>
+<p>In R: <code>pROC::roc(outcome, score)</code> then <code>auc()</code>. The ROC curve is useful precisely because it’s threshold-agnostic — you can choose the operating threshold based on your acceptable trade-off between false positives and false negatives after seeing the curve, rather than committing upfront.</p>
+<p>One caution: AUC is an average over all thresholds. In some applications (rare event detection, high-cost false positives), the area under the precision-recall curve is more informative.</p>
+<hr>
+</section>
+<section id="quick-reference-glossary" class="level2">
+<h2 class="anchored" data-anchor-id="quick-reference-glossary">Quick reference glossary</h2>
+<p><strong>p-value</strong> — Probability of observing data this extreme or more extreme, given H₀ is true. Not the probability that H₀ is true.</p>
+<p><strong>Null hypothesis (H₀)</strong> — The baseline assumption of no effect, no difference, no relationship.</p>
+<p><strong>Type I error (α)</strong> — Rejecting H₀ when it’s true. False positive. Conventionally set to 0.05.</p>
+<p><strong>Type II error (β)</strong> — Failing to reject H₀ when it’s false. False negative. Power = 1 − β.</p>
+<p><strong>Power</strong> — Probability of detecting a true effect of a given size. Increases with sample size and effect size, decreases with variance.</p>
+<p><strong>Effect size</strong> — A standardised measure of the magnitude of an effect, independent of sample size.</p>
+<p><strong>Confidence interval</strong> — A range of plausible values for the true parameter. Width reflects estimation precision.</p>
+<p><strong>ANOVA</strong> — Analysis of variance. Tests whether at least one group mean differs from the others. Does not tell you which groups differ — you need post-hoc tests (e.g.&nbsp;Tukey HSD) for that.</p>
+<p><strong>Odds ratio</strong> — In logistic regression, the multiplicative change in the odds of the outcome per unit increase in a predictor. OR = 1 means no effect. OR &gt; 1 means increased odds. OR &lt; 1 means decreased odds.</p>
+<p><strong>FDR</strong> — False discovery rate. The expected proportion of significant results that are false positives. Used when running many tests simultaneously (genomics, screening, sensory analysis).</p>
 
 
 </section>
@@ -454,13 +674,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
