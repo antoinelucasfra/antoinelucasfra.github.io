@@ -54,25 +54,30 @@ This file is the most underused feature of Copilot. It is injected into every ch
 ## Context
 Biostatistics project for L'Oréal R&D.
 R (primary) + Python (secondary, ML pipeline).
-Regulated context: results feed into regulatory submissions.
+Regulated context: results feed into regulatory submissions. <!-- <1> -->
 
 ## R conventions
 - tidyverse style throughout
-- Use `air` for formatting (never `styler`)
+- Use `air` for formatting (never `styler`) <!-- <2> -->
 - Package management: `renv` — always `renv::snapshot()` after install
-- Statistical tests: mixed models via `lme4`/`nlme`, never base `aov()` for repeated measures
+- Statistical tests: mixed models via `lme4`/`nlme`, never base `aov()` for repeated measures <!-- <3> -->
 - Report with `quarto` — `.qmd` files, never `.Rmd`
 
 ## Python conventions
-- `uv` for dependency management (never `pip install` directly)
+- `uv` for dependency management (never `pip install` directly) <!-- <4> -->
 - `ruff` for formatting and linting
 - Type hints on all function signatures
 
 ## What NOT to do
-- Never suggest `p.adjust()` without context — ask which correction is appropriate
+- Never suggest `p.adjust()` without context — ask which correction is appropriate <!-- <5> -->
 - Never suggest `lm()` on repeated measures data without flagging the assumption violation
 - Never install packages outside of `renv::install()` / `uv add`
 ```
+1. Regulatory context flag — Copilot uses this to avoid suggesting cloud APIs or non-reproducible patterns that would be inappropriate in a submission context.
+2. Explicit formatter preference — prevents suggestions to use `styler`, which conflicts with `air`.
+3. Force the right statistical approach for repeated measures — without this, Copilot frequently proposes `aov()` or `t.test()` on paired data.
+4. Lock down Python package management — prevents `pip install` suggestions that would bypass `uv`'s lockfile.
+5. Prevent uncontextualised multiple testing "fixes" — a critical guard for any analysis generating multiple p-values.
 
 The effect is immediate. Copilot stops suggesting `library(ggplot2)` when you already have a `tidyverse` import pattern, and it stops proposing base R testing functions when your project conventions are explicit.
 
@@ -170,9 +175,9 @@ Then install the [Continue](https://www.continue.dev/) VS Code extension (`Conti
   "models": [
     {
       "title": "DeepSeek Coder V2 (local)",
-      "provider": "ollama",
-      "model": "deepseek-coder-v2",
-      "apiBase": "http://localhost:11434"
+      "provider": "ollama", // <1>
+      "model": "deepseek-coder-v2", // <2>
+      "apiBase": "http://localhost:11434" // <3>
     },
     {
       "title": "Phi-4 (local)",
@@ -183,6 +188,9 @@ Then install the [Continue](https://www.continue.dev/) VS Code extension (`Conti
   ]
 }
 ```
+1. Use the `ollama` provider — tells Continue to speak the Ollama API protocol instead of OpenAI's.
+2. Model name exactly as it appears in `ollama list` — must match what you pulled.
+3. Default Ollama endpoint — all traffic stays on `localhost`, nothing leaves the machine.
 
 ### Model selection
 
@@ -282,21 +290,24 @@ or external API calls without flagging the data governance implications.
       "provider": "ollama",
       "model": "deepseek-coder-v2",
       "apiBase": "http://localhost:11434",
-      "contextLength": 16384
+      "contextLength": 16384 // <1>
     }
   ],
-  "tabAutocompleteModel": {
+  "tabAutocompleteModel": { // <2>
     "title": "Phi-4",
     "provider": "ollama",
     "model": "phi4",
     "apiBase": "http://localhost:11434"
   },
-  "slashCommands": [
+  "slashCommands": [ // <3>
     {"name": "edit", "description": "Edit highlighted code"},
     {"name": "explain", "description": "Explain the selected code"}
   ]
 }
 ```
+1. Maximum context window in tokens — set to match the model's actual capacity; larger values increase memory use.
+2. Separate model for inline tab-completion — use a lighter, faster model here to keep latency low while typing.
+3. Slash commands available in the Continue chat panel — `/edit` and `/explain` cover the most common interactive use cases.
 
 ---
 
