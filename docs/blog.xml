@@ -1730,7 +1730,7 @@ font-style: inherit;">name</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"voice-to-data-pipeline"</span></span>
+font-style: inherit;">"voice-to-data"</span></span>
 <span id="cb8-3"><span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">version</span> <span class="op" style="color: #5E5E5E;
