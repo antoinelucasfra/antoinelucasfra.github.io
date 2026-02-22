@@ -43,9 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5ec8b4dae306d4736f37e1c3d391219d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-913f3b9559fd23b41ddf67d8c811297d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-5ec8b4dae306d4736f37e1c3d391219d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0facc66c0f624300153b5a11a3e3fed2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-584228c6a0f97ec85ba591100d3fc9bc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0facc66c0f624300153b5a11a3e3fed2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -347,10 +347,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="what-i-care-about-at-work" class="level2">
 <h2 class="anchored" data-anchor-id="what-i-care-about-at-work">What I care about at work</h2>
 <p><strong>Working at the interface, not the edges.</strong> The most useful position is between the domain experts (chemists, clinicians, biologists) and the data/software systems. People who sit purely on one side often build the wrong things. My agronomy background genuinely helps here — I can read a protocol, understand an experimental design, and push back when the question being asked can’t be answered with the data available. I find these cross-functional, partner roles genuinely more interesting than working in isolation.</p>
-<p><strong>Tooling that disappears.</strong> The best internal tools are the ones that become invisible — people just use them. A dashboard that requires a walkthrough every time is a failed tool. I spend a lot of time thinking about UX in contexts (scientific apps, internal platforms) where it’s usually ignored.</p>
+<p><strong>Tooling that disappears.</strong> The best internal tools are the ones that become invisible — people just use them. A dashboard that requires a walkthrough every time is a failed tool. I spend a lot of time thinking about user experience (UX) in contexts (scientific apps, internal platforms) where it’s usually ignored.</p>
 <p><strong>Rigor over speed, mostly.</strong> Working in pharma and cosmetics R&amp;D means results matter. Not in an abstract “good science” way — in a “this goes into a regulatory submission” or “this product formula ships to production” way. I’ve developed a healthy caution about overfitting, about p-values, about claims that outrun the data. The constraints of regulated industries aren’t obstacles; they’re clarifying.</p>
 <p><strong>Understanding models, not just using them.</strong> I’m drawn to the deeper mathematical and statistical machinery underneath the tools I reach for daily. Not for its own sake, but because I’ve found that understanding <em>why</em> a method works — its assumptions, its failure modes, its relationship to other approaches — makes you better at the judgment calls that actually matter.</p>
-<p><strong>Explainability and the limits of black boxes.</strong> In regulated R&amp;D, a model you can’t explain is often a model you can’t use. But beyond compliance, I’m genuinely interested in interpretable ML and AI as a research area — not as a constraint to work around, but as a more honest representation of what we actually know.</p>
+<p><strong>Explainability and the limits of black boxes.</strong> In regulated R&amp;D, a model you can’t explain is often a model you can’t use. But beyond compliance, I’m genuinely interested in interpretable machine learning (ML) and AI as a research area — not as a constraint to work around, but as a more honest representation of what we actually know.</p>
 <p><strong>Staying current without being credulous.</strong> I keep a fairly active scientific watch (<em>veille scientifique</em>) — following the methods literature in biostatistics, computational biology, and ML engineering. I try to distinguish between tools that have earned their place and things that are interesting but not yet ready. The field moves fast enough that this requires active effort.</p>
 <p><strong>Open source tools and reproducible workflows.</strong> R, Python, Quarto, Git, Docker. Reproducibility is not just a technical preference — it’s a practical requirement in regulated science, and it’s how you avoid the slow-motion disasters that come from analyses nobody can reconstruct. I’ve seen what happens to work that wasn’t built this way.</p>
 </section>
@@ -727,25 +727,64 @@ ul.task-list li input[type="checkbox"] {
           }
         };
       }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
             }
-          });
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
         }
     const findCites = (el) => {
       const parentEl = el.parentElement;
