@@ -4,6 +4,16 @@ title-block-banner: true
 listing:
   - id: projects
     contents:
+      - path: projects/fake-news-detection.qmd
+        title: "LLM Fine-Tuning: Phi-3 on Claim Verification"
+        description: "Fine-tuning Microsoft Phi-3-mini with LoRA/QLoRA on the LIAR dataset for binary claim verification. +19.5pp accuracy over zero-shot baseline. Full pipeline: data prep, LoRA training, evaluation, inference."
+        date: "2025-09-01"
+        categories: [Python, LLM, Deep Learning, NLP, PEFT]
+      - path: projects/voice-to-data.qmd
+        title: "Voice to Data: LLM Pipeline for Lab Notebooks"
+        description: "A voice-driven pipeline that turns laboratory bench recordings into structured, validated records — ASR (faster-whisper), LLM extraction (Instructor + Ollama), domain validation, and GxP-compliant audit trail."
+        date: "2026-02-22"
+        categories: [Python, LLM, NLP, MLOps, Lab Automation]
       - path: projects/resources_catalog.qmd
         title: "Resources Catalog"
         description: "A curated and searchable collection of 200+ data science resources for R, Python, and beyond. Filter by type, language, and category."
@@ -18,7 +28,7 @@ listing:
     fields: [title, description, categories]
 ---
 
-A selection of data science work I've done and am willing to write about publicly. Most of what I build is under non-disclosure agreement (NDA) or involves proprietary data — client work, production tools for fragrance R&D, clinical data platforms — none of it can be shared. This is the part that can be.
+A selection of data science and ML engineering work I've done and am able to share publicly. Most of what I build is under non-disclosure agreement (NDA) or involves proprietary data — client work, production tools for fragrance R&D, clinical data platforms — none of it can be shared. This is the part that can be.
 
 More projects are in the works. In the meantime, the blog is a better indicator of what I'm actually working on.
 

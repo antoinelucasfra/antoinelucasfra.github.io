@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-09-01">
+<meta name="description" content="Fine-tuning Microsoft Phi-3-mini-4k-instruct with LoRA/QLoRA on the LIAR dataset for binary claim verification — +19.5pp accuracy over zero-shot baseline. Full training pipeline: data preparation, LoRA adapter training, evaluation, and inference.">
 
-<title>Curriculum Vitae – Antoine Lucas</title>
+<title>LLM Fine-Tuning: Phi-3 on Claim Verification – Antoine Lucas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,32 +22,67 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/images/profile-pic.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d2800b5aef52857891e752670e942548.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-500544c4d03e896a17dbba91d830cc0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-cd93bc53ede3bb1508f1db052aab9f56.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-500544c4d03e896a17dbba91d830cc0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/images/profile-pic.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d2800b5aef52857891e752670e942548.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-500544c4d03e896a17dbba91d830cc0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cd93bc53ede3bb1508f1db052aab9f56.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-500544c4d03e896a17dbba91d830cc0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,10 +112,10 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Curriculum Vitae – Antoine Lucas">
-<meta property="og:image" content="https://antoinelucasfra.github.io/assets/images/profile-pic.jpg">
+<meta property="og:title" content="LLM Fine-Tuning: Phi-3 on Claim Verification – Antoine Lucas">
+<meta property="og:description" content="Fine-tuning Microsoft Phi-3-mini-4k-instruct with LoRA/QLoRA on the LIAR dataset for binary claim verification — +19.5pp accuracy over zero-shot baseline. Full training pipeline: data preparation, LoRA adapter training, evaluation, and inference.">
+<meta property="og:image" content="https://antoinelucasfra.github.io/../assets/images/phi3-finetuning-cover.png">
 <meta property="og:site_name" content="Antoine Lucas">
-<meta property="og:image:alt" content="Antoine Lucas">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -250,7 +287,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Antoine Lucas</span>
     </a>
   </div>
@@ -261,19 +298,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects.html"> 
+    <a class="nav-link" href="../projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./cv.html" aria-current="page"> 
+    <a class="nav-link" href="../cv.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -297,24 +334,60 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a>
+  <ul class="collapse">
+  <li><a href="#lora-low-rank-adaptation" id="toc-lora-low-rank-adaptation" class="nav-link" data-scroll-target="#lora-low-rank-adaptation">LoRA (Low-Rank Adaptation)</a></li>
+  <li><a href="#why-phi-3-mini" id="toc-why-phi-3-mini" class="nav-link" data-scroll-target="#why-phi-3-mini">Why Phi-3-mini?</a></li>
+  </ul></li>
+  <li><a href="#stack" id="toc-stack" class="nav-link" data-scroll-target="#stack">Stack</a></li>
+  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure">Project structure</a></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
+  <li><a href="#links" id="toc-links" class="nav-link" data-scroll-target="#links">Links</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/projects/fake-news-detection.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Curriculum Vitae</h1>
+<h1 class="title">LLM Fine-Tuning: Phi-3 on Claim Verification</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">LLM</div>
+    <div class="quarto-category">Deep Learning</div>
+    <div class="quarto-category">NLP</div>
+    <div class="quarto-category">PEFT</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Fine-tuning Microsoft Phi-3-mini-4k-instruct with LoRA/QLoRA on the LIAR dataset for binary claim verification — +19.5pp accuracy over zero-shot baseline. Full training pipeline: data preparation, LoRA adapter training, evaluation, and inference.
+  </div>
 </div>
 
 
-
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 1, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -324,178 +397,177 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="cv-page">
-
-  <header class="cv-header">
-    <div class="cv-header-text">
-      <h1 class="cv-name">Antoine Lucas</h1>
-      <p class="cv-title">Research Engineer · ML Systems &amp; Scientific AI</p>
-      <p class="cv-subtitle">Pharma · Cosmetics · Biotech · Paris, France</p>
-      <div class="cv-contacts">
-        <a href="mailto:antoine.lucas.fra@gmail.com">
-          <i class="bi bi-envelope-fill"></i>&nbsp;antoine.lucas.fra@gmail.com
-        </a>
-        <a href="https://linkedin.com/in/antoinelucasdata" target="_blank">
-          <i class="bi bi-linkedin"></i>&nbsp;linkedin.com/in/antoinelucasdata
-        </a>
-        <a href="https://github.com/antoinelucasfra" target="_blank">
-          <i class="bi bi-github"></i>&nbsp;github.com/antoinelucasfra
-        </a>
-        <a href="cv.pdf" target="_blank">
-          <i class="bi bi-file-earmark-pdf"></i>&nbsp;Download PDF
-        </a>
-      </div>
-    </div>
-    <div class="cv-header-photo">
-      <img src="assets/images/profile-pic.jpg" alt="Antoine Lucas" class="cv-photo">
-    </div>
-  </header>
-
-  <div class="cv-rule"></div>
-
-  <p class="cv-summary">
-    Research Engineer &amp; Data Scientist with 5+ years building production-grade ML systems in
-    regulated and scientific environments — pharma, cosmetics, and biotech. Expertise spans
-    deep learning (computer vision, NLP, LLM fine-tuning with LoRA/QLoRA),
-    end-to-end data pipelines, and statistical modelling (Design of Experiments, mixed models,
-    multi-omics analysis). Proven track record translating complex scientific questions into
-    deployed systems: from model development and pipeline architecture through to validated
-    MLOps infrastructure and stakeholder delivery. Strong communicator at the interface of
-    wet-lab science, software engineering, and ML research.
-  </p>
-  <h2 class="cv-section-title anchored">Experience</h2>
-<div class="cv-entry">
-<div class="cv-entry-head">
-<div class="cv-entry-meta">
-<p><span class="cv-role"><strong>Data Scientist &amp; ML Engineer</strong></span> <span class="cv-org"><em>Chanel Parfums Beauté R&amp;D · via Astek / IT&amp;M Stats</em></span></p>
-</div>
-<p><span class="cv-period">Sep 2025 – present</span></p>
-</div>
-<ul>
-<li>Designed and deployed computer vision models (texture classification, colour analysis) and NLP pipelines (olfactory descriptor mining from scientific literature) for fragrance and cosmetics formulation R&amp;D</li>
-<li>Modelled sensory and physico-chemical properties with partial least squares (PLS) regression, Gaussian processes, and Bayesian optimisation to accelerate ingredient screening cycles</li>
-<li>Built design of experiments (DoE) workflows (mixture designs, response-surface methods) cutting required experiments per formulation cycle by 30–40%</li>
-<li>Engineered machine learning operations (MLOps) infrastructure: drift monitoring, fully reproducible pipelines (Docker + GitHub Actions) in a Good Practices (GxP)-adjacent environment</li>
-<li>Delivered R Shiny dashboards covering sensory scoring, spectral data visualisation, and interactive experiment planning for R&amp;D scientists</li>
-<li>Responsible for data science platform tooling: Azure ML, Posit Connect, Databricks — provisioning, access governance, and lifecycle management</li>
-<li>Owner and maintainer of a 20+ app catalog (R Shiny, Streamlit) used daily by R&amp;D scientists</li>
-</ul>
-</div>
-<div class="cv-entry">
-<div class="cv-entry-head">
-<div class="cv-entry-meta">
-<p><span class="cv-role"><strong>Data Scientist — Internal &amp; Consulting</strong></span> <span class="cv-org"><em>Astek / IT&amp;M Stats</em></span></p>
-</div>
-<p><span class="cv-period">May – Sep 2025</span></p>
-</div>
-<ul>
-<li>Developed reusable internal R packages and Quarto automated reporting templates, cutting analyst turnaround time by ~25% across consulting engagements</li>
-<li>Led internal upskilling programme on tidymodels, causal inference, and reproducible research for 8 statistical consultants</li>
-<li>Scoped and prototyped ML solutions for pre-sales client engagements in pharma and agri-food verticals</li>
-<li>Fine-tuned Microsoft Phi-3-mini-4k-instruct (3.8B) using LoRA (PEFT) on the LIAR dataset for binary claim verification — full pipeline from data preparation to evaluation; +19.5pp accuracy over zero-shot baseline (54.3% → 73.8%), F1 macro 0.72</li>
-</ul>
-</div>
-<div class="cv-entry">
-<div class="cv-entry-head">
-<div class="cv-entry-meta">
-<p><span class="cv-role"><strong>Data Scientist — Multi-omics</strong></span> <span class="cv-org"><em>Abolis · Microbiome Studio · via Astek / IT&amp;M Stats</em></span></p>
-</div>
-<p><span class="cv-period">Dec 2024 – May 2025</span></p>
-</div>
-<ul>
-<li>Fast-paced 8-person startup contributing to a software-as-a-service (SaaS) product (FastAPI Python backend, Vue.js front-end), with full individual autonomy</li>
-<li>Delivered end-to-end pipelines in R and Python for tabular and large-scale omics data (genomics, transcriptomics, metabolomics)</li>
-<li>Applied permutational multivariate analysis of variance (PERMANOVA), sparse PLS-DA, and co-occurrence network analysis to characterise microbial interactions and identify key functional drivers</li>
-<li>Integrated analysis outputs into the production SaaS platform via representational state transfer (REST) API</li>
-</ul>
-</div>
-<div class="cv-entry">
-<div class="cv-entry-head">
-<div class="cv-entry-meta">
-<p><span class="cv-role"><strong>Data Scientist / Scrum Master</strong></span> <span class="cv-org"><em>Sanofi R&amp;D · via Astek / IT&amp;M Stats</em></span></p>
-</div>
-<p><span class="cv-period">Jul 2023 – Nov 2024</span></p>
-</div>
-<ul>
-<li>Architected and delivered a full R Shiny platform (golem) managing pilot manufacturing chains for 100+ GxP clinical projects — 50+ daily active users across 3 departments</li>
-<li>Designed the data model, module architecture, and automated validation report generation to satisfy GxP audit-trail requirements (Installation/Operational/Performance Qualification (IQ/OQ/PQ) on Posit Connect)</li>
-<li>Owned the full delivery lifecycle: user-story workshops → agile sprints → user acceptance testing (UAT) → IQ/OQ documentation → production deployment</li>
-<li>Sole developer on the engineering side, working directly with 5+ senior sponsors across R&amp;D and manufacturing</li>
-<li>Mentored 1 intern on building Shiny application modules</li>
-</ul>
-</div>
-<div class="cv-entry">
-<div class="cv-entry-head">
-<div class="cv-entry-meta">
-<p><span class="cv-role"><strong>Biostatistician</strong></span> <span class="cv-org"><em>L’Oréal R&amp;D · via Astek / IT&amp;M Stats</em></span></p>
-</div>
-<p><span class="cv-period">Oct 2021 – Jul 2023</span></p>
-</div>
-<ul>
-<li>Delivered 100+ statistical analyses on ingredient efficacy (hydration, anti-ageing biomarkers) and molecular safety (quantitative structure-activity relationship (QSAR), genotoxicity) across cosmetic and dermocosmetic pipelines</li>
-<li>Designed and analysed clinical and semi-clinical studies from protocol writing through regulatory-grade reports — consistent 2-week delivery cycle</li>
-<li>Built internal R tooling (survival analysis, mixed-effects models, automated Rmarkdown reporting) adopted as standard across the biostatistics team</li>
-<li>Mentored 2 junior analysts and 1 intern; co-authored methodology guides on non-inferiority testing and adaptive designs</li>
-</ul>
-</div>
-  <h2 class="cv-section-title anchored">Education</h2>
-<div class="cv-entry cv-entry-edu">
-<div class="cv-entry-head">
-<div class="cv-entry-meta">
-<p><span class="cv-role"><strong>Diplôme d’Ingénieur — Statistiques appliquées aux Sciences de la Vie</strong></span> <span class="cv-org"><em>Institut Agro - Agrocampus Ouest, Rennes</em></span></p>
-</div>
-<p><span class="cv-period">2021</span></p>
-</div>
-</div>
-<div class="cv-entry cv-entry-edu">
-<div class="cv-entry-head">
-<div class="cv-entry-meta">
-<p><span class="cv-role"><strong>Master — Mathématiques Appliquées · Statistiques</strong></span> <span class="cv-org"><em>INSA Rennes · Agrocampus Ouest · Université Rennes 2 · ENSAI · ENSAE (joint programme)</em></span></p>
-</div>
-<p><span class="cv-period">2021</span></p>
-</div>
-</div>
-  <h2 class="cv-section-title anchored">Technical Skills</h2>
-  <div class="cv-skills-grid">
-    <div class="cv-skill-row">
-      <span class="cv-skill-label">Languages</span>
-      <span class="cv-skill-value">Python · R · SQL · Bash</span>
-    </div>
-    <div class="cv-skill-row">
-      <span class="cv-skill-label">Deep learning &amp; LLM</span>
-      <span class="cv-skill-value">PyTorch · Hugging Face (transformers, PEFT, datasets) · LoRA / QLoRA · Instructor · faster-whisper · sentence-transformers · Ollama</span>
-    </div>
-    <div class="cv-skill-row">
-      <span class="cv-skill-label">ML &amp; Stats</span>
-      <span class="cv-skill-value">scikit-learn · tidymodels · XGBoost · Bayesian optimisation · DoE · PLS · PERMANOVA · survival analysis</span>
-    </div>
-    <div class="cv-skill-row">
-      <span class="cv-skill-label">Apps &amp; Viz</span>
-      <span class="cv-skill-value">R Shiny (golem) · FastAPI · ggplot2 · Plotly · Quarto · Streamlit</span>
-    </div>
-    <div class="cv-skill-row">
-      <span class="cv-skill-label">MLOps</span>
-      <span class="cv-skill-value">Docker · GitHub Actions · Azure ML · Databricks · Posit Connect · renv · uv</span>
-    </div>
-    <div class="cv-skill-row">
-      <span class="cv-skill-label">Domains</span>
-      <span class="cv-skill-value">GxP · IQ/OQ/PQ · Clinical biostatistics · Multi-omics · Cosmetic R&amp;D</span>
-    </div>
-  </div>
-  <div class="cv-inline-sections">
-    <div class="cv-inline-section">
-      <h2 class="cv-section-title anchored">Certifications</h2>
-      <p class="cv-inline-text">GitHub Foundations — GitHub (2024)</p>
-      <p class="cv-inline-text">Scrum Master — Agilbee (2023)</p>
-    </div>
-    <div class="cv-inline-section">
-      <h2 class="cv-section-title anchored">Languages</h2>
-      <p class="cv-inline-text">French (native) · English (fluent, professional)</p>
-    </div>
-  </div>
-</div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Large language models generalize well but are poorly calibrated for structured classification on specific domains. This project fine-tunes <a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct">Microsoft Phi-3-mini-4k-instruct</a> on the <a href="https://huggingface.co/datasets/liar">LIAR dataset</a> for binary claim verification (TRUE / FALSE), using LoRA adapters via HuggingFace PEFT.</p>
+<p>The goal was to validate a methodology for domain adaptation of open-weight LLMs in compute-constrained environments — the same approach used in an internal project on automated screening of regulatory product claims.</p>
+<hr>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>Evaluated on the LIAR test set (binary classification: <code>FALSE</code> = pants-fire / false / barely-true, <code>TRUE</code> = half-true / mostly-true / true):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Zero-shot Phi-3</th>
+<th>Fine-tuned (LoRA)</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Accuracy</strong></td>
+<td>54.3%</td>
+<td>73.8%</td>
+<td><strong>+19.5pp</strong></td>
+</tr>
+<tr class="even">
+<td><strong>F1 macro</strong></td>
+<td>0.51</td>
+<td>0.72</td>
+<td>+0.21</td>
+</tr>
+<tr class="odd">
+<td><strong>F1 FALSE</strong></td>
+<td>0.56</td>
+<td>0.75</td>
+<td>+0.19</td>
+</tr>
+<tr class="even">
+<td><strong>F1 TRUE</strong></td>
+<td>0.47</td>
+<td>0.70</td>
+<td>+0.23</td>
+</tr>
+</tbody>
+</table>
+<p>The gap is consistent across both classes, with slightly larger gains on the TRUE class — consistent with the base model’s tendency to over-predict FALSE in zero-shot settings.</p>
+<hr>
+</section>
+<section id="method" class="level2">
+<h2 class="anchored" data-anchor-id="method">Method</h2>
+<section id="lora-low-rank-adaptation" class="level3">
+<h3 class="anchored" data-anchor-id="lora-low-rank-adaptation">LoRA (Low-Rank Adaptation)</h3>
+<p>LoRA injects trainable low-rank decomposition matrices into the frozen model’s attention projections. Only ~0.5% of the model’s parameters are updated during training — the base model weights are never modified.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rank (<code>r</code>)</td>
+<td>16</td>
+</tr>
+<tr class="even">
+<td>Alpha</td>
+<td>32 (scaling = 2×r)</td>
+</tr>
+<tr class="odd">
+<td>Target modules</td>
+<td><code>q_proj</code>, <code>k_proj</code>, <code>v_proj</code>, <code>o_proj</code></td>
+</tr>
+<tr class="even">
+<td>Dropout</td>
+<td>0.05</td>
+</tr>
+<tr class="odd">
+<td>Effective batch size</td>
+<td>16 (4 × 4 grad accumulation)</td>
+</tr>
+<tr class="even">
+<td>Learning rate</td>
+<td>2e-4, cosine decay</td>
+</tr>
+<tr class="odd">
+<td>Epochs</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>QLoRA variant</strong> (4-bit NF4 quantization via <code>bitsandbytes</code>) is also supported for environments with limited VRAM — enables training on ~4GB instead of ~8GB.</p>
+</section>
+<section id="why-phi-3-mini" class="level3">
+<h3 class="anchored" data-anchor-id="why-phi-3-mini">Why Phi-3-mini?</h3>
+<p>Phi-3-mini (3.8B parameters) is a pragmatic choice for regulated or air-gapped environments: strong instruction-following benchmarks, fits on a single consumer GPU, and is deployable on-premise without cloud API dependencies. The same adapter methodology applies directly to Phi-3-medium or Phi-3.5-mini with no code changes.</p>
+<hr>
+</section>
+</section>
+<section id="stack" class="level2">
+<h2 class="anchored" data-anchor-id="stack">Stack</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Base model</td>
+<td><code>microsoft/Phi-3-mini-4k-instruct</code> (HuggingFace Hub)</td>
+</tr>
+<tr class="even">
+<td>Fine-tuning</td>
+<td>HuggingFace <code>transformers</code> + <code>peft</code></td>
+</tr>
+<tr class="odd">
+<td>Quantization</td>
+<td><code>bitsandbytes</code> (QLoRA, optional)</td>
+</tr>
+<tr class="even">
+<td>Dataset</td>
+<td><code>datasets</code> (LIAR from HuggingFace Hub)</td>
+</tr>
+<tr class="odd">
+<td>Evaluation</td>
+<td><code>evaluate</code> + <code>scikit-learn</code></td>
+</tr>
+<tr class="even">
+<td>Dependency management</td>
+<td><code>uv</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="project-structure" class="level2">
+<h2 class="anchored" data-anchor-id="project-structure">Project structure</h2>
+<pre><code>fake-news-detection/
+├── finetune.py              # LoRA/QLoRA training — reads config/lora_config.yaml
+├── evaluate.py              # test set evaluation — accuracy, F1, classification report
+├── inference.py             # single-claim inference + interactive REPL
+├── config/lora_config.yaml  # all hyperparameters in one place
+└── data/prepare_dataset.py  # LIAR download + binary label mapping</code></pre>
+<hr>
+</section>
+<section id="usage" class="level2">
+<h2 class="anchored" data-anchor-id="usage">Usage</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Install</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Prepare dataset</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run data/prepare_dataset.py</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Fine-tune (standard LoRA, ~8GB VRAM)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run finetune.py</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Evaluate</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run evaluate.py <span class="at">--checkpoint</span> outputs/phi3-lora-liar/</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Inference</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run inference.py <span class="at">--claim</span> <span class="st">"The country added 2.3 million jobs last year."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="links" class="level2">
+<h2 class="anchored" data-anchor-id="links">Links</h2>
+<p><a href="https://github.com/antoinelucasfra/fake-news-detection" class="btn btn-dark btn-sm"><i class="bi bi-github"></i> GitHub Repository</a></p>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -963,7 +1035,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
 <p>© 2026 Antoine Lucas.</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/cv.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/projects/fake-news-detection.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
 </div>
