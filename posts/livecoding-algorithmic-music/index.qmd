@@ -21,8 +21,11 @@ This is the world of **live coding**—a practice where musicians write and modi
 Here's what a Strudel pattern might look like:
 
 ```javascript
-$: s("[bd <hh oh>]*2").bank("tr909").dec(.4)
+$: s("[bd <hh oh>]*2").bank("tr909").dec(.4) // <1> // <2> // <3>
 ```
+1. `$:` marks this as a continuously running pattern — the engine loops it every cycle. Removing `$:` stops playback.
+2. `.bank("tr909")` selects the Roland TR-909 sample bank — swap to `"tr808"` or `"RolandTR808"` for a different drum machine character.
+3. `.dec(.4)` sets decay time on the samples — lower values give punchy, staccato hits; higher values let sounds ring out.
 
 This single line creates a drum pattern using the TR-909 drum machine sounds—a bass drum with alternating hi-hats. But the real magic lies in the notation: the `<>` brackets create alternatives, the `*2` doubles the pattern, and suddenly you're not just programming, you're *composing*.
 
@@ -39,9 +42,12 @@ In Strudel, a musical pattern is essentially a time-indexed data structure. Just
 When a live coder writes:
 
 ```javascript
-n("<0!3 1*2>").set(chords).mode("root:g2")
-  .voicing().s("gm_acoustic_bass")
+n("<0!3 1*2>").set(chords).mode("root:g2") // <1> // <2>
+  .voicing().s("gm_acoustic_bass") // <3>
 ```
+1. `n()` specifies note or chord indices into a scale or chord set — `<0!3 1*2>` alternates: root three times, then second chord twice per cycle.
+2. `.set(chords)` maps the indices to a chord dictionary defined elsewhere in the pattern — decouples the rhythm from the harmonic content.
+3. `.voicing()` automatically spreads the chord tones into a playable voicing — prevents all notes landing on the same octave.
 
 They're essentially defining a generative model—rules that produce infinite variations within constraints. This is the same thinking behind procedural generation, Monte Carlo simulations, and generative AI.
 

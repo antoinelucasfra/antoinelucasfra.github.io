@@ -349,10 +349,23 @@ execute:
   }
 }
 
-@media (min-width: 1400px) {
-  #grid-view-container .grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+/* ── Description overlay (revealed on card hover) ───────────────────────── */
+.resource-desc-overlay {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--bs-secondary-color, #6c757d);
+  margin-top: 0.3rem;
+  margin-bottom: 0.25rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+
+.resource-card:hover .resource-desc-overlay,
+.resource-card:focus-within .resource-desc-overlay {
+  max-height: 6rem;
+  opacity: 1;
 }
 
 #list-view-container .list-group-item:first-child {
@@ -592,11 +605,10 @@ make_resource <- function(i) {
     title_text
   )
 
-  # Description snippet (shown in card if non-empty)
+  # Description overlay (hidden by default, revealed on card hover)
   desc_el <- if (nchar(desc) > 0) {
-    tags$p(
-      class = "resource-description text-muted mb-1",
-      style = "font-size: 0.75rem; line-height: 1.4; margin-top: 0.3rem;",
+    tags$div(
+      class = "resource-desc-overlay",
       desc
     )
   } else NULL
@@ -1033,6 +1045,8 @@ description: "A brief one-sentence description shown on hover and in search."
 ```
 
 The `description` field is optional but recommended — it powers the hover tooltip on each card title and is included in the full-text search.
+
+See [CONTRIBUTING.md](https://github.com/antoinelucasfra/antoinelucasfra.github.io/blob/main/CONTRIBUTING.md) for the full guide, including the automated workflow for adding resources via Google Keep.
 :::
 
 *Links to external websites are provided for convenience and informational purposes only.*
