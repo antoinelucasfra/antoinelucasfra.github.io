@@ -82,5 +82,5 @@ Voice (audio file)
 
 ## Links
 
-[<i class="bi bi-github"></i> GitHub Repository](https://github.com/antoinelucasfra/voice-to-data-pipeline){.btn .btn-dark .btn-sm}
+[<i class="bi bi-github"></i> GitHub Repository](https://github.com/antoinelucasfra/voice-to-data){.btn .btn-dark .btn-sm}
 [<i class="bi bi-file-text"></i> Full write-up (blog)](../../posts/voice-to-data-lab-pipeline/index.qmd){.btn .btn-outline-secondary .btn-sm}
