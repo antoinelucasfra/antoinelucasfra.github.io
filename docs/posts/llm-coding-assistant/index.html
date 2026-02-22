@@ -81,9 +81,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-76d2d4fcc4dbe6e675b19e215a6aebc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d6019403a6151ed0ba587ac30f825e38.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-76d2d4fcc4dbe6e675b19e215a6aebc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ffa4f6888415b63fa5b9e515a6438cff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ca8f72cf9d40cf51bc94988ec0308755.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ffa4f6888415b63fa5b9e515a6438cff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -431,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="honest-preamble" class="level2">
 <h2 class="anchored" data-anchor-id="honest-preamble">Honest preamble</h2>
-<p>This is not a “become a 10x developer with AI” post. I’ve been using LLM-assisted tools daily for over a year across pharma, biotech, and cosmetics R&amp;D contexts, and the reality is more nuanced than the hype suggests.</p>
+<p>This is not a “become a 10x developer with AI” post. I’ve been using large language model (LLM)-assisted tools daily for over a year across pharma, biotech, and cosmetics R&amp;D contexts, and the reality is more nuanced than the hype suggests.</p>
 <p>The genuine gains: faster boilerplate, quicker navigation of unfamiliar APIs, less context-switching when writing documentation. The real failure modes: overconfidence in generated statistical logic, package version hallucinations, and a subtle drift toward writing code you don’t fully understand because it looked plausible.</p>
 <p>My stack has settled into three layers, each with a different trust level and appropriate use case. I’ll walk through each one, then close with the things I’ve learned not to delegate to a model.</p>
 <hr>
@@ -531,10 +531,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="where-it-fails" class="level3">
 <h3 class="anchored" data-anchor-id="where-it-fails">Where it fails</h3>
 <ul>
-<li><strong>Statistical model selection.</strong> Do not ask Copilot whether to use a mixed model or a GEE for your longitudinal data. It will give you a plausible-sounding answer that may be wrong for your specific design. This requires domain judgment.</li>
+<li><strong>Statistical model selection.</strong> Do not ask Copilot whether to use a mixed model or a generalized estimating equations (GEE) model for your longitudinal data. It will give you a plausible-sounding answer that may be wrong for your specific design. This requires domain judgment.</li>
 <li><strong>P-value interpretation.</strong> I’ve seen Copilot generate commentary like “the result is highly significant (p = 0.03)” in a context where 0.03 is borderline given the multiple testing burden. It doesn’t know your correction strategy.</li>
 <li><strong>Regulatory logic.</strong> Any code that feeds into a regulatory document needs human-authored logic. Don’t let Copilot scaffold the decision rules.</li>
 </ul>
+<div class="callout-warning-stat">
+<p>A model completing your statistical code has no understanding of your study design, missing data mechanism, or correction strategy. Plausible-looking code that chooses the wrong model or misinterprets an effect size can pass code review and still produce wrong conclusions. Statistical judgment is not delegable to autocomplete.</p>
+</div>
 <hr>
 </section>
 </section>
@@ -579,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ollama" class="level2">
 <h2 class="anchored" data-anchor-id="ollama">Ollama</h2>
-<p>Ollama runs LLMs locally. No data leaves your machine. For teams working with clinical trial data, patient samples, proprietary formulations, or anything subject to GDPR or GxP data governance, this matters.</p>
+<p>Ollama runs LLMs locally. No data leaves your machine. For teams working with clinical trial data, patient samples, proprietary formulations, or anything subject to General Data Protection Regulation (GDPR) or Good Practices (GxP) data governance, this matters.</p>
 <p>Cloud LLM providers — including GitHub Copilot — process your code on external servers. In most enterprise pharma environments, this is either explicitly prohibited or sits in a legal grey zone. Ollama sidesteps this entirely.</p>
 <section id="setup-1" class="level3">
 <h3 class="anchored" data-anchor-id="setup-1">Setup</h3>
@@ -659,10 +662,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="dont">Don’t</h3>
 <ul>
 <li><strong>Delegate statistical test or model selection.</strong> This requires domain knowledge the model does not have — experimental design, distributional assumptions, multiple testing context.</li>
-<li><strong>Use cloud tools on patient data, proprietary formulations, or anything under NDA.</strong> Even if the provider claims not to train on your data, your organization’s data governance policy likely has an opinion.</li>
+<li><strong>Use cloud tools on patient data, proprietary formulations, or anything under a non-disclosure agreement (NDA).</strong> Even if the provider claims not to train on your data, your organization’s data governance policy likely has an opinion.</li>
 <li><strong>Accept code you don’t understand.</strong> If you can’t explain what a generated block does, you cannot debug it when it breaks in production.</li>
 <li><strong>Rely on AI for package version advice.</strong> Training cutoffs mean models routinely suggest deprecated APIs. Always check the current documentation.</li>
-<li><strong>Use AI to draft regulatory documents without expert review.</strong> ICH E9, ISO 14971, 21 CFR Part 11 — these are not contexts for generated text without thorough human authorship and review.</li>
+<li><strong>Use AI to draft regulatory documents without expert review.</strong> International Council for Harmonisation (ICH) E9, ISO 14971, 21 CFR Part 11 — these are not contexts for generated text without thorough human authorship and review.</li>
 </ul>
 <hr>
 </section>
@@ -1112,25 +1115,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           }
         };
       }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
             }
-          });
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
         }
     const findCites = (el) => {
       const parentEl = el.parentElement;
