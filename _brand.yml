@@ -23,7 +23,8 @@ color:
     white:      "#FFFFFF"
     snow:       "#F8F9FA"   # light page background
     smoke:      "#E9ECEF"   # subtle dividers
-    slate:      "#6C757D"   # muted text, meta info
+    slate:      "#6C757D"   # muted text, meta info (light mode only)
+    slate-light: "#9AA5B4"  # muted text for dark backgrounds (≥ 4.5:1 on navy)
     ink:        "#1C2833"   # body text on light background
 
     # ── Semantic accents ──────────────────────────────────────────────────

@@ -6,7 +6,7 @@ toc: true
 toc-depth: 2
 ---
 
-A collection of projects completed during my final year of engineering school (M2), covering machine learning, data visualization, statistical analysis, and web application development.
+A collection of projects completed during my final year of engineering school (M2 — second year of Master's), covering machine learning, data visualization, statistical analysis, and web application development.
 
 ---
 

@@ -23,7 +23,7 @@ A **devcontainer** is a Docker container configured specifically for development
 Key concepts:
 
 - **`devcontainer.json`** — the configuration file at `.devcontainer/devcontainer.json`. Specifies the image, features to install, VS Code extensions, and editor settings.
-- **Devcontainer features** — composable installation units. Each feature is a self-contained script that installs a specific tool or set of tools into the container. Features can be published to GHCR or kept as local scripts.
+- **Devcontainer features** — composable installation units. Each feature is a self-contained script that installs a specific tool or set of tools into the container. Features can be published to GitHub Container Registry (GHCR) or kept as local scripts.
 - **Pre-built image vs. build-on-open** — you can either reference a pre-built Docker image (`"image": "ghcr.io/..."`) or define a `Dockerfile` and build the image when the devcontainer opens. Pre-built is faster and more reproducible; build-on-open is useful during development of the image itself.
 
 ---
@@ -35,7 +35,7 @@ The most important decision in a devcontainer setup for a team is: **pre-build t
 The strategy:
 
 1. Define a `Dockerfile` — often a single line
-2. Configure a CI workflow that builds and pushes the image to GHCR on changes to `.devcontainer/**`
+2. Configure a continuous integration (CI) workflow that builds and pushes the image to GHCR on changes to `.devcontainer/**`
 3. Reference the pre-built image in `devcontainer.json` with a `build` fallback for first-time setup
 
 The `Dockerfile` for this setup is literally one line (plus a build arg for flexibility):
@@ -104,7 +104,7 @@ jobs:
 A few things worth noting:
 
 - **Multi-platform build** (`linux/amd64,linux/arm64`) ensures the image works on both Intel/AMD machines and Apple Silicon Macs without emulation.
-- **GHA layer cache** (`cache-from/to: type=gha`) cuts rebuild time significantly — typically from 15+ minutes to 2–3 minutes on incremental changes.
+- **GitHub Actions (GHA) layer cache** (`cache-from/to: type=gha`) cuts rebuild time significantly — typically from 15+ minutes to 2–3 minutes on incremental changes.
 - **SHA tags** (`type=sha,prefix=sha-`) give you immutable image references for pinning. `latest` is convenient; `sha-abc1234` is reproducible.
 
 ---
@@ -118,7 +118,7 @@ My local feature (`./features/quarto-computing-dependencies`) installs the full 
 - **uv** — Python package manager (Astral). Installed system-wide to `/usr/local/bin`.
 - **air** — R formatter CLI (Posit). The same formatter the VS Code extension uses, available in the terminal and CI.
 - **jarl** — R linter CLI. Lightweight, fast, pairs well with air.
-- **R packages** — installed via `pak`, supports both CRAN names and GitHub refs (`user/repo@tag`).
+- **R packages** — installed via `pak`, supports both Comprehensive R Archive Network (CRAN) names and GitHub refs (`user/repo@tag`).
 - **Python packages** — installed system-wide via `uv pip install --system`.
 
 The feature's `devcontainer-feature.json` defines its options:
@@ -150,13 +150,15 @@ And the installation is handled by `install.sh`. The R package installation step
 
 ```bash
 install_r_deps() {
-  local deps=$1
-  # Convert comma-separated list to a quoted R vector: a,b,c → "a","b","c"
+  local deps=$1                                                                    # <1>
   local r_vec
-  r_vec=$(echo "${deps}" | sed 's/,/","/g')
-  su "${USERNAME}" -c "Rscript -e 'pak::pkg_install(c(\"${r_vec}\"), upgrade = FALSE)'"
+  r_vec=$(echo "${deps}" | sed 's/,/","/g')                                       # <2>
+  su "${USERNAME}" -c "Rscript -e 'pak::pkg_install(c(\"${r_vec}\"), upgrade = FALSE)'"  # <3>
 }
 ```
+1. `deps` receives the comma-separated string from `devcontainer.json` options (e.g. `"dplyr,ggplot2"`).
+2. Transforms `a,b,c` into `"a","b","c"` — the format `pak::pkg_install()` expects as an R character vector.
+3. Runs as the non-root `vscode` user, not root — prevents R packages landing in the system library where they would conflict with `renv`.
 
 Installing as the non-root remote user (`su "${USERNAME}"`) matters here — R packages installed as root end up in a system library that can conflict with `renv`.
 
@@ -242,7 +244,7 @@ For a team of biostatisticians or computational biologists who are comfortable w
 
 ---
 
-## CI/CD for the image
+## CI/CD (continuous integration/continuous deployment) for the image
 
 The `build-push.yml` workflow deserves a closer look, because this is where the reproducibility guarantee is maintained over time.
 

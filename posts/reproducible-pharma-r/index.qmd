@@ -6,19 +6,32 @@ date: "2024-11-15"
 categories: [R, Pharma, Reproducibility, Best Practices]
 image: "featured.png"
 draft: true
+custom-callout:
+  pharma-note:
+    title: "Regulatory Note"
+    color: "#17A89E"
+    icon-symbol: "fa-flask"
+  code-note:
+    title: "Code Pattern"
+    color: "#1a2a4a"
+    icon-symbol: "fa-code"
 ---
 
 ## Introduction
 
-In pharmaceutical data science, reproducibility isn't just a best practice—it's a regulatory requirement. This post explores how to build reproducible analysis workflows using R, renv, and Quarto.
+In pharmaceutical data science, [reproducibility isn't just a best practice — it's a regulatory requirement]{.highlight bg-colour="gold" colour="navy"}. This post explores how to build reproducible analysis workflows using R, renv, and Quarto.
 
 ## Why Reproducibility Matters in Pharma
 
-Regulatory agencies like the FDA and EMA require that analytical work be:
+Regulatory agencies like the U.S. Food and Drug Administration (FDA) and the European Medicines Agency (EMA) require that analytical work be:
 
 - **Documented** — Clear records of what was done
 - **Traceable** — Ability to follow the analysis from raw data to conclusions
 - **Reproducible** — The same inputs should produce the same outputs
+
+::: {.callout-pharma-note}
+Under 21 CFR Part 11 and comparable EMA guidance, "reproducible" means more than running the same script twice. It means you can demonstrate, on demand and years later, exactly which software version produced a specific result — including system libraries, not just R packages.
+:::
 
 ## Key Tools for Reproducibility
 
@@ -34,30 +47,21 @@ git commit -m "Initial analysis setup"
 
 ```{r}
 #| eval: false
-# Initialize renv for the project
-renv::init()
-
-# Snapshot current dependencies
-renv::snapshot()
-
-# Restore dependencies on a new machine
-renv::restore()
+renv::init()        # <1>
+renv::snapshot()    # <2>
+renv::restore()     # <3>
 ```
+1. Initialises renv for the project, creating `renv.lock` and the private library.
+2. Captures the current state of all installed packages into `renv.lock`.
+3. Installs the exact package versions recorded in `renv.lock` — use this on a new machine or after a `git pull`.
 
-### 3. Pipeline Management with targets
+::: {.callout-code-note}
+Always run `renv::snapshot()` **before** committing. The lockfile in your repository should reflect the state of the library you just tested, not the state from last week.
+:::
 
-```{r}
-#| eval: false
-library(targets)
+### 3. Documenting with Quarto
 
-# Define your analysis pipeline
-list(
-  tar_target(raw_data, read_csv("data/clinical_data.csv")),
-  tar_target(clean_data, clean_clinical_data(raw_data)),
-  tar_target(analysis, run_statistical_analysis(clean_data)),
-  tar_target(report, render_report(analysis))
-)
-```
+Quarto ties the environment and the analysis together. Embed `sessionInfo()` or `renv::lockfile_read()` output directly in your reports so reviewers can see exactly what version of each package was used.
 
 ## Best Practices
 
@@ -68,7 +72,7 @@ list(
 
 ## Conclusion
 
-Building reproducible analyses requires upfront investment but pays dividends in quality, compliance, and peace of mind.
+Building reproducible analyses requires upfront investment but [pays dividends in quality, compliance, and peace of mind]{.highlight bg-colour="teal" colour="snow"}.
 
 ## Session Info
 

@@ -15,7 +15,7 @@ The field moves fast. Uncomfortably fast.
 
 - **Statistics**: New causal inference methods, Bayesian workflows, and effect estimation techniques emerge continuously
 - **Machine Learning**: Architecture innovations, training techniques, and interpretability methods evolve monthly
-- **Generative AI**: The pace since 2022 has been unprecedented — LLMs, diffusion models, multimodal systems
+- **Generative AI**: The pace since 2022 has been unprecedented — large language models (LLMs), diffusion models, multimodal systems
 - **Tooling**: Package managers, reproducibility tools, and development workflows get better every year
 - **Best practices**: What was considered "production-ready" five years ago may now be technical debt
 
@@ -94,7 +94,7 @@ The ML landscape shifts constantly:
 - **Transformers everywhere**: From NLP to computer vision to time series
 - **Foundation models**: Pre-trained models as starting points
 - **Interpretability**: Understanding what models actually learn
-- **MLOps**: Taking models from notebooks to production
+- **Machine learning operations (MLOps)**: Taking models from notebooks to production
 
 Resources like [Hugging Face](https://huggingface.co/), [Fast.ai](https://course.fast.ai/), and [Weights & Biases](https://wandb.ai/site) keep me connected to modern practice.
 
@@ -115,7 +115,7 @@ How we build software keeps improving:
 
 - **Package management**: uv, renv, rv
 - **Containerization**: Docker, devcontainers
-- **Version control**: Git workflows, CI/CD
+- **Version control**: Git workflows, continuous integration/continuous deployment (CI/CD)
 - **Documentation**: Quarto, literate programming
 
 The [Turing Way](https://the-turing-way.netlify.app/welcome.html), [rOpenSci](https://ropensci.org/), and tool-specific documentation keep me current on best practices.

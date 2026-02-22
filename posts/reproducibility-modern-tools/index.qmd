@@ -9,7 +9,7 @@ image: "featured.png"
 
 ## Introduction
 
-Reproducibility is the cornerstone of credible data science. Whether you're in academia, pharma, finance, or tech, the ability to recreate your analysis environment and results is essential. Yet achieving true reproducibility has historically been painful — a maze of version conflicts, missing dependencies, and the dreaded "works on my machine" syndrome.
+Reproducibility is [the cornerstone of credible data science]{.highlight bg-colour="gold" colour="navy"}. Whether you're in academia, pharma, finance, or tech, the ability to recreate your analysis environment and results is essential. Yet achieving true reproducibility has historically been painful — a maze of version conflicts, missing dependencies, and the dreaded "works on my machine" syndrome.
 
 The good news? We're living in a golden age of reproducibility tooling. Both R and Python ecosystems have evolved dramatically, offering modern solutions that make reproducible workflows not just possible, but practical. This post covers the complete picture: from setting up a solid development environment in the first place, through package management and containerization, to what reproducibility actually requires when you're working under regulatory constraints.
 
@@ -104,7 +104,7 @@ If you write Python notebooks, [marimo](https://marimo.io/) is worth evaluating.
 
 ## The Reproducibility Spectrum: Scoping Your Needs
 
-Not every project requires the same level of reproducibility investment. A quick exploratory analysis for an internal meeting doesn't need the same rigor as a clinical trial submission to the FDA. Understanding where your project falls on this spectrum is essential for efficient resource allocation.
+Not every project requires the same level of reproducibility investment. A quick exploratory analysis for an internal meeting doesn't need the same rigor as a clinical trial submission to the U.S. Food and Drug Administration (FDA). Understanding where your project falls on this spectrum is essential for efficient resource allocation.
 
 ### Levels of Reproducibility
 
@@ -148,7 +148,7 @@ Every level of reproducibility adds friction:
 - **L1→L2**: Writing documentation (minutes)
 - **L2→L3**: Managing lockfiles, occasional dependency conflicts (hours)
 - **L3→L4**: Container setup, debugging build issues (days initially)
-- **L4→L5**: Data versioning, workflow management, CI/CD (ongoing effort)
+- **L4→L5**: Data versioning, workflow management, continuous integration/continuous deployment (CI/CD) (ongoing effort)
 
 The goal is to pay the *right* amount of tax for your context — not more, not less.
 
@@ -373,7 +373,7 @@ Package managers handle libraries, but what about system dependencies? OpenSSL, 
 
 ### What Are DevContainers?
 
-[Development Containers](https://containers.dev/) provide a complete, containerized development environment. They're Docker containers configured specifically for development, with full IDE integration.
+[Development Containers](https://containers.dev/) provide a complete, containerized development environment. They're Docker containers configured specifically for development, with full integrated development environment (IDE) integration.
 
 A `.devcontainer/devcontainer.json` defines your environment:
 
@@ -438,7 +438,7 @@ Available images:
 - `rocker/r-ver` — Base R
 - `rocker/tidyverse` — R + tidyverse packages
 - `rocker/verse` — tidyverse + LaTeX
-- `rocker/geospatial` — Includes GDAL, GEOS, PROJ
+- `rocker/geospatial` — Includes GDAL (Geospatial Data Abstraction Library), GEOS (Geometry Engine — Open Source), PROJ (cartographic projections library)
 
 ### Multi-Language DevContainer
 
@@ -489,35 +489,9 @@ RUN apt-get update && apt-get install -y \
 
 ## Workflow Orchestration
 
-Beyond package management, you need tools to manage the execution flow of your analysis.
+Beyond package management, you need tools to manage the execution flow of your analysis. [Snakemake](https://snakemake.github.io/) is the most widely adopted cross-language option.
 
-### R: targets
-
-[targets](https://docs.ropensci.org/targets/) is a pipeline tool for R that tracks dependencies and caches results:
-
-```r
-# _targets.R
-library(targets)
-
-list(
-  tar_target(raw_data, read_csv("data/input.csv")),
-  tar_target(clean_data, clean_data(raw_data)),
-  tar_target(model, fit_model(clean_data)),
-  tar_target(report, render_report(model), format = "file")
-)
-```
-
-```bash
-# Run the pipeline
-Rscript -e "targets::tar_make()"
-
-# Visualize dependencies
-Rscript -e "targets::tar_visnetwork()"
-```
-
-### Python: Snakemake and DVC
-
-[Snakemake](https://snakemake.github.io/) for workflow management:
+### Snakemake
 
 ```python
 # Snakefile
@@ -533,22 +507,6 @@ rule train_model:
     input: "data/clean.csv"
     output: "models/model.pkl"
     script: "scripts/train.py"
-```
-
-[DVC](https://dvc.org/) for data versioning:
-
-```bash
-# Initialize DVC
-dvc init
-
-# Track large data files
-dvc add data/large_dataset.csv
-
-# Push to remote storage
-dvc push
-
-# Pull data on another machine
-dvc pull
 ```
 
 ---
@@ -585,19 +543,19 @@ Different teams within an organization may need different reproducibility levels
 
 ### The Cost-Benefit Reality
 
-The key insight: **match your investment to your actual needs**. Over-engineering reproducibility for a throwaway analysis wastes time. Under-engineering for a regulatory submission creates risk.
+The key insight: [match your investment to your actual needs]{.highlight bg-colour="navy-mid" colour="snow"}. Over-engineering reproducibility for a throwaway analysis wastes time. Under-engineering for a regulatory submission creates risk.
 
 As project risk and longevity increase, so should your reproducibility investment — from L1 (personal exploration) through L5 (regulatory/clinical).
 
 ---
 
-## Regulated Environments: Reproducibility in Pharma and GxP
+## Regulated Environments: Reproducibility in Pharma and Good Practices (GxP)
 
 Everything above applies to all data science work. But if you operate in a regulated environment — pharma, medical devices, clinical research — there are additional requirements that change the calculus significantly.
 
 ### What FDA and EMA actually expect
 
-The FDA's 21 CFR Part 11 and EMA's comparable guidance don't prescribe specific tools. What they require is an audit trail: given a result in a regulatory submission, you must be able to demonstrate exactly which code, which data, and which environment produced it — and reproduce it on demand.
+The FDA's 21 CFR Part 11 and the European Medicines Agency (EMA)'s comparable guidance don't prescribe specific tools. What they require is an audit trail: given a result in a regulatory submission, you must be able to demonstrate exactly which code, which data, and which environment produced it — and reproduce it on demand.
 
 In practice, this means:
 
@@ -663,7 +621,6 @@ my-project/
 ├── notebooks/                # Exploratory work
 ├── reports/                  # Quarto documents
 ├── tests/                    # Unit tests
-├── _targets.R                # R pipeline (if using targets)
 ├── pyproject.toml            # Python dependencies
 ├── uv.lock                   # Python lockfile
 ├── rproject.toml             # R dependencies
@@ -697,8 +654,7 @@ my-project/
 
 **L5 (Fully Isolated):**
 
-- Data versioning (DVC)
-- Workflow management (targets/Snakemake)
+- Workflow management (Snakemake)
 - Complete audit trail
 - Archived container images
 
@@ -711,7 +667,7 @@ my-project/
 | Package management | uv | rv, renv |
 | Version management | uv, pyenv | rig |
 | Containerization | devcontainers | devcontainers + Rocker |
-| Workflow | Snakemake, DVC | targets |
+| Workflow | Snakemake | Snakemake |
 | Documentation | Quarto, Jupyter | Quarto |
 | Formatting | ruff | air |
 | Linting | ruff | lintr |
@@ -722,7 +678,7 @@ Reproducibility is no longer optional — it's table stakes for professional dat
 
 But remember: **reproducibility is a spectrum, not a binary**. The right approach depends on your context — who needs to reproduce the work, for how long, and at what stakes.
 
-Start with package management (`uv` for Python, `rv` or `renv` for R), add language version control (`rig`, `uv python`), and when system dependencies become complex, embrace devcontainers. Layer in workflow tools like `targets` or Snakemake for complex pipelines, and document everything with Quarto.
+Start with package management (`uv` for Python, `rv` or `renv` for R), add language version control (`rig`, `uv python`), and when system dependencies become complex, embrace devcontainers. Layer in Snakemake for complex multi-step pipelines, and document everything with Quarto.
 
 The investment in reproducibility pays dividends: faster onboarding, fewer "works on my machine" incidents, easier debugging, and the confidence that your results can be verified and trusted. Just make sure you're investing the right amount for your actual needs.
 
@@ -734,7 +690,5 @@ The investment in reproducibility pays dividends: faster onboarding, fewer "work
 - [rig - R Installation Manager](https://github.com/r-lib/rig)
 - [DevContainers Specification](https://containers.dev/)
 - [Rocker Project](https://rocker-project.org/)
-- [targets Package](https://docs.ropensci.org/targets/)
 - [Quarto](https://quarto.org/)
-- [DVC - Data Version Control](https://dvc.org/)
 - [Snakemake](https://snakemake.github.io/)

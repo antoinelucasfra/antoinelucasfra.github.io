@@ -4,11 +4,16 @@ author: "Antoine Lucas"
 date: "2025-10-14"
 categories: [AI Tools, GitHub Copilot, LLM, Development, VS Code, Ollama, Workflow]
 description: "Honest notes on a three-layer AI stack — Copilot, OpenCode, and Ollama — from daily use in pharma and cosmetics R&D. Real gains, real failure modes."
+custom-callout:
+  warning-stat:
+    title: "Statistical Caution"
+    color: "#C0392B"
+    icon-symbol: "fa-triangle-exclamation"
 ---
 
 ## Honest preamble
 
-This is not a "become a 10x developer with AI" post. I've been using LLM-assisted tools daily for over a year across pharma, biotech, and cosmetics R&D contexts, and the reality is more nuanced than the hype suggests.
+This is not a "become a 10x developer with AI" post. I've been using large language model (LLM)-assisted tools daily for over a year across pharma, biotech, and cosmetics R&D contexts, and the reality is more nuanced than the hype suggests.
 
 The genuine gains: faster boilerplate, quicker navigation of unfamiliar APIs, less context-switching when writing documentation. The real failure modes: overconfidence in generated statistical logic, package version hallucinations, and a subtle drift toward writing code you don't fully understand because it looked plausible.
 
@@ -88,9 +93,13 @@ A few patterns that work well:
 
 ### Where it fails
 
-- **Statistical model selection.** Do not ask Copilot whether to use a mixed model or a GEE for your longitudinal data. It will give you a plausible-sounding answer that may be wrong for your specific design. This requires domain judgment.
+- **Statistical model selection.** Do not ask Copilot whether to use a mixed model or a generalized estimating equations (GEE) model for your longitudinal data. It will give you a plausible-sounding answer that may be wrong for your specific design. This requires domain judgment.
 - **P-value interpretation.** I've seen Copilot generate commentary like "the result is highly significant (p = 0.03)" in a context where 0.03 is borderline given the multiple testing burden. It doesn't know your correction strategy.
 - **Regulatory logic.** Any code that feeds into a regulatory document needs human-authored logic. Don't let Copilot scaffold the decision rules.
+
+::: {.callout-warning-stat}
+A model completing your statistical code has no understanding of your study design, missing data mechanism, or correction strategy. Plausible-looking code that chooses the wrong model or misinterprets an effect size can pass code review and still produce wrong conclusions. Statistical judgment is not delegable to autocomplete.
+:::
 
 ---
 
@@ -139,7 +148,7 @@ OpenCode has overhead. For single-line completions, tab-completing a dplyr pipel
 
 ## Ollama
 
-Ollama runs LLMs locally. No data leaves your machine. For teams working with clinical trial data, patient samples, proprietary formulations, or anything subject to GDPR or GxP data governance, this matters.
+Ollama runs LLMs locally. No data leaves your machine. For teams working with clinical trial data, patient samples, proprietary formulations, or anything subject to General Data Protection Regulation (GDPR) or Good Practices (GxP) data governance, this matters.
 
 Cloud LLM providers — including GitHub Copilot — process your code on external servers. In most enterprise pharma environments, this is either explicitly prohibited or sits in a legal grey zone. Ollama sidesteps this entirely.
 
@@ -204,10 +213,10 @@ The trade-off is clear: if your data governance constraints are real, the capabi
 ### Don't
 
 - **Delegate statistical test or model selection.** This requires domain knowledge the model does not have — experimental design, distributional assumptions, multiple testing context.
-- **Use cloud tools on patient data, proprietary formulations, or anything under NDA.** Even if the provider claims not to train on your data, your organization's data governance policy likely has an opinion.
+- **Use cloud tools on patient data, proprietary formulations, or anything under a non-disclosure agreement (NDA).** Even if the provider claims not to train on your data, your organization's data governance policy likely has an opinion.
 - **Accept code you don't understand.** If you can't explain what a generated block does, you cannot debug it when it breaks in production.
 - **Rely on AI for package version advice.** Training cutoffs mean models routinely suggest deprecated APIs. Always check the current documentation.
-- **Use AI to draft regulatory documents without expert review.** ICH E9, ISO 14971, 21 CFR Part 11 — these are not contexts for generated text without thorough human authorship and review.
+- **Use AI to draft regulatory documents without expert review.** International Council for Harmonisation (ICH) E9, ISO 14971, 21 CFR Part 11 — these are not contexts for generated text without thorough human authorship and review.
 
 ---
 

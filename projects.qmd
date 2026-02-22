@@ -18,7 +18,7 @@ listing:
     fields: [title, description, categories]
 ---
 
-A selection of data science work I've done and am willing to write about publicly. Most of what I build is under NDA or involves proprietary data — client work, production tools for fragrance R&D, clinical data platforms — none of it can be shared. This is the part that can be.
+A selection of data science work I've done and am willing to write about publicly. Most of what I build is under non-disclosure agreement (NDA) or involves proprietary data — client work, production tools for fragrance R&D, clinical data platforms — none of it can be shared. This is the part that can be.
 
 More projects are in the works. In the meantime, the blog is a better indicator of what I'm actually working on.
 
