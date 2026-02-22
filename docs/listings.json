@@ -15,7 +15,9 @@
   {
     "listing": "/projects.html",
     "items": [
-      "/projects/resources_catalog.html"
+      "/projects/voice-to-data.html",
+      "/projects/resources_catalog.html",
+      "/projects/fake-news-detection.html"
     ]
   }
 ]
