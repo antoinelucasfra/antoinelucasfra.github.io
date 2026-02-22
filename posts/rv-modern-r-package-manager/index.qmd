@@ -55,18 +55,21 @@ With `rv`, you declare what you want in a `rproject.toml` file:
 ```toml
 [project]
 name = "my-analysis"
-r_version = "4.5"
+r_version = "4.5"        # <1>
 
 repositories = [
-    { alias = "PPM", url = "https://packagemanager.posit.co/cran/latest" },
+    { alias = "PPM", url = "https://packagemanager.posit.co/cran/latest" },  # <2>
 ]
 
 dependencies = [
-    "dplyr",
+    "dplyr",     # <3>
     "ggplot2",
     "tidyr",
 ]
 ```
+1. Pin the R version — `rv` will warn if the active R version does not match.
+2. Posit Package Manager (PPM) serves pre-compiled binaries, making installs significantly faster than building from source.
+3. Declare only direct dependencies; `rv` resolves the full transitive dependency tree automatically.
 
 Then synchronize your project:
 
@@ -173,7 +176,7 @@ Both tools share the same vision, and honestly, it's refreshing to see R catchin
 - **Speed through Rust** — Compiled performance beats interpreted languages
 - **Declarative configuration** — Describe the end state, not the steps
 - **Reproducibility first** — Lockfiles capture everything needed to recreate the environment
-- **Modern DX** — Clear CLI, helpful error messages, predictable behavior
+- **Modern developer experience (DX)** — Clear CLI, helpful error messages, predictable behavior
 
 ## A Modern R Workflow: rig + rv
 

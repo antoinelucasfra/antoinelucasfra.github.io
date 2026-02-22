@@ -47,7 +47,7 @@ They're essentially defining a generative model—rules that produce infinite va
 
 ### 3. Real-Time Feedback Loops
 
-Live coding is the ultimate REPL experience. You modify code, hear the result immediately, adjust. This tight feedback loop is exactly what makes exploratory data analysis so powerful—and so satisfying.
+Live coding is the ultimate read-eval-print loop (REPL) experience. You modify code, hear the result immediately, adjust. This tight feedback loop is exactly what makes exploratory data analysis so powerful—and so satisfying.
 
 ## The Vision: Merging Worlds
 
@@ -75,7 +75,7 @@ For those with a data science background, pay particular attention to:
 
 - **Signals**: Continuous functions like `sine`, `rand`, and `perlin` noise that modulate parameters
 - **Pattern effects**: Transformations like `fast()`, `slow()`, `chunk()`, and `rarely()` that manipulate temporal structure
-- **MIDI & OSC**: Connect Strudel to other software, hardware, or data sources
+- **Musical Instrument Digital Interface (MIDI) & Open Sound Control (OSC)**: Connect Strudel to other software, hardware, or data sources
 
 ## Beyond Entertainment
 

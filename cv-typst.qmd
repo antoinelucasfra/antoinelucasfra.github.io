@@ -25,7 +25,7 @@ antoine.lucas.fra@gmail.com · linkedin.com/in/antoinelucasdata · github.com/an
 
 Biostatistician & Data Scientist with 5+ years building production-grade data solutions in
 regulated industries — pharma, cosmetics, and biotech. Expertise spans statistical modelling,
-Design of Experiments, applied ML (computer vision, NLP), and multi-omics analysis. Proven
+Design of Experiments (DoE), applied ML (computer vision, natural language processing (NLP)), and multi-omics analysis. Proven
 track record translating complex scientific questions into end-to-end systems: from study
 design and model development through to validated deployment and stakeholder training. Strong
 communicator bridging wet-lab science, software engineering, and business.
@@ -36,9 +36,9 @@ communicator bridging wet-lab science, software engineering, and business.
 *Sep 2025 – present*
 
 - Designed and deployed computer vision models (texture classification, colour analysis) and NLP pipelines (olfactory descriptor mining from scientific literature) for fragrance and cosmetics formulation R&D
-- Modelled sensory and physico-chemical properties with PLS regression, Gaussian processes, and Bayesian optimisation to accelerate ingredient screening cycles
+- Modelled sensory and physico-chemical properties with partial least squares (PLS) regression, Gaussian processes, and Bayesian optimisation to accelerate ingredient screening cycles
 - Built DoE workflows (mixture designs, response-surface methods) cutting required experiments per formulation cycle by 30–40%
-- Engineered MLOps infrastructure: model versioning with DVC, drift monitoring, fully reproducible pipelines (Docker + GitHub Actions) in a GxP-adjacent environment
+- Engineered machine learning operations (MLOps) infrastructure: drift monitoring, fully reproducible pipelines (Docker + GitHub Actions) in a Good Practices (GxP)-adjacent environment
 - Delivered R Shiny dashboards covering sensory scoring, spectral data visualisation, and interactive experiment planning for R&D scientists
 - Responsible for data science platform tooling: Azure ML, Posit Connect, Databricks — provisioning, access governance, and lifecycle management
 - Owner and maintainer of a 20+ app catalog (R Shiny, Streamlit) used daily by R&D scientists
@@ -49,29 +49,29 @@ communicator bridging wet-lab science, software engineering, and business.
 - Developed reusable internal R packages and Quarto automated reporting templates, cutting analyst turnaround time by ~25% across consulting engagements
 - Led internal upskilling programme on tidymodels, causal inference, and reproducible research for 8 statistical consultants
 - Scoped and prototyped ML solutions for pre-sales client engagements in pharma and agri-food verticals
-- Fine-tuned a Phi-3 LLM (Microsoft) on open Hugging Face datasets for fake news detection and climate claim proof retrieval — full pipeline from data preparation to evaluation
+- Fine-tuned a Phi-3 large language model (LLM, Microsoft) on open Hugging Face datasets for fake news detection and climate claim proof retrieval — full pipeline from data preparation to evaluation
 
 **Data Scientist — Multi-omics** — *Abolis · Microbiome Studio · via Astek / IT&M Stats*
 *Dec 2024 – May 2025*
 
-- Fast-paced 8-person startup contributing to a SaaS product (FastAPI Python backend, Vue.js front-end), with full individual autonomy
+- Fast-paced 8-person startup contributing to a software-as-a-service (SaaS) product (FastAPI Python backend, Vue.js front-end), with full individual autonomy
 - Delivered end-to-end pipelines in R and Python for tabular and large-scale omics data (genomics, transcriptomics, metabolomics)
-- Applied PERMANOVA, sparse PLS-DA, and co-occurrence network analysis to characterise microbial interactions and identify key functional drivers
-- Integrated analysis outputs into the production SaaS platform via REST API
+- Applied permutational multivariate analysis of variance (PERMANOVA), sparse PLS-DA, and co-occurrence network analysis to characterise microbial interactions and identify key functional drivers
+- Integrated analysis outputs into the production SaaS platform via representational state transfer (REST) API
 
 **Data Scientist / Scrum Master** — *Sanofi R&D · via Astek / IT&M Stats*
 *Jul 2023 – Nov 2024*
 
 - Architected and delivered a full R Shiny platform (golem) managing pilot manufacturing chains for 100+ GxP clinical projects — 50+ daily active users across 3 departments
-- Designed the data model, module architecture, and automated validation report generation to satisfy GxP audit-trail requirements (IQ/OQ/PQ on Posit Connect)
-- Owned the full delivery lifecycle: user-story workshops → agile sprints → UAT → IQ/OQ documentation → production deployment
+- Designed the data model, module architecture, and automated validation report generation to satisfy GxP audit-trail requirements (Installation/Operational/Performance Qualification (IQ/OQ/PQ) on Posit Connect)
+- Owned the full delivery lifecycle: user-story workshops → agile sprints → user acceptance testing (UAT) → IQ/OQ documentation → production deployment
 - Sole developer on the engineering side, working directly with 5+ senior sponsors across R&D and manufacturing
 - Mentored 1 intern on building Shiny application modules
 
 **Biostatistician** — *L'Oréal R&D · via Astek / IT&M Stats*
 *Oct 2021 – Jul 2023*
 
-- Delivered 100+ statistical analyses on ingredient efficacy (hydration, anti-ageing biomarkers) and molecular safety (QSAR, genotoxicity) across cosmetic and dermocosmetic pipelines
+- Delivered 100+ statistical analyses on ingredient efficacy (hydration, anti-ageing biomarkers) and molecular safety (quantitative structure-activity relationship (QSAR), genotoxicity) across cosmetic and dermocosmetic pipelines
 - Designed and analysed clinical and semi-clinical studies from protocol writing through regulatory-grade reports — consistent 2-week delivery cycle
 - Built internal R tooling (survival analysis, mixed-effects models, automated Rmarkdown reporting) adopted as standard across the biostatistics team
 - Mentored 2 junior analysts and 1 intern; co-authored methodology guides on non-inferiority testing and adaptive designs
@@ -92,7 +92,7 @@ communicator bridging wet-lab science, software engineering, and business.
 | **ML & Stats** | scikit-learn · tidymodels · XGBoost · Bayesian optimisation · DoE · PLS · PERMANOVA · survival analysis |
 | **Apps & Viz** | R Shiny (golem) · ggplot2 · Plotly · Quarto · Power BI |
 | **CV / NLP** | PyTorch · OpenCV · Hugging Face · sentence-transformers |
-| **MLOps** | Docker · GitHub Actions · Posit Connect · Azure ML · Databricks · DVC · renv · uv |
+| **MLOps** | Docker · GitHub Actions · Posit Connect · Azure ML · Databricks · renv · uv |
 | **Domains** | GxP · IQ/OQ/PQ · Clinical biostatistics · Multi-omics · Cosmetic R&D |
 
 ## Certifications

@@ -27,11 +27,11 @@ Pharma & Cosmetic R&D · Paris
 :::
 
 ::: {.hero-links}
-[<i class="bi bi-envelope"></i> Email](mailto:antoine.lucas.fra@gmail.com){.hero-link}
-[<i class="bi bi-linkedin"></i> LinkedIn](https://www.linkedin.com/in/antoinelucasdata/){.hero-link}
-[<i class="bi bi-github"></i> GitHub](https://github.com/antoinelucasfra){.hero-link}
-[<i class="bi bi-twitter"></i> Twitter](https://twitter.com/antoineloucass){.hero-link}
-[<i class="bi bi-file-earmark-person"></i> CV](cv.qmd){.hero-link .hero-link-cv}
+[{{< fa envelope >}} Email](mailto:antoine.lucas.fra@gmail.com){.hero-link}
+[{{< fa brands linkedin >}} LinkedIn](https://www.linkedin.com/in/antoinelucasdata/){.hero-link}
+[{{< fa brands github >}} GitHub](https://github.com/antoinelucasfra){.hero-link}
+[{{< fa brands twitter >}} Twitter](https://twitter.com/antoineloucass){.hero-link}
+[{{< fa id-card >}} CV](cv.qmd){.hero-link .hero-link-cv}
 :::
 :::
 
@@ -54,19 +54,19 @@ Currently **Data Scientist & ML Engineer at Chanel Parfums Beauté R&D**, on mis
 ::: {.wid-item}
 ### Statistical modeling & analysis
 
-From design of experiments and mixed models to biostatistics in GxP environments. I cover the full analytical chain — from raw assay data to interpretation for regulatory submissions.
+From design of experiments and mixed models to biostatistics in Good Practices (GxP) environments. I cover the full analytical chain — from raw assay data to interpretation for regulatory submissions.
 :::
 
 ::: {.wid-item}
 ### R Shiny applications
 
-I build internal tools that scientists actually want to use. Dashboards for QC monitoring, SPC, pilot manufacturing, clinical data management. The measure of success is whether the app disappears — people just use it.
+I build internal tools that scientists actually want to use. Dashboards for quality control (QC) monitoring, statistical process control (SPC), pilot manufacturing, clinical data management. The measure of success is whether the app disappears — people just use it.
 :::
 
 ::: {.wid-item}
 ### Machine learning & computer vision
 
-Predictive models in fragrance formulation, image classification pipelines, NLP for raw material descriptions. Production-grade tools that go into daily research workflows.
+Predictive models in fragrance formulation, image classification pipelines, natural language processing (NLP) for raw material descriptions. Production-grade tools that go into daily research workflows.
 :::
 
 ::: {.wid-item}
@@ -93,7 +93,7 @@ Everything in Git, documented, runnable in 6 months with `renv::restore()` or `u
 **R ecosystem**
 
 ::: {.skill-pills}
-[Shiny]{.pill} [Tidyverse]{.pill} [ggplot2]{.pill} [renv]{.pill} [Quarto]{.pill} [targets]{.pill}
+[Shiny]{.pill} [Tidyverse]{.pill} [ggplot2]{.pill} [renv]{.pill} [Quarto]{.pill}
 :::
 :::
 
@@ -131,7 +131,7 @@ Everything in Git, documented, runnable in 6 months with `renv::restore()` or `u
 ---
 
 ::: {.site-nav-footer}
-[<i class="bi bi-pen"></i> Blog](/blog.qmd) — field notes from real work ·
-[<i class="bi bi-folder"></i> Projects](/projects.qmd) ·
-[<i class="bi bi-file-text"></i> Full CV](/cv.qmd)
+[{{< fa pen >}} Blog](/blog.qmd) — field notes from real work ·
+[{{< fa folder >}} Projects](/projects.qmd) ·
+[{{< fa file-lines >}} Full CV](/cv.qmd)
 :::
