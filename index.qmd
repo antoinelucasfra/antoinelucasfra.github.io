@@ -19,11 +19,11 @@ Antoine Lucas
 :::
 
 ::: {.hero-tagline}
-Biostatistician & Data Scientist
+Research Engineer · ML Systems & Scientific AI
 :::
 
 ::: {.hero-location}
-Pharma & Cosmetic R&D · Paris
+Paris
 :::
 
 ::: {.hero-links}
@@ -39,9 +39,9 @@ Pharma & Cosmetic R&D · Paris
 
 ---
 
-I trained as an agronomy engineer, specialized in applied statistics, and somehow ended up building machine learning systems for Chanel's fragrance R&D. The path made sense at each step, even if it doesn't look obvious on paper.
+I trained as an agronomy engineer, specialized in applied statistics, and somehow ended up building machine learning systems for Chanel's fragrance R&D — and fine-tuning LLMs for scientific and regulated contexts. The path made sense at each step, even if it doesn't look obvious on paper.
 
-For the past 4+ years I've been embedded in R&D and clinical teams at **L'Oréal**, **Sanofi**, **Abolis** (microbiome biotech), and now **Chanel Parfums Beauté** — always at the intersection of data and experimental science.
+For the past 5+ years I've been embedded in R&D and clinical teams at **L'Oréal**, **Sanofi**, **Abolis** (microbiome biotech), and now **Chanel Parfums Beauté** — building ML systems at the intersection of data and experimental science.
 
 ::: {.highlight}
 Currently **Data Scientist & ML Engineer at Chanel Parfums Beauté R&D**, on mission via Astek / IT&M Stats. Building ML and computer vision tools for fragrance and cosmetics research.
@@ -52,27 +52,27 @@ Currently **Data Scientist & ML Engineer at Chanel Parfums Beauté R&D**, on mis
 ::: {.what-i-do}
 
 ::: {.wid-item}
+### Machine learning & deep learning
+
+Computer vision models, NLP pipelines, and LLM fine-tuning for scientific applications. From texture classification and olfactory descriptor mining to training LoRA adapters on domain-specific datasets. Production-grade tools that go into daily research workflows.
+:::
+
+::: {.wid-item}
+### LLM pipelines & agentic systems
+
+End-to-end pipelines combining ASR, structured extraction (Instructor + Pydantic), and domain validation — turning unstructured scientific inputs into validated, auditable records. Local-first, compliance-aware architecture.
+:::
+
+::: {.wid-item}
 ### Statistical modeling & analysis
 
 From design of experiments and mixed models to biostatistics in Good Practices (GxP) environments. I cover the full analytical chain — from raw assay data to interpretation for regulatory submissions.
 :::
 
 ::: {.wid-item}
-### R Shiny applications
+### Reproducible data science & MLOps
 
-I build internal tools that scientists actually want to use. Dashboards for quality control (QC) monitoring, statistical process control (SPC), pilot manufacturing, clinical data management. The measure of success is whether the app disappears — people just use it.
-:::
-
-::: {.wid-item}
-### Machine learning & computer vision
-
-Predictive models in fragrance formulation, image classification pipelines, natural language processing (NLP) for raw material descriptions. Production-grade tools that go into daily research workflows.
-:::
-
-::: {.wid-item}
-### Reproducible data science
-
-Everything in Git, documented, runnable in 6 months with `renv::restore()` or `uv sync`. I'm opinionated about this because I've seen what happens when you're not.
+Everything in Git, containerized, runnable in 6 months with `uv sync` or `renv::restore()`. Drift monitoring, CI/CD pipelines, and model versioning in GxP-adjacent environments. I'm opinionated about this because I've seen what happens when you're not.
 :::
 
 :::
@@ -85,7 +85,31 @@ Everything in Git, documented, runnable in 6 months with `renv::restore()` or `u
 **Languages**
 
 ::: {.skill-pills}
-[R]{.pill} [Python]{.pill} [SQL]{.pill} [Bash]{.pill}
+[Python]{.pill} [R]{.pill} [SQL]{.pill} [Bash]{.pill}
+:::
+:::
+
+::: {.skill-group}
+**Deep learning & LLM**
+
+::: {.skill-pills}
+[PyTorch]{.pill} [Hugging Face]{.pill} [PEFT / LoRA]{.pill} [Instructor]{.pill} [faster-whisper]{.pill} [sentence-transformers]{.pill}
+:::
+:::
+
+::: {.skill-group}
+**ML & Python ecosystem**
+
+::: {.skill-pills}
+[scikit-learn]{.pill} [OpenCV]{.pill} [Pandas]{.pill} [FastAPI]{.pill} [uv]{.pill}
+:::
+:::
+
+::: {.skill-group}
+**Statistics & methods**
+
+::: {.skill-pills}
+[DoE]{.pill} [Mixed Models]{.pill} [Bayesian Optimisation]{.pill} [PLS]{.pill} [Survival Analysis]{.pill} [SPC]{.pill}
 :::
 :::
 
@@ -98,26 +122,10 @@ Everything in Git, documented, runnable in 6 months with `renv::restore()` or `u
 :::
 
 ::: {.skill-group}
-**Python ecosystem**
+**MLOps & infrastructure**
 
 ::: {.skill-pills}
-[PyTorch]{.pill} [scikit-learn]{.pill} [OpenCV]{.pill} [Pandas]{.pill} [uv]{.pill}
-:::
-:::
-
-::: {.skill-group}
-**Methods**
-
-::: {.skill-pills}
-[DoE]{.pill} [Mixed Models]{.pill} [SPC]{.pill} [Survival Analysis]{.pill} [PLS]{.pill} [Computer Vision]{.pill} [NLP]{.pill}
-:::
-:::
-
-::: {.skill-group}
-**Environments**
-
-::: {.skill-pills}
-[GxP / Regulated]{.pill} [Docker]{.pill} [Git]{.pill} [GitHub Actions]{.pill}
+[Docker]{.pill} [GitHub Actions]{.pill} [Azure ML]{.pill} [Databricks]{.pill} [Posit Connect]{.pill} [GxP / Regulated]{.pill}
 :::
 :::
 
