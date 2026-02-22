@@ -618,7 +618,7 @@ The following is a minimal end-to-end implementation. It is intentionally simpli
 
 ```toml
 [project]
-name = "voice-to-data-pipeline"
+name = "voice-to-data"
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [
