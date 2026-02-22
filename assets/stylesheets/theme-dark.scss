@@ -1,41 +1,56 @@
 /*-- scss:defaults --*/
 
-// NOTE: $brand-* variables are defined in the brand layer, which runs AFTER
-// this defaults section in Quarto's SCSS layering. Use literal hex values here.
+// NOTE: $brand-* variables are defined in the brand layer (runs after this
+// defaults section in Quarto's SCSS layering). Use literal hex values here.
 
-// Palette (matching _brand.yml)
-$palette-navy:       #0d1b2a;
-$palette-navy-mid:   #1a2a4a;
-$palette-navy-muted: #2c3e50;
-$palette-gold:       #F5C518;
-$palette-gold-light: #FFD94A;
-$palette-snow:       #F8F9FA;
-$palette-smoke:      #E9ECEF;
-$palette-slate:      #6C757D;
-$palette-ink:        #1C2833;
-$palette-teal:       #17A89E;
-$palette-crimson:    #C0392B;
+// ── New identity palette (dark mode) ─────────────────────────────────────
+// Accent: sky blue family
+$palette-sky:          #38BDF8;
+$palette-sky-light:    #7DD3FC;
+$palette-sky-dim:      #0EA5E9;
+
+// Dark mode surfaces
+$palette-void:         #0F1117;   // true dark base — main page background
+$palette-surface:      #161B22;   // cards, sidebar, secondary surfaces
+$palette-surface-mid:  #1C2128;   // elevated surfaces
+$palette-border-dark:  #21262D;   // subtle borders
+$palette-border-mid:   #30363D;   // stronger borders / dividers
+
+// Text
+$palette-ink:          #E6EDF3;   // warm near-white body text
+$palette-ink-dim:      #C9D1D9;   // slightly muted headings / secondary text
+$palette-muted:        #8B949E;   // secondary / meta text
+
+// Dark code surfaces (Dracula-family)
+$palette-code-bg:      #0D1117;
+$palette-code-surface: #161B22;
+$palette-code-text:    #79C0FF;
+$palette-code-border:  #30363D;
+
+// Semantic
+$palette-teal:         #2DD4BF;
+$palette-danger:       #F85149;
 
 // Bootstrap semantic overrides (dark mode)
-$primary:   $palette-gold;
-$secondary: $palette-navy-muted;
+$primary:   $palette-sky;
+$secondary: $palette-muted;
 $success:   $palette-teal;
-$info:      $palette-teal;
-$warning:   $palette-gold;
-$danger:    $palette-crimson;
+$info:      $palette-sky-light;
+$warning:   $palette-sky-dim;
+$danger:    $palette-danger;
 
-$body-bg:    $palette-navy;
-$body-color: $palette-snow;
+$body-bg:    $palette-void;
+$body-color: $palette-ink;
 
-$link-color:       $palette-gold;
-$link-hover-color: $palette-gold-light;
+$link-color:       $palette-sky;
+$link-hover-color: $palette-sky-light;
 
-$headings-color:       $palette-gold;
+$headings-color:       $palette-sky;
 $headings-font-weight: 700;
 
-$navbar-dark-color:       $palette-snow;
-$navbar-dark-hover-color: $palette-gold;
-$navbar-dark-brand-color: $palette-gold;
+$navbar-dark-color:       #E6EDF3;
+$navbar-dark-hover-color: $palette-sky;
+$navbar-dark-brand-color: $palette-sky;
 
 $font-size-base: 1.0rem;
 $line-height-base: 1.7;
@@ -51,49 +66,53 @@ html {
 body {
   font-size: $font-size-base;
   line-height: $line-height-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 // ── Navbar ────────────────────────────────────────────────────────────────
 
 .navbar {
-  background-color: $palette-navy !important;
-  border-bottom: 2px solid $palette-gold;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
+  background-color: $palette-void !important;
+  border-bottom: 1px solid rgba($palette-sky, 0.25);
+  box-shadow: 0 1px 0 rgba($palette-sky, 0.06), 0 2px 8px rgba(0, 0, 0, 0.4);
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
 }
 
 .navbar-brand {
-  font-family: "Sora", sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: $palette-gold !important;
-  font-size: 1.1rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: $palette-sky !important;
+  font-size: 1.05rem;
 
-  &:hover { color: $palette-gold-light !important; }
+  &:hover { color: $palette-sky-light !important; }
 }
 
 .navbar-dark .navbar-nav .nav-link {
+  color: rgba($palette-ink, 0.75) !important;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   letter-spacing: 0.01em;
+  transition: color 0.15s;
 
-  &:hover, &:focus { color: $palette-gold !important; }
-  &.active          { color: $palette-gold !important; }
+  &:hover, &:focus { color: $palette-sky !important; }
+  &.active          { color: $palette-sky !important; }
 }
 
 // ── Hero grid layout ──────────────────────────────────────────────────────
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 3rem;
   align-items: center;
   margin: 3rem 0 2.5rem 0;
   padding: 2.5rem 2rem;
-  background: linear-gradient(135deg, rgba($palette-navy-mid, 0.6) 0%, rgba($palette-navy, 0.8) 100%);
-  border-radius: 1rem;
-  border: 1px solid rgba($palette-gold, 0.12);
+  background: $palette-surface;
+  border-radius: 0.75rem;
+  border: 1px solid $palette-border-dark;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -110,46 +129,50 @@ body {
 }
 
 .hero-img {
-  width: 190px;
-  height: 190px;
+  width: 175px;
+  height: 175px;
   object-fit: cover;
   border-radius: 50%;
-  border: 4px solid $palette-gold;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 3px solid $palette-sky;
+  box-shadow: 0 0 0 1px rgba($palette-sky, 0.15),
+              0 0 32px rgba($palette-sky, 0.2),
+              0 8px 32px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: scale(1.03);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 0 0 2px rgba($palette-sky, 0.3),
+                0 0 48px rgba($palette-sky, 0.3),
+                0 12px 40px rgba(0, 0, 0, 0.6);
   }
 }
 
 .hero-text-col {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
 .hero-name {
-  font-family: "Sora", sans-serif;
-  font-size: 2.4rem;
-  font-weight: 800;
-  color: $palette-gold;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: $palette-sky;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  margin: 0 0 0.25rem 0;
+  margin: 0 0 0.2rem 0;
 }
 
 .hero-tagline {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: $palette-snow;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: $palette-ink-dim;
   margin: 0;
 }
 
 .hero-location {
-  font-size: 0.9rem;
-  color: rgba($palette-smoke, 0.65);
+  font-size: 0.875rem;
+  color: $palette-muted;
   margin: 0 0 0.75rem 0;
 
   &::before {
@@ -161,7 +184,7 @@ body {
 .hero-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.45rem;
   margin-top: 0.5rem;
 
   @media (max-width: 768px) {
@@ -173,35 +196,36 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
-  padding: 0.35em 0.9em;
-  border-radius: 2rem;
-  font-size: 0.85rem;
+  padding: 0.3em 0.85em;
+  border-radius: 0.375rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  background-color: rgba($palette-gold, 0.1);
-  color: $palette-snow !important;
-  border: 1px solid rgba($palette-gold, 0.25);
+  background-color: $palette-surface-mid;
+  color: $palette-ink !important;
+  border: 1px solid $palette-border-mid;
   text-decoration: none !important;
-  transition: background-color 0.18s, border-color 0.18s, color 0.18s, transform 0.18s;
+  transition: border-color 0.15s, color 0.15s, background-color 0.15s, transform 0.15s;
 
   &:hover {
-    background-color: $palette-gold;
-    border-color: $palette-gold;
-    color: $palette-navy !important;
+    border-color: $palette-sky;
+    color: $palette-sky !important;
+    background-color: rgba($palette-sky, 0.08);
     transform: translateY(-1px);
   }
 
-  i { font-size: 0.95em; }
+  i { font-size: 0.9em; }
 }
 
 .hero-link-cv {
-  background-color: $palette-gold;
-  color: $palette-navy !important;
-  border-color: $palette-gold;
+  background-color: $palette-sky;
+  color: $palette-void !important;
+  border-color: $palette-sky;
+  font-weight: 600;
 
   &:hover {
-    background-color: $palette-gold-light;
-    border-color: $palette-gold-light;
-    color: $palette-navy !important;
+    background-color: $palette-sky-light;
+    border-color: $palette-sky-light;
+    color: $palette-void !important;
   }
 }
 
@@ -210,13 +234,13 @@ body {
 .section-heading {
   margin-top: 3rem;
   margin-bottom: 1.25rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid rgba($palette-gold, 0.4);
-  color: $palette-gold;
-  font-family: "Sora", sans-serif;
-  font-size: 1.4rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba($palette-sky, 0.2);
+  color: $palette-sky;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 // ── What I do grid ────────────────────────────────────────────────────────
@@ -224,7 +248,7 @@ body {
 .what-i-do {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 1rem;
   margin: 1.25rem 0 2rem 0;
 
   @media (max-width: 768px) {
@@ -233,25 +257,25 @@ body {
 }
 
 .wid-item {
-  padding: 1.25rem 1.5rem;
-  background: rgba($palette-navy-mid, 0.55);
-  border: 1px solid rgba($palette-gold, 0.1);
-  border-left: 3px solid $palette-gold;
-  border-radius: 0 0.5rem 0.5rem 0;
-  transition: border-left-color 0.2s, background-color 0.2s, transform 0.2s;
+  padding: 1.1rem 1.4rem;
+  background: $palette-surface;
+  border: 1px solid $palette-border-dark;
+  border-top: 2px solid rgba($palette-sky, 0.6);
+  border-radius: 0.375rem;
+  transition: border-top-color 0.2s, border-color 0.2s, box-shadow 0.2s;
 
   &:hover {
-    border-left-color: $palette-gold-light;
-    background: rgba($palette-navy-mid, 0.75);
-    transform: translateX(2px);
+    border-top-color: $palette-sky;
+    border-color: rgba($palette-sky, 0.2);
+    box-shadow: 0 4px 16px rgba($palette-sky, 0.08);
   }
 
   h3 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 700;
-    color: $palette-gold;
-    margin: 0 0 0.5rem 0;
-    font-family: "Sora", sans-serif;
+    color: $palette-ink-dim;
+    margin: 0 0 0.45rem 0;
+    font-family: "Space Grotesk", sans-serif;
     letter-spacing: -0.01em;
     border: none !important;
     padding: 0 !important;
@@ -260,8 +284,8 @@ body {
   }
 
   p {
-    font-size: 0.9rem;
-    color: rgba($palette-snow, 0.75);
+    font-size: 0.875rem;
+    color: rgba($palette-ink, 0.65);
     margin: 0;
     line-height: 1.6;
   }
@@ -272,7 +296,7 @@ body {
 .skill-section {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.9rem;
   margin: 1.25rem 0 2rem 0;
 }
 
@@ -286,38 +310,44 @@ body {
     gap: 0.4rem;
   }
 
-  > strong {
-    min-width: 130px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: rgba($palette-snow, 0.55);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+  > p {
+    min-width: 140px;
+    margin: 0;
     padding-top: 0.25rem;
     flex-shrink: 0;
+
+    > strong {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: $palette-muted;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
   }
 }
 
 .skill-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
 .pill {
   display: inline-block;
-  padding: 0.2em 0.7em;
-  border-radius: 2rem;
-  font-size: 0.8rem;
+  padding: 0.18em 0.65em;
+  border-radius: 0.25rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  background-color: rgba($palette-gold, 0.12);
-  color: $palette-snow;
-  border: 1px solid rgba($palette-gold, 0.3);
-  transition: background-color 0.15s, color 0.15s;
+  font-family: "JetBrains Mono", monospace;
+  background-color: rgba($palette-sky, 0.08);
+  color: $palette-sky-light;
+  border: 1px solid rgba($palette-sky, 0.2);
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
 
   &:hover {
-    background-color: $palette-gold;
-    color: $palette-navy;
+    background-color: rgba($palette-sky, 0.15);
+    color: $palette-sky;
+    border-color: rgba($palette-sky, 0.4);
     cursor: default;
   }
 }
@@ -325,11 +355,11 @@ body {
 // ── Highlight callout box ─────────────────────────────────────────────────
 
 .highlight {
-  background-color: rgba($palette-navy-mid, 0.5);
-  border-left: 4px solid $palette-gold;
-  padding: 1rem 1.5rem;
+  background-color: rgba($palette-sky, 0.05);
+  border-left: 3px solid $palette-sky;
+  padding: 1rem 1.25rem;
   margin: 1.5rem 0;
-  border-radius: 0 0.5rem 0.5rem 0;
+  border-radius: 0 0.375rem 0.375rem 0;
 
   p { margin-bottom: 0; }
 }
@@ -338,38 +368,45 @@ body {
 
 .site-nav-footer {
   margin: 2.5rem 0 1rem;
-  font-size: 0.9rem;
-  color: rgba($palette-snow, 0.55);
+  font-size: 0.875rem;
+  color: $palette-muted;
 
   a {
-    color: $palette-gold;
+    color: $palette-sky;
     font-weight: 500;
 
-    &:hover { color: $palette-gold-light; }
+    &:hover { color: $palette-sky-light; }
 
     i { margin-right: 0.25em; }
   }
 }
 
 // ── Headings ──────────────────────────────────────────────────────────────
-// H1 keeps gold — it's a display/hero element.
-// H2–H6 use softer near-white tones so long articles don't fatigue the eye.
+// H1 → sky (display/hero element)
+// H2 → near-white — clear hierarchy without eye fatigue in long articles
+// H3/H4 → slightly dimmer
+// H5/H6 → muted
 
 h1 {
-  color: $palette-gold;
-  font-family: "Sora", sans-serif;
+  color: $palette-sky;
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: -0.03em;
 }
 
 h2 {
-  color: #E8EAED;
-  font-family: "Sora", sans-serif;
+  color: $palette-ink-dim;
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: -0.02em;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba($palette-sky, 0.15);
 }
 
 h3, h4 {
-  color: #C5CDD8;
-  font-family: "Sora", sans-serif;
+  color: #B0BAC6;
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: -0.02em;
 }
 
 h3 {
@@ -377,8 +414,8 @@ h3 {
 }
 
 h5, h6 {
-  color: #B0BAC6;
-  font-family: "Sora", sans-serif;
+  color: $palette-muted;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 // ── About body ────────────────────────────────────────────────────────────
@@ -389,9 +426,9 @@ h5, h6 {
 
   h2 {
     margin-top: 2.5rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 2px solid rgba($palette-gold, 0.35);
-    color: #E8EAED;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid rgba($palette-sky, 0.15);
+    color: $palette-ink-dim;
   }
 }
 
@@ -402,22 +439,22 @@ table {
   margin: 1rem 0;
 
   th {
-    background-color: rgba($palette-gold, 0.12);
+    background-color: rgba($palette-sky, 0.08);
     font-weight: 600;
-    color: $palette-gold;
-    font-family: "Sora", sans-serif;
-    font-size: 0.85rem;
+    color: $palette-sky-light;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.82rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
   }
 
   td, th {
-    padding: 0.7rem 0.85rem;
-    border: 1px solid rgba($palette-gold, 0.18);
+    padding: 0.65rem 0.85rem;
+    border: 1px solid $palette-border-dark;
   }
 
   tr:nth-child(even) {
-    background-color: rgba($palette-navy-mid, 0.35);
+    background-color: rgba($palette-surface, 0.6);
   }
 }
 
@@ -428,14 +465,14 @@ table {
   padding-left: 0;
 
   li {
-    padding: 0.75rem 1rem;
-    border-left: 3px solid $palette-gold;
+    padding: 0.7rem 1rem;
+    border-left: 2px solid rgba($palette-sky, 0.6);
     margin-bottom: 0.5rem;
-    background-color: rgba($palette-navy-mid, 0.4);
+    background-color: $palette-surface;
     border-radius: 0 0.375rem 0.375rem 0;
     transition: border-color 0.2s;
 
-    &:hover { border-left-color: $palette-gold-light; }
+    &:hover { border-left-color: $palette-sky; }
   }
 }
 
@@ -448,16 +485,16 @@ table {
   padding-left: 0;
 
   li {
-    padding: 0.2rem 0 0.2rem 1.4rem;
+    padding: 0.2rem 0 0.2rem 1.2em;
     position: relative;
 
     &::before {
       content: "▸";
-      color: $palette-gold;
-      font-size: 0.75em;
+      color: $palette-sky;
+      font-size: 0.72em;
       position: absolute;
       left: 0;
-      top: 0.25em;
+      top: 0.28em;
     }
   }
 }
@@ -465,228 +502,281 @@ table {
 // ── Project cards ────────────────────────────────────────────────────────
 
 .quarto-grid-item.card {
-  background-color: $palette-navy-mid;
-  border: 1px solid rgba($palette-gold, 0.18);
+  background-color: $palette-surface;
+  border: 1px solid $palette-border-dark;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 28px rgba($palette-gold, 0.14);
-    border-color: $palette-gold;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba($palette-sky, 0.12);
+    border-color: rgba($palette-sky, 0.4);
   }
 
-  .card-title { color: $palette-gold; font-family: "Sora", sans-serif; }
-  .card-text  { color: $palette-snow; }
+  .card-title {
+    color: $palette-sky-light;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .card-text { color: rgba($palette-ink, 0.7); }
 }
 
 // ── Blog listing (grid) ───────────────────────────────────────────────────
 
 .quarto-listing-cols-3 .card {
-  background-color: $palette-navy-mid;
-  border: 1px solid rgba($palette-gold, 0.15);
+  background-color: $palette-surface;
+  border: 1px solid $palette-border-dark;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
   border-radius: 0.5rem;
   overflow: hidden;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-    border-color: rgba($palette-gold, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-color: rgba($palette-sky, 0.35);
   }
 
   .card-img-top {
-    border-bottom: 2px solid rgba($palette-gold, 0.2);
+    border-bottom: 1px solid $palette-border-dark;
   }
 
   .card-title {
-    font-family: "Sora", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 0.95rem;
-    font-weight: 700;
-    color: $palette-gold;
+    font-weight: 600;
+    color: $palette-sky-light;
   }
 
-  .card-text { font-size: 0.85rem; color: rgba($palette-snow, 0.7); }
+  .card-text { font-size: 0.85rem; color: rgba($palette-ink, 0.65); }
 }
 
 // ── Blog listing (list fallback) ──────────────────────────────────────────
 
 .listing-item {
   transition: transform 0.15s ease;
-  &:hover { transform: translateX(4px); }
+  &:hover { transform: translateX(3px); }
 }
 
-// ── Code ──────────────────────────────────────────────────────────────────
+// ── Code blocks ───────────────────────────────────────────────────────────
+// Container styling — Dracula handles syntax colours via highlight-style
+// pre.sourceCode → language-tagged fenced blocks (Quarto wraps these)
+// pre:not(.sourceCode) → untagged fenced blocks (e.g. ASCII diagrams)
 
-pre.sourceCode {
+pre.sourceCode,
+pre:not(.sourceCode) {
   border-radius: 0.5rem;
-  border: 1px solid rgba($palette-gold, 0.18);
-  background-color: #1e1e2e;
+  border: 1px solid $palette-code-border;
+  background-color: $palette-code-bg !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  overflow-x: auto;
 }
 
-code {
-  color: #A8C8F0;
-  background-color: rgba($palette-navy-mid, 0.8);
+// Ensure text inside bare pre blocks is readable on dark background
+pre:not(.sourceCode) code {
+  color: $palette-ink;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.875em;
+}
+
+div.sourceCode {
+  border-radius: 0.5rem;
+  background-color: $palette-code-bg !important;
+}
+
+// Inline code pill — coherent with Dracula container
+code:not(pre code) {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85em;
+  color: $palette-code-text;
+  background-color: $palette-code-surface;
   border-radius: 0.25rem;
-  padding: 0.1em 0.35em;
+  padding: 0.12em 0.4em;
+  border: 1px solid $palette-code-border;
 }
 
 // ── Callouts ──────────────────────────────────────────────────────────────
 
 .callout          { border-radius: 0.5rem; }
-.callout-note     { border-left-color: $palette-gold; }
+.callout-note     { border-left-color: $palette-sky; }
 .callout-tip      { border-left-color: $palette-teal; }
-.callout-warning  { border-left-color: $palette-gold; }
-.callout-caution  { border-left-color: $palette-crimson; }
+.callout-warning  { border-left-color: $palette-sky-dim; }
+.callout-caution  { border-left-color: $palette-danger; }
 
 // ── Buttons ──────────────────────────────────────────────────────────────
 
 .btn-primary {
-  background-color: $palette-gold;
-  border-color: $palette-gold;
-  color: $palette-navy;
+  background-color: $palette-sky;
+  border-color: $palette-sky;
+  color: $palette-void;
+  font-weight: 600;
 
   &:hover {
-    background-color: $palette-gold-light;
-    border-color: $palette-gold-light;
-    color: $palette-navy;
+    background-color: $palette-sky-light;
+    border-color: $palette-sky-light;
+    color: $palette-void;
   }
 }
 
 .btn-secondary {
-  background-color: $palette-navy-mid;
-  border-color: $palette-gold;
-  color: $palette-gold;
+  background-color: transparent;
+  border-color: rgba($palette-sky, 0.4);
+  color: $palette-sky;
 
   &:hover {
-    background-color: $palette-gold;
-    border-color: $palette-gold;
-    color: $palette-navy;
+    background-color: rgba($palette-sky, 0.1);
+    border-color: $palette-sky;
+    color: $palette-sky-light;
   }
 }
 
 // ── Category / tag badges ─────────────────────────────────────────────────
 
 .quarto-category {
-  background-color: rgba($palette-gold, 0.15);
-  color: $palette-gold;
-  border: 1px solid rgba($palette-gold, 0.35);
-  font-size: 0.75rem;
-  font-weight: 500;
+  background-color: rgba($palette-sky, 0.08);
+  color: $palette-sky-light;
+  border: 1px solid rgba($palette-sky, 0.2);
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: 0.03em;
   border-radius: 0.25rem;
+  text-transform: uppercase;
 
   &:hover {
-    background-color: $palette-gold;
-    color: $palette-navy;
-    border-color: $palette-gold;
+    background-color: rgba($palette-sky, 0.15);
+    color: $palette-sky;
+    border-color: rgba($palette-sky, 0.4);
   }
 }
 
 // ── TOC ───────────────────────────────────────────────────────────────────
 
 .sidebar nav[role=doc-toc] ul > li > a {
-  color: $palette-smoke;
+  color: $palette-muted;
 
   &.active {
-    border-left-color: $palette-gold;
-    color: $palette-gold;
+    border-left-color: $palette-sky;
+    color: $palette-sky;
     font-weight: 600;
   }
 
-  &:hover { color: $palette-gold; }
+  &:hover { color: $palette-sky-light; }
 }
 
 // ── Footer ────────────────────────────────────────────────────────────────
 
 .footer {
   margin-top: 3rem;
-  border-top: 1px solid rgba($palette-gold, 0.18);
-  font-size: 0.85rem;
-  color: #9AA5B4; // slate-light — passes WCAG AA on navy background
+  border-top: 1px solid $palette-border-dark;
+  font-size: 0.82rem;
+  color: $palette-muted;
 }
 
 // ── Title block banner ────────────────────────────────────────────────────
 
 .quarto-title-banner {
-  background: linear-gradient(135deg, $palette-navy 0%, $palette-navy-mid 100%);
-  color: $palette-snow;
-  border-bottom: 3px solid $palette-gold;
+  background: $palette-void;
+  color: $palette-ink;
+  border-bottom: 2px solid $palette-sky;
 
   .quarto-title h1,
-  .quarto-title-subtitle { color: $palette-snow; }
+  .quarto-title-subtitle { color: $palette-ink; }
 }
 
 // ── Pagination ───────────────────────────────────────────────────────────
 
 .page-link {
-  background-color: $palette-navy-mid;
-  border-color: rgba($palette-gold, 0.2);
-  color: $palette-snow;
+  background-color: $palette-surface;
+  border-color: $palette-border-dark;
+  color: $palette-ink-dim;
 
   &:hover {
-    background-color: $palette-gold;
-    border-color: $palette-gold;
-    color: $palette-navy;
+    background-color: rgba($palette-sky, 0.1);
+    border-color: rgba($palette-sky, 0.3);
+    color: $palette-sky;
   }
 }
 
 .page-item.active .page-link {
-  background-color: $palette-gold;
-  border-color: $palette-gold;
-  color: $palette-navy;
+  background-color: $palette-sky;
+  border-color: $palette-sky;
+  color: $palette-void;
 }
 
 // ── CV page (dark mode overrides) ────────────────────────────────────────
 
 .cv-page {
-  color: $palette-snow;
+  color: $palette-ink;
 }
 
 .cv-name {
-  color: $palette-gold;
+  color: $palette-sky;
 }
 
 .cv-title {
-  color: $palette-snow;
+  color: $palette-ink-dim;
 }
 
 .cv-subtitle {
-  color: rgba($palette-snow, 0.65);
+  color: $palette-muted;
 }
 
-.cv-org,
+.cv-org {
+  color: $palette-muted;
+}
+
 .cv-period,
 .cv-skill-label {
-  color: rgba($palette-snow, 0.65);
+  color: $palette-muted;
+  font-family: "JetBrains Mono", monospace;
 }
 
 .cv-role {
-  color: $palette-snow;
+  color: $palette-ink-dim;
 }
 
 .cv-section-title {
-  color: $palette-snow;
+  color: $palette-sky-light;
+  border-bottom-color: rgba($palette-sky, 0.2);
 }
 
 .cv-summary {
-  color: rgba($palette-snow, 0.82);
-  background: rgba($palette-navy-mid, 0.5);
+  color: rgba($palette-ink, 0.8);
+  background: $palette-surface;
+  border-left-color: rgba($palette-sky, 0.5);
+}
+
+.cv-rule {
+  background: linear-gradient(90deg, $palette-sky 0%, rgba($palette-sky, 0.0) 100%);
 }
 
 .cv-entry ul li {
-  color: rgba($palette-snow, 0.82);
+  color: rgba($palette-ink, 0.75);
+}
+
+.cv-entry ul li::before {
+  color: $palette-sky;
 }
 
 .cv-skill-value,
 .cv-inline-text {
-  color: rgba($palette-snow, 0.82);
+  color: rgba($palette-ink, 0.8);
 }
 
 .cv-contacts a {
-  color: $palette-gold !important;
+  color: $palette-sky !important;
 
-  &:hover { color: $palette-gold-light !important; }
+  &:hover { color: $palette-sky-light !important; }
 }
 
 .cv-entry {
-  border-bottom-color: rgba($palette-snow, 0.08);
+  border-bottom-color: $palette-border-dark;
+}
+
+.cv-photo {
+  border-color: $palette-sky;
+  box-shadow: 0 0 0 1px rgba($palette-sky, 0.15),
+              0 0 24px rgba($palette-sky, 0.15);
 }
