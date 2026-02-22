@@ -55,7 +55,7 @@ name: Build and push devcontainer image
 on:
   push:
     branches: [main]
-    paths: [".devcontainer/**"]
+    paths: [".devcontainer/**"] # <1>
   workflow_dispatch:
 
 jobs:
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
+      packages: write # <2>
 
     steps:
       - uses: actions/checkout@v4
@@ -85,7 +85,7 @@ jobs:
           images: ghcr.io/antoinelucasfra/quarto-devcontainer
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
-            type=sha,prefix=sha-
+            type=sha,prefix=sha- # <3>
 
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -96,10 +96,15 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
+          cache-from: type=gha # <4>
           cache-to: type=gha,mode=max
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64 # <5>
 ```
+1. Only rebuild the image when files under `.devcontainer/` change — avoids unnecessary builds on every commit.
+2. `packages: write` permission is required to push the image to GitHub Container Registry (GHCR).
+3. Generate an immutable SHA-tagged image in addition to `latest` — use the SHA tag when you need a pinned, auditable reference.
+4. Cache Docker layer builds in GitHub Actions — dramatically reduces rebuild time on incremental changes (typically 15 min → 2–3 min).
+5. Build for both Intel/AMD (`amd64`) and Apple Silicon (`arm64`) in one pass — team members on different hardware get a native image without emulation.
 
 A few things worth noting:
 
@@ -132,19 +137,22 @@ The feature's `devcontainer-feature.json` defines its options:
     "rDeps": {
       "type": "string",
       "default": "rmarkdown",
-      "description": "Comma-separated R packages to install via pak. Supports CRAN names and GitHub refs."
+      "description": "Comma-separated R packages to install via pak. Supports CRAN names and GitHub refs." // <1>
     },
     "pythonDeps": {
       "type": "string",
       "default": "jupyter,papermill,marimo",
-      "description": "Comma-separated Python packages to install via uv pip install --system."
+      "description": "Comma-separated Python packages to install via uv pip install --system." // <2>
     },
-    "uvVersion": { "type": "string", "default": "latest" },
+    "uvVersion": { "type": "string", "default": "latest" }, // <3>
     "airVersion": { "type": "string", "default": "latest" },
     "jarlVersion": { "type": "string", "default": "latest" }
   }
 }
 ```
+1. `rDeps` accepts a comma-separated list — CRAN package names or GitHub refs like `user/repo@tag`. Passed directly to `pak::pkg_install()` in `install.sh`.
+2. `pythonDeps` are installed system-wide via `uv pip install --system` — available to all users in the container, not just a virtual environment.
+3. Tool versions default to `latest` — override in `devcontainer.json` to pin to a specific release for a reproducible build.
 
 And the installation is handled by `install.sh`. The R package installation step shows the pattern:
 
@@ -173,7 +181,7 @@ Here is the full `devcontainer.json` for this setup:
 ```json
 {
   "name": "Quarto R+Python",
-  "image": "ghcr.io/antoinelucasfra/quarto-devcontainer:latest",
+  "image": "ghcr.io/antoinelucasfra/quarto-devcontainer:latest", // <1>
   "build": {
     "dockerfile": "Dockerfile",
     "context": ".",
@@ -182,7 +190,7 @@ Here is the full `devcontainer.json` for this setup:
   "remoteUser": "vscode",
   "features": {
     "./features/quarto-computing-dependencies": {
-      "rDeps": "rmarkdown,knitr,languageserver,nx10/httpgd@v2.0.3,prompt,tidyverse,ggplot2,gt",
+      "rDeps": "rmarkdown,knitr,languageserver,nx10/httpgd@v2.0.3,prompt,tidyverse,ggplot2,gt", // <2>
       "pythonDeps": "jupyter,papermill,marimo,marimo[recommended]"
     },
     "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {
@@ -200,7 +208,7 @@ Here is the full `devcontainer.json` for this setup:
         "ms-toolsai.jupyter", "marimo-team.vscode-marimo"
       ],
       "settings": {
-        "r.useRenvLibPath": true,
+        "r.useRenvLibPath": true, // <3>
         "[r]": {
           "editor.defaultFormatter": "Posit.air-vscode",
           "editor.formatOnSave": true
@@ -210,12 +218,16 @@ Here is the full `devcontainer.json` for this setup:
           "editor.formatOnSave": true
         },
         "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
-        "editor.rulers": [72]
+        "editor.rulers": [72] // <4>
       }
     }
   }
 }
 ```
+1. Use the pre-built image from GHCR — fast startup. The `"build"` block below is a local fallback if the image pull fails.
+2. Pass the R package list directly to the local feature — supports GitHub refs (`nx10/httpgd@v2.0.3`) alongside CRAN names.
+3. Tell the R VS Code extension to load packages from the project's `renv` library — keeps IntelliSense in sync with `renv::restore()`.
+4. Ruler at column 72 — a conservative line-length suitable for code that appears in Quarto documents and PDF output.
 
 Key choices:
 

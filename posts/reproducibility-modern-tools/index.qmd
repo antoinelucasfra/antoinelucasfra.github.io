@@ -44,19 +44,26 @@ A minimal `settings.json` that wires everything together:
 ```json
 {
   "[r]": {
-    "editor.defaultFormatter": "Posit.air-vscode",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "Posit.air-vscode", // <1>
+    "editor.formatOnSave": true // <2>
   },
   "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "charliermarsh.ruff", // <3>
+    "editor.formatOnSave": true // <2>
   },
-  "r.useRenvLibPath": true,
-  "r.rterm.option": ["--no-save", "--no-restore-data", "--quiet"],
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
-  "editor.rulers": [88]
+  "r.useRenvLibPath": true, // <4>
+  "r.rterm.option": ["--no-save", "--no-restore-data", "--quiet"], // <5>
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python", // <6>
+  "editor.rulers": [88] // <7>
 }
 ```
+1. Use `air` (Posit's Rust-based formatter) as the default R formatter — replaces `styler`.
+2. Auto-format on every save — no manual `air format .` needed during editing.
+3. Use `ruff` as formatter for Python — one tool replaces `black`, `isort`, and `flake8`.
+4. Tell the R extension to use the `renv` project library instead of the system library.
+5. Start R sessions without loading `.RData` — prevents stale objects from contaminating fresh runs.
+6. Point Python to the project-local `.venv` — ensures `uv`-managed packages are picked up.
+7. Draw a vertical ruler at column 88 — the default line-length limit used by `ruff`.
 
 ### R: install via rig, not CRAN
 
@@ -64,15 +71,19 @@ A minimal `settings.json` that wires everything together:
 
 ```bash
 # macOS
-brew tap r-lib/rig && brew install rig
+brew tap r-lib/rig && brew install rig # <1>
 
 # Linux
-curl -L https://rig.r-lib.org/rig-linux-latest.tar.gz | sudo tar xz -C /usr/local
+curl -L https://rig.r-lib.org/rig-linux-latest.tar.gz | sudo tar xz -C /usr/local # <2>
 
 # Install a specific R version
-rig add 4.5
-rig default 4.5
+rig add 4.5 # <3>
+rig default 4.5 # <4>
 ```
+1. Install `rig` via Homebrew on macOS — the one-time setup step.
+2. Linux alternative: download and extract the binary to `/usr/local` with `sudo`.
+3. Install R 4.5 — `rig add` downloads and sets up that exact version without touching other installations.
+4. Set R 4.5 as the default version system-wide.
 
 Never install R by downloading from CRAN. `rig` makes version switching trivial and doesn't pollute your system.
 
@@ -82,12 +93,15 @@ Never install R by downloading from CRAN. `rig` makes version switching trivial 
 
 ```bash
 # Install uv
-curl -LsSf https://astral.sh/uv/install.sh | sh
+curl -LsSf https://astral.sh/uv/install.sh | sh # <1>
 
 # Install and pin a Python version for a project
-uv python install 3.12
-uv python pin 3.12
+uv python install 3.12 # <2>
+uv python pin 3.12 # <3>
 ```
+1. One-liner installer — writes a `uv` binary to `~/.cargo/bin` (or `~/.local/bin`). No admin rights needed.
+2. Download and install CPython 3.12 — managed entirely by `uv`, isolated from the system Python.
+3. Write a `.python-version` file pinning this project to 3.12 — respected by `uv run` and `uv sync`.
 
 ### Formatting and linting
 
@@ -194,15 +208,18 @@ This convergence means skills transfer between languages, and polyglot projects 
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Create a new project
-uv init my-analysis
+uv init my-analysis # <1>
 cd my-analysis
 
 # Add dependencies
-uv add pandas numpy scikit-learn matplotlib
+uv add pandas numpy scikit-learn matplotlib # <2>
 
 # Sync environment
-uv sync
+uv sync # <3>
 ```
+1. Scaffold a new project: creates `pyproject.toml`, `README.md`, and a `hello.py` stub.
+2. Add packages to `pyproject.toml` and install them into the project's `.venv` in one step.
+3. Recreate `.venv` from the lockfile — ensures every collaborator gets bit-for-bit identical packages.
 
 The `pyproject.toml` becomes your single source of truth:
 
@@ -210,7 +227,7 @@ The `pyproject.toml` becomes your single source of truth:
 [project]
 name = "my-analysis"
 version = "0.1.0"
-requires-python = ">=3.11"
+requires-python = ">=3.11" # <1>
 dependencies = [
     "pandas>=2.0",
     "numpy>=1.24",
@@ -219,11 +236,13 @@ dependencies = [
 ]
 
 [tool.uv]
-dev-dependencies = [
+dev-dependencies = [ # <2>
     "pytest>=7.0",
     "ruff>=0.1",
 ]
 ```
+1. Minimum Python version constraint — `uv` enforces this and will refuse to create an incompatible environment.
+2. Dev-only dependencies not installed in production or CI — keeps the deployment environment lean.
 
 Key features that make `uv` essential:
 
@@ -247,28 +266,32 @@ On the R side, [rv](https://a2-ai.github.io/rv-docs/) brings the same declarativ
 
 ```bash
 # Install rv
-curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash # <1>
 
 # Create a new project
-rv init my-analysis
+rv init my-analysis # <2>
 cd my-analysis
 
 # Add dependencies
-rv add tidyverse arrow DBI
+rv add tidyverse arrow DBI # <3>
 
 # Sync
-rv sync
+rv sync # <4>
 ```
+1. One-liner install — downloads the `rv` binary and places it on your `PATH`.
+2. Initialise the project: creates `rproject.toml` with the current R version pre-filled.
+3. Add packages to `rproject.toml` — `rv` resolves and installs them immediately.
+4. Install all declared packages into the project library — the equivalent of `renv::restore()` but driven by a declarative manifest.
 
 Your `rproject.toml`:
 
 ```toml
 [project]
 name = "my-analysis"
-r_version = "4.5"
+r_version = "4.5" # <1>
 
 repositories = [
-    { alias = "PPM", url = "https://packagemanager.posit.co/cran/latest" },
+    { alias = "PPM", url = "https://packagemanager.posit.co/cran/latest" }, # <2>
 ]
 
 dependencies = [
@@ -277,6 +300,8 @@ dependencies = [
     "DBI",
 ]
 ```
+1. Pins the exact R version — `rv` will warn if you try to sync on a different version.
+2. Use Posit Package Manager (PPM) instead of CRAN — provides pre-built binaries, dramatically faster installs on Linux.
 
 ### renv: The Established Alternative
 
@@ -380,11 +405,11 @@ A `.devcontainer/devcontainer.json` defines your environment:
 ```json
 {
     "name": "R & Python Data Science",
-    "image": "ghcr.io/rocker-org/devcontainer/tidyverse:4.4",
+    "image": "ghcr.io/rocker-org/devcontainer/tidyverse:4.4", // <1>
     "features": {
-        "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {},
+        "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}, // <2>
         "ghcr.io/devcontainers/features/python:1": {
-            "version": "3.11"
+            "version": "3.11" // <3>
         }
     },
     "customizations": {
@@ -399,9 +424,13 @@ A `.devcontainer/devcontainer.json` defines your environment:
             }
         }
     },
-    "postCreateCommand": "uv sync && rv sync"
+    "postCreateCommand": "uv sync && rv sync" // <4>
 }
 ```
+1. Base image from the Rocker Project — a battle-tested R 4.4 environment with the tidyverse and system libraries pre-installed.
+2. Add Quarto CLI as a devcontainer feature — installs on top of the base image without modifying the Dockerfile.
+3. Add Python 3.11 as a feature — layered cleanly alongside R in the same container.
+4. Run after the container is created: restore the Python virtual environment and the R package library from their respective lockfiles.
 
 ### When to Use DevContainers
 
