@@ -59,7 +59,7 @@ format:
         - assets/stylesheets/theme-dark.scss
     lang: en
     date-format: "MMMM D, YYYY"
-    highlight-style: arrow
+    highlight-style: dracula
     code-copy: true
     code-link: true
     code-overflow: wrap

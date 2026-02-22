@@ -1,6 +1,6 @@
 # _brand.yml — Antoine Lucas personal website
-# Identity: modern data scientist portfolio, minimal, confident.
-# Visual DNA: deep navy + warm gold — clean, high-contrast, slightly One Piece-inspired.
+# Identity refresh 2026: dark & technical, sky-blue accent, Space Grotesk headings.
+# Mood: high-end dev tool / research portfolio — precise, focused, confident.
 
 meta:
   name: Antoine Lucas
@@ -11,46 +11,68 @@ meta:
 
 color:
   palette:
-    # ── Core two-color system ──────────────────────────────────────────────
-    navy:       "#0d1b2a"   # deepest background / hero dark
-    navy-mid:   "#1a2a4a"   # surfaces, cards, navbar
-    navy-muted: "#2c3e50"   # borders, secondary surfaces
+    # ── Near-black dark surfaces ───────────────────────────────────────────
+    void:         "#0F1117"   # darkest background / true dark base
+    surface:      "#161B22"   # cards, sidebar, secondary surfaces (dark)
+    surface-mid:  "#1C2128"   # elevated surfaces, hover states (dark)
+    border-dark:  "#21262D"   # subtle borders (dark)
+    border-mid:   "#30363D"   # stronger borders, dividers (dark)
 
-    gold:       "#F5C518"   # primary accent — warm, authoritative
-    gold-light: "#FFD94A"   # hover states, active indicators
+    # ── Sky-blue accent family ─────────────────────────────────────────────
+    sky:          "#38BDF8"   # primary accent — electric, crisp
+    sky-light:    "#7DD3FC"   # hover / lighter variant
+    sky-deep:     "#0284C7"   # darker for pressed / contrast anchoring
+    sky-dim:      "#0EA5E9"   # mid-weight accent
 
-    # ── Neutrals ──────────────────────────────────────────────────────────
-    white:      "#FFFFFF"
-    snow:       "#F8F9FA"   # light page background
-    smoke:      "#E9ECEF"   # subtle dividers
-    slate:      "#6C757D"   # muted text, meta info (light mode only)
-    slate-light: "#9AA5B4"  # muted text for dark backgrounds (≥ 4.5:1 on navy)
-    ink:        "#1C2833"   # body text on light background
+    # ── Light mode surfaces ────────────────────────────────────────────────
+    white-warm:   "#FAFAF8"   # warm off-white page background
+    surface-l:    "#F0F2F5"   # cards, secondary surfaces (light)
+    border-l:     "#D0D7DE"   # borders (light)
+
+    # ── Text colours ──────────────────────────────────────────────────────
+    ink-dark:     "#E6EDF3"   # warm near-white body text (dark bg)
+    ink-light:    "#1C2128"   # very dark charcoal body text (light bg)
+    muted-dark:   "#8B949E"   # secondary / meta text on dark bg
+    muted-light:  "#57606A"   # secondary / meta text on light bg
 
     # ── Semantic accents ──────────────────────────────────────────────────
-    teal:       "#17A89E"   # success / info — contrasts navy without clashing gold
-    crimson:    "#C0392B"   # danger / error
+    teal:         "#2DD4BF"   # success / info — cool spectrum
+    danger:       "#F85149"   # error / danger
 
-  # ── Light mode theme ────────────────────────────────────────────────────
-  foreground: ink
-  background: snow
-  primary:    navy-mid
-  secondary:  slate
-  tertiary:   smoke
+    # ── Code surfaces (Dracula-family) ────────────────────────────────────
+    code-bg:      "#0D1117"   # code block background — deepest dark
+    code-surface: "#161B22"   # inline code pill background
+    code-text:    "#79C0FF"   # inline code text — GitHub-dark blue token
+
+  # ── Semantic color roles — light/dark variants ────────────────────────
+  foreground:
+    light: ink-light
+    dark:  ink-dark
+  background:
+    light: white-warm
+    dark:  void
+  primary:
+    light: sky-deep
+    dark:  sky
+  secondary:
+    light: muted-light
+    dark:  muted-dark
+  tertiary:
+    light: surface-l
+    dark:  surface
   success:    teal
   info:       teal
-  warning:    gold
-  danger:     crimson
-  light:      snow
-  dark:       navy
-  link:       navy-mid
+  warning:    sky
+  danger:     danger
+  light:      white-warm
+  dark:       void
 
 typography:
   fonts:
-    # Display / headings — bold, editorial, chapter-title energy
-    - family: "Sora"
+    # Display / headings — geometric, precise, technical energy
+    - family: "Space Grotesk"
       source: google
-      weight: [400, 600, 700, 800]
+      weight: [400, 500, 600, 700]
       style: normal
 
     # Body — clean, highly legible, modern neutral
@@ -72,31 +94,35 @@ typography:
     line-height: 1.7
 
   headings:
-    family: "Sora"
+    family: "Space Grotesk"
     weight: 700
-    color: navy-mid
     line-height: 1.2
+    color:
+      light: ink-light
+      dark:  sky
 
   monospace:
     family: "JetBrains Mono"
     size: 0.875em
 
   monospace-inline:
-    color: navy-mid
-    background-color: smoke
+    color:            code-text
+    background-color: code-surface
 
   monospace-block:
-    color: snow
-    background-color: navy
+    color:            ink-dark
+    background-color: code-bg
 
   link:
-    color: navy-mid
+    color:
+      light: sky-deep
+      dark:  sky
     decoration: none
 
 defaults:
   bootstrap:
     defaults:
       enable-rounded: true
-      border-radius: "0.375rem"
+      border-radius: 0.375rem
       link-decoration: none
       link-hover-decoration: none
