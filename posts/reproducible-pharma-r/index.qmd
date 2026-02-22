@@ -38,10 +38,13 @@ Under 21 CFR Part 11 and comparable EMA guidance, "reproducible" means more than
 ### 1. Version Control with Git
 
 ```bash
-git init
-git add .
-git commit -m "Initial analysis setup"
+git init # <1>
+git add . # <2>
+git commit -m "Initial analysis setup" # <3>
 ```
+1. Initialise a Git repository in the project folder — creates the `.git/` directory that tracks all future changes.
+2. Stage all current files — in a regulated context, this first commit typically includes the protocol, `renv.lock`, and the empty analysis skeleton.
+3. Create the initial commit — the immutable starting point for the audit trail. Every subsequent change is traceable from here.
 
 ### 2. Dependency Management with renv
 

@@ -24,12 +24,14 @@ Then I discovered **rv** — a declarative R package manager written in Rust —
 
 ```bash
 # Install rv (Linux/macOS)
-curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash # <1>
 
 # Or with Homebrew (macOS)
 brew tap a2-ai/homebrew-tap
-brew install rv
+brew install rv # <2>
 ```
+1. The curl installer is the universal method — works on both Linux and macOS, places the `rv` binary on your `PATH`.
+2. Homebrew install on macOS — preferred if you already use Homebrew; handles updates via `brew upgrade rv`.
 
 ## The Problem with Iterative Installation
 
@@ -193,17 +195,21 @@ brew install rig
 curl -L https://rig.r-lib.org/rig-linux-latest.tar.gz | sudo tar xz -C /usr/local
 
 # List available R versions
-rig available
+rig available # <1>
 
 # Install a specific version
-rig add 4.5
+rig add 4.5 # <2>
 
 # Set default version
-rig default 4.5
+rig default 4.5 # <3>
 
 # List installed versions
-rig list
+rig list # <4>
 ```
+1. Show all R versions available for download — useful for picking the right release before installing.
+2. Download and install R 4.5 — isolated from other installed versions, no system pollution.
+3. Make R 4.5 the active version returned by `R` and `Rscript` on the command line.
+4. Show all locally installed R versions and which is currently the default.
 
 ### 2. Manage Packages with rv
 
@@ -222,20 +228,23 @@ cat rproject.toml
 
 ```bash
 # 1. Ensure you have the right R version
-rig add 4.5
+rig add 4.5 # <1>
 rig default 4.5
 
 # 2. Create a new project
-rv init data-analysis
+rv init data-analysis # <2>
 cd data-analysis
 
 # 3. Add your dependencies
-rv add tidyverse arrow DBI
+rv add tidyverse arrow DBI # <3>
 
 # 4. Start working
 R
 # > library(tidyverse)  # Just works!
 ```
+1. Install R 4.5 if not already present — safe to re-run; `rig` skips the download if the version is already installed.
+2. Scaffold `rproject.toml` pre-filled with the current R version — ready to declare dependencies immediately.
+3. Add packages to `rproject.toml` and resolve + install them in one step — no separate `install.packages()` + `renv::snapshot()` cycle.
 
 ### Project-Specific R Versions
 
@@ -307,13 +316,15 @@ git clone https://github.com/org/clinical-analysis
 cd clinical-analysis
 
 # Set up exact R version
-rig add $(grep r_version rproject.toml | cut -d'"' -f2)
+rig add $(grep r_version rproject.toml | cut -d'"' -f2) # <1>
 
 # Restore exact package environment
-rv sync
+rv sync # <2>
 
 # ✅ Identical environment, guaranteed
 ```
+1. Extract the `r_version` string from `rproject.toml` with `grep`/`cut` and pass it directly to `rig add` — one command installs the exact R version required by the project.
+2. Install all packages from the lockfile at the exact recorded versions — deterministic, no network guessing.
 
 ## Getting Started Today
 
