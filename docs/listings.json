@@ -1,13 +1,8 @@
 [
   {
-    "listing": "/projects.html",
-    "items": [
-      "/projects/resources_catalog.html"
-    ]
-  },
-  {
     "listing": "/blog.html",
     "items": [
+      "/posts/voice-to-data-lab-pipeline/index.html",
       "/posts/devcontainers-reproducible-environments/index.html",
       "/posts/llm-coding-assistant/index.html",
       "/posts/reproducibility-modern-tools/index.html",
@@ -15,6 +10,12 @@
       "/posts/rv-modern-r-package-manager/index.html",
       "/posts/why-curate-resources/index.html",
       "/posts/quarto-getting-started/index.html"
+    ]
+  },
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/resources_catalog.html"
     ]
   }
 ]
