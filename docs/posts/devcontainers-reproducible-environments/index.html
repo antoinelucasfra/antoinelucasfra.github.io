@@ -76,14 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9c231513875ae212134af9b751aa87bc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d2800b5aef52857891e752670e942548.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ffa4f6888415b63fa5b9e515a6438cff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-ca8f72cf9d40cf51bc94988ec0308755.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-ffa4f6888415b63fa5b9e515a6438cff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-500544c4d03e896a17dbba91d830cc0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd93bc53ede3bb1508f1db052aab9f56.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-500544c4d03e896a17dbba91d830cc0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -434,55 +434,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ${IMAGE}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The base image (<code>ghcr.io/r-lib/rig/r:latest</code>) is maintained by the <code>rig</code> project and provides a clean Ubuntu image with R installed via <code>rig</code>. Everything else — Quarto, Python, uv, air, R packages — is layered on by devcontainer features.</p>
 <p>The CI workflow (<code>.github/workflows/build-push.yml</code>) handles building and publishing:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Build and push devcontainer image</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">]</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">".devcontainer/**"</span><span class="kw">]</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build-and-push</span><span class="kw">:</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">permissions</span><span class="kw">:</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> read</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">packages</span><span class="kw">:</span><span class="at"> write</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Docker Buildx</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/setup-buildx-action@v3</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Log in to GHCR</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/login-action@v3</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">registry</span><span class="kw">:</span><span class="at"> ghcr.io</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">username</span><span class="kw">:</span><span class="at"> ${{ github.actor }}</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">password</span><span class="kw">:</span><span class="at"> ${{ secrets.GITHUB_TOKEN }}</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Extract metadata</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">id</span><span class="kw">:</span><span class="at"> meta</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/metadata-action@v5</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">images</span><span class="kw">:</span><span class="at"> ghcr.io/antoinelucasfra/quarto-devcontainer</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="fu">          tags</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>            type=raw,value=latest,enable={{is_default_branch}}</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>            type=sha,prefix=sha-</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build and push</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/build-push-action@v6</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .devcontainer</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">file</span><span class="kw">:</span><span class="at"> .devcontainer/Dockerfile</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">build-args</span><span class="kw">:</span><span class="at"> IMAGE=ghcr.io/r-lib/rig/r:latest</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">push</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">tags</span><span class="kw">:</span><span class="at"> ${{ steps.meta.outputs.tags }}</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">labels</span><span class="kw">:</span><span class="at"> ${{ steps.meta.outputs.labels }}</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">cache-from</span><span class="kw">:</span><span class="at"> type=gha</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">cache-to</span><span class="kw">:</span><span class="at"> type=gha,mode=max</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">platforms</span><span class="kw">:</span><span class="at"> linux/amd64,linux/arm64</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode yaml code-annotation-code code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Build and push devcontainer image</span></span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">]</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-6" class="code-annotation-target"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">".devcontainer/**"</span><span class="kw">]</span></span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
+<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build-and-push</span><span class="kw">:</span></span>
+<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">permissions</span><span class="kw">:</span></span>
+<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> read</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-14" class="code-annotation-target"><a href="#annotated-cell-2-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">packages</span><span class="kw">:</span><span class="at"> write</span></span>
+<span id="annotated-cell-2-15"><a href="#annotated-cell-2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-16"><a href="#annotated-cell-2-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="annotated-cell-2-17"><a href="#annotated-cell-2-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="annotated-cell-2-18"><a href="#annotated-cell-2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-19"><a href="#annotated-cell-2-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Docker Buildx</span></span>
+<span id="annotated-cell-2-20"><a href="#annotated-cell-2-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/setup-buildx-action@v3</span></span>
+<span id="annotated-cell-2-21"><a href="#annotated-cell-2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-22"><a href="#annotated-cell-2-22" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Log in to GHCR</span></span>
+<span id="annotated-cell-2-23"><a href="#annotated-cell-2-23" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/login-action@v3</span></span>
+<span id="annotated-cell-2-24"><a href="#annotated-cell-2-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="annotated-cell-2-25"><a href="#annotated-cell-2-25" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">registry</span><span class="kw">:</span><span class="at"> ghcr.io</span></span>
+<span id="annotated-cell-2-26"><a href="#annotated-cell-2-26" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">username</span><span class="kw">:</span><span class="at"> ${{ github.actor }}</span></span>
+<span id="annotated-cell-2-27"><a href="#annotated-cell-2-27" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">password</span><span class="kw">:</span><span class="at"> ${{ secrets.GITHUB_TOKEN }}</span></span>
+<span id="annotated-cell-2-28"><a href="#annotated-cell-2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-29"><a href="#annotated-cell-2-29" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Extract metadata</span></span>
+<span id="annotated-cell-2-30"><a href="#annotated-cell-2-30" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">id</span><span class="kw">:</span><span class="at"> meta</span></span>
+<span id="annotated-cell-2-31"><a href="#annotated-cell-2-31" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/metadata-action@v5</span></span>
+<span id="annotated-cell-2-32"><a href="#annotated-cell-2-32" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="annotated-cell-2-33"><a href="#annotated-cell-2-33" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">images</span><span class="kw">:</span><span class="at"> ghcr.io/antoinelucasfra/quarto-devcontainer</span></span>
+<span id="annotated-cell-2-34"><a href="#annotated-cell-2-34" aria-hidden="true" tabindex="-1"></a><span class="fu">          tags</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="annotated-cell-2-35"><a href="#annotated-cell-2-35" aria-hidden="true" tabindex="-1"></a>            type=raw,value=latest,enable={{is_default_branch}}</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3">3</button><span id="annotated-cell-2-36" class="code-annotation-target"><a href="#annotated-cell-2-36" aria-hidden="true" tabindex="-1"></a>            type=sha,prefix=sha-</span>
+<span id="annotated-cell-2-37"><a href="#annotated-cell-2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-38"><a href="#annotated-cell-2-38" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Build and push</span></span>
+<span id="annotated-cell-2-39"><a href="#annotated-cell-2-39" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> docker/build-push-action@v6</span></span>
+<span id="annotated-cell-2-40"><a href="#annotated-cell-2-40" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="annotated-cell-2-41"><a href="#annotated-cell-2-41" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">context</span><span class="kw">:</span><span class="at"> .devcontainer</span></span>
+<span id="annotated-cell-2-42"><a href="#annotated-cell-2-42" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">file</span><span class="kw">:</span><span class="at"> .devcontainer/Dockerfile</span></span>
+<span id="annotated-cell-2-43"><a href="#annotated-cell-2-43" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">build-args</span><span class="kw">:</span><span class="at"> IMAGE=ghcr.io/r-lib/rig/r:latest</span></span>
+<span id="annotated-cell-2-44"><a href="#annotated-cell-2-44" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">push</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="annotated-cell-2-45"><a href="#annotated-cell-2-45" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">tags</span><span class="kw">:</span><span class="at"> ${{ steps.meta.outputs.tags }}</span></span>
+<span id="annotated-cell-2-46"><a href="#annotated-cell-2-46" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">labels</span><span class="kw">:</span><span class="at"> ${{ steps.meta.outputs.labels }}</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4">4</button><span id="annotated-cell-2-47" class="code-annotation-target"><a href="#annotated-cell-2-47" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">cache-from</span><span class="kw">:</span><span class="at"> type=gha</span></span>
+<span id="annotated-cell-2-48"><a href="#annotated-cell-2-48" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">cache-to</span><span class="kw">:</span><span class="at"> type=gha,mode=max</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="5">5</button><span id="annotated-cell-2-49" class="code-annotation-target"><a href="#annotated-cell-2-49" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">platforms</span><span class="kw">:</span><span class="at"> linux/amd64,linux/arm64</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="6" data-code-annotation="1">Only rebuild the image when files under <code>.devcontainer/</code> change — avoids unnecessary builds on every commit.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="14" data-code-annotation="2"><code>packages: write</code> permission is required to push the image to GitHub Container Registry (GHCR).</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="36" data-code-annotation="3">Generate an immutable SHA-tagged image in addition to <code>latest</code> — use the SHA tag when you need a pinned, auditable reference.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="47" data-code-annotation="4">Cache Docker layer builds in GitHub Actions — dramatically reduces rebuild time on incremental changes (typically 15 min → 2–3 min).</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="49" data-code-annotation="5">Build for both Intel/AMD (<code>amd64</code>) and Apple Silicon (<code>arm64</code>) in one pass — team members on different hardware get a native image without emulation.</span>
+</dd>
+</dl>
 <p>A few things worth noting:</p>
 <ul>
 <li><strong>Multi-platform build</strong> (<code>linux/amd64,linux/arm64</code>) ensures the image works on both Intel/AMD machines and Apple Silicon Macs without emulation.</li>
@@ -503,26 +525,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Python packages</strong> — installed system-wide via <code>uv pip install --system</code>.</li>
 </ul>
 <p>The feature’s <code>devcontainer-feature.json</code> defines its options:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"quarto-computing-dependencies"</span><span class="fu">,</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"2.0.0"</span><span class="fu">,</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Install Computing Dependencies for Quarto"</span><span class="fu">,</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"options"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"rDeps"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"default"</span><span class="fu">:</span> <span class="st">"rmarkdown"</span><span class="fu">,</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Comma-separated R packages to install via pak. Supports CRAN names and GitHub refs."</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"pythonDeps"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"default"</span><span class="fu">:</span> <span class="st">"jupyter,papermill,marimo"</span><span class="fu">,</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Comma-separated Python packages to install via uv pip install --system."</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"uvVersion"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span> <span class="dt">"default"</span><span class="fu">:</span> <span class="st">"latest"</span> <span class="fu">},</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"airVersion"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span> <span class="dt">"default"</span><span class="fu">:</span> <span class="st">"latest"</span> <span class="fu">},</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"jarlVersion"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span> <span class="dt">"default"</span><span class="fu">:</span> <span class="st">"latest"</span> <span class="fu">}</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-3"><pre class="sourceCode json code-annotation-code code-with-copy code-annotated"><code class="sourceCode json"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"quarto-computing-dependencies"</span><span class="fu">,</span></span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"2.0.0"</span><span class="fu">,</span></span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Install Computing Dependencies for Quarto"</span><span class="fu">,</span></span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"options"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"rDeps"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span></span>
+<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"default"</span><span class="fu">:</span> <span class="st">"rmarkdown"</span><span class="fu">,</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-9" class="code-annotation-target"><a href="#annotated-cell-3-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Comma-separated R packages to install via pak. Supports CRAN names and GitHub refs."</span></span>
+<span id="annotated-cell-3-10"><a href="#annotated-cell-3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="annotated-cell-3-11"><a href="#annotated-cell-3-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"pythonDeps"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-3-12"><a href="#annotated-cell-3-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span></span>
+<span id="annotated-cell-3-13"><a href="#annotated-cell-3-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"default"</span><span class="fu">:</span> <span class="st">"jupyter,papermill,marimo"</span><span class="fu">,</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-14" class="code-annotation-target"><a href="#annotated-cell-3-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Comma-separated Python packages to install via uv pip install --system."</span></span>
+<span id="annotated-cell-3-15"><a href="#annotated-cell-3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3">3</button><span id="annotated-cell-3-16" class="code-annotation-target"><a href="#annotated-cell-3-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"uvVersion"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span> <span class="dt">"default"</span><span class="fu">:</span> <span class="st">"latest"</span> <span class="fu">},</span></span>
+<span id="annotated-cell-3-17"><a href="#annotated-cell-3-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"airVersion"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span> <span class="dt">"default"</span><span class="fu">:</span> <span class="st">"latest"</span> <span class="fu">},</span></span>
+<span id="annotated-cell-3-18"><a href="#annotated-cell-3-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"jarlVersion"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span> <span class="dt">"default"</span><span class="fu">:</span> <span class="st">"latest"</span> <span class="fu">}</span></span>
+<span id="annotated-cell-3-19"><a href="#annotated-cell-3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="annotated-cell-3-20"><a href="#annotated-cell-3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="9" data-code-annotation="1"><code>rDeps</code> accepts a comma-separated list — CRAN package names or GitHub refs like <code>user/repo@tag</code>. Passed directly to <code>pak::pkg_install()</code> in <code>install.sh</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="14" data-code-annotation="2"><code>pythonDeps</code> are installed system-wide via <code>uv pip install --system</code> — available to all users in the container, not just a virtual environment.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="16" data-code-annotation="3">Tool versions default to <code>latest</code> — override in <code>devcontainer.json</code> to pin to a specific release for a reproducible build.</span>
+</dd>
+</dl>
 <p>And the installation is handled by <code>install.sh</code>. The R package installation step shows the pattern:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-4"><pre class="sourceCode bash code-annotation-code code-with-copy code-annotated"><code class="sourceCode bash"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install_r_deps()</span> <span class="kw">{</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">local</span> <span class="va">deps</span><span class="op">=</span><span class="va">$1</span></span>
@@ -551,50 +587,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="devcontainer.json-walkthrough" class="level2">
 <h2 class="anchored" data-anchor-id="devcontainer.json-walkthrough"><code>devcontainer.json</code> walkthrough</h2>
 <p>Here is the full <code>devcontainer.json</code> for this setup:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Quarto R+Python"</span><span class="fu">,</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"image"</span><span class="fu">:</span> <span class="st">"ghcr.io/antoinelucasfra/quarto-devcontainer:latest"</span><span class="fu">,</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"build"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"dockerfile"</span><span class="fu">:</span> <span class="st">"Dockerfile"</span><span class="fu">,</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"context"</span><span class="fu">:</span> <span class="st">"."</span><span class="fu">,</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"args"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"IMAGE"</span><span class="fu">:</span> <span class="st">"ghcr.io/r-lib/rig/r:latest"</span> <span class="fu">}</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"remoteUser"</span><span class="fu">:</span> <span class="st">"vscode"</span><span class="fu">,</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"features"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"./features/quarto-computing-dependencies"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"rDeps"</span><span class="fu">:</span> <span class="st">"rmarkdown,knitr,languageserver,nx10/httpgd@v2.0.3,prompt,tidyverse,ggplot2,gt"</span><span class="fu">,</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"pythonDeps"</span><span class="fu">:</span> <span class="st">"jupyter,papermill,marimo,marimo[recommended]"</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"release"</span><span class="fu">,</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"installTinyTex"</span><span class="fu">:</span> <span class="st">"true"</span><span class="fu">,</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"installChromium"</span><span class="fu">:</span> <span class="st">"false"</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"customizations"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"vscode"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"extensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"quarto.quarto"</span><span class="ot">,</span> <span class="st">"mcanouil.quarto-wizard"</span><span class="ot">,</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"REditorSupport.r"</span><span class="ot">,</span> <span class="st">"Posit.air-vscode"</span><span class="ot">,</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ms-python.python"</span><span class="ot">,</span> <span class="st">"charliermarsh.ruff"</span><span class="ot">,</span> <span class="st">"astral-sh.ty"</span><span class="ot">,</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ms-toolsai.jupyter"</span><span class="ot">,</span> <span class="st">"marimo-team.vscode-marimo"</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"settings"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"r.useRenvLibPath"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"[r]"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"editor.defaultFormatter"</span><span class="fu">:</span> <span class="st">"Posit.air-vscode"</span><span class="fu">,</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"editor.formatOnSave"</span><span class="fu">:</span> <span class="kw">true</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="fu">},</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"[python]"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"editor.defaultFormatter"</span><span class="fu">:</span> <span class="st">"charliermarsh.ruff"</span><span class="fu">,</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"editor.formatOnSave"</span><span class="fu">:</span> <span class="kw">true</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">},</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"python.defaultInterpreterPath"</span><span class="fu">:</span> <span class="st">"${workspaceFolder}/.venv/bin/python"</span><span class="fu">,</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"editor.rulers"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">72</span><span class="ot">]</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-5"><pre class="sourceCode json code-annotation-code code-with-copy code-annotated"><code class="sourceCode json"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Quarto R+Python"</span><span class="fu">,</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"image"</span><span class="fu">:</span> <span class="st">"ghcr.io/antoinelucasfra/quarto-devcontainer:latest"</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"build"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-5-5"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"dockerfile"</span><span class="fu">:</span> <span class="st">"Dockerfile"</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"context"</span><span class="fu">:</span> <span class="st">"."</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-7"><a href="#annotated-cell-5-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"args"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"IMAGE"</span><span class="fu">:</span> <span class="st">"ghcr.io/r-lib/rig/r:latest"</span> <span class="fu">}</span></span>
+<span id="annotated-cell-5-8"><a href="#annotated-cell-5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="annotated-cell-5-9"><a href="#annotated-cell-5-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"remoteUser"</span><span class="fu">:</span> <span class="st">"vscode"</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-10"><a href="#annotated-cell-5-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"features"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-5-11"><a href="#annotated-cell-5-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"./features/quarto-computing-dependencies"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-12" class="code-annotation-target"><a href="#annotated-cell-5-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"rDeps"</span><span class="fu">:</span> <span class="st">"rmarkdown,knitr,languageserver,nx10/httpgd@v2.0.3,prompt,tidyverse,ggplot2,gt"</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-13"><a href="#annotated-cell-5-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"pythonDeps"</span><span class="fu">:</span> <span class="st">"jupyter,papermill,marimo,marimo[recommended]"</span></span>
+<span id="annotated-cell-5-14"><a href="#annotated-cell-5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="annotated-cell-5-15"><a href="#annotated-cell-5-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-5-16"><a href="#annotated-cell-5-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"release"</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-17"><a href="#annotated-cell-5-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"installTinyTex"</span><span class="fu">:</span> <span class="st">"true"</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-18"><a href="#annotated-cell-5-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"installChromium"</span><span class="fu">:</span> <span class="st">"false"</span></span>
+<span id="annotated-cell-5-19"><a href="#annotated-cell-5-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="annotated-cell-5-20"><a href="#annotated-cell-5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="annotated-cell-5-21"><a href="#annotated-cell-5-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"customizations"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-5-22"><a href="#annotated-cell-5-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"vscode"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-5-23"><a href="#annotated-cell-5-23" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"extensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="annotated-cell-5-24"><a href="#annotated-cell-5-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"quarto.quarto"</span><span class="ot">,</span> <span class="st">"mcanouil.quarto-wizard"</span><span class="ot">,</span></span>
+<span id="annotated-cell-5-25"><a href="#annotated-cell-5-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"REditorSupport.r"</span><span class="ot">,</span> <span class="st">"Posit.air-vscode"</span><span class="ot">,</span></span>
+<span id="annotated-cell-5-26"><a href="#annotated-cell-5-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ms-python.python"</span><span class="ot">,</span> <span class="st">"charliermarsh.ruff"</span><span class="ot">,</span> <span class="st">"astral-sh.ty"</span><span class="ot">,</span></span>
+<span id="annotated-cell-5-27"><a href="#annotated-cell-5-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"ms-toolsai.jupyter"</span><span class="ot">,</span> <span class="st">"marimo-team.vscode-marimo"</span></span>
+<span id="annotated-cell-5-28"><a href="#annotated-cell-5-28" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-29"><a href="#annotated-cell-5-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"settings"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3">3</button><span id="annotated-cell-5-30" class="code-annotation-target"><a href="#annotated-cell-5-30" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"r.useRenvLibPath"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-31"><a href="#annotated-cell-5-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"[r]"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-5-32"><a href="#annotated-cell-5-32" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"editor.defaultFormatter"</span><span class="fu">:</span> <span class="st">"Posit.air-vscode"</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-33"><a href="#annotated-cell-5-33" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"editor.formatOnSave"</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="annotated-cell-5-34"><a href="#annotated-cell-5-34" aria-hidden="true" tabindex="-1"></a>        <span class="fu">},</span></span>
+<span id="annotated-cell-5-35"><a href="#annotated-cell-5-35" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"[python]"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-5-36"><a href="#annotated-cell-5-36" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"editor.defaultFormatter"</span><span class="fu">:</span> <span class="st">"charliermarsh.ruff"</span><span class="fu">,</span></span>
+<span id="annotated-cell-5-37"><a href="#annotated-cell-5-37" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"editor.formatOnSave"</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="annotated-cell-5-38"><a href="#annotated-cell-5-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">},</span></span>
+<span id="annotated-cell-5-39"><a href="#annotated-cell-5-39" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"python.defaultInterpreterPath"</span><span class="fu">:</span> <span class="st">"${workspaceFolder}/.venv/bin/python"</span><span class="fu">,</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4">4</button><span id="annotated-cell-5-40" class="code-annotation-target"><a href="#annotated-cell-5-40" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"editor.rulers"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">72</span><span class="ot">]</span></span>
+<span id="annotated-cell-5-41"><a href="#annotated-cell-5-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="annotated-cell-5-42"><a href="#annotated-cell-5-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="annotated-cell-5-43"><a href="#annotated-cell-5-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="annotated-cell-5-44"><a href="#annotated-cell-5-44" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="1">Use the pre-built image from GHCR — fast startup. The <code>"build"</code> block below is a local fallback if the image pull fails.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="12" data-code-annotation="2">Pass the R package list directly to the local feature — supports GitHub refs (<code>nx10/httpgd@v2.0.3</code>) alongside CRAN names.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="30" data-code-annotation="3">Tell the R VS Code extension to load packages from the project’s <code>renv</code> library — keeps IntelliSense in sync with <code>renv::restore()</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="40" data-code-annotation="4">Ruler at column 72 — a conservative line-length suitable for code that appears in Quarto documents and PDF output.</span>
+</dd>
+</dl>
 <p>Key choices:</p>
 <ul>
 <li><code>"image"</code> references the pre-built image. The <code>"build"</code> block is a fallback — if the image pull fails (first-time setup, network issue), VS Code falls back to building locally.</li>
@@ -631,12 +685,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="practical-tips" class="level2">
 <h2 class="anchored" data-anchor-id="practical-tips">Practical tips</h2>
 <p><strong>Pin image tags in production.</strong> The <code>devcontainer.json</code> above uses <code>latest</code>. This is convenient for development — you always get the newest image. For a project that needs to be reproducible for audit or regulatory purposes, pin to a SHA tag:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="er">"image":</span> <span class="er">"ghcr.io/antoinelucasfra/quarto-devcontainer:sha-abc1234"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="er">"image":</span> <span class="er">"ghcr.io/antoinelucasfra/quarto-devcontainer:sha-abc1234"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>SHA tags are generated automatically by <code>docker/metadata-action</code> on every build. Find the right tag in your GHCR package page.</p>
 <p><strong>Test with the <code>devcontainer</code> CLI.</strong> Before pushing changes to the feature or image, test locally:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @devcontainers/cli</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">devcontainer</span> build <span class="at">--workspace-folder</span> .</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">devcontainer</span> up <span class="at">--workspace-folder</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @devcontainers/cli</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">devcontainer</span> build <span class="at">--workspace-folder</span> .</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">devcontainer</span> up <span class="at">--workspace-folder</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This catches errors in <code>install.sh</code> without triggering a full CI build.</p>
 <p><strong>Iterate on the feature without rebuilding the full image.</strong> If you’re modifying <code>install.sh</code> frequently, comment out the <code>"image"</code> line temporarily and use only the <code>"build"</code> block. This rebuilds from the base image each time, which is slower but lets you test feature changes without publishing to GHCR.</p>
 <p><strong>Keep <code>renv.lock</code> and the devcontainer in sync.</strong> The devcontainer installs a baseline set of R packages. Project-specific packages live in <code>renv.lock</code>. When <code>renv::restore()</code> runs inside the container, it installs on top of the baseline. This separation works well — the baseline handles heavy system dependencies (like <code>tidyverse</code>, which takes several minutes to compile from source), while <code>renv</code> handles project-specific versioned packages quickly.</p>

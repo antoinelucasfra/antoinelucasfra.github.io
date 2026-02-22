@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Antoine Lucas">
+<meta name="dcterms.date" content="2026-02-22">
+<meta name="description" content="How to replace manual ELN transcription with a voice-driven pipeline — ASR, structured extraction, domain validation, and a compliant audit trail — built for pharma and biotech R&amp;D.">
+
+<title>Voice to Data: An LLM Pipeline for Lab Notebooks – Antoine Lucas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/images/profile-pic.jpg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d2800b5aef52857891e752670e942548.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-500544c4d03e896a17dbba91d830cc0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd93bc53ede3bb1508f1db052aab9f56.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-500544c4d03e896a17dbba91d830cc0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="Voice to Data: An LLM Pipeline for Lab Notebooks – Antoine Lucas">
+<meta property="og:description" content="How to replace manual ELN transcription with a voice-driven pipeline — ASR, structured extraction, domain validation, and a compliant audit trail — built for pharma and biotech R&amp;D.">
+<meta property="og:image" content="https://antoinelucasfra.github.io/posts/voice-to-data-lab-pipeline/assets/images/profile-pic.jpg">
+<meta property="og:site_name" content="Antoine Lucas">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Antoine Lucas</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/antoinelucasdata/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/antoinelucasfra"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#honest-preamble" id="toc-honest-preamble" class="nav-link active" data-scroll-target="#honest-preamble">Honest preamble</a></li>
+  <li><a href="#the-problem-in-concrete-terms" id="toc-the-problem-in-concrete-terms" class="nav-link" data-scroll-target="#the-problem-in-concrete-terms">The problem in concrete terms</a></li>
+  <li><a href="#pipeline-architecture" id="toc-pipeline-architecture" class="nav-link" data-scroll-target="#pipeline-architecture">Pipeline architecture</a></li>
+  <li><a href="#stage-1-automatic-speech-recognition" id="toc-stage-1-automatic-speech-recognition" class="nav-link" data-scroll-target="#stage-1-automatic-speech-recognition">Stage 1 — Automatic Speech Recognition</a>
+  <ul class="collapse">
+  <li><a href="#why-whisper-and-why-locally" id="toc-why-whisper-and-why-locally" class="nav-link" data-scroll-target="#why-whisper-and-why-locally">Why Whisper, and why locally</a></li>
+  <li><a href="#the-pharma-vocabulary-problem" id="toc-the-pharma-vocabulary-problem" class="nav-link" data-scroll-target="#the-pharma-vocabulary-problem">The pharma vocabulary problem</a></li>
+  <li><a href="#noise-in-the-lab" id="toc-noise-in-the-lab" class="nav-link" data-scroll-target="#noise-in-the-lab">Noise in the lab</a></li>
+  </ul></li>
+  <li><a href="#stage-2-structured-extraction" id="toc-stage-2-structured-extraction" class="nav-link" data-scroll-target="#stage-2-structured-extraction">Stage 2 — Structured extraction</a>
+  <ul class="collapse">
+  <li><a href="#the-core-challenge-unstructured-hedged-incomplete-speech" id="toc-the-core-challenge-unstructured-hedged-incomplete-speech" class="nav-link" data-scroll-target="#the-core-challenge-unstructured-hedged-incomplete-speech">The core challenge: unstructured, hedged, incomplete speech</a></li>
+  <li><a href="#why-instructor" id="toc-why-instructor" class="nav-link" data-scroll-target="#why-instructor">Why Instructor</a></li>
+  <li><a href="#the-pydantic-schema" id="toc-the-pydantic-schema" class="nav-link" data-scroll-target="#the-pydantic-schema">The Pydantic schema</a></li>
+  <li><a href="#prompt-engineering" id="toc-prompt-engineering" class="nav-link" data-scroll-target="#prompt-engineering">Prompt engineering</a></li>
+  <li><a href="#running-extraction-with-instructor-and-ollama" id="toc-running-extraction-with-instructor-and-ollama" class="nav-link" data-scroll-target="#running-extraction-with-instructor-and-ollama">Running extraction with Instructor and Ollama</a></li>
+  </ul></li>
+  <li><a href="#stage-3-validation" id="toc-stage-3-validation" class="nav-link" data-scroll-target="#stage-3-validation">Stage 3 — Validation</a>
+  <ul class="collapse">
+  <li><a href="#structural-validation-pydantic" id="toc-structural-validation-pydantic" class="nav-link" data-scroll-target="#structural-validation-pydantic">Structural validation (Pydantic)</a></li>
+  <li><a href="#domain-validation-domainvalidator" id="toc-domain-validation-domainvalidator" class="nav-link" data-scroll-target="#domain-validation-domainvalidator">Domain validation (DomainValidator)</a></li>
+  <li><a href="#the-human-review-queue" id="toc-the-human-review-queue" class="nav-link" data-scroll-target="#the-human-review-queue">The human-review queue</a></li>
+  </ul></li>
+  <li><a href="#stage-4-serialization-and-handoff" id="toc-stage-4-serialization-and-handoff" class="nav-link" data-scroll-target="#stage-4-serialization-and-handoff">Stage 4 — Serialization and handoff</a>
+  <ul class="collapse">
+  <li><a href="#the-audit-record" id="toc-the-audit-record" class="nav-link" data-scroll-target="#the-audit-record">The audit record</a></li>
+  <li><a href="#json-output-structure" id="toc-json-output-structure" class="nav-link" data-scroll-target="#json-output-structure">JSON output structure</a></li>
+  <li><a href="#lims-eln-handoff" id="toc-lims-eln-handoff" class="nav-link" data-scroll-target="#lims-eln-handoff">LIMS / ELN handoff</a></li>
+  </ul></li>
+  <li><a href="#failure-modes" id="toc-failure-modes" class="nav-link" data-scroll-target="#failure-modes">Failure modes</a></li>
+  <li><a href="#data-governance-and-compliance" id="toc-data-governance-and-compliance" class="nav-link" data-scroll-target="#data-governance-and-compliance">Data governance and compliance</a>
+  <ul class="collapse">
+  <li><a href="#cfr-part-11-and-ema-annex-11" id="toc-cfr-part-11-and-ema-annex-11" class="nav-link" data-scroll-target="#cfr-part-11-and-ema-annex-11">21 CFR Part 11 and EMA Annex 11</a></li>
+  <li><a href="#the-llm-model-versioning-problem" id="toc-the-llm-model-versioning-problem" class="nav-link" data-scroll-target="#the-llm-model-versioning-problem">The LLM model versioning problem</a></li>
+  <li><a href="#gdpr-and-data-retention" id="toc-gdpr-and-data-retention" class="nav-link" data-scroll-target="#gdpr-and-data-retention">GDPR and data retention</a></li>
+  <li><a href="#why-local-models-are-the-defensible-choice" id="toc-why-local-models-are-the-defensible-choice" class="nav-link" data-scroll-target="#why-local-models-are-the-defensible-choice">Why local models are the defensible choice</a></li>
+  </ul></li>
+  <li><a href="#deployment-context" id="toc-deployment-context" class="nav-link" data-scroll-target="#deployment-context">Deployment context</a></li>
+  <li><a href="#dos-and-donts" id="toc-dos-and-donts" class="nav-link" data-scroll-target="#dos-and-donts">Do’s and don’ts</a>
+  <ul class="collapse">
+  <li><a href="#do" id="toc-do" class="nav-link" data-scroll-target="#do">Do</a></li>
+  <li><a href="#dont" id="toc-dont" class="nav-link" data-scroll-target="#dont">Don’t</a></li>
+  </ul></li>
+  <li><a href="#full-runnable-example" id="toc-full-runnable-example" class="nav-link" data-scroll-target="#full-runnable-example">Full runnable example</a>
+  <ul class="collapse">
+  <li><a href="#dependencies-pyproject.toml" id="toc-dependencies-pyproject.toml" class="nav-link" data-scroll-target="#dependencies-pyproject.toml">Dependencies (<code>pyproject.toml</code>)</a></li>
+  <li><a href="#pipeline-pipeline.py" id="toc-pipeline-pipeline.py" class="nav-link" data-scroll-target="#pipeline-pipeline.py">Pipeline (<code>pipeline.py</code>)</a></li>
+  </ul></li>
+  <li><a href="#where-this-goes-next" id="toc-where-this-goes-next" class="nav-link" data-scroll-target="#where-this-goes-next">Where this goes next</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/posts/voice-to-data-lab-pipeline/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Voice to Data: An LLM Pipeline for Lab Notebooks</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">LLM</div>
+    <div class="quarto-category">Speech</div>
+    <div class="quarto-category">NLP</div>
+    <div class="quarto-category">Data Pipeline</div>
+    <div class="quarto-category">Lab Automation</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    How to replace manual ELN transcription with a voice-driven pipeline — ASR, structured extraction, domain validation, and a compliant audit trail — built for pharma and biotech R&amp;D.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Antoine Lucas </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 22, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="honest-preamble" class="level2">
+<h2 class="anchored" data-anchor-id="honest-preamble">Honest preamble</h2>
+<p>This is not a “your lab notebook will be automated in six months” post.</p>
+<p>The friction I am describing is specific and concrete: a scientist at a bench during a formulation experiment has both hands occupied — one mixing, one holding a pipette — and a mental queue of observations that need to end up as structured records in an ELN or LIMS. The current workflow is to hold those observations in working memory and transcribe them later, or to stop the manipulation, wash hands, and type. Both routes introduce errors and cognitive load at exactly the moment when focus matters most.</p>
+<p>Voice removes the keyboard as a barrier. An LLM turns unstructured speech into a structured, validated record. That is the scope of this article.</p>
+<p><strong>A note on the code in this article:</strong> the pipeline described here is based on architecture developed for a client project in a regulated pharma R&amp;D context. The code snippets are deliberately simplified and generalized — they are illustrative of the design, not production implementations. They exist to communicate the structure of the solution, not to be copy-pasted into a clinical system. Domain-specific schemas, prompt libraries, and validation rules are internal to the projects they serve.</p>
+<p>With that said, the architecture is real, the tooling choices are defensible, and the failure modes are drawn from actual use.</p>
+<hr>
+</section>
+<section id="the-problem-in-concrete-terms" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-in-concrete-terms">The problem in concrete terms</h2>
+<p>Consider a formulation scientist working on a new topical emulsion. The experiment is a typical bench session: water phase preparation, thickener addition, pH adjustment, viscosity measurement, appearance assessment. Standard operating procedure (SOP) requires every observation to be recorded with timestamp, batch identifier, operator ID, measurement value with unit, and any deviation from expected range.</p>
+<p>What actually happens:</p>
+<ol type="1">
+<li>The scientist records observations on a paper notepad during the experiment.</li>
+<li>After the manipulation, they transcribe those notes into the ELN manually, often hours later.</li>
+<li>The ELN entry requires navigating a form interface: selecting batch, selecting timepoint, entering individual fields one at a time.</li>
+<li>This step takes 20–40 minutes for a typical bench session and happens at the end of the day when cognitive load is highest and recall is least reliable.</li>
+</ol>
+<p>The consequences are predictable:</p>
+<ul>
+<li><strong>Transcription errors</strong>: a pH of 6.8 becomes 6.9, a viscosity of 4,200 mPa·s is entered as 4,000 because the scientist no longer remembers the exact number.</li>
+<li><strong>Missing fields</strong>: a deviation observed during the experiment is not recorded because it seemed minor at the time and was not written down.</li>
+<li><strong>Lag</strong>: observations are not timestamped to the actual moment of measurement, breaking traceability.</li>
+<li><strong>Inconsistent terminology</strong>: “slightly hazy”, “faintly turbid”, and “not fully clear” describe the same observation across three different entries by the same operator.</li>
+</ul>
+<p>None of these are failures of discipline. They are structural consequences of asking humans to buffer observations and serialize them later under time pressure.</p>
+<p>The same pattern appears across cell culture passaging (confluence estimates, viability counts, media change notes), analytical assay readouts (HPLC peak flags, integration comments), and stability study pulls (visual appearance across timepoints). The domain varies; the friction is the same.</p>
+<hr>
+</section>
+<section id="pipeline-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline-architecture">Pipeline architecture</h2>
+<p>The pipeline has four stages. Each one has a defined input, output, and failure surface.</p>
+<pre><code>┌─────────────────────────────────────────────────────┐
+│  INPUT: Voice (real-time mic or recorded audio file) │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│  STAGE 1 — Automatic Speech Recognition (ASR)       │
+│  Tool: faster-whisper                               │
+│  Output: raw transcript text                        │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│  STAGE 2 — Structured Extraction                    │
+│  Tool: Instructor + Pydantic + Ollama (local LLM)   │
+│  Output: typed, schema-conformant record            │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│  STAGE 3 — Validation                               │
+│  Tool: Pydantic validators + DomainValidator class  │
+│  Output: validated record or flagged review item    │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│  STAGE 4 — Serialization + Handoff                  │
+│  Output: JSON / CSV / REST payload + audit record   │
+└─────────────────────────────────────────────────────┘</code></pre>
+<p>A note on the audio input mode. There are two architecturally distinct configurations:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th>Description</th>
+<th>Trade-offs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Batch / deferred</strong></td>
+<td>Scientist records a voice memo (phone, bench recorder); file is uploaded and processed after the experiment</td>
+<td>Simpler to implement; introduces slight lag; no real-time feedback</td>
+</tr>
+<tr class="even">
+<td><strong>Real-time streaming</strong></td>
+<td>Microphone streams audio continuously; ASR runs on chunks; extraction runs per utterance</td>
+<td>Lower latency; higher complexity; requires streaming ASR API</td>
+</tr>
+</tbody>
+</table>
+<p>For a formulation bench context specifically, <strong>batch mode is the correct primary choice</strong>. A scientist with wet hands and a live emulsion in the mixer does not interact with a UI mid-experiment. The workflow is: speak a memo at each observation point, submit the audio at the end of the session. Streaming is useful for longer monitoring sessions where observations are sparse and well-separated in time. The code in this article implements the batch path.</p>
+<hr>
+</section>
+<section id="stage-1-automatic-speech-recognition" class="level2">
+<h2 class="anchored" data-anchor-id="stage-1-automatic-speech-recognition">Stage 1 — Automatic Speech Recognition</h2>
+<section id="why-whisper-and-why-locally" class="level3">
+<h3 class="anchored" data-anchor-id="why-whisper-and-why-locally">Why Whisper, and why locally</h3>
+<p><a href="https://github.com/openai/whisper">Whisper</a> is OpenAI’s open-weights ASR model. The key word is open-weights: you run it on your own hardware, no audio leaves your network. In a pharma R&amp;D context, this is not optional — it is the only defensible configuration. Audio recordings of experiments may contain compound names under NDA, formulation parameters that are trade secrets, or batch identifiers tied to regulatory submissions. Sending this audio to a cloud ASR API requires a data processing agreement, legal sign-off, and in many organizations will simply not be permitted.</p>
+<p><a href="https://github.com/SYSTRAN/faster-whisper"><code>faster-whisper</code></a> is a re-implementation of Whisper using CTranslate2 that runs 2–4× faster than the original PyTorch implementation on CPU, and significantly faster on GPU. On a standard lab workstation without a GPU, <code>faster-whisper</code> with the <code>medium</code> model transcribes a 3-minute audio file in approximately 15–20 seconds. Acceptable for batch mode.</p>
+</section>
+<section id="the-pharma-vocabulary-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-pharma-vocabulary-problem">The pharma vocabulary problem</h3>
+<p>Whisper is trained on general speech. It will misrecognize:</p>
+<ul>
+<li>Compound names: “carbomer 980” may transcribe as “carbon 980”, “hydrocarbomer” as “hydro carbomer”</li>
+<li>Concentration notation: “0.5% w/w” may come out as “0.5 percent double u double u”</li>
+<li>Unit abbreviations: “mPa·s” will not survive as-is; the scientist typically says “millipascal seconds” or “cP”</li>
+<li>Abbreviations: “API”, “pH”, “RPM”, “BID”, “QC”</li>
+</ul>
+<p>Mitigation strategies:</p>
+<ol type="1">
+<li><strong>Initial prompt priming</strong>: <code>faster-whisper</code> accepts an <code>initial_prompt</code> parameter. This is injected at the start of the transcription and nudges the model toward your vocabulary. A prompt like <code>"Formulation lab note. Batch F-204. pH, viscosity mPa·s, carbomer, excipient, API concentration."</code> meaningfully improves recognition of domain terms.</li>
+<li><strong>Post-processing normalization</strong>: a lightweight text normalization step after ASR can standardize units and abbreviations before the extraction stage.</li>
+<li><strong>Fine-tuning</strong>: for high-volume deployments, Whisper can be fine-tuned on domain-specific audio. Out of scope for this article.</li>
+</ol>
+</section>
+<section id="noise-in-the-lab" class="level3">
+<h3 class="anchored" data-anchor-id="noise-in-the-lab">Noise in the lab</h3>
+<p>A formulation lab is not a recording studio. Overhead extractors, magnetic stirrers, water baths, and centrifuges all produce background noise. Practical guidance:</p>
+<ul>
+<li>Use a directional (cardioid) lapel or desktop microphone, not the built-in microphone on a laptop or phone</li>
+<li>Whisper’s <code>medium</code> and <code>large</code> models handle moderate noise better than <code>tiny</code> or <code>base</code></li>
+<li>Consider a noise-suppression preprocessing step (e.g.&nbsp;<a href="https://github.com/timsainburg/noisereduce"><code>noisereduce</code></a>) for particularly noisy environments</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="stage-2-structured-extraction" class="level2">
+<h2 class="anchored" data-anchor-id="stage-2-structured-extraction">Stage 2 — Structured extraction</h2>
+<section id="the-core-challenge-unstructured-hedged-incomplete-speech" class="level3">
+<h3 class="anchored" data-anchor-id="the-core-challenge-unstructured-hedged-incomplete-speech">The core challenge: unstructured, hedged, incomplete speech</h3>
+<p>This is the hardest stage. A scientist dictating during an experiment does not produce clean, form-like speech. Here is a realistic transcript from a formulation session:</p>
+<blockquote class="blockquote">
+<p><em>“Okay so this is Antoine, batch F-204, it’s about 14:32. I’ve just added 1.2 grams of carbomer to the water phase, mixing at 500 RPM. Viscosity is approximately 4,200 — that’s in millipascal seconds — pH is 5.9. Appearance is slightly hazy, no lumps visible. No deviations to report.”</em></p>
+</blockquote>
+<p>Problems the extraction layer must handle:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Speech pattern</th>
+<th>Example</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hedged values</td>
+<td>“approximately 4,200”, “maybe 6.8”</td>
+<td>Extract the value; set a <code>hedged</code> flag</td>
+</tr>
+<tr class="even">
+<td>Inferred units</td>
+<td>“that’s in millipascal seconds”</td>
+<td>Associate retrospectively with the preceding value</td>
+</tr>
+<tr class="odd">
+<td>Missing fields</td>
+<td>Batch ID not stated</td>
+<td>Set to <code>null</code>; trigger review flag</td>
+</tr>
+<tr class="even">
+<td>Conversational filler</td>
+<td>“Okay so”, “that’s about”</td>
+<td>Ignore in extraction</td>
+</tr>
+<tr class="odd">
+<td>Multiple measurements in one utterance</td>
+<td>pH and viscosity in same sentence</td>
+<td>Extract as separate records or a multi-measurement record</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="why-instructor" class="level3">
+<h3 class="anchored" data-anchor-id="why-instructor">Why Instructor</h3>
+<p><a href="https://python.useinstructor.com/">Instructor</a> is a library that wraps LLM API calls to guarantee structured output conforming to a Pydantic schema. Instead of asking the LLM to “return JSON”, which produces unreliable free-form output, Instructor uses tool-calling or structured output modes to force the model to populate every field of your schema. If the model cannot populate a field, it sets it to <code>null</code> rather than hallucinating a value.</p>
+<p>This is the critical reliability mechanism of the pipeline. Without it, you are parsing free-form LLM JSON output with all the brittleness that entails.</p>
+</section>
+<section id="the-pydantic-schema" class="level3">
+<h3 class="anchored" data-anchor-id="the-pydantic-schema">The Pydantic schema</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel, Field</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Optional</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> enum <span class="im">import</span> Enum</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AppearanceDescriptor(<span class="bu">str</span>, Enum):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    CLEAR <span class="op">=</span> <span class="st">"clear"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    SLIGHTLY_HAZY <span class="op">=</span> <span class="st">"slightly_hazy"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    HAZY <span class="op">=</span> <span class="st">"hazy"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    TURBID <span class="op">=</span> <span class="st">"turbid"</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    OPAQUE <span class="op">=</span> <span class="st">"opaque"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    OTHER <span class="op">=</span> <span class="st">"other"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LabObservation(BaseModel):</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Structured record of a single lab observation extracted from voice."""</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    sample_id: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">None</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"Sample identifier as stated by the operator (e.g. 'F-204')"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    batch_id: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">None</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"Batch identifier if distinct from sample_id"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    operator_id: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">None</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"Operator name or ID as stated in the recording"</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    stated_timestamp: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">None</span>,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"Time stated by the operator (e.g. '14:32'), as a string"</span>,</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    measurement_type: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">None</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"Type of measurement (e.g. 'viscosity', 'pH', 'temperature')"</span>,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    value: Optional[<span class="bu">float</span>] <span class="op">=</span> Field(</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">None</span>,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"Numeric value of the measurement"</span>,</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    unit: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        <span class="va">None</span>,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"Unit of the measurement (e.g. 'mPa·s', 'pH', '°C', 'g')"</span>,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    appearance: Optional[AppearanceDescriptor] <span class="op">=</span> Field(</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="va">None</span>,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"Appearance descriptor if stated"</span>,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    ingredient_added: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="va">None</span>,</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"Name of any ingredient or excipient added during this observation"</span>,</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    ingredient_quantity: Optional[<span class="bu">float</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    ingredient_unit: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    deviation_flag: <span class="bu">bool</span> <span class="op">=</span> Field(</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        <span class="va">False</span>,</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"True if the operator reported a deviation from expected range"</span>,</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    hedged: <span class="bu">bool</span> <span class="op">=</span> Field(</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        <span class="va">False</span>,</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"True if the value was qualified ('approximately', 'about', 'maybe')"</span>,</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    notes: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        <span class="va">None</span>,</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"Any additional free-text observations not captured in structured fields"</span>,</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The schema uses <code>Optional</code> for every observation field except <code>deviation_flag</code> and <code>hedged</code>. This is deliberate: a missing field is more honest than a hallucinated one. The downstream validation stage decides what to do with <code>null</code> values.</p>
+<p>The <code>AppearanceDescriptor</code> enum is a controlled vocabulary. Free-text appearance descriptions (“slightly hazy”, “not fully clear”, “faintly turbid”) are mapped to a fixed set of terms by the LLM. This solves the inconsistent terminology problem at source.</p>
+</section>
+<section id="prompt-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-engineering">Prompt engineering</h3>
+<p>Few-shot examples are the most important part of the prompt. The examples must include clean inputs <em>and</em> realistic messy inputs — hedged values, missing fields, multi-measurement utterances.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>SYSTEM_PROMPT <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">You are a laboratory data extraction assistant for a pharmaceutical formulation lab.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">Your task is to extract structured observations from a voice transcript of a scientist</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">recording bench notes.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">Rules:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">- Extract only what is explicitly stated. Do not infer or assume field values.</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">- If a value is hedged ("approximately", "about", "maybe", "around"), set hedged=true.</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">- If a field is not stated, set it to null. Never invent a value.</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">- Map appearance descriptions to the closest AppearanceDescriptor enum value.</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">- If multiple measurements are stated in one transcript, extract only the primary one</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">  and put the rest in the notes field.</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">Examples:</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">Input: "Antoine here, batch F-204, pH is 5.9, no issues."</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">Output: {operator_id: "Antoine", batch_id: "F-204", measurement_type: "pH",</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">         value: 5.9, unit: "pH", deviation_flag: false, hedged: false}</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">Input: "Viscosity is about 4,200 millipascal seconds, appearance is slightly hazy."</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">Output: {measurement_type: "viscosity", value: 4200.0, unit: "mPa·s",</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="st">         appearance: "slightly_hazy", hedged: true}</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="st">Input: "Added 1.2 grams of carbomer, mixing at 500 RPM."</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="st">Output: {ingredient_added: "carbomer", ingredient_quantity: 1.2,</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="st">         ingredient_unit: "g", notes: "mixing at 500 RPM"}</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="st">Input: "Batch F-205, everything looks fine."</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="st">Output: {batch_id: "F-205", notes: "operator stated 'everything looks fine'",</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="st">         deviation_flag: false}</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note the last example: “everything looks fine” is not a structured observation. The correct extraction is to put it in <code>notes</code> and extract no measurement values, rather than inventing a plausible value because one is expected.</p>
+</section>
+<section id="running-extraction-with-instructor-and-ollama" class="level3">
+<h3 class="anchored" data-anchor-id="running-extraction-with-instructor-and-ollama">Running extraction with Instructor and Ollama</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> instructor</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ollama <span class="im">import</span> Client</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> ValidationError</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_observation(transcript: <span class="bu">str</span>) <span class="op">-&gt;</span> LabObservation:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Extract a structured LabObservation from a raw ASR transcript.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="al">NOTE</span><span class="co">: This is an illustrative implementation. In production, the Ollama</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    client configuration, model selection, and prompt engineering are</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    environment-specific and not shown here.</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    ollama_client <span class="op">=</span> Client(host<span class="op">=</span><span class="st">"http://localhost:11434"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Patch the Ollama client with Instructor to enforce structured output</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    client <span class="op">=</span> instructor.from_ollama(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        ollama_client,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        mode<span class="op">=</span>instructor.Mode.JSON,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    observation <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"llama3.1:8b"</span>,  <span class="co"># or any locally available model</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: SYSTEM_PROMPT},</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="ss">f"Extract the observation from this transcript:</span><span class="ch">\n\n</span><span class="sc">{</span>transcript<span class="sc">}</span><span class="ss">"</span>},</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        response_model<span class="op">=</span>LabObservation,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> observation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The model choice matters. For this task, an 8B instruction-tuned model (Llama 3.1 8B, Mistral 7B) is sufficient — the extraction task is not reasoning-heavy, it is slot-filling against a fixed schema. Larger models add latency without proportional quality gains for this specific use case. In a regulated environment with sensitive formulation data, the model must run locally. Cloud model APIs are not an option without a data processing agreement.</p>
+<hr>
+</section>
+</section>
+<section id="stage-3-validation" class="level2">
+<h2 class="anchored" data-anchor-id="stage-3-validation">Stage 3 — Validation</h2>
+<p>Validation operates at two distinct levels that must be kept separate.</p>
+<section id="structural-validation-pydantic" class="level3">
+<h3 class="anchored" data-anchor-id="structural-validation-pydantic">Structural validation (Pydantic)</h3>
+<p>Pydantic enforces the schema: types are correct, enums are valid, numeric fields are numeric. This happens automatically during extraction — Instructor will retry the LLM call if the output does not conform. Structural validation failures are hard blocks: the record cannot proceed until the schema is satisfied.</p>
+</section>
+<section id="domain-validation-domainvalidator" class="level3">
+<h3 class="anchored" data-anchor-id="domain-validation-domainvalidator">Domain validation (DomainValidator)</h3>
+<p>Domain validation checks scientific plausibility. Pydantic cannot know that a pH of 14.5 is physically impossible, or that a viscosity of 50,000 mPa·s is outside the expected range for a given formulation type. These are soft failures: the record is flagged for human review, not discarded.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> NamedTuple</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ValidationResult(NamedTuple):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    passed: <span class="bu">bool</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    flags: <span class="bu">list</span>[<span class="bu">str</span>]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    requires_review: <span class="bu">bool</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DomainValidator:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Applies domain-specific plausibility checks to a LabObservation.</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">    </span><span class="al">NOTE</span><span class="co">: Thresholds, unit whitelists, and mandatory field rules are</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">    project-specific. The values shown here are illustrative only.</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    ph_range: <span class="bu">tuple</span>[<span class="bu">float</span>, <span class="bu">float</span>] <span class="op">=</span> (<span class="fl">0.0</span>, <span class="fl">14.0</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    viscosity_range_mpas: <span class="bu">tuple</span>[<span class="bu">float</span>, <span class="bu">float</span>] <span class="op">=</span> (<span class="fl">1.0</span>, <span class="fl">200_000.0</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    allowed_units: <span class="bu">dict</span>[<span class="bu">str</span>, <span class="bu">list</span>[<span class="bu">str</span>]] <span class="op">=</span> field(default_factory<span class="op">=</span><span class="kw">lambda</span>: {</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"pH"</span>: [<span class="st">"pH"</span>, <span class="st">""</span>],</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"viscosity"</span>: [<span class="st">"mPa·s"</span>, <span class="st">"cP"</span>, <span class="st">"mPas"</span>],</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"temperature"</span>: [<span class="st">"°C"</span>, <span class="st">"°F"</span>, <span class="st">"K"</span>],</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"mass"</span>: [<span class="st">"g"</span>, <span class="st">"mg"</span>, <span class="st">"kg"</span>],</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    mandatory_fields: <span class="bu">list</span>[<span class="bu">str</span>] <span class="op">=</span> field(default_factory<span class="op">=</span><span class="kw">lambda</span>: [</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"batch_id"</span>, <span class="st">"operator_id"</span>, <span class="st">"measurement_type"</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> validate(<span class="va">self</span>, obs: LabObservation) <span class="op">-&gt;</span> ValidationResult:</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        flags <span class="op">=</span> []</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mandatory field check</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> f <span class="kw">in</span> <span class="va">self</span>.mandatory_fields:</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">getattr</span>(obs, f) <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>                flags.append(<span class="ss">f"MISSING_MANDATORY_FIELD:</span><span class="sc">{</span>f<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pH plausibility</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> obs.measurement_type <span class="op">==</span> <span class="st">"pH"</span> <span class="kw">and</span> obs.value <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> (<span class="va">self</span>.ph_range[<span class="dv">0</span>] <span class="op">&lt;=</span> obs.value <span class="op">&lt;=</span> <span class="va">self</span>.ph_range[<span class="dv">1</span>]):</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>                flags.append(<span class="ss">f"IMPLAUSIBLE_PH:</span><span class="sc">{</span>obs<span class="sc">.</span>value<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Viscosity plausibility</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> obs.measurement_type <span class="op">==</span> <span class="st">"viscosity"</span> <span class="kw">and</span> obs.value <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>            lo, hi <span class="op">=</span> <span class="va">self</span>.viscosity_range_mpas</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> (lo <span class="op">&lt;=</span> obs.value <span class="op">&lt;=</span> hi):</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>                flags.append(<span class="ss">f"IMPLAUSIBLE_VISCOSITY:</span><span class="sc">{</span>obs<span class="sc">.</span>value<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Unit whitelist</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> obs.measurement_type <span class="kw">and</span> obs.unit:</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>            allowed <span class="op">=</span> <span class="va">self</span>.allowed_units.get(obs.measurement_type, [])</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> allowed <span class="kw">and</span> obs.unit <span class="kw">not</span> <span class="kw">in</span> allowed:</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>                flags.append(<span class="ss">f"UNEXPECTED_UNIT:</span><span class="sc">{</span>obs<span class="sc">.</span>unit<span class="sc">}</span><span class="ss">_for_</span><span class="sc">{</span>obs<span class="sc">.</span>measurement_type<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Hedged values always go to review</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> obs.hedged:</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>            flags.append(<span class="st">"HEDGED_VALUE:confirm_with_operator"</span>)</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>        passed <span class="op">=</span> <span class="kw">not</span> <span class="bu">any</span>(</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>            f.startswith((<span class="st">"IMPLAUSIBLE"</span>, <span class="st">"MISSING_MANDATORY"</span>))</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> f <span class="kw">in</span> flags</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>        requires_review <span class="op">=</span> <span class="bu">len</span>(flags) <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ValidationResult(passed<span class="op">=</span>passed, flags<span class="op">=</span>flags, requires_review<span class="op">=</span>requires_review)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The two-tier failure behaviour: - <code>passed=False</code>: hard block. The record is not serialized to the primary output. It goes to a rejection log. - <code>requires_review=True, passed=True</code>: soft flag. The record is serialized but routed to a review queue before being committed to the ELN/LIMS.</p>
+</section>
+<section id="the-human-review-queue" class="level3">
+<h3 class="anchored" data-anchor-id="the-human-review-queue">The human-review queue</h3>
+<p>Every record that exits Stage 3 with <code>requires_review=True</code> must be handled by a human before it is committed. The minimum viable review mechanism:</p>
+<ol type="1">
+<li><strong>Trigger</strong>: any of <code>MISSING_MANDATORY_FIELD</code>, <code>HEDGED_VALUE</code>, <code>UNEXPECTED_UNIT</code>, or <code>IMPLAUSIBLE_*</code> flags</li>
+<li><strong>Reviewer sees</strong>: the original audio file path, the raw ASR transcript, the extracted record, and the specific flags</li>
+<li><strong>Reviewer action</strong>: approve (record commits as-is), edit (modify specific fields and approve), or reject (record is discarded with a reason code)</li>
+<li><strong>Audit capture</strong>: the reviewer action, reviewer ID, and timestamp are appended to the audit trail record — not to the observation record itself</li>
+</ol>
+<p>This is not a UI spec. It is the minimum information architecture for compliance. In a GxP system, the review step is the electronic signature event under 21 CFR Part 11. It cannot be implicit.</p>
+<hr>
+</section>
+</section>
+<section id="stage-4-serialization-and-handoff" class="level2">
+<h2 class="anchored" data-anchor-id="stage-4-serialization-and-handoff">Stage 4 — Serialization and handoff</h2>
+<section id="the-audit-record" class="level3">
+<h3 class="anchored" data-anchor-id="the-audit-record">The audit record</h3>
+<p>Every observation that exits the pipeline — whether it committed cleanly or went through review — must have an audit record attached. The audit record is separate from the observation record and is never edited after creation.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hashlib</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timezone</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AuditRecord:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Immutable audit trail record for a single pipeline run.</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Stored alongside (but separately from) the observation record.</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    pipeline_run_id: <span class="bu">str</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    audio_file_path: <span class="bu">str</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    asr_model_version: <span class="bu">str</span>           <span class="co"># e.g. "faster-whisper:medium:ct2"</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    llm_model_version: <span class="bu">str</span>           <span class="co"># e.g. "ollama:llama3.1:8b"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    instructor_version: <span class="bu">str</span>          <span class="co"># e.g. "1.3.4"</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    raw_transcript: <span class="bu">str</span>              <span class="co"># verbatim ASR output — never modified</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    extraction_timestamp: <span class="bu">str</span>        <span class="co"># ISO 8601, UTC</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    validation_flags: <span class="bu">list</span>[<span class="bu">str</span>]</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    review_required: <span class="bu">bool</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    reviewer_id: Optional[<span class="bu">str</span>]       <span class="co"># None if auto-committed</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    reviewer_timestamp: Optional[<span class="bu">str</span>]</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    commit_status: <span class="bu">str</span>               <span class="co"># "committed", "rejected", "pending_review"</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> to_dict(<span class="va">self</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            <span class="st">"pipeline_run_id"</span>: <span class="va">self</span>.pipeline_run_id,</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            <span class="st">"audio_file_path"</span>: <span class="va">self</span>.audio_file_path,</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>            <span class="st">"asr_model_version"</span>: <span class="va">self</span>.asr_model_version,</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            <span class="st">"llm_model_version"</span>: <span class="va">self</span>.llm_model_version,</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            <span class="st">"instructor_version"</span>: <span class="va">self</span>.instructor_version,</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">"raw_transcript_sha256"</span>: hashlib.sha256(</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.raw_transcript.encode()</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>            ).hexdigest(),</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>            <span class="st">"extraction_timestamp"</span>: <span class="va">self</span>.extraction_timestamp,</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>            <span class="st">"validation_flags"</span>: <span class="va">self</span>.validation_flags,</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>            <span class="st">"review_required"</span>: <span class="va">self</span>.review_required,</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>            <span class="st">"reviewer_id"</span>: <span class="va">self</span>.reviewer_id,</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>            <span class="st">"reviewer_timestamp"</span>: <span class="va">self</span>.reviewer_timestamp,</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>            <span class="st">"commit_status"</span>: <span class="va">self</span>.commit_status,</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note: the raw transcript is stored as a SHA-256 hash in the audit record (the full text lives in a separate immutable store). This satisfies the traceability requirement without duplicating potentially sensitive text across every record.</p>
+</section>
+<section id="json-output-structure" class="level3">
+<h3 class="anchored" data-anchor-id="json-output-structure">JSON output structure</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"observation"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"sample_id"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"batch_id"</span><span class="fu">:</span> <span class="st">"F-204"</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"operator_id"</span><span class="fu">:</span> <span class="st">"Antoine"</span><span class="fu">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"stated_timestamp"</span><span class="fu">:</span> <span class="st">"14:32"</span><span class="fu">,</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"measurement_type"</span><span class="fu">:</span> <span class="st">"viscosity"</span><span class="fu">,</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"value"</span><span class="fu">:</span> <span class="fl">4200.0</span><span class="fu">,</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"unit"</span><span class="fu">:</span> <span class="st">"mPa·s"</span><span class="fu">,</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"appearance"</span><span class="fu">:</span> <span class="st">"slightly_hazy"</span><span class="fu">,</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ingredient_added"</span><span class="fu">:</span> <span class="st">"carbomer"</span><span class="fu">,</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ingredient_quantity"</span><span class="fu">:</span> <span class="fl">1.2</span><span class="fu">,</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ingredient_unit"</span><span class="fu">:</span> <span class="st">"g"</span><span class="fu">,</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"deviation_flag"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"hedged"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"notes"</span><span class="fu">:</span> <span class="st">"mixing at 500 RPM"</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"audit"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"pipeline_run_id"</span><span class="fu">:</span> <span class="st">"run_20260222_143512_a3f9"</span><span class="fu">,</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"asr_model_version"</span><span class="fu">:</span> <span class="st">"faster-whisper:medium:ct2"</span><span class="fu">,</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"llm_model_version"</span><span class="fu">:</span> <span class="st">"ollama:llama3.1:8b"</span><span class="fu">,</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"raw_transcript_sha256"</span><span class="fu">:</span> <span class="st">"e3b0c44298fc1c..."</span><span class="fu">,</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"extraction_timestamp"</span><span class="fu">:</span> <span class="st">"2026-02-22T14:35:12Z"</span><span class="fu">,</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"validation_flags"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"HEDGED_VALUE:confirm_with_operator"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"review_required"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"commit_status"</span><span class="fu">:</span> <span class="st">"pending_review"</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="lims-eln-handoff" class="level3">
+<h3 class="anchored" data-anchor-id="lims-eln-handoff">LIMS / ELN handoff</h3>
+<p>The pipeline produces a validated JSON record. How it reaches the downstream system depends on the system:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Integration pattern</th>
+<th>When to use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CSV drop to watched folder</td>
+<td>ELN systems with a CSV import feature; simplest path</td>
+</tr>
+<tr class="even">
+<td>REST API POST</td>
+<td>LIMS systems with an HTTP API (Benchling, LabVantage, etc.)</td>
+</tr>
+<tr class="odd">
+<td>Direct DB insert</td>
+<td>In-house systems where you control the schema</td>
+</tr>
+<tr class="even">
+<td>Message queue (e.g.&nbsp;RabbitMQ)</td>
+<td>High-volume or multi-lab deployments</td>
+</tr>
+</tbody>
+</table>
+<p>The pipeline itself should be agnostic to the downstream system. The serialized JSON is the contract. Adapters that translate the JSON to each downstream format are separate, thin components — this is the standard ETL pattern applied to lab data.</p>
+<hr>
+</section>
+</section>
+<section id="failure-modes" class="level2">
+<h2 class="anchored" data-anchor-id="failure-modes">Failure modes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Failure mode</th>
+<th>Stage</th>
+<th>Symptom</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Compound name misrecognition</td>
+<td>ASR</td>
+<td>“carbomer” → “carbon”</td>
+<td><code>initial_prompt</code> with domain vocabulary</td>
+</tr>
+<tr class="even">
+<td>Unit misrecognition</td>
+<td>ASR</td>
+<td>“mPa·s” → unintelligible</td>
+<td>Post-processing normalization; train operators to say full unit names</td>
+</tr>
+<tr class="odd">
+<td>Hallucinated measurement value</td>
+<td>Extraction</td>
+<td>LLM invents a value not in the transcript</td>
+<td>Instructor forces schema; <code>null</code> is always preferred over a guess; review hedged values</td>
+</tr>
+<tr class="even">
+<td>Missing mandatory field</td>
+<td>Extraction</td>
+<td><code>batch_id: null</code></td>
+<td>Validation flags <code>MISSING_MANDATORY_FIELD</code>; routes to review</td>
+</tr>
+<tr class="odd">
+<td>Implausible value passes extraction</td>
+<td>Validation</td>
+<td>pH extracted as 15.2</td>
+<td>DomainValidator plausibility checks; hard block on <code>IMPLAUSIBLE_*</code></td>
+</tr>
+<tr class="even">
+<td>Fume hood / stirrer noise</td>
+<td>ASR</td>
+<td>High word error rate</td>
+<td>Directional microphone; <code>noisereduce</code> preprocessing; <code>large</code> model</td>
+</tr>
+<tr class="odd">
+<td>Operator forgets sample ID</td>
+<td>Prompt design</td>
+<td><code>sample_id: null</code> in every record</td>
+<td>Structured dictation prompt (“state batch ID first”) in operator training; mandatory field review</td>
+</tr>
+<tr class="even">
+<td>LLM model update changes extraction behaviour</td>
+<td>Compliance</td>
+<td>Record comparison across model versions breaks</td>
+<td>Version-lock models; treat model updates as revalidation events (see compliance section)</td>
+</tr>
+<tr class="odd">
+<td>Operator says “it looks fine”</td>
+<td>Extraction</td>
+<td>Vague assertion extracted as measurement</td>
+<td><code>notes</code> field captures it; no measurement value extracted; no validation failure</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="data-governance-and-compliance" class="level2">
+<h2 class="anchored" data-anchor-id="data-governance-and-compliance">Data governance and compliance</h2>
+<div class="callout-regulatory">
+<p>This section covers general principles relevant to pharma and biotech R&amp;D. It is not legal or regulatory advice. Your organization’s quality assurance and legal teams must review any system that touches regulated data before deployment.</p>
+</div>
+<section id="cfr-part-11-and-ema-annex-11" class="level3">
+<h3 class="anchored" data-anchor-id="cfr-part-11-and-ema-annex-11">21 CFR Part 11 and EMA Annex 11</h3>
+<p>Electronic records in GxP environments must be trustworthy, reliable, and equivalent to paper records. The relevant requirements for this pipeline:</p>
+<ul>
+<li><strong>Audit trail</strong>: every record must have a time-stamped, operator-attributed, uneditable audit trail. The <code>AuditRecord</code> structure above covers this. The raw transcript (or its hash) must be retained alongside the structured record — you must be able to demonstrate that the extracted values correspond to what the operator said.</li>
+<li><strong>Electronic signature</strong>: the review-and-approve step is an electronic signature event. The reviewer ID and timestamp must be captured and linked to the record. This requires identity verification — a username/password at minimum, hardware token in higher-assurance contexts.</li>
+<li><strong>System validation</strong>: the pipeline itself must be validated under your organization’s computer system validation (CSV) framework. This means documented user requirements, functional specifications, and qualification testing. The LLM component is a challenge here — see below.</li>
+</ul>
+</section>
+<section id="the-llm-model-versioning-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-llm-model-versioning-problem">The LLM model versioning problem</h3>
+<p>This is the hardest compliance issue in this architecture. Classical validated software produces deterministic outputs: the same input always produces the same output, forever. An LLM does not. Two consequences:</p>
+<ol type="1">
+<li><strong>Extraction behaviour changes between model versions.</strong> If you update from <code>llama3.1:8b</code> to <code>llama3.2:8b</code>, the structured output for the same transcript may differ. This breaks the assumption that records are comparable across time.</li>
+<li><strong>The same model with different temperature settings can produce different outputs for identical inputs.</strong></li>
+</ol>
+<p>Practical mitigations: - <strong>Version-lock the ASR and LLM models.</strong> Pin <code>faster-whisper</code> to a specific checkpoint hash; pin the Ollama model to a specific version tag. Never update without going through a revalidation cycle. - <strong>Set temperature to 0</strong> for extraction calls. This makes the LLM as deterministic as possible (not fully deterministic, but close enough for most practical purposes). - <strong>Treat model updates as change control events</strong>: document the change, run qualification tests against a golden dataset of transcripts with known expected outputs, and obtain QA sign-off before deploying the new version. - <strong>The raw transcript is the source of truth.</strong> If the extracted record is ever challenged, the raw audio and transcript are the evidence. Store both.</p>
+</section>
+<section id="gdpr-and-data-retention" class="level3">
+<h3 class="anchored" data-anchor-id="gdpr-and-data-retention">GDPR and data retention</h3>
+<p>Audio recordings may contain personal data (operator names, and in some cases patient-adjacent information in clinical manufacturing contexts). Under GDPR:</p>
+<ul>
+<li>Define and document the retention period for audio files before deployment</li>
+<li>Audio files should be deleted on schedule; the hashed transcript in the audit record does not constitute personal data</li>
+<li>If the pipeline processes any data that could be linked to a data subject (patients, trial participants), a data protection impact assessment (DPIA) is required</li>
+</ul>
+</section>
+<section id="why-local-models-are-the-defensible-choice" class="level3">
+<h3 class="anchored" data-anchor-id="why-local-models-are-the-defensible-choice">Why local models are the defensible choice</h3>
+<p>Cloud ASR and LLM APIs are operationally convenient but introduce a data processor relationship that requires contractual governance. For most pharma R&amp;D environments, the path of least resistance is local: <code>faster-whisper</code> on a lab workstation or server, Ollama running a locally hosted model. No data leaves the network. The governance question reduces to “who has access to this server” rather than “what does the vendor’s data processing agreement permit.”</p>
+<hr>
+</section>
+</section>
+<section id="deployment-context" class="level2">
+<h2 class="anchored" data-anchor-id="deployment-context">Deployment context</h2>
+<p>The pipeline as described requires:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Minimum spec</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>faster-whisper</code> (medium model)</td>
+<td>CPU-only: ~4 cores, 4GB RAM; processes 3-min audio in ~20s</td>
+</tr>
+<tr class="even">
+<td><code>faster-whisper</code> (large-v3 model)</td>
+<td>CPU-only: ~8 cores, 8GB RAM; GPU (4GB VRAM) for real-time</td>
+</tr>
+<tr class="odd">
+<td>Ollama + llama3.1:8b</td>
+<td>8GB RAM minimum; 16GB recommended for comfortable headroom</td>
+</tr>
+<tr class="even">
+<td>Combined (medium ASR + 8B LLM)</td>
+<td>16GB RAM, 4-core CPU — a standard lab workstation</td>
+</tr>
+</tbody>
+</table>
+<p>The simplest deployment: a dedicated lab workstation or small server with a shared network drive. Scientists drop audio files to a watched folder; the pipeline processes them and writes JSON output to an output folder. No web UI required for the MVP.</p>
+<p>A web UI (Flask, FastAPI, or a simple Shiny/Streamlit interface) adds the review queue interface and removes the need for scientists to interact with the file system directly. This is the natural next step after the pipeline core is validated.</p>
+<hr>
+</section>
+<section id="dos-and-donts" class="level2">
+<h2 class="anchored" data-anchor-id="dos-and-donts">Do’s and don’ts</h2>
+<section id="do" class="level3">
+<h3 class="anchored" data-anchor-id="do">Do</h3>
+<ul>
+<li><strong>Define your Pydantic schema before writing any prompts.</strong> The schema is the specification. Prompts should be written to fill the schema, not the other way around.</li>
+<li><strong>Keep the raw ASR transcript alongside every structured record.</strong> It is your evidence trail. If an extracted value is ever challenged, the transcript is what you go back to.</li>
+<li><strong>Use a controlled vocabulary (enums) for all categorical fields.</strong> Free-text appearance descriptions will diverge within weeks of deployment.</li>
+<li><strong>Set a confidence threshold and build the review queue before going live.</strong> “We’ll add that later” means it never gets added.</li>
+<li><strong>Version-lock both the ASR model and the LLM.</strong> Treat model updates as change control events.</li>
+<li><strong>Train operators on structured dictation.</strong> A short checklist (“state batch ID, then measurement, then deviations”) dramatically reduces missing mandatory fields.</li>
+</ul>
+</section>
+<section id="dont" class="level3">
+<h3 class="anchored" data-anchor-id="dont">Don’t</h3>
+<ul>
+<li><strong>Do not send audio recordings to cloud APIs without a data processing agreement and legal clearance.</strong> This applies to OpenAI Whisper API, Deepgram, AssemblyAI, and any other cloud ASR service.</li>
+<li><strong>Do not auto-commit records with missing mandatory fields or implausible values.</strong> The review gate exists to catch extraction errors before they reach the ELN.</li>
+<li><strong>Do not treat the structured output as authoritative over the raw transcript.</strong> The transcript is the source of truth; the JSON is a derived representation.</li>
+<li><strong>Do not skip operator training.</strong> The pipeline can handle hedged and incomplete speech, but structured dictation habits reduce the volume of records requiring human review by 60–80% in practice.</li>
+<li><strong>Do not update models without revalidation.</strong> A new model version is a new system. It requires qualification testing before deployment in a regulated context.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="full-runnable-example" class="level2">
+<h2 class="anchored" data-anchor-id="full-runnable-example">Full runnable example</h2>
+<p>The following is a minimal end-to-end implementation. It is intentionally simplified and generic. Production deployments require environment-specific schema design, domain validation rules, prompt libraries, and integration adapters not shown here.</p>
+<section id="dependencies-pyproject.toml" class="level3">
+<h3 class="anchored" data-anchor-id="dependencies-pyproject.toml">Dependencies (<code>pyproject.toml</code>)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"voice-to-data-pipeline"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.11"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"faster-whisper&gt;=1.0.0"</span><span class="op">,</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"instructor&gt;=1.3.0"</span><span class="op">,</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pydantic&gt;=2.0.0"</span><span class="op">,</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ollama&gt;=0.2.0"</span><span class="op">,</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.uv]</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="dt">dev-dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ruff&gt;=0.3.0"</span><span class="op">,</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Install with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="pipeline-pipeline.py" class="level3">
+<h3 class="anchored" data-anchor-id="pipeline-pipeline.py">Pipeline (<code>pipeline.py</code>)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">Voice-to-data pipeline: audio file → structured lab observation.</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">IMPORTANT: This is a simplified, illustrative implementation. It is not a</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">production system. Domain-specific schemas, prompt engineering, validation</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">rules, and LIMS integration are project-specific and not included here.</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hashlib</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> uuid</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timezone</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Optional</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> instructor</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> faster_whisper <span class="im">import</span> WhisperModel</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ollama <span class="im">import</span> Client</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel, Field</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> field_validator</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Schema ────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LabObservation(BaseModel):</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    sample_id: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    batch_id: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    operator_id: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    stated_timestamp: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    measurement_type: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    value: Optional[<span class="bu">float</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    unit: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    appearance: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    ingredient_added: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    ingredient_quantity: Optional[<span class="bu">float</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    ingredient_unit: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    deviation_flag: <span class="bu">bool</span> <span class="op">=</span> Field(<span class="va">False</span>)</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    hedged: <span class="bu">bool</span> <span class="op">=</span> Field(<span class="va">False</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    notes: Optional[<span class="bu">str</span>] <span class="op">=</span> Field(<span class="va">None</span>)</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co"># ── ASR ───────────────────────────────────────────────────────────────────────</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> transcribe(audio_path: Path, model_size: <span class="bu">str</span> <span class="op">=</span> <span class="st">"medium"</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Transcribe an audio file using faster-whisper."""</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> WhisperModel(model_size, device<span class="op">=</span><span class="st">"cpu"</span>, compute_type<span class="op">=</span><span class="st">"int8"</span>)</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    segments, _ <span class="op">=</span> model.transcribe(</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>        <span class="bu">str</span>(audio_path),</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>        initial_prompt<span class="op">=</span><span class="st">"Formulation lab note. batch ID, pH, viscosity mPa·s, carbomer, excipient."</span>,</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">" "</span>.join(segment.text.strip() <span class="cf">for</span> segment <span class="kw">in</span> segments)</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Extraction ─────────────────────────────────────────────────────────────────</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>SYSTEM_PROMPT <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="st">You are a laboratory data extraction assistant. Extract structured observations</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="st">from voice transcripts of pharmaceutical formulation bench notes.</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="st">Rules:</span></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="st">- Extract only what is explicitly stated. Set missing fields to null.</span></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="st">- If a value is hedged ("approximately", "about", "maybe"), set hedged=true.</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="st">- Map appearance descriptions to clear, standardized terms.</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="st">- If multiple measurements are stated, capture the primary one and note the rest.</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract(transcript: <span class="bu">str</span>) <span class="op">-&gt;</span> LabObservation:</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Extract a structured observation from a raw transcript."""</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>    client <span class="op">=</span> instructor.from_ollama(</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>        Client(host<span class="op">=</span><span class="st">"http://localhost:11434"</span>),</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>        mode<span class="op">=</span>instructor.Mode.JSON,</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> client.chat.completions.create(</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"llama3.1:8b"</span>,</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: SYSTEM_PROMPT},</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="ss">f"Extract from:</span><span class="ch">\n\n</span><span class="sc">{</span>transcript<span class="sc">}</span><span class="ss">"</span>},</span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>        response_model<span class="op">=</span>LabObservation,</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Validation ─────────────────────────────────────────────────────────────────</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> validate(obs: LabObservation) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">str</span>]:</span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return a list of validation flags. Empty list means clean."""</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>    flags <span class="op">=</span> []</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> mandatory <span class="kw">in</span> [<span class="st">"batch_id"</span>, <span class="st">"operator_id"</span>]:</span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">getattr</span>(obs, mandatory) <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>            flags.append(<span class="ss">f"MISSING_MANDATORY_FIELD:</span><span class="sc">{</span>mandatory<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> obs.measurement_type <span class="op">==</span> <span class="st">"pH"</span> <span class="kw">and</span> obs.value <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> (<span class="fl">0.0</span> <span class="op">&lt;=</span> obs.value <span class="op">&lt;=</span> <span class="fl">14.0</span>):</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>            flags.append(<span class="ss">f"IMPLAUSIBLE_PH:</span><span class="sc">{</span>obs<span class="sc">.</span>value<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> obs.hedged:</span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>        flags.append(<span class="st">"HEDGED_VALUE:confirm_with_operator"</span>)</span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> flags</span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Pipeline ──────────────────────────────────────────────────────────────────</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(audio_path: Path, output_path: Path) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Run the full pipeline for a single audio file."""</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>    run_id <span class="op">=</span> <span class="ss">f"run_</span><span class="sc">{</span>datetime<span class="sc">.</span>now(timezone.utc)<span class="sc">.</span>strftime(<span class="st">'%Y%m</span><span class="sc">%d</span><span class="st">_%H%M%S'</span>)<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>uuid<span class="sc">.</span>uuid4()<span class="sc">.</span><span class="bu">hex</span>[:<span class="dv">6</span>]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stage 1: ASR</span></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>    transcript <span class="op">=</span> transcribe(audio_path)</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stage 2: Extraction</span></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a>    observation <span class="op">=</span> extract(transcript)</span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stage 3: Validation</span></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>    flags <span class="op">=</span> validate(observation)</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>    requires_review <span class="op">=</span> <span class="bu">len</span>(flags) <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>    hard_fail <span class="op">=</span> <span class="bu">any</span>(f.startswith(<span class="st">"IMPLAUSIBLE"</span>) <span class="cf">for</span> f <span class="kw">in</span> flags)</span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a>    commit_status <span class="op">=</span> <span class="st">"rejected"</span> <span class="cf">if</span> hard_fail <span class="cf">else</span> (<span class="st">"pending_review"</span> <span class="cf">if</span> requires_review <span class="cf">else</span> <span class="st">"committed"</span>)</span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stage 4: Serialize</span></span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> {</span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a>        <span class="st">"observation"</span>: observation.model_dump(),</span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>        <span class="st">"audit"</span>: {</span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a>            <span class="st">"pipeline_run_id"</span>: run_id,</span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a>            <span class="st">"audio_file"</span>: <span class="bu">str</span>(audio_path),</span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>            <span class="st">"asr_model"</span>: <span class="st">"faster-whisper:medium"</span>,</span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a>            <span class="st">"llm_model"</span>: <span class="st">"ollama:llama3.1:8b"</span>,</span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>            <span class="st">"raw_transcript_sha256"</span>: hashlib.sha256(transcript.encode()).hexdigest(),</span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>            <span class="st">"extraction_timestamp"</span>: datetime.now(timezone.utc).isoformat(),</span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>            <span class="st">"validation_flags"</span>: flags,</span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>            <span class="st">"review_required"</span>: requires_review,</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a>            <span class="st">"commit_status"</span>: commit_status,</span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a>    output_path.write_text(json.dumps(result, indent<span class="op">=</span><span class="dv">2</span>, ensure_ascii<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"[</span><span class="sc">{</span>commit_status<span class="sc">.</span>upper()<span class="sc">}</span><span class="ss">] </span><span class="sc">{</span>run_id<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> flags:</span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> flag <span class="kw">in</span> flags:</span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"  ⚠ </span><span class="sc">{</span>flag<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> sys</span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(sys.argv) <span class="op">!=</span> <span class="dv">3</span>:</span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Usage: uv run pipeline.py &lt;audio_file&gt; &lt;output_json&gt;"</span>)</span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a>        sys.exit(<span class="dv">1</span>)</span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a>    run(Path(sys.argv[<span class="dv">1</span>]), Path(sys.argv[<span class="dv">2</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pipeline.py bench_note_20260222.mp3 observation_F204.json</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="where-this-goes-next" class="level2">
+<h2 class="anchored" data-anchor-id="where-this-goes-next">Where this goes next</h2>
+<p>The pipeline described here is the core. What makes it useful in practice is what wraps it:</p>
+<ul>
+<li><strong>A review UI</strong>: a minimal web interface where lab supervisors see flagged records, listen to the audio, and approve or edit before commit. This is where the GxP compliance story completes.</li>
+<li><strong>Operator feedback loop</strong>: when a record is frequently flagged for the same reason (operator always forgets to state the batch ID), the review system should surface this pattern so training can be adjusted.</li>
+<li><strong>Multi-observation sessions</strong>: a single bench session produces many observations. Batching them into a session record, with cross-observation consistency checks (does the batch ID stay the same throughout?), is a natural extension.</li>
+<li><strong>Domain fine-tuning</strong>: for high-volume deployments, fine-tuning Whisper on your specific compound vocabulary eliminates the most common ASR errors and reduces the downstream extraction burden.</li>
+</ul>
+<p>The friction this solves is real and measurable. The compliance overhead of solving it properly is also real. Neither should be understated. The value is in removing the keyboard from the critical path of scientific observation — and doing it in a way that produces data you can actually defend.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/antoinelucasfra\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Powered by <a href="https://quarto.org">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+<p>© 2026 Antoine Lucas.</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/posts/voice-to-data-lab-pipeline/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

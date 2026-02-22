@@ -76,14 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9c231513875ae212134af9b751aa87bc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d2800b5aef52857891e752670e942548.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ffa4f6888415b63fa5b9e515a6438cff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-ca8f72cf9d40cf51bc94988ec0308755.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-ffa4f6888415b63fa5b9e515a6438cff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-500544c4d03e896a17dbba91d830cc0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cd93bc53ede3bb1508f1db052aab9f56.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-500544c4d03e896a17dbba91d830cc0c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -485,29 +485,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="copilot-instructions.md" class="level3">
 <h3 class="anchored" data-anchor-id="copilot-instructions.md"><code>copilot-instructions.md</code></h3>
 <p>This file is the most underused feature of Copilot. It is injected into every chat prompt and shapes completions without you having to re-explain context. For a typical R + Python data science project, mine looks like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Project: Ingredient Efficacy Analysis</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Context</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Biostatistics project for L'Oréal R&amp;D.</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>R (primary) + Python (secondary, ML pipeline).</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Regulated context: results feed into regulatory submissions.</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## R conventions</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tidyverse style throughout</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use <span class="in">`air`</span> for formatting (never <span class="in">`styler`</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Package management: <span class="in">`renv`</span> — always <span class="in">`renv::snapshot()`</span> after install</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Statistical tests: mixed models via <span class="in">`lme4`</span>/<span class="in">`nlme`</span>, never base <span class="in">`aov()`</span> for repeated measures</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Report with <span class="in">`quarto`</span> — <span class="in">`.qmd`</span> files, never <span class="in">`.Rmd`</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python conventions</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`uv`</span> for dependency management (never <span class="in">`pip install`</span> directly)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`ruff`</span> for formatting and linting</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Type hints on all function signatures</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## What NOT to do</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest <span class="in">`p.adjust()`</span> without context — ask which correction is appropriate</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest <span class="in">`lm()`</span> on repeated measures data without flagging the assumption violation</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never install packages outside of <span class="in">`renv::install()`</span> / <span class="in">`uv add`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode markdown code-annotation-code code-with-copy code-annotated"><code class="sourceCode markdown"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Project: Ingredient Efficacy Analysis</span></span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Context</span></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>Biostatistics project for L'Oréal R&amp;D.</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a>R (primary) + Python (secondary, ML pipeline).</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a>Regulated context: results feed into regulatory submissions.</span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## R conventions</span></span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tidyverse style throughout</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use <span class="in">`air`</span> for formatting (never <span class="in">`styler`</span>)</span>
+<span id="annotated-cell-1-11"><a href="#annotated-cell-1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Package management: <span class="in">`renv`</span> — always <span class="in">`renv::snapshot()`</span> after install</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-12" class="code-annotation-target"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Statistical tests: mixed models via <span class="in">`lme4`</span>/<span class="in">`nlme`</span>, never base <span class="in">`aov()`</span> for repeated measures</span>
+<span id="annotated-cell-1-13"><a href="#annotated-cell-1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Report with <span class="in">`quarto`</span> — <span class="in">`.qmd`</span> files, never <span class="in">`.Rmd`</span></span>
+<span id="annotated-cell-1-14"><a href="#annotated-cell-1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python conventions</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4">4</button><span id="annotated-cell-1-16" class="code-annotation-target"><a href="#annotated-cell-1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`uv`</span> for dependency management (never <span class="in">`pip install`</span> directly)</span>
+<span id="annotated-cell-1-17"><a href="#annotated-cell-1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`ruff`</span> for formatting and linting</span>
+<span id="annotated-cell-1-18"><a href="#annotated-cell-1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Type hints on all function signatures</span>
+<span id="annotated-cell-1-19"><a href="#annotated-cell-1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-20"><a href="#annotated-cell-1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## What NOT to do</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5">5</button><span id="annotated-cell-1-21" class="code-annotation-target"><a href="#annotated-cell-1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest <span class="in">`p.adjust()`</span> without context — ask which correction is appropriate</span>
+<span id="annotated-cell-1-22"><a href="#annotated-cell-1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest <span class="in">`lm()`</span> on repeated measures data without flagging the assumption violation</span>
+<span id="annotated-cell-1-23"><a href="#annotated-cell-1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never install packages outside of <span class="in">`renv::install()`</span> / <span class="in">`uv add`</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="1">Regulatory context flag — Copilot uses this to avoid suggesting cloud APIs or non-reproducible patterns that would be inappropriate in a submission context.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="10" data-code-annotation="2">Explicit formatter preference — prevents suggestions to use <code>styler</code>, which conflicts with <code>air</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="12" data-code-annotation="3">Force the right statistical approach for repeated measures — without this, Copilot frequently proposes <code>aov()</code> or <code>t.test()</code> on paired data.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="16" data-code-annotation="4">Lock down Python package management — prevents <code>pip install</code> suggestions that would bypass <code>uv</code>’s lockfile.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="21" data-code-annotation="5">Prevent uncontextualised multiple testing “fixes” — a critical guard for any analysis generating multiple p-values.</span>
+</dd>
+</dl>
 <p>The effect is immediate. Copilot stops suggesting <code>library(ggplot2)</code> when you already have a <code>tidyverse</code> import pattern, and it stops proposing base R testing functions when your project conventions are explicit.</p>
 </section>
 <section id="inline-completions" class="level3">
@@ -548,21 +570,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="agents.md" class="level3">
 <h3 class="anchored" data-anchor-id="agents.md"><code>AGENTS.md</code></h3>
 <p>The same principle as <code>copilot-instructions.md</code> applies here, but with more scope. OpenCode reads <code>AGENTS.md</code> at the project root (and any subdirectory <code>AGENTS.md</code> files) to understand context, conventions, and constraints. A minimal but useful template:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># AGENTS.md</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Context</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>R + Python data science project. Regulated context (pharma R&amp;D).</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conventions</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R: tidyverse, air formatter, renv for packages</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python: uv, ruff, type hints</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Git: conventional commits (feat/fix/docs/refactor/test/chore)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hard rules</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never install R packages without updating renv.lock</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never edit files in docs/ — generated output only</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never commit .Rhistory, .DS_Store, renv/library/</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Statistical model selection is never delegated to AI</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># AGENTS.md</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Context</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>R + Python data science project. Regulated context (pharma R&amp;D).</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conventions</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R: tidyverse, air formatter, renv for packages</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python: uv, ruff, type hints</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Git: conventional commits (feat/fix/docs/refactor/test/chore)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hard rules</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never install R packages without updating renv.lock</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never edit files in docs/ — generated output only</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never commit .Rhistory, .DS_Store, renv/library/</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Statistical model selection is never delegated to AI</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This file is worth spending 20 minutes on at project start. It will save you from correcting the same mistakes across a hundred interactions.</p>
 </section>
 <section id="workflow-patterns-that-work" class="level3">
@@ -586,29 +608,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Cloud LLM providers — including GitHub Copilot — process your code on external servers. In most enterprise pharma environments, this is either explicitly prohibited or sits in a legal grey zone. Ollama sidesteps this entirely.</p>
 <section id="setup-1" class="level3">
 <h3 class="anchored" data-anchor-id="setup-1">Setup</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Ollama</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://ollama.com/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull a model</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull deepseek-coder-v2</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull phi4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Ollama</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://ollama.com/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull a model</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull deepseek-coder-v2</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull phi4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then install the <a href="https://www.continue.dev/">Continue</a> VS Code extension (<code>Continue.continue</code>) and add a model config to <code>.continue/config.json</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"models"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"DeepSeek Coder V2 (local)"</span><span class="fu">,</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"deepseek-coder-v2"</span><span class="fu">,</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Phi-4 (local)"</span><span class="fu">,</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"phi4"</span><span class="fu">,</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-4"><pre class="sourceCode json code-annotation-code code-with-copy code-annotated"><code class="sourceCode json"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"models"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"DeepSeek Coder V2 (local)"</span><span class="fu">,</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-5" class="code-annotation-target"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2">2</button><span id="annotated-cell-4-6" class="code-annotation-target"><a href="#annotated-cell-4-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"deepseek-coder-v2"</span><span class="fu">,</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3">3</button><span id="annotated-cell-4-7" class="code-annotation-target"><a href="#annotated-cell-4-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span></span>
+<span id="annotated-cell-4-8"><a href="#annotated-cell-4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="annotated-cell-4-9"><a href="#annotated-cell-4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="annotated-cell-4-10"><a href="#annotated-cell-4-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Phi-4 (local)"</span><span class="fu">,</span></span>
+<span id="annotated-cell-4-11"><a href="#annotated-cell-4-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
+<span id="annotated-cell-4-12"><a href="#annotated-cell-4-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"phi4"</span><span class="fu">,</span></span>
+<span id="annotated-cell-4-13"><a href="#annotated-cell-4-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span></span>
+<span id="annotated-cell-4-14"><a href="#annotated-cell-4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="annotated-cell-4-15"><a href="#annotated-cell-4-15" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="annotated-cell-4-16"><a href="#annotated-cell-4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="5" data-code-annotation="1">Use the <code>ollama</code> provider — tells Continue to speak the Ollama API protocol instead of OpenAI’s.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="6" data-code-annotation="2">Model name exactly as it appears in <code>ollama list</code> — must match what you pulled.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="7" data-code-annotation="3">Default Ollama endpoint — all traffic stays on <code>localhost</code>, nothing leaves the machine.</span>
+</dd>
+</dl>
 </section>
 <section id="model-selection" class="level3">
 <h3 class="anchored" data-anchor-id="model-selection">Model selection</h3>
@@ -674,73 +710,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="configs">Configs</h2>
 <section id="githubcopilot-instructions.md-r-python-data-science-project" class="level3">
 <h3 class="anchored" data-anchor-id="githubcopilot-instructions.md-r-python-data-science-project"><code>.github/copilot-instructions.md</code> — R + Python data science project</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Copilot Instructions</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stack</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>R (primary) + Python (ML pipeline). Quarto for reporting.</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Package management: renv (R), uv (Python).</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Formatters: air (R), ruff (Python).</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## R conventions</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tidyverse style: pipe operator |&gt;, tibbles, no base R data frames</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Statistical modelling: lme4 for mixed models, survival for time-to-event</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reporting: quarto .qmd, not .Rmd</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest: setwd(), attach(), T/F instead of TRUE/FALSE</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python conventions  </span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Type hints on all function signatures</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>dataclasses or pydantic for data structures</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest: pip install — always uv add</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sensitive context</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>This project may handle R&amp;D data. Do not suggest cloud storage solutions</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>or external API calls without flagging the data governance implications.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Copilot Instructions</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stack</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>R (primary) + Python (ML pipeline). Quarto for reporting.</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Package management: renv (R), uv (Python).</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Formatters: air (R), ruff (Python).</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## R conventions</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tidyverse style: pipe operator |&gt;, tibbles, no base R data frames</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Statistical modelling: lme4 for mixed models, survival for time-to-event</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reporting: quarto .qmd, not .Rmd</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest: setwd(), attach(), T/F instead of TRUE/FALSE</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python conventions  </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Type hints on all function signatures</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>dataclasses or pydantic for data structures</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Never suggest: pip install — always uv add</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sensitive context</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>This project may handle R&amp;D data. Do not suggest cloud storage solutions</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>or external API calls without flagging the data governance implications.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="minimal-agents.md-template" class="level3">
 <h3 class="anchored" data-anchor-id="minimal-agents.md-template">Minimal <code>AGENTS.md</code> template</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># AGENTS.md</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">One-line description</span><span class="co">]</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stack</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Languages, frameworks, key libraries</span><span class="co">]</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conventions</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Formatter and linter</span><span class="co">]</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Package manager</span><span class="co">]</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Git commit style</span><span class="co">]</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hard rules</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Things that must never happen</span><span class="co">]</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Files that must never be edited manually</span><span class="co">]</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Domain context</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Anything the AI needs to know to avoid producing wrong-domain outputs</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># AGENTS.md</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">One-line description</span><span class="co">]</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stack</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Languages, frameworks, key libraries</span><span class="co">]</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conventions</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Formatter and linter</span><span class="co">]</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Package manager</span><span class="co">]</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Git commit style</span><span class="co">]</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hard rules</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Things that must never happen</span><span class="co">]</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Files that must never be edited manually</span><span class="co">]</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Domain context</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Anything the AI needs to know to avoid producing wrong-domain outputs</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="ollama-continue-config.json" class="level3">
 <h3 class="anchored" data-anchor-id="ollama-continue-config.json">Ollama + Continue <code>config.json</code></h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"models"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"DeepSeek Coder V2"</span><span class="fu">,</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"deepseek-coder-v2"</span><span class="fu">,</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span><span class="fu">,</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"contextLength"</span><span class="fu">:</span> <span class="dv">16384</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"tabAutocompleteModel"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Phi-4"</span><span class="fu">,</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"phi4"</span><span class="fu">,</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"slashCommands"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span> <span class="st">"edit"</span><span class="fu">,</span> <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Edit highlighted code"</span><span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span> <span class="st">"explain"</span><span class="fu">,</span> <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Explain the selected code"</span><span class="fu">}</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-7"><pre class="sourceCode json code-annotation-code code-with-copy code-annotated"><code class="sourceCode json"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="annotated-cell-7-2"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"models"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="annotated-cell-7-3"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="annotated-cell-7-4"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"DeepSeek Coder V2"</span><span class="fu">,</span></span>
+<span id="annotated-cell-7-5"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
+<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"deepseek-coder-v2"</span><span class="fu">,</span></span>
+<span id="annotated-cell-7-7"><a href="#annotated-cell-7-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span><span class="fu">,</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-8" class="code-annotation-target"><a href="#annotated-cell-7-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"contextLength"</span><span class="fu">:</span> <span class="dv">16384</span></span>
+<span id="annotated-cell-7-9"><a href="#annotated-cell-7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="annotated-cell-7-10"><a href="#annotated-cell-7-10" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2">2</button><span id="annotated-cell-7-11" class="code-annotation-target"><a href="#annotated-cell-7-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"tabAutocompleteModel"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="annotated-cell-7-12"><a href="#annotated-cell-7-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Phi-4"</span><span class="fu">,</span></span>
+<span id="annotated-cell-7-13"><a href="#annotated-cell-7-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"provider"</span><span class="fu">:</span> <span class="st">"ollama"</span><span class="fu">,</span></span>
+<span id="annotated-cell-7-14"><a href="#annotated-cell-7-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"model"</span><span class="fu">:</span> <span class="st">"phi4"</span><span class="fu">,</span></span>
+<span id="annotated-cell-7-15"><a href="#annotated-cell-7-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"apiBase"</span><span class="fu">:</span> <span class="st">"http://localhost:11434"</span></span>
+<span id="annotated-cell-7-16"><a href="#annotated-cell-7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3">3</button><span id="annotated-cell-7-17" class="code-annotation-target"><a href="#annotated-cell-7-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"slashCommands"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="annotated-cell-7-18"><a href="#annotated-cell-7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span> <span class="st">"edit"</span><span class="fu">,</span> <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Edit highlighted code"</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="annotated-cell-7-19"><a href="#annotated-cell-7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span> <span class="st">"explain"</span><span class="fu">,</span> <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Explain the selected code"</span><span class="fu">}</span></span>
+<span id="annotated-cell-7-20"><a href="#annotated-cell-7-20" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="annotated-cell-7-21"><a href="#annotated-cell-7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="8" data-code-annotation="1">Maximum context window in tokens — set to match the model’s actual capacity; larger values increase memory use.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="11" data-code-annotation="2">Separate model for inline tab-completion — use a lighter, faster model here to keep latency low while typing.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="17" data-code-annotation="3">Slash commands available in the Continue chat panel — <code>/edit</code> and <code>/explain</code> cover the most common interactive use cases.</span>
+</dd>
+</dl>
 <hr>
 </section>
 </section>
