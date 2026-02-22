@@ -2,7 +2,7 @@
 title: "The Reproducibility Quest: Modern Tools for R and Python Data Science"
 description: "A comprehensive guide to achieving reproducible data science workflows — environment setup, package management, containerization, and what reproducibility actually means in GxP-regulated pharma contexts."
 author: "Antoine Lucas"
-date: "2026-02-21"
+date: "2025-06-10"
 categories: [R, Python, Reproducibility, DevContainers, Docker, Package Management, Best Practices, VS Code, GxP, Pharma, Setup]
 image: "featured.png"
 ---

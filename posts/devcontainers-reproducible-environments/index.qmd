@@ -1,7 +1,7 @@
 ---
 title: "Reproducible Environments for Everyone: DevContainers for Data Science Teams"
 author: "Antoine Lucas"
-date: "2026-02-21"
+date: "2025-11-28"
 categories: [DevContainers, Docker, R, Python, Reproducibility, VS Code]
 description: "How to use devcontainers and a pre-built personal image to give every team member — including non-developers — an identical, zero-setup R + Python environment."
 ---

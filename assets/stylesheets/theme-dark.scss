@@ -352,19 +352,33 @@ body {
 }
 
 // ── Headings ──────────────────────────────────────────────────────────────
+// H1 keeps gold — it's a display/hero element.
+// H2–H6 use softer near-white tones so long articles don't fatigue the eye.
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
   color: $palette-gold;
   font-family: "Sora", sans-serif;
 }
 
 h2 {
+  color: #E8EAED;
+  font-family: "Sora", sans-serif;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
 
+h3, h4 {
+  color: #C5CDD8;
+  font-family: "Sora", sans-serif;
+}
+
 h3 {
   margin-top: 1.75rem;
+}
+
+h5, h6 {
+  color: #B0BAC6;
+  font-family: "Sora", sans-serif;
 }
 
 // ── About body ────────────────────────────────────────────────────────────
@@ -377,7 +391,7 @@ h3 {
     margin-top: 2.5rem;
     padding-bottom: 0.4rem;
     border-bottom: 2px solid rgba($palette-gold, 0.35);
-    color: $palette-gold;
+    color: #E8EAED;
   }
 }
 
@@ -510,7 +524,7 @@ pre.sourceCode {
 }
 
 code {
-  color: $palette-gold-light;
+  color: #A8C8F0;
   background-color: rgba($palette-navy-mid, 0.8);
   border-radius: 0.25rem;
   padding: 0.1em 0.35em;

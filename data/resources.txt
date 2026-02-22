@@ -1,0 +1,6860 @@
+---
+title: "Awesome R Shiny"
+type: "Community"
+link: "https://github.com/MargotBr/awesome-rshiny"
+language: "R"
+category: "Shiny;Web Development"
+---
+---
+title: "Colin Fay Video"
+type: "Video"
+link: "https://youtu.be/nfP-mGIsqVs"
+language: "R"
+category: "Tutorial"
+---
+---
+title: "ThinkR - Dockeriser Shiny"
+type: "Blog"
+link: "https://thinkr.fr/dockeriser-application-shiny/"
+language: "R"
+category: "Docker;Deployment;Shiny"
+---
+---
+title: "R-bloggers - Deploying Shiny with Docker"
+type: "Blog"
+link: "https://www.r-bloggers.com/2019/02/deploying-an-r-shiny-app-with-docker/"
+language: "R"
+category: "Docker;Deployment;Shiny"
+---
+---
+title: "Pharmaceutical Statistics - Meta-analysis"
+type: "Paper"
+link: "https://onlinelibrary.wiley.com/doi/abs/10.1002/pst.175"
+language: "Other"
+category: "Statistics;Meta-analysis"
+---
+---
+title: "Meta-Analysis Methods"
+type: "Book"
+link: "https://onlinelibrary.wiley.com/doi/book/10.1002/0470854200"
+language: "Other"
+category: "Statistics;Meta-analysis"
+---
+---
+title: "PSI Meta-Analysis Course Notes"
+type: "Paper"
+link: "https://www.psiweb.org/docs/default-source/default-document-library/meta-analysis-course-notes.pdf?sfvrsn=38ffdedb_0"
+language: "Other"
+category: "Statistics;Meta-analysis"
+---
+---
+title: "Robert Gower"
+type: "Website"
+link: "https://gowerrobert.github.io/index.html"
+language: "Other"
+category: "Research;Machine Learning"
+---
+---
+title: "Data Responsibly"
+type: "Website"
+link: "https://dataresponsibly.github.io/"
+language: "Other"
+category: "Ethics;Data Science"
+---
+---
+title: "Mining of Massive Datasets"
+type: "Website"
+link: "http://www.mmds.org/"
+language: "Other"
+category: "Data Science;Mining"
+---
+---
+title: "R Psychologist"
+type: "Website"
+link: "https://rpsychologist.com/"
+language: "R"
+category: "Psychology;Statistics;Visualization"
+---
+---
+title: "Mastering Shiny"
+type: "Book"
+link: "https://mastering-shiny.org/"
+language: "R"
+category: "Shiny;Web Development"
+---
+---
+title: "Cookbook for R"
+type: "Website"
+link: "http://www.cookbook-r.com/"
+language: "R"
+category: "Programming;Tutorial"
+---
+---
+title: "Silvia Canelón"
+type: "Blog"
+link: "https://silviacanelon.com/"
+language: "R"
+category: "Data Science"
+---
+---
+title: "Katie Jolly"
+type: "Blog"
+link: "https://www.katiejolly.io/blog/"
+language: "R"
+category: "Data Visualization"
+---
+---
+title: "easystats - Bayes Factors"
+type: "Website"
+link: "https://easystats.github.io/bayestestR/articles/bayes_factors.html"
+language: "R"
+category: "Statistics;Bayesian"
+---
+---
+title: "easystats Blog"
+type: "Blog"
+link: "https://easystats.github.io/blog/"
+language: "R"
+category: "Statistics"
+---
+---
+title: "Parcours R MTES"
+type: "Website"
+link: "https://mtes-mct.github.io/parcours-r/"
+language: "R"
+category: "Tutorial;French"
+---
+---
+title: "STT4230"
+type: "Website"
+link: "https://stt4230.rbind.io/"
+language: "R"
+category: "Statistics;French"
+---
+---
+title: "Mixed Models in MCMCglmm"
+type: "Blog"
+link: "https://people.bath.ac.uk/jjf23/mixchange/nested.html#mcmcglmm"
+language: "R"
+category: "Statistics;Mixed Models"
+---
+---
+title: "R-help Mailing List"
+type: "Forum"
+link: "https://stat.ethz.ch/pipermail/r-help/2014-April/373488.html"
+language: "R"
+category: "Community;Support"
+---
+---
+title: "R Psychologist - Longitudinal Analysis"
+type: "Blog"
+link: "https://rpsychologist.com/r-guide-longitudinal-lme-lmer"
+language: "R"
+category: "Statistics;Longitudinal;Mixed Models"
+---
+---
+title: "PeerJ - Practical Data Science"
+type: "Journal"
+link: "https://peerj.com/collections/50-practicaldatascistats"
+language: "Other"
+category: "Data Science;Statistics"
+---
+---
+title: "JMS INSEE 2022"
+type: "Conference"
+link: "http://jms-insee.fr/programmejms2022/"
+language: "R"
+category: "Statistics;French"
+---
+---
+title: "ggeasy"
+type: "Package"
+link: "https://jonocarroll.github.io/ggeasy/index.html"
+language: "R"
+category: "ggplot2;Visualization"
+---
+---
+title: "timevis"
+type: "Package"
+link: "http://uribo.github.io/rpkg_showcase/graphics/timevis.html"
+language: "R"
+category: "Visualization;Timeline"
+---
+---
+title: "Statistics with R"
+type: "Book"
+link: "https://statswithr.github.io/book/"
+language: "R"
+category: "Statistics;Tutorial"
+---
+---
+title: "Bayesian Statistics in R"
+type: "Book"
+link: "https://buildmedia.readthedocs.org/media/pdf/a-little-book-of-r-for-bayesian-statistics/latest/a-little-book-of-r-for-bayesian-statistics.pdf"
+language: "R"
+category: "Statistics;Bayesian"
+---
+---
+title: "Biomedical Statistics in R"
+type: "Book"
+link: "https://buildmedia.readthedocs.org/media/pdf/a-little-book-of-r-for-biomedical-statistics/latest/a-little-book-of-r-for-biomedical-statistics.pdf"
+language: "R"
+category: "Statistics;Biomedical"
+---
+---
+title: "Andrew Gelman"
+type: "Website"
+link: "http://www.stat.columbia.edu/~gelman/"
+language: "R"
+category: "Statistics;Bayesian"
+---
+---
+title: "GLMM FAQ"
+type: "Website"
+link: "https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html"
+language: "R"
+category: "Statistics;Mixed Models;GLMM"
+---
+---
+title: "Danielle Navarro"
+type: "Website"
+link: "https://github.com/djnavarro"
+language: "R"
+category: "Data Science;Visualization"
+---
+---
+title: "Dominique Makowski"
+type: "Website"
+link: "https://dominiquemakowski.github.io/"
+language: "R"
+category: "Psychology;Statistics"
+---
+---
+title: "Michael Clark"
+type: "Website"
+link: "https://m-clark.github.io/"
+language: "R"
+category: "Statistics;Machine Learning"
+---
+---
+title: "easystats Resources"
+type: "Website"
+link: "https://easystats.github.io/blog/resources/"
+language: "R"
+category: "Statistics"
+---
+---
+title: "Fabian Dablander - Bayes Potter"
+type: "Blog"
+link: "https://fabiandablander.com/r/Bayes-Potter.html"
+language: "R"
+category: "Statistics;Bayesian"
+---
+---
+title: "R Markdown Cookbook"
+type: "Book"
+link: "https://bookdown.org/yihui/rmarkdown-cookbook/"
+language: "R"
+category: "R Markdown;Documentation"
+---
+---
+title: "Hierarchical Models Visualization"
+type: "Website"
+link: "http://mfviz.com/hierarchical-models/"
+language: "Other"
+category: "Statistics;Visualization"
+---
+---
+title: "RegExr"
+type: "Website"
+link: "https://regexr.com/"
+language: "Other"
+category: "Programming;Regex"
+---
+---
+title: "Regex101"
+type: "Website"
+link: "https://regex101.com/"
+language: "Other"
+category: "Programming;Regex"
+---
+---
+title: "R Workflow"
+type: "Blog"
+link: "https://maraaverick.rbind.io/2017/09/r-workflow-fun/"
+language: "R"
+category: "Workflow;Best Practices"
+---
+---
+title: "Python Regex Guide"
+type: "Book"
+link: "http://www-personal.umich.edu/~csev/books/py4inf/media/Py4Inf-11-Regex.pdf"
+language: "Python"
+category: "Programming;Regex"
+---
+---
+title: "Collège de France - Computer Science"
+type: "Website"
+link: "https://www.college-de-france.fr/site/mathematiques-sciences-informatiques/index.htm"
+language: "Other"
+category: "Computer Science;French"
+---
+---
+title: "Challenge Data ENS"
+type: "Website"
+link: "https://challengedata.ens.fr/participants/register"
+language: "Other"
+category: "Data Science;Competition"
+---
+---
+title: "Simons Institute - Causality"
+type: "Website"
+link: "https://simons.berkeley.edu/programs/causality2022"
+language: "Other"
+category: "Causality;Statistics"
+---
+---
+title: "Berkeley Course Guide"
+type: "Website"
+link: "http://guide.berkeley.edu/courses/"
+language: "Other"
+category: "Education"
+---
+---
+title: "Coursera - GANs"
+type: "Course"
+link: "https://www.coursera.org/learn/build-basic-generative-adversarial-networks-gans"
+language: "Python"
+category: "Machine Learning;GANs"
+---
+---
+title: "Udemy - ML Model Deployment"
+type: "Course"
+link: "https://www.udemy.com/course/deployment-of-machine-learning-models/"
+language: "Python"
+category: "Machine Learning;Deployment"
+---
+---
+title: "Udemy - NLP with BERT"
+type: "Course"
+link: "https://www.udemy.com/course/nlp-with-bert-in-python/"
+language: "Python"
+category: "NLP;Deep Learning"
+---
+---
+title: "Udemy - NLP in Python"
+type: "Course"
+link: "https://www.udemy.com/course/data-science-natural-language-processing-in-python/"
+language: "Python"
+category: "NLP;Machine Learning"
+---
+---
+title: "Lilian Weng - GANs"
+type: "Blog"
+link: "https://lilianweng.github.io/lil-log/2017/08/20/from-GAN-to-WGAN.html"
+language: "Python"
+category: "Machine Learning;GANs"
+---
+---
+title: "MIT Deep Learning"
+type: "Course"
+link: "http://introtodeeplearning.com/"
+language: "Python"
+category: "Deep Learning;Education"
+---
+---
+title: "FastML"
+type: "Blog"
+link: "https://fastml.com/"
+language: "Python"
+category: "Machine Learning"
+---
+---
+title: "NumFOCUS"
+type: "Blog"
+link: "https://numfocus.org/blog"
+language: "Python"
+category: "Open Source;Data Science"
+---
+---
+title: "Kaggle Blog"
+type: "Blog"
+link: "https://medium.com/kaggle-blog"
+language: "Python"
+category: "Machine Learning;Competition"
+---
+---
+title: "Jupyter Notebooks Gallery"
+type: "Community"
+link: "https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks"
+language: "Python"
+category: "Data Science;Tutorial"
+---
+---
+title: "Datagen - CVPR 2021"
+type: "Blog"
+link: "https://www.datagen.tech/10-promising-synthesis-papers-from-cvpr-2021/"
+language: "Python"
+category: "Computer Vision;Research"
+---
+---
+title: "Open Data Science"
+type: "Website"
+link: "https://opendatascience.com/"
+language: "Python"
+category: "Data Science;Community"
+---
+---
+title: "Xavier Dupré"
+type: "Website"
+link: "http://www.xavierdupre.fr/app/ensae_teaching_cs/helpsphinx3/td_2a.html"
+language: "Python"
+category: "Education;French"
+---
+---
+title: "Stanford CS Cheatsheets"
+type: "Website"
+link: "https://stanford.edu/~shervine/l/fr/teaching/"
+language: "Python"
+category: "Machine Learning;Cheatsheet;French"
+---
+---
+title: "Olivier Gimenez - R Markdown"
+type: "Blog"
+link: "https://oliviergimenez.github.io/intro_rmarkdown/#68"
+language: "R"
+category: "R Markdown;Tutorial"
+---
+---
+title: "Data Science in Education"
+type: "Book"
+link: "https://datascienceineducation.com/index.html"
+language: "R"
+category: "Education;Data Science"
+---
+---
+title: "Grimoire Stat"
+type: "Book"
+link: "https://perso.ens-lyon.fr/lise.vaudor/grimoireStat/_book/intro.html"
+language: "R"
+category: "Statistics;French"
+---
+---
+title: "R Tutorial Zoonek"
+type: "Website"
+link: "http://zoonek2.free.fr/UNIX/48_R_2004/08.html"
+language: "R"
+category: "Programming;Tutorial;French"
+---
+---
+title: "Statistics by Jim"
+type: "Blog"
+link: "https://statisticsbyjim.com/hypothesis-testing/hypothesis-tests-significance-levels-alpha-p-values/"
+language: "Other"
+category: "Statistics;Hypothesis Testing"
+---
+---
+title: "Thibault Laurent R Course"
+type: "Website"
+link: "http://www.thibault.laurent.free.fr/cours/R_intro/chapitre_4.html"
+language: "R"
+category: "Programming;French"
+---
+---
+title: "Data Science Book - Distributions"
+type: "Book"
+link: "https://rafalab.github.io/dsbook/distributions.html"
+language: "R"
+category: "Statistics;Data Science"
+---
+---
+title: "abcdR ThinkR"
+type: "Website"
+link: "https://abcdr.thinkr.fr/ressources/"
+language: "R"
+category: "Resources;French"
+---
+---
+title: "Pierre Navaro"
+type: "Website"
+link: "https://github.com/pnavaro"
+language: "R;Python"
+category: "Data Science"
+---
+---
+title: "Stat4decision - Data Sources"
+type: "Blog"
+link: "https://www.stat4decision.com/fr/10-sites-pour-trouver-des-donnees-pour-modeles/"
+language: "Other"
+category: "Data;Resources;French"
+---
+---
+title: "Codecademy Python"
+type: "Course"
+link: "https://www.codecademy.com/learn/learn-python-3"
+language: "Python"
+category: "Programming;Tutorial"
+---
+---
+title: "R-bloggers - Image Recognition"
+type: "Blog"
+link: "https://www.r-bloggers.com/2021/03/how-to-build-your-own-image-recognition-app-with-r-part-1/"
+language: "R"
+category: "Computer Vision;Shiny"
+---
+---
+title: "MIT Computational Thinking"
+type: "Course"
+link: "https://computationalthinking.mit.edu/Fall20/lecture1/"
+language: "Other"
+category: "Computer Science;Education"
+---
+---
+title: "Likert Analysis in R"
+type: "Book"
+link: "https://bookdown.org/Rmadillo/likert/summary.html"
+language: "R"
+category: "Statistics;Survey"
+---
+---
+title: "ModernDive"
+type: "Book"
+link: "https://moderndive.com/"
+language: "R"
+category: "Statistics;Data Science"
+---
+---
+title: "Mixture Models with Monolix"
+type: "Website"
+link: "http://sia.webpopix.org/mixtureModels.html"
+language: "Other"
+category: "Statistics;Mixture Models"
+---
+---
+title: "Google AI Blog - TensorFlow"
+type: "Blog"
+link: "https://blog.google/technology/ai/5-ways-celebrate-tensorflows-5th-birthday?fbclid=IwAR2pY1R2HizLjs502hdqS5txviHvQpv85cWbPPGy3SnZ5q0R1DCFsGoKGKY"
+language: "Python"
+category: "Deep Learning;TensorFlow"
+---
+---
+title: "R-bloggers - Gaussian Mixture"
+type: "Blog"
+link: "https://www.r-bloggers.com/2017/02/an-intro-to-gaussian-mixture-modeling/"
+language: "R"
+category: "Statistics;Clustering"
+---
+---
+title: "CRAN Task Views"
+type: "Website"
+link: "https://cran.r-project.org/web/views/"
+language: "R"
+category: "Packages;Resources"
+---
+---
+title: "R Misstastic"
+type: "Website"
+link: "https://rmisstastic.netlify.app/people/"
+language: "R"
+category: "Statistics;Missing Data"
+---
+---
+title: "Antoine Bichat Thesis"
+type: "Website"
+link: "https://abichat.github.io/thesis/"
+language: "R"
+category: "Research;Thesis"
+---
+---
+title: "Paul Murrell Talks"
+type: "Website"
+link: "https://www.stat.auckland.ac.nz/~paul/Talks/"
+language: "R"
+category: "Visualization;Talks"
+---
+---
+title: "Variance Explained"
+type: "Blog"
+link: "http://varianceexplained.org/"
+language: "R"
+category: "Statistics;Data Science"
+---
+---
+title: "Simply Statistics"
+type: "Blog"
+link: "https://simplystatistics.org/"
+language: "R"
+category: "Statistics;Data Science"
+---
+---
+title: "Statistics Globe"
+type: "Website"
+link: "https://statisticsglobe.com/r-programming-language"
+language: "R"
+category: "Programming;Tutorial"
+---
+---
+title: "Deep AI Developers"
+type: "Website"
+link: "https://deepai.org/developers"
+language: "Python"
+category: "Deep Learning;API"
+---
+---
+title: "Analytics Vidhya - Naive Bayes"
+type: "Blog"
+link: "https://www.analyticsvidhya.com/blog/2020/11/understanding-naive-bayes-svm-and-its-implementation-on-spam-sms/"
+language: "Python"
+category: "Machine Learning;NLP"
+---
+---
+title: "Confetti AI Exams"
+type: "Website"
+link: "https://www.confetti.ai/exams"
+language: "Other"
+category: "Education;Assessment"
+---
+---
+title: "Cradle to Graver"
+type: "Blog"
+link: "https://www.cradletograver.com/categories/random-r/"
+language: "R"
+category: "Programming;Misc"
+---
+---
+title: "R-bloggers - Project Structure"
+type: "Blog"
+link: "https://www.r-bloggers.com/2018/08/structuring-r-projects/"
+language: "R"
+category: "Best Practices;Project Management"
+---
+---
+title: "R Statistics Tutorial"
+type: "Website"
+link: "https://r-stat-sc-donnees.github.io/code_html/code.html"
+language: "R"
+category: "Statistics;French"
+---
+---
+title: "Big Book of R"
+type: "Book"
+link: "https://www.bigbookofr.com/"
+language: "R"
+category: "Books;Resources"
+---
+---
+title: "Audio Analysis with ML"
+type: "Blog"
+link: "https://www.comet.ml/site/how-to-apply-machine-learning-and-deep-learning-methods-to-audio-analysis/"
+language: "Python"
+category: "Audio;Deep Learning"
+---
+---
+title: "Python Beginner Errors"
+type: "Blog"
+link: "https://pythonforbiologists.com/29-common-beginner-errors-on-one-page/"
+language: "Python"
+category: "Programming;Tutorial"
+---
+---
+title: "Python from the Very Beginning"
+type: "Website"
+link: "https://www.pythonfromtheverybeginning.com/"
+language: "Python"
+category: "Programming;Tutorial"
+---
+---
+title: "Python Cheat Sheets"
+type: "Website"
+link: "https://ehmatthes.github.io/pcc_2e/cheat_sheets/cheat_sheets/"
+language: "Python"
+category: "Programming;Reference"
+---
+---
+title: "Automate the Boring Stuff"
+type: "Book"
+link: "https://automatetheboringstuff.com/2e/"
+language: "Python"
+category: "Programming;Automation"
+---
+---
+title: "Python Kitchen - Free Books"
+type: "Website"
+link: "https://www.pythonkitchen.com/legally-free-python-books-list/"
+language: "Python"
+category: "Books;Resources"
+---
+---
+title: "Julia Evans"
+type: "Blog"
+link: "https://jvns.ca/"
+language: "Other"
+category: "Programming;DevOps"
+---
+---
+title: "Wave Data Lab"
+type: "Website"
+link: "http://wavedatalab.github.io/datawithpython/"
+language: "Python"
+category: "Data Science;Tutorial"
+---
+---
+title: "Python for Data Analysis"
+type: "Book"
+link: "https://www.oreilly.com/library/view/python-for-data/9781449323592/"
+language: "Python"
+category: "Data Science;Book"
+---
+---
+title: "Python Data Science Handbook"
+type: "Book"
+link: "https://www.oreilly.com/library/view/python-data-science/9781491912126/"
+language: "Python"
+category: "Data Science;Book"
+---
+---
+title: "Python for Finance"
+type: "Book"
+link: "https://www.amazon.com/gp/product/1491962291/"
+language: "Python"
+category: "Finance;Data Science"
+---
+---
+title: "Wes McKinney"
+type: "Website"
+link: "https://wesmckinney.com/"
+language: "Python"
+category: "Data Science;pandas"
+---
+---
+title: "Python Data Science Handbook"
+type: "Book"
+link: "https://jakevdp.github.io/PythonDataScienceHandbook/"
+language: "Python"
+category: "Data Science;Tutorial"
+---
+---
+title: "Michael Waskom"
+type: "Website"
+link: "https://mwaskom.github.io/index.html"
+language: "Python"
+category: "Visualization;seaborn"
+---
+---
+title: "Python Tutorial Video"
+type: "Video"
+link: "https://youtu.be/8DvywoWv6fI"
+language: "Python"
+category: "Programming;Tutorial"
+---
+---
+title: "Pylenin - String Formatting"
+type: "Blog"
+link: "https://www.pylenin.com/blogs/python-string-formatting/"
+language: "Python"
+category: "Programming;Tutorial"
+---
+---
+title: "AI Books 2021"
+type: "Blog"
+link: "https://blog.crossminds.ai/post/10-ai-books-to-read-in-2021-machine-learning-researchers-engineers"
+language: "Other"
+category: "Machine Learning;Books"
+---
+---
+title: "PySimpleGUI"
+type: "Package"
+link: "https://github.com/PySimpleGUI/PySimpleGUI"
+language: "Python"
+category: "GUI;Development"
+---
+---
+title: "KDnuggets - Scikit-learn Cheatsheet"
+type: "Blog"
+link: "https://www.kdnuggets.com/2021/01/ultimate-scikit-learn-machine-learning-cheatsheet.html"
+language: "Python"
+category: "Machine Learning;Reference"
+---
+---
+title: "Scrapera"
+type: "Package"
+link: "https://github.com/DarshanDeshpande/Scrapera"
+language: "Python"
+category: "Web Scraping"
+---
+---
+title: "Git Branches Guide"
+type: "Blog"
+link: "https://www.freecodecamp.org/news/how-to-use-branches-in-git/"
+language: "Other"
+category: "Git;Version Control"
+---
+---
+title: "Python Language Tricks"
+type: "Blog"
+link: "https://medium.com/pythonland/30-python-language-tricks-that-will-make-you-a-better-coder-f08f811a7b0f"
+language: "Python"
+category: "Programming;Best Practices"
+---
+---
+title: "SeaLion"
+type: "Package"
+link: "https://github.com/anish-lakkapragada/SeaLion"
+language: "Python"
+category: "Machine Learning"
+---
+---
+title: "Data Science Cheatsheet"
+type: "Website"
+link: "https://github.com/aaronwangy/Data-Science-Cheatsheet"
+language: "Other"
+category: "Data Science;Reference"
+---
+---
+title: "Awesome TensorFlow"
+type: "Community"
+link: "https://github.com/ageron/awesome-tensorflow"
+language: "Python"
+category: "Deep Learning;TensorFlow"
+---
+---
+title: "Web Scraping with Python"
+type: "Blog"
+link: "https://www.conorjohanlon.com/web-scraping-with-python-using-ebay-as-an-example/"
+language: "Python"
+category: "Web Scraping;Tutorial"
+---
+---
+title: "Building ML App from Scratch"
+type: "Blog"
+link: "https://camtsmith.com/articles/2021-02/how-to-build-ml-app-from-scratch"
+language: "Python"
+category: "Machine Learning;Deployment"
+---
+---
+title: "PandasGUI"
+type: "Package"
+link: "https://github.com/adamerose/PandasGUI"
+language: "Python"
+category: "Data Science;Visualization"
+---
+---
+title: "ML Cheatsheets"
+type: "Community"
+link: "https://github.com/camillecochener/MachineLearning-and-DeepLearning-Cheatsheets"
+language: "Python"
+category: "Machine Learning;Reference"
+---
+---
+title: "Reddit - Model in Production"
+type: "Blog"
+link: "https://www.reddit.com/r/learnpython/comments/lez7lg/finally_deployed_a_model_to_production_it_only/"
+language: "Python"
+category: "Machine Learning;Deployment"
+---
+---
+title: "GANs Original Paper"
+type: "Paper"
+link: "https://arxiv.org/abs/1406.2661"
+language: "Python"
+category: "Machine Learning;GANs"
+---
+---
+title: "StyleGAN Paper"
+type: "Paper"
+link: "https://arxiv.org/abs/1806.07755"
+language: "Python"
+category: "Computer Vision;GANs"
+---
+---
+title: "Make a README"
+type: "Website"
+link: "https://www.makeareadme.com/"
+language: "Other"
+category: "Documentation;Best Practices"
+---
+---
+title: "GitHub Profile README Generator"
+type: "Website"
+link: "https://rahuldkjain.github.io/gh-profile-readme-generator/"
+language: "Other"
+category: "GitHub;Tools"
+---
+---
+title: "The Algorithms"
+type: "Community"
+link: "https://github.com/TheAlgorithms"
+language: "Other"
+category: "Algorithms;Programming"
+---
+---
+title: "Plotly Express Guide"
+type: "Blog"
+link: "https://towardsdatascience.com/visualization-with-plotly-express-comprehensive-guide-eb5ee4b50b57"
+language: "Python"
+category: "Visualization;Plotly"
+---
+---
+title: "TensorFlow Playlist"
+type: "Video"
+link: "https://www.youtube.com/playlist?list=PLMsTLcO6etti_SObSLvk9ZNvoS_0yia57"
+language: "Python"
+category: "Deep Learning;TensorFlow"
+---
+---
+title: "ML Collective"
+type: "Community"
+link: "http://mlcollective.org/dlct/"
+language: "Other"
+category: "Machine Learning;Community"
+---
+---
+title: "Trustworthy ML"
+type: "Website"
+link: "https://www.trustworthyml.org/"
+language: "Other"
+category: "Machine Learning;Ethics"
+---
+---
+title: "Physics Meets ML"
+type: "Website"
+link: "http://www.physicsmeetsml.org/"
+language: "Other"
+category: "Machine Learning;Physics"
+---
+---
+title: "Humans & AI Stories"
+type: "Website"
+link: "https://www.cc.gatech.edu/~parikh/humanstoriesai/"
+language: "Other"
+category: "AI;Ethics"
+---
+---
+title: "Stanford NLP Seminar"
+type: "Website"
+link: "https://nlp.stanford.edu/seminar/"
+language: "Other"
+category: "NLP;Seminar"
+---
+---
+title: "van der Schaar Lab"
+type: "Website"
+link: "https://www.vanderschaar-lab.com/engagement-sessions/inspiration-exchange/"
+language: "Other"
+category: "Machine Learning;Health"
+---
+---
+title: "Broad Institute Talks"
+type: "Website"
+link: "https://www.broadinstitute.org/talks/fall-2020/mia"
+language: "Other"
+category: "Biology;AI"
+---
+---
+title: "Cambridge Talks"
+type: "Website"
+link: "https://talks.cam.ac.uk/show/index/113458"
+language: "Other"
+category: "Research;Talks"
+---
+---
+title: "LISA Tea Talks"
+type: "Website"
+link: "https://sites.google.com/lisa.iro.umontreal.ca/tea-talks/home?authuser=0"
+language: "Other"
+category: "Machine Learning;Talks"
+---
+---
+title: "Perceiver Model"
+type: "Paper"
+link: "https://arxiv.org/abs/2010.11929"
+language: "Python"
+category: "Deep Learning;Transformers"
+---
+---
+title: "Robert Sapolsky - Human Behavior"
+type: "Video"
+link: "https://www.youtube.com/results?search_query=Robert+sapolsky+human+behavior+biology"
+language: "Other"
+category: "Biology;Psychology"
+---
+---
+title: "Stanford Engineering"
+type: "Video"
+link: "https://www.youtube.com/c/stanfordengineering"
+language: "Other"
+category: "Engineering;Education"
+---
+---
+title: "Stanford CS229"
+type: "Course"
+link: "https://cs229.stanford.edu/"
+language: "Other"
+category: "Machine Learning;Course"
+---
+---
+title: "Twitter - Colin Fay"
+type: "Website"
+link: "https://twitter.com/_ColinFay/status/1539524332111679488"
+language: "R"
+category: "Tutorial"
+---
+---
+title: "renv"
+type: "Package"
+link: "https://rstudio.github.io/renv/articles/renv.html"
+language: "R"
+category: "Package Management;Reproducibility"
+---
+---
+title: "Git Tutorial Video"
+type: "Video"
+link: "https://youtu.be/brmidghOP6c"
+language: "Other"
+category: "Git;Tutorial"
+---
+---
+title: "Learn Git Branching"
+type: "Website"
+link: "https://learngitbranch.js.org/?locale=fr_FR"
+language: "Other"
+category: "Git;Interactive;French"
+---
+---
+title: "useR 2022 - Amelia McNamara"
+type: "Video"
+link: "https://www.amelia.mn/presentations/user2022.html#/title-slide"
+language: "R"
+category: "Conference;Presentation"
+---
+---
+title: "Python Data Visualization"
+type: "Video"
+link: "https://youtu.be/ErRX8plZpQE"
+language: "Python"
+category: "Visualization;Tutorial"
+---
+---
+title: "ML Mastery - Data Viz"
+type: "Blog"
+link: "https://machinelearningmastery.com/visualize-machine-learning-data-python-pandas/"
+language: "Python"
+category: "Visualization;pandas"
+---
+---
+title: "Bifrost Datasets"
+type: "Website"
+link: "https://datasets.bifrost.ai/"
+language: "Other"
+category: "Data;Datasets"
+---
+---
+title: "Human Microbiome Project"
+type: "Website"
+link: "https://commonfund.nih.gov/hmp/overview"
+language: "Other"
+category: "Biology;Data"
+---
+---
+title: "RIP Tutorial"
+type: "Website"
+link: "https://riptutorial.com/"
+language: "Other"
+category: "Programming;Tutorial"
+---
+---
+title: "Julien Beaulieu"
+type: "Blog"
+link: "https://julienbeaulieu.github.io/"
+language: "Python"
+category: "Data Science"
+---
+---
+title: "Python Course Lyon"
+type: "Website"
+link: "http://eric.univ-lyon2.fr/~ricco/cours/cours_programmation_python.html"
+language: "Python"
+category: "Programming;French"
+---
+---
+title: "NumPy Reference"
+type: "Website"
+link: "https://docs.scipy.org/doc/numpy/reference/"
+language: "Python"
+category: "NumPy;Reference"
+---
+---
+title: "Regex Cheatsheet Python"
+type: "Website"
+link: "https://www.debuggex.com/cheatsheet/regex/python"
+language: "Python"
+category: "Programming;Regex"
+---
+---
+title: "Debuggex"
+type: "Website"
+link: "https://www.debuggex.com/"
+language: "Other"
+category: "Regex;Tools"
+---
+---
+title: "Matplotlib Notebook"
+type: "Website"
+link: "https://nbviewer.jupyter.org/urls/gist.githubusercontent.com/Jwink3101/e6b57eba3beca4b05ec146d9e38fc839/raw/f486ca3dcad44c33fc4e7ddedc1f83b82c02b492/Matplotlib_Cheatsheet"
+language: "Python"
+category: "Visualization;Reference"
+---
+---
+title: "Python Tuples"
+type: "Website"
+link: "http://apprendre-python.com/page-apprendre-tuples-tuple-python"
+language: "Python"
+category: "Programming;Tutorial;French"
+---
+---
+title: "Python For Loops"
+type: "Website"
+link: "https://www.codingame.com/playgrounds/17176/recueil-dexercices-pour-apprendre-python-au-lycee/cours---les-boucles-for"
+language: "Python"
+category: "Programming;Tutorial;French"
+---
+---
+title: "Data Science Society Resources"
+type: "Website"
+link: "https://www.datasciencesociety.net/34-open-access-websites-that-provide-useful-resources-for-everybody/"
+language: "Other"
+category: "Data Science;Resources"
+---
+---
+title: "Cracking the Coding Interview"
+type: "Book"
+link: "https://www.crackingthecodinginterview.com/"
+language: "Other"
+category: "Programming;Interviews"
+---
+---
+title: "Hands-On ML with Scikit-Learn"
+type: "Book"
+link: "https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/"
+language: "Python"
+category: "Machine Learning;Book"
+---
+---
+title: "Pattern Recognition and ML"
+type: "Book"
+link: "https://www.microsoft.com/en-us/research/publication/pattern-recognition-machine-learning/"
+language: "Other"
+category: "Machine Learning;Book"
+---
+---
+title: "Yann LeCun - Collège de France"
+type: "Video"
+link: "https://www.college-de-france.fr/site/yann-lecun/course-2016-02-12-14h30.htm"
+language: "Other"
+category: "Deep Learning;French"
+---
+---
+title: "Deep Learning Book"
+type: "Book"
+link: "http://www.deeplearningbook.org/"
+language: "Python"
+category: "Deep Learning;Book"
+---
+---
+title: "Elite Data Science"
+type: "Website"
+link: "https://elitedatascience.com/learn-machine-learning"
+language: "Python"
+category: "Machine Learning;Tutorial"
+---
+---
+title: "Shivon Zilis"
+type: "Website"
+link: "http://www.shivonzilis.com/"
+language: "Other"
+category: "AI;Resources"
+---
+---
+title: "ML Interview Questions"
+type: "Blog"
+link: "https://elitedatascience.com/machine-learning-interview-questions-answers"
+language: "Python"
+category: "Machine Learning;Interviews"
+---
+---
+title: "Python ML Book 3rd Edition"
+type: "Book"
+link: "https://github.com/rasbt/python-machine-learning-book-3rd-edition"
+language: "Python"
+category: "Machine Learning;Book"
+---
+---
+title: "Artificial Intelligence: A Modern Approach"
+type: "Book"
+link: "http://aima.cs.berkeley.edu/index.html"
+language: "Other"
+category: "AI;Book"
+---
+---
+title: "ML Mastery"
+type: "Website"
+link: "https://machinelearningmastery.com/start-here/"
+language: "Python"
+category: "Machine Learning;Tutorial"
+---
+---
+title: "Docker Labs"
+type: "Community"
+link: "https://github.com/collabnix/dockerlabs"
+language: "Other"
+category: "Docker;DevOps"
+---
+---
+title: "Play with Kubernetes"
+type: "Website"
+link: "https://training.play-with-kubernetes.com/"
+language: "Other"
+category: "Kubernetes;Tutorial"
+---
+---
+title: "Play with Docker"
+type: "Website"
+link: "https://labs.play-with-docker.com/"
+language: "Other"
+category: "Docker;Tutorial"
+---
+---
+title: "GitHub Hello World"
+type: "Website"
+link: "https://guides.github.com/activities/hello-world/"
+language: "Other"
+category: "Git;Tutorial"
+---
+---
+title: "Git with R - finistR"
+type: "Website"
+link: "https://stateofther.github.io/finistR2018/atelier3_git.html"
+language: "R"
+category: "Git;Tutorial;French"
+---
+---
+title: "Git Tutorial Video"
+type: "Video"
+link: "https://www.youtube.com/watch?v=DVRQoVRzMIY"
+language: "Other"
+category: "Git;Tutorial"
+---
+---
+title: "Git SCM"
+type: "Website"
+link: "https://git-scm.com/"
+language: "Other"
+category: "Git;Documentation"
+---
+---
+title: "Try Git"
+type: "Website"
+link: "https://try.github.io/"
+language: "Other"
+category: "Git;Interactive"
+---
+---
+title: "Git Branching"
+type: "Website"
+link: "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging"
+language: "Other"
+category: "Git;Tutorial"
+---
+---
+title: "Happy Git with R"
+type: "Book"
+link: "https://happygitwithr.com/"
+language: "R"
+category: "Git;Workflow"
+---
+---
+title: "STAT 545"
+type: "Website"
+link: "https://stat545.com/"
+language: "R"
+category: "Data Science;Course"
+---
+---
+title: "R for Data Science - Dates"
+type: "Website"
+link: "https://r4ds.had.co.nz/dates-and-times.html"
+language: "R"
+category: "Programming;Tutorial"
+---
+---
+title: "Dan Knights"
+type: "Website"
+link: "https://github.com/danknights"
+language: "Other"
+category: "Microbiome;Research"
+---
+---
+title: "QIIME Tutorials"
+type: "Website"
+link: "http://qiime.org/tutorials/"
+language: "Other"
+category: "Microbiome;Tutorial"
+---
+---
+title: "WebDAM"
+type: "Website"
+link: "http://webdam.inria.fr/Jorge/index9213.html"
+language: "Other"
+category: "Database;Web"
+---
+---
+title: "OpenClassrooms"
+type: "Website"
+link: "https://openclassrooms.com/fr"
+language: "Other"
+category: "Education;French"
+---
+---
+title: "xaringanthemer"
+type: "Package"
+link: "https://pkg.garrickadenbuie.com/xaringanthemer/"
+language: "R"
+category: "Presentations;xaringan"
+---
+---
+title: "Garrick Aden-Buie"
+type: "Website"
+link: "https://github.com/gadenbuie"
+language: "R"
+category: "Developer;Resources"
+---
+---
+title: "Yihui Xie - xaringan"
+type: "Blog"
+link: "https://yihui.org/en/2017/08/why-xaringan-remark-js/"
+language: "R"
+category: "Presentations;Tutorial"
+---
+---
+title: "Alison Hill - Data Vis Labs"
+type: "Website"
+link: "https://apreshill.github.io/data-vis-labs-2018/"
+language: "R"
+category: "Visualization;Education"
+---
+---
+title: "Julien Barnier - Tidyverse"
+type: "Website"
+link: "https://juba.github.io/tidyverse/"
+language: "R"
+category: "Tidyverse;French"
+---
+---
+title: "Tidyverse.org"
+type: "Website"
+link: "https://www.tidyverse.org/"
+language: "R"
+category: "Tidyverse;Documentation"
+---
+---
+title: "purrr"
+type: "Package"
+link: "https://purrr.tidyverse.org/"
+language: "R"
+category: "Functional Programming"
+---
+---
+title: "List Columns Webinar"
+type: "Video"
+link: "https://rstudio.com/resources/webinars/how-to-work-with-list-columns/"
+language: "R"
+category: "Programming;Tutorial"
+---
+---
+title: "purrr Workshop"
+type: "Website"
+link: "https://speakerdeck.com/jennybc/purrr-workshop"
+language: "R"
+category: "Functional Programming;Tutorial"
+---
+---
+title: "purrr Tutorial"
+type: "Website"
+link: "https://jennybc.github.io/purrr-tutorial/"
+language: "R"
+category: "Functional Programming;Tutorial"
+---
+---
+title: "Row-Oriented Workflows"
+type: "Website"
+link: "https://github.com/jennybc/row-oriented-workflows#readme"
+language: "R"
+category: "Data Manipulation;Tutorial"
+---
+---
+title: "R for Data Science"
+type: "Book"
+link: "https://r4ds.had.co.nz/"
+language: "R"
+category: "Data Science;Book"
+---
+---
+title: "ggplot2 Book"
+type: "Book"
+link: "https://ggplot2-book.org/"
+language: "R"
+category: "Visualization;Book"
+---
+---
+title: "dplyr Tutorial"
+type: "Website"
+link: "https://genomicsclass.github.io/book/pages/dplyr_tutorial.html"
+language: "R"
+category: "Data Manipulation;Tutorial"
+---
+---
+title: "ThinkR - Create Package"
+type: "Blog"
+link: "https://thinkr.fr/creer-package-r-quelques-minutes/"
+language: "R"
+category: "Package Development;French"
+---
+---
+title: "RStudio Package Development"
+type: "Website"
+link: "https://support.rstudio.com/hc/en-us/articles/200486488-Developing-Packages-with-RStudio"
+language: "R"
+category: "Package Development;IDE"
+---
+---
+title: "R Packages Book"
+type: "Book"
+link: "http://r-pkgs.had.co.nz/"
+language: "R"
+category: "Package Development;Book"
+---
+---
+title: "R Package from Scratch"
+type: "Blog"
+link: "https://r-mageddon.netlify.app/post/writing-an-r-package-from-scratch/"
+language: "R"
+category: "Package Development;Tutorial"
+---
+---
+title: "ANOSIM Test"
+type: "Website"
+link: "https://sites.google.com/site/mb3gustame/hypothesis-tests/anosim"
+language: "R"
+category: "Statistics;Multivariate"
+---
+---
+title: "DFO Library"
+type: "Website"
+link: "https://waves-vagues.dfo-mpo.gc.ca/Library/360070.pdf"
+language: "R"
+category: "Ecology;Statistics"
+---
+---
+title: "Murray Logan Stats"
+type: "Website"
+link: "https://www.flutterbys.com.au/stats/tut/tut15.2.html"
+language: "R"
+category: "Statistics;Tutorial"
+---
+---
+title: "UMass Discriminant Analysis"
+type: "Website"
+link: "http://www.umass.edu/landeco/teaching/multivariate/schedule/discriminate1.pdf"
+language: "R"
+category: "Statistics;Multivariate"
+---
+---
+title: "RStudio Useful Packages"
+type: "Website"
+link: "https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages"
+language: "R"
+category: "Packages;Resources"
+---
+---
+title: "Antoine Bichat - Favorite Packages"
+type: "Website"
+link: "https://github.com/abichat/favoriteRpackages"
+language: "R"
+category: "Packages;Resources"
+---
+---
+title: "RStudio Education - Intermediate"
+type: "Website"
+link: "https://education.rstudio.com/learn/intermediate/"
+language: "R"
+category: "Education;Tutorial"
+---
+---
+title: "RStudio Education - Expert"
+type: "Website"
+link: "https://education.rstudio.com/learn/expert/"
+language: "R"
+category: "Education;Tutorial"
+---
+---
+title: "Quick-R"
+type: "Website"
+link: "https://www.statmethods.net/"
+language: "R"
+category: "Statistics;Reference"
+---
+---
+title: "DataCamp - data.table"
+type: "Course"
+link: "https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial"
+language: "R"
+category: "Data Manipulation;Tutorial"
+---
+---
+title: "Remi Bacha - Data Pre-processing"
+type: "Website"
+link: "https://remibacha.com/data-pre-processing-r/"
+language: "R"
+category: "Data Manipulation;Tutorial"
+---
+---
+title: "FUN-MOOC"
+type: "Website"
+link: "https://www.fun-mooc.fr/"
+language: "Other"
+category: "Education;French"
+---
+---
+title: "Oxford Statistics"
+type: "Website"
+link: "https://www.stats.ox.ac.uk/"
+language: "R"
+category: "Statistics;University"
+---
+---
+title: "STHDA"
+type: "Website"
+link: "http://www.sthda.com/french/"
+language: "R"
+category: "Statistics;Tutorial;French"
+---
+---
+title: "ggplot2 Tutorial"
+type: "Website"
+link: "http://r-statistics.co/ggplot2-Tutorial-With-R.html"
+language: "R"
+category: "Visualization;Tutorial"
+---
+---
+title: "The R in Spark"
+type: "Website"
+link: "https://therinspark.com/"
+language: "R"
+category: "Big Data;Spark"
+---
+---
+title: "RPubs"
+type: "Website"
+link: "http://rpubs.com/"
+language: "R"
+category: "Publishing;Community"
+---
+---
+title: "Programmer en R"
+type: "Website"
+link: "https://fr.wikibooks.org/wiki/Programmer_en_R"
+language: "R"
+category: "R programming"
+---
+---
+title: "Transformers Tutorials"
+type: "Community"
+link: "https://github.com/NielsRogge/Transformers-Tutorials"
+language: "Python"
+category: "Deep Learning;Transformers"
+---
+---
+title: "Deep Neural Networks with Keras"
+type: "Book"
+link: "https://www.heatonresearch.com/book/applications-deep-neural-networks-keras.html"
+language: "Python"
+category: "Deep Learning;Keras"
+---
+---
+title: "DeepMind Responsible AI"
+type: "Blog"
+link: "https://www.deepmind.com/blog/building-a-culture-of-pioneering-responsibly"
+language: "Other"
+category: "Ethics;AI"
+---
+---
+title: "Meta AI Fairness"
+type: "Blog"
+link: "https://ai.facebook.com/blog/measure-fairness-and-mitigate-ai-bias/"
+language: "Python"
+category: "Ethics;Fairness"
+---
+---
+title: "Computer Vision Projects"
+type: "Blog"
+link: "https://omdena.com/blog/computer-vision-projects-github/"
+language: "Python"
+category: "Computer Vision;Projects"
+---
+---
+title: "gtsummary"
+type: "Package"
+link: "https://cran.r-project.org/web/packages/gtsummary/index.html"
+language: "R"
+category: "Tables;Statistics"
+---
+---
+title: "ggstatsplot"
+type: "Package"
+link: "https://cran.r-project.org/web/packages/ggstatsplot/index.html"
+language: "R"
+category: "Visualization;Statistics"
+---
+---
+title: "Google Imagen"
+type: "Website"
+link: "https://imagen.research.google/"
+language: "Python"
+category: "Computer Vision;Generative AI"
+---
+---
+title: "Swirl Stats"
+type: "Website"
+link: "https://swirlstats.com/instructors.html"
+language: "R"
+category: "Education;Interactive"
+---
+---
+title: "Laurent Gourvès"
+type: "Website"
+link: "https://dauphine.psl.eu/recherche/cvtheque/gourves-laurent"
+language: "Other"
+category: "Research;French"
+---
+---
+title: "François Fleuret DLC"
+type: "Website"
+link: "https://fleuret.org/dlc/#lecture-13"
+language: "Python"
+category: "Deep Learning;Course"
+---
+---
+title: "Unleash Shiny"
+type: "Book"
+link: "https://unleash-shiny.rinterface.com/index.html"
+language: "R"
+category: "Shiny;Advanced"
+---
+---
+title: "MDPI Spatial Statistics"
+type: "Book"
+link: "https://www.mdpi.com/books/pdfview/book/5544"
+language: "R"
+category: "Statistics;Spatial"
+---
+---
+title: "tidyterra"
+type: "Blog"
+link: "https://dieghernan.github.io/202205_tidyterra/"
+language: "R"
+category: "Spatial;tidyverse"
+---
+---
+title: "vitae"
+type: "Package"
+link: "https://cran.r-project.org/web/packages/vitae/vignettes/vitae.html"
+language: "R"
+category: "CV;R Markdown"
+---
+---
+title: "ReparatorAI Streamlit"
+type: "Website"
+link: "https://share.streamlit.io/jeanmilpied/reparatorai/main/reparator.py"
+language: "Python"
+category: "Streamlit;App"
+---
+---
+title: "trackdown"
+type: "Package"
+link: "https://claudiozandonella.github.io/trackdown/"
+language: "R"
+category: "Collaboration;Google Docs"
+---
+---
+title: "Kaggle AI4Code"
+type: "Website"
+link: "https://www.kaggle.com/competitions/AI4Code/discussion/327996"
+language: "Python"
+category: "Competition;NLP"
+---
+---
+title: "klassets"
+type: "Website"
+link: "https://github.com/jbkunst/klassets/"
+language: "R"
+category: "Finance;Visualization"
+---
+---
+title: "GitHub Actions 2.0"
+type: "Blog"
+link: "https://www.tidyverse.org/blog/2022/06/actions-2-0-0/"
+language: "R"
+category: "CI/CD;GitHub"
+---
+---
+title: "Minimizing AI Bias"
+type: "Blog"
+link: "https://www.journaldunet.com/solutions/dsi/1511739-7-bonnes-pratiques-pour-minimiser-les-biais-en-ia/"
+language: "Other"
+category: "Ethics;AI;French"
+---
+---
+title: "rig R Installation"
+type: "Website"
+link: "https://github.com/r-lib/rig/releases"
+language: "R"
+category: "Tools;Installation"
+---
+---
+title: "Data Science by Design"
+type: "Book"
+link: "http://datasciencebydesign.org/book"
+language: "Other"
+category: "Data Science;Book"
+---
+---
+title: "Tidyverse Tips"
+type: "Blog"
+link: "https://oliviergimenez.github.io/tidyverse-tips/"
+language: "R"
+category: "tidyverse;Tips"
+---
+---
+title: "ISLR tidymodels Labs"
+type: "Book"
+link: "https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html"
+language: "R"
+category: "Machine Learning;tidymodels"
+---
+---
+title: "Quantmetry Bayesian Segmentation"
+type: "Blog"
+link: "https://www.quantmetry.com/blog/la-segmentation-bayesienne-appliquee-aux-irm-cerebraux/"
+language: "Python"
+category: "Medical;Bayesian;French"
+---
+---
+title: "RStudio vetiver Announcement"
+type: "Blog"
+link: "https://www.rstudio.com/blog/announce-vetiver/"
+language: "R;Python"
+category: "MLOps;Deployment"
+---
+---
+title: "RStudio Tips and Tricks"
+type: "Blog"
+link: "https://towardsdatascience.com/tips-and-tricks-in-rstudio-and-r-markdown-7a464508b0c"
+language: "R"
+category: "IDE;R Markdown"
+---
+---
+title: "Econometrics with R"
+type: "Book"
+link: "https://www.econometrics-with-r.org/index.html"
+language: "R"
+category: "Econometrics;Statistics"
+---
+---
+title: "Shiny in Production Update"
+type: "Blog"
+link: "https://www.jumpingrivers.com/blog/shiny-in-production-update/"
+language: "R"
+category: "Shiny;Production"
+---
+---
+title: "mlr3 Book"
+type: "Book"
+link: "https://mlr3book.mlr-org.com/01-intro.html"
+language: "R"
+category: "Machine Learning;mlr3"
+---
+---
+title: "reactable"
+type: "Package"
+link: "https://glin.github.io/reactable/"
+language: "R"
+category: "Tables;Interactive"
+---
+---
+title: "Corise Computer Vision"
+type: "Course"
+link: "https://corise.com/course/computer-vision"
+language: "Python"
+category: "Computer Vision;Course"
+---
+---
+title: "RFlow Biostatistics"
+type: "Website"
+link: "http://hbiostat.org/rflow/"
+language: "R"
+category: "Statistics;Workflow"
+---
+---
+title: "Awesome Data Leadership"
+type: "Community"
+link: "https://github.com/ronikobrosly/awesome-data-leadership"
+language: "Other"
+category: "Data Science;Leadership"
+---
+---
+title: "MLOps Primer"
+type: "Website"
+link: "https://github.com/dair-ai/MLOPs-Primer"
+language: "Python"
+category: "MLOps;Tutorial"
+---
+---
+title: "EPFL AI Coffee Machine"
+type: "Blog"
+link: "https://sti.epfl.ch/they-werent-sure-it-could-be-done-an-artificially-intelligent-coffee-machine/"
+language: "Other"
+category: "AI;IoT"
+---
+---
+title: "Bnomial Today"
+type: "Website"
+link: "https://today.bnomial.com/"
+language: "R"
+category: "Shiny;Dashboard"
+---
+---
+title: "waiter"
+type: "Package"
+link: "https://waiter.john-coene.com/#/waitress"
+language: "R"
+category: "Shiny;Loading"
+---
+---
+title: "Julie Josse"
+type: "Website"
+link: "http://juliejosse.com/"
+language: "R"
+category: "Statistics;Missing Data"
+---
+---
+title: "Naruto Hand Signs Classification"
+type: "Website"
+link: "https://github.com/yaxan/Naruto_Handsign_Classification"
+language: "Python"
+category: "Computer Vision;Classification"
+---
+---
+title: "Quarto Demo"
+type: "Website"
+link: "https://github.com/jeremy-allen/quarto-demo"
+language: "R"
+category: "Quarto;Tutorial"
+---
+---
+title: "Palmer Penguins useR 2022"
+type: "Website"
+link: "https://apreshill.github.io/palmerpenguins-useR-2022/#/thank-you"
+language: "R"
+category: "Data Science;Education"
+---
+---
+title: "DeepMind Graph Nets"
+type: "Website"
+link: "https://github.com/deepmind/educational/blob/master/colabs/summer_schools/intro_to_graph_nets_tutorial_with_jraph.ipynb"
+language: "Python"
+category: "Graph Neural Networks;Tutorial"
+---
+---
+title: "Cara Thompson useR 2022"
+type: "Website"
+link: "https://www.cararthompson.com/talks/user2022"
+language: "R"
+category: "Conference;Visualization"
+---
+---
+title: "Arrow useR 2022"
+type: "Website"
+link: "https://arrow-user2022.netlify.app/"
+language: "R"
+category: "Big Data;Arrow"
+---
+---
+title: "ML for Everyone"
+type: "Website"
+link: "https://vas3k.com/blog/machine_learning/"
+language: "Other"
+category: "Machine Learning;Tutorial"
+---
+---
+title: "designer"
+type: "Package"
+link: "https://github.com/ashbaldry/designer"
+language: "R"
+category: "Shiny;UI Builder"
+---
+---
+title: "Brandon Amos Presentations"
+type: "Website"
+link: "https://github.com/bamos/presentations"
+language: "Other"
+category: "Research;Presentations"
+---
+---
+title: "Google Parti"
+type: "Website"
+link: "https://parti.research.google/"
+language: "Python"
+category: "Computer Vision;Generative AI"
+---
+---
+title: "Julia Silge useR 2022"
+type: "Website"
+link: "https://www.dropbox.com/s/3ds01k9hdtn2ghb/user2022_silge.pdf"
+language: "R"
+category: "tidymodels;Conference"
+---
+---
+title: "Unleash Shiny reactR"
+type: "Website"
+link: "https://unleash-shiny.rinterface.com/going-further-reactr"
+language: "R"
+category: "Shiny;React"
+---
+---
+title: "useR 2022 Dashboards"
+type: "Website"
+link: "https://github.com/agstn/UseR2022_dashboards"
+language: "R"
+category: "Conference;Dashboards"
+---
+---
+title: "The Data Thread"
+type: "Blog"
+link: "https://thedatathread.com/"
+language: "Other"
+category: "Data Science;Newsletter"
+---
+---
+title: "Climate Multiples"
+type: "Website"
+link: "https://github.com/marcosci/climate_multiples"
+language: "R"
+category: "Visualization;Climate"
+---
+---
+title: "Arrow dplyr"
+type: "Website"
+link: "https://jthomasmock.github.io/arrow-dplyr/#/bigger-and-faster"
+language: "R"
+category: "Big Data;dplyr"
+---
+---
+title: "Nick Tierney useR 2022"
+type: "Website"
+link: "https://github.com/njtierney/talk-user-2022"
+language: "R"
+category: "Conference;Missing Data"
+---
+---
+title: "Modeling Mindsets"
+type: "Book"
+link: "https://book.modeling-mindsets.com/"
+language: "Other"
+category: "Statistics;Philosophy"
+---
+---
+title: "Yihui Xie blogdown"
+type: "Website"
+link: "https://yihui.org/en/2022/06/user-blogdown/"
+language: "R"
+category: "Blogdown;Tutorial"
+---
+---
+title: "Future useR 2022"
+type: "Website"
+link: "https://www.jottr.org/2022/06/23/future-user2022-slides/"
+language: "R"
+category: "Parallel Computing;Conference"
+---
+---
+title: "CiteDrive"
+type: "Website"
+link: "https://app.citedrive.com/"
+language: "Other"
+category: "Bibliography;Tools"
+---
+---
+title: "Patrick Weiss useR 2022"
+type: "Website"
+link: "https://patrick-weiss.github.io/slides-useR2022/#1"
+language: "R"
+category: "Conference;Presentation"
+---
+---
+title: "cleanrmd"
+type: "Package"
+link: "https://pkg.garrickadenbuie.com/cleanrmd/"
+language: "R"
+category: "R Markdown;Themes"
+---
+---
+title: "HMM Nimble Workshop"
+type: "Website"
+link: "https://oliviergimenez.github.io/hmm-cr-nimble-isec2022-workshop/slides/1_hmm.html#6"
+language: "R"
+category: "Statistics;HMM"
+---
+---
+title: "CRAN Causal Inference"
+type: "Website"
+link: "https://cran.r-project.org/web/views/CausalInference.html"
+language: "R"
+category: "Statistics;Causality"
+---
+---
+title: "Tidy Tuesday tabyl"
+type: "Website"
+link: "https://evamaerey.github.io/mytidytuesday/2022-06-20-tabyl/2022-06-20-tabyl.html#18"
+language: "R"
+category: "tidyverse;Tutorial"
+---
+---
+title: "Pierre Alquier"
+type: "Website"
+link: "https://pierrealquier.github.io/packages.html"
+language: "R"
+category: "Statistics;Packages"
+---
+---
+title: "Loss Functions CV"
+type: "Blog"
+link: "https://www.quantmetry.com/blog/choix-fonction-de-perte-en-computer-vision/"
+language: "Python"
+category: "Computer Vision;Deep Learning;French"
+---
+---
+title: "Appsilon Shiny Google Analytics"
+type: "Blog"
+link: "https://appsilon.com/r-shiny-google-analytics/"
+language: "R"
+category: "Shiny;Analytics"
+---
+---
+title: "Achim Zeileis useR 2022"
+type: "Website"
+link: "https://www.zeileis.org/news/user2022/"
+language: "R"
+category: "Conference;Statistics"
+---
+---
+title: "Shiny and Arrow"
+type: "Blog"
+link: "https://www.rstudio.com/blog/shiny-and-arrow/"
+language: "R"
+category: "Shiny;Big Data"
+---
+---
+title: "Bea Milz GitHub Actions"
+type: "Blog"
+link: "https://beamilz.com/posts/series-gha/2022-series-gha-1-what-is/en/"
+language: "R"
+category: "CI/CD;GitHub"
+---
+---
+title: "huggingfaceR"
+type: "Package"
+link: "https://github.com/farach/huggingfaceR"
+language: "R"
+category: "NLP;Hugging Face"
+---
+---
+title: "HMM Nimble Full Workshop"
+type: "Website"
+link: "https://oliviergimenez.github.io/hmm-cr-nimble-isec2022-workshop/"
+language: "R"
+category: "Statistics;HMM;Workshop"
+---
+---
+title: "Quarto Tip a Day"
+type: "Website"
+link: "https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/"
+language: "R"
+category: "Quarto;Tutorial"
+---
+---
+title: "Tidyverse Booster"
+type: "Website"
+link: "https://christianb.gumroad.com/l/tidyverse-booster"
+language: "R"
+category: "tidyverse;Course"
+---
+---
+title: "Data Science Section July"
+type: "Newsletter"
+link: "https://datasciencesection.org/2022/07/03/july-newsletter-3/"
+language: "Other"
+category: "Data Science;Newsletter"
+---
+---
+title: "R for the Rest of Us Align Axes"
+type: "Blog"
+link: "https://rfortherestofus.com/2022/07/align-axes/"
+language: "R"
+category: "Visualization;ggplot2"
+---
+---
+title: "Do4DS Docker"
+type: "Website"
+link: "https://do4ds.com/chapters/sec1/docker.html"
+language: "Other"
+category: "Docker;Data Science"
+---
+---
+title: "Quarto Blog Writing Guide"
+type: "Blog"
+link: "https://albert-rapp.de/posts/13_quarto_blog_writing_guide/13_quarto_blog_writing_guide.html"
+language: "R"
+category: "Quarto;Tutorial"
+---
+---
+title: "HAL Meta-Analysis"
+type: "Paper"
+link: "https://hal.archives-ouvertes.fr/hal-03723551"
+language: "Other"
+category: "Statistics;Meta-analysis;French"
+---
+---
+title: "Nature AI Fairness"
+type: "Paper"
+link: "https://www.nature.com/articles/s42256-022-00465-9#citeas"
+language: "Other"
+category: "Ethics;AI"
+---
+---
+title: "Openscapes Quarto Migration"
+type: "Blog"
+link: "https://www.openscapes.org/blog/2022/07/21/quarto-migrate/"
+language: "R"
+category: "Quarto;Migration"
+---
+---
+title: "BioIcons"
+type: "Website"
+link: "https://bioicons.com/"
+language: "Other"
+category: "Icons;Biology"
+---
+---
+title: "Write the Docs Guide"
+type: "Website"
+link: "https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/"
+language: "Other"
+category: "Documentation;Best Practices"
+---
+---
+title: "shinydlplot"
+type: "Package"
+link: "https://cran.r-project.org/web/packages/shinydlplot/index.html"
+language: "R"
+category: "Shiny;Plots"
+---
+---
+title: "fable"
+type: "Package"
+link: "https://fable.tidyverts.org/"
+language: "R"
+category: "Time Series;Forecasting"
+---
+---
+title: "modeltime"
+type: "Package"
+link: "https://business-science.github.io/modeltime/"
+language: "R"
+category: "Time Series;Machine Learning"
+---
+---
+title: "QuantIQ Internship"
+type: "Website"
+link: "https://quantiq.io/jobs/internship-in-medical-deep-learning"
+language: "Other"
+category: "Medical;Deep Learning;Jobs"
+---
+---
+title: "Forecasting Principles and Practice"
+type: "Book"
+link: "https://otexts.com/fpp3/intro.html"
+language: "R"
+category: "Time Series;Forecasting"
+---
+---
+title: "Deep Creativity"
+type: "Website"
+link: "https://ali-design.github.io/deepcreativity/"
+language: "Python"
+category: "Generative AI;Creativity"
+---
+---
+title: "Hugging Face Sentiment Analysis"
+type: "Blog"
+link: "https://huggingface.co/blog/sentiment-analysis-twitter"
+language: "Python"
+category: "NLP;Sentiment Analysis"
+---
+---
+title: "Tiago Ramalho"
+type: "Website"
+link: "https://tmramalho.github.io/"
+language: "Other"
+category: "Research;Physics"
+---
+---
+title: "12ft Ladder"
+type: "Website"
+link: "https://12ft.io/"
+language: "Other"
+category: "Tools;Paywall"
+---
+---
+title: "Crick Institute DeepMind"
+type: "Blog"
+link: "https://www.crick.ac.uk/news/2022-07-06_the-francis-crick-institute-and-deepmind-join-forces-to-apply-machine-learning-to-biology"
+language: "Other"
+category: "Biology;AI"
+---
+---
+title: "Math3ma"
+type: "Website"
+link: "https://www.math3ma.com/"
+language: "Other"
+category: "Mathematics;Blog"
+---
+---
+title: "RStudio Conference 2022 Schedule"
+type: "Website"
+link: "https://www.rstudio.com/conference/2022/schedule/"
+language: "R"
+category: "Conference;Schedule"
+---
+---
+title: "AI PhD Job Hunt"
+type: "Blog"
+link: "https://www.natolambert.com/writing/ai-phd-job-hunt"
+language: "Other"
+category: "Career;PhD"
+---
+---
+title: "CLIPasso"
+type: "Website"
+link: "https://clipasso.github.io/clipasso/"
+language: "Python"
+category: "Computer Vision;Art"
+---
+---
+title: "Targets Walkthrough"
+type: "Book"
+link: "https://books.ropensci.org/targets/walkthrough.html"
+language: "R"
+category: "Workflow;Reproducibility"
+---
+---
+title: "When Not in Rome"
+type: "Blog"
+link: "https://jollydata.blog/posts/2022-06-12-when-not-in-rome/when-not-in-rome.html"
+language: "R"
+category: "Best Practices;Tutorial"
+---
+---
+title: "Quarto Blog Template"
+type: "Website"
+link: "https://github.com/schochastics/quarto-schochastics"
+language: "R"
+category: "Quarto;Template"
+---
+---
+title: "Harsh Gupta Talks"
+type: "Website"
+link: "https://www.harsh17.in/talk/"
+language: "Other"
+category: "Research;Talks"
+---
+---
+title: "Quarto Bottom Up Blog"
+type: "Website"
+link: "https://github.com/AlbertRapp/quarto_bottomup_blog"
+language: "R"
+category: "Quarto;Tutorial"
+---
+---
+title: "OSF Project"
+type: "Website"
+link: "https://osf.io/cdqub/"
+language: "Other"
+category: "Research;Reproducibility"
+---
+---
+title: "Containerizing R Markdown"
+type: "Blog"
+link: "https://hosting.analythium.io/containerizing-interactive-r-markdown-documents/#multi-stage-build-with-the-openfaas-watchdog"
+language: "R"
+category: "Docker;R Markdown"
+---
+---
+title: "Treatment Timelines"
+type: "Blog"
+link: "https://www.khstats.com/blog/trt-timelines/multiple-vars"
+language: "R"
+category: "Visualization;Medical"
+---
+---
+title: "Graph Neural Networks Link Prediction"
+type: "Blog"
+link: "https://medium.com/data-from-the-trenches/graphical-neural-networks-link-prediction-part-ii-c60f6d97fd97"
+language: "Python"
+category: "Graph Neural Networks;Tutorial"
+---
+---
+title: "Papers with Code LabML"
+type: "Website"
+link: "https://papers.labml.ai/paper/063dc7ec6d1111ec905035ac8856fc87"
+language: "Other"
+category: "Research;Papers"
+---
+---
+title: "Deploy Flex Actions"
+type: "Website"
+link: "https://github.com/RamiKrispin/deploy-flex-actions"
+language: "R"
+category: "Deployment;GitHub Actions"
+---
+---
+title: "Colin Fay Publications"
+type: "Website"
+link: "https://colinfay.me/talks-publications/"
+language: "R"
+category: "Talks;Publications"
+---
+---
+title: "Stanford CS25"
+type: "Course"
+link: "https://web.stanford.edu/class/cs25/"
+language: "Other"
+category: "Deep Learning;Transformers"
+---
+---
+title: "Jimin Park"
+type: "Website"
+link: "https://jimimvp.github.io/"
+language: "Other"
+category: "Computer Vision;Research"
+---
+---
+title: "PAIR Facets"
+type: "Website"
+link: "https://github.com/PAIR-code/facets"
+language: "Python"
+category: "Visualization;Data Analysis"
+---
+---
+title: "Modeldown AutoML"
+type: "Blog"
+link: "https://www.r-bloggers.com/2022/07/modeldown-automate-explainable-ai-machine-learning-in-r/"
+language: "R"
+category: "Explainability;AutoML"
+---
+---
+title: "Hugo Apéro Theme"
+type: "Website"
+link: "https://github.com/hugo-apero/hugo-apero"
+language: "R"
+category: "Blogdown;Theme"
+---
+---
+title: "Big Book of R Part 1"
+type: "Blog"
+link: "https://oscarbaruffa.com/bbofr_300_part1/"
+language: "R"
+category: "Books;Resources"
+---
+---
+title: "prettydoc"
+type: "Package"
+link: "https://prettydoc.statr.me/themes.html"
+language: "R"
+category: "R Markdown;Themes"
+---
+---
+title: "Designer Shiny UI"
+type: "Website"
+link: "https://ashbaldry.github.io/designer/"
+language: "R"
+category: "Shiny;UI Builder"
+---
+---
+title: "RFlow Updated"
+type: "Website"
+link: "https://hbiostat.org/rflow/"
+language: "R"
+category: "Statistics;Workflow"
+---
+---
+title: "G*Power"
+type: "Website"
+link: "https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower"
+language: "Other"
+category: "Statistics;Power Analysis"
+---
+---
+title: "Statistical Inferences"
+type: "Book"
+link: "https://lakens.github.io/statistical_inferences/index.html"
+language: "Other"
+category: "Statistics;Book"
+---
+---
+title: "Futurecoder Python"
+type: "Website"
+link: "https://fr.futurecoder.io/"
+language: "Python"
+category: "Programming;Tutorial;French"
+---
+---
+title: "Argmax"
+type: "Blog"
+link: "https://argmax.ghost.io/"
+language: "Other"
+category: "Machine Learning;Blog"
+---
+---
+title: "Yohan Mansiaux"
+type: "Blog"
+link: "https://ymansiaux-data.netlify.app/blog/"
+language: "R"
+category: "Data Science;Blog"
+---
+---
+title: "Linear Mixed Models Guide"
+type: "Book"
+link: "https://www.routledge.com/Linear-Mixed-Models-A-Practical-Guide-Using-Statistical-Software/West-Welch-Galecki/p/book/9781032019321"
+language: "R"
+category: "Statistics;Mixed Models"
+---
+---
+title: "Distill Pub"
+type: "Website"
+link: "https://distill.pub/"
+language: "Other"
+category: "Machine Learning;Research"
+---
+---
+title: "Ethical OS"
+type: "Website"
+link: "https://ethicalos.org/"
+language: "Other"
+category: "Ethics;Technology"
+---
+---
+title: "GDR Stat Santé"
+type: "Website"
+link: "http://gdr-stat-sante.math.cnrs.fr/spip/spip.php?article129"
+language: "R"
+category: "Statistics;Health;French"
+---
+---
+title: "ML Notebooks"
+type: "Website"
+link: "https://github.com/dair-ai/ML-Notebooks"
+language: "Python"
+category: "Machine Learning;Notebooks"
+---
+---
+title: "Arthur Douillard Deep Course"
+type: "Website"
+link: "https://arthurdouillard.com/deepcourse/"
+language: "Python"
+category: "Deep Learning;Course;French"
+---
+---
+title: "Twitter Thread on Models"
+type: "Website"
+link: "https://threadreaderapp.com/thread/1550220071649259521.html"
+language: "Other"
+category: "Machine Learning;Discussion"
+---
+---
+title: "Beautiful Tables in R"
+type: "Blog"
+link: "https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r/"
+language: "R"
+category: "Tables;Tutorial"
+---
+---
+title: "Quarto Diagrams"
+type: "Blog"
+link: "https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/posts/21-diagrams/"
+language: "R"
+category: "Quarto;Diagrams"
+---
+---
+title: "ggplot2 Extensions"
+type: "Blog"
+link: "https://www.infoworld.com/article/3667496/12-ggplot-extensions-for-snazzier-r-graphics.html"
+language: "R"
+category: "Visualization;ggplot2"
+---
+---
+title: "Fast.ai"
+type: "Course"
+link: "https://course.fast.ai/"
+language: "Python"
+category: "Deep Learning;Course"
+---
+---
+title: "Containerizing R Markdown Full"
+type: "Blog"
+link: "https://hosting.analythium.io/containerizing-interactive-r-markdown-documents/"
+language: "R"
+category: "Docker;R Markdown"
+---
+---
+title: "Intro to Transformers"
+type: "Website"
+link: "https://dair-ai.notion.site/Introduction-to-Transformers-4b869c9595b74f72b088e5f2793ece80"
+language: "Python"
+category: "Deep Learning;Transformers"
+---
+---
+title: "Desirée De Leon"
+type: "Website"
+link: "https://desiree.rbind.io/about/"
+language: "R"
+category: "Education;Design"
+---
+---
+title: "GitHub Illustrated Series"
+type: "Blog"
+link: "https://www.openscapes.org/blog/2022/05/27/github-illustrated-series/"
+language: "Other"
+category: "Git;Tutorial"
+---
+---
+title: "ThinkR Shiny Docker renv"
+type: "Blog"
+link: "https://thinkr.fr/deploiement-dune-application-shiny-dans-docker-avec-renv-et-golem/"
+language: "R"
+category: "Shiny;Docker;French"
+---
+---
+title: "fastverse"
+type: "Website"
+link: "https://fastverse.r-universe.dev/ui#packages"
+language: "R"
+category: "Performance;Packages"
+---
+---
+title: "ESIP Presentation"
+type: "Website"
+link: "https://mikemahoney218.github.io/2022-07-22_esip/2022-07-22_esip.html#/section"
+language: "R"
+category: "Spatial;Presentation"
+---
+---
+title: "GitHub Actions RStudio"
+type: "Blog"
+link: "https://beamilz.com/posts/series-gha/2022-07-28-github-actions-rstudio/en/"
+language: "R"
+category: "CI/CD;GitHub"
+---
+---
+title: "Nick Strayer RStudio Conf"
+type: "Website"
+link: "https://nick.quarto.pub/rstudioconf2022/"
+language: "R"
+category: "Conference;Presentation"
+---
+---
+title: "TMB Package"
+type: "Website"
+link: "https://tmb.njtierney.com/"
+language: "R"
+category: "Optimization;Statistics"
+---
+---
+title: "Hugging Face Job"
+type: "Website"
+link: "https://apply.workable.com/huggingface/j/A45A99EA5E/"
+language: "Other"
+category: "Jobs;NLP"
+---
+---
+title: "GitLab GitHub Issues Summary"
+type: "Blog"
+link: "https://rtask.thinkr.fr/download-gitlab-or-github-issues-and-make-a-summary-report-of-your-commits/"
+language: "R"
+category: "Git;Reporting;French"
+---
+---
+title: "Dashboard Builder"
+type: "Website"
+link: "https://github.com/petergandenberger/dashboard-builder"
+language: "R"
+category: "Shiny;Dashboards"
+---
+---
+title: "MLOps RStudio Conf"
+type: "Website"
+link: "https://github.com/isabelizimm/rstudioconf2022-mlops"
+language: "Python"
+category: "MLOps;Conference"
+---
+---
+title: "We Don't Talk About Quarto"
+type: "Blog"
+link: "https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/"
+language: "R"
+category: "Quarto;Tutorial"
+---
+---
+title: "Quarto Curious"
+type: "Website"
+link: "https://thomasmock.quarto.pub/quarto-curious/#/1"
+language: "R"
+category: "Quarto;Presentation"
+---
+---
+title: "Malcolm Barrett"
+type: "Website"
+link: "https://malco.io/"
+language: "R"
+category: "Epidemiology;Causality"
+---
+---
+title: "Probabilistic ML Book 2"
+type: "Book"
+link: "https://probml.github.io/pml-book/book2.html"
+language: "Python"
+category: "Machine Learning;Bayesian"
+---
+---
+title: "Quarto Dark Mode"
+type: "Website"
+link: "https://debruine.github.io/quarto_demo/dark_mode.html"
+language: "R"
+category: "Quarto;Tutorial"
+---
+---
+title: "rex Regex Shortcuts"
+type: "Website"
+link: "https://rex.r-lib.org/reference/shortcuts.html"
+language: "R"
+category: "Programming;Regex"
+---
+---
+title: "DataTrail Mentors"
+type: "Website"
+link: "https://www.datatrail.org/datatrail/datatrail-mentors"
+language: "Other"
+category: "Education;Mentorship"
+---
+---
+title: "RStudio Conf 2022 Program"
+type: "Website"
+link: "https://github.com/rstudio/rstudio-conf-2022-program"
+language: "R"
+category: "Conference;Schedule"
+---
+---
+title: "System Dependencies for R"
+type: "Blog"
+link: "https://mdneuzerling.com/post/determining-system-dependencies-for-r-projects/"
+language: "R"
+category: "Dependencies;DevOps"
+---
+---
+title: "Awesome R Games"
+type: "Community"
+link: "https://github.com/matt-dray/awesome-r-games"
+language: "R"
+category: "Games;Fun"
+---
+---
+title: "modelbased Group Levels"
+type: "Website"
+link: "https://easystats.github.io/modelbased/articles/estimate_grouplevel.html"
+language: "R"
+category: "Statistics;Mixed Models"
+---
+---
+title: "Git Guide"
+type: "Community"
+link: "https://github.com/sadanandpai/git-guide"
+language: "Other"
+category: "Git;Tutorial"
+---
+---
+title: "Get Started Quarto"
+type: "Website"
+link: "https://rstudio-conf-2022.github.io/get-started-quarto/"
+language: "R"
+category: "Quarto;Workshop"
+---
+---
+title: "Quarto Document Template"
+type: "Website"
+link: "https://gitlab.com/raniere-phd/quarto-document-template"
+language: "R"
+category: "Quarto;Template"
+---
+---
+title: "Harvard Gov 2003"
+type: "Course"
+link: "https://mattblackwell.github.io/gov2003-f21-site/materials.html"
+language: "R"
+category: "Statistics;Causality"
+---
+---
+title: "Must-Have R Packages"
+type: "Blog"
+link: "https://medium.com/@adrian.joseph/improve-your-r-workflow-with-these-must-have-r-packages-be47dacd89bc"
+language: "R"
+category: "Packages;Workflow"
+---
+---
+title: "Fundamentals of Data Visualization"
+type: "Book"
+link: "https://clauswilke.com/dataviz/"
+language: "R"
+category: "Visualization;Book"
+---
+---
+title: "caret vs tidymodels"
+type: "Blog"
+link: "https://towardsdatascience.com/caret-vs-tidymodels-create-complete-reusable-machine-learning-workflows-5c50a7befd2d"
+language: "R"
+category: "Machine Learning;Comparison"
+---
+---
+title: "RInterface"
+type: "Website"
+link: "https://rinterface.com/"
+language: "R"
+category: "Shiny;Consulting"
+---
+---
+title: "FW8051 Statistics for Ecologists"
+type: "Book"
+link: "https://fw8051statistics4ecologists.netlify.app/index.html"
+language: "R"
+category: "Statistics;Ecology"
+---
+---
+title: "ArXiv Diffusion Models"
+type: "Paper"
+link: "https://arxiv.org/abs/2207.09238"
+language: "Python"
+category: "Generative AI;Diffusion"
+---
+---
+title: "ggplot2 Extensions JSM"
+type: "Website"
+link: "https://jamesotto852.github.io/JSM-2022/#/references"
+language: "R"
+category: "Visualization;ggplot2"
+---
+---
+title: "FauxPilot"
+type: "Website"
+link: "https://github.com/moyix/fauxpilot"
+language: "Python"
+category: "AI;Code Assistant"
+---
+---
+title: "Data Science Rafael Lab"
+type: "Book"
+link: "http://rafalab.dfci.harvard.edu/dsbook/"
+language: "R"
+category: "Data Science;Book"
+---
+---
+title: "Quarto with GitHub Pages"
+type: "Blog"
+link: "https://tarleb.com/posts/quarto-with-gh-pages/"
+language: "R"
+category: "Quarto;Deployment"
+---
+---
+title: "Mindful Modeler"
+type: "Newsletter"
+link: "https://mindfulmodeler.substack.com/"
+language: "Other"
+category: "Machine Learning;Newsletter"
+---
+---
+title: "MIT Deep Learning Playlist"
+type: "Video"
+link: "https://www.youtube.com/playlist?list=PLdb0LTjA9iQwMOhNOzj5h2G6HXpatm4XQ"
+language: "Python"
+category: "Deep Learning;Video"
+---
+---
+title: "Stanford ML Playlist"
+type: "Video"
+link: "https://www.youtube.com/playlist?list=PLLHTzKZzVU9e6xUfG10TkTWApKSZCzuBI"
+language: "Other"
+category: "Machine Learning;Video"
+---
+---
+title: "Twitter ML Thread"
+type: "Website"
+link: "https://twitter.com/GoAbiAryan/status/1580852750526468097"
+language: "Other"
+category: "Machine Learning;Twitter"
+---
+---
+title: "Hugging Face Ethics"
+type: "Blog"
+link: "https://huggingface.co/blog/ethics-soc-1"
+language: "Other"
+category: "Ethics;AI"
+---
+---
+title: "Twitter IML Book"
+type: "Website"
+link: "https://twitter.com/ChristophMolnar/status/1570336874799190016"
+language: "Other"
+category: "Machine Learning;Interpretability"
+---
+---
+title: "Twitter Starfall Docs"
+type: "Website"
+link: "https://twitter.com/starfalldocs/status/1569248479536373764"
+language: "Other"
+category: "Documentation;Twitter"
+---
+---
+title: "Twitter Piping Hot Data"
+type: "Website"
+link: "https://twitter.com/PipingHotData/status/1565354597656690697"
+language: "R"
+category: "Data Science;Twitter"
+---
+---
+title: "ggsurvfit"
+type: "Package"
+link: "https://www.danieldsjoberg.com/ggsurvfit"
+language: "R"
+category: "Visualization;Survival Analysis"
+---
+---
+title: "Twitter Container Tutorial"
+type: "Website"
+link: "https://twitter.com/iximiuz/status/1563851156417298434"
+language: "Other"
+category: "Docker;Tutorial"
+---
+---
+title: "Twitter Olivier Gimenez"
+type: "Website"
+link: "https://twitter.com/oaggimenez/status/1556559752938885120"
+language: "R"
+category: "Statistics;Twitter"
+---
+---
+title: "Twitter OpenAI"
+type: "Website"
+link: "https://twitter.com/jackclarkSF/status/1555980412333133824"
+language: "Other"
+category: "AI;Twitter"
+---
+---
+title: "Twitter Women in Stat"
+type: "Website"
+link: "https://twitter.com/WomenInStat/status/1286420597505892352"
+language: "Other"
+category: "Statistics;Community"
+---
+---
+title: "Twitter Ethan Mollick"
+type: "Website"
+link: "https://twitter.com/emollick/status/1549353991523426305"
+language: "Other"
+category: "AI;Education"
+---
+---
+title: "Twitter Suzan"
+type: "Website"
+link: "https://twitter.com/suzatweet/status/1545685140822687746"
+language: "Other"
+category: "Data Science;Twitter"
+---
+---
+title: "Weights & Biases"
+type: "Website"
+link: "https://wandb.ai/site"
+language: "Python"
+category: "MLOps;Experiment Tracking"
+---
+---
+title: "Twitter Juliano Netto"
+type: "Website"
+link: "https://twitter.com/giulianonetto/status/1539707646751649793"
+language: "Other"
+category: "Data Science;Twitter"
+---
+---
+title: "Twitter ML Resources"
+type: "Website"
+link: "https://twitter.com/iScienceLuvr/status/1531553413581791233"
+language: "Other"
+category: "Machine Learning;Twitter"
+---
+---
+title: "Twitter Mark Tenenholtz"
+type: "Website"
+link: "https://twitter.com/marktenenholtz/status/1522184346324459520"
+language: "Other"
+category: "Computer Vision;Twitter"
+---
+---
+title: "Best of ML Python"
+type: "Community"
+link: "https://github.com/ml-tooling/best-of-ml-python"
+language: "Python"
+category: "Machine Learning;Resources"
+---
+---
+title: "ggplot2 Theme Elements"
+type: "Website"
+link: "https://isabella-b.com/blog/ggplot2-theme-elements-reference/"
+language: "R"
+category: "Visualization;Reference"
+---
+---
+title: "Replicate Cog"
+type: "Website"
+link: "https://github.com/replicate/cog"
+language: "Python"
+category: "MLOps;Deployment"
+---
+---
+title: "Twitter ML Video"
+type: "Website"
+link: "https://twitter.com/KarSergios/status/1516732541444763648"
+language: "Other"
+category: "Computer Vision;Twitter"
+---
+---
+title: "Twitter Vinay"
+type: "Website"
+link: "https://twitter.com/v_vashishta/status/1516461652400427010"
+language: "Other"
+category: "AI;Twitter"
+---
+---
+title: "Twitter Daliana Liu"
+type: "Website"
+link: "https://twitter.com/DalianaLiu/status/1513962919884591106"
+language: "Other"
+category: "Data Science;Twitter"
+---
+---
+title: "Nature Digital Medicine ML"
+type: "Paper"
+link: "https://www.nature.com/articles/s41746-022-00592-y"
+language: "Other"
+category: "Medical;AI"
+---
+---
+title: "Causal Inference Course"
+type: "Video"
+link: "https://www.youtube.com/watch?v=dJYGatp4SvA&list=PL5-TkQAfAZFbzxjBHtzdVCWE0Zbhomg7r"
+language: "Other"
+category: "Causality;Statistics"
+---
+---
+title: "Twitter CV Resources"
+type: "Website"
+link: "https://twitter.com/marktenenholtz/status/1511312726923964421"
+language: "Python"
+category: "Computer Vision;Twitter"
+---
+---
+title: "loopurrr"
+type: "Website"
+link: "https://timteafan.github.io/loopurrr/"
+language: "R"
+category: "Functional Programming;purrr"
+---
+---
+title: "Twitter Easlo"
+type: "Website"
+link: "https://twitter.com/heyeaslo/status/1487607754692956166"
+language: "Other"
+category: "Productivity;Twitter"
+---
+---
+title: "Twitter Easlo Resources"
+type: "Website"
+link: "https://twitter.com/heyeaslo/status/1505725893674627075"
+language: "Other"
+category: "Resources;Twitter"
+---
+---
+title: "Twitter Christoph Molnar"
+type: "Website"
+link: "https://twitter.com/ChristophMolnar/status/1504449282073677824"
+language: "Other"
+category: "Machine Learning;Twitter"
+---
+---
+title: "Twitter ML Papers"
+type: "Website"
+link: "https://twitter.com/marktenenholtz/status/1501905740813848582"
+language: "Other"
+category: "Machine Learning;Twitter"
+---
+---
+title: "Gelman Priors Meta-Analysis"
+type: "Blog"
+link: "https://statmodeling.stat.columbia.edu/2022/02/28/priors-for-meta-analysis/"
+language: "Other"
+category: "Statistics;Bayesian"
+---
+---
+title: "Twitter Data Question"
+type: "Website"
+link: "https://twitter.com/data_question/status/1498303990110777346"
+language: "Other"
+category: "Data Science;Twitter"
+---
+---
+title: "equatiomatic"
+type: "Package"
+link: "https://cran.r-project.org/web/packages/equatiomatic/vignettes/intro-equatiomatic.html"
+language: "R"
+category: "R Markdown;Equations"
+---
+---
+title: "Twitter IML"
+type: "Website"
+link: "https://twitter.com/ChristophMolnar/status/1485549716268109824"
+language: "Other"
+category: "Machine Learning;Interpretability"
+---
+---
+title: "senTWEETment"
+type: "Website"
+link: "https://github.com/jiwanheo/senTWEETment"
+language: "R"
+category: "NLP;Sentiment Analysis"
+---
+---
+title: "R Machine Learning Book"
+type: "Website"
+link: "https://betaandbit.github.io/RML/"
+language: "R"
+category: "Machine Learning;Book"
+---
+---
+title: "PsyArXiv Preregistration"
+type: "Paper"
+link: "https://psyarxiv.com/dnr9s/"
+language: "Other"
+category: "Research;Methods"
+---
+---
+title: "PsyArXiv Meta-Science"
+type: "Paper"
+link: "https://psyarxiv.com/9pjx5/"
+language: "Other"
+category: "Research;Meta-Science"
+---
+---
+title: "Creating Quarto Websites"
+type: "Website"
+link: "https://ucsb-meds.github.io/creating-quarto-websites/"
+language: "R"
+category: "Quarto;Tutorial"
+---
+---
+title: "GitLab Data Team Handbook"
+type: "Website"
+link: "https://about.gitlab"
+language: "Other"
+category: "Gitlab"
+---
+---
+title: "R-bloggers - ggplot2 Functions"
+type: "Blog"
+link: "https://www.r-bloggers.com/writing-functions-to-automate-repetitive-plotting-tasks-in-ggplot2/"
+language: "R"
+category: "Visualization;Automation"
+---
+---
+title: "R-bloggers - How to Learn R"
+type: "Blog"
+link: "https://www.r-bloggers.com/how-to-learn-r-2/"
+language: "R"
+category: "Education;Tutorial"
+---
+---
+title: "PBIL Lyon R Teaching"
+type: "Website"
+link: "http://pbil.univ-lyon1.fr/R/enseignement_div.php?contents=html/entree"
+language: "R"
+category: "Statistics;Tutorial;French"
+---
+---
+title: "Aide-mémoire Statistique"
+type: "Website"
+link: "https://cran.r-project.org/doc/contrib/Herve-Aide-memoire-statistique.pdf"
+language: "R"
+category: "Statistics;Reference;French"
+---
+---
+title: "abcdR ThinkR"
+type: "Website"
+link: "https://abcdr.thinkr.fr/"
+language: "R"
+category: "Resources;Tutorial;French"
+---
+---
+title: "Duclert R Resources"
+type: "Website"
+link: "http://www.duclert.org/"
+language: "R"
+category: "Statistics;French"
+---
+---
+title: "Quick-R Reference"
+type: "Website"
+link: "https://www.statmethods.net/index.html"
+language: "R"
+category: "Statistics;Reference"
+---
+---
+title: "State of the R"
+type: "Community"
+link: "https://github.com/StateOfTheR"
+language: "R"
+category: "Community;Resources"
+---
+---
+title: "RStudio Webinars"
+type: "Community"
+link: "https://github.com/rstudio/webinars"
+language: "R"
+category: "Education;Video"
+---
+---
+title: "R Language Manual"
+type: "Website"
+link: "https://stat.ethz.ch/R-manual/R-devel/doc/manual/R-lang.html#Objects"
+language: "R"
+category: "Programming;Documentation"
+---
+---
+title: "Duke Sta 523"
+type: "Course"
+link: "http://www2.stat.duke.edu/~cr173/Sta523_Fa17/"
+language: "R"
+category: "Statistics;Course"
+---
+---
+title: "Stanford DCL"
+type: "Website"
+link: "https://dcl-docs.stanford.edu/home/"
+language: "R"
+category: "Data Science;Course"
+---
+---
+title: "Duke Sta 112"
+type: "Course"
+link: "http://www2.stat.duke.edu/courses/Fall17/sta112.01/"
+language: "R"
+category: "Statistics;Course"
+---
+---
+title: "Advanced R"
+type: "Book"
+link: "https://adv-r.hadley.nz/"
+language: "R"
+category: "Programming;Advanced"
+---
+---
+title: "R Packages"
+type: "Book"
+link: "https://r-pkgs.org/"
+language: "R"
+category: "Package Development;Book"
+---
+---
+title: "What They Forgot to Teach You"
+type: "Website"
+link: "https://rstats.wtf/"
+language: "R"
+category: "Workflow;Best Practices"
+---
+---
+title: "PDF Drive R Books"
+type: "Website"
+link: "https://www.pdfdrive.com/le-logiciel-r-ma%C3%AEtriser-le-langage-effectuer-des-analyses-statistiques-e156638014.html"
+language: "R"
+category: "Books;French"
+---
+---
+title: "drake"
+type: "Package"
+link: "https://docs.ropensci.org/drake/index.html"
+language: "R"
+category: "Workflow;Reproducibility"
+---
+---
+title: "Jenny Bryan"
+type: "Website"
+link: "https://jennybryan.org"
+language: "R"
+category: "Data Science;Developer"
+---
+---
+title: "rOpenSci"
+type: "Website"
+link: "https://ropensci.org/"
+language: "R"
+category: "Community;Open Source"
+---
+---
+title: "Code Smells and Feels"
+type: "Website"
+link: "https://speakerdeck.com/jennybc/code-smells-and-feels?slide=2"
+language: "R"
+category: "Best Practices;Presentation"
+---
+---
+title: "Workflow Maintenance"
+type: "Website"
+link: "https://speakerdeck.com/jennybc/zen-and-the-art-of-workflow-maintenance"
+language: "R"
+category: "Workflow;Best Practices"
+---
+---
+title: "RStudio Python Solutions"
+type: "Website"
+link: "https://solutions.rstudio.com/python/overview/"
+language: "R;Python"
+category: "Integration;RStudio"
+---
+---
+title: "R & Python in RStudio"
+type: "Video"
+link: "https://rstudio.com/resources/webinars/r-python-in-rstudio-1-2-with-reticulate/"
+language: "R;Python"
+category: "Integration;Webinar"
+---
+---
+title: "rtask ThinkR"
+type: "Blog"
+link: "https://rtask.thinkr.fr/"
+language: "R"
+category: "Blog;French"
+---
+---
+title: "ThinkR Shiny Template"
+type: "Blog"
+link: "https://rtask.thinkr.fr/fr/notre-template-shiny-pour-concevoir-une-appli-prod-ready/"
+language: "R"
+category: "Shiny;Production;French"
+---
+---
+title: "ThinkR Shiny Package"
+type: "Blog"
+link: "https://rtask.thinkr.fr/fr/developper-une-app-shiny-dans-un-package/"
+language: "R"
+category: "Shiny;Package Development;French"
+---
+---
+title: "Gradual Shiny"
+type: "Website"
+link: "https://laderast.github.io/gradual_shiny/"
+language: "R"
+category: "Shiny;Tutorial"
+---
+---
+title: "Shiny Articles"
+type: "Website"
+link: "https://shiny.rstudio.com/articles/"
+language: "R"
+category: "Shiny;Documentation"
+---
+---
+title: "Shiny Layout Guide"
+type: "Website"
+link: "https://shiny.rstudio.com/articles/layout-guide.html"
+language: "R"
+category: "Shiny;Tutorial"
+---
+---
+title: "Zev Ross Shiny Tutorial"
+type: "Blog"
+link: "http://zevross.com/blog/2016/04/19/r-powered-web-applications-with-shiny-a-tutorial-and-cheat-sheet-with-40-example-apps/"
+language: "R"
+category: "Shiny;Tutorial"
+---
+---
+title: "Shiny Reference"
+type: "Website"
+link: "https://shiny.rstudio.com/reference/shiny/1.4.0/"
+language: "R"
+category: "Shiny;Documentation"
+---
+---
+title: "Shiny Gallery"
+type: "Website"
+link: "https://shiny.rstudio.com/gallery/"
+language: "R"
+category: "Shiny;Examples"
+---
+---
+title: "Shiny Widget Gallery"
+type: "Website"
+link: "https://shiny.rstudio.com/gallery/widget-gallery.html"
+language: "R"
+category: "Shiny;Widgets"
+---
+---
+title: "flexdashboard"
+type: "Website"
+link: "https://rmarkdown.rstudio.com/flexdashboard/"
+language: "R"
+category: "Shiny;Dashboards"
+---
+---
+title: "shinydashboard"
+type: "Website"
+link: "http://rstudio.github.io/shinydashboard/"
+language: "R"
+category: "Shiny;Dashboards"
+---
+---
+title: "Shiny in Production"
+type: "Book"
+link: "https://kellobri.github.io/shiny-prod-book/"
+language: "R"
+category: "Shiny;Production"
+---
+---
+title: "Building Shiny Apps Workflow"
+type: "Book"
+link: "https://thinkr-open.github.io/building-shiny-apps-workflow/"
+language: "R"
+category: "Shiny;Workflow"
+---
+---
+title: "golem"
+type: "Package"
+link: "https://thinkr-open.github.io/golem/"
+language: "R"
+category: "Shiny;Package Development"
+---
+---
+title: "ThinkR golem Tutorial"
+type: "Blog"
+link: "https://rtask.thinkr.fr/fr/demarrer-avec-golem/"
+language: "R"
+category: "Shiny;Tutorial;French"
+---
+---
+title: "golem Demo"
+type: "Video"
+link: "https://www.youtube.com/watch?v=OU1-CkSVdTI&t=1356s"
+language: "R"
+category: "Shiny;Tutorial"
+---
+---
+title: "golem Example"
+type: "Website"
+link: "https://github.com/ColinFay/golemexample"
+language: "R"
+category: "Shiny;Example"
+---
+---
+title: "Engineering Shiny"
+type: "Book"
+link: "https://engineering-shiny.org/"
+language: "R"
+category: "Shiny;Production"
+---
+---
+title: "Shiny Server Error Logs"
+type: "Website"
+link: "https://docs.rstudio.com/shiny-server/#application-error-logs"
+language: "R"
+category: "Shiny;Deployment"
+---
+---
+title: "Shiny Server Troubleshooting"
+type: "Website"
+link: "https://support.rstudio.com/hc/en-us/articles/231249288-Why-does-my-app-work-locally-but-not-on-my-Shiny-Server-"
+language: "R"
+category: "Shiny;Troubleshooting"
+---
+---
+title: "Shiny Display Issues"
+type: "Forum"
+link: "https://community.rstudio.com/t/output-served-by-shiny-server-does-not-display-on-laptop/23530/4"
+language: "R"
+category: "Shiny;Support"
+---
+---
+title: "Shiny GitHub Issue"
+type: "Forum"
+link: "https://github.com/rstudio/shiny/issues/260#event-129544469"
+language: "R"
+category: "Shiny;Support"
+---
+---
+title: "Shiny Google Group"
+type: "Forum"
+link: "https://groups.google.com/forum/m/#!topic/shiny-discuss/cGbnVQbutLI"
+language: "R"
+category: "Shiny;Community"
+---
+---
+title: "PLOS ONE phyloseq"
+type: "Paper"
+link: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0061217"
+language: "R"
+category: "Microbiome;Statistics"
+---
+---
+title: "Bioinformatics phyloseq"
+type: "Paper"
+link: "https://academic.oup.com/bioinformatics/article/31/2/282/2365643"
+language: "R"
+category: "Microbiome;Bioinformatics"
+---
+---
+title: "Shiny phyloseq"
+type: "Website"
+link: "https://github.com/joey711/shiny-phyloseq"
+language: "R"
+category: "Shiny;Microbiome"
+---
+---
+title: "Plotly ggplot2"
+type: "Website"
+link: "https://plot.ly/ggplot2/"
+language: "R"
+category: "Visualization;Interactive"
+---
+---
+title: "golemverse"
+type: "Website"
+link: "http://golemverse.org/"
+language: "R"
+category: "Shiny;Community"
+---
+---
+title: "Shiny Advanced Tips"
+type: "Video"
+link: "https://www.youtube.com/watch?v=6qI4NzxlAFU&feature=youtu.be"
+language: "R"
+category: "Shiny;Tutorial"
+---
+---
+title: "Dean Attali Advanced Shiny"
+type: "Blog"
+link: "https://deanattali.com/blog/advanced-shiny-tips/"
+language: "R"
+category: "Shiny;Tutorial"
+---
+---
+title: "shinyjs"
+type: "Website"
+link: "https://deanattali.com/shinyjs/overview#demo"
+language: "R"
+category: "Shiny;JavaScript"
+---
+---
+title: "htmlwidgets Plotly"
+type: "Website"
+link: "http://www.htmlwidgets.org/showcase_plotly.html"
+language: "R"
+category: "Visualization;Interactive"
+---
+---
+title: "NAR Article"
+type: "Paper"
+link: "https://academic.oup.com/nar/article/46/6/2777/4909991"
+language: "Other"
+category: "Bioinformatics;Research"
+---
+---
+title: "Understanding Statistics"
+type: "Website"
+link: "http://emilkirkegaard.dk/understanding_statistics/"
+language: "Other"
+category: "Statistics;Tutorial"
+---
+---
+title: "GraphPad FAQ"
+type: "Website"
+link: "https://www.graphpad.com/support/faqid/1790/"
+language: "Other"
+category: "Statistics;Support"
+---
+---
+title: "GLM Introduction"
+type: "Website"
+link: "https://statistique-et-logiciel-r.com/introduction-aux-glm/"
+language: "R"
+category: "Statistics;GLM;French"
+---
+---
+title: "Statsoft Non-parametric"
+type: "Website"
+link: "http://statsoft.fr/concepts-statistiques/test-non-parametriques/test-non-parametriques.htm"
+language: "Other"
+category: "Statistics;French"
+---
+---
+title: "Parametric vs Non-parametric"
+type: "Website"
+link: "https://www.statisticshowto.datasciencecentral.com/parametric-and-non-parametric-data/"
+language: "Other"
+category: "Statistics;Tutorial"
+---
+---
+title: "XLSTAT Test Choice Guide"
+type: "Website"
+link: "https://help.xlstat.com/s/article/guide-de-choix-de-test-statistique?language=fr"
+language: "Other"
+category: "Statistics;Reference;French"
+---
+---
+title: "David Causeur"
+type: "Website"
+link: "https://dcauseur.netlify.app/index.html"
+language: "R"
+category: "Statistics;Research"
+---
+---
+title: "Emily Mathieu"
+type: "Website"
+link: "http://emily.perso.math.cnrs.fr/Mathieu_EMILYs_homepage/Home.html"
+language: "R"
+category: "Statistics;Research"
+---
+---
+title: "Marie Etienne"
+type: "Website"
+link: "https://marieetienne.github.io/"
+language: "R"
+category: "Statistics;Research"
+---
+---
+title: "Magalie Houée-Bigot"
+type: "Website"
+link: "https://pro.institut-agro-rennes-angers.fr/fr/magalie-houee-bigot"
+language: "R"
+category: "Statistics;Research"
+---
+---
+title: "François Husson"
+type: "Website"
+link: "https://husson.github.io/"
+language: "R"
+category: "Statistics;Multivariate"
+---
+---
+title: "Sébastien Lédien"
+type: "Website"
+link: "http://sebastien.ledien.free.fr/me.html"
+language: "R"
+category: "Statistics;Research"
+---
+---
+title: "padr"
+type: "Package"
+link: "https://edwinth.github.io/padr/articles/padr.html"
+language: "R"
+category: "Data Manipulation;Time Series"
+---
+---
+title: "MSR AGI"
+type: "Website"
+link: "https://msragi.com/"
+language: "Other"
+category: "AI;Research"
+---
+---
+title: "Compositional Diffusion Models"
+type: "Website"
+link: "https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/"
+language: "Python"
+category: "Computer Vision;Generative Models"
+---
+---
+title: "Nicola Rennie"
+type: "Blog"
+link: "https://nrennie.rbind.io/categories/r/"
+language: "R"
+category: "Data Science;Visualization"
+---
+---
+title: "Bayes Causal Inference"
+type: "Website"
+link: "http://bayes.cs.ucla.edu/WHY/"
+language: "Other"
+category: "Statistics;Causality"
+---
+---
+title: "Espanso"
+type: "Website"
+link: "https://espanso.org"
+language: "Other"
+category: "Productivity;Tools"
+---
+---
+title: "Brice Ozenne"
+type: "Website"
+link: "https://bozenne.github.io/"
+language: "R"
+category: "Statistics;Biostatistics"
+---
+---
+title: "Rust Performance"
+type: "Website"
+link: "http://sled.rs/perf"
+language: "Other"
+category: "Programming;Rust"
+---
+---
+title: "Statomics"
+type: "Website"
+link: "https://statomics.github.io/"
+language: "R"
+category: "Statistics;Bioinformatics"
+---
+---
+title: "ShinyProxy"
+type: "Website"
+link: "https://www.shinyproxy.io/"
+language: "R"
+category: "Shiny;Deployment"
+---
+---
+title: "ggplot2 Size Dimensions"
+type: "Blog"
+link: "https://www.christophenicault.com/post/understand_size_dimension_ggplot2/"
+language: "R"
+category: "Visualization;ggplot2"
+---
+---
+title: "Hello Quarto Demo"
+type: "Website"
+link: "https://github.com/mine-cetinkaya-rundel/hello-quarto-demo"
+language: "R"
+category: "Quarto;Tutorial"
+---
+---
+title: "Art from Code"
+type: "Website"
+link: "https://art-from-code.netlify.app/"
+language: "R"
+category: "Generative Art;Tutorial"
+---
+---
+title: "Danielle Navarro"
+type: "Blog"
+link: "https://blog.djnavarro.net/"
+language: "R"
+category: "Data Science;Visualization"
+---
+---
+title: "Yury Zablotski - Mixed Models"
+type: "Blog"
+link: "https://yury-zablotski.netlify.app/post/mixed-effects-models-2/"
+language: "R"
+category: "Statistics;Mixed Models"
+---
+---
+title: "RStudio Conf 2022 Talks"
+type: "Website"
+link: "https://github.com/rstudio/rstudio-conf/blob/master/2022/"
+language: "R"
+category: "Conference;Presentations"
+---
+---
+title: "Bea Milz Talks"
+type: "Website"
+link: "https://beamilz.com/talks/en/2022-rstudio-conf/"
+language: "R"
+category: "Conference;Presentations"
+---
+---
+title: "Meghan Hall Talks"
+type: "Website"
+link: "https://meghan.rbind.io/talk/rstudioconf/"
+language: "R"
+category: "Conference;Presentations"
+---
+---
+title: "Shiny Modules"
+type: "Video"
+link: "https://www.youtube.com/watch?v=oOKJLMAkEiw"
+language: "R"
+category: "Shiny;Tutorial"
+---
+---
+title: "shinytest2"
+type: "Website"
+link: "https://github.com/schloerke/presentation-2022-07-28-rstudioconf22-shinytest2"
+language: "R"
+category: "Shiny;Testing"
+---
+---
+title: "Zero Setup Workshops"
+type: "Website"
+link: "https://github.com/rstudio/rstudio-conf/blob/master/2022/davidsmith/Zero%20Setup%20Workshops%20RStudioConf%202022%20-%20David%20Smith.pdf"
+language: "R"
+category: "Education;Workshops"
+---
+---
+title: "leafdown Presentation"
+type: "Website"
+link: "https://github.com/rstudio/rstudio-conf/blob/master/2022/andreashofheinz/leafdown_presentation%20-%20Andreas%20H.pdf"
+language: "R"
+category: "Visualization;Maps"
+---
+---
+title: "Nicola Rennie rstudio::conf"
+type: "Website"
+link: "https://nrennie.rbind.io/talks/2022-july-rstudio-conf/"
+language: "R"
+category: "Conference;Presentations"
+---
+---
+title: "Colin Gillespie Presentation"
+type: "Website"
+link: "https://github.com/rstudio/rstudio-conf/blob/master/2022/colingillespie/2022-07-27_rstudio-conf%20-%20Colin%20Gillespie.pdf"
+language: "R"
+category: "Conference;Programming"
+---
+---
+title: "Josiah Parry Presentation"
+type: "Website"
+link: "https://github.com/rstudio/rstudio-conf/blob/master/2022/josiahparry/rstudio__conf(2022L)%20-%20Josiah%20Parry.pdf"
+language: "R"
+category: "Conference;Spatial"
+---
+---
+title: "Caro Buck Presentation"
+type: "Website"
+link: "https://rconf-2022-caro-buck.netlify.app/#/section"
+language: "R"
+category: "Conference;Presentations"
+---
+---
+title: "Jared Nolis Ecommerce Shiny"
+type: "Website"
+link: "https://jnolis.com/presentations/general/Nolis%20-%20Ecommerce%20Shiny%20-%20ggirl.pdf"
+language: "R"
+category: "Shiny;Business"
+---
+---
+title: "leafdown"
+type: "Package"
+link: "https://github.com/hoga-it/leafdown"
+language: "R"
+category: "Visualization;Maps"
+---
+---
+title: "Nick Strayer"
+type: "Website"
+link: "https://nickstrayer.me/#About"
+language: "R"
+category: "Data Science;Visualization"
+---
+---
+title: "Maya Gans"
+type: "Website"
+link: "https://maya.rbind.io/"
+language: "R"
+category: "Data Science;Education"
+---
+---
+title: "Flexible Imputation of Missing Data"
+type: "Book"
+link: "https://stefvanbuuren.name/fimd/"
+language: "R"
+category: "Statistics;Missing Data"
+---
+---
+title: "MPRI Probabilistic Programming"
+type: "Website"
+link: "https://wikimpri.dptinfo.ens-cachan.fr/doku.php?id=cours:c-2-40"
+language: "Other"
+category: "Probabilistic Programming;Course"
+---
+---
+title: "Antoine Miech"
+type: "Website"
+link: "https://antoine77340.github.io/"
+language: "Other"
+category: "Computer Vision;Research"
+---
+---
+title: "Antoine Yang"
+type: "Website"
+link: "https://antoyang.github.io/"
+language: "Other"
+category: "Computer Vision;Research"
+---
+---
+title: "Ivan Laptev"
+type: "Website"
+link: "https://www.di.ens.fr/~laptev/"
+language: "Other"
+category: "Computer Vision;Research"
+---
+---
+title: "Josef Sivic"
+type: "Website"
+link: "https://www.di.ens.fr/~josef/"
+language: "Other"
+category: "Computer Vision;Research"
+---
+---
+title: "WILLOW Lab"
+type: "Website"
+link: "https://www.di.ens.fr/willow/"
+language: "Other"
+category: "Computer Vision;Research"
+---
+---
+title: "MVA Master"
+type: "Website"
+link: "https://www.master-mva.com/"
+language: "Other"
+category: "Computer Vision;Education;French"
+---
+---
+title: "M2 MVA Paris-Saclay"
+type: "Website"
+link: "https://www.universite-paris-saclay.fr/formation/master/mathematiques-et-applications/m2-mathematiques-vision-apprentissage"
+language: "Other"
+category: "Computer Vision;Education;French"
+---
+---
+title: "Learn OpenCV"
+type: "Blog"
+link: "https://learnopencv.com/about/"
+language: "Python"
+category: "Computer Vision;Tutorial"
+---
+---
+title: "Barbershop GANs"
+type: "Paper"
+link: "https://zpdesu.github.io/Barbershop/Barbershop.pdf"
+language: "Python"
+category: "Computer Vision;GANs"
+---
+---
+title: "Attention Is All You Need"
+type: "Paper"
+link: "https://arxiv.org/abs/1706.03762"
+language: "Python"
+category: "NLP;Transformers"
+---
+---
+title: "Computer Vision Paper"
+type: "Paper"
+link: "https://arxiv.org/abs/2007.06570"
+language: "Python"
+category: "Computer Vision;Research"
+---
+---
+title: "Deep Learning Course"
+type: "Video"
+link: "https://www.youtube.com/watch?v=HskbLn212-8&list=PLCOlyo7OBQvtzOda3jJLgq3RmXK9hYPKi"
+language: "Python"
+category: "Deep Learning;Course"
+---
+---
+title: "StyleGAN2 Paper"
+type: "Paper"
+link: "https://arxiv.org/pdf/2104.00673.pdf"
+language: "Python"
+category: "Computer Vision;GANs"
+---
+---
+title: "Densely Connected CNNs"
+type: "Paper"
+link: "https://arxiv.org/abs/1603.06560"
+language: "Python"
+category: "Computer Vision;Deep Learning"
+---
+---
+title: "SqueezeNet Paper"
+type: "Paper"
+link: "https://arxiv.org/pdf/1707.07435.pdf"
+language: "Python"
+category: "Computer Vision;Deep Learning"
+---
+---
+title: "BMC Medical Informatics"
+type: "Paper"
+link: "https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-019-0874-0"
+language: "Other"
+category: "Medical;AI"
+---
+---
+title: "PMC Article"
+type: "Paper"
+link: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7861304/"
+language: "Other"
+category: "Medical;AI"
+---
+---
+title: "French R Users"
+type: "Community"
+link: "https://github.com/frrrenchies/frrrenchies"
+language: "R"
+category: "Community;French"
+---
+---
+title: "Python Charts"
+type: "Website"
+link: "https://python-charts.com/"
+language: "Python"
+category: "Visualization;Tutorial"
+---
+---
+title: "CRAN Mixed Models View"
+type: "Website"
+link: "https://cran.r-project.org/web/views/MixedModels.html"
+language: "R"
+category: "Statistics;Mixed Models"
+---
+---
+title: "VS Code ML Project Setup"
+type: "Blog"
+link: "https://bea.stollnitz.com/blog/vscode-ml-project/"
+language: "Python"
+category: "Machine Learning;Tools"
+---
+---
+title: "Stanford CS Cheatsheets"
+type: "Website"
+link: "https://stanford.edu/~shervine/teaching/"
+language: "Other"
+category: "Machine Learning;Cheatsheet"
+---
+---
+title: "Allison Horst"
+type: "Website"
+link: "https://allisonhorst.com/"
+language: "R"
+category: "Education;Illustration"
+---
+---
+title: "AI Art with Stable Diffusion"
+type: "Blog"
+link: "https://aiart.dev/posts/sd-music-videos/sd_music_videos.html"
+language: "Python"
+category: "Generative AI;Art"
+---
+---
+title: "Cédric Batailler"
+type: "Website"
+link: "https://cedricbatailler.me/"
+language: "R"
+category: "Psychology;Statistics"
+---
+---
+title: "deps"
+type: "Package"
+link: "https://github.com/analythium/deps"
+language: "R"
+category: "Package Management;Dependencies"
+---
+---
+title: "Regression Fire and Things"
+type: "Blog"
+link: "https://elevanth.org/blog/2021/06/15/regression-fire-and-dangerous-things-1-3/"
+language: "R"
+category: "Statistics;Causality"
+---
+---
+title: "Reproducibility with R"
+type: "Book"
+link: "https://eliocamp.github.io/reproducibility-with-r/about/"
+language: "R"
+category: "Reproducibility;Tutorial"
+---
+---
+title: "Professional Shiny App"
+type: "Blog"
+link: "https://towardsdev.com/how-to-build-a-professional-r-shiny-app-part-1-856bd445d6db"
+language: "R"
+category: "Shiny;Best Practices"
+---
+---
+title: "Machine Learning for Hackers"
+type: "Book"
+link: "https://www.oreilly.com/library/view/machine-learning-for/9781098102425/"
+language: "Python"
+category: "Machine Learning;Book"
+---
+---
+title: "Data Nozav"
+type: "Website"
+link: "https://data.nozav.org/"
+language: "Other"
+category: "Data;Resources;French"
+---
+---
+title: "R in Pharma"
+type: "Website"
+link: "https://rinpharma.com/"
+language: "R"
+category: "Pharmaceutical;Community"
+---
+---
+title: "posterior - rvar"
+type: "Package"
+link: "https://mc-stan.org/posterior/articles/rvar.html"
+language: "R"
+category: "Statistics;Bayesian"
+---
+---
+title: "Miles McBain - Data Frames"
+type: "Blog"
+link: "https://milesmcbain.micro.blog/2022/10/18/are-you-data.html"
+language: "R"
+category: "Programming;Best Practices"
+---
+---
+title: "Nature Digital Medicine"
+type: "Paper"
+link: "https://www.nature.com/articles/s41591-022-01768-5"
+language: "Other"
+category: "Medical;AI"
+---
+---
+title: "rstudio::conf 2022 Materials"
+type: "Website"
+link: "https://github.com/rstudio/rstudio-conf/blob/master/2022/README.md#keynotes-and-talks"
+language: "R"
+category: "Conference;Resources"
+---
+---
+title: "Automating Dockerfile for Shiny"
+type: "Blog"
+link: "https://www.r-bloggers.com/2022/10/automating-dockerfile-creation-for-shiny-apps/"
+language: "R"
+category: "Shiny;Docker"
+---
+---
+title: "Lino Galiana"
+type: "Website"
+link: "https://linogaliana.netlify.app/"
+language: "Python;R"
+category: "Data Science;Economics"
+---
+---
+title: "Bayesian Networks in R"
+type: "Blog"
+link: "https://blog.devgenius.io/a-bayesian-network-in-r-4c2d2df89cc8"
+language: "R"
+category: "Statistics;Bayesian"
+---
+---
+title: "GitHub Actions for R"
+type: "Website"
+link: "https://github.com/r-lib/actions/tree/v2-branch/examples"
+language: "R"
+category: "CI/CD;GitHub"
+---
+---
+title: "Grammar of Tables"
+type: "Website"
+link: "https://karbartolome.quarto.pub/the-grammar-of-tables/"
+language: "R"
+category: "Tables;Quarto"
+---
+---
+title: "RStudio - Translating Shiny"
+type: "Blog"
+link: "https://www.rstudio.com/blog/translating-shiny-apps-for-international-audiences"
+language: "R"
+category: "Shiny;i18n"
+---
+---
+title: "What the Diff AI"
+type: "Website"
+link: "https://whatthediff.ai/"
+language: "Other"
+category: "AI;Tools"
+---
+---
+title: "StackOverflow gt Formatting"
+type: "Website"
+link: "https://stackoverflow.com/questions/63944953/how-to-conditionally-format-a-cell-in-a-gt-table-based-on-the-value-of-the-cel"
+language: "R"
+category: "Tables;gt"
+---
+---
+title: "rlang Data Masking"
+type: "Website"
+link: "https://rlang.r-lib.org/reference/topic-data-mask.html"
+language: "R"
+category: "Programming;NSE"
+---
+---
+title: "rlang Data Mask Programming"
+type: "Website"
+link: "https://rlang.r-lib.org/reference/topic-data-mask-programming.html"
+language: "R"
+category: "Programming;NSE"
+---
+---
+title: "Quarto Shinylive"
+type: "Website"
+link: "https://quarto.org/docs/blog/posts/2022-10-25-shinylive-extension/"
+language: "R"
+category: "Quarto;Shiny"
+---
+---
+title: "Explain Paper"
+type: "Website"
+link: "https://www.explainpaper.com/"
+language: "Other"
+category: "AI;Research"
+---
+---
+title: "Mickael Canouil"
+type: "Blog"
+link: "https://mickael.canouil.fr/posts/"
+language: "R"
+category: "Data Science;Blog"
+---
+---
+title: "Cédric Batailler - Apéro"
+type: "Blog"
+link: "https://cedricbatailler.me/blog/2022-apero/"
+language: "R"
+category: "Blog;Tutorial"
+---
+---
+title: "Samantha Csik - Quarto Blogs"
+type: "Blog"
+link: "https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/"
+language: "R"
+category: "Quarto;Tutorial"
+---
+---
+title: "RStudio Shortcuts"
+type: "Blog"
+link: "https://cosimameyer.com/post/2022-10-10-great-rstudio-shortcuts/"
+language: "R"
+category: "IDE;Productivity"
+---
+---
+title: "Quartaki"
+type: "Website"
+link: "https://drmowinckels.github.io/quartaki/"
+language: "R"
+category: "Quarto;Tutorial"
+---
+---
+title: "John Helveston"
+type: "Website"
+link: "https://github.com/jhelvy"
+language: "R"
+category: "Engineering;Education"
+---
+---
+title: "OpenReview Paper"
+type: "Paper"
+link: "https://openreview.net/forum?id=KSugKcbNf9"
+language: "Other"
+category: "Machine Learning;Research"
+---
+---
+title: "ggplot2 Theme Cheatsheet"
+type: "Website"
+link: "https://github.com/claragranell/ggplot2/blob/main/ggplot_theme_system_cheatsheet.pdf"
+language: "R"
+category: "Visualization;Reference"
+---
+---
+title: "Probabilistic ML Book"
+type: "Book"
+link: "https://probml.github.io/pml-book/"
+language: "Python"
+category: "Machine Learning;Bayesian"
+---
+---
+title: "MLU Random Forest"
+type: "Website"
+link: "https://mlu-explain.github.io/random-forest/"
+language: "Other"
+category: "Machine Learning;Explainability"
+---
+---
+title: "R Without Statistics"
+type: "Book"
+link: "https://book.rwithoutstatistics.com/"
+language: "R"
+category: "Programming;Tutorial"
+---
+---
+title: "Python Speedsheet"
+type: "Website"
+link: "https://speedsheet.io/s/python"
+language: "Python"
+category: "Programming;Reference"
+---
+---
+title: "Tidy Modeling with R"
+type: "Book"
+link: "https://www.tmwr.org/"
+language: "R"
+category: "Machine Learning;tidymodels"
+---
+---
+title: "R Universe"
+type: "Website"
+link: "https://r-universe.dev/search/"
+language: "R"
+category: "Packages;Search"
+---
+---
+title: "plotnine Gallery"
+type: "Website"
+link: "https://plotnine.readthedocs.io/en/stable/gallery.html"
+language: "Python"
+category: "Visualization;ggplot2"
+---
+---
+title: "Testing for Data Science"
+type: "Blog"
+link: "https://www.peterbaumgartner.com/blog/testing-for-data-science/"
+language: "Python"
+category: "Testing;Best Practices"
+---
+---
+title: "VS Code Extensions"
+type: "Blog"
+link: "https://www.freecodecamp.org/news/vs-code-extensions-to-increase-developer-productivity/"
+language: "Other"
+category: "IDE;Productivity"
+---
+---
+title: "Science Direct Food Study"
+type: "Paper"
+link: "https://www.sciencedirect.com/science/article/abs/pii/S0950329322000568"
+language: "Other"
+category: "Food Science;Research"
+---
+---
+title: "SNB 2022 Conference"
+type: "Website"
+link: "http://snb2022.paris/SC.aspx"
+language: "Other"
+category: "Biometry;French"
+---
+---
+title: "ArXiv Paper"
+type: "Paper"
+link: "https://arxiv.org/abs/2203.13131"
+language: "Other"
+category: "Machine Learning;Research"
+---
+---
+title: "Parameterized R Markdown"
+type: "Blog"
+link: "https://rfortherestofus.com/2020/10/parameterized-reporting-with-rmarkdown/"
+language: "R"
+category: "R Markdown;Automation"
+---
+---
+title: "vetiver"
+type: "Package"
+link: "https://vetiver.tidymodels.org/dev/"
+language: "R"
+category: "MLOps;Deployment"
+---
+---
+title: "Yichuan Sun"
+type: "Website"
+link: "https://ycsun2017.github.io/"
+language: "Other"
+category: "Computer Vision;Research"
+---
+---
+title: "golem Wiki"
+type: "Website"
+link: "https://github.com/ThinkR-open/golem/wiki"
+language: "R"
+category: "Shiny;Documentation"
+---
+---
+title: "INRIA Fairplay"
+type: "Blog"
+link: "https://www.inria.fr/fr/comment-eviter-discrimination-donnees-utilisateurs-publicite-fairplay-criteo"
+language: "Other"
+category: "Ethics;AI;French"
+---
+---
+title: "Settlers of Catan RL"
+type: "Website"
+link: "https://github.com/henrycharlesworth/settlers_of_catan_RL"
+language: "Python"
+category: "Reinforcement Learning;Games"
+---
+---
+title: "Reproducible Workflows"
+type: "Book"
+link: "https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/README.html"
+language: "Other"
+category: "Data Science;Reproducibility"
+---
+---
+title: "GLMM with brms"
+type: "Blog"
+link: "https://oliviergimenez.github.io/blog/glmm-brms/"
+language: "R"
+category: "Statistics;Bayesian;Mixed Models"
+---
+---
+title: "Google AI - PaLM"
+type: "Blog"
+link: "https://ai.googleblog.com/2022/04/pathways-language-model-palm-scaling-to.html"
+language: "Python"
+category: "NLP;LLM"
+---
+---
+title: "Settlers RL Project"
+type: "Website"
+link: "https://settlers-rl.github.io/"
+language: "Python"
+category: "Reinforcement Learning;Games"
+---
+---
+title: "DrWhy"
+type: "Website"
+link: "https://modeloriented.github.io/DrWhy/"
+language: "R"
+category: "Explainability;Machine Learning"
+---
+---
+title: "Wright MA Book"
+type: "Book"
+link: "https://book-wright-ma.github.io/"
+language: "Other"
+category: "Statistics;Book"
+---
+---
+title: "ML Notes Cam"
+type: "Website"
+link: "https://github.com/roboticcam/machine-learning-notes"
+language: "Other"
+category: "Machine Learning;Notes"
+---
+---
+title: "Regex for R Programmers"
+type: "Blog"
+link: "https://www.jumpingrivers.com/blog/regular-expressions-every-r-programmer-should-know/"
+language: "R"
+category: "Programming;Regex"
+---
+---
+title: "Project Structure Slides"
+type: "Website"
+link: "https://slides.djnavarro.net/project-structure/#18"
+language: "R"
+category: "Best Practices;Workflow"
+---
+---
+title: "shinytest2"
+type: "Package"
+link: "https://github.com/rstudio/shinytest2"
+language: "R"
+category: "Shiny;Testing"
+---
+---
+title: "Shiny in Production"
+type: "Blog"
+link: "https://www.rstudio.com/blog/successfully-putting-shiny-in-production/"
+language: "R"
+category: "Shiny;Production"
+---
+---
+title: "DeepMind Flamingo"
+type: "Blog"
+link: "https://www.deepmind.com/blog/tackling-multiple-tasks-with-a-single-visual-language-model"
+language: "Python"
+category: "Computer Vision;NLP"
+---
+---
+title: "Transformers School"
+type: "Website"
+link: "https://e2eml.school/transformers.html"
+language: "Python"
+category: "Deep Learning;Transformers"
+---
+---
+title: "Epi R Handbook"
+type: "Book"
+link: "https://epirhandbook.com/en/"
+language: "R"
+category: "Epidemiology;Tutorial"
+---
+---
+title: "Learn R for Free"
+type: "Website"
+link: "https://www.learnr4free.com/en/index.html"
+language: "R"
+category: "Education;Tutorial"
+---
+---
+title: "You.com Code"
+type: "Website"
+link: "https://you.com/code?fromSearchBar=true"
+language: "Other"
+category: "AI;Code Assistant"
+---
+---
+title: "Statistical Rethinking 2022"
+type: "Website"
+link: "https://github.com/rmcelreath/stat_rethinking_2022"
+language: "R"
+category: "Statistics;Bayesian;Course"
+---
+---
+title: "Statistical Learning with R"
+type: "Community"
+link: "https://github.com/orgs/Statistical-Learning-with-R/repositories"
+language: "R"
+category: "Machine Learning;Statistics"
+---
+---
+title: "ML YouTube Courses"
+type: "Website"
+link: "https://github.com/dair-ai/ML-YouTube-Courses"
+language: "Other"
+category: "Machine Learning;Education"
+---
+---
+title: "ML Complete Course"
+type: "Website"
+link: "https://nyandwi.com/machine_learning_complete/"
+language: "Python"
+category: "Machine Learning;Tutorial"
+---
+---
+title: "JavaScript for R"
+type: "Book"
+link: "https://book.javascript-for-r.com/"
+language: "R;JavaScript"
+category: "Web Development;Integration"
+---
+---
+title: "Advanced Shiny"
+type: "Website"
+link: "https://github.com/daattali/advanced-shiny"
+language: "R"
+category: "Shiny;Advanced"
+---
+---
+title: "Designing ML Systems"
+type: "Book"
+link: "https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/"
+language: "Python"
+category: "Machine Learning;MLOps"
+---
+---
+title: "R Screencasts"
+type: "Website"
+link: "https://oscarbaruffa.com/rscreencasts/"
+language: "R"
+category: "Video;Tutorial"
+---
+---
+title: "DataViz Inspiration"
+type: "Website"
+link: "https://www.dataviz-inspiration.com/"
+language: "Other"
+category: "Visualization;Inspiration"
+---
+---
+title: "Bayesia Lab Webinar"
+type: "Video"
+link: "https://tube.switch.ch/videos/fToRRl17oj"
+language: "Other"
+category: "Bayesian;Statistics"
+---
+---
+title: "prompt"
+type: "Package"
+link: "https://github.com/gaborcsardi/prompt"
+language: "R"
+category: "CLI;Tools"
+---
+---
+title: "Semantic Search for Photos"
+type: "Blog"
+link: "https://wandb.ai/pcuenq/photo-finder/reports/Creating-a-Semantic-Search-Engine-for-My-Photos–VmlldzoyMDE2NzQ3"
+language: "Python"
+category: "Computer Vision;NLP"
+---
+---
+title: "Diffify R Packages"
+type: "Website"
+link: "https://diffify.com/R"
+language: "R"
+category: "Packages;Tools"
+---
+---
+title: "RStudio R Markdown Tips 2"
+type: "Blog"
+link: "https://www.rstudio.com/blog/r-markdown-tips-tricks-2-cleaning-up-your-code/"
+language: "R"
+category: "R Markdown;Best Practices"
+---
+---
+title: "RStudio R Markdown Tips 1"
+type: "Blog"
+link: "https://www.rstudio.com/blog/r-markdown-tips-tricks-1-rstudio-ide/"
+language: "R"
+category: "R Markdown;IDE"
+---
+---
+title: "RStudio R Markdown Tips 3"
+type: "Blog"
+link: "https://www.rstudio.com/blog/r-markdown-tips-and-tricks-3-time-savers/"
+language: "R"
+category: "R Markdown;Productivity"
+---
+---
+title: "Dominique Makowski - Neurokit"
+type: "Blog"
+link: "https://dominiquemakowski.github.io/post/2022-05-18-neurokit_release_2/"
+language: "R"
+category: "Psychology;Neuroscience"
+---
+---
+title: "Emily Riederer - Causal Design"
+type: "Blog"
+link: "https://emilyriederer.netlify.app/post/causal-design-patterns/"
+language: "R"
+category: "Causality;Design Patterns"
+---
+---
+title: "Weights & Biases ML News"
+type: "Newsletter"
+link: "https://wandb.ai/fully-connected/ml-news"
+language: "Python"
+category: "Machine Learning;Newsletter"
+---
+---
+title: "Awesome Visual Transformer"
+type: "Community"
+link: "https://github.com/dk-liang/Awesome-Visual-Transformer"
+language: "Python"
+category: "Computer Vision;Transformers"
+---
+---
+title: "Twitter Data Question"
+type: "Website"
+link: "https://twitter.com/data_question/"
+language: "Other"
+category: "Data"
+---
+---
+title: "ggsurvfit Package"
+type: "Documentation"
+link: "https://danieldsjoberg.com/ggsurvfit"
+language: "R"
+category: "Survival Analysis"
+---
+---
+title: "Deep Learning Lecture Series"
+type: "Video"
+link: "https://www.youtube.com/watch?v=dJYGatp4SvA"
+language: "Other"
+category: "Deep Learning"
+---
+---
+title: "GitLab Data Team Handbook"
+type: "Documentation"
+link: "https://about.gitlab.com/handbook/business-technology/data-team/"
+language: "Other"
+category: "Data Engineering"
+---
+---
+title: "The Turing Way"
+type: "Book"
+link: "https://the-turing-way.netlify.app/welcome.html"
+language: "Other"
+category: "Reproducibility"
+---
+---
+title: "Quarto Design Mode"
+type: "Tool"
+link: "https://github.com/EmilHvitfeldt/quarto-designmode"
+language: "R"
+category: "Quarto"
+---
+---
+title: "arXiv 2211.0200"
+type: "Paper"
+link: "https://arxiv.org/abs/2211.0200"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "Rcheology Shiny App"
+type: "App"
+link: "https://hughjonesd.shinyapps.io/rcheology/"
+language: "R"
+category: "Shiny"
+---
+---
+title: "Flow Field Art"
+type: "Repository"
+link: "https://github.com/cj-holmes/flow-field-art"
+language: "Python"
+category: "Generative Art"
+---
+---
+title: "Nature Human Behaviour Article"
+type: "Paper"
+link: "https://www.nature.com/articles/s41562-022-01464-x"
+language: "Other"
+category: "Behavioral Science"
+---
+---
+title: "Art of Command Line (FR)"
+type: "Guide"
+link: "https://github.com/jlevy/the-art-of-command-line/blob/master/README-fr.md"
+language: "Other"
+category: "Developer Tools"
+---
+---
+title: "Undo Almost Anything with Git"
+type: "Blog"
+link: "https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/"
+language: "Other"
+category: "Version Control"
+---
+---
+title: "Graph Learning Workshop 2022"
+type: "Workshop"
+link: "http://snap.stanford.edu/graphlearning-workshop-2022/"
+language: "Python"
+category: "Graph ML"
+---
+---
+title: "gt Tables Gallery"
+type: "Documentation"
+link: "https://gt.albert-rapp.de/"
+language: "R"
+category: "Reporting"
+---
+---
+title: "Kaggle Days Paris 2022"
+type: "Repository"
+link: "https://github.com/jfpuget/KaggleDays_Paris_2022"
+language: "Python"
+category: "Machine Learning"
+---
+---
+title: "RAPS Method Explained"
+type: "Blog"
+link: "https://www.brodrigues.co/blog/2022-11-19-raps/"
+language: "R"
+category: "Prediction Intervals"
+---
+---
+title: "Causal Inference Course (Neal)"
+type: "Course"
+link: "https://www.bradyneal.com/causal-inference-course"
+language: "Python"
+category: "Causal Inference"
+---
+---
+title: "Shiny Metrics"
+type: "Tool"
+link: "https://github.com/devOpifex/shinymetrics"
+language: "R"
+category: "Shiny"
+---
+---
+title: "Shiny in Production Highlights"
+type: "Blog"
+link: "https://www.jumpingrivers.com/blog/shiny-in-production-highlights/"
+language: "R"
+category: "Shiny"
+---
+---
+title: "Open Science for Health Data"
+type: "Slides"
+link: "https://speakerdeck.com/gaelvaroquaux/open-science-for-health-data-applying-the-scikit-learn-recipe"
+language: "Python"
+category: "Open Science"
+---
+---
+title: "Human Compatible AI"
+type: "Platform"
+link: "https://humancompatible.ai/"
+language: "Other"
+category: "AI Safety"
+---
+---
+title: "TensorFlow Playground"
+type: "Tool"
+link: "https://playground.tensorflow.org/"
+language: "Python"
+category: "Neural Networks"
+---
+---
+title: "Doing Meta-Analysis in R"
+type: "Book"
+link: "https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/"
+language: "R"
+category: "Meta-Analysis"
+---
+---
+title: "Statistical Inferences"
+type: "Book"
+link: "https://lakens.github.io/statistical_inferences/"
+language: "R"
+category: "Statistics"
+---
+---
+title: "rOpenSci r-universe"
+type: "Blog"
+link: "https://ropensci.org/blog/2023/02/27/runiverse-discovering/"
+language: "R"
+category: "Packages"
+---
+---
+title: "Good Practices in R"
+type: "Guide"
+link: "https://www.good-practices.etiennebacher.com/"
+language: "R"
+category: "Best Practices"
+---
+---
+title: "Tidymodels Introduction"
+type: "Tutorial"
+link: "https://rviews.rstudio.com/2019/06/19/a-gentle-intro-to-tidymodels/"
+language: "R"
+category: "Machine Learning"
+---
+---
+title: "INLA GitBook"
+type: "Book"
+link: "https://becarioprecario.bitbucket.io/inla-gitbook/index.html"
+language: "R"
+category: "Bayesian Statistics"
+---
+---
+title: "Rzine"
+type: "Magazine"
+link: "https://rzine.fr/"
+language: "R"
+category: "Community"
+---
+---
+title: "Multi-language Coding Cheatsheet"
+type: "Cheatsheet"
+link: "https://geekcologist.wordpress.com/2023/07/04/cheatsheet-for-coding-in-r-python-and-julia/"
+language: "R;Python;Julia"
+category: "Programming"
+---
+---
+title: "Awesome Computational Social Science"
+type: "Community"
+link: "https://github.com/gesiscss/awesome-computational-social-science"
+language: "Other"
+category: "Social Science"
+---
+---
+title: "Web Scraping London Marathon"
+type: "Blog"
+link: "https://nrennie.rbind.io/blog/web-scraping-rvest-london-marathon/"
+language: "R"
+category: "Web Scraping"
+---
+---
+title: "Risk Ratio vs Odds Ratio"
+type: "Blog"
+link: "https://statmodeling.stat.columbia.edu/2023/04/02/risk-ratio-odds-ratio-risk-difference-which-causal-measure-is-easier-to-generalize/"
+language: "R"
+category: "Causal Inference"
+---
+---
+title: "Metropolis-Hastings Explained"
+type: "Blog"
+link: "https://blog.djnavarro.net/posts/2023-04-12_metropolis-hastings/"
+language: "R"
+category: "Bayesian Statistics"
+---
+---
+title: "Hugging Face Papers"
+type: "Platform"
+link: "https://huggingface.co/papers"
+language: "Python"
+category: "Machine Learning"
+---
+---
+title: "R-Causal"
+type: "Community"
+link: "https://www.r-causal.org/"
+language: "R"
+category: "Causal Inference"
+---
+---
+title: "Data Analysis Bookdown"
+type: "Book"
+link: "https://bookdown.org/mike/data_analysis/"
+language: "R"
+category: "Statistics"
+---
+---
+title: "Quarto + Docker"
+type: "Blog"
+link: "https://mickael.canouil.fr/posts/2023-05-07-quarto-docker/"
+language: "R"
+category: "Quarto"
+---
+---
+title: "Interpretable Machine Learning (Packt)"
+type: "Book"
+link: "https://www.packtpub.com/product/interpretable-machine-learning-with-python-second-edition/9781803235424"
+language: "Python"
+category: "Explainable AI"
+---
+---
+title: "Onyxia Data Platform"
+type: "Platform"
+link: "https://www.onyxia.sh/"
+language: "Other"
+category: "Data Platforms"
+---
+---
+title: "Modeling Mindsets Game"
+type: "Game"
+link: "https://christophm.github.io/modeling-mindsets-game/"
+language: "Other"
+category: "Statistics Education"
+---
+---
+title: "InseeFr GitHub"
+type: "Community"
+link: "https://github.com/InseeFr"
+language: "R"
+category: "Public Statistics"
+---
+---
+title: "Writing R in VS Code"
+type: "Blog"
+link: "https://renkun.me/2019/12/11/writing-r-in-vscode-a-fresh-start/"
+language: "R"
+category: "Developer Tools"
+---
+---
+title: "Spatial Data Science"
+type: "Book"
+link: "https://www.paulamoraga.com/book-spatial/"
+language: "R"
+category: "Spatial Statistics"
+---
+---
+title: "Pointblank"
+type: "Package"
+link: "https://github.com/rstudio/pointblank"
+language: "R"
+category: "Data Validation"
+---
+---
+title: "Conformal Prediction Explained"
+type: "Blog"
+link: "http://projects.rajivshah.com/blog/2022/09/24/conformal_predictions/"
+language: "R;Python"
+category: "Uncertainty"
+---
+---
+title: "Data Visualization Guide"
+type: "Gallery"
+link: "https://royal-statistical-society.github.io/datavisguide/docs/"
+language: "Other"
+category: "Data Visualization"
+---
+---
+title: "Hugging Face Chat"
+type: "Platform"
+link: "https://huggingface.co/chat"
+language: "Other"
+category: "LLMs"
+---
+---
+title: "GitHub Copilot Prompting Guide"
+type: "Tool"
+link: "https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/"
+language: "Other"
+category: "Developer Tools"
+---
+---
+title: "t.co"
+type: "Website"
+link: "https://t.co/Atx1sVAb55"
+language: "Other"
+category: "General"
+---
+---
+title: "simplystatistics](https"
+type: "Website"
+link: "https://simplystatistics.org](https://simplystatistics.org/)"
+language: "Other"
+category: "General"
+---
+---
+title: "amazon"
+type: "Book"
+link: "https://www.amazon.com/gp/product/1491962291/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=quantpytho-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=1491962291&linkId=e1818e0c5c578f9fc0b487a70f3f4266"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/_ColinFay/status/1539524332111679488?t=axH94EBeUDtOzcIgaPsJsQ&s=19"
+language: "Other"
+category: "General"
+---
+---
+title: "learngitbranching.js"
+type: "Website"
+link: "https://learngitbranching.js.org/?locale=fr_FR"
+language: "Other"
+category: "General"
+---
+---
+title: "apprendre-python"
+type: "Website"
+link: "http://apprendre-python.com/page-apprendre-tuples-tuple-python?fbclid=IwAR0uvoiEj_Xy7Pq8q64IY11dm2PA1YxnMOYB93R4AYudq5s-SsZx7x82-g4"
+language: "Python"
+category: "General"
+---
+---
+title: "codingame"
+type: "Website"
+link: "https://www.codingame.com/playgrounds/17176/recueil-dexercices-pour-apprendre-python-au-lycee/cours---les-boucles-for?fbclid=IwAR3g7m2T_n3uFlSeRaaiO6koqPv4w6GCZX0XCYhbjlZ-EwKtV-GPL0fzl_w"
+language: "Python"
+category: "Machine Learning"
+---
+---
+title: "pkg.garrickadenbuie"
+type: "Website"
+link: "https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "pkg.garrickadenbuie"
+type: "Website"
+link: "https://pkg.garrickadenbuie.com/xaringanthemer/index.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/gadenbuie/xaringanExtra"
+language: "Other"
+category: "General"
+---
+---
+title: "apreshill.github.io"
+type: "Website"
+link: "https://apreshill.github.io/data-vis-labs-2018/slides/06-slides_xaringan.html#82"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "apreshill.github.io"
+type: "Website"
+link: "https://apreshill.github.io/data-vis-labs-2018/index.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "r-statistics.co"
+type: "Website"
+link: "http://r-statistics.co/ggplot2-Tutorial-With-R.html#1.%20The%20Setup"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "r-pkgs"
+type: "Website"
+link: "https://r-pkgs.org/e"
+language: "Other"
+category: "General"
+---
+---
+title: "statistique-et-logiciel-r"
+type: "Website"
+link: "https://statistique-et-logiciel-r.com/introduction-aux-glm/)"
+language: "Other"
+category: "General"
+---
+---
+title: "statsoft.fr"
+type: "Website"
+link: "http://statsoft.fr/concepts-statistiques/test-non-parametriques/test-non-parametriques.htm#.XXXwwygzZaQ"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/rstudio/rstudio-conf/blob/master/2022/nicholastierney/The%20Future%20of%20NA%20Data.pdf"
+language: "R"
+category: "General"
+---
+---
+title: "nature"
+type: "Paper"
+link: "https://www.nature.com/articles/s41591-022-01768-5?utm_content=buffer9d00c&utm_medium=social&utm_source=linkedin.com&utm_campaign=buffer"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "sciencedirect"
+type: "Paper"
+link: "https://www.sciencedirect.com/science/article/abs/pii/S0950329322000568?dgcid=author"
+language: "Other"
+category: "General"
+---
+---
+title: "ai.googleblog"
+type: "Website"
+link: "https://ai.googleblog.com/2022/04/pathways-language-model-palm-scaling-to.html?m=1"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/jbkunst/klassets/?utm_campaign=Data_Elixir&utm_source=Data_Elixir_389#readme"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "emilhvitfeldt.github.io"
+type: "Website"
+link: "https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html?utm_content=bufferec866&utm_medium=social&utm_source=linkedin.com&utm_campaign=buffer"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/ronikobrosly/awesome-data-leadership?utm_campaign=Data_Elixir&utm_source=Data_Elixir_391#readme"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "dropbox"
+type: "Book"
+link: "https://www.dropbox.com/s/3ds01k9hdtn2ghb/user2022_silge.pdf?dl=0"
+language: "Other"
+category: "General"
+---
+---
+title: "appsilon"
+type: "Website"
+link: "https://appsilon.com/r-shiny-google-analytics/?utm_medium=social&utm_source=twitter&utm_campaign=shiny-ga"
+language: "R"
+category: "Shiny"
+---
+---
+title: "writethedocs"
+type: "Website"
+link: "https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/?highlight=readme#readme"
+language: "Other"
+category: "General"
+---
+---
+title: "thinkr.fr"
+type: "Website"
+link: "https://thinkr.fr/deploiement-dune-application-shiny-dans-docker-avec-renv-et-golem/?utm_source=dlvr.it&utm_medium=twitter"
+language: "R"
+category: "Shiny"
+---
+---
+title: "rtask.thinkr.fr"
+type: "Website"
+link: "https://rtask.thinkr.fr/download-gitlab-or-github-issues-and-make-a-summary-report-of-your-commits/?utm_source=dlvr.it&utm_medium=twitter"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/GoAbiAryan/status/1580852750526468097?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/ChristophMolnar/status/1570336874799190016?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/starfalldocs/status/1569248479536373764?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/PipingHotData/status/1565354597656690697?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/iximiuz/status/1563851156417298434?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/oaggimenez/status/1556559752938885120?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/jackclarkSF/status/1555980412333133824?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/WomenInStat/status/1286420597505892352?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/emollick/status/1549353991523426305?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/suzatweet/status/1545685140822687746?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/giulianonetto/status/1539707646751649793?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/iScienceLuvr/status/1531553413581791233?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/marktenenholtz/status/1522184346324459520?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/KarSergios/status/1516732541444763648?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/v_vashishta/status/1516461652400427010?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/DalianaLiu/status/1513962919884591106?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/marktenenholtz/status/1511312726923964421?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/heyeaslo/status/1487607754692956166?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/heyeaslo/status/1505725893674627075?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/ChristophMolnar/status/1504449282073677824?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/marktenenholtz/status/1501905740813848582?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/data_question/status/1498303990110777346?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/ChristophMolnar/status/1485549716268109824?s=20&t=qFrbF1hlfZcc5gElrfCXaw"
+language: "Other"
+category: "General"
+---
+---
+title: "youtu.be"
+type: "Video"
+link: "https://youtu.be/NFo9v_yKQXA"
+language: "Other"
+category: "General"
+---
+---
+title: "nature"
+type: "Paper"
+link: "https://www.nature.com/articles/s41562-022-01464-x?utm_source=twitter&utm_medium=social&utm_campaign=nathumbehav"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "youtu.be"
+type: "Video"
+link: "https://youtu.be/vO_Wn2tgIck"
+language: "Other"
+category: "General"
+---
+---
+title: "sites.google"
+type: "Website"
+link: "https://sites.google.com/site/indrajeetspatilmorality/presentations"
+language: "Other"
+category: "General"
+---
+---
+title: "statnmap"
+type: "Website"
+link: "https://statnmap.com/fr/2021-10-09-comment-ne-pas-etre-perdu-avec-vscode-quand-on-vient-de-rstudio/"
+language: "R"
+category: "General"
+---
+---
+title: "lajeunesse.myweb.usf.edu"
+type: "Website"
+link: "http://lajeunesse.myweb.usf.edu/switchboard/LajeunesseLab_quick_switchboard_simulations.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "huggingface.co"
+type: "Website"
+link: "https://huggingface.co/spaces/nielsr/text-based-inpainting"
+language: "Python"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/jfpuget/NVIDIA-PCQM4Mv2/tree/main/TransformerM#readme"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "rselenium-teaching.etiennebacher"
+type: "Website"
+link: "https://www.rselenium-teaching.etiennebacher.com/#/title-slide"
+language: "Other"
+category: "General"
+---
+---
+title: "indrajeetpatil.github.io"
+type: "Website"
+link: "https://indrajeetpatil.github.io/dry-r-package-development/#/dry-package-development-in-r"
+language: "Other"
+category: "General"
+---
+---
+title: "afia.asso.fr"
+type: "Website"
+link: "https://afia.asso.fr/p"
+language: "Other"
+category: "General"
+---
+---
+title: "playground.tensorflow"
+type: "Website"
+link: "https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.38845&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false"
+language: "Python"
+category: "Bayesian"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/andrewheiss/ath-quarto"
+language: "Other"
+category: "Reproducibility"
+---
+---
+title: "codyhouse.co"
+type: "Website"
+link: "https://codyhouse.co/nuggets"
+language: "Other"
+category: "General"
+---
+---
+title: "indrajeetpatil.github.io"
+type: "Website"
+link: "https://indrajeetpatil.github.io/awesome-r-pkgtools/"
+language: "Other"
+category: "General"
+---
+---
+title: "library.bayesia"
+type: "Book"
+link: "https://library.bayesia.com/articles/#!bayesialab-knowledge-hub/webinars-seminars-case-studies-the-book-of-why"
+language: "Other"
+category: "Bayesian"
+---
+---
+title: "emilhvitfeldt.github.io"
+type: "Website"
+link: "https://emilhvitfeldt.github.io/quarto-iframe-examples/#/section-13"
+language: "Other"
+category: "Reproducibility"
+---
+---
+title: "ellakaye.co.uk"
+type: "Website"
+link: "https://ellakaye.co.uk/"
+language: "Other"
+category: "General"
+---
+---
+title: "mgirlich.github.io"
+type: "Website"
+link: "https://mgirlich.github.io/tibblify/"
+language: "Other"
+category: "General"
+---
+---
+title: "linc.cnil.fr"
+type: "Website"
+link: "https://linc.cnil.fr/fr/evaluer-la-protection-de-votre-navigateur-au-moyen-de-lextension-cookieviz"
+language: "Other"
+category: "Data Visualization"
+---
+---
+title: "arxiv"
+type: "Paper"
+link: "https://arxiv.org/abs/2211.09110"
+language: "Other"
+category: "General"
+---
+---
+title: "colauttilab.github.io"
+type: "Website"
+link: "https://colauttilab.github.io/RCrashCourse/4_regex.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "jumpingrivers"
+type: "Website"
+link: "https://www.jumpingrivers.com/blog/quarto-rmarkdown-comparison/"
+language: "Other"
+category: "Reproducibility"
+---
+---
+title: "plantuml"
+type: "Website"
+link: "https://plantuml.com/fr/ascii-math"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "riffusion"
+type: "Website"
+link: "https://www.riffusion.com/about"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/EleutherAI/pythia"
+language: "Other"
+category: "General"
+---
+---
+title: "arxiv"
+type: "Paper"
+link: "https://arxiv.org/abs/2208.07614"
+language: "Other"
+category: "General"
+---
+---
+title: "indrajeetpatil.github.io"
+type: "Website"
+link: "https://indrajeetpatil.github.io/dry-r-package-development/#/plan"
+language: "Other"
+category: "General"
+---
+---
+title: "dynalist.io"
+type: "Website"
+link: "https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J"
+language: "Other"
+category: "General"
+---
+---
+title: "johnbedwards.io"
+type: "Website"
+link: "https://johnbedwards.io/blog/stacks/"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/MichelNivard/GPTstudio"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/JamesHWade/gpttools"
+language: "Other"
+category: "General"
+---
+---
+title: "ruder.io"
+type: "Website"
+link: "https://ruder.io/optimizing-gradient-descent/"
+language: "Other"
+category: "General"
+---
+---
+title: "gspmalloy"
+type: "Website"
+link: "https://medium.com/@gspmalloy/a-quick-intro-to-infectious-disease-modeling-in-r-for-beginners-5f4dbdf68e9e"
+language: "Other"
+category: "General"
+---
+---
+title: "xcorr.net"
+type: "Website"
+link: "https://xcorr.net/2023/01/01/2022-in-review-neuroai-comes-of-age/"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "thomas-neitmann.github.io"
+type: "Website"
+link: "https://thomas-neitmann.github.io/ggcharts/index.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "huggingface.co"
+type: "Website"
+link: "https://huggingface.co/blog/intro-graphml"
+language: "Python"
+category: "Machine Learning"
+---
+---
+title: "bayesianspectacles"
+type: "Website"
+link: "https://www.bayesianspectacles.org/"
+language: "Other"
+category: "Bayesian"
+---
+---
+title: "evalsp23.classes.andrewheiss"
+type: "Website"
+link: "https://evalsp23.classes.andrewheiss.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "isaac-flath.tech"
+type: "Website"
+link: "https://isaac-flath.tech/posts/other/quartodocumentsbestpractices"
+language: "Other"
+category: "Reproducibility"
+---
+---
+title: "pudding.cool"
+type: "Website"
+link: "https://pudding.cool/"
+language: "Other"
+category: "General"
+---
+---
+title: "stephaniehicks"
+type: "Website"
+link: "https://www.stephaniehicks.com/jhustatcomputing2022/schedule"
+language: "Other"
+category: "General"
+---
+---
+title: "stephaniehicks"
+type: "Website"
+link: "https://www.stephaniehicks.com/jhustatprogramming2022/schedule"
+language: "Other"
+category: "General"
+---
+---
+title: "wandb.ai"
+type: "Website"
+link: "https://wandb.ai/carperai/summarize_RLHF/reports/Implementing-RLHF-Learning-to-Summarize-with-trlX--VmlldzozMzAwODM2"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "quantmetry"
+type: "Website"
+link: "https://www.quantmetry.com/blog/domaine-de-validite-ia-confiance/"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "geocompx"
+type: "Website"
+link: "https://geocompx.org/"
+language: "Other"
+category: "General"
+---
+---
+title: "makevscodeawesome"
+type: "Website"
+link: "https://makevscodeawesome.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "voltrondata"
+type: "Website"
+link: "https://voltrondata.com/resources/12-open-source-projects-to-watch-2023?utm_source=twitter&utm_medium=thread&utm_campaign=12_os_projects_to_watch_in_2023&utm_content=release_011223#project-substrait"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "jhepc.github.io"
+type: "Website"
+link: "https://jhepc.github.io/gallery.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "udlbook.github.io"
+type: "Book"
+link: "https://udlbook.github.io/udlbook/"
+language: "Other"
+category: "General"
+---
+---
+title: "fr.vittascience"
+type: "Website"
+link: "https://fr.vittascience.com/learn/?search=&support=&difficulty=&lang=fr"
+language: "Other"
+category: "General"
+---
+---
+title: "stats.oarc.ucla.edu"
+type: "Website"
+link: "https://stats.oarc.ucla.edu/r/"
+language: "Other"
+category: "General"
+---
+---
+title: "moderndive"
+type: "Website"
+link: "https://moderndive.com/index.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "rscreencasts"
+type: "Website"
+link: "https://www.rscreencasts.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/linkwarden/linkwarden"
+language: "Other"
+category: "General"
+---
+---
+title: "docs.kedro"
+type: "Website"
+link: "https://docs.kedro.org/en/stable/index.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "bachl.github.io"
+type: "Website"
+link: "https://bachl.github.io/sim/"
+language: "Other"
+category: "General"
+---
+---
+title: "lihualei71.github.io"
+type: "Website"
+link: "https://lihualei71.github.io/cfcausal/articles/cfcausal_demo.html"
+language: "Other"
+category: "Bayesian"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/etiennebacher/tidypolars"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/Alpha-VLLM/LLaMA2-Accessory"
+language: "Other"
+category: "General"
+---
+---
+title: "nixtla.github.io"
+type: "Website"
+link: "https://nixtla.github.io/statsforecast/"
+language: "Other"
+category: "General"
+---
+---
+title: "hsph.harvard.edu"
+type: "Book"
+link: "https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/"
+language: "Other"
+category: "Bayesian"
+---
+---
+title: "r-causal.github.io"
+type: "Website"
+link: "https://r-causal.github.io/r-causal-blog/"
+language: "Other"
+category: "Bayesian"
+---
+---
+title: "raps-with-r.dev"
+type: "Website"
+link: "https://raps-with-r.dev/"
+language: "Other"
+category: "General"
+---
+---
+title: "rolkra.github.io"
+type: "Website"
+link: "https://rolkra.github.io/R-VSCode/"
+language: "Other"
+category: "General"
+---
+---
+title: "andrewheiss"
+type: "Website"
+link: "https://www.andrewheiss.com/blog/2023/07/25/conjoint-bayesian-frequentist-guide/"
+language: "Other"
+category: "Bayesian"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/matthewvowels1/Awesome-Causal-Inference"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/tiimgreen/github-cheat-sheet"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/jnv/lists"
+language: "Other"
+category: "General"
+---
+---
+title: "appsilon"
+type: "Website"
+link: "https://appsilon.com/r-shiny-pharma-biotech-examples/#clincal?utm_medium=social&utm_source=linkedin&utm_campaign=45161"
+language: "R"
+category: "Shiny"
+---
+---
+title: "appsilon"
+type: "Website"
+link: "https://appsilon.com/bringing-webr-into-shiny/"
+language: "R"
+category: "Shiny"
+---
+---
+title: "andrewheiss"
+type: "Website"
+link: "https://www.andrewheiss.com/blog/2022/05/20/marginalia/"
+language: "Other"
+category: "General"
+---
+---
+title: "arelbundock"
+type: "Website"
+link: "https://arelbundock.com/marginaleffects_conformal.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/jondot/awesome-devenv"
+language: "Other"
+category: "General"
+---
+---
+title: "huggingface.co"
+type: "Website"
+link: "https://huggingface.co/spaces/HuggingFaceM4/ai_dad_jokes"
+language: "Python"
+category: "Machine Learning"
+---
+---
+title: "cloud.google"
+type: "Website"
+link: "https://cloud.google.com/blog/products/maps-platform/announcing-pollen-api-providing-actionable-info-about-airborne-pollen-levels-worldwide?hl=en"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "r-consortium"
+type: "Website"
+link: "https://www.r-consortium.org/tag/r-pharma"
+language: "Other"
+category: "General"
+---
+---
+title: "twitter"
+type: "Social"
+link: "https://twitter.com/GregoireSimpson/status/1655239877783347201?t=AmmSEMTAbxZI8yt4tx8Oaw&s=19"
+language: "Other"
+category: "General"
+---
+---
+title: "shutterencoder"
+type: "Website"
+link: "https://www.shutterencoder.com/fr/"
+language: "Other"
+category: "General"
+---
+---
+title: "spacesniffer.fr.softonic"
+type: "Website"
+link: "https://spacesniffer.fr.softonic.com/m"
+language: "Other"
+category: "General"
+---
+---
+title: "fromsmash"
+type: "Website"
+link: "https://fromsmash.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "arxiv"
+type: "Paper"
+link: "https://arxiv.org/abs/2302.07730"
+language: "Other"
+category: "General"
+---
+---
+title: "openpress.sussex.ac.uk"
+type: "Website"
+link: "https://openpress.sussex.ac.uk/introductiontobiologicalpsychology"
+language: "Other"
+category: "General"
+---
+---
+title: "psyteachr.github.io"
+type: "Website"
+link: "https://psyteachr.github.io/"
+language: "Other"
+category: "General"
+---
+---
+title: "bortzmeyer"
+type: "Website"
+link: "https://www.bortzmeyer.org/"
+language: "Other"
+category: "General"
+---
+---
+title: "bougioukas-medstats-r.netlify.app"
+type: "Website"
+link: "https://bougioukas-medstats-r.netlify.app/"
+language: "Other"
+category: "General"
+---
+---
+title: "good-practices.etiennebacher"
+type: "Website"
+link: "https://www.good-practices.etiennebacher.com/#/title-slide"
+language: "Other"
+category: "General"
+---
+---
+title: "justice.pappers.fr"
+type: "Website"
+link: "https://justice.pappers.fr/"
+language: "Other"
+category: "General"
+---
+---
+title: "nrennie.rbind.io"
+type: "Website"
+link: "https://nrennie.rbind.io/talks/rladies-cambridge-ggplot2-colours/"
+language: "Other"
+category: "Data Visualization"
+---
+---
+title: "observablehq"
+type: "Website"
+link: "https://observablehq.com/@observablehq/data-wrangling-translations"
+language: "Other"
+category: "General"
+---
+---
+title: "davidpicard.github.io"
+type: "Website"
+link: "https://davidpicard.github.io/"
+language: "Other"
+category: "General"
+---
+---
+title: "yards.albert-rapp.de"
+type: "Website"
+link: "https://yards.albert-rapp.de/index.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "hypebright.nl"
+type: "Website"
+link: "https://hypebright.nl/index.php/en/2023/07/25/building-serverless-shiny-apps-with-webr-a-step-by-step-guide/"
+language: "R"
+category: "Shiny"
+---
+---
+title: "youtu.be"
+type: "Video"
+link: "https://youtu.be/DTMVzK7iZFU"
+language: "Other"
+category: "General"
+---
+---
+title: "unleash-shiny.rinterface"
+type: "Website"
+link: "https://unleash-shiny.rinterface.com"
+language: "R"
+category: "Shiny"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/chainsawriot/rang"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "tanyaviz"
+type: "Website"
+link: "https://tanyaviz.com/talks/"
+language: "Other"
+category: "Data Visualization"
+---
+---
+title: "solomonkurz.netlify.app"
+type: "Website"
+link: "https://solomonkurz.netlify.app/blog/2023-04-12-boost-your-power-with-baseline-covariates/"
+language: "Other"
+category: "General"
+---
+---
+title: "speakerdeck"
+type: "Website"
+link: "https://speakerdeck.com/gaelvaroquaux/representation-learning-on-relational-data-to-automate-data-preparation?slide=7"
+language: "Other"
+category: "General"
+---
+---
+title: "cambridge"
+type: "Website"
+link: "https://www.cambridge.org/core/elements/language-of-fake-news/7B37014A5C0768AEE806167E8ADD5897"
+language: "Other"
+category: "General"
+---
+---
+title: "schmidtpaul.github.io"
+type: "Website"
+link: "https://schmidtpaul.github.io/"
+language: "Other"
+category: "General"
+---
+---
+title: "gpt4all.io"
+type: "Website"
+link: "https://gpt4all.io/index.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/Hannibal046/Awesome-LLM#other-awesome-lists"
+language: "Other"
+category: "General"
+---
+---
+title: "slds-lmu.github.io"
+type: "Website"
+link: "https://slds-lmu.github.io/iml_methods_limitations/"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "githubnext"
+type: "Website"
+link: "https://githubnext.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "t.co"
+type: "Website"
+link: "https://t.co/AflLxMgm0I"
+language: "Other"
+category: "General"
+---
+---
+title: "bookdown"
+type: "Book"
+link: "https://bookdown.org/content/4253/"
+language: "Other"
+category: "General"
+---
+---
+title: "arxiv"
+type: "Paper"
+link: "https://arxiv.org/abs/2103.11251"
+language: "Other"
+category: "General"
+---
+---
+title: "arxiv"
+type: "Paper"
+link: "https://arxiv.org/abs/1702.08608"
+language: "Other"
+category: "General"
+---
+---
+title: "arxiv"
+type: "Paper"
+link: "https://arxiv.org/abs/1901.04592"
+language: "Other"
+category: "General"
+---
+---
+title: "datarevenue"
+type: "Website"
+link: "https://www.datarevenue.com/en-blog/interpretable-machine-learning"
+language: "Other"
+category: "General"
+---
+---
+title: "blog.ml.cmu.edu"
+type: "Website"
+link: "https://blog.ml.cmu.edu/2020/08/31/6-interpretability/"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "thegradient.pub"
+type: "Website"
+link: "https://thegradient.pub/interpretability-in-ml-a-broad-overview/"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/moodymudskipper"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/orgs/InseeFrLab/repositories"
+language: "R"
+category: "General"
+---
+---
+title: "confiance.ai"
+type: "Website"
+link: "https://www.confiance.ai/"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "pythonds.linogaliana.fr"
+type: "Website"
+link: "https://pythonds.linogaliana.fr/"
+language: "Python"
+category: "General"
+---
+---
+title: "bcirwis2021.github.io"
+type: "Website"
+link: "https://bcirwis2021.github.io/schedule.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "statnmap"
+type: "Website"
+link: "https://statnmap.com/fr/2021-10-09-comment-ne-pas-etre-perdu-avec-vscode-quand-on-vient-de-rstudio/#je-ne-comprend-pas-sa-fa%C3%A7on-douvrir-des-fichiers-dans-des-onglets"
+language: "R"
+category: "General"
+---
+---
+title: "datamares.netlify.app"
+type: "Website"
+link: "https://datamares.netlify.app/en/post/r-vscode/"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/georgestagg/shiny-standalone-webr-demo"
+language: "R"
+category: "Shiny"
+---
+---
+title: "pages.citedrive"
+type: "Website"
+link: "https://pages.citedrive.com/r-markdown/"
+language: "Other"
+category: "General"
+---
+---
+title: "colinfay.me"
+type: "Website"
+link: "https://colinfay.me/old-faithful-express-bootstrap-webr"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "huggingface.co"
+type: "Website"
+link: "https://huggingface.co/chat/"
+language: "Python"
+category: "General"
+---
+---
+title: "legigpt.fr"
+type: "Website"
+link: "https://legigpt.fr/"
+language: "Other"
+category: "General"
+---
+---
+title: "interiorai"
+type: "Website"
+link: "https://interiorai.com/"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "poe"
+type: "Website"
+link: "https://poe.com/login?redirect_url=%2F"
+language: "Other"
+category: "General"
+---
+---
+title: "tellingstorieswithdata"
+type: "Website"
+link: "https://tellingstorieswithdata.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/bigcode-project/starcoder/tree/main"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "huggingface.co"
+type: "Website"
+link: "https://huggingface.co/spaces/HuggingFaceH4/starchat-playground"
+language: "Python"
+category: "General"
+---
+---
+title: "huggingface.co"
+type: "Website"
+link: "https://huggingface.co/blog/inference-endpoints-llm"
+language: "Python"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/mshumer/gpt-prompt-engineer"
+language: "Other"
+category: "General"
+---
+---
+title: "calicarpa"
+type: "Website"
+link: "https://www.calicarpa.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "infomaniak"
+type: "Website"
+link: "https://www.infomaniak.com/fr"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/Giskard-AI/giskard?utm_campaign=Star%20us%20on%20Github&utm_content=166359246&utm_medium=social&utm_source=linkedin&hss_channel=lis-1hjc_qkWxD"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "consensus.app"
+type: "Website"
+link: "https://consensus.app/"
+language: "Other"
+category: "General"
+---
+---
+title: "nature"
+type: "Paper"
+link: "https://www.nature.com/articles/s41562-023-01623-8"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/ShishirPatil/gorilla"
+language: "Other"
+category: "General"
+---
+---
+title: "huggingface.co"
+type: "Website"
+link: "https://huggingface.co/blog/document-ai"
+language: "Python"
+category: "Machine Learning"
+---
+---
+title: "yjernite.github.io"
+type: "Website"
+link: "https://yjernite.github.io/lfqa.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "do4ds"
+type: "Website"
+link: "https://do4ds.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "pub.demo.posit.team"
+type: "Website"
+link: "https://pub.demo.posit.team/public/Life_Sciences_Shiny_Showcase/"
+language: "R"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/tangandhara/stravaDashboard/blob/main/stravaDashboard/stravaDashboard.R"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/labsyspharm/smallmoleculesuite/tree/master"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "rud.is"
+type: "Website"
+link: "https://rud.is/b/2018/04/08/dissecting-r-package-utility-belts/"
+language: "Other"
+category: "General"
+---
+---
+title: "cducloux.quarto.pub"
+type: "Website"
+link: "https://cducloux.quarto.pub/sections/projects.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/ollama/ollama"
+language: "Other"
+category: "General"
+---
+---
+title: "glittr"
+type: "Website"
+link: "https://glittr.org/contribute"
+language: "Other"
+category: "General"
+---
+---
+title: "summarize.ing"
+type: "Website"
+link: "https://summarize.ing/fr/pricing"
+language: "Other"
+category: "General"
+---
+---
+title: "tidy-finance"
+type: "Website"
+link: "https://www.tidy-finance.org/r/"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/toeverything/AFFiNE"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/Kanaries/pygwalker?tab=readme-ov-file"
+language: "Other"
+category: "General"
+---
+---
+title: "nrennie.rbind.io"
+type: "Website"
+link: "https://nrennie.rbind.io/talks/satrdays-london-2024/slides.html#/useful-links"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/ketchbrookanalytics/quarto-pdf-dev"
+language: "Other"
+category: "Reproducibility"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/GeostatsGuy/DataScience_Interactive_Python/blob/main/Interactive_Model_Fitting.ipynb"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "arxiv"
+type: "Paper"
+link: "https://arxiv.org/abs/2404.19756"
+language: "Other"
+category: "General"
+---
+---
+title: "kindxiaoming.github.io"
+type: "Website"
+link: "https://kindxiaoming.github.io/pykan/kan.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "paperswithcode"
+type: "Website"
+link: "https://paperswithcode.com/sota"
+language: "Other"
+category: "General"
+---
+---
+title: "indiedown.cynkra"
+type: "Website"
+link: "https://indiedown.cynkra.com/articles/indiedown.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/GeostatsGuy/DataScience_Interactive_Python/blob/main/Interactive_PCA.ipynb"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/yihui/litedown"
+language: "Other"
+category: "General"
+---
+---
+title: "colah.github.io"
+type: "Website"
+link: "https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/"
+language: "Other"
+category: "General"
+---
+---
+title: "colah.github.io"
+type: "Website"
+link: "https://colah.github.io/"
+language: "Other"
+category: "General"
+---
+---
+title: "fireducks-dev.github.io"
+type: "Website"
+link: "https://fireducks-dev.github.io/docs/benchmarks/"
+language: "Other"
+category: "General"
+---
+---
+title: "docs.sk8.inrae.fr"
+type: "Website"
+link: "https://docs.sk8.inrae.fr/01-hebergement.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/Avaiga/taipy"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/OpenDevin/OpenDevin"
+language: "Other"
+category: "General"
+---
+---
+title: "training.talkpython.fm"
+type: "Website"
+link: "https://training.talkpython.fm/purchase/access_code/dashboards-with-shiny-course"
+language: "R"
+category: "Shiny"
+---
+---
+title: "calculatingempires.net"
+type: "Website"
+link: "https://calculatingempires.net/?pos=157414.82%2C14853.40%2C14.3526"
+language: "Other"
+category: "General"
+---
+---
+title: "roadmap.sh"
+type: "Website"
+link: "https://roadmap.sh/"
+language: "Other"
+category: "General"
+---
+---
+title: "livebook.dev"
+type: "Book"
+link: "https://livebook.dev/?utm_source=twitter&utm_medium=social&utm_content=twitter-livebook-profile"
+language: "Other"
+category: "General"
+---
+---
+title: "b-rodrigues.github.io"
+type: "Website"
+link: "https://b-rodrigues.github.io/rix/articles/a-getting-started.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "jiddualexander"
+type: "Website"
+link: "https://www.jiddualexander.com/svg-input-generator"
+language: "Other"
+category: "General"
+---
+---
+title: "llmfight.club"
+type: "Website"
+link: "https://www.llmfight.club/"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/the-y-company/flexfilter?tab=readme-ov-file"
+language: "Other"
+category: "General"
+---
+---
+title: "r-packages.io"
+type: "Website"
+link: "https://r-packages.io/"
+language: "Other"
+category: "General"
+---
+---
+title: "joss.theoj"
+type: "Website"
+link: "https://joss.theoj.org/papers/10.21105/joss.06394"
+language: "Other"
+category: "General"
+---
+---
+title: "zed.dev"
+type: "Website"
+link: "https://zed.dev/"
+language: "Other"
+category: "General"
+---
+---
+title: "emilhvitfeldt.github.io"
+type: "Website"
+link: "https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/03-linear-regression.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "magicinsert.github.io"
+type: "Website"
+link: "https://magicinsert.github.io/"
+language: "Other"
+category: "General"
+---
+---
+title: "francoismichonneau.net"
+type: "Website"
+link: "https://francoismichonneau.net/hire-me/"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/kennedymwavu/ambiorix-examples/tree/main/09_goals"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "theclarkeorbit.github.io"
+type: "Website"
+link: "https://theclarkeorbit.github.io/tidymodels-and-conformal-prediction.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "taipy.io"
+type: "Website"
+link: "https://taipy.io/designer?ref=twitter&utm_source=twitter&utm_medium=social&utm_campaign=taipy_designer&utm_term=free_trial"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/advaitgosai/autocite"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "blockr-org.github.io"
+type: "Website"
+link: "https://blockr-org.github.io/blockr/articles/blockr_examples.html#dynamical-systems"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "vincentarelbundock.github.io"
+type: "Website"
+link: "https://vincentarelbundock.github.io/tinytable/"
+language: "Other"
+category: "General"
+---
+---
+title: "cursor"
+type: "Website"
+link: "https://www.cursor.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "posit-conf-2024.github.io"
+type: "Website"
+link: "https://posit-conf-2024.github.io/databases/#1"
+language: "R"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/posit-marketing/shiny-calendar"
+language: "R"
+category: "Shiny"
+---
+---
+title: "r-bloggers"
+type: "Website"
+link: "https://www.r-bloggers.com/2016/12/reactive-acronym-list-in-stratvis-a-timevis-based-shiny-app/"
+language: "R"
+category: "Shiny"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/padamson/stratvis/blob/master/example/server.R"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/epi-interactive/Datatable_Overlay"
+language: "Other"
+category: "General"
+---
+---
+title: "r-wasm.github.io"
+type: "Website"
+link: "https://r-wasm.github.io/quarto-drop/example.html#/title-slide"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/ddotta/ddotta"
+language: "Other"
+category: "General"
+---
+---
+title: "hutchdatascience"
+type: "Website"
+link: "https://hutchdatascience.org/data_snacks/r_snacks/sas2r.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "posit.co"
+type: "Website"
+link: "https://posit.co/blog/winners-of-the-2024-shiny-contest/"
+language: "R"
+category: "Shiny"
+---
+---
+title: "wikicrow.ai"
+type: "Website"
+link: "https://wikicrow.ai/A1BG"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "shiny.posit.co"
+type: "Website"
+link: "https://shiny.posit.co/r/articles/improve/debugging/"
+language: "R"
+category: "Shiny"
+---
+---
+title: "themockup.blog"
+type: "Website"
+link: "https://themockup.blog/"
+language: "Other"
+category: "General"
+---
+---
+title: "vdsbook"
+type: "Book"
+link: "https://vdsbook.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "rebeccabarter"
+type: "Website"
+link: "https://rebeccabarter.com/blog/2019-08-19_purrr"
+language: "Other"
+category: "General"
+---
+---
+title: "jchiquet.github.io"
+type: "Website"
+link: "https://jchiquet.github.io/MAP566/"
+language: "Other"
+category: "General"
+---
+---
+title: "pynerds"
+type: "Website"
+link: "https://www.pynerds.com/modules-in-python/"
+language: "Python"
+category: "General"
+---
+---
+title: "vapour.run"
+type: "Website"
+link: "https://vapour.run/"
+language: "Other"
+category: "General"
+---
+---
+title: "ollama"
+type: "Website"
+link: "https://ollama.com/blog/continue-code-assistant"
+language: "Other"
+category: "General"
+---
+---
+title: "trypear.ai"
+type: "Website"
+link: "https://trypear.ai/docs/quickstart"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "cosimameyer"
+type: "Website"
+link: "https://cosimameyer.com/post/git-the-perks-of-collaboration-and-version-control/"
+language: "Other"
+category: "General"
+---
+---
+title: "rtask.thinkr.fr"
+type: "Website"
+link: "https://rtask.thinkr.fr/fr/attentes-verifiees-plongez-dans-lunivers-des-tests-unitaires-avec-expect_/#Jai_pas_le_temps_de_lire_de_quoi_ca_parle"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "rtask.thinkr.fr"
+type: "Website"
+link: "https://rtask.thinkr.fr/fr/au-dela-des-fonctions-comment-enrichir-un-package-r-avec-des-donnees/"
+language: "Other"
+category: "General"
+---
+---
+title: "clementc.github.io"
+type: "Website"
+link: "https://clementc.github.io/blog/2024/10/23/notes_on_PyData_Paris_2024/"
+language: "Other"
+category: "General"
+---
+---
+title: "presentofcoding.substack"
+type: "Website"
+link: "https://presentofcoding.substack.com/p/github-how-to-tell-your-professional"
+language: "Other"
+category: "General"
+---
+---
+title: "pastum.anatolii.nz"
+type: "Website"
+link: "https://pastum.anatolii.nz/"
+language: "Other"
+category: "General"
+---
+---
+title: "ml-science-book"
+type: "Book"
+link: "https://ml-science-book.com/causality.html"
+language: "Other"
+category: "Bayesian"
+---
+---
+title: "llamaocr"
+type: "Website"
+link: "https://llamaocr.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "korben.info"
+type: "Website"
+link: "https://korben.info/yt2doc-transcription-video-en-markdown.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "pythonds.linogaliana.fr"
+type: "Website"
+link: "https://pythonds.linogaliana.fr/content/NLP/"
+language: "Python"
+category: "General"
+---
+---
+title: "pydevtools"
+type: "Website"
+link: "https://pydevtools.com/blog/effective-python-developer-tooling-in-december-2024/"
+language: "Python"
+category: "General"
+---
+---
+title: "closeread.dev"
+type: "Website"
+link: "https://closeread.dev/"
+language: "Other"
+category: "General"
+---
+---
+title: "docs.astral.sh"
+type: "Website"
+link: "https://docs.astral.sh/ruff/"
+language: "Other"
+category: "General"
+---
+---
+title: "maturin.rs"
+type: "Website"
+link: "https://www.maturin.rs/tutorial.html"
+language: "Other"
+category: "Machine Learning"
+---
+---
+title: "astral.sh"
+type: "Website"
+link: "https://astral.sh/blog/uv"
+language: "Other"
+category: "General"
+---
+---
+title: "github"
+type: "Repository"
+link: "https://github.com/stackblitz-labs/bolt.diy"
+language: "Other"
+category: "General"
+---
+---
+title: "openwebui"
+type: "Website"
+link: "https://openwebui.com/"
+language: "Other"
+category: "General"
+---
+---
+title: "codewiki.google"
+type: "Repository"
+link: "https://codewiki.google/github.com/posit-dev/py-shiny#user-interface-components-and-rendering-reactive-output-rendering-system"
+language: "R"
+category: "Shiny"
+---
+---
+title: "docs.github"
+type: "Repository"
+link: "https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-cli"
+language: "Other"
+category: "General"
+---
