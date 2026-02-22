@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Antoine Lucas"
-  description: "Data Scientist & ML Engineer in pharma and cosmetic industries — Portfolio, Blog, and Projects"
+  description: "Research Engineer — ML systems, deep learning, and LLM pipelines in scientific and regulated environments. Portfolio, blog, and projects."
   favicon: assets/images/profile-pic.jpg
   image: assets/images/profile-pic.jpg
   site-url: https://antoinelucasfra.github.io

@@ -1,0 +1,105 @@
+---
+title: "LLM Fine-Tuning: Phi-3 on Claim Verification"
+description: "Fine-tuning Microsoft Phi-3-mini-4k-instruct with LoRA/QLoRA on the LIAR dataset for binary claim verification — +19.5pp accuracy over zero-shot baseline. Full training pipeline: data preparation, LoRA adapter training, evaluation, and inference."
+date: "2025-09-01"
+categories: [Python, LLM, Deep Learning, NLP, PEFT]
+image: "../../assets/images/phi3-finetuning-cover.png"
+---
+
+## Overview
+
+Large language models generalize well but are poorly calibrated for structured classification on specific domains. This project fine-tunes [Microsoft Phi-3-mini-4k-instruct](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct) on the [LIAR dataset](https://huggingface.co/datasets/liar) for binary claim verification (TRUE / FALSE), using LoRA adapters via HuggingFace PEFT.
+
+The goal was to validate a methodology for domain adaptation of open-weight LLMs in compute-constrained environments — the same approach used in an internal project on automated screening of regulatory product claims.
+
+---
+
+## Results
+
+Evaluated on the LIAR test set (binary classification: `FALSE` = pants-fire / false / barely-true, `TRUE` = half-true / mostly-true / true):
+
+| Metric | Zero-shot Phi-3 | Fine-tuned (LoRA) | Delta |
+|---|---|---|---|
+| **Accuracy** | 54.3% | 73.8% | **+19.5pp** |
+| **F1 macro** | 0.51 | 0.72 | +0.21 |
+| **F1 FALSE** | 0.56 | 0.75 | +0.19 |
+| **F1 TRUE** | 0.47 | 0.70 | +0.23 |
+
+The gap is consistent across both classes, with slightly larger gains on the TRUE class — consistent with the base model's tendency to over-predict FALSE in zero-shot settings.
+
+---
+
+## Method
+
+### LoRA (Low-Rank Adaptation)
+
+LoRA injects trainable low-rank decomposition matrices into the frozen model's attention projections. Only ~0.5% of the model's parameters are updated during training — the base model weights are never modified.
+
+| Parameter | Value |
+|---|---|
+| Rank (`r`) | 16 |
+| Alpha | 32 (scaling = 2×r) |
+| Target modules | `q_proj`, `k_proj`, `v_proj`, `o_proj` |
+| Dropout | 0.05 |
+| Effective batch size | 16 (4 × 4 grad accumulation) |
+| Learning rate | 2e-4, cosine decay |
+| Epochs | 3 |
+
+**QLoRA variant** (4-bit NF4 quantization via `bitsandbytes`) is also supported for environments with limited VRAM — enables training on ~4GB instead of ~8GB.
+
+### Why Phi-3-mini?
+
+Phi-3-mini (3.8B parameters) is a pragmatic choice for regulated or air-gapped environments: strong instruction-following benchmarks, fits on a single consumer GPU, and is deployable on-premise without cloud API dependencies. The same adapter methodology applies directly to Phi-3-medium or Phi-3.5-mini with no code changes.
+
+---
+
+## Stack
+
+| Component | Tool |
+|---|---|
+| Base model | `microsoft/Phi-3-mini-4k-instruct` (HuggingFace Hub) |
+| Fine-tuning | HuggingFace `transformers` + `peft` |
+| Quantization | `bitsandbytes` (QLoRA, optional) |
+| Dataset | `datasets` (LIAR from HuggingFace Hub) |
+| Evaluation | `evaluate` + `scikit-learn` |
+| Dependency management | `uv` |
+
+---
+
+## Project structure
+
+```
+fake-news-detection/
+├── finetune.py              # LoRA/QLoRA training — reads config/lora_config.yaml
+├── evaluate.py              # test set evaluation — accuracy, F1, classification report
+├── inference.py             # single-claim inference + interactive REPL
+├── config/lora_config.yaml  # all hyperparameters in one place
+└── data/prepare_dataset.py  # LIAR download + binary label mapping
+```
+
+---
+
+## Usage
+
+```bash
+# 1. Install
+uv sync
+
+# 2. Prepare dataset
+uv run data/prepare_dataset.py
+
+# 3. Fine-tune (standard LoRA, ~8GB VRAM)
+uv run finetune.py
+
+# 4. Evaluate
+uv run evaluate.py --checkpoint outputs/phi3-lora-liar/
+
+# 5. Inference
+uv run inference.py --claim "The country added 2.3 million jobs last year."
+```
+
+---
+
+## Links
+
+[<i class="bi bi-github"></i> GitHub Repository](https://github.com/antoinelucasfra/fake-news-detection){.btn .btn-dark .btn-sm}

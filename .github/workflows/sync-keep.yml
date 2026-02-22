@@ -1,0 +1,41 @@
+name: Sync Keep → resources
+
+on:
+  schedule:
+    - cron: "0 7 * * 1" # Every Monday at 07:00 UTC
+  workflow_dispatch: # Manual trigger from Actions tab
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # required to commit and push resources.txt
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install Python dependencies
+        run: uv sync
+        working-directory: scripts/
+
+      - name: Sync resources from Google Keep
+        run: uv run python sync_keep.py
+        working-directory: scripts/
+        env:
+          KEEP_EMAIL: ${{ secrets.KEEP_EMAIL }}
+          KEEP_MASTER_TOKEN: ${{ secrets.KEEP_MASTER_TOKEN }}
+          KEEP_NOTE_TITLE: ${{ secrets.KEEP_NOTE_TITLE }}
+          RESOURCES_PATH: ${{ github.workspace }}/data/resources.txt
+
+      - name: Commit and push if resources.txt changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/resources.txt
+          git diff --cached --quiet || \
+            git commit -m "chore: sync resources from Google Keep"
+          git push

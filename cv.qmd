@@ -12,7 +12,7 @@ format:
   <header class="cv-header">
     <div class="cv-header-text">
       <h1 class="cv-name">Antoine Lucas</h1>
-      <p class="cv-title">Biostatistician &amp; Data Scientist</p>
+      <p class="cv-title">Research Engineer · ML Systems & Scientific AI</p>
       <p class="cv-subtitle">Pharma · Cosmetics · Biotech · Paris, France</p>
       <div class="cv-contacts">
         <a href="mailto:antoine.lucas.fra@gmail.com">
@@ -37,13 +37,14 @@ format:
   <div class="cv-rule"></div>
 
   <p class="cv-summary">
-    Biostatistician &amp; Data Scientist with 5+ years building production-grade data solutions in
-    regulated industries — pharma, cosmetics, and biotech. Expertise spans statistical
-    modelling, Design of Experiments (DoE), applied ML (computer vision, natural language processing (NLP)), and multi-omics
-    analysis. Proven track record translating complex scientific questions into end-to-end
-    systems: from study design and model development through to validated deployment and
-    stakeholder training. Strong communicator bridging wet-lab science, software engineering,
-    and business.
+    Research Engineer & Data Scientist with 5+ years building production-grade ML systems in
+    regulated and scientific environments — pharma, cosmetics, and biotech. Expertise spans
+    deep learning (computer vision, NLP, LLM fine-tuning with LoRA/QLoRA),
+    end-to-end data pipelines, and statistical modelling (Design of Experiments, mixed models,
+    multi-omics analysis). Proven track record translating complex scientific questions into
+    deployed systems: from model development and pipeline architecture through to validated
+    MLOps infrastructure and stakeholder delivery. Strong communicator at the interface of
+    wet-lab science, software engineering, and ML research.
   </p>
 ```
 
@@ -81,7 +82,7 @@ format:
 - Developed reusable internal R packages and Quarto automated reporting templates, cutting analyst turnaround time by ~25% across consulting engagements
 - Led internal upskilling programme on tidymodels, causal inference, and reproducible research for 8 statistical consultants
 - Scoped and prototyped ML solutions for pre-sales client engagements in pharma and agri-food verticals
-- Fine-tuned a Phi-3 large language model (LLM, Microsoft) on open Hugging Face datasets for fake news detection and climate claim proof retrieval — full pipeline from data preparation to evaluation
+- Fine-tuned Microsoft Phi-3-mini-4k-instruct (3.8B) using LoRA (PEFT) on the LIAR dataset for binary claim verification — full pipeline from data preparation to evaluation; +19.5pp accuracy over zero-shot baseline (54.3% → 73.8%), F1 macro 0.72
 :::
 
 ::: {.cv-entry}
@@ -159,7 +160,11 @@ format:
   <div class="cv-skills-grid">
     <div class="cv-skill-row">
       <span class="cv-skill-label">Languages</span>
-      <span class="cv-skill-value">R · Python · SQL · Bash</span>
+      <span class="cv-skill-value">Python · R · SQL · Bash</span>
+    </div>
+    <div class="cv-skill-row">
+      <span class="cv-skill-label">Deep learning &amp; LLM</span>
+      <span class="cv-skill-value">PyTorch · Hugging Face (transformers, PEFT, datasets) · LoRA / QLoRA · Instructor · faster-whisper · sentence-transformers · Ollama</span>
     </div>
     <div class="cv-skill-row">
       <span class="cv-skill-label">ML &amp; Stats</span>
@@ -167,15 +172,11 @@ format:
     </div>
     <div class="cv-skill-row">
       <span class="cv-skill-label">Apps &amp; Viz</span>
-      <span class="cv-skill-value">R Shiny (golem) · ggplot2 · Plotly · Quarto · Power BI</span>
-    </div>
-    <div class="cv-skill-row">
-      <span class="cv-skill-label">CV / NLP</span>
-      <span class="cv-skill-value">PyTorch · OpenCV · Hugging Face · sentence-transformers</span>
+      <span class="cv-skill-value">R Shiny (golem) · FastAPI · ggplot2 · Plotly · Quarto · Streamlit</span>
     </div>
     <div class="cv-skill-row">
       <span class="cv-skill-label">MLOps</span>
-      <span class="cv-skill-value">Docker · GitHub Actions · Posit Connect · Azure ML · Databricks · renv · uv</span>
+      <span class="cv-skill-value">Docker · GitHub Actions · Azure ML · Databricks · Posit Connect · renv · uv</span>
     </div>
     <div class="cv-skill-row">
       <span class="cv-skill-label">Domains</span>

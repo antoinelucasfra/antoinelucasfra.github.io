@@ -1,0 +1,810 @@
+---
+title: "Voice to Data: An LLM Pipeline for Lab Notebooks"
+author: "Antoine Lucas"
+date: "2026-02-22"
+categories: [LLM, Speech, NLP, Data Pipeline, Lab Automation]
+description: "How to replace manual ELN transcription with a voice-driven pipeline — ASR, structured extraction, domain validation, and a compliant audit trail — built for pharma and biotech R&D."
+custom-callout:
+  regulatory:
+    title: "Regulatory / GxP"
+    color: "#7B2D8B"
+    icon-symbol: "fa-scale-balanced"
+  practical:
+    title: "Practical note"
+    color: "#1A6B4A"
+    icon-symbol: "fa-flask"
+---
+
+## Honest preamble
+
+This is not a "your lab notebook will be automated in six months" post.
+
+The friction I am describing is specific and concrete: a scientist at a bench during a formulation experiment has both hands occupied — one mixing, one holding a pipette — and a mental queue of observations that need to end up as structured records in an ELN or LIMS. The current workflow is to hold those observations in working memory and transcribe them later, or to stop the manipulation, wash hands, and type. Both routes introduce errors and cognitive load at exactly the moment when focus matters most.
+
+Voice removes the keyboard as a barrier. An LLM turns unstructured speech into a structured, validated record. That is the scope of this article.
+
+**A note on the code in this article:** the pipeline described here is based on architecture developed for a client project in a regulated pharma R&D context. The code snippets are deliberately simplified and generalized — they are illustrative of the design, not production implementations. They exist to communicate the structure of the solution, not to be copy-pasted into a clinical system. Domain-specific schemas, prompt libraries, and validation rules are internal to the projects they serve.
+
+With that said, the architecture is real, the tooling choices are defensible, and the failure modes are drawn from actual use.
+
+---
+
+## The problem in concrete terms
+
+Consider a formulation scientist working on a new topical emulsion. The experiment is a typical bench session: water phase preparation, thickener addition, pH adjustment, viscosity measurement, appearance assessment. Standard operating procedure (SOP) requires every observation to be recorded with timestamp, batch identifier, operator ID, measurement value with unit, and any deviation from expected range.
+
+What actually happens:
+
+1. The scientist records observations on a paper notepad during the experiment.
+2. After the manipulation, they transcribe those notes into the ELN manually, often hours later.
+3. The ELN entry requires navigating a form interface: selecting batch, selecting timepoint, entering individual fields one at a time.
+4. This step takes 20–40 minutes for a typical bench session and happens at the end of the day when cognitive load is highest and recall is least reliable.
+
+The consequences are predictable:
+
+- **Transcription errors**: a pH of 6.8 becomes 6.9, a viscosity of 4,200 mPa·s is entered as 4,000 because the scientist no longer remembers the exact number.
+- **Missing fields**: a deviation observed during the experiment is not recorded because it seemed minor at the time and was not written down.
+- **Lag**: observations are not timestamped to the actual moment of measurement, breaking traceability.
+- **Inconsistent terminology**: "slightly hazy", "faintly turbid", and "not fully clear" describe the same observation across three different entries by the same operator.
+
+None of these are failures of discipline. They are structural consequences of asking humans to buffer observations and serialize them later under time pressure.
+
+The same pattern appears across cell culture passaging (confluence estimates, viability counts, media change notes), analytical assay readouts (HPLC peak flags, integration comments), and stability study pulls (visual appearance across timepoints). The domain varies; the friction is the same.
+
+---
+
+## Pipeline architecture
+
+The pipeline has four stages. Each one has a defined input, output, and failure surface.
+
+```
+┌─────────────────────────────────────────────────────┐
+│  INPUT: Voice (real-time mic or recorded audio file) │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│  STAGE 1 — Automatic Speech Recognition (ASR)       │
+│  Tool: faster-whisper                               │
+│  Output: raw transcript text                        │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│  STAGE 2 — Structured Extraction                    │
+│  Tool: Instructor + Pydantic + Ollama (local LLM)   │
+│  Output: typed, schema-conformant record            │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│  STAGE 3 — Validation                               │
+│  Tool: Pydantic validators + DomainValidator class  │
+│  Output: validated record or flagged review item    │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│  STAGE 4 — Serialization + Handoff                  │
+│  Output: JSON / CSV / REST payload + audit record   │
+└─────────────────────────────────────────────────────┘
+```
+
+A note on the audio input mode. There are two architecturally distinct configurations:
+
+| Mode | Description | Trade-offs |
+|---|---|---|
+| **Batch / deferred** | Scientist records a voice memo (phone, bench recorder); file is uploaded and processed after the experiment | Simpler to implement; introduces slight lag; no real-time feedback |
+| **Real-time streaming** | Microphone streams audio continuously; ASR runs on chunks; extraction runs per utterance | Lower latency; higher complexity; requires streaming ASR API |
+
+For a formulation bench context specifically, **batch mode is the correct primary choice**. A scientist with wet hands and a live emulsion in the mixer does not interact with a UI mid-experiment. The workflow is: speak a memo at each observation point, submit the audio at the end of the session. Streaming is useful for longer monitoring sessions where observations are sparse and well-separated in time. The code in this article implements the batch path.
+
+---
+
+## Stage 1 — Automatic Speech Recognition
+
+### Why Whisper, and why locally
+
+[Whisper](https://github.com/openai/whisper) is OpenAI's open-weights ASR model. The key word is open-weights: you run it on your own hardware, no audio leaves your network. In a pharma R&D context, this is not optional — it is the only defensible configuration. Audio recordings of experiments may contain compound names under NDA, formulation parameters that are trade secrets, or batch identifiers tied to regulatory submissions. Sending this audio to a cloud ASR API requires a data processing agreement, legal sign-off, and in many organizations will simply not be permitted.
+
+[`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) is a re-implementation of Whisper using CTranslate2 that runs 2–4× faster than the original PyTorch implementation on CPU, and significantly faster on GPU. On a standard lab workstation without a GPU, `faster-whisper` with the `medium` model transcribes a 3-minute audio file in approximately 15–20 seconds. Acceptable for batch mode.
+
+### The pharma vocabulary problem
+
+Whisper is trained on general speech. It will misrecognize:
+
+- Compound names: "carbomer 980" may transcribe as "carbon 980", "hydrocarbomer" as "hydro carbomer"
+- Concentration notation: "0.5% w/w" may come out as "0.5 percent double u double u"
+- Unit abbreviations: "mPa·s" will not survive as-is; the scientist typically says "millipascal seconds" or "cP"
+- Abbreviations: "API", "pH", "RPM", "BID", "QC"
+
+Mitigation strategies:
+
+1. **Initial prompt priming**: `faster-whisper` accepts an `initial_prompt` parameter. This is injected at the start of the transcription and nudges the model toward your vocabulary. A prompt like `"Formulation lab note. Batch F-204. pH, viscosity mPa·s, carbomer, excipient, API concentration."` meaningfully improves recognition of domain terms.
+2. **Post-processing normalization**: a lightweight text normalization step after ASR can standardize units and abbreviations before the extraction stage.
+3. **Fine-tuning**: for high-volume deployments, Whisper can be fine-tuned on domain-specific audio. Out of scope for this article.
+
+### Noise in the lab
+
+A formulation lab is not a recording studio. Overhead extractors, magnetic stirrers, water baths, and centrifuges all produce background noise. Practical guidance:
+
+- Use a directional (cardioid) lapel or desktop microphone, not the built-in microphone on a laptop or phone
+- Whisper's `medium` and `large` models handle moderate noise better than `tiny` or `base`
+- Consider a noise-suppression preprocessing step (e.g. [`noisereduce`](https://github.com/timsainburg/noisereduce)) for particularly noisy environments
+
+---
+
+## Stage 2 — Structured extraction
+
+### The core challenge: unstructured, hedged, incomplete speech
+
+This is the hardest stage. A scientist dictating during an experiment does not produce clean, form-like speech. Here is a realistic transcript from a formulation session:
+
+> *"Okay so this is Antoine, batch F-204, it's about 14:32. I've just added 1.2 grams of carbomer to the water phase, mixing at 500 RPM. Viscosity is approximately 4,200 — that's in millipascal seconds — pH is 5.9. Appearance is slightly hazy, no lumps visible. No deviations to report."*
+
+Problems the extraction layer must handle:
+
+| Speech pattern | Example | What to do |
+|---|---|---|
+| Hedged values | "approximately 4,200", "maybe 6.8" | Extract the value; set a `hedged` flag |
+| Inferred units | "that's in millipascal seconds" | Associate retrospectively with the preceding value |
+| Missing fields | Batch ID not stated | Set to `null`; trigger review flag |
+| Conversational filler | "Okay so", "that's about" | Ignore in extraction |
+| Multiple measurements in one utterance | pH and viscosity in same sentence | Extract as separate records or a multi-measurement record |
+
+### Why Instructor
+
+[Instructor](https://python.useinstructor.com/) is a library that wraps LLM API calls to guarantee structured output conforming to a Pydantic schema. Instead of asking the LLM to "return JSON", which produces unreliable free-form output, Instructor uses tool-calling or structured output modes to force the model to populate every field of your schema. If the model cannot populate a field, it sets it to `null` rather than hallucinating a value.
+
+This is the critical reliability mechanism of the pipeline. Without it, you are parsing free-form LLM JSON output with all the brittleness that entails.
+
+### The Pydantic schema
+
+```python
+from pydantic import BaseModel, Field
+from typing import Optional
+from datetime import datetime
+from enum import Enum
+
+
+class AppearanceDescriptor(str, Enum):
+    CLEAR = "clear"
+    SLIGHTLY_HAZY = "slightly_hazy"
+    HAZY = "hazy"
+    TURBID = "turbid"
+    OPAQUE = "opaque"
+    OTHER = "other"
+
+
+class LabObservation(BaseModel):
+    """Structured record of a single lab observation extracted from voice."""
+
+    sample_id: Optional[str] = Field(
+        None,
+        description="Sample identifier as stated by the operator (e.g. 'F-204')",
+    )
+    batch_id: Optional[str] = Field(
+        None,
+        description="Batch identifier if distinct from sample_id",
+    )
+    operator_id: Optional[str] = Field(
+        None,
+        description="Operator name or ID as stated in the recording",
+    )
+    stated_timestamp: Optional[str] = Field(
+        None,
+        description="Time stated by the operator (e.g. '14:32'), as a string",
+    )
+    measurement_type: Optional[str] = Field(
+        None,
+        description="Type of measurement (e.g. 'viscosity', 'pH', 'temperature')",
+    )
+    value: Optional[float] = Field(
+        None,
+        description="Numeric value of the measurement",
+    )
+    unit: Optional[str] = Field(
+        None,
+        description="Unit of the measurement (e.g. 'mPa·s', 'pH', '°C', 'g')",
+    )
+    appearance: Optional[AppearanceDescriptor] = Field(
+        None,
+        description="Appearance descriptor if stated",
+    )
+    ingredient_added: Optional[str] = Field(
+        None,
+        description="Name of any ingredient or excipient added during this observation",
+    )
+    ingredient_quantity: Optional[float] = Field(None)
+    ingredient_unit: Optional[str] = Field(None)
+    deviation_flag: bool = Field(
+        False,
+        description="True if the operator reported a deviation from expected range",
+    )
+    hedged: bool = Field(
+        False,
+        description="True if the value was qualified ('approximately', 'about', 'maybe')",
+    )
+    notes: Optional[str] = Field(
+        None,
+        description="Any additional free-text observations not captured in structured fields",
+    )
+```
+
+The schema uses `Optional` for every observation field except `deviation_flag` and `hedged`. This is deliberate: a missing field is more honest than a hallucinated one. The downstream validation stage decides what to do with `null` values.
+
+The `AppearanceDescriptor` enum is a controlled vocabulary. Free-text appearance descriptions ("slightly hazy", "not fully clear", "faintly turbid") are mapped to a fixed set of terms by the LLM. This solves the inconsistent terminology problem at source.
+
+### Prompt engineering
+
+Few-shot examples are the most important part of the prompt. The examples must include clean inputs *and* realistic messy inputs — hedged values, missing fields, multi-measurement utterances.
+
+```python
+SYSTEM_PROMPT = """
+You are a laboratory data extraction assistant for a pharmaceutical formulation lab.
+Your task is to extract structured observations from a voice transcript of a scientist
+recording bench notes.
+
+Rules:
+- Extract only what is explicitly stated. Do not infer or assume field values.
+- If a value is hedged ("approximately", "about", "maybe", "around"), set hedged=true.
+- If a field is not stated, set it to null. Never invent a value.
+- Map appearance descriptions to the closest AppearanceDescriptor enum value.
+- If multiple measurements are stated in one transcript, extract only the primary one
+  and put the rest in the notes field.
+
+Examples:
+
+Input: "Antoine here, batch F-204, pH is 5.9, no issues."
+Output: {operator_id: "Antoine", batch_id: "F-204", measurement_type: "pH",
+         value: 5.9, unit: "pH", deviation_flag: false, hedged: false}
+
+Input: "Viscosity is about 4,200 millipascal seconds, appearance is slightly hazy."
+Output: {measurement_type: "viscosity", value: 4200.0, unit: "mPa·s",
+         appearance: "slightly_hazy", hedged: true}
+
+Input: "Added 1.2 grams of carbomer, mixing at 500 RPM."
+Output: {ingredient_added: "carbomer", ingredient_quantity: 1.2,
+         ingredient_unit: "g", notes: "mixing at 500 RPM"}
+
+Input: "Batch F-205, everything looks fine."
+Output: {batch_id: "F-205", notes: "operator stated 'everything looks fine'",
+         deviation_flag: false}
+"""
+```
+
+Note the last example: "everything looks fine" is not a structured observation. The correct extraction is to put it in `notes` and extract no measurement values, rather than inventing a plausible value because one is expected.
+
+### Running extraction with Instructor and Ollama
+
+```python
+import instructor
+from ollama import Client
+from pydantic import ValidationError
+
+
+def extract_observation(transcript: str) -> LabObservation:
+    """
+    Extract a structured LabObservation from a raw ASR transcript.
+
+    NOTE: This is an illustrative implementation. In production, the Ollama
+    client configuration, model selection, and prompt engineering are
+    environment-specific and not shown here.
+    """
+    ollama_client = Client(host="http://localhost:11434")
+
+    # Patch the Ollama client with Instructor to enforce structured output
+    client = instructor.from_ollama(
+        ollama_client,
+        mode=instructor.Mode.JSON,
+    )
+
+    observation = client.chat.completions.create(
+        model="llama3.1:8b",  # or any locally available model
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": f"Extract the observation from this transcript:\n\n{transcript}"},
+        ],
+        response_model=LabObservation,
+    )
+
+    return observation
+```
+
+The model choice matters. For this task, an 8B instruction-tuned model (Llama 3.1 8B, Mistral 7B) is sufficient — the extraction task is not reasoning-heavy, it is slot-filling against a fixed schema. Larger models add latency without proportional quality gains for this specific use case. In a regulated environment with sensitive formulation data, the model must run locally. Cloud model APIs are not an option without a data processing agreement.
+
+---
+
+## Stage 3 — Validation
+
+Validation operates at two distinct levels that must be kept separate.
+
+### Structural validation (Pydantic)
+
+Pydantic enforces the schema: types are correct, enums are valid, numeric fields are numeric. This happens automatically during extraction — Instructor will retry the LLM call if the output does not conform. Structural validation failures are hard blocks: the record cannot proceed until the schema is satisfied.
+
+### Domain validation (DomainValidator)
+
+Domain validation checks scientific plausibility. Pydantic cannot know that a pH of 14.5 is physically impossible, or that a viscosity of 50,000 mPa·s is outside the expected range for a given formulation type. These are soft failures: the record is flagged for human review, not discarded.
+
+```python
+from dataclasses import dataclass, field
+from typing import NamedTuple
+
+
+class ValidationResult(NamedTuple):
+    passed: bool
+    flags: list[str]
+    requires_review: bool
+
+
+@dataclass
+class DomainValidator:
+    """
+    Applies domain-specific plausibility checks to a LabObservation.
+
+    NOTE: Thresholds, unit whitelists, and mandatory field rules are
+    project-specific. The values shown here are illustrative only.
+    """
+
+    ph_range: tuple[float, float] = (0.0, 14.0)
+    viscosity_range_mpas: tuple[float, float] = (1.0, 200_000.0)
+    allowed_units: dict[str, list[str]] = field(default_factory=lambda: {
+        "pH": ["pH", ""],
+        "viscosity": ["mPa·s", "cP", "mPas"],
+        "temperature": ["°C", "°F", "K"],
+        "mass": ["g", "mg", "kg"],
+    })
+    mandatory_fields: list[str] = field(default_factory=lambda: [
+        "batch_id", "operator_id", "measurement_type"
+    ])
+
+    def validate(self, obs: LabObservation) -> ValidationResult:
+        flags = []
+
+        # Mandatory field check
+        for f in self.mandatory_fields:
+            if getattr(obs, f) is None:
+                flags.append(f"MISSING_MANDATORY_FIELD:{f}")
+
+        # pH plausibility
+        if obs.measurement_type == "pH" and obs.value is not None:
+            if not (self.ph_range[0] <= obs.value <= self.ph_range[1]):
+                flags.append(f"IMPLAUSIBLE_PH:{obs.value}")
+
+        # Viscosity plausibility
+        if obs.measurement_type == "viscosity" and obs.value is not None:
+            lo, hi = self.viscosity_range_mpas
+            if not (lo <= obs.value <= hi):
+                flags.append(f"IMPLAUSIBLE_VISCOSITY:{obs.value}")
+
+        # Unit whitelist
+        if obs.measurement_type and obs.unit:
+            allowed = self.allowed_units.get(obs.measurement_type, [])
+            if allowed and obs.unit not in allowed:
+                flags.append(f"UNEXPECTED_UNIT:{obs.unit}_for_{obs.measurement_type}")
+
+        # Hedged values always go to review
+        if obs.hedged:
+            flags.append("HEDGED_VALUE:confirm_with_operator")
+
+        passed = not any(
+            f.startswith(("IMPLAUSIBLE", "MISSING_MANDATORY"))
+            for f in flags
+        )
+        requires_review = len(flags) > 0
+
+        return ValidationResult(passed=passed, flags=flags, requires_review=requires_review)
+```
+
+The two-tier failure behaviour:
+- `passed=False`: hard block. The record is not serialized to the primary output. It goes to a rejection log.
+- `requires_review=True, passed=True`: soft flag. The record is serialized but routed to a review queue before being committed to the ELN/LIMS.
+
+### The human-review queue
+
+Every record that exits Stage 3 with `requires_review=True` must be handled by a human before it is committed. The minimum viable review mechanism:
+
+1. **Trigger**: any of `MISSING_MANDATORY_FIELD`, `HEDGED_VALUE`, `UNEXPECTED_UNIT`, or `IMPLAUSIBLE_*` flags
+2. **Reviewer sees**: the original audio file path, the raw ASR transcript, the extracted record, and the specific flags
+3. **Reviewer action**: approve (record commits as-is), edit (modify specific fields and approve), or reject (record is discarded with a reason code)
+4. **Audit capture**: the reviewer action, reviewer ID, and timestamp are appended to the audit trail record — not to the observation record itself
+
+This is not a UI spec. It is the minimum information architecture for compliance. In a GxP system, the review step is the electronic signature event under 21 CFR Part 11. It cannot be implicit.
+
+---
+
+## Stage 4 — Serialization and handoff
+
+### The audit record
+
+Every observation that exits the pipeline — whether it committed cleanly or went through review — must have an audit record attached. The audit record is separate from the observation record and is never edited after creation.
+
+```python
+import hashlib
+import json
+from datetime import datetime, timezone
+from dataclasses import dataclass
+
+
+@dataclass
+class AuditRecord:
+    """
+    Immutable audit trail record for a single pipeline run.
+    Stored alongside (but separately from) the observation record.
+    """
+    pipeline_run_id: str
+    audio_file_path: str
+    asr_model_version: str           # e.g. "faster-whisper:medium:ct2"
+    llm_model_version: str           # e.g. "ollama:llama3.1:8b"
+    instructor_version: str          # e.g. "1.3.4"
+    raw_transcript: str              # verbatim ASR output — never modified
+    extraction_timestamp: str        # ISO 8601, UTC
+    validation_flags: list[str]
+    review_required: bool
+    reviewer_id: Optional[str]       # None if auto-committed
+    reviewer_timestamp: Optional[str]
+    commit_status: str               # "committed", "rejected", "pending_review"
+
+    def to_dict(self) -> dict:
+        return {
+            "pipeline_run_id": self.pipeline_run_id,
+            "audio_file_path": self.audio_file_path,
+            "asr_model_version": self.asr_model_version,
+            "llm_model_version": self.llm_model_version,
+            "instructor_version": self.instructor_version,
+            "raw_transcript_sha256": hashlib.sha256(
+                self.raw_transcript.encode()
+            ).hexdigest(),
+            "extraction_timestamp": self.extraction_timestamp,
+            "validation_flags": self.validation_flags,
+            "review_required": self.review_required,
+            "reviewer_id": self.reviewer_id,
+            "reviewer_timestamp": self.reviewer_timestamp,
+            "commit_status": self.commit_status,
+        }
+```
+
+Note: the raw transcript is stored as a SHA-256 hash in the audit record (the full text lives in a separate immutable store). This satisfies the traceability requirement without duplicating potentially sensitive text across every record.
+
+### JSON output structure
+
+```json
+{
+  "observation": {
+    "sample_id": null,
+    "batch_id": "F-204",
+    "operator_id": "Antoine",
+    "stated_timestamp": "14:32",
+    "measurement_type": "viscosity",
+    "value": 4200.0,
+    "unit": "mPa·s",
+    "appearance": "slightly_hazy",
+    "ingredient_added": "carbomer",
+    "ingredient_quantity": 1.2,
+    "ingredient_unit": "g",
+    "deviation_flag": false,
+    "hedged": true,
+    "notes": "mixing at 500 RPM"
+  },
+  "audit": {
+    "pipeline_run_id": "run_20260222_143512_a3f9",
+    "asr_model_version": "faster-whisper:medium:ct2",
+    "llm_model_version": "ollama:llama3.1:8b",
+    "raw_transcript_sha256": "e3b0c44298fc1c...",
+    "extraction_timestamp": "2026-02-22T14:35:12Z",
+    "validation_flags": ["HEDGED_VALUE:confirm_with_operator"],
+    "review_required": true,
+    "commit_status": "pending_review"
+  }
+}
+```
+
+### LIMS / ELN handoff
+
+The pipeline produces a validated JSON record. How it reaches the downstream system depends on the system:
+
+| Integration pattern | When to use |
+|---|---|
+| CSV drop to watched folder | ELN systems with a CSV import feature; simplest path |
+| REST API POST | LIMS systems with an HTTP API (Benchling, LabVantage, etc.) |
+| Direct DB insert | In-house systems where you control the schema |
+| Message queue (e.g. RabbitMQ) | High-volume or multi-lab deployments |
+
+The pipeline itself should be agnostic to the downstream system. The serialized JSON is the contract. Adapters that translate the JSON to each downstream format are separate, thin components — this is the standard ETL pattern applied to lab data.
+
+---
+
+## Failure modes
+
+| Failure mode | Stage | Symptom | Mitigation |
+|---|---|---|---|
+| Compound name misrecognition | ASR | "carbomer" → "carbon" | `initial_prompt` with domain vocabulary |
+| Unit misrecognition | ASR | "mPa·s" → unintelligible | Post-processing normalization; train operators to say full unit names |
+| Hallucinated measurement value | Extraction | LLM invents a value not in the transcript | Instructor forces schema; `null` is always preferred over a guess; review hedged values |
+| Missing mandatory field | Extraction | `batch_id: null` | Validation flags `MISSING_MANDATORY_FIELD`; routes to review |
+| Implausible value passes extraction | Validation | pH extracted as 15.2 | DomainValidator plausibility checks; hard block on `IMPLAUSIBLE_*` |
+| Fume hood / stirrer noise | ASR | High word error rate | Directional microphone; `noisereduce` preprocessing; `large` model |
+| Operator forgets sample ID | Prompt design | `sample_id: null` in every record | Structured dictation prompt ("state batch ID first") in operator training; mandatory field review |
+| LLM model update changes extraction behaviour | Compliance | Record comparison across model versions breaks | Version-lock models; treat model updates as revalidation events (see compliance section) |
+| Operator says "it looks fine" | Extraction | Vague assertion extracted as measurement | `notes` field captures it; no measurement value extracted; no validation failure |
+
+---
+
+## Data governance and compliance
+
+::: {.callout-regulatory}
+This section covers general principles relevant to pharma and biotech R&D. It is not legal or regulatory advice. Your organization's quality assurance and legal teams must review any system that touches regulated data before deployment.
+:::
+
+### 21 CFR Part 11 and EMA Annex 11
+
+Electronic records in GxP environments must be trustworthy, reliable, and equivalent to paper records. The relevant requirements for this pipeline:
+
+- **Audit trail**: every record must have a time-stamped, operator-attributed, uneditable audit trail. The `AuditRecord` structure above covers this. The raw transcript (or its hash) must be retained alongside the structured record — you must be able to demonstrate that the extracted values correspond to what the operator said.
+- **Electronic signature**: the review-and-approve step is an electronic signature event. The reviewer ID and timestamp must be captured and linked to the record. This requires identity verification — a username/password at minimum, hardware token in higher-assurance contexts.
+- **System validation**: the pipeline itself must be validated under your organization's computer system validation (CSV) framework. This means documented user requirements, functional specifications, and qualification testing. The LLM component is a challenge here — see below.
+
+### The LLM model versioning problem
+
+This is the hardest compliance issue in this architecture. Classical validated software produces deterministic outputs: the same input always produces the same output, forever. An LLM does not. Two consequences:
+
+1. **Extraction behaviour changes between model versions.** If you update from `llama3.1:8b` to `llama3.2:8b`, the structured output for the same transcript may differ. This breaks the assumption that records are comparable across time.
+2. **The same model with different temperature settings can produce different outputs for identical inputs.**
+
+Practical mitigations:
+- **Version-lock the ASR and LLM models.** Pin `faster-whisper` to a specific checkpoint hash; pin the Ollama model to a specific version tag. Never update without going through a revalidation cycle.
+- **Set temperature to 0** for extraction calls. This makes the LLM as deterministic as possible (not fully deterministic, but close enough for most practical purposes).
+- **Treat model updates as change control events**: document the change, run qualification tests against a golden dataset of transcripts with known expected outputs, and obtain QA sign-off before deploying the new version.
+- **The raw transcript is the source of truth.** If the extracted record is ever challenged, the raw audio and transcript are the evidence. Store both.
+
+### GDPR and data retention
+
+Audio recordings may contain personal data (operator names, and in some cases patient-adjacent information in clinical manufacturing contexts). Under GDPR:
+
+- Define and document the retention period for audio files before deployment
+- Audio files should be deleted on schedule; the hashed transcript in the audit record does not constitute personal data
+- If the pipeline processes any data that could be linked to a data subject (patients, trial participants), a data protection impact assessment (DPIA) is required
+
+### Why local models are the defensible choice
+
+Cloud ASR and LLM APIs are operationally convenient but introduce a data processor relationship that requires contractual governance. For most pharma R&D environments, the path of least resistance is local: `faster-whisper` on a lab workstation or server, Ollama running a locally hosted model. No data leaves the network. The governance question reduces to "who has access to this server" rather than "what does the vendor's data processing agreement permit."
+
+---
+
+## Deployment context
+
+The pipeline as described requires:
+
+| Component | Minimum spec |
+|---|---|
+| `faster-whisper` (medium model) | CPU-only: ~4 cores, 4GB RAM; processes 3-min audio in ~20s |
+| `faster-whisper` (large-v3 model) | CPU-only: ~8 cores, 8GB RAM; GPU (4GB VRAM) for real-time |
+| Ollama + llama3.1:8b | 8GB RAM minimum; 16GB recommended for comfortable headroom |
+| Combined (medium ASR + 8B LLM) | 16GB RAM, 4-core CPU — a standard lab workstation |
+
+The simplest deployment: a dedicated lab workstation or small server with a shared network drive. Scientists drop audio files to a watched folder; the pipeline processes them and writes JSON output to an output folder. No web UI required for the MVP.
+
+A web UI (Flask, FastAPI, or a simple Shiny/Streamlit interface) adds the review queue interface and removes the need for scientists to interact with the file system directly. This is the natural next step after the pipeline core is validated.
+
+---
+
+## Do's and don'ts
+
+### Do
+
+- **Define your Pydantic schema before writing any prompts.** The schema is the specification. Prompts should be written to fill the schema, not the other way around.
+- **Keep the raw ASR transcript alongside every structured record.** It is your evidence trail. If an extracted value is ever challenged, the transcript is what you go back to.
+- **Use a controlled vocabulary (enums) for all categorical fields.** Free-text appearance descriptions will diverge within weeks of deployment.
+- **Set a confidence threshold and build the review queue before going live.** "We'll add that later" means it never gets added.
+- **Version-lock both the ASR model and the LLM.** Treat model updates as change control events.
+- **Train operators on structured dictation.** A short checklist ("state batch ID, then measurement, then deviations") dramatically reduces missing mandatory fields.
+
+### Don't
+
+- **Do not send audio recordings to cloud APIs without a data processing agreement and legal clearance.** This applies to OpenAI Whisper API, Deepgram, AssemblyAI, and any other cloud ASR service.
+- **Do not auto-commit records with missing mandatory fields or implausible values.** The review gate exists to catch extraction errors before they reach the ELN.
+- **Do not treat the structured output as authoritative over the raw transcript.** The transcript is the source of truth; the JSON is a derived representation.
+- **Do not skip operator training.** The pipeline can handle hedged and incomplete speech, but structured dictation habits reduce the volume of records requiring human review by 60–80% in practice.
+- **Do not update models without revalidation.** A new model version is a new system. It requires qualification testing before deployment in a regulated context.
+
+---
+
+## Full runnable example
+
+The following is a minimal end-to-end implementation. It is intentionally simplified and generic. Production deployments require environment-specific schema design, domain validation rules, prompt libraries, and integration adapters not shown here.
+
+### Dependencies (`pyproject.toml`)
+
+```toml
+[project]
+name = "voice-to-data-pipeline"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "faster-whisper>=1.0.0",
+    "instructor>=1.3.0",
+    "pydantic>=2.0.0",
+    "ollama>=0.2.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.3.0",
+]
+```
+
+Install with:
+
+```bash
+uv sync
+```
+
+### Pipeline (`pipeline.py`)
+
+```python
+"""
+Voice-to-data pipeline: audio file → structured lab observation.
+
+IMPORTANT: This is a simplified, illustrative implementation. It is not a
+production system. Domain-specific schemas, prompt engineering, validation
+rules, and LIMS integration are project-specific and not included here.
+"""
+
+import hashlib
+import json
+import uuid
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Optional
+
+import instructor
+from faster_whisper import WhisperModel
+from ollama import Client
+from pydantic import BaseModel, Field
+from pydantic import field_validator
+
+
+# ── Schema ────────────────────────────────────────────────────────────────────
+
+class LabObservation(BaseModel):
+    sample_id: Optional[str] = Field(None)
+    batch_id: Optional[str] = Field(None)
+    operator_id: Optional[str] = Field(None)
+    stated_timestamp: Optional[str] = Field(None)
+    measurement_type: Optional[str] = Field(None)
+    value: Optional[float] = Field(None)
+    unit: Optional[str] = Field(None)
+    appearance: Optional[str] = Field(None)
+    ingredient_added: Optional[str] = Field(None)
+    ingredient_quantity: Optional[float] = Field(None)
+    ingredient_unit: Optional[str] = Field(None)
+    deviation_flag: bool = Field(False)
+    hedged: bool = Field(False)
+    notes: Optional[str] = Field(None)
+
+
+# ── ASR ───────────────────────────────────────────────────────────────────────
+
+def transcribe(audio_path: Path, model_size: str = "medium") -> str:
+    """Transcribe an audio file using faster-whisper."""
+    model = WhisperModel(model_size, device="cpu", compute_type="int8")
+    segments, _ = model.transcribe(
+        str(audio_path),
+        initial_prompt="Formulation lab note. batch ID, pH, viscosity mPa·s, carbomer, excipient.",
+    )
+    return " ".join(segment.text.strip() for segment in segments)
+
+
+# ── Extraction ─────────────────────────────────────────────────────────────────
+
+SYSTEM_PROMPT = """
+You are a laboratory data extraction assistant. Extract structured observations
+from voice transcripts of pharmaceutical formulation bench notes.
+
+Rules:
+- Extract only what is explicitly stated. Set missing fields to null.
+- If a value is hedged ("approximately", "about", "maybe"), set hedged=true.
+- Map appearance descriptions to clear, standardized terms.
+- If multiple measurements are stated, capture the primary one and note the rest.
+"""
+
+def extract(transcript: str) -> LabObservation:
+    """Extract a structured observation from a raw transcript."""
+    client = instructor.from_ollama(
+        Client(host="http://localhost:11434"),
+        mode=instructor.Mode.JSON,
+    )
+    return client.chat.completions.create(
+        model="llama3.1:8b",
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": f"Extract from:\n\n{transcript}"},
+        ],
+        response_model=LabObservation,
+    )
+
+
+# ── Validation ─────────────────────────────────────────────────────────────────
+
+def validate(obs: LabObservation) -> list[str]:
+    """Return a list of validation flags. Empty list means clean."""
+    flags = []
+    for mandatory in ["batch_id", "operator_id"]:
+        if getattr(obs, mandatory) is None:
+            flags.append(f"MISSING_MANDATORY_FIELD:{mandatory}")
+    if obs.measurement_type == "pH" and obs.value is not None:
+        if not (0.0 <= obs.value <= 14.0):
+            flags.append(f"IMPLAUSIBLE_PH:{obs.value}")
+    if obs.hedged:
+        flags.append("HEDGED_VALUE:confirm_with_operator")
+    return flags
+
+
+# ── Pipeline ──────────────────────────────────────────────────────────────────
+
+def run(audio_path: Path, output_path: Path) -> None:
+    """Run the full pipeline for a single audio file."""
+    run_id = f"run_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
+
+    # Stage 1: ASR
+    transcript = transcribe(audio_path)
+
+    # Stage 2: Extraction
+    observation = extract(transcript)
+
+    # Stage 3: Validation
+    flags = validate(observation)
+    requires_review = len(flags) > 0
+    hard_fail = any(f.startswith("IMPLAUSIBLE") for f in flags)
+    commit_status = "rejected" if hard_fail else ("pending_review" if requires_review else "committed")
+
+    # Stage 4: Serialize
+    result = {
+        "observation": observation.model_dump(),
+        "audit": {
+            "pipeline_run_id": run_id,
+            "audio_file": str(audio_path),
+            "asr_model": "faster-whisper:medium",
+            "llm_model": "ollama:llama3.1:8b",
+            "raw_transcript_sha256": hashlib.sha256(transcript.encode()).hexdigest(),
+            "extraction_timestamp": datetime.now(timezone.utc).isoformat(),
+            "validation_flags": flags,
+            "review_required": requires_review,
+            "commit_status": commit_status,
+        },
+    }
+
+    output_path.write_text(json.dumps(result, indent=2, ensure_ascii=False))
+    print(f"[{commit_status.upper()}] {run_id}")
+    if flags:
+        for flag in flags:
+            print(f"  ⚠ {flag}")
+
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) != 3:
+        print("Usage: uv run pipeline.py <audio_file> <output_json>")
+        sys.exit(1)
+    run(Path(sys.argv[1]), Path(sys.argv[2]))
+```
+
+Run with:
+
+```bash
+uv run pipeline.py bench_note_20260222.mp3 observation_F204.json
+```
+
+---
+
+## Where this goes next
+
+The pipeline described here is the core. What makes it useful in practice is what wraps it:
+
+- **A review UI**: a minimal web interface where lab supervisors see flagged records, listen to the audio, and approve or edit before commit. This is where the GxP compliance story completes.
+- **Operator feedback loop**: when a record is frequently flagged for the same reason (operator always forgets to state the batch ID), the review system should surface this pattern so training can be adjusted.
+- **Multi-observation sessions**: a single bench session produces many observations. Batching them into a session record, with cross-observation consistency checks (does the batch ID stay the same throughout?), is a natural extension.
+- **Domain fine-tuning**: for high-volume deployments, fine-tuning Whisper on your specific compound vocabulary eliminates the most common ASR errors and reduces the downstream extraction burden.
+
+The friction this solves is real and measurable. The compliance overhead of solving it properly is also real. Neither should be understated. The value is in removing the keyboard from the critical path of scientific observation — and doing it in a way that produces data you can actually defend.

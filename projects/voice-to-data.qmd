@@ -1,0 +1,86 @@
+---
+title: "Voice to Data: LLM Pipeline for Lab Notebooks"
+description: "A voice-driven pipeline that turns laboratory bench recordings into structured, validated records — ASR, LLM extraction, domain validation, and a GxP-compliant audit trail. Built for pharma and biotech R&D."
+date: "2026-02-22"
+categories: [Python, LLM, NLP, MLOps, Lab Automation]
+image: "../../assets/images/voice-to-data-cover.png"
+---
+
+## Overview
+
+Scientists in formulation, analytical, and cell culture labs spend 20–40 minutes per bench session transcribing observations into ELN/LIMS systems — after the experiment, from memory, under time pressure. This pipeline removes the keyboard from the critical path.
+
+The pipeline takes an audio file recorded at the bench and produces a structured, validated JSON record ready for ELN/LIMS handoff, with an immutable audit trail that satisfies 21 CFR Part 11 requirements.
+
+All processing runs **locally** — no audio or text leaves your network, which is the only defensible configuration for regulated R&D environments.
+
+---
+
+## Architecture
+
+```
+Voice (audio file)
+     │
+     ▼
+┌──────────────────────────────┐
+│  Stage 1 — ASR               │
+│  faster-whisper (local)      │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│  Stage 2 — Extraction        │
+│  Instructor + Pydantic       │
+│  + Ollama (local LLM)        │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│  Stage 3 — Validation        │
+│  DomainValidator             │
+│  (plausibility + mandatory)  │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│  Stage 4 — Serialization     │
+│  JSON + AuditRecord          │
+└──────────────────────────────┘
+```
+
+---
+
+## Stack
+
+| Layer | Tool | Rationale |
+|---|---|---|
+| ASR | `faster-whisper` (CTranslate2) | Open-weights, 2–4× faster than PyTorch Whisper, CPU-capable |
+| LLM structured extraction | `instructor` + `ollama` | Guaranteed schema-conformant output via tool-calling — no JSON parsing brittleness |
+| Schema & validation | `pydantic` v2 | Type enforcement + domain plausibility checks in one place |
+| Dependency management | `uv` | Fast, reproducible, lockfile-based |
+
+---
+
+## Key design decisions
+
+**Why Instructor over raw LLM JSON?** Asking an LLM to "return JSON" produces unreliable free-form output. Instructor uses the model's tool-calling mode to force every field of the Pydantic schema to be explicitly populated. Missing fields become `null` rather than hallucinated values — which matters a great deal in a compliance context.
+
+**Two-tier validation:** Pydantic enforces structural correctness (types, enums). A separate `DomainValidator` class enforces scientific plausibility (pH ∈ [0, 14], viscosity ranges, unit whitelists). These are kept separate intentionally: structural failures are hard blocks; domain flags are soft and route the record to human review.
+
+**Hedged values as a first-class concept:** When a scientist says "approximately 4,200 millipascal seconds", the `hedged=True` flag is set in the schema and the record goes to the review queue — not committed blindly. This is a deliberate design choice, not a limitation.
+
+---
+
+## Compliance notes
+
+- **Audit trail:** every record carries a SHA-256 hash of the raw transcript, model version strings, extraction timestamp, and review status — nothing needed for a 21 CFR Part 11 audit is missing
+- **Model version-locking:** models are pinned; updates are treated as change control events requiring requalification
+- **Temperature = 0:** extraction calls are as deterministic as the model allows
+- **Local-only:** no cloud API calls, no data processing agreement required
+
+---
+
+## Links
+
+[<i class="bi bi-github"></i> GitHub Repository](https://github.com/antoinelucasfra/voice-to-data-pipeline){.btn .btn-dark .btn-sm}
+[<i class="bi bi-file-text"></i> Full write-up (blog)](../../posts/voice-to-data-lab-pipeline/index.qmd){.btn .btn-outline-secondary .btn-sm}
