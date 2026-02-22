@@ -5,7 +5,6 @@ listing:
   - id: projects
     contents:
       - path: projects/resources_catalog.qmd
-        image: assets/images/profile-pic.jpg
         title: "Resources Catalog"
         description: "A curated and searchable collection of 200+ data science resources for R, Python, and beyond. Filter by type, language, and category."
         date: "2025-12-13"
@@ -16,7 +15,7 @@ listing:
     categories: true
     filter-ui: false
     page-size: 9
-    fields: [image, title, description, categories]
+    fields: [title, description, categories]
 ---
 
 A selection of data science work I've done and am willing to write about publicly. Most of what I build is under NDA or involves proprietary data — client work, production tools for fragrance R&D, clinical data platforms — none of it can be shared. This is the part that can be.

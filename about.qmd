@@ -21,6 +21,8 @@ After Sanofi, a stint at **Abolis**, a microbiome biotech startup. Six months, f
 
 Now I'm at **Chanel Parfums Beauté R&D**, working on machine learning and computer vision for fragrance and cosmetics development. Still on mission via Astek/IT&M Stats, but this is the most technically ambitious role so far — models that go into production, tools that scientists depend on daily.
 
+Outside of work: I've been following One Piece for years — not casually, properly following it. It's one of the few long-form narratives that actually earns its length, and I find the way it builds on itself across decades genuinely interesting. I play video games when life allows, which is less often than I'd like. And I have a lot of time for people who can say "I was wrong about that" without making a production of it — the ones who just update and move on. It's rarer than it should be.
+
 ## What I care about at work
 
 **Working at the interface, not the edges.** The most useful position is between the domain experts (chemists, clinicians, biologists) and the data/software systems. People who sit purely on one side often build the wrong things. My agronomy background genuinely helps here — I can read a protocol, understand an experimental design, and push back when the question being asked can't be answered with the data available. I find these cross-functional, partner roles genuinely more interesting than working in isolation.

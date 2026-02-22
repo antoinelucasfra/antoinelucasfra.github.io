@@ -381,13 +381,47 @@ library(dplyr)
 library(stringr)
 library(purrr)
 library(htmltools)
+library(yaml)
 
-# ── Load data ─────────────────────────────────────────────────────────────────
-resources_raw <- readr::read_delim(
-  here::here("data", "resources.csv"),
-  delim = ";",
-  show_col_types = FALSE
-)
+# ── Load data from resources.md ───────────────────────────────────────────────
+parse_resources_md <- function(path) {
+  raw <- readLines(path, encoding = "UTF-8")
+  # Split on lines that are exactly "---"
+  sep_idx <- which(raw == "---")
+  # Each block is between pairs of "---" separators
+  # The file format is: --- fields --- --- fields --- ...
+  # Blocks start at odd-indexed separators (1,3,5,...) and end at even (2,4,6,...)
+  n_seps <- length(sep_idx)
+  if (n_seps < 2) return(tibble::tibble())
+
+  records <- vector("list", floor(n_seps / 2))
+  for (i in seq_len(floor(n_seps / 2))) {
+    start <- sep_idx[2 * i - 1] + 1L
+    end   <- sep_idx[2 * i] - 1L
+    if (start > end) next
+    block_lines <- raw[start:end]
+    parsed <- tryCatch(
+      yaml::yaml.load(paste(block_lines, collapse = "\n")),
+      error = function(e) NULL
+    )
+    if (!is.null(parsed)) records[[i]] <- parsed
+  }
+
+  records <- Filter(Negate(is.null), records)
+  dplyr::bind_rows(lapply(records, function(r) {
+    tibble::tibble(
+      type     = as.character(r$type     %||% ""),
+      title    = as.character(r$title    %||% ""),
+      link     = as.character(r$link     %||% ""),
+      language = as.character(r$language %||% ""),
+      category = as.character(r$category %||% "")
+    )
+  }))
+}
+
+`%||%` <- function(a, b) if (!is.null(a)) a else b
+
+resources_raw <- parse_resources_md(here::here("data", "resources.txt"))
 
 # ── Super-category rules (priority-ordered) ───────────────────────────────────
 super_rules <- list(
@@ -970,7 +1004,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ::: {.callout-note}
 ## Contributing
-Want to add a resource? Edit `data/resources.csv` and open a PR on [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io).
+Want to add a resource? Edit `data/resources.txt` and open a PR on [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io). Each resource is a small YAML block:
+
+```yaml
+---
+title: "Resource Title"
+type: Book
+link: https://example.com
+language: R
+category: "Statistics;Tutorial"
+---
+```
 :::
 
 *Links to external websites are provided for convenience and informational purposes only.*
