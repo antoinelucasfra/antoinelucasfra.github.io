@@ -410,11 +410,12 @@ parse_resources_md <- function(path) {
   records <- Filter(Negate(is.null), records)
   dplyr::bind_rows(lapply(records, function(r) {
     tibble::tibble(
-      type     = as.character(r$type     %||% ""),
-      title    = as.character(r$title    %||% ""),
-      link     = as.character(r$link     %||% ""),
-      language = as.character(r$language %||% ""),
-      category = as.character(r$category %||% "")
+      type        = as.character(r$type        %||% ""),
+      title       = as.character(r$title       %||% ""),
+      link        = as.character(r$link        %||% ""),
+      language    = as.character(r$language    %||% ""),
+      category    = as.character(r$category    %||% ""),
+      description = as.character(r$description %||% "")
     )
   }))
 }
@@ -566,13 +567,15 @@ make_resource <- function(i) {
   lang_str <- row$language
   cat_str <- row$category
   super <- row$super
+  desc <- row$description
 
   # Filtering attributes (all lowercase for simple JS string matching)
   data_attrs <- list(
     `data-type` = tolower(type),
     `data-language` = tolower(lang_str),
     `data-categories` = tolower(cat_str),
-    `data-super` = tolower(super)
+    `data-super` = tolower(super),
+    `data-description` = tolower(desc)
   )
 
   lchips <- lang_chip(lang_str)
@@ -585,8 +588,18 @@ make_resource <- function(i) {
     href = link,
     target = "_blank",
     rel = "noopener noreferrer",
+    title = if (nchar(desc) > 0) desc else NULL,
     title_text
   )
+
+  # Description snippet (shown in card if non-empty)
+  desc_el <- if (nchar(desc) > 0) {
+    tags$p(
+      class = "resource-description text-muted mb-1",
+      style = "font-size: 0.75rem; line-height: 1.4; margin-top: 0.3rem;",
+      desc
+    )
+  } else NULL
 
   # ── Grid card ──────────────────────────────────────────────────────────────
   grid_item <- do.call(tags$div, c(
@@ -603,9 +616,10 @@ make_resource <- function(i) {
             tags$div(class = "d-flex flex-wrap gap-1 justify-content-end", lchips)
           ),
           tags$div(
-            class = "resource-title mb-2",
+            class = "resource-title mb-1",
             title_link
           ),
+          desc_el,
           tags$div(
             class = "cat-chips",
             style = "line-height: 1.9;",
@@ -876,10 +890,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Search
       if (show && query) {
-        const titleEl = card ? card.querySelector('.resource-title a') : wrapper.querySelector('.resource-title a');
-        const title   = titleEl ? titleEl.textContent.toLowerCase() : '';
-        const cats    = (wrapper.dataset.categories || '').toLowerCase();
-        show = title.includes(query) || cats.includes(query);
+        const titleEl  = card ? card.querySelector('.resource-title a') : wrapper.querySelector('.resource-title a');
+        const title    = titleEl ? titleEl.textContent.toLowerCase() : '';
+        const cats     = (wrapper.dataset.categories || '').toLowerCase();
+        const descText = (wrapper.dataset.description || '').toLowerCase();
+        show = title.includes(query) || cats.includes(query) || descText.includes(query);
       }
 
       // Type dropdown
@@ -1013,8 +1028,11 @@ type: Book
 link: https://example.com
 language: R
 category: "Statistics;Tutorial"
+description: "A brief one-sentence description shown on hover and in search."
 ---
 ```
+
+The `description` field is optional but recommended — it powers the hover tooltip on each card title and is included in the full-text search.
 :::
 
 *Links to external websites are provided for convenience and informational purposes only.*

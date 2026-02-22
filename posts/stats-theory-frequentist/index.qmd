@@ -92,7 +92,7 @@ Three questions to navigate this table:
 2. **How many groups are you comparing?** Two or more?
 3. **Are observations independent?** Or paired/repeated?
 
-If you're unsure whether your data is "normal enough" for a parametric test: with n ≥ 30 per group, the central limit theorem covers you for most practical purposes. Below 30, check with a QQ-plot (`qqnorm()` + `qqline()`) and use a non-parametric alternative if in doubt. The non-parametric versions lose some power but make fewer assumptions.
+If you're unsure whether your data is "normal enough" for a parametric test: with n ≥ 30 per group, the central limit theorem covers you for most practical purposes. Below 30, check with a quantile-quantile (QQ) plot (`qqnorm()` + `qqline()`) and use a non-parametric alternative if in doubt. The non-parametric versions lose some power but make fewer assumptions.
 
 ---
 
