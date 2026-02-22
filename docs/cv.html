@@ -43,9 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-56d41bf190e2b8ff0174ac5cbbe496ab.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-76d2d4fcc4dbe6e675b19e215a6aebc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d6019403a6151ed0ba587ac30f825e38.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-76d2d4fcc4dbe6e675b19e215a6aebc9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ffa4f6888415b63fa5b9e515a6438cff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ca8f72cf9d40cf51bc94988ec0308755.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-ffa4f6888415b63fa5b9e515a6438cff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -356,7 +356,7 @@ ul.task-list li input[type="checkbox"] {
   <p class="cv-summary">
     Biostatistician &amp; Data Scientist with 5+ years building production-grade data solutions in
     regulated industries — pharma, cosmetics, and biotech. Expertise spans statistical
-    modelling, Design of Experiments, applied ML (computer vision, NLP), and multi-omics
+    modelling, Design of Experiments (DoE), applied ML (computer vision, natural language processing (NLP)), and multi-omics
     analysis. Proven track record translating complex scientific questions into end-to-end
     systems: from study design and model development through to validated deployment and
     stakeholder training. Strong communicator bridging wet-lab science, software engineering,
@@ -372,9 +372,9 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <ul>
 <li>Designed and deployed computer vision models (texture classification, colour analysis) and NLP pipelines (olfactory descriptor mining from scientific literature) for fragrance and cosmetics formulation R&amp;D</li>
-<li>Modelled sensory and physico-chemical properties with PLS regression, Gaussian processes, and Bayesian optimisation to accelerate ingredient screening cycles</li>
-<li>Built DoE workflows (mixture designs, response-surface methods) cutting required experiments per formulation cycle by 30–40%</li>
-<li>Engineered MLOps infrastructure: model versioning with DVC, drift monitoring, fully reproducible pipelines (Docker + GitHub Actions) in a GxP-adjacent environment</li>
+<li>Modelled sensory and physico-chemical properties with partial least squares (PLS) regression, Gaussian processes, and Bayesian optimisation to accelerate ingredient screening cycles</li>
+<li>Built design of experiments (DoE) workflows (mixture designs, response-surface methods) cutting required experiments per formulation cycle by 30–40%</li>
+<li>Engineered machine learning operations (MLOps) infrastructure: drift monitoring, fully reproducible pipelines (Docker + GitHub Actions) in a Good Practices (GxP)-adjacent environment</li>
 <li>Delivered R Shiny dashboards covering sensory scoring, spectral data visualisation, and interactive experiment planning for R&amp;D scientists</li>
 <li>Responsible for data science platform tooling: Azure ML, Posit Connect, Databricks — provisioning, access governance, and lifecycle management</li>
 <li>Owner and maintainer of a 20+ app catalog (R Shiny, Streamlit) used daily by R&amp;D scientists</li>
@@ -391,7 +391,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Developed reusable internal R packages and Quarto automated reporting templates, cutting analyst turnaround time by ~25% across consulting engagements</li>
 <li>Led internal upskilling programme on tidymodels, causal inference, and reproducible research for 8 statistical consultants</li>
 <li>Scoped and prototyped ML solutions for pre-sales client engagements in pharma and agri-food verticals</li>
-<li>Fine-tuned a Phi-3 LLM (Microsoft) on open Hugging Face datasets for fake news detection and climate claim proof retrieval — full pipeline from data preparation to evaluation</li>
+<li>Fine-tuned a Phi-3 large language model (LLM, Microsoft) on open Hugging Face datasets for fake news detection and climate claim proof retrieval — full pipeline from data preparation to evaluation</li>
 </ul>
 </div>
 <div class="cv-entry">
@@ -402,10 +402,10 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="cv-period">Dec 2024 – May 2025</span></p>
 </div>
 <ul>
-<li>Fast-paced 8-person startup contributing to a SaaS product (FastAPI Python backend, Vue.js front-end), with full individual autonomy</li>
+<li>Fast-paced 8-person startup contributing to a software-as-a-service (SaaS) product (FastAPI Python backend, Vue.js front-end), with full individual autonomy</li>
 <li>Delivered end-to-end pipelines in R and Python for tabular and large-scale omics data (genomics, transcriptomics, metabolomics)</li>
-<li>Applied PERMANOVA, sparse PLS-DA, and co-occurrence network analysis to characterise microbial interactions and identify key functional drivers</li>
-<li>Integrated analysis outputs into the production SaaS platform via REST API</li>
+<li>Applied permutational multivariate analysis of variance (PERMANOVA), sparse PLS-DA, and co-occurrence network analysis to characterise microbial interactions and identify key functional drivers</li>
+<li>Integrated analysis outputs into the production SaaS platform via representational state transfer (REST) API</li>
 </ul>
 </div>
 <div class="cv-entry">
@@ -417,8 +417,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <ul>
 <li>Architected and delivered a full R Shiny platform (golem) managing pilot manufacturing chains for 100+ GxP clinical projects — 50+ daily active users across 3 departments</li>
-<li>Designed the data model, module architecture, and automated validation report generation to satisfy GxP audit-trail requirements (IQ/OQ/PQ on Posit Connect)</li>
-<li>Owned the full delivery lifecycle: user-story workshops → agile sprints → UAT → IQ/OQ documentation → production deployment</li>
+<li>Designed the data model, module architecture, and automated validation report generation to satisfy GxP audit-trail requirements (Installation/Operational/Performance Qualification (IQ/OQ/PQ) on Posit Connect)</li>
+<li>Owned the full delivery lifecycle: user-story workshops → agile sprints → user acceptance testing (UAT) → IQ/OQ documentation → production deployment</li>
 <li>Sole developer on the engineering side, working directly with 5+ senior sponsors across R&amp;D and manufacturing</li>
 <li>Mentored 1 intern on building Shiny application modules</li>
 </ul>
@@ -431,7 +431,7 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="cv-period">Oct 2021 – Jul 2023</span></p>
 </div>
 <ul>
-<li>Delivered 100+ statistical analyses on ingredient efficacy (hydration, anti-ageing biomarkers) and molecular safety (QSAR, genotoxicity) across cosmetic and dermocosmetic pipelines</li>
+<li>Delivered 100+ statistical analyses on ingredient efficacy (hydration, anti-ageing biomarkers) and molecular safety (quantitative structure-activity relationship (QSAR), genotoxicity) across cosmetic and dermocosmetic pipelines</li>
 <li>Designed and analysed clinical and semi-clinical studies from protocol writing through regulatory-grade reports — consistent 2-week delivery cycle</li>
 <li>Built internal R tooling (survival analysis, mixed-effects models, automated Rmarkdown reporting) adopted as standard across the biostatistics team</li>
 <li>Mentored 2 junior analysts and 1 intern; co-authored methodology guides on non-inferiority testing and adaptive designs</li>
@@ -474,7 +474,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
     <div class="cv-skill-row">
       <span class="cv-skill-label">MLOps</span>
-      <span class="cv-skill-value">Docker · GitHub Actions · Posit Connect · Azure ML · Databricks · DVC · renv · uv</span>
+      <span class="cv-skill-value">Docker · GitHub Actions · Posit Connect · Azure ML · Databricks · renv · uv</span>
     </div>
     <div class="cv-skill-row">
       <span class="cv-skill-label">Domains</span>
@@ -856,25 +856,64 @@ ul.task-list li input[type="checkbox"] {
           }
         };
       }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
             }
-          });
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
         }
     const findCites = (el) => {
       const parentEl = el.parentElement;
