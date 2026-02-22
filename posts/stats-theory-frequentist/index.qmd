@@ -2,7 +2,7 @@
 title: "Statistical Tests Demystified: A Practical Guide for Scientists and Engineers"
 description: "A clear, jargon-light walkthrough of frequentist statistics — p-values, error types, test selection, regression, and the things textbooks don't tell you. Written for scientists and engineers who need to use statistics correctly, not just mechanically."
 author: "Antoine Lucas"
-date: "2026-02-21"
+date: "2025-03-15"
 categories: [Statistics, Tutorial, R, Reference, Biostatistics]
 image: "featured.png"
 ---
