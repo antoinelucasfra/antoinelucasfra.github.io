@@ -693,7 +693,8 @@ make_resource <- function(i) {
     `data-categories` = tolower(cat_str),
     `data-super` = tolower(super),
     `data-description` = tolower(desc),
-    `data-date` = date_raw  # ISO format for JS sort (YYYY-MM-DD / YYYY-MM / YYYY)
+    `data-date` = date_raw,  # ISO format for JS sort (YYYY-MM-DD / YYYY-MM / YYYY)
+    `data-link` = tolower(link)
   )
 
   lchips <- lang_chip(lang_str)
@@ -853,7 +854,7 @@ tagList(
           type = "text",
           id = "resource-search",
           class = "form-control",
-          placeholder = paste0("Search ", n_total, " resources by title or category\u2026"),
+          placeholder = paste0("Search ", n_total, " resources by title, category, or URL\u2026"),
           `aria-label` = "Search resources"
         )
       ),
@@ -1026,7 +1027,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const title    = titleEl ? titleEl.textContent.toLowerCase() : '';
         const cats     = (wrapper.dataset.categories || '').toLowerCase();
         const descText = (wrapper.dataset.description || '').toLowerCase();
-        show = title.includes(query) || cats.includes(query) || descText.includes(query);
+        const linkVal  = (wrapper.dataset.link || '').toLowerCase();
+        show = title.includes(query) || cats.includes(query) || descText.includes(query) || linkVal.includes(query);
       }
 
       // Type dropdown
