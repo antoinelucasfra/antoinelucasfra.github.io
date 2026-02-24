@@ -27,12 +27,14 @@ import time
 from pathlib import Path
 
 import gkeepapi
+import trafilatura
 
 from utils import (
     KNOWN_TYPES,
     append_blocks,
     build_block,
     existing_links,
+    fetch_date,
     fetch_description,
 )
 
@@ -188,10 +190,16 @@ def main() -> None:
             print(f"  DUP   {url}")
             continue
 
-        # Fetch description
+        # Fetch page once — reuse downloaded HTML for both description and date
         print(f"  FETCH {url}")
-        desc = fetch_description(url)
+        try:
+            downloaded = trafilatura.fetch_url(url)
+        except Exception:
+            downloaded = None
         time.sleep(0.5)  # polite delay
+
+        desc = fetch_description(url, downloaded=downloaded)
+        date = fetch_date(url, downloaded=downloaded)
 
         block = build_block(
             title=parsed["title"],
@@ -200,6 +208,7 @@ def main() -> None:
             language=parsed["language"],
             category=parsed["category"],
             description=desc,
+            date=date,
         )
         new_blocks.append(block)
         added_urls.append(url)

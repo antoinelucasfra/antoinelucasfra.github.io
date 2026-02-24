@@ -1,10 +1,11 @@
 """
-Shared utilities for sync_keep.py, backfill_descriptions.py and backfill_dates.py.
+Shared utilities for sync_keep.py and backfill_descriptions.py.
 """
 
 from __future__ import annotations
 
 import re
+import textwrap
 from pathlib import Path
 
 import trafilatura
@@ -31,7 +32,7 @@ KNOWN_TYPES: frozenset[str] = frozenset(
     }
 )
 
-FIELD_ORDER = ("title", "type", "link", "language", "category", "description", "date")
+FIELD_ORDER = ("title", "type", "link", "language", "category", "description")
 
 DESC_MAX_LEN = 300
 
@@ -50,9 +51,6 @@ _PLACEHOLDER_RE = re.compile(
     re.VERBOSE | re.IGNORECASE,
 )
 
-# Matches ISO-8601 dates: YYYY-MM-DD, YYYY-MM, or YYYY
-_DATE_RE = re.compile(r"^\d{4}(-\d{2}(-\d{2})?)?$")
-
 
 # ---------------------------------------------------------------------------
 # Description helpers
@@ -64,12 +62,9 @@ def is_placeholder(desc: str) -> bool:
     return bool(_PLACEHOLDER_RE.match(desc.strip().strip('"')))
 
 
-def fetch_description(url: str, downloaded: "bytes | str | None" = None) -> str:
+def fetch_description(url: str) -> str:
     """
     Fetch *url* and extract a short human-readable description.
-
-    If *downloaded* (the raw HTML already fetched for the page) is provided,
-    it is reused instead of making a second HTTP request.
 
     Priority:
       1. og:description / meta description via trafilatura metadata
@@ -77,8 +72,7 @@ def fetch_description(url: str, downloaded: "bytes | str | None" = None) -> str:
       3. Empty string (caller decides what to do)
     """
     try:
-        if downloaded is None:
-            downloaded = trafilatura.fetch_url(url)
+        downloaded = trafilatura.fetch_url(url)
     except Exception:
         return ""
 
@@ -109,53 +103,6 @@ def fetch_description(url: str, downloaded: "bytes | str | None" = None) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Date helpers
-# ---------------------------------------------------------------------------
-
-
-def fetch_date(url: str, downloaded: "bytes | str | None" = None) -> str:
-    """
-    Fetch *url* and extract its original publication date.
-
-    Returns a string in YYYY-MM-DD, YYYY-MM, or YYYY format,
-    or an empty string if no date could be found.
-
-    If *downloaded* (the raw HTML bytes/str already fetched for the page)
-    is provided, it is reused instead of making a second HTTP request —
-    pass it when you already fetched the page to get the description.
-    """
-    try:
-        if downloaded is None:
-            downloaded = trafilatura.fetch_url(url)
-    except Exception:
-        return ""
-
-    if not downloaded:
-        return ""
-
-    # Priority 1 — trafilatura metadata (date field)
-    try:
-        meta = trafilatura.extract_metadata(downloaded)
-        if meta and meta.date:
-            date_str = str(meta.date).strip()
-            if _DATE_RE.match(date_str):
-                return date_str
-    except Exception:
-        pass
-
-    # Priority 2 — htmldate standalone (ships as a trafilatura dependency)
-    try:
-        import htmldate
-        date_str = htmldate.find_date(downloaded, extensive_search=False)
-        if date_str and _DATE_RE.match(date_str):
-            return date_str
-    except Exception:
-        pass
-
-    return ""
-
-
-# ---------------------------------------------------------------------------
 # File I/O
 # ---------------------------------------------------------------------------
 
@@ -165,8 +112,9 @@ def parse_resources(path: Path) -> list[dict[str, str]]:
     Parse *path* (resources.txt) into a list of dicts, one per entry.
 
     Each dict has the keys in FIELD_ORDER.  Fields missing from a block are
-    stored as empty strings (backward-compatible: old blocks without 'date'
-    will have date="").
+    stored as empty strings.  The raw block lines are stored under the special
+    key "_raw_lines" so write_resources() can do a faithful round-trip for
+    blocks we do not want to touch.
     """
     raw = path.read_text(encoding="utf-8").splitlines()
     sep_idx = [i for i, line in enumerate(raw) if line.strip() == "---"]
@@ -240,7 +188,6 @@ def build_block(
     language: str,
     category: str,
     description: str,
-    date: str = "",
 ) -> dict[str, str]:
     return {
         "title": title,
@@ -249,5 +196,4 @@ def build_block(
         "language": language,
         "category": category,
         "description": description,
-        "date": date,
     }
