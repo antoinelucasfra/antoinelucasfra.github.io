@@ -15,7 +15,36 @@
 <link>https://antoinelucasfra.github.io/blog.html</link>
 </image>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Sat, 21 Feb 2026 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 23 Feb 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Hello, R-Bloggers — What This Blog Is About</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/hello-r-bloggers/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>If you’re arriving here from R-Bloggers, welcome. This is a quick orientation.</p>
+<p>I’m an applied statistician and ML engineer based in Paris. For the past five years I’ve been embedded in R&amp;D and clinical teams — at L’Oréal, Sanofi, a microbiome biotech, and currently Chanel Parfums Beauté — building data pipelines, statistical models, and ML systems in environments where reproducibility and auditability are not optional. R is my primary tool for statistical work, reporting, and Shiny applications; Python handles the ML side. Most posts here are field notes from that work: things I’ve worked out in production and thought worth documenting, for my future self as much as anyone else.</p>
+<p>The R content on this blog is practitioner-focused. You’ll find posts on reproducibility in GxP-regulated environments, statistical methods applied to real formulation and clinical data, and R tooling that has earned its place in my daily workflow. Not beginner tutorials — notes from actual use.</p>
+<p><strong>Three posts to start with:</strong></p>
+<ul>
+<li><a href="../../posts/reproducible-pharma-r/">Building Reproducible Analyses in Pharma with R</a> — how I structure R projects in regulated environments, from <code>renv</code> to audit-ready reporting</li>
+<li><a href="../../posts/rv-modern-r-package-manager/">rv: The Modern R Package Manager for Reproducible Workflows</a> — a look at the Rust-backed package manager that is quietly replacing my <code>renv</code> workflow</li>
+<li><a href="https://antoinelucasfra.github.io/posts/why-curate-resources/">Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog</a> — on curation as a practice, and the catalog of 200+ data science resources I maintain</li>
+</ul>
+<p>The <a href="../../blog.html">full blog listing</a> has everything, filtered by category.</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>R</category>
+  <category>Meta</category>
+  <guid>https://antoinelucasfra.github.io/posts/hello-r-bloggers/</guid>
+  <pubDate>Mon, 23 Feb 2026 23:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Voice to Data: An LLM Pipeline for Lab Notebooks</title>
   <dc:creator>Antoine Lucas</dc:creator>

@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/hello-r-bloggers/index.html",
       "/posts/voice-to-data-lab-pipeline/index.html",
       "/posts/devcontainers-reproducible-environments/index.html",
       "/posts/llm-coding-assistant/index.html",
