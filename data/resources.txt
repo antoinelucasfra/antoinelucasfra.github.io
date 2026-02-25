@@ -22,7 +22,7 @@ type: "Blog"
 link: "https://thinkr.fr/dockeriser-application-shiny/"
 language: "R"
 category: "Docker;Deployment;Shiny"
-description: "Retour sur l'intervention de Vincent aux 6e Rencontres R d'Anglet : \\"Encapsuler une application R avec Docker\\"."
+description: "Retour sur l'intervention de Vincent aux 6e Rencontres R d'Anglet : \\\"Encapsuler une application R avec Docker\\\"."
 date: "2023-07-10"
 ---
 ---
@@ -175,7 +175,7 @@ type: "Blog"
 link: "https://people.bath.ac.uk/jjf23/mixchange/nested.html#mcmcglmm"
 language: "R"
 category: "Statistics;Mixed Models"
-description: "[1] \\"Created: Wed Apr 1 16:43:54 2015\\" See the introduction for an overview."
+description: "[1] \\\"Created: Wed Apr 1 16:43:54 2015\\\" See the introduction for an overview."
 date: "2014-07-10"
 ---
 ---
@@ -643,7 +643,7 @@ type: "Blog"
 link: "https://www.r-bloggers.com/2021/03/how-to-build-your-own-image-recognition-app-with-r-part-1/"
 language: "R"
 category: "Computer Vision;Shiny"
-description: "<div style = \\"width:60%; display: inline-block; float:left; \\"> Imagine you could: Take a picture with your phone of a bird in your backyard. Upload the foto to an app. The app tells you what kind of bird it is. In this tutorial, you will learn how to quickly build an app that does just that – using "
+description: "<div style = \\\"width:60%; display: inline-block; float:left; \\\"> Imagine you could: Take a picture with your phone of a bird in your backyard. Upload the foto to an app. The app tells you what kind of bird it is. In this tutorial, you will learn how to quickly build an app that does just that – using "
 date: "2021-03-16"
 ---
 ---
@@ -697,7 +697,7 @@ type: "Blog"
 link: "https://www.r-bloggers.com/2017/02/an-intro-to-gaussian-mixture-modeling/"
 language: "R"
 category: "Statistics;Clustering"
-description: "<div style = \\"width:60%; display: inline-block; float:left; \\"> One of my goals for 2016 is to improve my ability to understand different statistical/machine learning problems. I have an educational background in economics, so I have spent a good deal of time studying and using linear modeling in it’"
+description: "<div style = \\\"width:60%; display: inline-block; float:left; \\\"> One of my goals for 2016 is to improve my ability to understand different statistical/machine learning problems. I have an educational background in economics, so I have spent a good deal of time studying and using linear modeling in it’"
 date: "2017-02-15"
 ---
 ---
@@ -1525,7 +1525,7 @@ type: "Book"
 link: "https://github.com/rasbt/python-machine-learning-book-3rd-edition"
 language: "Python"
 category: "Machine Learning;Book"
-description: "The \\"Python Machine Learning (3rd edition)\\" book code repository - rasbt/python-machine-learning-book-3rd-edition"
+description: "The \\\"Python Machine Learning (3rd edition)\\\" book code repository - rasbt/python-machine-learning-book-3rd-edition"
 date: "2019-06-07"
 ---
 ---
@@ -2659,7 +2659,7 @@ type: "Blog"
 link: "https://beamilz.com/posts/series-gha/2022-series-gha-1-what-is/en/"
 language: "R"
 category: "CI/CD;GitHub"
-description: "usethis::use_github_action(\\"check-release\\") Hi! This is the first blog post in the “GitHub Action” Series."
+description: "usethis::use_github_action(\\\"check-release\\\") Hi! This is the first blog post in the “GitHub Action” Series."
 date: "2022-06-30"
 ---
 ---
@@ -2803,7 +2803,7 @@ type: "Package"
 link: "https://business-science.github.io/modeltime/"
 language: "R"
 category: "Time Series;Machine Learning"
-description: "The time series forecasting framework for use with the tidymodels ecosystem. Models include ARIMA, Exponential Smoothing, and additional time series models from the forecast and prophet packages. Refer to \\"Forecasting Principles & Practice, Second edition\\" (<https://otexts.com/fpp2/>). Refer to \\"Pro"
+description: "The time series forecasting framework for use with the tidymodels ecosystem. Models include ARIMA, Exponential Smoothing, and additional time series models from the forecast and prophet packages. Refer to \\\"Forecasting Principles & Practice, Second edition\\\" (<https://otexts.com/fpp2/>). Refer to \\\"Pro"
 date: "2017-02-01"
 ---
 ---
@@ -3406,7 +3406,7 @@ type: "Website"
 link: "https://debruine.github.io/quarto_demo/dark_mode.html"
 language: "R"
 category: "Quarto;Tutorial"
-description: "<- ggplot(diamonds, aes(x = cut, y = price, fill = cut)) + g geom_violin() + labs(title = \\"Diamond price by cut\\") Dark Mode Demo Toggle dark and light mode (there’s a switch in the upper right corner) to see the plot switch."
+description: "<- ggplot(diamonds, aes(x = cut, y = price, fill = cut)) + g geom_violin() + labs(title = \\\"Diamond price by cut\\\") Dark Mode Demo Toggle dark and light mode (there’s a switch in the upper right corner) to see the plot switch."
 date: ""
 ---
 ---
@@ -3433,7 +3433,7 @@ type: "Website"
 link: "https://github.com/rstudio/rstudio-conf-2022-program"
 language: "R"
 category: "Conference;Schedule"
-description: "rstudio::conf(2022, \\"program\\"). Contribute to rstudio/rstudio-conf-2022-program development by creating an account on GitHub."
+description: "rstudio::conf(2022, \\\"program\\\"). Contribute to rstudio/rstudio-conf-2022-program development by creating an account on GitHub."
 date: "2022-05-20"
 ---
 ---
@@ -3982,7 +3982,7 @@ type: "Blog"
 link: "https://www.r-bloggers.com/writing-functions-to-automate-repetitive-plotting-tasks-in-ggplot2/"
 language: "R"
 category: "Visualization;Automation"
-description: "<div style = \\"width:60%; display: inline-block; float:left; \\"> Introduction Making Multiple Plots on the Same Subject Preparing the Data Writing Functions to Generate Multiple Plots Making Custom Plot Themes Updating Plot Themes Introduction There are often situations when you need to perform repeti"
+description: "<div style = \\\"width:60%; display: inline-block; float:left; \\\"> Introduction Making Multiple Plots on the Same Subject Preparing the Data Writing Functions to Generate Multiple Plots Making Custom Plot Themes Updating Plot Themes Introduction There are often situations when you need to perform repeti"
 date: "2020-07-08"
 ---
 ---
@@ -4711,7 +4711,7 @@ type: "Website"
 link: "https://github.com/mine-cetinkaya-rundel/hello-quarto-demo"
 language: "R"
 category: "Quarto;Tutorial"
-description: "Repository for the demos in the \\"Hello, Quarto!\\" talk - mine-cetinkaya-rundel/hello-quarto-demo"
+description: "Repository for the demos in the \\\"Hello, Quarto!\\\" talk - mine-cetinkaya-rundel/hello-quarto-demo"
 date: "2022-07-14"
 ---
 ---
@@ -5593,7 +5593,7 @@ type: "Website"
 link: "https://settlers-rl.github.io/"
 language: "Python"
 category: "Reinforcement Learning;Games"
-description: "In recent years RL has attracted a lot of attention due to the extremely impressive results that have been achieved in games such as Go As a way to teach myself about RL, a couple of years ago I built a simulator and trained an agent I ended up deciding that an interesting game to try would be \\"Sett"
+description: "In recent years RL has attracted a lot of attention due to the extremely impressive results that have been achieved in games such as Go As a way to teach myself about RL, a couple of years ago I built a simulator and trained an agent I ended up deciding that an interesting game to try would be \\\"Sett"
 date: "2019-01-01"
 ---
 ---
@@ -5629,7 +5629,7 @@ type: "Blog"
 link: "https://www.jumpingrivers.com/blog/regular-expressions-every-r-programmer-should-know/"
 language: "R"
 category: "Programming;Regex"
-description: "Regular expressions. How they can be cruel! Well we’re here to make them a tad easier. To do so we’re going to make use of the {stringr} package install.packages(\\"stringr\\") library(\\"stringr\\") We’re going to use the str_detect() and str_subset() functions. In particular the latter. These have the syn"
+description: "Regular expressions. How they can be cruel! Well we’re here to make them a tad easier. To do so we’re going to make use of the {stringr} package install.packages(\\\"stringr\\\") library(\\\"stringr\\\") We’re going to use the str_detect() and str_subset() functions. In particular the latter. These have the syn"
 date: "2018-04-12"
 ---
 ---
@@ -5638,7 +5638,7 @@ type: "Website"
 link: "https://slides.djnavarro.net/project-structure/#18"
 language: "R"
 category: "Best Practices;Workflow"
-description: "class: center, middle, inverse, title-slide # > 🏗 <br>> Project structure ### <br><br><b>Danielle Navarro</b> --- layout: true <div class=\\"my-footer\\"> <span> <a href=\\"https://slides."
+description: "class: center, middle, inverse, title-slide # > 🏗 <br>> Project structure ### <br><br><b>Danielle Navarro</b> --- layout: true <div class=\\\"my-footer\\\"> <span> <a href=\\\"https://slides."
 date: "2009-01-01"
 ---
 ---
@@ -5989,7 +5989,7 @@ type: "Blog"
 link: "https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/"
 language: "Other"
 category: "Version Control"
-description: "One of the most useful features of any version control system is the ability to \\"undo\\" your mistakes. In Git, \\"undo\\" can mean many slightly different things."
+description: "One of the most useful features of any version control system is the ability to \\\"undo\\\" your mistakes. In Git, \\\"undo\\\" can mean many slightly different things."
 date: "2015-06-08"
 ---
 ---
@@ -6007,7 +6007,7 @@ type: "Documentation"
 link: "https://gt.albert-rapp.de/"
 language: "R"
 category: "Reporting"
-description: "::session_info(\\"installed\\") sessioninfo## ─ Session info ─────────────────────────────────────────────────────────────── ## setting value ## version R version 4."
+description: "::session_info(\\\"installed\\\") sessioninfo## ─ Session info ─────────────────────────────────────────────────────────────── ## setting value ## version R version 4."
 date: "2024-12-08"
 ---
 ---
@@ -6421,7 +6421,7 @@ type: "Website"
 link: "https://apreshill.github.io/data-vis-labs-2018/slides/06-slides_xaringan.html#82"
 language: "Other"
 category: "Machine Learning"
-description: "class: center, middle, inverse, title-slide # Lab 06: CS631 ## Making Slides in the Tada!-verse ### Alison Hill --- class: center, middle, inverse # First: ## Slides with `xaringan` -- # Second: ## Sites with `blogdown` --- background-image: url(\\"https://media."
+description: "class: center, middle, inverse, title-slide # Lab 06: CS631 ## Making Slides in the Tada!-verse ### Alison Hill --- class: center, middle, inverse # First: ## Slides with `xaringan` -- # Second: ## Sites with `blogdown` --- background-image: url(\\\"https://media."
 date: "2018-05-15"
 ---
 ---
@@ -8185,7 +8185,7 @@ type: "Paper"
 link: "https://arxiv.org/abs/2404.19756"
 language: "Other"
 category: "General"
-description: "Inspired by the Kolmogorov-Arnold representation theorem, we propose Kolmogorov-Arnold Networks (KANs) as promising alternatives to Multi-Layer Perceptrons (MLPs). While MLPs have fixed activation functions on nodes (\\"neurons\\"), KANs have learnable activation functions on edges (\\"weights\\"). KANs hav"
+description: "Inspired by the Kolmogorov-Arnold representation theorem, we propose Kolmogorov-Arnold Networks (KANs) as promising alternatives to Multi-Layer Perceptrons (MLPs). While MLPs have fixed activation functions on nodes (\\\"neurons\\\"), KANs have learnable activation functions on edges (\\\"weights\\\"). KANs hav"
 date: "2024-04-30"
 ---
 ---
@@ -8817,4 +8817,670 @@ language: "Other"
 category: "General"
 description: "Learn how to install Copilot CLI so that you can use Copilot directly from the command line."
 date: "2026-01-01"
+---
+---
+title: "Python Packages"
+type: "Book"
+link: "https://py-pkgs.org/"
+language: "Python"
+category: "Packages"
+description: "An open source book describing modern and efficient workflows for developing and maintaining Python packages!"
+date: "2026-01-01"
+---
+---
+title: "Philippe PERET"
+type: "Website"
+link: "https://www.thekangaroofactory.com/"
+language: "Other"
+category: "General"
+description: "Portfolio and Data Services. Power your business with automated data pipelines and carefully designed dashboards & apps."
+date: ""
+---
+---
+title: "Keybinding Conflict Scanner - Visual Studio Marketplace"
+type: "Website"
+link: "https://marketplace.visualstudio.com/items?itemName=rhslvkf.keybinding-conflict-scanner"
+language: "Other"
+category: "Development"
+description: "Extension for Visual Studio Code - Automatically detect and resolve keybinding conflicts between VS Code extensions"
+date: "2026-02-25"
+---
+---
+title: "smallweb.cc"
+type: "Website"
+link: "https://smallweb.cc/?sort=top&page=1"
+language: "Other"
+category: "Development"
+description: "a manually curated collection of neat indie websites :)"
+date: "2024-01-11"
+---
+---
+title: "DuckDB vs. Polars vs. Pandas: Benchmark & Comparison"
+type: "Blog"
+link: "https://www.codecentric.de/en/knowledge-hub/blog/duckdb-vs-dataframe-libraries"
+language: "Other"
+category: "General"
+description: "DuckDB, Polars, and Pandas compared: Performance, memory, and scalability for large datasets. Benchmarks and practical insights."
+date: "2025-12-01"
+---
+---
+title: "Academia Hub"
+type: "Website"
+link: "https://huggingface.co/docs/hub/academia-hub"
+language: "Python"
+category: "Machine Learning"
+description: "We’re on a journey to advance and democratize artificial intelligence through open source and open science."
+date: "2025-01-01"
+---
+---
+title: "VERT.sh — Free, fast, and awesome file converter"
+type: "Website"
+link: "https://vert.sh/"
+language: "Other"
+category: "Development"
+description: "With VERT, you can quickly convert any image, video, audio, and document file. No ads, no tracking, open source, and all processing (other than video) is done on your device."
+date: "2026-01-01"
+---
+---
+title: "How to use shinyMatrix and plotly graphs as inputs in a Shiny app - Posit"
+type: "Blog"
+link: "https://posit.co/blog/how-to-use-shinymatrix-and-plotly-graphs/"
+language: "R"
+category: "General"
+description: "Taylor Rodgers, Senior Data Scientist and project lead at PKGlobal, walks through creating a powerful Shiny application with shinyMatrix and plotly for engineers, manufacturers, and plant workers."
+date: "2021-09-29"
+---
+---
+title: "NIM for Developers"
+type: "Website"
+link: "https://developer.nvidia.com/nim?sortBy=developer_learning_library%2Fsort%2Ffeatured_in.nim%3Adesc%2Ctitle%3Aasc"
+language: "Other"
+category: "Machine Learning"
+description: "Run AI models on NVIDIA GPUs in the cloud, data center, workstations, and PCs."
+date: "2012-01-01"
+---
+---
+title: "Claude Code for Everyone"
+type: "Website"
+link: "https://gexijin.github.io/vibe/"
+language: "R"
+category: "Bioinformatics"
+description: "Step-by-step tutorials to put AI to work for you Click a topic to begin."
+date: "2026-02-18"
+---
+---
+title: "blockr.cloud — Csr"
+type: "Website"
+link: "https://blockr.cloud/app/csr"
+language: "R"
+category: "Shiny"
+description: ""
+date: ""
+---
+---
+title: "bristolmyerssquibb.github.io — Dplyr.Html"
+type: "Website"
+link: "https://bristolmyerssquibb.github.io/blockr/showcase/dplyr.html"
+language: "R"
+category: "Shiny"
+description: ""
+date: ""
+---
+---
+title: "izwand.com — Knowledge Graph Completion"
+type: "Website"
+link: "https://www.wizwand.com/task/knowledge-graph-completion"
+language: "Other"
+category: "General"
+description: "Our new X account is live! Follow @wizwand_team for updates Search any task Feedback Search any task SOTA Knowledge Graph Completion benchmarks and papers with code | Wizwand Our new X account is live! Follow @wizwand_team for updates Home / Tasks Knowledge Graph Completion Benchmarks Dataset Name S"
+date: "2026-02-22"
+---
+---
+title: "geosam"
+type: "Website"
+link: "https://walker-data.com/geosam/"
+language: "Other"
+category: "General"
+description: "Geospatial Image Segmentation with SAM3 in R"
+date: ""
+---
+---
+title: "R + Python: From polyglot to pluralism | Emily Riederer"
+type: "Blog"
+link: "https://www.emilyriederer.com/post/py-rgo-crosspol/"
+language: "R"
+category: "General"
+description: "We used to have a language war, then peaceful polyglot co-existence. Now, it’s clear that we’re actively better off learning from each other. A reflection on 2025, posit::conf, what R and python stacks can learn from each other, and the criticality of diversity in open source"
+date: "2025-12-30"
+---
+---
+title: "A website to destroy all websites."
+type: "Blog"
+link: "https://henry.codes/writing/a-website-to-destroy-all-websites/"
+language: "Other"
+category: "General"
+description: "How to win the war for the soul of the internet, and build the Web We Want."
+date: "2012-04-04"
+---
+---
+title: "development Projects - Open Source Self-Hosted Apps"
+type: "Website"
+link: "https://openapps.sh/categories/development/"
+language: "Other"
+category: "Development"
+description: "Discover 6 open source development projects that you can self-host."
+date: "2026-01-01"
+---
+---
+title: "productive-r-workflow.com — Webr"
+type: "Website"
+link: "https://www.productive-r-workflow.com/r/bonus/webr"
+language: "R"
+category: "Tutorial"
+description: "Bring Quarto to life with {webR} Quarto can be frustrating: you read a report, but cannot interact with it! You're browser doesn't speak R,so there is nothing you can change."
+date: ""
+---
+---
+title: "AGENTS.md"
+type: "Website"
+link: "https://agents.md/"
+language: "Other"
+category: "Machine Learning"
+description: "AGENTS.md is a simple, open format for guiding coding agents. Think of it as a README for agents."
+date: ""
+---
+---
+title: "Dr. Dominic Royé"
+type: "Website"
+link: "https://dominicroye.github.io/"
+language: "R"
+category: "Visualization"
+description: "Researcher in climate science at MBG-CSIC"
+date: "2025-01-01"
+---
+---
+title: "GitHub - posit-dev/skills: A collection of Claude Skills from Posit"
+type: "Repository"
+link: "https://github.com/posit-dev/skills"
+language: "Other"
+category: "General"
+description: "A collection of Claude Skills from Posit. Contribute to posit-dev/skills development by creating an account on GitHub."
+date: "2025-11-21"
+---
+---
+title: "in the Public Sector"
+type: "Website"
+link: "https://pub.current.posit.team/public/Public_Sector_Shiny_Showcase/"
+language: "R"
+category: "Shiny"
+description: "Shiny and Quarto help R and Python users build powerful, interactive web apps and high-quality documents."
+date: "2024-01-01"
+---
+---
+title: "Lobsters"
+type: "Community"
+link: "https://lobste.rs/"
+language: "Other"
+category: "Development"
+description: "A computing-focused community centered around link aggregation and discussion."
+date: "2026-02-23"
+---
+---
+title: "A Bunch of Programming Advice I’d Give To Myself 15 Years Ago"
+type: "Blog"
+link: "https://mbuffett.com/posts/programming-advice-younger-self/"
+language: "Other"
+category: "General"
+description: "I finally have the feeling that I’m a decent programmer, so I thought it would be fun to write some advice with the idea of “what would have gotten me to this point faster?” I’m not claiming this is great advice for everyone, just that it would have been good advice for me. If you (or your team) are"
+date: "2024-06-29"
+---
+---
+title: "Hacker News"
+type: "Community"
+link: "https://news.ycombinator.com/"
+language: "Other"
+category: "General"
+description: "Hacker News new | past | comments | ask | show | jobs | submit login 1."
+date: "2026-02-24"
+---
+---
+title: "Shiny"
+type: "Website"
+link: "https://cynkra.github.io/g6R/articles/shiny.html#mouse-position"
+language: "R"
+category: "General"
+description: "Introduction g6R can be easily integrated into Shiny applications using the g6_output() and render_g6() functions: library(shiny) library(g6R) library(bslib) nodes <- data."
+date: ""
+---
+---
+title: "Introduction"
+type: "Website"
+link: "https://bioinfo.kaibitz.com/"
+language: "Other"
+category: "Bioinformatics"
+description: "Introduction This website is an attempt to collect all the tutoring information I've created and put it in one place that can be accessed from anywhere with an internet connection."
+date: ""
+---
+---
+title: "Common statistical tests are linear models (or: how to teach stats)"
+type: "Website"
+link: "https://lindeloev.github.io/tests-as-linear/"
+language: "R"
+category: "Statistics"
+description: "By Jonas Kristoffer Lindeløv (blog, profile)."
+date: "2019-06-28"
+---
+---
+title: "GitHub - belian-earth/duckdb-r-editor: A Positron IDE extension to create a rich in-line DuckDB SQL editor experience wi"
+type: "Repository"
+link: "https://github.com/belian-earth/duckdb-r-editor"
+language: "Other"
+category: "General"
+description: "A Positron IDE extension to create a rich in-line DuckDB SQL editor experience within R files. - belian-earth/duckdb-r-editor"
+date: "2026-01-13"
+---
+---
+title: "Inner Metrics"
+type: "Website"
+link: "https://www.data-to-art.com/artist/marta-sierra/inner-metrics"
+language: "Other"
+category: "Visualization"
+description: "A curated gallery celebrating data visualization as art. Discover innovative artworks from international artists who transform data into emotionally compelling visual experiences."
+date: "2022-01-01"
+---
+---
+title: "Parallelize Common Functions via One Magic Function"
+type: "Website"
+link: "https://futurize.futureverse.org/index.html"
+language: "R"
+category: "General"
+description: "The futurize() function transpiles calls to sequential map-reduce functions such as base::lapply(), purrr::map(), foreach::foreach() %do% { ... } into concurrent alternatives, providing you with a simple, straightforward path to scalable parallel computing via the future ecosystem <doi:10.32614/RJ-2"
+date: "2021-01-01"
+---
+---
+title: "Voice Cloning with Qwen3-TTS - a Hugging Face Space by dattazigzag"
+type: "Website"
+link: "https://huggingface.co/spaces/dattazigzag/qwen3-tts-voice-clone"
+language: "Python"
+category: "Machine Learning"
+description: "Clone voices and generate speech with Qwen3-TTS"
+date: "2026-01-27"
+---
+---
+title: "GitHub - posit-dev/ptd: posit team dedicated toolkit"
+type: "Repository"
+link: "https://github.com/posit-dev/ptd"
+language: "Other"
+category: "General"
+description: "posit team dedicated toolkit. Contribute to posit-dev/ptd development by creating an account on GitHub."
+date: "2025-12-23"
+---
+---
+title: "Mistikee - Le gestionnaire de mots de passe à déni plausible - Korben"
+type: "Blog"
+link: "https://korben.info/mistikee-gestionnaire-mots-de-passe-deni-plausible.html"
+language: "Other"
+category: "General"
+description: "Vous connaissez le concept de déni plausible appliqué aux mots de passe ? L'idée c'est que si quelqu'un chope votre coffre-fort de passwords et tente de le ..."
+date: "2026-02-07"
+---
+---
+title: "webrios App - App Store"
+type: "Website"
+link: "https://apps.apple.com/us/app/webrios/id6758071087"
+language: "Other"
+category: "General"
+description: "Download webrios by James Balamuta on the App Store. See screenshots, ratings and reviews, user tips, and more apps like webrios."
+date: "2026-01-23"
+---
+---
+title: "GitHub - tgerke/ducklake-r: An R package to interface with DuckLake lakehouses"
+type: "Repository"
+link: "https://github.com/tgerke/ducklake-r"
+language: "Other"
+category: "General"
+description: "An R package to interface with DuckLake lakehouses - tgerke/ducklake-r"
+date: "2025-09-09"
+---
+---
+title: "Claude Code Safety Net - Le plugin qui empêche l'IA de tout niquer - Korben"
+type: "Blog"
+link: "https://korben.info/claude-code-safety-net-plugin-securite-agent-ia.html"
+language: "Other"
+category: "General"
+description: "Vous utilisez Claude Code comme moi pour bosser plus vite sur vos projets de dev ? Hé bien j'espère que vous n'avez jamais eu la mauvaise surprise de voir ..."
+date: "2025-12-26"
+---
+---
+title: "The Vibe Companion - Une interface web pour piloter Claude Code - Korben"
+type: "Blog"
+link: "https://korben.info/the-vibe-companion-web-ui-claude-code.html"
+language: "Other"
+category: "General"
+description: "Claude Code, c'est super puissant... mais faut avouer que dans un terminal, quand l'IA commence à enchaîner les appels d'outils dans tous les sens, on se ..."
+date: "2026-02-10"
+---
+---
+title: "Claude R Tidyverse Expert"
+type: "Repository"
+link: "https://gist.github.com/sj-io/3828d64d0969f2a0f05297e59e6c15ad"
+language: "Other"
+category: "General"
+description: "Claude R Tidyverse Expert. GitHub Gist: instantly share code, notes, and snippets."
+date: "2026-01-10"
+---
+---
+title: "An example `CLAUDE.md` prompt for R package development"
+type: "Repository"
+link: "https://gist.github.com/simonpcouch/fcb6d4d2b6dc4df79f91cd1f0c2e7f52"
+language: "Other"
+category: "General"
+description: "An example `CLAUDE.md` prompt for R package development - CLAUDE.md"
+date: "2025-03-26"
+---
+---
+title: "GitHub - jeremy-allen/claude-skills"
+type: "Repository"
+link: "https://github.com/jeremy-allen/claude-skills"
+language: "Other"
+category: "General"
+description: "Contribute to jeremy-allen/claude-skills development by creating an account on GitHub."
+date: "2026-01-11"
+---
+---
+title: "GitHub - hesreallyhim/awesome-claude-code: A curated list of awesome skills, hooks, slash-commands, agent orchestrators,"
+type: "Repository"
+link: "https://github.com/hesreallyhim/awesome-claude-code#claudemd-files-"
+language: "Other"
+category: "General"
+description: "A curated list of awesome skills, hooks, slash-commands, agent orchestrators, applications, and plugins for Claude Code by Anthropic - hesreallyhim/awesome-claude-code"
+date: "2025-04-19"
+---
+---
+title: "bookdown-to-quarto/CONVERSION_GUIDE.md at main · topepo/bookdown-to-quarto"
+type: "Repository"
+link: "https://github.com/topepo/bookdown-to-quarto/blob/main/CONVERSION_GUIDE.md"
+language: "Other"
+category: "General"
+description: "some tools based on two conversions using claude. Contribute to topepo/bookdown-to-quarto development by creating an account on GitHub."
+date: "2026-02-15"
+---
+---
+title: "One-Shot Any Web App with Gradio's gr.HTML"
+type: "Blog"
+link: "https://huggingface.co/blog/gradio-html-one-shot-apps"
+language: "Python"
+category: "Machine Learning"
+description: "We’re on a journey to advance and democratize artificial intelligence through open source and open science."
+date: "2025-12-01"
+---
+---
+title: "ZeroClaw Hub"
+type: "Website"
+link: "https://zeroclawlabs.ai/"
+language: "Other"
+category: "Machine Learning"
+description: "Premium, 100% Rust-based agent automation platform and visual control plane for the ZeroClaw Core Engine."
+date: ""
+---
+---
+title: "Zensical"
+type: "Website"
+link: "https://zensical.org/docs/get-started/#install-with-pip-linux"
+language: "Other"
+category: "Development"
+description: "Adaptive systems for evolving ideas – Zensical creates scalable Open Source systems for technical writing that always keep you in the flow"
+date: "2025-01-01"
+---
+---
+title: "Maintaining Open Source in the Age of Generative AI: Recommendations for Maintainers and Contributors"
+type: "Blog"
+link: "https://blog.probabl.ai/maintaining-open-source-age-of-gen-ai"
+language: "Python"
+category: "Machine Learning"
+description: "Adrin Jalali and Cailean Osborne of Probabl deep dive into how open source projects are managing the surge of AI-generated contributions, highlighting pragmatic principles and policies to protect maintainer bandwidth."
+date: "2026-02-24"
+---
+---
+title: "Outils CLI pour agent claude: performance et qualité"
+type: "Blog"
+link: "https://mathieugrenier.fr/blog/coder-avec-claude-c-est-facile-et-rapide-1/les-outils-cli-qui-ont-transforme-mes-agents-ia-audit-adoption-et-synergies-27"
+language: "Other"
+category: "General"
+description: "Les outils CLI modernes (ripgrep, fd, bat, fzf, jq, yq) ne sont pas implémenté par défault dans les workflow d'agents IA, et en fait ils peuvent avoir un impact mesurable sur la consommation de tokens et la performance des agents"
+date: "2026-02-23"
+---
+---
+title: "GitHub - bahdotsh/wrkflw: Validate and Run GitHub Actions locally."
+type: "Repository"
+link: "https://github.com/bahdotsh/wrkflw"
+language: "Other"
+category: "General"
+description: "Validate and Run GitHub Actions locally. Contribute to bahdotsh/wrkflw development by creating an account on GitHub."
+date: "2025-03-29"
+---
+---
+title: "hyperverse-r"
+type: "Repository"
+link: "https://github.com/hyperverse-r"
+language: "Other"
+category: "General"
+description: "A modular R ecosystem for building modern web applications, the web way. - hyperverse-r"
+date: "2026-02-24"
+---
+---
+title: "GitHub - zeroclaw-labs/zeroclaw: Fast, small, and fully autonomous AI assistant infrastructure — deploy anywhere, swap a"
+type: "Repository"
+link: "https://github.com/zeroclaw-labs/zeroclaw"
+language: "Other"
+category: "General"
+description: "Fast, small, and fully autonomous AI assistant infrastructure — deploy anywhere, swap anything 🦀 - zeroclaw-labs/zeroclaw"
+date: "2026-02-13"
+---
+---
+title: "Retrieval-Augmented Generation (RAG) Workflows"
+type: "Website"
+link: "https://ragnar.tidyverse.org/"
+language: "R"
+category: "General"
+description: "Provides tools for implementing Retrieval-Augmented Generation (RAG) workflows with Large Language Models (LLM). Includes functions for document processing, text chunking, embedding generation, storage management, and content retrieval. Supports various document types and embedding providers (Ollama"
+date: "2023-01-01"
+---
+---
+title: "R as an MCP server"
+type: "Website"
+link: "https://posit-dev.github.io/mcptools/articles/server.html"
+language: "R"
+category: "General"
+description: "The mcptools package enables apps like Claude Desktop, Claude Code, and VS Code GitHub Copilot to run R code using the Model Context Protocol (MCP)."
+date: ""
+---
+---
+title: "Filter and Query Data Frames in shiny Using an LLM Chat Interface"
+type: "Website"
+link: "https://posit-dev.github.io/querychat/r/index.html"
+language: "R"
+category: "General"
+description: "Adds an LLM-powered chatbot to your shiny app, that can turn your users' natural language questions into SQL queries that run against your data, and return the result as a reactive data frame. Use it to drive reactive calculations, visualizations, downloads, and more."
+date: "2025-01-01"
+---
+---
+title: "Chat UI Component for shiny"
+type: "Website"
+link: "https://posit-dev.github.io/shinychat/r/"
+language: "R"
+category: "General"
+description: "Provides a scrolling chat interface with multiline input, suitable for creating chatbot apps based on Large Language Models (LLMs). Designed to work particularly well with the ellmer R package for calling LLMs."
+date: ""
+---
+---
+title: "Top Python Libraries of 2025 (11th Edition)"
+type: "Community"
+link: "https://www.reddit.com/r/Python/s/oMqyusmQsV"
+language: "Other"
+category: "General"
+description: "Top Python Libraries of 2025 (11th Edition) We tried really hard not to make this an AI-only list."
+date: "2025-12-18"
+---
+---
+title: "docs.langchain.com — Overview"
+type: "Website"
+link: "https://docs.langchain.com/oss/python/langgraph/overview"
+language: "Python"
+category: "Machine Learning"
+description: "Gain control with LangGraph to design agents that reliably handle complex tasks"
+date: "2026-02-17"
+---
+---
+title: "6 Quarto dashboards"
+type: "Website"
+link: "https://loreabad6.github.io/app-dev-gis/main/lessons/session_6.html"
+language: "R"
+category: "GIS"
+description: "6 Quarto dashboards In this session you should learn: 6."
+date: "2024-11-21"
+---
+---
+title: "Winners of the Closeread Prize - Data-Driven Scrollytelling with Quarto - Posit"
+type: "Blog"
+link: "https://posit.co/blog/closeread-prize-winners/"
+language: "R"
+category: "General"
+description: "Announcing the Closeread Prize winners! Prepare to be amazed by these stunning scrollytelling experiences created in Quarto."
+date: "2025-02-24"
+---
+---
+title: "Utiliser Shiny dans Quarto pour l’interactivité"
+type: "Website"
+link: "https://www.datanovia.com/fr/learn/interactive/r/shiny-integration.html"
+language: "R"
+category: "Statistics"
+description: "Apprenez à intégrer des applications Shiny interactives directement dans vos documents Quarto. Ce tutoriel aborde la configuration de l’extension Shinylive, la création d’une application Shiny autonome et la personnalisation des options du viewer."
+date: "2025-03-08"
+---
+---
+title: "Semi-automating 200 Pull Requests with Claude Code"
+type: "Blog"
+link: "https://blog.davisvaughan.com/posts/2026-01-09-claude-200-pull-requests/"
+language: "Other"
+category: "General"
+description: "We’re working on the next dplyr release."
+date: "2026-01-09"
+---
+---
+title: "Intro"
+type: "Website"
+link: "https://opencode.ai/docs"
+language: "Other"
+category: "Development"
+description: "Get started with OpenCode."
+date: "2026-02-24"
+---
+---
+title: "Welcome to the BMad Method"
+type: "Website"
+link: "https://docs.bmad-method.org/"
+language: "Other"
+category: "Machine Learning"
+description: "AI-driven development framework with specialized agents, guided workflows, and intelligent planning"
+date: "2008-08-03"
+---
+---
+title: "SSPCloud"
+type: "Website"
+link: "https://www.sspcloud.fr/catalog"
+language: "R"
+category: "General"
+description: ""
+date: ""
+---
+---
+title: "Modules de formations à et Git dispensés au SSM Agriculture"
+type: "Website"
+link: "https://ssm-agriculture.github.io/site-formations-R/"
+language: "R"
+category: "General"
+description: "Prise en main de l'environnement de programmation Cerise Diaporama de présentation pour la prise en main du RStudion workbench Cerise du MASA Version une journée L’ensemble des modules peuvent être suivis indépendamment les uns des autres."
+date: "2017-04-01"
+---
+---
+title: "Preventive Care for R Packages"
+type: "Website"
+link: "https://indrajeetpatil.github.io/preventive-r-package-care/#/preventive-care-for-r-packages"
+language: "R"
+category: "Packages"
+description: "A comprehensive guide to R package development using automation to tick checklists for documentation, exception handling, portability, code quality, and dependency management. Learn how to make your R packages sustainable and release-ready."
+date: "2026-01-13"
+---
+---
+title: "ggsql"
+type: "Website"
+link: "https://ggsql.org/"
+language: "R"
+category: "General"
+description: "ggsql is still in early development and all functionality are subject to change A declarative visualization language that extends SQL with powerful data visualization capabilities."
+date: "2023-01-01"
+---
+---
+title: "rwarehouse.netlify.app"
+type: "Website"
+link: "https://rwarehouse.netlify.app/"
+language: "R"
+category: "General"
+description: "Find R packages by what they do Search 23,000+ packages from CRAN, Bioconductor, and GitHub."
+date: ""
+---
+---
+title: "R Toolkit for Databricks"
+type: "Website"
+link: "https://databrickslabs.github.io/brickster/index.html"
+language: "Python"
+category: "Machine Learning"
+description: "Collection of utilities that improve using Databricks from R. Primarily functions that wrap specific Databricks APIs (<https://docs.databricks.com/api>), RStudio connection pane support, quality of life functions to make Databricks simpler to use."
+date: "2019-12-01"
+---
+---
+title: "MCP Apps - Bringing UI Capabilities To MCP Clients"
+type: "Website"
+link: "https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/"
+language: "Other"
+category: "Machine Learning"
+description: "Today, we’re announcing that MCP Apps are now live as an official MCP extension. Tools can now return interactive UI components that render directly in the conversation: dashboards, forms, visualizations, multi-step workflows, and more. This is the first official MCP extension, and it’s ready for pr"
+date: "2026-01-26"
+---
+---
+title: "Mastering Quarto CLI: From Authoring to Publishing – Mastering Quarto CLI"
+type: "Website"
+link: "https://m.canouil.dev/mastering-quarto-cli/"
+language: "R"
+category: "General"
+description: "Learn how to use Quarto CLI for your data science projects."
+date: "2026-02-06"
+---
+---
+title: "GitHub - github/awesome-copilot at cfb896c2325b8c0527a88362846d25b8080c5071"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/tree/cfb896c2325b8c0527a88362846d25b8080c5071?tab=readme-ov-file"
+language: "Other"
+category: "General"
+description: "Community-contributed instructions, prompts, and configurations to help you make the most of GitHub Copilot. - GitHub - github/awesome-copilot at cfb896c2325b8c0527a88362846d25b8080c5071"
+date: "2025-06-11"
+---
+---
+title: "03 - Theming Quarto – Creating Polished, Branded Documents with Quarto"
+type: "Website"
+link: "https://ivelasq-r-pharma-2025-branded-quarto.share.connect.posit.cloud/03-theming/"
+language: "R"
+category: "Shiny"
+description: "03 - Theming Quarto Slides Exercise 1 In the workshop repo, there is a file called 03-exercise."
+date: "2025-11-04"
+---
+---
+title: "Z.ai - Free AI Chatbot & Agent powered by GLM-5 & GLM-4.7"
+type: "Website"
+link: "https://chat.z.ai/"
+language: "Other"
+category: "Machine Learning"
+description: "Meet Z.ai, your free AI-powered assistant. Build websites, create slides, analyze data, and get instant answers. Fast, smart, and reliable, powered by GLM-5."
+date: ""
 ---
