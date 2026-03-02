@@ -30,7 +30,7 @@ Paris
 [{{< fa envelope >}} Email](mailto:antoine.lucas.fra@gmail.com){.hero-link}
 [{{< fa brands linkedin >}} LinkedIn](https://www.linkedin.com/in/antoinelucasdata/){.hero-link}
 [{{< fa brands github >}} GitHub](https://github.com/antoinelucasfra){.hero-link}
-[{{< fa brands twitter >}} Twitter](https://twitter.com/antoineloucass){.hero-link}
+[{{< fa brands mastodon >}} Fosstodon](https://fosstodon.org/@antoineloucass){.hero-link}
 [{{< fa id-card >}} CV](cv.qmd){.hero-link .hero-link-cv}
 :::
 :::

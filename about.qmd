@@ -44,6 +44,6 @@ Outside of work: I've been following One Piece for years — not casually, prope
 - **Email**: [antoine.lucas.fra@gmail.com](mailto:antoine.lucas.fra@gmail.com)
 - **LinkedIn**: [linkedin.com/in/antoinelucasdata](https://www.linkedin.com/in/antoinelucasdata/)
 - **GitHub**: [github.com/antoinelucasfra](https://github.com/antoinelucasfra)
-- **Twitter/X**: [@antoineloucass](https://twitter.com/antoineloucass)
+- **Fosstodon**: [@antoineloucass](https://fosstodon.org/@antoineloucass)
 
 Content on this site is licensed under [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) unless stated otherwise.
