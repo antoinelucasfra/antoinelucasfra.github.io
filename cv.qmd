@@ -12,7 +12,7 @@ format:
   <header class="cv-header">
     <div class="cv-header-text">
       <h1 class="cv-name">Antoine Lucas</h1>
-      <p class="cv-title">Research Engineer · ML Systems & Scientific AI</p>
+      <p class="cv-title">R / Shiny Engineer · Scientific Software & Data Products</p>
       <p class="cv-subtitle">Pharma · Cosmetics · Biotech · Paris, France</p>
       <div class="cv-contacts">
         <a href="mailto:antoine.lucas.fra@gmail.com">
@@ -37,14 +37,13 @@ format:
   <div class="cv-rule"></div>
 
   <p class="cv-summary">
-    Research Engineer & Data Scientist with 5+ years building production-grade ML systems in
-    regulated and scientific environments — pharma, cosmetics, and biotech. Expertise spans
-    deep learning (computer vision, NLP, LLM fine-tuning with LoRA/QLoRA),
-    end-to-end data pipelines, and statistical modelling (Design of Experiments, mixed models,
-    multi-omics analysis). Proven track record translating complex scientific questions into
-    deployed systems: from model development and pipeline architecture through to validated
-    MLOps infrastructure and stakeholder delivery. Strong communicator at the interface of
-    wet-lab science, software engineering, and ML research.
+    Research Engineer & Data Scientist with 5+ years building production-grade software and data
+    products in regulated scientific environments — pharma, cosmetics, and biotech. Strong track
+    record in R / Shiny delivery, reproducible engineering, stakeholder-facing architecture, and
+    technical ownership from discovery through deployment. Background spans statistical modelling,
+    scientific computing, internal platform tooling, and ML systems, with a strong bias toward
+    maintainable delivery: documentation, validation, CI/CD, and handover for teams that need to
+    keep using the product long after the first release.
   </p>
 ```
 
@@ -61,13 +60,11 @@ format:
 [Sep 2025 – present]{.cv-period}
 :::
 
-- Designed and deployed computer vision models (texture classification, colour analysis) and NLP pipelines (olfactory descriptor mining from scientific literature) for fragrance and cosmetics formulation R&D
-- Modelled sensory and physico-chemical properties with partial least squares (PLS) regression, Gaussian processes, and Bayesian optimisation to accelerate ingredient screening cycles
-- Built design of experiments (DoE) workflows (mixture designs, response-surface methods) cutting required experiments per formulation cycle by 30–40%
-- Engineered machine learning operations (MLOps) infrastructure: drift monitoring, fully reproducible pipelines (Docker + GitHub Actions) in a Good Practices (GxP)-adjacent environment
-- Delivered R Shiny dashboards covering sensory scoring, spectral data visualisation, and interactive experiment planning for R&D scientists
+- Delivered R Shiny applications covering sensory scoring, clinical data visualisation, interactive experiment planning for R&D scientists, enhanced data lifecycle management for researchers
 - Responsible for data science platform tooling: Azure ML, Posit Connect, Databricks — provisioning, access governance, and lifecycle management
 - Owner and maintainer of a 20+ app catalog (R Shiny, Streamlit) used daily by R&D scientists
+- Engineered reproducible MLOps and delivery infrastructure: Docker, GitHub Actions, drift monitoring, and qualification-minded workflows in a Good Practices (GxP)-adjacent environment
+- Designed and deployed computer vision models (object segmentation) for cosmetics formulation and regulation R&D
 :::
 
 ::: {.cv-entry}
@@ -80,9 +77,9 @@ format:
 :::
 
 - Developed reusable internal R packages and Quarto automated reporting templates, cutting analyst turnaround time by ~25% across consulting engagements
-- Led internal upskilling programme on tidymodels, causal inference, and reproducible research for 8 statistical consultants
+- Led internal upskilling training on bayesian statistics with R for internal consultants
 - Scoped and prototyped ML solutions for pre-sales client engagements in pharma and agri-food verticals
-- Fine-tuned Microsoft Phi-3-mini-4k-instruct (3.8B) using LoRA (PEFT) on the LIAR dataset for binary claim verification — full pipeline from data preparation to evaluation; +19.5pp accuracy over zero-shot baseline (54.3% → 73.8%), F1 macro 0.72
+- Fine-tuned Microsoft Phi-3-mini-4k-instruct (3.8B) using LoRA (PEFT) on the [climatecheck](https://huggingface.co/datasets/rabuahmad/climatecheck) for claim verification — full pipeline from data preparation to evaluation
 :::
 
 ::: {.cv-entry}
@@ -94,41 +91,74 @@ format:
 [Dec 2024 – May 2025]{.cv-period}
 :::
 
-- Fast-paced 8-person startup contributing to a software-as-a-service (SaaS) product (FastAPI Python backend, Vue.js front-end), with full individual autonomy
+- Context : Fast-paced 8-person startup contributing to a software-as-a-service (SaaS) product (FastAPI Python backend, Vue.js front-end), with full individual autonomy
 - Delivered end-to-end pipelines in R and Python for tabular and large-scale omics data (genomics, transcriptomics, metabolomics)
-- Applied permutational multivariate analysis of variance (PERMANOVA), sparse PLS-DA, and co-occurrence network analysis to characterise microbial interactions and identify key functional drivers
 - Integrated analysis outputs into the production SaaS platform via representational state transfer (REST) API
 :::
 
 ::: {.cv-entry}
 ::: {.cv-entry-head}
 ::: {.cv-entry-meta}
-[**Data Scientist / Scrum Master**]{.cv-role}
-[*Sanofi R&D · via Astek / IT&M Stats*]{.cv-org}
+[**Data Scientist**]{.cv-role}
+[*Sanofi R&D · CMC Data Science · via Astek / IT&M Stats*]{.cv-org}
 :::
 [Jul 2023 – Nov 2024]{.cv-period}
 :::
 
-- Architected and delivered a full R Shiny platform (golem) managing pilot manufacturing chains for 100+ GxP clinical projects — 50+ daily active users across 3 departments
-- Designed the data model, module architecture, and automated validation report generation to satisfy GxP audit-trail requirements (Installation/Operational/Performance Qualification (IQ/OQ/PQ) on Posit Connect)
-- Owned the full delivery lifecycle: user-story workshops → agile sprints → user acceptance testing (UAT) → IQ/OQ documentation → production deployment
-- Sole developer on the engineering side, working directly with 5+ senior sponsors across R&D and manufacturing
-- Mentored 1 intern on building Shiny application modules
+- Developed R and Python applications for different user profiles across drug manufaturing (CMC) data science activities
+- Built applications supporting CMC platforms by simulating resource allocation across production sites at global scale
+- Developed applications to predict and simulate CMC plant capacity for manufacturing planning and decision support
 :::
 
 ::: {.cv-entry}
 ::: {.cv-entry-head}
 ::: {.cv-entry-meta}
 [**Biostatistician**]{.cv-role}
-[*L'Oréal R&D · via Astek / IT&M Stats*]{.cv-org}
+[*L'Oréal R&I · Scientific Computing · via Astek / IT&M Stats*]{.cv-org}
 :::
-[Oct 2021 – Jul 2023]{.cv-period}
+[Nov 2021 – Jul 2023]{.cv-period}
 :::
 
-- Delivered 100+ statistical analyses on ingredient efficacy (hydration, anti-ageing biomarkers) and molecular safety (quantitative structure-activity relationship (QSAR), genotoxicity) across cosmetic and dermocosmetic pipelines
-- Designed and analysed clinical and semi-clinical studies from protocol writing through regulatory-grade reports — consistent 2-week delivery cycle
-- Built internal R tooling (survival analysis, mixed-effects models, automated Rmarkdown reporting) adopted as standard across the biostatistics team
-- Mentored 2 junior analysts and 1 intern; co-authored methodology guides on non-inferiority testing and adaptive designs
+- Supported a senior statistician on exposome and clinical datasets, including biophysical, omics, and microbiome data
+- Characterised clinical phenotypes with multi-block, integrative, multivariate, and variable-selection approaches
+- Contributed to data-visualisation work, including Bayesian-network and other graphical approaches, while proposing suitable statistical methods
+- Defined analysis methodologies for proof-of-concept clinical studies; wrote statistical analysis plans, supported blind-review meetings, programmed analyses in R, and delivered reports (100+ clinical studies analysed)
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+[**Data Scientist Intern**]{.cv-role}
+[*L'Oréal R&I · Augmented Beauty*]{.cv-org}
+:::
+[Feb 2021 – Aug 2021]{.cv-period}
+:::
+
+Modelled hair customer data for personalised recommendations, combining literature review, data management, statistical analyses, machine learning, and communication to Research&Innovation teams.
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+[**Biostatistics Project Officer Intern**]{.cv-role}
+[*Da Volterra · Metagenomics Team*]{.cv-org}
+:::
+[Feb 2020 – Aug 2020]{.cv-period}
+:::
+
+Performed data management and non-parametric statistical analyses for gut-microbiome clinical studies, then prepared and presented results to biotechnology research teams.
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+[**Data Scientist Intern**]{.cv-role}
+[*Flinders University · Digital Health Research Center*]{.cv-org}
+:::
+[Sep 2019 – Jan 2020]{.cv-period}
+:::
+
+Supported digital-health and wearables studies in R through questionnaire design, workshop preparation, statistical evaluation, and presentation of results to researchers.
 :::
 
 ```{=html}
@@ -177,6 +207,10 @@ format:
     <div class="cv-skill-row">
       <span class="cv-skill-label">MLOps</span>
       <span class="cv-skill-value">Docker · GitHub Actions · Azure ML · Databricks · Posit Connect · renv · uv</span>
+    </div>
+    <div class="cv-skill-row">
+      <span class="cv-skill-label">Engineering</span>
+      <span class="cv-skill-value">Git · CI/CD · automated testing · documentation · code review · architecture design</span>
     </div>
     <div class="cv-skill-row">
       <span class="cv-skill-label">Domains</span>

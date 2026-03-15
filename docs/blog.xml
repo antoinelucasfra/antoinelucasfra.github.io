@@ -8,14 +8,527 @@
 <title>Antoine Lucas</title>
 <link>https://antoinelucasfra.github.io/blog.html</link>
 <atom:link href="https://antoinelucasfra.github.io/blog.xml" rel="self" type="application/rss+xml"/>
-<description>Research Engineer — ML systems, deep learning, and LLM pipelines in scientific and regulated environments. Portfolio, blog, and projects.</description>
+<description>R and Shiny product engineering, statistical computing, and ML systems in scientific and regulated environments. Portfolio, blog, and projects.</description>
 <image>
 <url>https://antoinelucasfra.github.io/assets/images/profile-pic.jpg</url>
 <title>Antoine Lucas</title>
 <link>https://antoinelucasfra.github.io/blog.html</link>
 </image>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Mon, 23 Feb 2026 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 13 Mar 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Engineering Standards for Scientific Software</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/engineering-standards-scientific-software/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="why-this-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters">Why this matters</h2>
+<p>Most of the software I build is internal, domain-heavy, and used by teams who are not primarily software engineers. In that environment, “the code runs” is a low bar. The real question is whether the product can be trusted, maintained, and handed over without turning into folklore.</p>
+<p>The details vary by client and domain, but my standards are fairly stable.</p>
+<hr>
+</section>
+<section id="start-with-the-operating-problem" class="level2">
+<h2 class="anchored" data-anchor-id="start-with-the-operating-problem">1. Start with the operating problem</h2>
+<p>I try to understand the real workflow before I touch architecture:</p>
+<ul>
+<li>who uses the product</li>
+<li>what decision or operation it supports</li>
+<li>what failure would actually cost</li>
+<li>what has to be auditable, reproducible, or explainable</li>
+</ul>
+<p>This sounds obvious, but it prevents a lot of over-engineering. Scientific software often fails because it optimizes the elegance of the implementation over the friction of the user workflow.</p>
+<hr>
+</section>
+<section id="prefer-explicit-architecture-to-accidental-structure" class="level2">
+<h2 class="anchored" data-anchor-id="prefer-explicit-architecture-to-accidental-structure">2. Prefer explicit architecture to accidental structure</h2>
+<p>Whether the tool is an R Shiny application, an analysis pipeline, or an ML-assisted workflow, I want the structure to be legible:</p>
+<ul>
+<li>clear boundaries between UI, business logic, and data access</li>
+<li>naming that still makes sense six months later</li>
+<li>configuration handled deliberately rather than scattered through scripts</li>
+<li>deployment assumptions stated explicitly</li>
+</ul>
+<p>I am not attached to complexity for its own sake. The right architecture is the lightest one that still remains maintainable under change.</p>
+<hr>
+</section>
+<section id="tests-and-checks-should-reduce-anxiety" class="level2">
+<h2 class="anchored" data-anchor-id="tests-and-checks-should-reduce-anxiety">3. Tests and checks should reduce anxiety</h2>
+<p>I do not treat testing as a compliance ritual. The point is to make change safer.</p>
+<p>Depending on the project, that usually means some mix of:</p>
+<ul>
+<li>automated tests for the logic that can realistically break</li>
+<li>input validation and constrained state transitions</li>
+<li>regression checks on critical outputs</li>
+<li>smoke checks around deployment paths</li>
+</ul>
+<p>In regulated or high-consequence contexts, I also care about the evidence around the system: what was validated, what assumptions were made, and what would need re-checking after a change.</p>
+<hr>
+</section>
+<section id="documentation-is-not-optional-overhead" class="level2">
+<h2 class="anchored" data-anchor-id="documentation-is-not-optional-overhead">4. Documentation is not optional overhead</h2>
+<p>The documentation I value most is the kind that makes a system survivable:</p>
+<ul>
+<li>short architecture notes</li>
+<li>operational runbooks</li>
+<li>deployment instructions</li>
+<li>onboarding material for the next developer or analyst</li>
+<li>user-facing guides when the audience needs them</li>
+</ul>
+<p>If the only reliable documentation is “ask the person who built it”, the product is not done.</p>
+<hr>
+</section>
+<section id="cicd-and-reproducibility-are-part-of-product-quality" class="level2">
+<h2 class="anchored" data-anchor-id="cicd-and-reproducibility-are-part-of-product-quality">5. CI/CD and reproducibility are part of product quality</h2>
+<p>I work best when environments and delivery are explicit:</p>
+<ul>
+<li>version control as the source of truth</li>
+<li>reproducible environments with <code>renv</code>, <code>uv</code>, containers, or pinned tooling when appropriate</li>
+<li>CI/CD to reduce manual drift</li>
+<li>deployments that are boring on purpose</li>
+</ul>
+<p>In scientific environments, reproducibility is not just engineering hygiene. It is often the difference between a result being usable and a result being untrustworthy.</p>
+<hr>
+</section>
+<section id="handover-and-training-are-part-of-delivery" class="level2">
+<h2 class="anchored" data-anchor-id="handover-and-training-are-part-of-delivery">6. Handover and training are part of delivery</h2>
+<p>I like projects where the output is not only software, but increased capability in the team using it.</p>
+<p>That can take several forms:</p>
+<ul>
+<li>mentoring a junior developer or analyst</li>
+<li>running internal upskilling sessions</li>
+<li>pairing on difficult debugging or design decisions</li>
+<li>turning repeated explanations into reusable templates or guides</li>
+</ul>
+<p>I do not see knowledge transfer as a nice extra. It is one of the ways you make a product durable.</p>
+<hr>
+</section>
+<section id="remote-collaboration-needs-explicit-habits" class="level2">
+<h2 class="anchored" data-anchor-id="remote-collaboration-needs-explicit-habits">7. Remote collaboration needs explicit habits</h2>
+<p>I am comfortable working remotely, but good remote work is not passive. It usually relies on:</p>
+<ul>
+<li>clear written decisions</li>
+<li>visible priorities</li>
+<li>early screen-sharing when something is ambiguous</li>
+<li>concise feedback loops</li>
+<li>enough documentation that async work remains aligned</li>
+</ul>
+<p>This is one reason I value writing: it helps teams coordinate without relying on memory.</p>
+<hr>
+</section>
+<section id="what-this-looks-like-in-practice" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-looks-like-in-practice">What this looks like in practice</h2>
+<p>Across projects, these standards usually show up as some combination of:</p>
+<ul>
+<li>R Shiny applications with modular structure and deployment discipline</li>
+<li>reusable R packages or reporting templates</li>
+<li>qualification-minded internal tooling in regulated environments</li>
+<li>GitHub Actions or equivalent CI/CD for repeatable delivery</li>
+<li>architecture and handover material that support maintenance</li>
+</ul>
+<p>The exact stack changes. The underlying principles do not change much.</p>
+<hr>
+</section>
+<section id="the-short-version" class="level2">
+<h2 class="anchored" data-anchor-id="the-short-version">The short version</h2>
+<p>The kind of software I want to build is:</p>
+<ul>
+<li>useful to the people doing the work</li>
+<li>understandable by the people maintaining it</li>
+<li>explicit about trade-offs</li>
+<li>documented well enough to survive handover</li>
+<li>rigorous enough to be trusted in scientific settings</li>
+</ul>
+<p>That is a more durable goal than chasing novelty for its own sake.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Engineering</category>
+  <category>Documentation</category>
+  <category>CI/CD</category>
+  <category>Standards</category>
+  <guid>https://antoinelucasfra.github.io/posts/engineering-standards-scientific-software/</guid>
+  <pubDate>Fri, 13 Mar 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title>Running ShinyProxy Well: Docker, Operations, and Packaged Shiny Apps</title>
+  <dc:creator>Antoine Lucas</dc:creator>
+  <link>https://antoinelucasfra.github.io/posts/shinyproxy-admin-best-practices/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="honest-preamble" class="level2">
+<h2 class="anchored" data-anchor-id="honest-preamble">Honest preamble</h2>
+<p>This is not a “copy this YAML and you have production ShinyProxy” post.</p>
+<p>ShinyProxy is one of those tools that looks deceptively simple from a distance. On paper, the model is elegant: each Shiny app lives in a container, ShinyProxy starts and stops those containers on demand, and you get a clean separation between the application and the hosting layer. Conceptually, that is a very appealing setup.</p>
+<p>In practice, the hard part is not getting the first app to appear in the browser. The hard part is everything that comes after: image versioning, storage, debugging, upgrades, reverse proxy assumptions, and making sure the server does not gradually turn into a snowflake only one person understands.</p>
+<p>That is the scope of this article.</p>
+<p>I am writing it from the perspective I find most useful: not “here is the official platform documentation rewritten”, but “what I would want to get right early if I were administering a ShinyProxy server for real work”. The running example is a small project I built, <a href="https://github.com/antoinelucasfra/fitness-app"><code>fitness-app</code></a>, a packaged Shiny app built with <code>golem</code>. It is currently shaped for local use and a Posit deployment path, which makes it a good example of the gap between <em>package-first Shiny development</em> and <em>operating containerized apps behind ShinyProxy</em>.</p>
+<hr>
+</section>
+<section id="why-shinyproxy-is-appealing-in-the-first-place" class="level2">
+<h2 class="anchored" data-anchor-id="why-shinyproxy-is-appealing-in-the-first-place">Why ShinyProxy is appealing in the first place</h2>
+<p>There are at least three reasons people end up looking seriously at ShinyProxy:</p>
+<ol type="1">
+<li><strong>You want explicit control.</strong> The container boundary is a real boundary. That is attractive if you care about reproducibility or about isolating apps from one another.</li>
+<li><strong>You are running multiple apps.</strong> Once a server becomes an internal app catalog rather than “the one Shiny app”, lifecycle management matters more.</li>
+<li><strong>You prefer standard infrastructure primitives.</strong> Docker images, reverse proxies, identity providers, mounted volumes, image registries — this is all boring infrastructure in the best possible sense.</li>
+</ol>
+<p>What ShinyProxy gives you is not magic. It gives you a clean contract: <em>build an image that starts a Shiny app correctly, and I will orchestrate it for users</em>. That is a good contract.</p>
+<p>But contracts cut both ways. If your image is messy, if your persistence model is hand-wavy, or if you do not know how to observe what is happening on the host, ShinyProxy will not save you from that. It will expose it.</p>
+<hr>
+</section>
+<section id="the-example-app-fitness-app" class="level2">
+<h2 class="anchored" data-anchor-id="the-example-app-fitness-app">The example app: <code>fitness-app</code></h2>
+<p>The example is intentionally modest. <code>fitness-app</code> is a personal fitness tracker built as a proper R package app:</p>
+<ul>
+<li>framework: <code>golem</code> + <code>shiny</code></li>
+<li>dependency management: <code>renv</code></li>
+<li>package metadata in <code>DESCRIPTION</code></li>
+<li>explicit app entrypoint in <code>app.R</code></li>
+<li>app code in <code>R/</code></li>
+<li>local persistence via <code>rappdirs::user_data_dir()</code></li>
+</ul>
+<p>Its current README shows a straightforward local workflow:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">renv<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">restore</span>()</span>
+<span id="cb1-2">devtools<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install</span>()</span>
+<span id="cb1-3">fitnessapp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">run_app</span>()</span></code></pre></div></div>
+<p>And it already has a Posit-oriented deployment path:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">rsconnect<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">deployApp</span>(</span>
+<span id="cb2-2">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">appName     =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"flo-fit"</span>,</span>
+<span id="cb2-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">appTitle    =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Flo Fit"</span>,</span>
+<span id="cb2-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">account     =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"antoinelucasfra"</span>,</span>
+<span id="cb2-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">server      =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"connect.posit.cloud"</span>,</span>
+<span id="cb2-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lint        =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>,</span>
+<span id="cb2-7">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">forceUpdate =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span></span>
+<span id="cb2-8">)</span></code></pre></div></div>
+<p>More interestingly for this article, the <code>dev/03_deploy.R</code> file already points toward the container path:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">golem<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">add_dockerfile_with_renv</span>()</span>
+<span id="cb3-2">golem<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">add_dockerfile_with_renv_shinyproxy</span>()</span></code></pre></div></div>
+<p>That is the exact transition I care about here. A lot of Shiny work stops at “the app runs locally” or “I can deploy it to Posit Connect”. Moving to ShinyProxy is not conceptually difficult, but it forces you to make a series of operational decisions that are easy to postpone and expensive to postpone badly.</p>
+<hr>
+</section>
+<section id="what-changes-when-shinyproxy-enters-the-picture" class="level2">
+<h2 class="anchored" data-anchor-id="what-changes-when-shinyproxy-enters-the-picture">What changes when ShinyProxy enters the picture</h2>
+<p>The most important shift is this:</p>
+<ul>
+<li>with <strong>Posit Connect</strong>, more of the platform behavior is managed for you</li>
+<li>with <strong>ShinyProxy</strong>, more of that behavior becomes your responsibility</li>
+</ul>
+<p>That responsibility includes things like:</p>
+<ul>
+<li>what exactly goes into the image</li>
+<li>where data is stored</li>
+<li>how logs are collected</li>
+<li>how images are versioned and rolled back</li>
+<li>how authentication is handled upstream</li>
+<li>how upgrades are performed without guessing</li>
+</ul>
+<p>This is why I think ShinyProxy should be approached less like “a deployment target” and more like “a small application platform that I now administer”.</p>
+<p>That is not a criticism. It is the reason many people choose it. But it does mean your job changes. You are not only packaging a Shiny app anymore. You are now making platform decisions.</p>
+<hr>
+</section>
+<section id="best-practice-1-build-package-first-container-second" class="level2">
+<h2 class="anchored" data-anchor-id="best-practice-1-build-package-first-container-second">Best practice 1: build package-first, container-second</h2>
+<p>If I had to choose one thing to get right before touching ShinyProxy, it would be this.</p>
+<p>For me, packaged apps are simply easier to reason about than “a folder full of server.R, ui.R, and half-remembered helper scripts”. <code>fitness-app</code> is not complicated, but it already has the shape I want:</p>
+<ul>
+<li>dependencies are explicit in <code>DESCRIPTION</code></li>
+<li>the app has a package name</li>
+<li>the runtime is clear</li>
+<li>the entrypoint is clear</li>
+<li>the code layout is predictable</li>
+</ul>
+<p>That matters because containers amplify mess. If your app structure is vague before Docker, it becomes painful once you are debugging a container that starts, exits, and leaves only a short log line behind.</p>
+<p>So my preference is:</p>
+<ol type="1">
+<li>make the app behave like a proper package</li>
+<li>make local development reproducible with <code>renv</code></li>
+<li>only then generate or write the Docker image</li>
+</ol>
+<p>The container should wrap a coherent app. It should not be the mechanism that compensates for a chaotic project structure.</p>
+<hr>
+</section>
+<section id="best-practice-2-treat-shiny2docker-as-the-bridge-not-the-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="best-practice-2-treat-shiny2docker-as-the-bridge-not-the-architecture">Best practice 2: treat <code>shiny2docker</code> as the bridge, not the architecture</h2>
+<p>The user asked specifically about deploying packaged Shiny apps with <code>shiny2docker</code>, so it is worth making the boundary explicit.</p>
+<p>Tools like <code>shiny2docker</code> are useful because they help you cross the gap between:</p>
+<ul>
+<li>an app that runs in an R development workflow</li>
+<li>and an image that ShinyProxy can launch reliably</li>
+</ul>
+<p>That is valuable. But the generated Dockerfile is not the architecture of your deployment. It is one artifact in the deployment chain.</p>
+<p>In the case of <code>fitness-app</code>, the repo itself currently advertises <code>golem</code>’s Docker helpers rather than a committed <code>shiny2docker</code> workflow. I do not think that changes the real lesson. Whether the image starts from <code>shiny2docker</code>, <code>golem::add_dockerfile_with_renv_shinyproxy()</code>, or a hand-written Dockerfile, the operational questions are the same:</p>
+<ul>
+<li>is the image deterministic?</li>
+<li>are dependencies pinned?</li>
+<li>does the entrypoint start the app cleanly?</li>
+<li>where does state live?</li>
+<li>how do I update it safely?</li>
+</ul>
+<p>So I think of <code>shiny2docker</code> as the <strong>bridge into containerization</strong>, not the main design problem. The design problem starts right after the image builds successfully.</p>
+<hr>
+</section>
+<section id="best-practice-3-keep-the-image-boring-and-predictable" class="level2">
+<h2 class="anchored" data-anchor-id="best-practice-3-keep-the-image-boring-and-predictable">Best practice 3: keep the image boring and predictable</h2>
+<p>I strongly prefer Docker images that are dull.</p>
+<p>By that I mean:</p>
+<ul>
+<li>pinned base image</li>
+<li>explicit package restore/install steps</li>
+<li>no manual post-build fixes on the server</li>
+<li>no hidden runtime dependencies that only exist on one machine</li>
+<li>one clear entrypoint</li>
+</ul>
+<p>For a packaged app like <code>fitness-app</code>, my bias would be:</p>
+<ol type="1">
+<li>restore the exact R package set from <code>renv.lock</code></li>
+<li>install the package cleanly</li>
+<li>launch through a stable entrypoint</li>
+</ol>
+<p>The temptation with internal Shiny apps is always to “just install that one extra thing directly on the host”. That is how you create a server nobody trusts to rebuild later.</p>
+<p>If the app needs something, the image should say so. If the image needs something, the build should say so. If the server needs something, it should be documented as platform setup, not hidden as tribal knowledge.</p>
+<p>The litmus test I like is simple: <strong>if this VM died today, how much of the ShinyProxy stack could I reproduce from Git and documented configuration alone?</strong></p>
+<p>If the answer is “not much”, you do not have an administration strategy yet.</p>
+<hr>
+</section>
+<section id="best-practice-4-persistence-is-where-naive-setups-go-wrong" class="level2">
+<h2 class="anchored" data-anchor-id="best-practice-4-persistence-is-where-naive-setups-go-wrong">Best practice 4: persistence is where naive setups go wrong</h2>
+<p>This is the section I would pay the most attention to for <code>fitness-app</code>.</p>
+<p>The app stores data locally via:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">rappdirs<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">user_data_dir</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fitnessapp"</span>)</span></code></pre></div></div>
+<p>That is a perfectly reasonable choice for a local or desktop-like usage model. It is <em>not</em> automatically a reasonable choice once the app is launched in an ephemeral container behind ShinyProxy.</p>
+<p>The problem is simple:</p>
+<ul>
+<li>containers are disposable</li>
+<li>local writes inside the container filesystem disappear with the container unless you mount storage deliberately</li>
+</ul>
+<p>So for an app like this, you need to decide explicitly:</p>
+<section id="option-a-bind-mount-host-storage" class="level3">
+<h3 class="anchored" data-anchor-id="option-a-bind-mount-host-storage">Option A — bind mount host storage</h3>
+<p>This is the simplest path for a small internal setup.</p>
+<p>Pros:</p>
+<ul>
+<li>easy to understand</li>
+<li>minimal app refactor</li>
+<li>works fine for one app with modest traffic</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>couples the app to host filesystem layout</li>
+<li>requires careful permissions</li>
+<li>backup strategy becomes your problem immediately</li>
+</ul>
+</section>
+<section id="option-b-move-to-a-database" class="level3">
+<h3 class="anchored" data-anchor-id="option-b-move-to-a-database">Option B — move to a database</h3>
+<p>This is the better long-term model if the app becomes multi-user, concurrent, or operationally important.</p>
+<p>Pros:</p>
+<ul>
+<li>clearer persistence model</li>
+<li>better fit for multiple app instances</li>
+<li>easier story for backup and migration</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>more moving parts</li>
+<li>more application code to maintain</li>
+</ul>
+<p>For <code>fitness-app</code>, my practical recommendation would be: <strong>start with an explicit mounted data directory if the usage remains small and personal-ish, but design the storage layer so a later database move is not traumatic</strong>.</p>
+<p>What I would avoid is the worst middle ground: pretending local container writes are good enough because the app “seems to work”. They usually work right up until the container restarts.</p>
+<hr>
+</section>
+</section>
+<section id="best-practice-5-version-apps-like-products-not-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="best-practice-5-version-apps-like-products-not-scripts">Best practice 5: version apps like products, not scripts</h2>
+<p>I do not like <code>latest</code> in production. I tolerate it in experiments. That is a different thing.</p>
+<p>For ShinyProxy-administered apps, I want:</p>
+<ul>
+<li>immutable image tags</li>
+<li>a documented mapping between app version and image tag</li>
+<li>a rollback target</li>
+<li>a staging path if the app matters</li>
+</ul>
+<p>This matters more than people think because Shiny apps often look deceptively safe to update. “It is only an internal tool” is usually how internal tools become important without getting any safer to operate.</p>
+<p>For a package app, I like the idea that:</p>
+<ul>
+<li>package version in <code>DESCRIPTION</code></li>
+<li>image tag in the registry</li>
+<li>deployed image in ShinyProxy config</li>
+</ul>
+<p>all line up clearly enough that I can answer the question: <strong>what exactly is running right now?</strong></p>
+<p>If I cannot answer that in thirty seconds, the deployment is under-documented.</p>
+<hr>
+</section>
+<section id="best-practice-6-observe-the-server-not-only-the-app" class="level2">
+<h2 class="anchored" data-anchor-id="best-practice-6-observe-the-server-not-only-the-app">Best practice 6: observe the server, not only the app</h2>
+<p>There is a class of Shiny debugging pain that comes from looking in the wrong place.</p>
+<p>If the app fails under ShinyProxy, the issue may live in any of these layers:</p>
+<ul>
+<li>the app itself</li>
+<li>the image build</li>
+<li>container startup</li>
+<li>mounted volumes</li>
+<li>permissions</li>
+<li>the ShinyProxy configuration</li>
+<li>the reverse proxy in front of it</li>
+</ul>
+<p>That means the minimum useful observability setup is not “I can print logs from R”. It is:</p>
+<ul>
+<li>app logs</li>
+<li>container logs</li>
+<li>ShinyProxy logs</li>
+<li>some basic understanding of host-level resource pressure</li>
+</ul>
+<p>I am not arguing for a full platform engineering stack on day one. I am arguing against flying blind.</p>
+<p>Even a modest setup should make it easy to answer:</p>
+<ul>
+<li>did the container start?</li>
+<li>did it crash?</li>
+<li>did it fail to bind a path?</li>
+<li>did the app fail while reading or writing data?</li>
+<li>did the request reach the right layer?</li>
+</ul>
+<p>If you only have the browser error message, you are administrating by vibes.</p>
+<hr>
+</section>
+<section id="best-practice-7-secure-the-boring-parts-first" class="level2">
+<h2 class="anchored" data-anchor-id="best-practice-7-secure-the-boring-parts-first">Best practice 7: secure the boring parts first</h2>
+<p>Security discussions around Shiny deployments often drift immediately toward exotic attack paths. Most of the time, the high-value work is much more boring:</p>
+<ul>
+<li>do not bake secrets into the image</li>
+<li>keep credentials out of app code</li>
+<li>be deliberate about upstream authentication</li>
+<li>use TLS termination intentionally, not accidentally</li>
+<li>give mounted volumes only the permissions they actually need</li>
+</ul>
+<p>For a package app like <code>fitness-app</code>, the biggest practical point is not some exotic Shiny-specific exploit. It is making sure the move from local assumptions to server assumptions does not drag secrets and filesystem privileges along with it in an ad hoc way.</p>
+<p>If I had to summarize it in one sentence: <strong>the server should know more than the app about secrets, and the app should know less than the server about infrastructure.</strong></p>
+<hr>
+</section>
+<section id="best-practice-8-document-the-admin-path-like-you-expect-someone-else-to-inherit-it" class="level2">
+<h2 class="anchored" data-anchor-id="best-practice-8-document-the-admin-path-like-you-expect-someone-else-to-inherit-it">Best practice 8: document the admin path like you expect someone else to inherit it</h2>
+<p>This is the most neglected part of Shiny administration, and one of the most important.</p>
+<p>The docs I would want for a serious ShinyProxy setup are not glamorous:</p>
+<ul>
+<li>how a new app is onboarded</li>
+<li>where persistent data lives</li>
+<li>how images are built and tagged</li>
+<li>how a deployment is rolled out</li>
+<li>how a rollback is done</li>
+<li>what logs to check first</li>
+<li>which settings are host-level versus app-level</li>
+</ul>
+<p>For me, this is not bureaucracy. It is operational kindness.</p>
+<p>If the entire platform depends on one person’s working memory, the platform is fragile no matter how elegant the YAML looks.</p>
+<hr>
+</section>
+<section id="what-i-would-do-for-fitness-app" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-would-do-for-fitness-app">What I would do for <code>fitness-app</code></h2>
+<p>If I were taking this exact app toward ShinyProxy, my path would be roughly:</p>
+<ol type="1">
+<li><strong>Keep the package shape.</strong> That part is already right.</li>
+<li><strong>Generate the first container artifact</strong> with either <code>shiny2docker</code> or the existing <code>golem</code> ShinyProxy helper, then inspect it rather than trusting it blindly.</li>
+<li><strong>Make storage explicit.</strong> I would stop relying on implicit local paths and document a mounted data path clearly.</li>
+<li><strong>Introduce image tagging discipline early.</strong> Even for a small app.</li>
+<li><strong>Write a minimal admin README</strong> covering build, deploy, storage, and rollback.</li>
+<li><strong>Only then polish the broader ShinyProxy setup</strong> — auth integration, nicer app catalog behavior, resource tuning, and so on.</li>
+</ol>
+<p>The big lesson is that I would not start from the proxy. I would start from the app’s operational assumptions.</p>
+<p>In <code>fitness-app</code>, the most important assumption is persistence. That is exactly the kind of issue that is harmless locally and central in containers.</p>
+<hr>
+</section>
+<section id="the-short-version" class="level2">
+<h2 class="anchored" data-anchor-id="the-short-version">The short version</h2>
+<p>If I had to compress this entire article into a few lines, it would be this:</p>
+<ul>
+<li>package the app properly first</li>
+<li>keep Docker images deterministic</li>
+<li>treat persistence as a design decision, not an afterthought</li>
+<li>version images like products</li>
+<li>observe the platform at multiple layers</li>
+<li>document the boring operational path before you need it in a hurry</li>
+</ul>
+<p>ShinyProxy is a good tool. I like the explicitness of it. But the value does not come from the fact that apps run in containers. The value comes when the whole setup becomes predictable enough that you trust it under change.</p>
+<p>That trust is an administration outcome, not a Dockerfile outcome.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>R</category>
+  <category>Shiny</category>
+  <category>ShinyProxy</category>
+  <category>Docker</category>
+  <category>Deployment</category>
+  <guid>https://antoinelucasfra.github.io/posts/shinyproxy-admin-best-practices/</guid>
+  <pubDate>Fri, 13 Mar 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
+</item>
 <item>
   <title>Hello, R-Bloggers — What This Blog Is About</title>
   <dc:creator>Antoine Lucas</dc:creator>
@@ -44,2519 +557,7 @@
   <category>Meta</category>
   <guid>https://antoinelucasfra.github.io/posts/hello-r-bloggers/</guid>
   <pubDate>Mon, 23 Feb 2026 23:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Voice to Data: An LLM Pipeline for Lab Notebooks</title>
-  <dc:creator>Antoine Lucas</dc:creator>
-  <link>https://antoinelucasfra.github.io/posts/voice-to-data-lab-pipeline/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<section id="honest-preamble" class="level2">
-<h2 class="anchored" data-anchor-id="honest-preamble">Honest preamble</h2>
-<p>This is not a “your lab notebook will be automated in six months” post.</p>
-<p>The friction I am describing is specific and concrete: a scientist at a bench during a formulation experiment has both hands occupied — one mixing, one holding a pipette — and a mental queue of observations that need to end up as structured records in an ELN or LIMS. The current workflow is to hold those observations in working memory and transcribe them later, or to stop the manipulation, wash hands, and type. Both routes introduce errors and cognitive load at exactly the moment when focus matters most.</p>
-<p>Voice removes the keyboard as a barrier. An LLM turns unstructured speech into a structured, validated record. That is the scope of this article.</p>
-<p><strong>A note on the code in this article:</strong> the pipeline described here is based on architecture developed for a client project in a regulated pharma R&amp;D context. The code snippets are deliberately simplified and generalized — they are illustrative of the design, not production implementations. They exist to communicate the structure of the solution, not to be copy-pasted into a clinical system. Domain-specific schemas, prompt libraries, and validation rules are internal to the projects they serve.</p>
-<p>With that said, the architecture is real, the tooling choices are defensible, and the failure modes are drawn from actual use.</p>
-<hr>
-</section>
-<section id="the-problem-in-concrete-terms" class="level2">
-<h2 class="anchored" data-anchor-id="the-problem-in-concrete-terms">The problem in concrete terms</h2>
-<p>Consider a formulation scientist working on a new topical emulsion. The experiment is a typical bench session: water phase preparation, thickener addition, pH adjustment, viscosity measurement, appearance assessment. Standard operating procedure (SOP) requires every observation to be recorded with timestamp, batch identifier, operator ID, measurement value with unit, and any deviation from expected range.</p>
-<p>What actually happens:</p>
-<ol type="1">
-<li>The scientist records observations on a paper notepad during the experiment.</li>
-<li>After the manipulation, they transcribe those notes into the ELN manually, often hours later.</li>
-<li>The ELN entry requires navigating a form interface: selecting batch, selecting timepoint, entering individual fields one at a time.</li>
-<li>This step takes 20–40 minutes for a typical bench session and happens at the end of the day when cognitive load is highest and recall is least reliable.</li>
-</ol>
-<p>The consequences are predictable:</p>
-<ul>
-<li><strong>Transcription errors</strong>: a pH of 6.8 becomes 6.9, a viscosity of 4,200 mPa·s is entered as 4,000 because the scientist no longer remembers the exact number.</li>
-<li><strong>Missing fields</strong>: a deviation observed during the experiment is not recorded because it seemed minor at the time and was not written down.</li>
-<li><strong>Lag</strong>: observations are not timestamped to the actual moment of measurement, breaking traceability.</li>
-<li><strong>Inconsistent terminology</strong>: “slightly hazy”, “faintly turbid”, and “not fully clear” describe the same observation across three different entries by the same operator.</li>
-</ul>
-<p>None of these are failures of discipline. They are structural consequences of asking humans to buffer observations and serialize them later under time pressure.</p>
-<p>The same pattern appears across cell culture passaging (confluence estimates, viability counts, media change notes), analytical assay readouts (HPLC peak flags, integration comments), and stability study pulls (visual appearance across timepoints). The domain varies; the friction is the same.</p>
-<hr>
-</section>
-<section id="pipeline-architecture" class="level2">
-<h2 class="anchored" data-anchor-id="pipeline-architecture">Pipeline architecture</h2>
-<p>The pipeline has four stages. Each one has a defined input, output, and failure surface.</p>
-<pre><code>┌─────────────────────────────────────────────────────┐
-│  INPUT: Voice (real-time mic or recorded audio file) │
-└────────────────────┬────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────┐
-│  STAGE 1 — Automatic Speech Recognition (ASR)       │
-│  Tool: faster-whisper                               │
-│  Output: raw transcript text                        │
-└────────────────────┬────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────┐
-│  STAGE 2 — Structured Extraction                    │
-│  Tool: Instructor + Pydantic + Ollama (local LLM)   │
-│  Output: typed, schema-conformant record            │
-└────────────────────┬────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────┐
-│  STAGE 3 — Validation                               │
-│  Tool: Pydantic validators + DomainValidator class  │
-│  Output: validated record or flagged review item    │
-└────────────────────┬────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────┐
-│  STAGE 4 — Serialization + Handoff                  │
-│  Output: JSON / CSV / REST payload + audit record   │
-└─────────────────────────────────────────────────────┘</code></pre>
-<p>A note on the audio input mode. There are two architecturally distinct configurations:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Mode</th>
-<th>Description</th>
-<th>Trade-offs</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Batch / deferred</strong></td>
-<td>Scientist records a voice memo (phone, bench recorder); file is uploaded and processed after the experiment</td>
-<td>Simpler to implement; introduces slight lag; no real-time feedback</td>
-</tr>
-<tr class="even">
-<td><strong>Real-time streaming</strong></td>
-<td>Microphone streams audio continuously; ASR runs on chunks; extraction runs per utterance</td>
-<td>Lower latency; higher complexity; requires streaming ASR API</td>
-</tr>
-</tbody>
-</table>
-<p>For a formulation bench context specifically, <strong>batch mode is the correct primary choice</strong>. A scientist with wet hands and a live emulsion in the mixer does not interact with a UI mid-experiment. The workflow is: speak a memo at each observation point, submit the audio at the end of the session. Streaming is useful for longer monitoring sessions where observations are sparse and well-separated in time. The code in this article implements the batch path.</p>
-<hr>
-</section>
-<section id="stage-1-automatic-speech-recognition" class="level2">
-<h2 class="anchored" data-anchor-id="stage-1-automatic-speech-recognition">Stage 1 — Automatic Speech Recognition</h2>
-<section id="why-whisper-and-why-locally" class="level3">
-<h3 class="anchored" data-anchor-id="why-whisper-and-why-locally">Why Whisper, and why locally</h3>
-<p><a href="https://github.com/openai/whisper">Whisper</a> is OpenAI’s open-weights ASR model. The key word is open-weights: you run it on your own hardware, no audio leaves your network. In a pharma R&amp;D context, this is not optional — it is the only defensible configuration. Audio recordings of experiments may contain compound names under NDA, formulation parameters that are trade secrets, or batch identifiers tied to regulatory submissions. Sending this audio to a cloud ASR API requires a data processing agreement, legal sign-off, and in many organizations will simply not be permitted.</p>
-<p><a href="https://github.com/SYSTRAN/faster-whisper"><code>faster-whisper</code></a> is a re-implementation of Whisper using CTranslate2 that runs 2–4× faster than the original PyTorch implementation on CPU, and significantly faster on GPU. On a standard lab workstation without a GPU, <code>faster-whisper</code> with the <code>medium</code> model transcribes a 3-minute audio file in approximately 15–20 seconds. Acceptable for batch mode.</p>
-</section>
-<section id="the-pharma-vocabulary-problem" class="level3">
-<h3 class="anchored" data-anchor-id="the-pharma-vocabulary-problem">The pharma vocabulary problem</h3>
-<p>Whisper is trained on general speech. It will misrecognize:</p>
-<ul>
-<li>Compound names: “carbomer 980” may transcribe as “carbon 980”, “hydrocarbomer” as “hydro carbomer”</li>
-<li>Concentration notation: “0.5% w/w” may come out as “0.5 percent double u double u”</li>
-<li>Unit abbreviations: “mPa·s” will not survive as-is; the scientist typically says “millipascal seconds” or “cP”</li>
-<li>Abbreviations: “API”, “pH”, “RPM”, “BID”, “QC”</li>
-</ul>
-<p>Mitigation strategies:</p>
-<ol type="1">
-<li><strong>Initial prompt priming</strong>: <code>faster-whisper</code> accepts an <code>initial_prompt</code> parameter. This is injected at the start of the transcription and nudges the model toward your vocabulary. A prompt like <code>"Formulation lab note. Batch F-204. pH, viscosity mPa·s, carbomer, excipient, API concentration."</code> meaningfully improves recognition of domain terms.</li>
-<li><strong>Post-processing normalization</strong>: a lightweight text normalization step after ASR can standardize units and abbreviations before the extraction stage.</li>
-<li><strong>Fine-tuning</strong>: for high-volume deployments, Whisper can be fine-tuned on domain-specific audio. Out of scope for this article.</li>
-</ol>
-</section>
-<section id="noise-in-the-lab" class="level3">
-<h3 class="anchored" data-anchor-id="noise-in-the-lab">Noise in the lab</h3>
-<p>A formulation lab is not a recording studio. Overhead extractors, magnetic stirrers, water baths, and centrifuges all produce background noise. Practical guidance:</p>
-<ul>
-<li>Use a directional (cardioid) lapel or desktop microphone, not the built-in microphone on a laptop or phone</li>
-<li>Whisper’s <code>medium</code> and <code>large</code> models handle moderate noise better than <code>tiny</code> or <code>base</code></li>
-<li>Consider a noise-suppression preprocessing step (e.g.&nbsp;<a href="https://github.com/timsainburg/noisereduce"><code>noisereduce</code></a>) for particularly noisy environments</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="stage-2-structured-extraction" class="level2">
-<h2 class="anchored" data-anchor-id="stage-2-structured-extraction">Stage 2 — Structured extraction</h2>
-<section id="the-core-challenge-unstructured-hedged-incomplete-speech" class="level3">
-<h3 class="anchored" data-anchor-id="the-core-challenge-unstructured-hedged-incomplete-speech">The core challenge: unstructured, hedged, incomplete speech</h3>
-<p>This is the hardest stage. A scientist dictating during an experiment does not produce clean, form-like speech. Here is a realistic transcript from a formulation session:</p>
-<blockquote class="blockquote">
-<p><em>“Okay so this is Antoine, batch F-204, it’s about 14:32. I’ve just added 1.2 grams of carbomer to the water phase, mixing at 500 RPM. Viscosity is approximately 4,200 — that’s in millipascal seconds — pH is 5.9. Appearance is slightly hazy, no lumps visible. No deviations to report.”</em></p>
-</blockquote>
-<p>Problems the extraction layer must handle:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Speech pattern</th>
-<th>Example</th>
-<th>What to do</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Hedged values</td>
-<td>“approximately 4,200”, “maybe 6.8”</td>
-<td>Extract the value; set a <code>hedged</code> flag</td>
-</tr>
-<tr class="even">
-<td>Inferred units</td>
-<td>“that’s in millipascal seconds”</td>
-<td>Associate retrospectively with the preceding value</td>
-</tr>
-<tr class="odd">
-<td>Missing fields</td>
-<td>Batch ID not stated</td>
-<td>Set to <code>null</code>; trigger review flag</td>
-</tr>
-<tr class="even">
-<td>Conversational filler</td>
-<td>“Okay so”, “that’s about”</td>
-<td>Ignore in extraction</td>
-</tr>
-<tr class="odd">
-<td>Multiple measurements in one utterance</td>
-<td>pH and viscosity in same sentence</td>
-<td>Extract as separate records or a multi-measurement record</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="why-instructor" class="level3">
-<h3 class="anchored" data-anchor-id="why-instructor">Why Instructor</h3>
-<p><a href="https://python.useinstructor.com/">Instructor</a> is a library that wraps LLM API calls to guarantee structured output conforming to a Pydantic schema. Instead of asking the LLM to “return JSON”, which produces unreliable free-form output, Instructor uses tool-calling or structured output modes to force the model to populate every field of your schema. If the model cannot populate a field, it sets it to <code>null</code> rather than hallucinating a value.</p>
-<p>This is the critical reliability mechanism of the pipeline. Without it, you are parsing free-form LLM JSON output with all the brittleness that entails.</p>
-</section>
-<section id="the-pydantic-schema" class="level3">
-<h3 class="anchored" data-anchor-id="the-pydantic-schema">The Pydantic schema</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> pydantic <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> BaseModel, Field</span>
-<span id="cb2-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> typing <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> Optional</span>
-<span id="cb2-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> datetime <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> datetime</span>
-<span id="cb2-4"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> enum <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> Enum</span>
-<span id="cb2-5"></span>
-<span id="cb2-6"></span>
-<span id="cb2-7"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">class</span> AppearanceDescriptor(<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>, Enum):</span>
-<span id="cb2-8">    CLEAR <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"clear"</span></span>
-<span id="cb2-9">    SLIGHTLY_HAZY <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"slightly_hazy"</span></span>
-<span id="cb2-10">    HAZY <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"hazy"</span></span>
-<span id="cb2-11">    TURBID <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"turbid"</span></span>
-<span id="cb2-12">    OPAQUE <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"opaque"</span></span>
-<span id="cb2-13">    OTHER <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"other"</span></span>
-<span id="cb2-14"></span>
-<span id="cb2-15"></span>
-<span id="cb2-16"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">class</span> LabObservation(BaseModel):</span>
-<span id="cb2-17">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""Structured record of a single lab observation extracted from voice."""</span></span>
-<span id="cb2-18"></span>
-<span id="cb2-19">    sample_id: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-20">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>,</span>
-<span id="cb2-21">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Sample identifier as stated by the operator (e.g. 'F-204')"</span>,</span>
-<span id="cb2-22">    )</span>
-<span id="cb2-23">    batch_id: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-24">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>,</span>
-<span id="cb2-25">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Batch identifier if distinct from sample_id"</span>,</span>
-<span id="cb2-26">    )</span>
-<span id="cb2-27">    operator_id: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-28">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>,</span>
-<span id="cb2-29">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Operator name or ID as stated in the recording"</span>,</span>
-<span id="cb2-30">    )</span>
-<span id="cb2-31">    stated_timestamp: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-32">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>,</span>
-<span id="cb2-33">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Time stated by the operator (e.g. '14:32'), as a string"</span>,</span>
-<span id="cb2-34">    )</span>
-<span id="cb2-35">    measurement_type: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-36">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>,</span>
-<span id="cb2-37">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Type of measurement (e.g. 'viscosity', 'pH', 'temperature')"</span>,</span>
-<span id="cb2-38">    )</span>
-<span id="cb2-39">    value: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">float</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-40">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>,</span>
-<span id="cb2-41">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Numeric value of the measurement"</span>,</span>
-<span id="cb2-42">    )</span>
-<span id="cb2-43">    unit: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-44">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>,</span>
-<span id="cb2-45">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Unit of the measurement (e.g. 'mPa·s', 'pH', '°C', 'g')"</span>,</span>
-<span id="cb2-46">    )</span>
-<span id="cb2-47">    appearance: Optional[AppearanceDescriptor] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-48">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>,</span>
-<span id="cb2-49">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Appearance descriptor if stated"</span>,</span>
-<span id="cb2-50">    )</span>
-<span id="cb2-51">    ingredient_added: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-52">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>,</span>
-<span id="cb2-53">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Name of any ingredient or excipient added during this observation"</span>,</span>
-<span id="cb2-54">    )</span>
-<span id="cb2-55">    ingredient_quantity: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">float</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb2-56">    ingredient_unit: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb2-57">    deviation_flag: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">bool</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-58">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">False</span>,</span>
-<span id="cb2-59">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"True if the operator reported a deviation from expected range"</span>,</span>
-<span id="cb2-60">    )</span>
-<span id="cb2-61">    hedged: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">bool</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-62">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">False</span>,</span>
-<span id="cb2-63">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"True if the value was qualified ('approximately', 'about', 'maybe')"</span>,</span>
-<span id="cb2-64">    )</span>
-<span id="cb2-65">    notes: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(</span>
-<span id="cb2-66">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>,</span>
-<span id="cb2-67">        description<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Any additional free-text observations not captured in structured fields"</span>,</span>
-<span id="cb2-68">    )</span></code></pre></div></div>
-<p>The schema uses <code>Optional</code> for every observation field except <code>deviation_flag</code> and <code>hedged</code>. This is deliberate: a missing field is more honest than a hallucinated one. The downstream validation stage decides what to do with <code>null</code> values.</p>
-<p>The <code>AppearanceDescriptor</code> enum is a controlled vocabulary. Free-text appearance descriptions (“slightly hazy”, “not fully clear”, “faintly turbid”) are mapped to a fixed set of terms by the LLM. This solves the inconsistent terminology problem at source.</p>
-</section>
-<section id="prompt-engineering" class="level3">
-<h3 class="anchored" data-anchor-id="prompt-engineering">Prompt engineering</h3>
-<p>Few-shot examples are the most important part of the prompt. The examples must include clean inputs <em>and</em> realistic messy inputs — hedged values, missing fields, multi-measurement utterances.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">SYSTEM_PROMPT <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"""</span></span>
-<span id="cb3-2"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">You are a laboratory data extraction assistant for a pharmaceutical formulation lab.</span></span>
-<span id="cb3-3"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Your task is to extract structured observations from a voice transcript of a scientist</span></span>
-<span id="cb3-4"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">recording bench notes.</span></span>
-<span id="cb3-5"></span>
-<span id="cb3-6"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Rules:</span></span>
-<span id="cb3-7"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- Extract only what is explicitly stated. Do not infer or assume field values.</span></span>
-<span id="cb3-8"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- If a value is hedged ("approximately", "about", "maybe", "around"), set hedged=true.</span></span>
-<span id="cb3-9"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- If a field is not stated, set it to null. Never invent a value.</span></span>
-<span id="cb3-10"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- Map appearance descriptions to the closest AppearanceDescriptor enum value.</span></span>
-<span id="cb3-11"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- If multiple measurements are stated in one transcript, extract only the primary one</span></span>
-<span id="cb3-12"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">  and put the rest in the notes field.</span></span>
-<span id="cb3-13"></span>
-<span id="cb3-14"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Examples:</span></span>
-<span id="cb3-15"></span>
-<span id="cb3-16"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Input: "Antoine here, batch F-204, pH is 5.9, no issues."</span></span>
-<span id="cb3-17"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Output: {operator_id: "Antoine", batch_id: "F-204", measurement_type: "pH",</span></span>
-<span id="cb3-18"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">         value: 5.9, unit: "pH", deviation_flag: false, hedged: false}</span></span>
-<span id="cb3-19"></span>
-<span id="cb3-20"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Input: "Viscosity is about 4,200 millipascal seconds, appearance is slightly hazy."</span></span>
-<span id="cb3-21"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Output: {measurement_type: "viscosity", value: 4200.0, unit: "mPa·s",</span></span>
-<span id="cb3-22"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">         appearance: "slightly_hazy", hedged: true}</span></span>
-<span id="cb3-23"></span>
-<span id="cb3-24"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Input: "Added 1.2 grams of carbomer, mixing at 500 RPM."</span></span>
-<span id="cb3-25"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Output: {ingredient_added: "carbomer", ingredient_quantity: 1.2,</span></span>
-<span id="cb3-26"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">         ingredient_unit: "g", notes: "mixing at 500 RPM"}</span></span>
-<span id="cb3-27"></span>
-<span id="cb3-28"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Input: "Batch F-205, everything looks fine."</span></span>
-<span id="cb3-29"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Output: {batch_id: "F-205", notes: "operator stated 'everything looks fine'",</span></span>
-<span id="cb3-30"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">         deviation_flag: false}</span></span>
-<span id="cb3-31"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"""</span></span></code></pre></div></div>
-<p>Note the last example: “everything looks fine” is not a structured observation. The correct extraction is to put it in <code>notes</code> and extract no measurement values, rather than inventing a plausible value because one is expected.</p>
-</section>
-<section id="running-extraction-with-instructor-and-ollama" class="level3">
-<h3 class="anchored" data-anchor-id="running-extraction-with-instructor-and-ollama">Running extraction with Instructor and Ollama</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> instructor</span>
-<span id="cb4-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> ollama <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> Client</span>
-<span id="cb4-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> pydantic <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> ValidationError</span>
-<span id="cb4-4"></span>
-<span id="cb4-5"></span>
-<span id="cb4-6"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> extract_observation(transcript: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-&gt;</span> LabObservation:</span>
-<span id="cb4-7">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""</span></span>
-<span id="cb4-8"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    Extract a structured LabObservation from a raw ASR transcript.</span></span>
-<span id="cb4-9"></span>
-<span id="cb4-10"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    </span><span class="al" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">NOTE</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">: This is an illustrative implementation. In production, the Ollama</span></span>
-<span id="cb4-11"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    client configuration, model selection, and prompt engineering are</span></span>
-<span id="cb4-12"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    environment-specific and not shown here.</span></span>
-<span id="cb4-13"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    """</span></span>
-<span id="cb4-14">    ollama_client <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Client(host<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"http://localhost:11434"</span>)</span>
-<span id="cb4-15"></span>
-<span id="cb4-16">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Patch the Ollama client with Instructor to enforce structured output</span></span>
-<span id="cb4-17">    client <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> instructor.from_ollama(</span>
-<span id="cb4-18">        ollama_client,</span>
-<span id="cb4-19">        mode<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>instructor.Mode.JSON,</span>
-<span id="cb4-20">    )</span>
-<span id="cb4-21"></span>
-<span id="cb4-22">    observation <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> client.chat.completions.create(</span>
-<span id="cb4-23">        model<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"llama3.1:8b"</span>,  <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># or any locally available model</span></span>
-<span id="cb4-24">        messages<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>[</span>
-<span id="cb4-25">            {<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"system"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"content"</span>: SYSTEM_PROMPT},</span>
-<span id="cb4-26">            {<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"user"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"content"</span>: <span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Extract the observation from this transcript:</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n\n</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>transcript<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>},</span>
-<span id="cb4-27">        ],</span>
-<span id="cb4-28">        response_model<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>LabObservation,</span>
-<span id="cb4-29">    )</span>
-<span id="cb4-30"></span>
-<span id="cb4-31">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> observation</span></code></pre></div></div>
-<p>The model choice matters. For this task, an 8B instruction-tuned model (Llama 3.1 8B, Mistral 7B) is sufficient — the extraction task is not reasoning-heavy, it is slot-filling against a fixed schema. Larger models add latency without proportional quality gains for this specific use case. In a regulated environment with sensitive formulation data, the model must run locally. Cloud model APIs are not an option without a data processing agreement.</p>
-<hr>
-</section>
-</section>
-<section id="stage-3-validation" class="level2">
-<h2 class="anchored" data-anchor-id="stage-3-validation">Stage 3 — Validation</h2>
-<p>Validation operates at two distinct levels that must be kept separate.</p>
-<section id="structural-validation-pydantic" class="level3">
-<h3 class="anchored" data-anchor-id="structural-validation-pydantic">Structural validation (Pydantic)</h3>
-<p>Pydantic enforces the schema: types are correct, enums are valid, numeric fields are numeric. This happens automatically during extraction — Instructor will retry the LLM call if the output does not conform. Structural validation failures are hard blocks: the record cannot proceed until the schema is satisfied.</p>
-</section>
-<section id="domain-validation-domainvalidator" class="level3">
-<h3 class="anchored" data-anchor-id="domain-validation-domainvalidator">Domain validation (DomainValidator)</h3>
-<p>Domain validation checks scientific plausibility. Pydantic cannot know that a pH of 14.5 is physically impossible, or that a viscosity of 50,000 mPa·s is outside the expected range for a given formulation type. These are soft failures: the record is flagged for human review, not discarded.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> dataclasses <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> dataclass, field</span>
-<span id="cb5-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> typing <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> NamedTuple</span>
-<span id="cb5-3"></span>
-<span id="cb5-4"></span>
-<span id="cb5-5"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">class</span> ValidationResult(NamedTuple):</span>
-<span id="cb5-6">    passed: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">bool</span></span>
-<span id="cb5-7">    flags: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">list</span>[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>]</span>
-<span id="cb5-8">    requires_review: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">bool</span></span>
-<span id="cb5-9"></span>
-<span id="cb5-10"></span>
-<span id="cb5-11"><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">@dataclass</span></span>
-<span id="cb5-12"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">class</span> DomainValidator:</span>
-<span id="cb5-13">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""</span></span>
-<span id="cb5-14"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    Applies domain-specific plausibility checks to a LabObservation.</span></span>
-<span id="cb5-15"></span>
-<span id="cb5-16"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    </span><span class="al" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">NOTE</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">: Thresholds, unit whitelists, and mandatory field rules are</span></span>
-<span id="cb5-17"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    project-specific. The values shown here are illustrative only.</span></span>
-<span id="cb5-18"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    """</span></span>
-<span id="cb5-19"></span>
-<span id="cb5-20">    ph_range: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">tuple</span>[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">float</span>, <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">float</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> (<span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.0</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">14.0</span>)</span>
-<span id="cb5-21">    viscosity_range_mpas: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">tuple</span>[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">float</span>, <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">float</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> (<span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1.0</span>, <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">200_000.0</span>)</span>
-<span id="cb5-22">    allowed_units: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">dict</span>[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>, <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">list</span>[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>]] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> field(default_factory<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">lambda</span>: {</span>
-<span id="cb5-23">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pH"</span>: [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pH"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">""</span>],</span>
-<span id="cb5-24">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"viscosity"</span>: [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"mPa·s"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"cP"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"mPas"</span>],</span>
-<span id="cb5-25">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"temperature"</span>: [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"°C"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"°F"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"K"</span>],</span>
-<span id="cb5-26">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"mass"</span>: [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"g"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"mg"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"kg"</span>],</span>
-<span id="cb5-27">    })</span>
-<span id="cb5-28">    mandatory_fields: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">list</span>[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> field(default_factory<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">lambda</span>: [</span>
-<span id="cb5-29">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"batch_id"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"operator_id"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"measurement_type"</span></span>
-<span id="cb5-30">    ])</span>
-<span id="cb5-31"></span>
-<span id="cb5-32">    <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> validate(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>, obs: LabObservation) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-&gt;</span> ValidationResult:</span>
-<span id="cb5-33">        flags <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> []</span>
-<span id="cb5-34"></span>
-<span id="cb5-35">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Mandatory field check</span></span>
-<span id="cb5-36">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> f <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.mandatory_fields:</span>
-<span id="cb5-37">            <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">getattr</span>(obs, f) <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">is</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>:</span>
-<span id="cb5-38">                flags.append(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"MISSING_MANDATORY_FIELD:</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>f<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb5-39"></span>
-<span id="cb5-40">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># pH plausibility</span></span>
-<span id="cb5-41">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> obs.measurement_type <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">==</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pH"</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">and</span> obs.value <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">is</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">not</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>:</span>
-<span id="cb5-42">            <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">not</span> (<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.ph_range[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> obs.value <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.ph_range[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]):</span>
-<span id="cb5-43">                flags.append(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"IMPLAUSIBLE_PH:</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>obs<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>value<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb5-44"></span>
-<span id="cb5-45">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Viscosity plausibility</span></span>
-<span id="cb5-46">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> obs.measurement_type <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">==</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"viscosity"</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">and</span> obs.value <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">is</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">not</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>:</span>
-<span id="cb5-47">            lo, hi <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.viscosity_range_mpas</span>
-<span id="cb5-48">            <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">not</span> (lo <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> obs.value <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> hi):</span>
-<span id="cb5-49">                flags.append(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"IMPLAUSIBLE_VISCOSITY:</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>obs<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>value<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb5-50"></span>
-<span id="cb5-51">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Unit whitelist</span></span>
-<span id="cb5-52">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> obs.measurement_type <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">and</span> obs.unit:</span>
-<span id="cb5-53">            allowed <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.allowed_units.get(obs.measurement_type, [])</span>
-<span id="cb5-54">            <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> allowed <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">and</span> obs.unit <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">not</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> allowed:</span>
-<span id="cb5-55">                flags.append(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"UNEXPECTED_UNIT:</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>obs<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>unit<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">_for_</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>obs<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>measurement_type<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb5-56"></span>
-<span id="cb5-57">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Hedged values always go to review</span></span>
-<span id="cb5-58">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> obs.hedged:</span>
-<span id="cb5-59">            flags.append(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"HEDGED_VALUE:confirm_with_operator"</span>)</span>
-<span id="cb5-60"></span>
-<span id="cb5-61">        passed <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">not</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">any</span>(</span>
-<span id="cb5-62">            f.startswith((<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"IMPLAUSIBLE"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"MISSING_MANDATORY"</span>))</span>
-<span id="cb5-63">            <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> f <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> flags</span>
-<span id="cb5-64">        )</span>
-<span id="cb5-65">        requires_review <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">len</span>(flags) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span></span>
-<span id="cb5-66"></span>
-<span id="cb5-67">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> ValidationResult(passed<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>passed, flags<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>flags, requires_review<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>requires_review)</span></code></pre></div></div>
-<p>The two-tier failure behaviour: - <code>passed=False</code>: hard block. The record is not serialized to the primary output. It goes to a rejection log. - <code>requires_review=True, passed=True</code>: soft flag. The record is serialized but routed to a review queue before being committed to the ELN/LIMS.</p>
-</section>
-<section id="the-human-review-queue" class="level3">
-<h3 class="anchored" data-anchor-id="the-human-review-queue">The human-review queue</h3>
-<p>Every record that exits Stage 3 with <code>requires_review=True</code> must be handled by a human before it is committed. The minimum viable review mechanism:</p>
-<ol type="1">
-<li><strong>Trigger</strong>: any of <code>MISSING_MANDATORY_FIELD</code>, <code>HEDGED_VALUE</code>, <code>UNEXPECTED_UNIT</code>, or <code>IMPLAUSIBLE_*</code> flags</li>
-<li><strong>Reviewer sees</strong>: the original audio file path, the raw ASR transcript, the extracted record, and the specific flags</li>
-<li><strong>Reviewer action</strong>: approve (record commits as-is), edit (modify specific fields and approve), or reject (record is discarded with a reason code)</li>
-<li><strong>Audit capture</strong>: the reviewer action, reviewer ID, and timestamp are appended to the audit trail record — not to the observation record itself</li>
-</ol>
-<p>This is not a UI spec. It is the minimum information architecture for compliance. In a GxP system, the review step is the electronic signature event under 21 CFR Part 11. It cannot be implicit.</p>
-<hr>
-</section>
-</section>
-<section id="stage-4-serialization-and-handoff" class="level2">
-<h2 class="anchored" data-anchor-id="stage-4-serialization-and-handoff">Stage 4 — Serialization and handoff</h2>
-<section id="the-audit-record" class="level3">
-<h3 class="anchored" data-anchor-id="the-audit-record">The audit record</h3>
-<p>Every observation that exits the pipeline — whether it committed cleanly or went through review — must have an audit record attached. The audit record is separate from the observation record and is never edited after creation.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> hashlib</span>
-<span id="cb6-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> json</span>
-<span id="cb6-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> datetime <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> datetime, timezone</span>
-<span id="cb6-4"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> dataclasses <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> dataclass</span>
-<span id="cb6-5"></span>
-<span id="cb6-6"></span>
-<span id="cb6-7"><span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">@dataclass</span></span>
-<span id="cb6-8"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">class</span> AuditRecord:</span>
-<span id="cb6-9">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""</span></span>
-<span id="cb6-10"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    Immutable audit trail record for a single pipeline run.</span></span>
-<span id="cb6-11"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    Stored alongside (but separately from) the observation record.</span></span>
-<span id="cb6-12"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    """</span></span>
-<span id="cb6-13">    pipeline_run_id: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span></span>
-<span id="cb6-14">    audio_file_path: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span></span>
-<span id="cb6-15">    asr_model_version: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>           <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># e.g. "faster-whisper:medium:ct2"</span></span>
-<span id="cb6-16">    llm_model_version: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>           <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># e.g. "ollama:llama3.1:8b"</span></span>
-<span id="cb6-17">    instructor_version: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>          <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># e.g. "1.3.4"</span></span>
-<span id="cb6-18">    raw_transcript: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>              <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># verbatim ASR output — never modified</span></span>
-<span id="cb6-19">    extraction_timestamp: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># ISO 8601, UTC</span></span>
-<span id="cb6-20">    validation_flags: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">list</span>[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>]</span>
-<span id="cb6-21">    review_required: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">bool</span></span>
-<span id="cb6-22">    reviewer_id: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>]       <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># None if auto-committed</span></span>
-<span id="cb6-23">    reviewer_timestamp: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>]</span>
-<span id="cb6-24">    commit_status: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>               <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># "committed", "rejected", "pending_review"</span></span>
-<span id="cb6-25"></span>
-<span id="cb6-26">    <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> to_dict(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-&gt;</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">dict</span>:</span>
-<span id="cb6-27">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> {</span>
-<span id="cb6-28">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pipeline_run_id"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.pipeline_run_id,</span>
-<span id="cb6-29">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"audio_file_path"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.audio_file_path,</span>
-<span id="cb6-30">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"asr_model_version"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.asr_model_version,</span>
-<span id="cb6-31">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"llm_model_version"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.llm_model_version,</span>
-<span id="cb6-32">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"instructor_version"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.instructor_version,</span>
-<span id="cb6-33">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"raw_transcript_sha256"</span>: hashlib.sha256(</span>
-<span id="cb6-34">                <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.raw_transcript.encode()</span>
-<span id="cb6-35">            ).hexdigest(),</span>
-<span id="cb6-36">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"extraction_timestamp"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.extraction_timestamp,</span>
-<span id="cb6-37">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"validation_flags"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.validation_flags,</span>
-<span id="cb6-38">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"review_required"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.review_required,</span>
-<span id="cb6-39">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"reviewer_id"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.reviewer_id,</span>
-<span id="cb6-40">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"reviewer_timestamp"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.reviewer_timestamp,</span>
-<span id="cb6-41">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"commit_status"</span>: <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.commit_status,</span>
-<span id="cb6-42">        }</span></code></pre></div></div>
-<p>Note: the raw transcript is stored as a SHA-256 hash in the audit record (the full text lives in a separate immutable store). This satisfies the traceability requirement without duplicating potentially sensitive text across every record.</p>
-</section>
-<section id="json-output-structure" class="level3">
-<h3 class="anchored" data-anchor-id="json-output-structure">JSON output structure</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">{</span></span>
-<span id="cb7-2">  <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"observation"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">{</span></span>
-<span id="cb7-3">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"sample_id"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">null</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-4">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"batch_id"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"F-204"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-5">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"operator_id"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Antoine"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-6">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"stated_timestamp"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"14:32"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-7">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"measurement_type"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"viscosity"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-8">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"value"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4200.0</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-9">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"unit"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"mPa·s"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-10">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"appearance"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"slightly_hazy"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-11">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"ingredient_added"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"carbomer"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-12">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"ingredient_quantity"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1.2</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-13">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"ingredient_unit"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"g"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-14">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"deviation_flag"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">false</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-15">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"hedged"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">true</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-16">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"notes"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"mixing at 500 RPM"</span></span>
-<span id="cb7-17">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">},</span></span>
-<span id="cb7-18">  <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"audit"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">{</span></span>
-<span id="cb7-19">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"pipeline_run_id"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"run_20260222_143512_a3f9"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-20">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"asr_model_version"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"faster-whisper:medium:ct2"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-21">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"llm_model_version"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"ollama:llama3.1:8b"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-22">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"raw_transcript_sha256"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"e3b0c44298fc1c..."</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-23">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"extraction_timestamp"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"2026-02-22T14:35:12Z"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-24">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"validation_flags"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">[</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"HEDGED_VALUE:confirm_with_operator"</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">]</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-25">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"review_required"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">true</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb7-26">    <span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">"commit_status"</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">:</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pending_review"</span></span>
-<span id="cb7-27">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">}</span></span>
-<span id="cb7-28"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">}</span></span></code></pre></div></div>
-</section>
-<section id="lims-eln-handoff" class="level3">
-<h3 class="anchored" data-anchor-id="lims-eln-handoff">LIMS / ELN handoff</h3>
-<p>The pipeline produces a validated JSON record. How it reaches the downstream system depends on the system:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Integration pattern</th>
-<th>When to use</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>CSV drop to watched folder</td>
-<td>ELN systems with a CSV import feature; simplest path</td>
-</tr>
-<tr class="even">
-<td>REST API POST</td>
-<td>LIMS systems with an HTTP API (Benchling, LabVantage, etc.)</td>
-</tr>
-<tr class="odd">
-<td>Direct DB insert</td>
-<td>In-house systems where you control the schema</td>
-</tr>
-<tr class="even">
-<td>Message queue (e.g.&nbsp;RabbitMQ)</td>
-<td>High-volume or multi-lab deployments</td>
-</tr>
-</tbody>
-</table>
-<p>The pipeline itself should be agnostic to the downstream system. The serialized JSON is the contract. Adapters that translate the JSON to each downstream format are separate, thin components — this is the standard ETL pattern applied to lab data.</p>
-<hr>
-</section>
-</section>
-<section id="failure-modes" class="level2">
-<h2 class="anchored" data-anchor-id="failure-modes">Failure modes</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Failure mode</th>
-<th>Stage</th>
-<th>Symptom</th>
-<th>Mitigation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Compound name misrecognition</td>
-<td>ASR</td>
-<td>“carbomer” → “carbon”</td>
-<td><code>initial_prompt</code> with domain vocabulary</td>
-</tr>
-<tr class="even">
-<td>Unit misrecognition</td>
-<td>ASR</td>
-<td>“mPa·s” → unintelligible</td>
-<td>Post-processing normalization; train operators to say full unit names</td>
-</tr>
-<tr class="odd">
-<td>Hallucinated measurement value</td>
-<td>Extraction</td>
-<td>LLM invents a value not in the transcript</td>
-<td>Instructor forces schema; <code>null</code> is always preferred over a guess; review hedged values</td>
-</tr>
-<tr class="even">
-<td>Missing mandatory field</td>
-<td>Extraction</td>
-<td><code>batch_id: null</code></td>
-<td>Validation flags <code>MISSING_MANDATORY_FIELD</code>; routes to review</td>
-</tr>
-<tr class="odd">
-<td>Implausible value passes extraction</td>
-<td>Validation</td>
-<td>pH extracted as 15.2</td>
-<td>DomainValidator plausibility checks; hard block on <code>IMPLAUSIBLE_*</code></td>
-</tr>
-<tr class="even">
-<td>Fume hood / stirrer noise</td>
-<td>ASR</td>
-<td>High word error rate</td>
-<td>Directional microphone; <code>noisereduce</code> preprocessing; <code>large</code> model</td>
-</tr>
-<tr class="odd">
-<td>Operator forgets sample ID</td>
-<td>Prompt design</td>
-<td><code>sample_id: null</code> in every record</td>
-<td>Structured dictation prompt (“state batch ID first”) in operator training; mandatory field review</td>
-</tr>
-<tr class="even">
-<td>LLM model update changes extraction behaviour</td>
-<td>Compliance</td>
-<td>Record comparison across model versions breaks</td>
-<td>Version-lock models; treat model updates as revalidation events (see compliance section)</td>
-</tr>
-<tr class="odd">
-<td>Operator says “it looks fine”</td>
-<td>Extraction</td>
-<td>Vague assertion extracted as measurement</td>
-<td><code>notes</code> field captures it; no measurement value extracted; no validation failure</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="data-governance-and-compliance" class="level2">
-<h2 class="anchored" data-anchor-id="data-governance-and-compliance">Data governance and compliance</h2>
-<div class="callout-regulatory">
-<p>This section covers general principles relevant to pharma and biotech R&amp;D. It is not legal or regulatory advice. Your organization’s quality assurance and legal teams must review any system that touches regulated data before deployment.</p>
-</div>
-<section id="cfr-part-11-and-ema-annex-11" class="level3">
-<h3 class="anchored" data-anchor-id="cfr-part-11-and-ema-annex-11">21 CFR Part 11 and EMA Annex 11</h3>
-<p>Electronic records in GxP environments must be trustworthy, reliable, and equivalent to paper records. The relevant requirements for this pipeline:</p>
-<ul>
-<li><strong>Audit trail</strong>: every record must have a time-stamped, operator-attributed, uneditable audit trail. The <code>AuditRecord</code> structure above covers this. The raw transcript (or its hash) must be retained alongside the structured record — you must be able to demonstrate that the extracted values correspond to what the operator said.</li>
-<li><strong>Electronic signature</strong>: the review-and-approve step is an electronic signature event. The reviewer ID and timestamp must be captured and linked to the record. This requires identity verification — a username/password at minimum, hardware token in higher-assurance contexts.</li>
-<li><strong>System validation</strong>: the pipeline itself must be validated under your organization’s computer system validation (CSV) framework. This means documented user requirements, functional specifications, and qualification testing. The LLM component is a challenge here — see below.</li>
-</ul>
-</section>
-<section id="the-llm-model-versioning-problem" class="level3">
-<h3 class="anchored" data-anchor-id="the-llm-model-versioning-problem">The LLM model versioning problem</h3>
-<p>This is the hardest compliance issue in this architecture. Classical validated software produces deterministic outputs: the same input always produces the same output, forever. An LLM does not. Two consequences:</p>
-<ol type="1">
-<li><strong>Extraction behaviour changes between model versions.</strong> If you update from <code>llama3.1:8b</code> to <code>llama3.2:8b</code>, the structured output for the same transcript may differ. This breaks the assumption that records are comparable across time.</li>
-<li><strong>The same model with different temperature settings can produce different outputs for identical inputs.</strong></li>
-</ol>
-<p>Practical mitigations: - <strong>Version-lock the ASR and LLM models.</strong> Pin <code>faster-whisper</code> to a specific checkpoint hash; pin the Ollama model to a specific version tag. Never update without going through a revalidation cycle. - <strong>Set temperature to 0</strong> for extraction calls. This makes the LLM as deterministic as possible (not fully deterministic, but close enough for most practical purposes). - <strong>Treat model updates as change control events</strong>: document the change, run qualification tests against a golden dataset of transcripts with known expected outputs, and obtain QA sign-off before deploying the new version. - <strong>The raw transcript is the source of truth.</strong> If the extracted record is ever challenged, the raw audio and transcript are the evidence. Store both.</p>
-</section>
-<section id="gdpr-and-data-retention" class="level3">
-<h3 class="anchored" data-anchor-id="gdpr-and-data-retention">GDPR and data retention</h3>
-<p>Audio recordings may contain personal data (operator names, and in some cases patient-adjacent information in clinical manufacturing contexts). Under GDPR:</p>
-<ul>
-<li>Define and document the retention period for audio files before deployment</li>
-<li>Audio files should be deleted on schedule; the hashed transcript in the audit record does not constitute personal data</li>
-<li>If the pipeline processes any data that could be linked to a data subject (patients, trial participants), a data protection impact assessment (DPIA) is required</li>
-</ul>
-</section>
-<section id="why-local-models-are-the-defensible-choice" class="level3">
-<h3 class="anchored" data-anchor-id="why-local-models-are-the-defensible-choice">Why local models are the defensible choice</h3>
-<p>Cloud ASR and LLM APIs are operationally convenient but introduce a data processor relationship that requires contractual governance. For most pharma R&amp;D environments, the path of least resistance is local: <code>faster-whisper</code> on a lab workstation or server, Ollama running a locally hosted model. No data leaves the network. The governance question reduces to “who has access to this server” rather than “what does the vendor’s data processing agreement permit.”</p>
-<hr>
-</section>
-</section>
-<section id="deployment-context" class="level2">
-<h2 class="anchored" data-anchor-id="deployment-context">Deployment context</h2>
-<p>The pipeline as described requires:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Component</th>
-<th>Minimum spec</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>faster-whisper</code> (medium model)</td>
-<td>CPU-only: ~4 cores, 4GB RAM; processes 3-min audio in ~20s</td>
-</tr>
-<tr class="even">
-<td><code>faster-whisper</code> (large-v3 model)</td>
-<td>CPU-only: ~8 cores, 8GB RAM; GPU (4GB VRAM) for real-time</td>
-</tr>
-<tr class="odd">
-<td>Ollama + llama3.1:8b</td>
-<td>8GB RAM minimum; 16GB recommended for comfortable headroom</td>
-</tr>
-<tr class="even">
-<td>Combined (medium ASR + 8B LLM)</td>
-<td>16GB RAM, 4-core CPU — a standard lab workstation</td>
-</tr>
-</tbody>
-</table>
-<p>The simplest deployment: a dedicated lab workstation or small server with a shared network drive. Scientists drop audio files to a watched folder; the pipeline processes them and writes JSON output to an output folder. No web UI required for the MVP.</p>
-<p>A web UI (Flask, FastAPI, or a simple Shiny/Streamlit interface) adds the review queue interface and removes the need for scientists to interact with the file system directly. This is the natural next step after the pipeline core is validated.</p>
-<hr>
-</section>
-<section id="dos-and-donts" class="level2">
-<h2 class="anchored" data-anchor-id="dos-and-donts">Do’s and don’ts</h2>
-<section id="do" class="level3">
-<h3 class="anchored" data-anchor-id="do">Do</h3>
-<ul>
-<li><strong>Define your Pydantic schema before writing any prompts.</strong> The schema is the specification. Prompts should be written to fill the schema, not the other way around.</li>
-<li><strong>Keep the raw ASR transcript alongside every structured record.</strong> It is your evidence trail. If an extracted value is ever challenged, the transcript is what you go back to.</li>
-<li><strong>Use a controlled vocabulary (enums) for all categorical fields.</strong> Free-text appearance descriptions will diverge within weeks of deployment.</li>
-<li><strong>Set a confidence threshold and build the review queue before going live.</strong> “We’ll add that later” means it never gets added.</li>
-<li><strong>Version-lock both the ASR model and the LLM.</strong> Treat model updates as change control events.</li>
-<li><strong>Train operators on structured dictation.</strong> A short checklist (“state batch ID, then measurement, then deviations”) dramatically reduces missing mandatory fields.</li>
-</ul>
-</section>
-<section id="dont" class="level3">
-<h3 class="anchored" data-anchor-id="dont">Don’t</h3>
-<ul>
-<li><strong>Do not send audio recordings to cloud APIs without a data processing agreement and legal clearance.</strong> This applies to OpenAI Whisper API, Deepgram, AssemblyAI, and any other cloud ASR service.</li>
-<li><strong>Do not auto-commit records with missing mandatory fields or implausible values.</strong> The review gate exists to catch extraction errors before they reach the ELN.</li>
-<li><strong>Do not treat the structured output as authoritative over the raw transcript.</strong> The transcript is the source of truth; the JSON is a derived representation.</li>
-<li><strong>Do not skip operator training.</strong> The pipeline can handle hedged and incomplete speech, but structured dictation habits reduce the volume of records requiring human review by 60–80% in practice.</li>
-<li><strong>Do not update models without revalidation.</strong> A new model version is a new system. It requires qualification testing before deployment in a regulated context.</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="full-runnable-example" class="level2">
-<h2 class="anchored" data-anchor-id="full-runnable-example">Full runnable example</h2>
-<p>The following is a minimal end-to-end implementation. It is intentionally simplified and generic. Production deployments require environment-specific schema design, domain validation rules, prompt libraries, and integration adapters not shown here.</p>
-<section id="dependencies-pyproject.toml" class="level3">
-<h3 class="anchored" data-anchor-id="dependencies-pyproject.toml">Dependencies (<code>pyproject.toml</code>)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb8-1"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">[project]</span></span>
-<span id="cb8-2"><span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">name</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"voice-to-data"</span></span>
-<span id="cb8-3"><span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">version</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"0.1.0"</span></span>
-<span id="cb8-4"><span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">requires-python</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"&gt;=3.11"</span></span>
-<span id="cb8-5"><span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">dependencies</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span></span>
-<span id="cb8-6">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"faster-whisper&gt;=1.0.0"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb8-7">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"instructor&gt;=1.3.0"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb8-8">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pydantic&gt;=2.0.0"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb8-9">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"ollama&gt;=0.2.0"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb8-10"><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span></span>
-<span id="cb8-11"></span>
-<span id="cb8-12"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">[tool.uv]</span></span>
-<span id="cb8-13"><span class="dt" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">dev-dependencies</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span></span>
-<span id="cb8-14">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"ruff&gt;=0.3.0"</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">,</span></span>
-<span id="cb8-15"><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span></span></code></pre></div></div>
-<p>Install with:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">uv</span> sync</span></code></pre></div></div>
-</section>
-<section id="pipeline-pipeline.py" class="level3">
-<h3 class="anchored" data-anchor-id="pipeline-pipeline.py">Pipeline (<code>pipeline.py</code>)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""</span></span>
-<span id="cb10-2"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">Voice-to-data pipeline: audio file → structured lab observation.</span></span>
-<span id="cb10-3"></span>
-<span id="cb10-4"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">IMPORTANT: This is a simplified, illustrative implementation. It is not a</span></span>
-<span id="cb10-5"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">production system. Domain-specific schemas, prompt engineering, validation</span></span>
-<span id="cb10-6"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">rules, and LIMS integration are project-specific and not included here.</span></span>
-<span id="cb10-7"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""</span></span>
-<span id="cb10-8"></span>
-<span id="cb10-9"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> hashlib</span>
-<span id="cb10-10"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> json</span>
-<span id="cb10-11"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> uuid</span>
-<span id="cb10-12"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> datetime <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> datetime, timezone</span>
-<span id="cb10-13"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> pathlib <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> Path</span>
-<span id="cb10-14"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> typing <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> Optional</span>
-<span id="cb10-15"></span>
-<span id="cb10-16"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> instructor</span>
-<span id="cb10-17"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> faster_whisper <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> WhisperModel</span>
-<span id="cb10-18"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> ollama <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> Client</span>
-<span id="cb10-19"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> pydantic <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> BaseModel, Field</span>
-<span id="cb10-20"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> pydantic <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> field_validator</span>
-<span id="cb10-21"></span>
-<span id="cb10-22"></span>
-<span id="cb10-23"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># ── Schema ────────────────────────────────────────────────────────────────────</span></span>
-<span id="cb10-24"></span>
-<span id="cb10-25"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">class</span> LabObservation(BaseModel):</span>
-<span id="cb10-26">    sample_id: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-27">    batch_id: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-28">    operator_id: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-29">    stated_timestamp: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-30">    measurement_type: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-31">    value: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">float</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-32">    unit: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-33">    appearance: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-34">    ingredient_added: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-35">    ingredient_quantity: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">float</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-36">    ingredient_unit: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-37">    deviation_flag: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">bool</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">False</span>)</span>
-<span id="cb10-38">    hedged: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">bool</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">False</span>)</span>
-<span id="cb10-39">    notes: Optional[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>] <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Field(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>)</span>
-<span id="cb10-40"></span>
-<span id="cb10-41"></span>
-<span id="cb10-42"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># ── ASR ───────────────────────────────────────────────────────────────────────</span></span>
-<span id="cb10-43"></span>
-<span id="cb10-44"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> transcribe(audio_path: Path, model_size: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"medium"</span>) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-&gt;</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>:</span>
-<span id="cb10-45">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""Transcribe an audio file using faster-whisper."""</span></span>
-<span id="cb10-46">    model <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> WhisperModel(model_size, device<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"cpu"</span>, compute_type<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"int8"</span>)</span>
-<span id="cb10-47">    segments, _ <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> model.transcribe(</span>
-<span id="cb10-48">        <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>(audio_path),</span>
-<span id="cb10-49">        initial_prompt<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Formulation lab note. batch ID, pH, viscosity mPa·s, carbomer, excipient."</span>,</span>
-<span id="cb10-50">    )</span>
-<span id="cb10-51">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">" "</span>.join(segment.text.strip() <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> segment <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> segments)</span>
-<span id="cb10-52"></span>
-<span id="cb10-53"></span>
-<span id="cb10-54"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># ── Extraction ─────────────────────────────────────────────────────────────────</span></span>
-<span id="cb10-55"></span>
-<span id="cb10-56">SYSTEM_PROMPT <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"""</span></span>
-<span id="cb10-57"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">You are a laboratory data extraction assistant. Extract structured observations</span></span>
-<span id="cb10-58"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">from voice transcripts of pharmaceutical formulation bench notes.</span></span>
-<span id="cb10-59"></span>
-<span id="cb10-60"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">Rules:</span></span>
-<span id="cb10-61"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- Extract only what is explicitly stated. Set missing fields to null.</span></span>
-<span id="cb10-62"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- If a value is hedged ("approximately", "about", "maybe"), set hedged=true.</span></span>
-<span id="cb10-63"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- Map appearance descriptions to clear, standardized terms.</span></span>
-<span id="cb10-64"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- If multiple measurements are stated, capture the primary one and note the rest.</span></span>
-<span id="cb10-65"><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"""</span></span>
-<span id="cb10-66"></span>
-<span id="cb10-67"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> extract(transcript: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-&gt;</span> LabObservation:</span>
-<span id="cb10-68">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""Extract a structured observation from a raw transcript."""</span></span>
-<span id="cb10-69">    client <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> instructor.from_ollama(</span>
-<span id="cb10-70">        Client(host<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"http://localhost:11434"</span>),</span>
-<span id="cb10-71">        mode<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>instructor.Mode.JSON,</span>
-<span id="cb10-72">    )</span>
-<span id="cb10-73">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> client.chat.completions.create(</span>
-<span id="cb10-74">        model<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"llama3.1:8b"</span>,</span>
-<span id="cb10-75">        messages<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>[</span>
-<span id="cb10-76">            {<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"system"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"content"</span>: SYSTEM_PROMPT},</span>
-<span id="cb10-77">            {<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"role"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"user"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"content"</span>: <span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Extract from:</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n\n</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>transcript<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>},</span>
-<span id="cb10-78">        ],</span>
-<span id="cb10-79">        response_model<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>LabObservation,</span>
-<span id="cb10-80">    )</span>
-<span id="cb10-81"></span>
-<span id="cb10-82"></span>
-<span id="cb10-83"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># ── Validation ─────────────────────────────────────────────────────────────────</span></span>
-<span id="cb10-84"></span>
-<span id="cb10-85"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> validate(obs: LabObservation) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-&gt;</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">list</span>[<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>]:</span>
-<span id="cb10-86">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""Return a list of validation flags. Empty list means clean."""</span></span>
-<span id="cb10-87">    flags <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> []</span>
-<span id="cb10-88">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> mandatory <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> [<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"batch_id"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"operator_id"</span>]:</span>
-<span id="cb10-89">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">getattr</span>(obs, mandatory) <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">is</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>:</span>
-<span id="cb10-90">            flags.append(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"MISSING_MANDATORY_FIELD:</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>mandatory<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb10-91">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> obs.measurement_type <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">==</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pH"</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">and</span> obs.value <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">is</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">not</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>:</span>
-<span id="cb10-92">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">not</span> (<span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.0</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> obs.value <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">14.0</span>):</span>
-<span id="cb10-93">            flags.append(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"IMPLAUSIBLE_PH:</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>obs<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>value<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb10-94">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> obs.hedged:</span>
-<span id="cb10-95">        flags.append(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"HEDGED_VALUE:confirm_with_operator"</span>)</span>
-<span id="cb10-96">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> flags</span>
-<span id="cb10-97"></span>
-<span id="cb10-98"></span>
-<span id="cb10-99"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># ── Pipeline ──────────────────────────────────────────────────────────────────</span></span>
-<span id="cb10-100"></span>
-<span id="cb10-101"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> run(audio_path: Path, output_path: Path) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-&gt;</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">None</span>:</span>
-<span id="cb10-102">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">"""Run the full pipeline for a single audio file."""</span></span>
-<span id="cb10-103">    run_id <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"run_</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>datetime<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>now(timezone.utc)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>strftime(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'%Y%m</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%d</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">_%H%M%S'</span>)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">_</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>uuid<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>uuid4()<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">hex</span>[:<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">6</span>]<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span></span>
-<span id="cb10-104"></span>
-<span id="cb10-105">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Stage 1: ASR</span></span>
-<span id="cb10-106">    transcript <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> transcribe(audio_path)</span>
-<span id="cb10-107"></span>
-<span id="cb10-108">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Stage 2: Extraction</span></span>
-<span id="cb10-109">    observation <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> extract(transcript)</span>
-<span id="cb10-110"></span>
-<span id="cb10-111">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Stage 3: Validation</span></span>
-<span id="cb10-112">    flags <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> validate(observation)</span>
-<span id="cb10-113">    requires_review <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">len</span>(flags) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span></span>
-<span id="cb10-114">    hard_fail <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">any</span>(f.startswith(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"IMPLAUSIBLE"</span>) <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> f <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> flags)</span>
-<span id="cb10-115">    commit_status <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"rejected"</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> hard_fail <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">else</span> (<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pending_review"</span> <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> requires_review <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">else</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"committed"</span>)</span>
-<span id="cb10-116"></span>
-<span id="cb10-117">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Stage 4: Serialize</span></span>
-<span id="cb10-118">    result <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> {</span>
-<span id="cb10-119">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"observation"</span>: observation.model_dump(),</span>
-<span id="cb10-120">        <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"audit"</span>: {</span>
-<span id="cb10-121">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"pipeline_run_id"</span>: run_id,</span>
-<span id="cb10-122">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"audio_file"</span>: <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">str</span>(audio_path),</span>
-<span id="cb10-123">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"asr_model"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"faster-whisper:medium"</span>,</span>
-<span id="cb10-124">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"llm_model"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"ollama:llama3.1:8b"</span>,</span>
-<span id="cb10-125">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"raw_transcript_sha256"</span>: hashlib.sha256(transcript.encode()).hexdigest(),</span>
-<span id="cb10-126">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"extraction_timestamp"</span>: datetime.now(timezone.utc).isoformat(),</span>
-<span id="cb10-127">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"validation_flags"</span>: flags,</span>
-<span id="cb10-128">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"review_required"</span>: requires_review,</span>
-<span id="cb10-129">            <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"commit_status"</span>: commit_status,</span>
-<span id="cb10-130">        },</span>
-<span id="cb10-131">    }</span>
-<span id="cb10-132"></span>
-<span id="cb10-133">    output_path.write_text(json.dumps(result, indent<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>, ensure_ascii<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">False</span>))</span>
-<span id="cb10-134">    <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"[</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>commit_status<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>upper()<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">] </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>run_id<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb10-135">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> flags:</span>
-<span id="cb10-136">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> flag <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> flags:</span>
-<span id="cb10-137">            <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"  ⚠ </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>flag<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb10-138"></span>
-<span id="cb10-139"></span>
-<span id="cb10-140"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">__name__</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">==</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"__main__"</span>:</span>
-<span id="cb10-141">    <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> sys</span>
-<span id="cb10-142">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">len</span>(sys.argv) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">!=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>:</span>
-<span id="cb10-143">        <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Usage: uv run pipeline.py &lt;audio_file&gt; &lt;output_json&gt;"</span>)</span>
-<span id="cb10-144">        sys.exit(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>)</span>
-<span id="cb10-145">    run(Path(sys.argv[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]), Path(sys.argv[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>]))</span></code></pre></div></div>
-<p>Run with:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">uv</span> run pipeline.py bench_note_20260222.mp3 observation_F204.json</span></code></pre></div></div>
-<hr>
-</section>
-</section>
-<section id="where-this-goes-next" class="level2">
-<h2 class="anchored" data-anchor-id="where-this-goes-next">Where this goes next</h2>
-<p>The pipeline described here is the core. What makes it useful in practice is what wraps it:</p>
-<ul>
-<li><strong>A review UI</strong>: a minimal web interface where lab supervisors see flagged records, listen to the audio, and approve or edit before commit. This is where the GxP compliance story completes.</li>
-<li><strong>Operator feedback loop</strong>: when a record is frequently flagged for the same reason (operator always forgets to state the batch ID), the review system should surface this pattern so training can be adjusted.</li>
-<li><strong>Multi-observation sessions</strong>: a single bench session produces many observations. Batching them into a session record, with cross-observation consistency checks (does the batch ID stay the same throughout?), is a natural extension.</li>
-<li><strong>Domain fine-tuning</strong>: for high-volume deployments, fine-tuning Whisper on your specific compound vocabulary eliminates the most common ASR errors and reduces the downstream extraction burden.</li>
-</ul>
-<p>The friction this solves is real and measurable. The compliance overhead of solving it properly is also real. Neither should be understated. The value is in removing the keyboard from the critical path of scientific observation — and doing it in a way that produces data you can actually defend.</p>
-
-
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
-  <category>LLM</category>
-  <category>Speech</category>
-  <category>NLP</category>
-  <category>Data Pipeline</category>
-  <category>Lab Automation</category>
-  <guid>https://antoinelucasfra.github.io/posts/voice-to-data-lab-pipeline/</guid>
-  <pubDate>Sat, 21 Feb 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Reproducible Environments for Everyone: DevContainers for Data Science Teams</title>
@@ -3762,6 +1763,7 @@ font-style: inherit;">--workspace-folder</span> .</span></code></pre></div></div
   <category>VS Code</category>
   <guid>https://antoinelucasfra.github.io/posts/devcontainers-reproducible-environments/</guid>
   <pubDate>Thu, 27 Nov 2025 23:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>LLM-Assisted Development: A Data Scientist’s Field Guide</title>
@@ -4580,6 +2582,7 @@ font-style: inherit;">}</span></span><div class="code-annotation-gutter-bg"></di
   <category>Workflow</category>
   <guid>https://antoinelucasfra.github.io/posts/llm-coding-assistant/</guid>
   <pubDate>Mon, 13 Oct 2025 22:00:00 GMT</pubDate>
+  <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>The Reproducibility Quest: Modern Tools for R and Python Data Science</title>
@@ -6311,7 +4314,7 @@ font-style: inherit;">sessionInfo</span>()</span></code></pre></div></div>
   <category>Setup</category>
   <guid>https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/</guid>
   <pubDate>Mon, 09 Jun 2025 22:00:00 GMT</pubDate>
-  <media:content url="https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/featured.png" medium="image" type="image/png" height="76" width="144"/>
+  <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Statistical Tests Demystified: A Practical Guide for Scientists and Engineers</title>
@@ -6562,7 +4565,7 @@ font-style: inherit;">sessionInfo</span>()</span></code></pre></div></div>
   <category>Biostatistics</category>
   <guid>https://antoinelucasfra.github.io/posts/stats-theory-frequentist/</guid>
   <pubDate>Fri, 14 Mar 2025 23:00:00 GMT</pubDate>
-  <media:content url="https://antoinelucasfra.github.io/posts/stats-theory-frequentist/featured.png" medium="image" type="image/png" height="76" width="144"/>
+  <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>rv: The Modern R Package Manager for Reproducible Workflows</title>
@@ -7446,7 +5449,7 @@ font-style: inherit;">rv</span> sync</span></code></pre></div></div></li>
   <category>Modern Workflow</category>
   <guid>https://antoinelucasfra.github.io/posts/rv-modern-r-package-manager/</guid>
   <pubDate>Sun, 19 Jan 2025 23:00:00 GMT</pubDate>
-  <media:content url="https://antoinelucasfra.github.io/posts/rv-modern-r-package-manager/featured.png" medium="image" type="image/png" height="76" width="144"/>
+  <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog</title>
@@ -7697,7 +5700,7 @@ font-style: inherit;">rv</span> sync</span></code></pre></div></div></li>
   <category>Best Practices</category>
   <guid>https://antoinelucasfra.github.io/posts/why-curate-resources/</guid>
   <pubDate>Thu, 12 Dec 2024 23:00:00 GMT</pubDate>
-  <media:content url="https://antoinelucasfra.github.io/posts/why-curate-resources/featured.png" medium="image" type="image/png" height="76" width="144"/>
+  <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Getting Started with Quarto for Data Science Reports</title>
@@ -7912,7 +5915,7 @@ Warning
   <category>Reproducibility</category>
   <guid>https://antoinelucasfra.github.io/posts/quarto-getting-started/</guid>
   <pubDate>Tue, 09 Jul 2024 22:00:00 GMT</pubDate>
-  <media:content url="https://antoinelucasfra.github.io/posts/quarto-getting-started/featured.png" medium="image" type="image/png" height="76" width="144"/>
+  <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
 </item>
 </channel>
 </rss>

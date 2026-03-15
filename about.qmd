@@ -11,15 +11,15 @@ format:
 
 I didn't start out planning to become a data scientist. I studied agronomy engineering at **Institut Agro - Agrocampus Ouest** (Rennes) — which is fundamentally about applying science to complex living systems — and during my statistics courses I realized that the analytical side was what excited me most. Not just running models, but understanding *why* a method works, and what it can and can't tell you about the real world.
 
-After finishing both my engineering degree and a master's in applied mathematics and statistics in 2021, I joined **Astek / IT&M Stats**, a consultancy that places statisticians and data scientists inside large R&D organizations. That structure has shaped how I work: every 12–18 months, a new domain, a new team, a new set of constraints. It forces you to get good at context-switching, at earning trust quickly, and at building things that work without you being there to explain them.
+After finishing both my engineering degree and a master's in applied mathematics and statistics in 2021, I joined **Astek / IT&M Stats**, a consultancy that places statisticians and data scientists inside large R&D organizations. That structure has shaped how I work: every 12–18 months, a new domain, a new team, a new set of constraints. It forces you to get good at context-switching, at earning trust quickly, and at building things that still work when you're not in the room to explain them.
 
 My first mission was at **L'Oréal R&D** — two years of clinical biostatistics on ingredient efficacy and molecular safety studies. I covered hundreds of analyses, learned what a 2-week turnaround really means under pressure, and built internal tooling that helped the team move faster. It was a good introduction to regulated science: the kind of work where you can't hand-wave uncertainty.
 
-Then **Sanofi R&D**, where I shifted from pure analysis to building. I designed and shipped a full R Shiny platform for managing pilot manufacturing chains across 100+ clinical projects — took on the Scrum Master role alongside the development work. That was the project that taught me that *useful* software is harder to build than *correct* software.
+Then **Sanofi R&D**, where I shifted from pure analysis to building. I designed and shipped a full R Shiny platform for managing pilot manufacturing chains across 100+ clinical projects — and took on the Scrum Master role alongside the development work. That was the project that taught me that *useful* software is harder to build than *correct* software, and that documentation, workshops, UAT, and handover are part of engineering rather than tasks that happen after it.
 
 After Sanofi, a stint at **Abolis**, a microbiome biotech startup. Six months, full autonomy, multi-omics data pipelines, no hand-holding. Very different energy from a pharma company, and I learned a lot from it.
 
-Now I'm at **Chanel Parfums Beauté R&D**, working on machine learning and computer vision for fragrance and cosmetics development. Still on mission via Astek/IT&M Stats, but this is the most technically ambitious role so far — models that go into production, tools that scientists depend on daily.
+Now I'm at **Chanel Parfums Beauté R&D**, working on machine learning, R Shiny applications, and internal data products for fragrance and cosmetics development. Still on mission via Astek/IT&M Stats, but this is the most technically ambitious role so far — production models, app catalogs, platform tooling, and software that scientists depend on daily.
 
 Outside of work: I've been following One Piece for years — not casually, properly following it. It's one of the few long-form narratives that actually earns its length, and I find the way it builds on itself across decades genuinely interesting. I play video games when life allows, which is less often than I'd like. And I have a lot of time for people who can say "I was wrong about that" without making a production of it — the ones who just update and move on. It's rarer than it should be.
 
@@ -29,15 +29,21 @@ Outside of work: I've been following One Piece for years — not casually, prope
 
 **Tooling that disappears.** The best internal tools are the ones that become invisible — people just use them. A dashboard that requires a walkthrough every time is a failed tool. I spend a lot of time thinking about user experience (UX) in contexts (scientific apps, internal platforms) where it's usually ignored.
 
+**Documentation is part of the product.** If a tool only works when its original developer is around, it is not finished. I like writing the things that make software survivable: runbooks, architecture notes, qualification-oriented checks, reusable templates, and onboarding material.
+
 **Rigor over speed, mostly.** Working in pharma and cosmetics R&D means results matter. Not in an abstract "good science" way — in a "this goes into a regulatory submission" or "this product formula ships to production" way. I've developed a healthy caution about overfitting, about p-values, about claims that outrun the data. The constraints of regulated industries aren't obstacles; they're clarifying.
 
 **Understanding models, not just using them.** I'm drawn to the deeper mathematical and statistical machinery underneath the tools I reach for daily. Not for its own sake, but because I've found that understanding *why* a method works — its assumptions, its failure modes, its relationship to other approaches — makes you better at the judgment calls that actually matter.
+
+**Teaching scales teams.** I've run internal upskilling sessions, mentored interns and junior colleagues, and learned that technical work sticks better when you can explain it clearly. I enjoy turning "this only exists in one person's head" into something a team can reuse.
 
 **Explainability and the limits of black boxes.** In regulated R&D, a model you can't explain is often a model you can't use. But beyond compliance, I'm genuinely interested in interpretable machine learning (ML) and AI as a research area — not as a constraint to work around, but as a more honest representation of what we actually know.
 
 **Staying current without being credulous.** I keep a fairly active scientific watch (*veille scientifique*) — following the methods literature in biostatistics, computational biology, and ML engineering. I try to distinguish between tools that have earned their place and things that are interesting but not yet ready. The field moves fast enough that this requires active effort.
 
 **Open source tools and reproducible workflows.** R, Python, Quarto, Git, Docker. Reproducibility is not just a technical preference — it's a practical requirement in regulated science, and it's how you avoid the slow-motion disasters that come from analyses nobody can reconstruct. I've seen what happens to work that wasn't built this way.
+
+**Remote collaboration requires explicitness.** I work well asynchronously, but I don't confuse remote work with silence. Clear writing, structured decisions, screen-sharing when useful, and explicit feedback loops matter a lot in distributed teams.
 
 ## Get in touch
 

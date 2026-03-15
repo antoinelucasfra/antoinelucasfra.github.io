@@ -6,11 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Antoine Lucas">
-<meta name="dcterms.date" content="2026-02-24">
-<meta name="description" content="A short introduction for readers arriving via R-Bloggers — what I write about, who I am, and where to start.">
+<meta name="dcterms.date" content="2026-03-14">
+<meta name="description" content="An NDA-safe case study of designing and delivering a modular R Shiny platform for pilot manufacturing workflows in a regulated R&amp;D environment.">
 
-<title>Hello, R-Bloggers — What This Blog Is About – Antoine Lucas</title>
+<title>Shiny Platform for GxP Manufacturing Workflows – Antoine Lucas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,29 +25,29 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../assets/images/profile-pic.jpg" rel="icon" type="image/jpeg">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0dc89d91ae56e68db106ebe05eaa7c0e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0dc89d91ae56e68db106ebe05eaa7c0e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0dc89d91ae56e68db106ebe05eaa7c0e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b5867078309af64471e4c42e67d585bc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-7b483cda5aac4c7db06ab001ef69ef0f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-b5867078309af64471e4c42e67d585bc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/images/profile-pic.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0dc89d91ae56e68db106ebe05eaa7c0e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0dc89d91ae56e68db106ebe05eaa7c0e.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0dc89d91ae56e68db106ebe05eaa7c0e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b5867078309af64471e4c42e67d585bc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7b483cda5aac4c7db06ab001ef69ef0f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b5867078309af64471e4c42e67d585bc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,9 +77,9 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Hello, R-Bloggers — What This Blog Is About – Antoine Lucas">
-<meta property="og:description" content="A short introduction for readers arriving via R-Bloggers — what I write about, who I am, and where to start.">
-<meta property="og:image" content="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg">
+<meta property="og:title" content="Shiny Platform for GxP Manufacturing Workflows – Antoine Lucas">
+<meta property="og:description" content="An NDA-safe case study of designing and delivering a modular R Shiny platform for pilot manufacturing workflows in a regulated R&amp;D environment.">
+<meta property="og:image" content="https://antoinelucasfra.github.io/projects/assets/images/profile-pic.jpg">
 <meta property="og:site_name" content="Antoine Lucas">
 </head>
 
@@ -253,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Antoine Lucas</span>
     </a>
   </div>
@@ -264,19 +263,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
+    <a class="nav-link" href="../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../projects.html"> 
+    <a class="nav-link" href="../projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../cv.html"> 
+    <a class="nav-link" href="../cv.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -303,8 +302,27 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The problem</a></li>
+  <li><a href="#my-role" id="toc-my-role" class="nav-link" data-scroll-target="#my-role">My role</a></li>
+  <li><a href="#architecture-principles" id="toc-architecture-principles" class="nav-link" data-scroll-target="#architecture-principles">Architecture principles</a>
+  <ul class="collapse">
+  <li><a href="#separate-process-logic-from-presentation" id="toc-separate-process-logic-from-presentation" class="nav-link" data-scroll-target="#separate-process-logic-from-presentation">1. Separate process logic from presentation</a></li>
+  <li><a href="#treat-validation-as-a-first-class-concern" id="toc-treat-validation-as-a-first-class-concern" class="nav-link" data-scroll-target="#treat-validation-as-a-first-class-concern">2. Treat validation as a first-class concern</a></li>
+  <li><a href="#design-for-maintainability-not-heroics" id="toc-design-for-maintainability-not-heroics" class="nav-link" data-scroll-target="#design-for-maintainability-not-heroics">3. Design for maintainability, not heroics</a></li>
+  <li><a href="#build-for-deployment-from-the-start" id="toc-build-for-deployment-from-the-start" class="nav-link" data-scroll-target="#build-for-deployment-from-the-start">4. Build for deployment from the start</a></li>
+  </ul></li>
+  <li><a href="#delivery-approach" id="toc-delivery-approach" class="nav-link" data-scroll-target="#delivery-approach">Delivery approach</a></li>
+  <li><a href="#quality-validation-and-documentation" id="toc-quality-validation-and-documentation" class="nav-link" data-scroll-target="#quality-validation-and-documentation">Quality, validation, and documentation</a></li>
+  <li><a href="#outcomes" id="toc-outcomes" class="nav-link" data-scroll-target="#outcomes">Outcomes</a></li>
+  <li><a href="#what-this-says-about-how-i-work" id="toc-what-this-says-about-how-i-work" class="nav-link" data-scroll-target="#what-this-says-about-how-i-work">What this says about how I work</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/projects/shiny-platform-gxp.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -312,33 +330,30 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hello, R-Bloggers — What This Blog Is About</h1>
+<h1 class="title">Shiny Platform for GxP Manufacturing Workflows</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
-    <div class="quarto-category">Meta</div>
+    <div class="quarto-category">Shiny</div>
+    <div class="quarto-category">Product Engineering</div>
+    <div class="quarto-category">GxP</div>
+    <div class="quarto-category">Deployment</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    A short introduction for readers arriving via R-Bloggers — what I write about, who I am, and where to start.
+    An NDA-safe case study of designing and delivering a modular R Shiny platform for pilot manufacturing workflows in a regulated R&amp;D environment.
   </div>
 </div>
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Antoine Lucas </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 24, 2026</p>
+      <p class="date">March 14, 2026</p>
     </div>
   </div>
   
@@ -350,18 +365,128 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>If you’re arriving here from R-Bloggers, welcome. This is a quick orientation.</p>
-<p>I’m an applied statistician and ML engineer based in Paris. For the past five years I’ve been embedded in R&amp;D and clinical teams — at L’Oréal, Sanofi, a microbiome biotech, and currently Chanel Parfums Beauté — building data pipelines, statistical models, and ML systems in environments where reproducibility and auditability are not optional. R is my primary tool for statistical work, reporting, and Shiny applications; Python handles the ML side. Most posts here are field notes from that work: things I’ve worked out in production and thought worth documenting, for my future self as much as anyone else.</p>
-<p>The R content on this blog is practitioner-focused. You’ll find posts on reproducibility in GxP-regulated environments, statistical methods applied to real formulation and clinical data, and R tooling that has earned its place in my daily workflow. Not beginner tutorials — notes from actual use.</p>
-<p><strong>Three posts to start with:</strong></p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This page is a sanitized case study of a project delivered in a regulated R&amp;D environment. The domain details are intentionally abstracted, but the engineering problems are real: design a maintainable internal product, satisfy audit-trail expectations, support operational users, and ship something robust enough to survive beyond its original developer.</p>
+<p>The result was a modular <strong>R Shiny platform</strong> used to manage pilot manufacturing workflows across <strong>100+ GxP clinical projects</strong>, with <strong>50+ daily active users</strong> across multiple departments.</p>
+<hr>
+</section>
+<section id="the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
+<p>The client team was coordinating pilot manufacturing chains across R&amp;D and operational stakeholders using a mix of spreadsheets, email, and fragmented process knowledge. The main issues were predictable:</p>
 <ul>
-<li><a href="../../posts/reproducible-pharma-r/">Building Reproducible Analyses in Pharma with R</a> — how I structure R projects in regulated environments, from <code>renv</code> to audit-ready reporting</li>
-<li><a href="../../posts/rv-modern-r-package-manager/">rv: The Modern R Package Manager for Reproducible Workflows</a> — a look at the Rust-backed package manager that is quietly replacing my <code>renv</code> workflow</li>
-<li><a href="https://antoinelucasfra.github.io/posts/why-curate-resources/">Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog</a> — on curation as a practice, and the catalog of 200+ data science resources I maintain</li>
+<li>information lived in too many places</li>
+<li>process state was hard to reconstruct reliably</li>
+<li>report generation was manual and repetitive</li>
+<li>audit and qualification requirements were real, not optional</li>
+<li>“how the system works” lived partly in conversations rather than in the product</li>
 </ul>
-<p>The <a href="../../blog.html">full blog listing</a> has everything, filtered by category.</p>
+<p>What they needed was not a dashboard for showing metrics after the fact. They needed an internal product that helped people run the process.</p>
+<hr>
+</section>
+<section id="my-role" class="level2">
+<h2 class="anchored" data-anchor-id="my-role">My role</h2>
+<p>I worked as the <strong>sole developer on the engineering side</strong>, while also taking on a <strong>Scrum Master</strong> role for the project.</p>
+<p>That meant owning the work end to end:</p>
+<ul>
+<li>discovery and user-story workshops</li>
+<li>architecture and data-model design</li>
+<li>module implementation</li>
+<li>iterative delivery through agile sprints</li>
+<li>user acceptance testing (UAT)</li>
+<li>documentation for qualification and handover</li>
+<li>deployment to <strong>Posit Connect</strong></li>
+</ul>
+<p>I worked directly with <strong>5+ senior sponsors</strong> across R&amp;D and manufacturing functions, so the role required technical decisions, communication, and prioritization as much as coding.</p>
+<hr>
+</section>
+<section id="architecture-principles" class="level2">
+<h2 class="anchored" data-anchor-id="architecture-principles">Architecture principles</h2>
+<p>The application was built as a <strong>modular Shiny product</strong> using a structure inspired by <code>golem</code>. The exact implementation remains private, but the architecture principles are shareable:</p>
+<section id="separate-process-logic-from-presentation" class="level3">
+<h3 class="anchored" data-anchor-id="separate-process-logic-from-presentation">1. Separate process logic from presentation</h3>
+<p>The UI had to evolve as users learned what they needed. Process rules and validation logic could not be tangled with presentation code, otherwise every UI change would become risky.</p>
+</section>
+<section id="treat-validation-as-a-first-class-concern" class="level3">
+<h3 class="anchored" data-anchor-id="treat-validation-as-a-first-class-concern">2. Treat validation as a first-class concern</h3>
+<p>In regulated workflows, invalid input is not a small annoyance. The platform needed explicit checks, constrained transitions, and predictable failure surfaces.</p>
+</section>
+<section id="design-for-maintainability-not-heroics" class="level3">
+<h3 class="anchored" data-anchor-id="design-for-maintainability-not-heroics">3. Design for maintainability, not heroics</h3>
+<p>A product used daily by multiple teams has to be understandable by someone new. Module boundaries, naming, documentation, and repeatable deployment mattered as much as features.</p>
+</section>
+<section id="build-for-deployment-from-the-start" class="level3">
+<h3 class="anchored" data-anchor-id="build-for-deployment-from-the-start">4. Build for deployment from the start</h3>
+<p>The target was always production on <strong>Posit Connect</strong>, with qualification-minded delivery. That changes how you think about configuration, dependencies, logging, and reports.</p>
+<hr>
+</section>
+</section>
+<section id="delivery-approach" class="level2">
+<h2 class="anchored" data-anchor-id="delivery-approach">Delivery approach</h2>
+<p>The most valuable part of the project was not one technical choice. It was the delivery loop:</p>
+<ol type="1">
+<li>clarify the operational problem with users and sponsors</li>
+<li>model the process explicitly</li>
+<li>ship small, testable increments</li>
+<li>review in context with real users</li>
+<li>document what changed and why</li>
+</ol>
+<p>That approach helped in two ways:</p>
+<ul>
+<li>it reduced the risk of building the wrong thing</li>
+<li>it made the product easier to explain, support, and qualify</li>
+</ul>
+<p>This is also where the Scrum Master side of the role mattered. A lot of engineering value came from structuring the work, making dependencies visible, and keeping discussions precise enough that decisions survived after the meeting.</p>
+<hr>
+</section>
+<section id="quality-validation-and-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="quality-validation-and-documentation">Quality, validation, and documentation</h2>
+<p>This was not a “move fast and clean it up later” environment.</p>
+<p>Key quality practices included:</p>
+<ul>
+<li>explicit data-model design rather than implicit spreadsheet logic</li>
+<li>automated report generation for validation-oriented workflows</li>
+<li>deployment on <strong>Posit Connect</strong></li>
+<li>documentation that supported qualification activities such as <strong>IQ/OQ/PQ</strong></li>
+<li>user acceptance testing tied to actual operational scenarios</li>
+</ul>
+<p>The lesson here is simple: in regulated internal software, <strong>documentation is part of the product</strong>. If the evidence around the tool is weak, the tool itself is weak.</p>
+<hr>
+</section>
+<section id="outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="outcomes">Outcomes</h2>
+<p>What I can share publicly:</p>
+<ul>
+<li>a full R Shiny platform delivered and used in production</li>
+<li>support for <strong>100+ GxP clinical projects</strong></li>
+<li><strong>50+ daily active users</strong> across <strong>3 departments</strong></li>
+<li>improved traceability and less manual coordination around process execution</li>
+<li>a product structure that could be maintained and extended after initial delivery</li>
+</ul>
+<p>What I cannot share:</p>
+<ul>
+<li>source code</li>
+<li>proprietary data structures</li>
+<li>screenshots</li>
+<li>client-specific business rules</li>
+</ul>
+<hr>
+</section>
+<section id="what-this-says-about-how-i-work" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-says-about-how-i-work">What this says about how I work</h2>
+<p>This project is probably the best public proxy for the kind of engineering work I enjoy most:</p>
+<ul>
+<li>internal products with real users</li>
+<li>architecture that has to stay maintainable</li>
+<li>regulated or high-consequence environments</li>
+<li>close collaboration with domain experts</li>
+<li>ownership from framing to deployment</li>
+<li>strong emphasis on documentation, validation, and handover</li>
+</ul>
+<p>I like R and Shiny not because they are fashionable, but because they can be excellent tools for delivering useful software quickly when paired with sound architecture and good engineering discipline.</p>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -829,7 +954,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
 <p>© 2026 Antoine Lucas.</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/posts/hello-r-bloggers/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/edit/main/projects/shiny-platform-gxp.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>License: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY NC SA 4.0</a>.</p>
 </div>

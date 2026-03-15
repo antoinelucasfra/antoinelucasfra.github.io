@@ -1,0 +1,360 @@
+---
+title: "Running ShinyProxy Well: Docker, Operations, and Packaged Shiny Apps"
+author: "Antoine Lucas"
+date: "2026-03-14"
+categories: [R, Shiny, ShinyProxy, Docker, Deployment]
+image: "../../assets/images/blog-placeholder.svg"
+description: "What actually matters when deploying packaged Shiny apps behind ShinyProxy: Docker images, persistence, observability, and the boring operational details that decide whether the setup is pleasant or painful."
+---
+
+## Honest preamble
+
+This is not a "copy this YAML and you have production ShinyProxy" post.
+
+ShinyProxy is one of those tools that looks deceptively simple from a distance. On paper, the model is elegant: each Shiny app lives in a container, ShinyProxy starts and stops those containers on demand, and you get a clean separation between the application and the hosting layer. Conceptually, that is a very appealing setup.
+
+In practice, the hard part is not getting the first app to appear in the browser. The hard part is everything that comes after: image versioning, storage, debugging, upgrades, reverse proxy assumptions, and making sure the server does not gradually turn into a snowflake only one person understands.
+
+That is the scope of this article.
+
+I am writing it from the perspective I find most useful: not "here is the official platform documentation rewritten", but "what I would want to get right early if I were administering a ShinyProxy server for real work". The running example is a small project I built, [`fitness-app`](https://github.com/antoinelucasfra/fitness-app), a packaged Shiny app built with `golem`. It is currently shaped for local use and a Posit deployment path, which makes it a good example of the gap between *package-first Shiny development* and *operating containerized apps behind ShinyProxy*.
+
+---
+
+## Why ShinyProxy is appealing in the first place
+
+There are at least three reasons people end up looking seriously at ShinyProxy:
+
+1. **You want explicit control.** The container boundary is a real boundary. That is attractive if you care about reproducibility or about isolating apps from one another.
+2. **You are running multiple apps.** Once a server becomes an internal app catalog rather than "the one Shiny app", lifecycle management matters more.
+3. **You prefer standard infrastructure primitives.** Docker images, reverse proxies, identity providers, mounted volumes, image registries — this is all boring infrastructure in the best possible sense.
+
+What ShinyProxy gives you is not magic. It gives you a clean contract: *build an image that starts a Shiny app correctly, and I will orchestrate it for users*. That is a good contract.
+
+But contracts cut both ways. If your image is messy, if your persistence model is hand-wavy, or if you do not know how to observe what is happening on the host, ShinyProxy will not save you from that. It will expose it.
+
+---
+
+## The example app: `fitness-app`
+
+The example is intentionally modest. `fitness-app` is a personal fitness tracker built as a proper R package app:
+
+- framework: `golem` + `shiny`
+- dependency management: `renv`
+- package metadata in `DESCRIPTION`
+- explicit app entrypoint in `app.R`
+- app code in `R/`
+- local persistence via `rappdirs::user_data_dir()`
+
+Its current README shows a straightforward local workflow:
+
+```r
+renv::restore()
+devtools::install()
+fitnessapp::run_app()
+```
+
+And it already has a Posit-oriented deployment path:
+
+```r
+rsconnect::deployApp(
+  appName     = "flo-fit",
+  appTitle    = "Flo Fit",
+  account     = "antoinelucasfra",
+  server      = "connect.posit.cloud",
+  lint        = FALSE,
+  forceUpdate = TRUE
+)
+```
+
+More interestingly for this article, the `dev/03_deploy.R` file already points toward the container path:
+
+```r
+golem::add_dockerfile_with_renv()
+golem::add_dockerfile_with_renv_shinyproxy()
+```
+
+That is the exact transition I care about here. A lot of Shiny work stops at "the app runs locally" or "I can deploy it to Posit Connect". Moving to ShinyProxy is not conceptually difficult, but it forces you to make a series of operational decisions that are easy to postpone and expensive to postpone badly.
+
+---
+
+## What changes when ShinyProxy enters the picture
+
+The most important shift is this:
+
+- with **Posit Connect**, more of the platform behavior is managed for you
+- with **ShinyProxy**, more of that behavior becomes your responsibility
+
+That responsibility includes things like:
+
+- what exactly goes into the image
+- where data is stored
+- how logs are collected
+- how images are versioned and rolled back
+- how authentication is handled upstream
+- how upgrades are performed without guessing
+
+This is why I think ShinyProxy should be approached less like "a deployment target" and more like "a small application platform that I now administer".
+
+That is not a criticism. It is the reason many people choose it. But it does mean your job changes. You are not only packaging a Shiny app anymore. You are now making platform decisions.
+
+---
+
+## Best practice 1: build package-first, container-second
+
+If I had to choose one thing to get right before touching ShinyProxy, it would be this.
+
+For me, packaged apps are simply easier to reason about than "a folder full of server.R, ui.R, and half-remembered helper scripts". `fitness-app` is not complicated, but it already has the shape I want:
+
+- dependencies are explicit in `DESCRIPTION`
+- the app has a package name
+- the runtime is clear
+- the entrypoint is clear
+- the code layout is predictable
+
+That matters because containers amplify mess. If your app structure is vague before Docker, it becomes painful once you are debugging a container that starts, exits, and leaves only a short log line behind.
+
+So my preference is:
+
+1. make the app behave like a proper package
+2. make local development reproducible with `renv`
+3. only then generate or write the Docker image
+
+The container should wrap a coherent app. It should not be the mechanism that compensates for a chaotic project structure.
+
+---
+
+## Best practice 2: treat `shiny2docker` as the bridge, not the architecture
+
+The user asked specifically about deploying packaged Shiny apps with `shiny2docker`, so it is worth making the boundary explicit.
+
+Tools like `shiny2docker` are useful because they help you cross the gap between:
+
+- an app that runs in an R development workflow
+- and an image that ShinyProxy can launch reliably
+
+That is valuable. But the generated Dockerfile is not the architecture of your deployment. It is one artifact in the deployment chain.
+
+In the case of `fitness-app`, the repo itself currently advertises `golem`'s Docker helpers rather than a committed `shiny2docker` workflow. I do not think that changes the real lesson. Whether the image starts from `shiny2docker`, `golem::add_dockerfile_with_renv_shinyproxy()`, or a hand-written Dockerfile, the operational questions are the same:
+
+- is the image deterministic?
+- are dependencies pinned?
+- does the entrypoint start the app cleanly?
+- where does state live?
+- how do I update it safely?
+
+So I think of `shiny2docker` as the **bridge into containerization**, not the main design problem. The design problem starts right after the image builds successfully.
+
+---
+
+## Best practice 3: keep the image boring and predictable
+
+I strongly prefer Docker images that are dull.
+
+By that I mean:
+
+- pinned base image
+- explicit package restore/install steps
+- no manual post-build fixes on the server
+- no hidden runtime dependencies that only exist on one machine
+- one clear entrypoint
+
+For a packaged app like `fitness-app`, my bias would be:
+
+1. restore the exact R package set from `renv.lock`
+2. install the package cleanly
+3. launch through a stable entrypoint
+
+The temptation with internal Shiny apps is always to "just install that one extra thing directly on the host". That is how you create a server nobody trusts to rebuild later.
+
+If the app needs something, the image should say so. If the image needs something, the build should say so. If the server needs something, it should be documented as platform setup, not hidden as tribal knowledge.
+
+The litmus test I like is simple: **if this VM died today, how much of the ShinyProxy stack could I reproduce from Git and documented configuration alone?**
+
+If the answer is "not much", you do not have an administration strategy yet.
+
+---
+
+## Best practice 4: persistence is where naive setups go wrong
+
+This is the section I would pay the most attention to for `fitness-app`.
+
+The app stores data locally via:
+
+```r
+rappdirs::user_data_dir("fitnessapp")
+```
+
+That is a perfectly reasonable choice for a local or desktop-like usage model. It is *not* automatically a reasonable choice once the app is launched in an ephemeral container behind ShinyProxy.
+
+The problem is simple:
+
+- containers are disposable
+- local writes inside the container filesystem disappear with the container unless you mount storage deliberately
+
+So for an app like this, you need to decide explicitly:
+
+### Option A — bind mount host storage
+
+This is the simplest path for a small internal setup.
+
+Pros:
+
+- easy to understand
+- minimal app refactor
+- works fine for one app with modest traffic
+
+Cons:
+
+- couples the app to host filesystem layout
+- requires careful permissions
+- backup strategy becomes your problem immediately
+
+### Option B — move to a database
+
+This is the better long-term model if the app becomes multi-user, concurrent, or operationally important.
+
+Pros:
+
+- clearer persistence model
+- better fit for multiple app instances
+- easier story for backup and migration
+
+Cons:
+
+- more moving parts
+- more application code to maintain
+
+For `fitness-app`, my practical recommendation would be: **start with an explicit mounted data directory if the usage remains small and personal-ish, but design the storage layer so a later database move is not traumatic**.
+
+What I would avoid is the worst middle ground: pretending local container writes are good enough because the app "seems to work". They usually work right up until the container restarts.
+
+---
+
+## Best practice 5: version apps like products, not scripts
+
+I do not like `latest` in production. I tolerate it in experiments. That is a different thing.
+
+For ShinyProxy-administered apps, I want:
+
+- immutable image tags
+- a documented mapping between app version and image tag
+- a rollback target
+- a staging path if the app matters
+
+This matters more than people think because Shiny apps often look deceptively safe to update. "It is only an internal tool" is usually how internal tools become important without getting any safer to operate.
+
+For a package app, I like the idea that:
+
+- package version in `DESCRIPTION`
+- image tag in the registry
+- deployed image in ShinyProxy config
+
+all line up clearly enough that I can answer the question: **what exactly is running right now?**
+
+If I cannot answer that in thirty seconds, the deployment is under-documented.
+
+---
+
+## Best practice 6: observe the server, not only the app
+
+There is a class of Shiny debugging pain that comes from looking in the wrong place.
+
+If the app fails under ShinyProxy, the issue may live in any of these layers:
+
+- the app itself
+- the image build
+- container startup
+- mounted volumes
+- permissions
+- the ShinyProxy configuration
+- the reverse proxy in front of it
+
+That means the minimum useful observability setup is not "I can print logs from R". It is:
+
+- app logs
+- container logs
+- ShinyProxy logs
+- some basic understanding of host-level resource pressure
+
+I am not arguing for a full platform engineering stack on day one. I am arguing against flying blind.
+
+Even a modest setup should make it easy to answer:
+
+- did the container start?
+- did it crash?
+- did it fail to bind a path?
+- did the app fail while reading or writing data?
+- did the request reach the right layer?
+
+If you only have the browser error message, you are administrating by vibes.
+
+---
+
+## Best practice 7: secure the boring parts first
+
+Security discussions around Shiny deployments often drift immediately toward exotic attack paths. Most of the time, the high-value work is much more boring:
+
+- do not bake secrets into the image
+- keep credentials out of app code
+- be deliberate about upstream authentication
+- use TLS termination intentionally, not accidentally
+- give mounted volumes only the permissions they actually need
+
+For a package app like `fitness-app`, the biggest practical point is not some exotic Shiny-specific exploit. It is making sure the move from local assumptions to server assumptions does not drag secrets and filesystem privileges along with it in an ad hoc way.
+
+If I had to summarize it in one sentence: **the server should know more than the app about secrets, and the app should know less than the server about infrastructure.**
+
+---
+
+## Best practice 8: document the admin path like you expect someone else to inherit it
+
+This is the most neglected part of Shiny administration, and one of the most important.
+
+The docs I would want for a serious ShinyProxy setup are not glamorous:
+
+- how a new app is onboarded
+- where persistent data lives
+- how images are built and tagged
+- how a deployment is rolled out
+- how a rollback is done
+- what logs to check first
+- which settings are host-level versus app-level
+
+For me, this is not bureaucracy. It is operational kindness.
+
+If the entire platform depends on one person's working memory, the platform is fragile no matter how elegant the YAML looks.
+
+---
+
+## What I would do for `fitness-app`
+
+If I were taking this exact app toward ShinyProxy, my path would be roughly:
+
+1. **Keep the package shape.** That part is already right.
+2. **Generate the first container artifact** with either `shiny2docker` or the existing `golem` ShinyProxy helper, then inspect it rather than trusting it blindly.
+3. **Make storage explicit.** I would stop relying on implicit local paths and document a mounted data path clearly.
+4. **Introduce image tagging discipline early.** Even for a small app.
+5. **Write a minimal admin README** covering build, deploy, storage, and rollback.
+6. **Only then polish the broader ShinyProxy setup** — auth integration, nicer app catalog behavior, resource tuning, and so on.
+
+The big lesson is that I would not start from the proxy. I would start from the app's operational assumptions.
+
+In `fitness-app`, the most important assumption is persistence. That is exactly the kind of issue that is harmless locally and central in containers.
+
+---
+
+## The short version
+
+If I had to compress this entire article into a few lines, it would be this:
+
+- package the app properly first
+- keep Docker images deterministic
+- treat persistence as a design decision, not an afterthought
+- version images like products
+- observe the platform at multiple layers
+- document the boring operational path before you need it in a hurry
+
+ShinyProxy is a good tool. I like the explicitness of it. But the value does not come from the fact that apps run in containers. The value comes when the whole setup becomes predictable enough that you trust it under change.
+
+That trust is an administration outcome, not a Dockerfile outcome.

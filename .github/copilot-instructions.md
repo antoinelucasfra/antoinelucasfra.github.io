@@ -1,7 +1,6 @@
 # GitHub Copilot Instructions — antoinelucasfra.github.io
 
 This file governs all Copilot suggestions in the `antoinelucasfra.github.io` repository.
-All rules in `~/project/AGENTS.md` also apply. This file documents project-specific directives.
 
 ---
 
@@ -9,8 +8,6 @@ All rules in `~/project/AGENTS.md` also apply. This file documents project-speci
 
 - Author name: `Antoine Lucas`
 - Git email: `antoine.lucas.fra@gmail.com`
-- Always sign commits with GPG key `79C78C5311C38AB06EF3804FAC8647A90C69EBC0`
-- Never pass `--no-gpg-sign` or `--no-verify`
 
 ---
 
@@ -47,16 +44,6 @@ description: "One sentence."
 
 ---
 
-## Brand & Theming
-
-- Fonts: headings `Sora`, body `DM Sans`, code `JetBrains Mono`
-- Colors: deep navy + warm gold (defined in `_brand.yml`)
-- Theme base: `cosmo` + brand; light (`theme.scss`) and dark (`theme-dark.scss`)
-- Never create new stylesheet files without updating `_quarto.yml` to reference them
-- Never modify `_brand.yml` without explicit instruction
-
----
-
 ## R Dependencies
 
 - Always use `renv::install("pkg")` followed by `renv::snapshot()`
@@ -73,26 +60,8 @@ description: "One sentence."
 
 ---
 
-## Git Conventions
-
-- Commit types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `ci`, `chore`, `render`, `deploy`, `perf`, `revert`
-- `render:` is used exclusively for commits containing Quarto rendered output (`docs/`, `_freeze/`)
-- Always separate content commits from render commits:
-  1. `git add posts/my-post/` → `git commit -m "feat(blog): Add post on X"`
-  2. `git add docs/ _freeze/` → `git commit -m "render: Render website"`
-- Subject line: imperative mood, ≤72 chars, no trailing period, capitalize after `type: `
-- Never push directly to `main` — use a branch and PR
-- Never `git push --force` on `main`
-- Never `git add .` without reviewing with `git status` and `git diff --staged`
-- Never commit `*.Rproj`, `.Rhistory`, `.DS_Store`, `.quarto/`, `renv/library/`
-
----
-
 ## Workflow Sequence
 
 When working on this repo, always follow this order:
 1. Edit `.qmd` files
-2. `quarto preview` — verify locally
-3. `air format .` — format any R code in chunks
-4. `quarto render` — generate `docs/` and update `_freeze/`
-5. Commit content and render output in two separate commits
+2. `air format .` — format any R code in chunks

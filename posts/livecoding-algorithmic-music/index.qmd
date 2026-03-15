@@ -4,7 +4,7 @@ description: "Exploring the fusion of programming, DJing, and data-driven creati
 author: "Antoine Lucas"
 date: "2024-12-13"
 categories: [Creative Coding, Music, Art, Data]
-image: "featured.png"
+image: "../../assets/images/blog-placeholder.svg"
 draft: true
 ---
 
