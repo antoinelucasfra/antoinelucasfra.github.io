@@ -86,7 +86,6 @@ Computer vision models, NLP pipelines, and LLM-assisted extraction workflows for
 ## Selected proof {.section-heading}
 
 - [Engineering Standards for Scientific Software](/posts/engineering-standards-scientific-software/) — how I approach tests, documentation, CI/CD, handover, and technical training.
-- [Voice to Data: LLM Pipeline for Lab Notebooks](/projects/voice-to-data.qmd) — local-first extraction pipeline built for regulated R&D constraints.
 - [Reproducible Environments for Everyone](/posts/devcontainers-reproducible-environments/) — how I think about standards, onboarding, and maintainable delivery.
 - [Resources Catalog](/projects/resources_catalog.qmd) — a public curation project that reflects how I document, teach, and structure knowledge.
 
@@ -106,14 +105,6 @@ Computer vision models, NLP pipelines, and LLM-assisted extraction workflows for
 
 ::: {.skill-pills}
 [Python]{.pill} [R]{.pill} [SQL]{.pill} [Bash]{.pill}
-:::
-:::
-
-::: {.skill-group}
-**Deep learning & LLM**
-
-::: {.skill-pills}
-[PyTorch]{.pill} [Hugging Face]{.pill} [PEFT / LoRA]{.pill} [Instructor]{.pill} [faster-whisper]{.pill} [sentence-transformers]{.pill}
 :::
 :::
 
@@ -138,6 +129,14 @@ Computer vision models, NLP pipelines, and LLM-assisted extraction workflows for
 
 ::: {.skill-pills}
 [Shiny]{.pill} [Tidyverse]{.pill} [ggplot2]{.pill} [renv]{.pill} [Quarto]{.pill}
+:::
+:::
+
+::: {.skill-group}
+**Deep learning & LLM**
+
+::: {.skill-pills}
+[PyTorch]{.pill} [Hugging Face]{.pill} [PEFT / LoRA]{.pill} [Instructor]{.pill} [faster-whisper]{.pill} [sentence-transformers]{.pill}
 :::
 :::
 

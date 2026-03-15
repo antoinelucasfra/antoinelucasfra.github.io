@@ -1,19 +1,21 @@
-todo list :
+# TODO
 
+- correct pdf typst output
+
+- plug the resource fetcher on my keep notes
 - créer brand.yml à mon image perso
-- recup/tri/agregaer toutes les ressources dans un dossier (récup sources du dossier it&m + pc it&m cf mission sanofi, loreal, msio)
-- utiliser rag pour résumer toutes ces ressources et ce faire des cheatsheets sur ces savoirs)
-- créer site web perso : cf inspi mcanouil
 - trier lien + sanofi export
+- make A REAL STATISTICAL COURSES or point out to this + an R for beginners
+  tutorial
 
--   include cv, about, projects, blog tabs
+# DONE*
 
--   explain in blog posts the projects (shiny app for meetups, skate deep learning/huggingface)
-
-2.  fetch all links from all sources (words docs, google keeps, chrome windows, etc...)
-
-3.  sort all the links into categories (methods/random forest, IT/linux stuffs, deployment/kubernetes, etc...)
-
--   get value from the links --\> explaining what's the use and redacting small examples about what can be done
-
--   make A REAL STATISTICAL COURSES or point out to this + an R for beginners tutorial
+- correct placeholder image : improve the text placement and shorten the text :
+  remove the Antoine LUCAS Blog placeholder text, remove the Scientific
+  software, reproducibility, shiny, ML systems grey text
+- improve placeholder images for blog posts : provide a one that match website
+  style on every blog posts
+- move this item in projects tabs into blog posts : Engineering Standards for
+  Scientific Software
+- remove the Shiny Platform for GxP Manufacturing Workflows projects items
+- remove the blog posts about voice2data
