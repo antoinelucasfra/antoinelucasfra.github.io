@@ -7,7 +7,6 @@ format:
     page-layout: full
 execute:
   echo: false
-  freeze: false
 ---
 
 ```{css, echo=FALSE}
