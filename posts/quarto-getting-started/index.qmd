@@ -4,7 +4,7 @@ description: "A beginner's guide to creating beautiful, reproducible reports usi
 author: "Antoine Lucas"
 date: "2024-07-10"
 categories: [Quarto, Tutorial, Reproducibility]
-image: "featured.png"
+image: "../../assets/images/blog-placeholder.svg"
 ---
 
 ## What is Quarto?

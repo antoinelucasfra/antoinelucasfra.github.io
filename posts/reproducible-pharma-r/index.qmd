@@ -4,7 +4,7 @@ description: "A practical guide to creating reproducible data analysis workflows
 author: "Antoine Lucas"
 date: "2024-11-15"
 categories: [R, Pharma, Reproducibility, Best Practices]
-image: "featured.png"
+image: "../../assets/images/blog-placeholder.svg"
 draft: true
 custom-callout:
   pharma-note:

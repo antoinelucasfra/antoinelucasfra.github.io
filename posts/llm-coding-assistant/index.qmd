@@ -4,6 +4,7 @@ author: "Antoine Lucas"
 date: "2025-10-14"
 categories: [AI Tools, GitHub Copilot, LLM, Development, VS Code, Ollama, Workflow]
 description: "Honest notes on a three-layer AI stack — Copilot, OpenCode, and Ollama — from daily use in pharma and cosmetics R&D. Real gains, real failure modes."
+image: "../../assets/images/blog-placeholder.svg"
 custom-callout:
   warning-stat:
     title: "Statistical Caution"

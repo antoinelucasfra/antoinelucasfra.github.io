@@ -2,35 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://antoinelucasfra.github.io/TODO.html</loc>
-    <lastmod>2025-12-13T19:06:41.479Z</lastmod>
+    <lastmod>2026-03-15T14:45:31.351Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/sandbox/project-idea.html</loc>
-    <lastmod>2025-12-14T15:03:55.568Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/CONTRIBUTING.html</loc>
+    <lastmod>2026-02-22T15:12:25.976Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/posts/quarto-getting-started/index.html</loc>
-    <lastmod>2025-12-13T18:12:14.483Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/projects.html</loc>
+    <lastmod>2026-03-15T14:28:50.346Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/posts/llm-coding-assistant/index.html</loc>
-    <lastmod>2026-02-22T17:51:57.550Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/posts/rv-modern-r-package-manager/index.html</loc>
+    <lastmod>2026-03-15T14:28:50.334Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/posts/voice-to-data-lab-pipeline/index.html</loc>
-    <lastmod>2026-02-22T18:28:35.482Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/posts/why-curate-resources/index.html</loc>
+    <lastmod>2026-03-15T14:28:50.334Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/posts/hello-r-bloggers/index.html</loc>
-    <lastmod>2026-02-24T16:25:32.579Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/posts/shinyproxy-admin-best-practices/index.html</loc>
+    <lastmod>2026-03-15T14:28:50.342Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/index.html</loc>
-    <lastmod>2026-02-22T17:51:23.678Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/posts/devcontainers-reproducible-environments/index.html</loc>
+    <lastmod>2026-03-15T14:28:50.342Z</lastmod>
+  </url>
+  <url>
+    <loc>https://antoinelucasfra.github.io/posts/stats-theory-frequentist/index.html</loc>
+    <lastmod>2026-03-15T14:28:50.342Z</lastmod>
   </url>
   <url>
     <loc>https://antoinelucasfra.github.io/about.html</loc>
-    <lastmod>2026-02-22T14:33:08.481Z</lastmod>
+    <lastmod>2026-03-14T10:40:42.886Z</lastmod>
   </url>
   <url>
     <loc>https://antoinelucasfra.github.io/projects/academic_projects.html</loc>
@@ -38,15 +42,19 @@
   </url>
   <url>
     <loc>https://antoinelucasfra.github.io/projects/voice-to-data.html</loc>
-    <lastmod>2026-02-22T18:28:28.098Z</lastmod>
-  </url>
-  <url>
-    <loc>https://antoinelucasfra.github.io/cv.html</loc>
-    <lastmod>2026-02-22T18:06:39.710Z</lastmod>
+    <lastmod>2026-03-15T14:28:50.346Z</lastmod>
   </url>
   <url>
     <loc>https://antoinelucasfra.github.io/blog.html</loc>
-    <lastmod>2026-02-19T00:49:30.524Z</lastmod>
+    <lastmod>2026-03-14T10:40:42.898Z</lastmod>
+  </url>
+  <url>
+    <loc>https://antoinelucasfra.github.io/cv.html</loc>
+    <lastmod>2026-03-15T15:03:50.897Z</lastmod>
+  </url>
+  <url>
+    <loc>https://antoinelucasfra.github.io/projects/shiny-platform-gxp.html</loc>
+    <lastmod>2026-03-14T10:40:42.902Z</lastmod>
   </url>
   <url>
     <loc>https://antoinelucasfra.github.io/projects/resources_catalog.html</loc>
@@ -61,31 +69,27 @@
     <lastmod>2026-02-19T00:49:30.520Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/posts/stats-theory-frequentist/index.html</loc>
-    <lastmod>2026-02-22T14:39:53.795Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/posts/engineering-standards-scientific-software/index.html</loc>
+    <lastmod>2026-03-15T14:28:50.311Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/posts/devcontainers-reproducible-environments/index.html</loc>
-    <lastmod>2026-02-22T17:52:52.138Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/index.html</loc>
+    <lastmod>2026-03-15T14:28:50.338Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/posts/why-curate-resources/index.html</loc>
-    <lastmod>2026-02-22T14:39:43.746Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/posts/hello-r-bloggers/index.html</loc>
+    <lastmod>2026-03-15T14:28:50.346Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/posts/rv-modern-r-package-manager/index.html</loc>
-    <lastmod>2026-02-22T17:53:33.458Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/posts/llm-coding-assistant/index.html</loc>
+    <lastmod>2026-03-15T14:28:50.342Z</lastmod>
   </url>
   <url>
-    <loc>https://antoinelucasfra.github.io/projects.html</loc>
-    <lastmod>2026-02-22T18:15:21.886Z</lastmod>
-  </url>
-  <url>
-    <loc>https://antoinelucasfra.github.io/CONTRIBUTING.html</loc>
-    <lastmod>2026-02-22T15:12:25.976Z</lastmod>
+    <loc>https://antoinelucasfra.github.io/posts/quarto-getting-started/index.html</loc>
+    <lastmod>2026-03-15T14:28:50.334Z</lastmod>
   </url>
   <url>
     <loc>https://antoinelucasfra.github.io/index.html</loc>
-    <lastmod>2026-02-22T18:05:55.526Z</lastmod>
+    <lastmod>2026-03-15T14:28:50.346Z</lastmod>
   </url>
 </urlset>

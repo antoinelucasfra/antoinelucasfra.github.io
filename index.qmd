@@ -19,7 +19,7 @@ Antoine Lucas
 :::
 
 ::: {.hero-tagline}
-Research Engineer · ML Systems & Scientific AI
+R / Shiny Developer · Scientific Software & Applied Statistics
 :::
 
 ::: {.hero-location}
@@ -39,12 +39,12 @@ Paris
 
 ---
 
-I trained as an agronomy engineer, specialized in applied statistics, and somehow ended up building machine learning systems for Chanel's fragrance R&D — and fine-tuning LLMs for scientific and regulated contexts. The path made sense at each step, even if it doesn't look obvious on paper.
+I trained as an agronomy engineer, specialized in applied statistics, and ended up building software for scientific teams: R Shiny applications, internal data products, reproducible analysis workflows, and, when it genuinely helps, machine learning systems. The path made sense at each step, even if it doesn't look obvious on paper.
 
-For the past 5+ years I've been embedded in R&D and clinical teams at **L'Oréal**, **Sanofi**, **Abolis** (microbiome biotech), and now **Chanel Parfums Beauté** — building ML systems at the intersection of data and experimental science.
+For the past 5+ years I've been embedded in R&D and clinical teams at **L'Oréal**, **Sanofi**, **Abolis** (microbiome biotech), and now **Chanel Parfums Beauté** — building products at the intersection of statistics, software engineering, and experimental science.
 
 ::: {.highlight}
-Currently **Data Scientist & ML Engineer at Chanel Parfums Beauté R&D**, on mission via Astek / IT&M Stats. Building ML and computer vision tools for fragrance and cosmetics research.
+Currently **Data Scientist & ML Engineer at Chanel Parfums Beauté R&D**, on mission via Astek / IT&M Stats. I build R Shiny dashboards, reproducible pipelines, and ML tools used by scientists in fragrance and cosmetics research.
 :::
 
 ## What I do {.section-heading}
@@ -52,15 +52,15 @@ Currently **Data Scientist & ML Engineer at Chanel Parfums Beauté R&D**, on mis
 ::: {.what-i-do}
 
 ::: {.wid-item}
-### Machine learning & deep learning
+### R Shiny & internal products
 
-Computer vision models, NLP pipelines, and LLM fine-tuning for scientific applications. From texture classification and olfactory descriptor mining to training LoRA adapters on domain-specific datasets. Production-grade tools that go into daily research workflows.
+I design and deliver internal products for scientific teams: modular R Shiny apps, reporting workflows, and data interfaces that people can actually use without a walkthrough every time.
 :::
 
 ::: {.wid-item}
-### LLM pipelines & agentic systems
+### Architecture, quality & delivery
 
-End-to-end pipelines combining ASR, structured extraction (Instructor + Pydantic), and domain validation — turning unstructured scientific inputs into validated, auditable records. Local-first, compliance-aware architecture.
+From architecture decisions and delivery planning to documentation, validation, deployment, and support. I care about maintainability because scientific software has a way of surviving long after the original deadline.
 :::
 
 ::: {.wid-item}
@@ -70,12 +70,32 @@ From design of experiments and mixed models to biostatistics in Good Practices (
 :::
 
 ::: {.wid-item}
-### Reproducible data science & MLOps
+### Reproducible engineering & MLOps
 
-Everything in Git, containerized, runnable in 6 months with `uv sync` or `renv::restore()`. Drift monitoring, CI/CD pipelines, and model versioning in GxP-adjacent environments. I'm opinionated about this because I've seen what happens when you're not.
+Everything in Git, runnable in 6 months with `uv sync` or `renv::restore()`, documented well enough to be handed over. CI/CD, containers, environment pinning, and qualification-minded delivery are recurring themes in my work.
+:::
+
+::: {.wid-item}
+### ML when it's the right tool
+
+Computer vision models, NLP pipelines, and LLM-assisted extraction workflows for scientific applications. I like ML, but I like shipping the right product more than forcing a model into a problem that doesn't need one.
 :::
 
 :::
+
+## Selected proof {.section-heading}
+
+- [Engineering Standards for Scientific Software](/posts/engineering-standards-scientific-software/) — how I approach tests, documentation, CI/CD, handover, and technical training.
+- [Voice to Data: LLM Pipeline for Lab Notebooks](/projects/voice-to-data.qmd) — local-first extraction pipeline built for regulated R&D constraints.
+- [Reproducible Environments for Everyone](/posts/devcontainers-reproducible-environments/) — how I think about standards, onboarding, and maintainable delivery.
+- [Resources Catalog](/projects/resources_catalog.qmd) — a public curation project that reflects how I document, teach, and structure knowledge.
+
+## How I work {.section-heading}
+
+- **Ownership end to end** — framing the problem, choosing an architecture, building, validating, deploying, and supporting.
+- **Quality first** — tests, documentation, reproducibility, and explicit trade-offs rather than "it works on my machine".
+- **Transfer matters** — mentoring, internal training, and documentation are part of the deliverable, not admin around it.
+- **Close to users** — workshops, iteration, and feedback loops with scientists, analysts, and operational teams.
 
 ## Skills {.section-heading}
 
