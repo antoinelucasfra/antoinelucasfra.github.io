@@ -1,0 +1,135 @@
+---
+title: "Shiny Platform for GxP Manufacturing Workflows"
+description: "An NDA-safe case study of designing and delivering a modular R Shiny platform for pilot manufacturing workflows in a regulated R&D environment."
+date: "2026-03-14"
+categories: [R, Shiny, Product Engineering, GxP, Deployment]
+---
+
+## Overview
+
+This page is a sanitized case study of a project delivered in a regulated R&D environment. The domain details are intentionally abstracted, but the engineering problems are real: design a maintainable internal product, satisfy audit-trail expectations, support operational users, and ship something robust enough to survive beyond its original developer.
+
+The result was a modular **R Shiny platform** used to manage pilot manufacturing workflows across **100+ GxP clinical projects**, with **50+ daily active users** across multiple departments.
+
+---
+
+## The problem
+
+The client team was coordinating pilot manufacturing chains across R&D and operational stakeholders using a mix of spreadsheets, email, and fragmented process knowledge. The main issues were predictable:
+
+- information lived in too many places
+- process state was hard to reconstruct reliably
+- report generation was manual and repetitive
+- audit and qualification requirements were real, not optional
+- "how the system works" lived partly in conversations rather than in the product
+
+What they needed was not a dashboard for showing metrics after the fact. They needed an internal product that helped people run the process.
+
+---
+
+## My role
+
+I worked as the **sole developer on the engineering side**, while also taking on a **Scrum Master** role for the project.
+
+That meant owning the work end to end:
+
+- discovery and user-story workshops
+- architecture and data-model design
+- module implementation
+- iterative delivery through agile sprints
+- user acceptance testing (UAT)
+- documentation for qualification and handover
+- deployment to **Posit Connect**
+
+I worked directly with **5+ senior sponsors** across R&D and manufacturing functions, so the role required technical decisions, communication, and prioritization as much as coding.
+
+---
+
+## Architecture principles
+
+The application was built as a **modular Shiny product** using a structure inspired by `golem`. The exact implementation remains private, but the architecture principles are shareable:
+
+### 1. Separate process logic from presentation
+
+The UI had to evolve as users learned what they needed. Process rules and validation logic could not be tangled with presentation code, otherwise every UI change would become risky.
+
+### 2. Treat validation as a first-class concern
+
+In regulated workflows, invalid input is not a small annoyance. The platform needed explicit checks, constrained transitions, and predictable failure surfaces.
+
+### 3. Design for maintainability, not heroics
+
+A product used daily by multiple teams has to be understandable by someone new. Module boundaries, naming, documentation, and repeatable deployment mattered as much as features.
+
+### 4. Build for deployment from the start
+
+The target was always production on **Posit Connect**, with qualification-minded delivery. That changes how you think about configuration, dependencies, logging, and reports.
+
+---
+
+## Delivery approach
+
+The most valuable part of the project was not one technical choice. It was the delivery loop:
+
+1. clarify the operational problem with users and sponsors
+2. model the process explicitly
+3. ship small, testable increments
+4. review in context with real users
+5. document what changed and why
+
+That approach helped in two ways:
+
+- it reduced the risk of building the wrong thing
+- it made the product easier to explain, support, and qualify
+
+This is also where the Scrum Master side of the role mattered. A lot of engineering value came from structuring the work, making dependencies visible, and keeping discussions precise enough that decisions survived after the meeting.
+
+---
+
+## Quality, validation, and documentation
+
+This was not a "move fast and clean it up later" environment.
+
+Key quality practices included:
+
+- explicit data-model design rather than implicit spreadsheet logic
+- automated report generation for validation-oriented workflows
+- deployment on **Posit Connect**
+- documentation that supported qualification activities such as **IQ/OQ/PQ**
+- user acceptance testing tied to actual operational scenarios
+
+The lesson here is simple: in regulated internal software, **documentation is part of the product**. If the evidence around the tool is weak, the tool itself is weak.
+
+---
+
+## Outcomes
+
+What I can share publicly:
+
+- a full R Shiny platform delivered and used in production
+- support for **100+ GxP clinical projects**
+- **50+ daily active users** across **3 departments**
+- improved traceability and less manual coordination around process execution
+- a product structure that could be maintained and extended after initial delivery
+
+What I cannot share:
+
+- source code
+- proprietary data structures
+- screenshots
+- client-specific business rules
+
+---
+
+## What this says about how I work
+
+This project is probably the best public proxy for the kind of engineering work I enjoy most:
+
+- internal products with real users
+- architecture that has to stay maintainable
+- regulated or high-consequence environments
+- close collaboration with domain experts
+- ownership from framing to deployment
+- strong emphasis on documentation, validation, and handover
+
+I like R and Shiny not because they are fashionable, but because they can be excellent tools for delivering useful software quickly when paired with sound architecture and good engineering discipline.

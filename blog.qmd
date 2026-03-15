@@ -16,7 +16,7 @@ listing:
     fields: [image, date, title, description, categories, reading-time]
 ---
 
-Field notes from applied data science in pharma and cosmetics R&D. Mostly R and Python, usually statistics, occasionally opinions. I write when I've worked something out and it seems worth documenting — for my future self as much as anyone else.
+Field notes from building scientific software in pharma and cosmetics R&D: R, Shiny, reproducibility, statistical computing, and some ML when it earns its place. I write when I've worked something out and it seems worth documenting — for my future self as much as anyone else.
 
 :::: {#posts}
 ::::

@@ -1,0 +1,139 @@
+---
+title: "Engineering Standards for Scientific Software"
+author: "Antoine Lucas"
+date: "2026-03-14"
+categories: [Engineering, Documentation, CI/CD, Standards]
+image: "../../assets/images/blog-placeholder.svg"
+description: "How I approach architecture, tests, documentation, CI/CD, handover, and technical training when building internal tools for scientific teams."
+---
+
+## Why this matters
+
+Most of the software I build is internal, domain-heavy, and used by teams who are not primarily software engineers. In that environment, "the code runs" is a low bar. The real question is whether the product can be trusted, maintained, and handed over without turning into folklore.
+
+The details vary by client and domain, but my standards are fairly stable.
+
+---
+
+## 1. Start with the operating problem
+
+I try to understand the real workflow before I touch architecture:
+
+- who uses the product
+- what decision or operation it supports
+- what failure would actually cost
+- what has to be auditable, reproducible, or explainable
+
+This sounds obvious, but it prevents a lot of over-engineering. Scientific software often fails because it optimizes the elegance of the implementation over the friction of the user workflow.
+
+---
+
+## 2. Prefer explicit architecture to accidental structure
+
+Whether the tool is an R Shiny application, an analysis pipeline, or an ML-assisted workflow, I want the structure to be legible:
+
+- clear boundaries between UI, business logic, and data access
+- naming that still makes sense six months later
+- configuration handled deliberately rather than scattered through scripts
+- deployment assumptions stated explicitly
+
+I am not attached to complexity for its own sake. The right architecture is the lightest one that still remains maintainable under change.
+
+---
+
+## 3. Tests and checks should reduce anxiety
+
+I do not treat testing as a compliance ritual. The point is to make change safer.
+
+Depending on the project, that usually means some mix of:
+
+- automated tests for the logic that can realistically break
+- input validation and constrained state transitions
+- regression checks on critical outputs
+- smoke checks around deployment paths
+
+In regulated or high-consequence contexts, I also care about the evidence around the system: what was validated, what assumptions were made, and what would need re-checking after a change.
+
+---
+
+## 4. Documentation is not optional overhead
+
+The documentation I value most is the kind that makes a system survivable:
+
+- short architecture notes
+- operational runbooks
+- deployment instructions
+- onboarding material for the next developer or analyst
+- user-facing guides when the audience needs them
+
+If the only reliable documentation is "ask the person who built it", the product is not done.
+
+---
+
+## 5. CI/CD and reproducibility are part of product quality
+
+I work best when environments and delivery are explicit:
+
+- version control as the source of truth
+- reproducible environments with `renv`, `uv`, containers, or pinned tooling when appropriate
+- CI/CD to reduce manual drift
+- deployments that are boring on purpose
+
+In scientific environments, reproducibility is not just engineering hygiene. It is often the difference between a result being usable and a result being untrustworthy.
+
+---
+
+## 6. Handover and training are part of delivery
+
+I like projects where the output is not only software, but increased capability in the team using it.
+
+That can take several forms:
+
+- mentoring a junior developer or analyst
+- running internal upskilling sessions
+- pairing on difficult debugging or design decisions
+- turning repeated explanations into reusable templates or guides
+
+I do not see knowledge transfer as a nice extra. It is one of the ways you make a product durable.
+
+---
+
+## 7. Remote collaboration needs explicit habits
+
+I am comfortable working remotely, but good remote work is not passive. It usually relies on:
+
+- clear written decisions
+- visible priorities
+- early screen-sharing when something is ambiguous
+- concise feedback loops
+- enough documentation that async work remains aligned
+
+This is one reason I value writing: it helps teams coordinate without relying on memory.
+
+---
+
+## What this looks like in practice
+
+Across projects, these standards usually show up as some combination of:
+
+- R Shiny applications with modular structure and deployment discipline
+- reusable R packages or reporting templates
+- qualification-minded internal tooling in regulated environments
+- GitHub Actions or equivalent CI/CD for repeatable delivery
+- architecture and handover material that support maintenance
+
+The exact stack changes. The underlying principles do not change much.
+
+---
+
+## The short version
+
+The kind of software I want to build is:
+
+- useful to the people doing the work
+- understandable by the people maintaining it
+- explicit about trade-offs
+- documented well enough to survive handover
+- rigorous enough to be trusted in scientific settings
+
+That is a more durable goal than chasing novelty for its own sake.

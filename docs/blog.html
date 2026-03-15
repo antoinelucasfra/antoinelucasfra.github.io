@@ -86,7 +86,8 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
+      page: 9,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
@@ -136,11 +137,9 @@ window.Quarto = {
 </script>
 
 <link rel="alternate" type="application/rss+xml" title="Antoine Lucas" href="blog.xml" data-external="1"><meta property="og:title" content="Blog – Antoine Lucas">
-<meta property="og:description" content="Research Engineer — ML systems, deep learning, and LLM pipelines in scientific and regulated environments. Portfolio, blog, and projects.">
-<meta property="og:image" content="https://antoinelucasfra.github.io/posts/reproducibility-modern-tools/featured.png">
+<meta property="og:description" content="R and Shiny product engineering, statistical computing, and ML systems in scientific and regulated environments. Portfolio, blog, and projects.">
+<meta property="og:image" content="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg">
 <meta property="og:site_name" content="Antoine Lucas">
-<meta property="og:image:height" content="420">
-<meta property="og:image:width" content="800">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -380,7 +379,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(9)</span></div><div class="category" data-category="QUklMjBUb29scw==">AI Tools <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmVzdCUyMFByYWN0aWNlcw==">Best Practices <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Qmlvc3RhdGlzdGljcw==">Biostatistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMFBpcGVsaW5l">Data Pipeline <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMFNjaWVuY2U=">Data Science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGV2Q29udGFpbmVycw==">DevContainers <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RGV2ZWxvcG1lbnQ=">Development <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RG9ja2Vy">Docker <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R2VuQUk=">GenAI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2l0SHViJTIwQ29waWxvdA==">GitHub Copilot <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3hQ">GxP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGFiJTIwQXV0b21hdGlvbg==">Lab Automation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGlmZWxvbmclMjBMZWFybmluZw==">Lifelong Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TExN">LLM <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWFjaGluZSUyMExlYXJuaW5n">Machine Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWV0YQ==">Meta <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TW9kZXJuJTIwV29ya2Zsb3c=">Modern Workflow <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TkxQ">NLP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T2xsYW1h">Ollama <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGFja2FnZSUyME1hbmFnZW1lbnQ=">Package Management <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UGhhcm1h">Pharma <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(5)</span></div><div class="category" data-category="UmVmZXJlbmNl">Reference <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVwcm9kdWNpYmlsaXR5">Reproducibility <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UmVzb3VyY2Vz">Resources <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UnVzdA==">Rust <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2V0dXA=">Setup <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3BlZWNo">Speech <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RhdGlzdGljcw==">Statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VHV0b3JpYWw=">Tutorial <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VlMlMjBDb2Rl">VS Code <span class="quarto-category-count">(3)</span></div><div class="category" data-category="V29ya2Zsb3c=">Workflow <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(10)</span></div><div class="category" data-category="QUklMjBUb29scw==">AI Tools <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmVzdCUyMFByYWN0aWNlcw==">Best Practices <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Qmlvc3RhdGlzdGljcw==">Biostatistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q0klMkZDRA==">CI/CD <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMFNjaWVuY2U=">Data Science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGVwbG95bWVudA==">Deployment <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGV2Q29udGFpbmVycw==">DevContainers <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RGV2ZWxvcG1lbnQ=">Development <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RG9ja2Vy">Docker <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RG9jdW1lbnRhdGlvbg==">Documentation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RW5naW5lZXJpbmc=">Engineering <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2VuQUk=">GenAI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2l0SHViJTIwQ29waWxvdA==">GitHub Copilot <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R3hQ">GxP <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGlmZWxvbmclMjBMZWFybmluZw==">Lifelong Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TExN">LLM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWFjaGluZSUyMExlYXJuaW5n">Machine Learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TWV0YQ==">Meta <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TW9kZXJuJTIwV29ya2Zsb3c=">Modern Workflow <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T2xsYW1h">Ollama <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGFja2FnZSUyME1hbmFnZW1lbnQ=">Package Management <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UGhhcm1h">Pharma <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(6)</span></div><div class="category" data-category="UmVmZXJlbmNl">Reference <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVwcm9kdWNpYmlsaXR5">Reproducibility <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UmVzb3VyY2Vz">Resources <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UnVzdA==">Rust <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2V0dXA=">Setup <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2hpbnk=">Shiny <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2hpbnlQcm94eQ==">ShinyProxy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RhbmRhcmRz">Standards <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3RhdGlzdGljcw==">Statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VHV0b3JpYWw=">Tutorial <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VlMlMjBDb2Rl">VS Code <span class="quarto-category-count">(3)</span></div><div class="category" data-category="V29ya2Zsb3c=">Workflow <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -389,7 +388,7 @@ window.Quarto = {
 
 
 
-<p>Field notes from applied data science in pharma and cosmetics R&amp;D. Mostly R and Python, usually statistics, occasionally opinions. I write when I’ve worked something out and it seems worth documenting — for my future self as much as anyone else.</p>
+<p>Field notes from building scientific software in pharma and cosmetics R&amp;D: R, Shiny, reproducibility, statistical computing, and some ML when it earns its place. I write when I’ve worked something out and it seems worth documenting — for my future self as much as anyone else.</p>
 <div id="listing-posts" class="quarto-listing quarto-listing-container-grid">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
@@ -414,10 +413,80 @@ window.Quarto = {
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="UiUyQ01ldGE=" data-listing-date-sort="1771887600000" data-listing-file-modified-sort="1771950332579" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="233">
+<div class="g-col-1" data-index="0" data-categories="RW5naW5lZXJpbmclMkNEb2N1bWVudGF0aW9uJTJDQ0klMkZDRCUyQ1N0YW5kYXJkcw==" data-listing-date-sort="1773442800000" data-listing-file-modified-sort="1773584930311" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="659">
+<a href="./posts/engineering-standards-scientific-software/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./assets/images/blog-placeholder.svg" class="thumbnail-image card-img" style="height: 180px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Engineering Standards for Scientific Software
+</h5>
+<div class="listing-reading-time card-text text-muted">4 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('RW5naW5lZXJpbmc='); return false;">Engineering</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RG9jdW1lbnRhdGlvbg=='); return false;">Documentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q0klMkZDRA=='); return false;">CI/CD</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U3RhbmRhcmRz'); return false;">Standards</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>How I approach architecture, tests, documentation, CI/CD, handover, and technical training when building internal tools for scientific teams.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+March 14, 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="UiUyQ1NoaW55JTJDU2hpbnlQcm94eSUyQ0RvY2tlciUyQ0RlcGxveW1lbnQ=" data-listing-date-sort="1773442800000" data-listing-file-modified-sort="1773584930342" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2208">
+<a href="./posts/shinyproxy-admin-best-practices/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./assets/images/blog-placeholder.svg" class="thumbnail-image card-img" style="height: 180px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Running ShinyProxy Well: Docker, Operations, and Packaged Shiny Apps
+</h5>
+<div class="listing-reading-time card-text text-muted">12 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2hpbnk='); return false;">Shiny</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2hpbnlQcm94eQ=='); return false;">ShinyProxy</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RG9ja2Vy'); return false;">Docker</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGVwbG95bWVudA=='); return false;">Deployment</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>What actually matters when deploying packaged Shiny apps behind ShinyProxy: Docker images, persistence, observability, and the boring operational details that decide whether…</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+March 14, 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="UiUyQ01ldGE=" data-listing-date-sort="1771887600000" data-listing-file-modified-sort="1773584930346" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="233">
 <a href="./posts/hello-r-bloggers/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 180px;">&nbsp;</div>
+<p class="card-img-top">
+<img loading="lazy" src="./assets/images/blog-placeholder.svg" class="thumbnail-image card-img" style="height: 180px;">
+</p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Hello, R-Bloggers — What This Blog Is About
@@ -441,43 +510,12 @@ February 24, 2026
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="TExNJTJDU3BlZWNoJTJDTkxQJTJDRGF0YSUyMFBpcGVsaW5lJTJDTGFiJTIwQXV0b21hdGlvbg==" data-listing-date-sort="1771714800000" data-listing-file-modified-sort="1771784915482" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6640">
-<a href="./posts/voice-to-data-lab-pipeline/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 180px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Voice to Data: An LLM Pipeline for Lab Notebooks
-</h5>
-<div class="listing-reading-time card-text text-muted">34 min</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TExN'); return false;">LLM</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U3BlZWNo'); return false;">Speech</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TkxQ'); return false;">NLP</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFBpcGVsaW5l'); return false;">Data Pipeline</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGFiJTIwQXV0b21hdGlvbg=='); return false;">Lab Automation</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>How to replace manual ELN transcription with a voice-driven pipeline — ASR, structured extraction, domain validation, and a compliant audit trail — built for pharma and…</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-February 22, 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="RGV2Q29udGFpbmVycyUyQ0RvY2tlciUyQ1IlMkNQeXRob24lMkNSZXByb2R1Y2liaWxpdHklMkNWUyUyMENvZGU=" data-listing-date-sort="1764284400000" data-listing-file-modified-sort="1771782772138" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2495">
+<div class="g-col-1" data-index="3" data-categories="RGV2Q29udGFpbmVycyUyQ0RvY2tlciUyQ1IlMkNQeXRob24lMkNSZXByb2R1Y2liaWxpdHklMkNWUyUyMENvZGU=" data-listing-date-sort="1764284400000" data-listing-file-modified-sort="1773584930342" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2495">
 <a href="./posts/devcontainers-reproducible-environments/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 180px;">&nbsp;</div>
+<p class="card-img-top">
+<img loading="lazy" src="./assets/images/blog-placeholder.svg" class="thumbnail-image card-img" style="height: 180px;">
+</p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Reproducible Environments for Everyone: DevContainers for Data Science Teams
@@ -509,10 +547,12 @@ November 28, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="QUklMjBUb29scyUyQ0dpdEh1YiUyMENvcGlsb3QlMkNMTE0lMkNEZXZlbG9wbWVudCUyQ1ZTJTIwQ29kZSUyQ09sbGFtYSUyQ1dvcmtmbG93" data-listing-date-sort="1760392800000" data-listing-file-modified-sort="1771782717550" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2295">
+<div class="g-col-1" data-index="4" data-categories="QUklMjBUb29scyUyQ0dpdEh1YiUyMENvcGlsb3QlMkNMTE0lMkNEZXZlbG9wbWVudCUyQ1ZTJTIwQ29kZSUyQ09sbGFtYSUyQ1dvcmtmbG93" data-listing-date-sort="1760392800000" data-listing-file-modified-sort="1773584930342" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2295">
 <a href="./posts/llm-coding-assistant/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 180px;">&nbsp;</div>
+<p class="card-img-top">
+<img loading="lazy" src="./assets/images/blog-placeholder.svg" class="thumbnail-image card-img" style="height: 180px;">
+</p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 LLM-Assisted Development: A Data Scientist’s Field Guide
@@ -546,11 +586,11 @@ October 14, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="UiUyQ1B5dGhvbiUyQ1JlcHJvZHVjaWJpbGl0eSUyQ0RldkNvbnRhaW5lcnMlMkNEb2NrZXIlMkNQYWNrYWdlJTIwTWFuYWdlbWVudCUyQ0Jlc3QlMjBQcmFjdGljZXMlMkNWUyUyMENvZGUlMkNHeFAlMkNQaGFybWElMkNTZXR1cA==" data-listing-date-sort="1749506400000" data-listing-file-modified-sort="1771782683678" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3981">
+<div class="g-col-1" data-index="5" data-categories="UiUyQ1B5dGhvbiUyQ1JlcHJvZHVjaWJpbGl0eSUyQ0RldkNvbnRhaW5lcnMlMkNEb2NrZXIlMkNQYWNrYWdlJTIwTWFuYWdlbWVudCUyQ0Jlc3QlMjBQcmFjdGljZXMlMkNWUyUyMENvZGUlMkNHeFAlMkNQaGFybWElMkNTZXR1cA==" data-listing-date-sort="1749506400000" data-listing-file-modified-sort="1773584930338" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3981">
 <a href="./posts/reproducibility-modern-tools/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./posts/reproducibility-modern-tools/featured.png" class="thumbnail-image card-img" style="height: 180px;">
+<img loading="lazy" src="./assets/images/blog-placeholder.svg" class="thumbnail-image card-img" style="height: 180px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -593,11 +633,11 @@ June 10, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="U3RhdGlzdGljcyUyQ1R1dG9yaWFsJTJDUiUyQ1JlZmVyZW5jZSUyQ0Jpb3N0YXRpc3RpY3M=" data-listing-date-sort="1741993200000" data-listing-file-modified-sort="1771771193795" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1929">
+<div class="g-col-1" data-index="6" data-categories="U3RhdGlzdGljcyUyQ1R1dG9yaWFsJTJDUiUyQ1JlZmVyZW5jZSUyQ0Jpb3N0YXRpc3RpY3M=" data-listing-date-sort="1741993200000" data-listing-file-modified-sort="1773584930342" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1929">
 <a href="./posts/stats-theory-frequentist/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./posts/stats-theory-frequentist/featured.png" class="thumbnail-image card-img" style="height: 180px;">
+<img loading="lazy" src="./assets/images/blog-placeholder.svg" class="thumbnail-image card-img" style="height: 180px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -628,11 +668,11 @@ March 15, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="UiUyQ1BhY2thZ2UlMjBNYW5hZ2VtZW50JTJDUmVwcm9kdWNpYmlsaXR5JTJDUnVzdCUyQ01vZGVybiUyMFdvcmtmbG93" data-listing-date-sort="1737327600000" data-listing-file-modified-sort="1771782813458" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1576">
+<div class="g-col-1" data-index="7" data-categories="UiUyQ1BhY2thZ2UlMjBNYW5hZ2VtZW50JTJDUmVwcm9kdWNpYmlsaXR5JTJDUnVzdCUyQ01vZGVybiUyMFdvcmtmbG93" data-listing-date-sort="1737327600000" data-listing-file-modified-sort="1773584930334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1576">
 <a href="./posts/rv-modern-r-package-manager/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./posts/rv-modern-r-package-manager/featured.png" class="thumbnail-image card-img" style="height: 180px;">
+<img loading="lazy" src="./assets/images/blog-placeholder.svg" class="thumbnail-image card-img" style="height: 180px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -663,11 +703,11 @@ January 20, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="RGF0YSUyMFNjaWVuY2UlMkNNYWNoaW5lJTIwTGVhcm5pbmclMkNHZW5BSSUyQ1Jlc291cmNlcyUyQ0xpZmVsb25nJTIwTGVhcm5pbmclMkNCZXN0JTIwUHJhY3RpY2Vz" data-listing-date-sort="1734044400000" data-listing-file-modified-sort="1771771183746" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1246">
+<div class="g-col-1" data-index="8" data-categories="RGF0YSUyMFNjaWVuY2UlMkNNYWNoaW5lJTIwTGVhcm5pbmclMkNHZW5BSSUyQ1Jlc291cmNlcyUyQ0xpZmVsb25nJTIwTGVhcm5pbmclMkNCZXN0JTIwUHJhY3RpY2Vz" data-listing-date-sort="1734044400000" data-listing-file-modified-sort="1773584930334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1246">
 <a href="./posts/why-curate-resources/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./posts/why-curate-resources/featured.png" class="thumbnail-image card-img" style="height: 180px;">
+<img loading="lazy" src="./assets/images/blog-placeholder.svg" class="thumbnail-image card-img" style="height: 180px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -700,11 +740,11 @@ December 13, 2024
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="8" data-categories="UXVhcnRvJTJDVHV0b3JpYWwlMkNSZXByb2R1Y2liaWxpdHk=" data-listing-date-sort="1720562400000" data-listing-file-modified-sort="1765649534483" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="239">
+<div class="g-col-1" data-index="9" data-categories="UXVhcnRvJTJDVHV0b3JpYWwlMkNSZXByb2R1Y2liaWxpdHk=" data-listing-date-sort="1720562400000" data-listing-file-modified-sort="1773584930334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="239">
 <a href="./posts/quarto-getting-started/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="./posts/quarto-getting-started/featured.png" class="thumbnail-image card-img" style="height: 180px;">
+<img loading="lazy" data-src="./assets/images/blog-placeholder.svg" class="thumbnail-image card-img" style="height: 180px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -733,6 +773,9 @@ July 10, 2024
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
+<nav id="posts-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
 </div>
 
 
