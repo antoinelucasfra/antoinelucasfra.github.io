@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Antoine Lucas"
-  description: "Research Engineer — ML systems, deep learning, and LLM pipelines in scientific and regulated environments. Portfolio, blog, and projects."
+  description: "R and Shiny product engineering, statistical computing, and ML systems in scientific and regulated environments. Portfolio, blog, and projects."
   favicon: assets/images/profile-pic.jpg
   image: assets/images/profile-pic.jpg
   site-url: https://antoinelucasfra.github.io

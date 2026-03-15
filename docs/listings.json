@@ -1,9 +1,18 @@
 [
   {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/voice-to-data.html",
+      "/projects/resources_catalog.html",
+      "/projects/fake-news-detection.html"
+    ]
+  },
+  {
     "listing": "/blog.html",
     "items": [
+      "/posts/engineering-standards-scientific-software/index.html",
+      "/posts/shinyproxy-admin-best-practices/index.html",
       "/posts/hello-r-bloggers/index.html",
-      "/posts/voice-to-data-lab-pipeline/index.html",
       "/posts/devcontainers-reproducible-environments/index.html",
       "/posts/llm-coding-assistant/index.html",
       "/posts/reproducibility-modern-tools/index.html",
@@ -11,14 +20,6 @@
       "/posts/rv-modern-r-package-manager/index.html",
       "/posts/why-curate-resources/index.html",
       "/posts/quarto-getting-started/index.html"
-    ]
-  },
-  {
-    "listing": "/projects.html",
-    "items": [
-      "/projects/voice-to-data.html",
-      "/projects/resources_catalog.html",
-      "/projects/fake-news-detection.html"
     ]
   }
 ]

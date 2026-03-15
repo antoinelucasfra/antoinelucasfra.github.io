@@ -28,9 +28,7 @@ listing:
     fields: [title, description, categories]
 ---
 
-A selection of data science and ML engineering work I've done and am able to share publicly. Most of what I build is under non-disclosure agreement (NDA) or involves proprietary data — client work, production tools for fragrance R&D, clinical data platforms — none of it can be shared. This is the part that can be.
-
-More projects are in the works. In the meantime, the blog is a better indicator of what I'm actually working on.
+A selection of software, data, and ML work I've done and am able to share publicly. Most of what I build is under non-disclosure agreement (NDA) or involves proprietary data — internal Shiny products, production tools for fragrance R&D, clinical data platforms — so the public portfolio is necessarily selective. I've tried to make the pieces here representative of how I work: architecture, delivery, reproducibility, and user-facing products.
 
 ::: {#projects}
 :::

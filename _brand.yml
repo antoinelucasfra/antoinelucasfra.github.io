@@ -89,7 +89,7 @@ typography:
 
   base:
     family: "DM Sans"
-    size: 1rem
+    size: 1em
     weight: 400
     line-height: 1.7
 
