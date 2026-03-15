@@ -1,105 +1,280 @@
 ---
-title: "Antoine Lucas — CV"
+title: ""
 format:
   typst:
     output-file: cv.pdf
+    papersize: a4
+    page-numbering: false
     margin:
-      top: 1.8cm
-      bottom: 1.8cm
-      left: 2cm
-      right: 2cm
+      top: 1.5cm
+      bottom: 1.5cm
+      left: 1.8cm
+      right: 1.8cm
     font-size: 10pt
-    mainfont: "Liberation Sans"
+    mainfont: "Libertinus Sans"
+    template-partials:
+      - typst-template.typ
+      - typst-show.typ
 execute:
   echo: false
   eval: false
 ---
 
-# Antoine Lucas
+```{=typst}
+// ── Color palette ─────────────────────────────────────────────────────────────
+#let navy  = rgb("#10243E")
+#let gold  = rgb("#B68A2E")
+#let slate = rgb("#5B6675")
+#let mist  = rgb("#F4F5F7")
 
-**Biostatistician & Data Scientist** · Pharma · Cosmetics · Biotech · Paris, France
+// ── Global rules ──────────────────────────────────────────────────────────────
+#set text(fill: navy)
+#set par(justify: false, leading: 0.7em)
+#set list(indent: 0pt, body-indent: 1.2em, spacing: 3pt)
+#show link: set text(fill: navy)
 
-antoine.lucas.fra@gmail.com · linkedin.com/in/antoinelucasdata · github.com/antoinelucasfra
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
----
+// Section heading: bold label + gold underline
+#let section(title) = {
+  v(12pt)
+  text(weight: "bold", size: 11pt, fill: navy)[#title]
+  v(3pt)
+  line(length: 100%, stroke: (paint: gold, thickness: 0.75pt))
+  v(7pt)
+}
 
-Biostatistician & Data Scientist with 5+ years building production-grade data solutions in
-regulated industries — pharma, cosmetics, and biotech. Expertise spans statistical modelling,
-Design of Experiments (DoE), applied ML (computer vision, natural language processing (NLP)), and multi-omics analysis. Proven
-track record translating complex scientific questions into end-to-end systems: from study
-design and model development through to validated deployment and stakeholder training. Strong
-communicator bridging wet-lab science, software engineering, and business.
+// Primary experience entry
+#let entry(role, org, period, items) = {
+  grid(
+    columns: (1fr, auto),
+    column-gutter: 10pt,
+    block(below: 0pt)[
+      #text(weight: "bold", size: 10.2pt)[#role]
+      #v(2pt)
+      #text(style: "italic", size: 9pt, fill: slate)[#org]
+    ],
+    align(right + top)[
+      #text(size: 8.8pt, fill: slate)[#period]
+    ],
+  )
+  v(4pt)
+  block(above: 0pt, below: 0pt)[#items]
+  v(7pt)
+}
 
-## Experience
+// Compact internship entry (single-line summary, no bullets)
+#let intern_entry(role, org, period, summary) = {
+  grid(
+    columns: (1fr, auto),
+    column-gutter: 10pt,
+    block(below: 0pt)[
+      #text(weight: "bold", size: 9.5pt)[#role]
+      #h(4pt)
+      #text(size: 9pt, fill: slate)[— #org]
+      #v(1pt)
+      #text(size: 9pt)[#summary]
+    ],
+    align(right + top)[
+      #text(size: 8.5pt, fill: slate)[#period]
+    ],
+  )
+  v(6pt)
+}
 
-**Data Scientist & ML Engineer** — *Chanel Parfums Beauté R&D · via Astek / IT&M Stats*
-*Sep 2025 – present*
+// Education entry
+#let edu_entry(degree, school, year) = {
+  block(below: 6pt)[
+    #text(weight: "bold", size: 9.5pt)[#degree]
+    #h(3pt)
+    #text(size: 8.8pt, fill: slate)[(#year)]
+    #v(1pt)
+    #text(style: "italic", size: 8.9pt, fill: slate)[#school]
+  ]
+}
 
-- Designed and deployed computer vision models (texture classification, colour analysis) and NLP pipelines (olfactory descriptor mining from scientific literature) for fragrance and cosmetics formulation R&D
-- Modelled sensory and physico-chemical properties with partial least squares (PLS) regression, Gaussian processes, and Bayesian optimisation to accelerate ingredient screening cycles
-- Built DoE workflows (mixture designs, response-surface methods) cutting required experiments per formulation cycle by 30–40%
-- Engineered machine learning operations (MLOps) infrastructure: drift monitoring, fully reproducible pipelines (Docker + GitHub Actions) in a Good Practices (GxP)-adjacent environment
-- Delivered R Shiny dashboards covering sensory scoring, spectral data visualisation, and interactive experiment planning for R&D scientists
-- Responsible for data science platform tooling: Azure ML, Posit Connect, Databricks — provisioning, access governance, and lifecycle management
-- Owner and maintainer of a 20+ app catalog (R Shiny, Streamlit) used daily by R&D scientists
+// Technical skill row
+#let skill_row(label, value) = {
+  block(below: 3pt)[
+    #grid(
+      columns: (2.7cm, 1fr),
+      column-gutter: 8pt,
+      text(weight: "bold", size: 8.9pt, fill: navy)[#label],
+      text(size: 8.9pt)[#value],
+    )
+  ]
+}
 
-**Data Scientist — Internal & Consulting** — *Astek / IT&M Stats*
-*May – Sep 2025*
+// ── PAGE 1 ────────────────────────────────────────────────────────────────────
 
-- Developed reusable internal R packages and Quarto automated reporting templates, cutting analyst turnaround time by ~25% across consulting engagements
-- Led internal upskilling programme on tidymodels, causal inference, and reproducible research for 8 statistical consultants
-- Scoped and prototyped ML solutions for pre-sales client engagements in pharma and agri-food verticals
-- Fine-tuned a Phi-3 large language model (LLM, Microsoft) on open Hugging Face datasets for fake news detection and climate claim proof retrieval — full pipeline from data preparation to evaluation
+// Header
+#grid(
+  columns: (1fr, auto),
+  column-gutter: 14pt,
+  block(below: 0pt)[
+    #text(weight: "bold", size: 23pt, fill: navy)[Antoine Lucas]
+    #v(4pt)
+    #text(weight: "bold", size: 11pt, fill: gold)[Biostatistician & Data Scientist]
+    #v(3pt)
+    #text(size: 9pt, fill: slate)[Pharma · Cosmetics · Biotech · Paris, France]
+  ],
+  align(right + horizon)[
+    #text(size: 9pt)[#link("mailto:antoine.lucas.fra@gmail.com")[antoine.lucas.fra\@gmail.com]]
+    #linebreak()
+    #text(size: 9pt)[#link("https://linkedin.com/in/antoinelucasdata")[linkedin.com/in/antoinelucasdata]]
+    #linebreak()
+    #text(size: 9pt)[#link("https://github.com/antoinelucasfra")[github.com/antoinelucasfra]]
+  ],
+)
 
-**Data Scientist — Multi-omics** — *Abolis · Microbiome Studio · via Astek / IT&M Stats*
-*Dec 2024 – May 2025*
+#v(8pt)
+#line(length: 100%, stroke: (paint: gold, thickness: 1pt))
+#v(8pt)
 
-- Fast-paced 8-person startup contributing to a software-as-a-service (SaaS) product (FastAPI Python backend, Vue.js front-end), with full individual autonomy
-- Delivered end-to-end pipelines in R and Python for tabular and large-scale omics data (genomics, transcriptomics, metabolomics)
-- Applied permutational multivariate analysis of variance (PERMANOVA), sparse PLS-DA, and co-occurrence network analysis to characterise microbial interactions and identify key functional drivers
-- Integrated analysis outputs into the production SaaS platform via representational state transfer (REST) API
+// Summary
+#block(fill: mist, inset: (x: 11pt, y: 9pt), radius: 5pt, width: 100%)[
+  #text(size: 9.2pt)[
+    Biostatistician and Data Scientist with experience across pharma, cosmetics, and biotech.
+    Builds scientific software, statistical workflows, simulation tools, and applied ML in R and Python,
+    with a strong focus on readability, reproducibility, and stakeholder-facing delivery.
+  ]
+]
 
-**Data Scientist / Scrum Master** — *Sanofi R&D · via Astek / IT&M Stats*
-*Jul 2023 – Nov 2024*
+// ── SELECTED EXPERIENCE ───────────────────────────────────────────────────────
 
-- Architected and delivered a full R Shiny platform (golem) managing pilot manufacturing chains for 100+ GxP clinical projects — 50+ daily active users across 3 departments
-- Designed the data model, module architecture, and automated validation report generation to satisfy GxP audit-trail requirements (Installation/Operational/Performance Qualification (IQ/OQ/PQ) on Posit Connect)
-- Owned the full delivery lifecycle: user-story workshops → agile sprints → user acceptance testing (UAT) → IQ/OQ documentation → production deployment
-- Sole developer on the engineering side, working directly with 5+ senior sponsors across R&D and manufacturing
-- Mentored 1 intern on building Shiny application modules
+#section([Selected Experience])
 
-**Biostatistician** — *L'Oréal R&D · via Astek / IT&M Stats*
-*Oct 2021 – Jul 2023*
+#entry(
+  [Data Scientist & ML Engineer],
+  [Chanel Parfums Beauté R&D · via Astek / IT&M Stats],
+  [Sep 2025 – present],
+  [
+    - Delivered computer-vision, NLP, and R Shiny tools for formulation R&D — texture and colour analysis, olfactory descriptor mining.
+    - Modelled sensory and physico-chemical properties with PLS, Gaussian processes, Bayesian optimisation, and DoE, cutting formulation experiments by 30–40%.
+    - Managed delivery and platform lifecycle across Azure ML, Databricks, Posit Connect, Docker, GitHub Actions, and a 20+ app catalog.
+  ],
+)
 
-- Delivered 100+ statistical analyses on ingredient efficacy (hydration, anti-ageing biomarkers) and molecular safety (quantitative structure-activity relationship (QSAR), genotoxicity) across cosmetic and dermocosmetic pipelines
-- Designed and analysed clinical and semi-clinical studies from protocol writing through regulatory-grade reports — consistent 2-week delivery cycle
-- Built internal R tooling (survival analysis, mixed-effects models, automated Rmarkdown reporting) adopted as standard across the biostatistics team
-- Mentored 2 junior analysts and 1 intern; co-authored methodology guides on non-inferiority testing and adaptive designs
+#entry(
+  [Data Scientist — Internal & Consulting],
+  [Astek / IT&M Stats],
+  [May – Sep 2025],
+  [
+    - Built reusable R packages and Quarto reporting templates, reducing analyst turnaround by ~25% across consulting engagements.
+    - Led internal training on tidymodels, causal inference, and reproducible research for 8 statistical consultants.
+    - Scoped pre-sales ML opportunities and fine-tuned a Phi-3 model for claim verification from data preparation through evaluation.
+  ],
+)
 
-## Education
+#entry(
+  [Data Scientist — Multi-omics],
+  [Abolis · Microbiome Studio · via Astek / IT&M Stats],
+  [Dec 2024 – May 2025],
+  [
+    - Worked autonomously in an 8-person startup building a SaaS product for multi-omics analysis.
+    - Delivered end-to-end R and Python pipelines for genomics, transcriptomics, metabolomics, and tabular datasets.
+    - Applied PERMANOVA, sparse PLS-DA, and network analysis; integrated outputs into the production platform via REST APIs.
+  ],
+)
 
-**Diplôme d'Ingénieur — Statistiques appliquées aux Sciences de la Vie**
-*Institut Agro - Agrocampus Ouest, Rennes · 2021*
+#entry(
+  [Data Scientist],
+  [Sanofi R&D · CMC Data Science · via Astek / IT&M Stats],
+  [Jul 2023 – Nov 2024],
+  [
+    - Developed R and Python applications for multiple user profiles across CMC data-science workflows.
+    - Built simulation tools for global resource allocation and CMC plant-capacity planning across production sites.
+    - Supported BioProcess Drug Product activities with predictive tools, including particle-load modelling for monoclonal antibodies.
+  ],
+)
 
-**Master — Mathématiques Appliquées · Statistiques**
-*INSA Rennes · Agrocampus Ouest · Université Rennes 2 · ENSAI · ENSAE (joint programme) · 2021*
+#entry(
+  [Biostatistician],
+  [L'Oréal R&I · Scientific Computing · via Astek / IT&M Stats],
+  [Nov 2021 – Jul 2023],
+  [
+    - Supported statistical analyses of exposome and clinical datasets: biophysical, omics, and microbiome data.
+    - Characterised clinical phenotypes with multi-block, integrative, multivariate, and variable-selection methods; developed Bayesian-network visualisations.
+    - Defined methodologies for POC clinical studies; wrote SAPs, supported blind reviews, programmed analyses in R, and reported results.
+  ],
+)
 
-## Technical Skills
+// ── PAGE 2 ────────────────────────────────────────────────────────────────────
 
-| | |
-|---|---|
-| **Languages** | R · Python · SQL · Bash |
-| **ML & Stats** | scikit-learn · tidymodels · XGBoost · Bayesian optimisation · DoE · PLS · PERMANOVA · survival analysis |
-| **Apps & Viz** | R Shiny (golem) · ggplot2 · Plotly · Quarto · Power BI |
-| **CV / NLP** | PyTorch · OpenCV · Hugging Face · sentence-transformers |
-| **MLOps** | Docker · GitHub Actions · Posit Connect · Azure ML · Databricks · renv · uv |
-| **Domains** | GxP · IQ/OQ/PQ · Clinical biostatistics · Multi-omics · Cosmetic R&D |
+#pagebreak(weak: true)
 
-## Certifications
+// ── EARLIER EXPERIENCE ────────────────────────────────────────────────────────
 
-- GitHub Foundations — GitHub (2024)
-- Scrum Master — Agilbee (2023)
+#section([Earlier Experience])
 
-## Languages
+#intern_entry(
+  [Data Scientist Intern],
+  [L'Oréal R&I · Augmented Beauty],
+  [Feb – Aug 2021],
+  [Modelled hair and face customer data for personalised recommendations through data management, statistical analyses, machine learning, and communication to R&I teams.],
+)
 
-French (native) · English (fluent, professional)
+#intern_entry(
+  [Biostatistics Project Officer Intern],
+  [Da Volterra · Metagenomics Team],
+  [Feb – Aug 2020],
+  [Performed data management and non-parametric analyses for gut-microbiome clinical studies; prepared and presented results to biotechnology research teams.],
+)
+
+#intern_entry(
+  [Data Scientist Intern],
+  [Flinders University · Digital Health Research Center],
+  [Sep 2019 – Jan 2020],
+  [Supported digital-health and wearables research in R: questionnaire design, workshop preparation, statistical evaluation, and presentation of results.],
+)
+
+// ── EDUCATION ─────────────────────────────────────────────────────────────────
+
+#section([Education])
+
+#edu_entry(
+  [Diplôme d'Ingénieur — Statistiques appliquées aux Sciences de la Vie],
+  [Institut Agro - Agrocampus Ouest, Rennes],
+  [2021],
+)
+
+#edu_entry(
+  [Master — Mathématiques Appliquées · Statistiques],
+  [INSA Rennes · Agrocampus Ouest · Université Rennes 2 · ENSAI · ENSAE (joint programme)],
+  [2021],
+)
+
+// ── TECHNICAL SKILLS ──────────────────────────────────────────────────────────
+
+#section([Technical Skills])
+
+#skill_row([Programming], [R · Python · SQL · Bash])
+#skill_row([ML & Stats], [scikit-learn · tidymodels · XGBoost · Bayesian optimisation · DoE · PLS · PERMANOVA · survival analysis])
+#skill_row([Apps & Viz], [R Shiny (golem) · ggplot2 · Plotly · Quarto · Power BI])
+#skill_row([CV / NLP], [PyTorch · OpenCV · Hugging Face · sentence-transformers])
+#skill_row([MLOps], [Docker · GitHub Actions · Posit Connect · Azure ML · Databricks · renv · uv])
+#skill_row([Domains], [GxP · IQ/OQ/PQ · Clinical biostatistics · Multi-omics · Cosmetic R&D])
+
+// ── ADDITIONAL INFORMATION ────────────────────────────────────────────────────
+
+#section([Additional Information])
+
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 16pt,
+  block[
+    #text(weight: "bold", size: 9.5pt)[Certifications]
+    #v(5pt)
+    #text(size: 9pt)[GitHub Foundations — GitHub (2024)]
+    #v(3pt)
+    #text(size: 9pt)[Scrum Master — Agilbee (2023)]
+  ],
+  block[
+    #text(weight: "bold", size: 9.5pt)[Languages]
+    #v(5pt)
+    #text(size: 9pt)[French (native)]
+    #v(3pt)
+    #text(size: 9pt)[English (fluent, professional)]
+  ],
+)
+```
