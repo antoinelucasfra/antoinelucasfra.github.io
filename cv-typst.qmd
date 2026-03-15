@@ -252,8 +252,8 @@ execute:
 #skill_row([ML & Stats], [scikit-learn · tidymodels · XGBoost · Bayesian optimisation · DoE · PLS · PERMANOVA · survival analysis])
 #skill_row([Apps & Viz], [R Shiny (golem) · ggplot2 · Plotly · Quarto · Power BI])
 #skill_row([CV / NLP], [PyTorch · OpenCV · Hugging Face · sentence-transformers])
-#skill_row([MLOps], [Docker · GitHub Actions · Posit Connect · Azure ML · Databricks · renv · uv])
-#skill_row([Domains], [GxP · IQ/OQ/PQ · Clinical biostatistics · Multi-omics · Cosmetic R&D])
+#skill_row([Infrastructure], [Docker · GitHub Actions · Posit Connect · Azure ML · Databricks · renv · uv])
+#skill_row([Domains], [GxP · Clinical biostatistics · Multi-omics · Cosmetic R&D])
 
 // ── ADDITIONAL INFORMATION ────────────────────────────────────────────────────
 
