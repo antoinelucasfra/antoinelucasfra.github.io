@@ -19,7 +19,7 @@ Antoine Lucas
 :::
 
 ::: {.hero-tagline}
-R / Shiny Developer · Scientific Software & Applied Statistics
+R / Shiny Developer · Scientific Software & Data Products
 :::
 
 ::: {.hero-location}
