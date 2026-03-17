@@ -10,6 +10,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/feedbacks.html",
       "/posts/engineering-standards-scientific-software/index.html",
       "/posts/shinyproxy-admin-best-practices/index.html",
       "/posts/hello-r-bloggers/index.html",
