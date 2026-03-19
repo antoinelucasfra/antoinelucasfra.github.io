@@ -5917,39 +5917,5 @@ Warning
   <pubDate>Tue, 09 Jul 2024 22:00:00 GMT</pubDate>
   <media:content url="https://antoinelucasfra.github.io/assets/images/blog-placeholder.svg" medium="image" type="image/svg+xml"/>
 </item>
-<item>
-  <title></title>
-  <link>https://antoinelucasfra.github.io/posts/feedbacks.html</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<ul>
-<li>L’ensemble est bien, tu as identifié les principales missions à mettre en avant, mettre plus en avant tes compétences scrum master et formation dans les premiers bullet points et reformuler certaines phrases comme tu les dirais et ça sera top!</li>
-</ul>
-<section id="done" class="level1">
-<h1>done</h1>
-<ul>
-<li>in regulated scientific environments — pharma, cosmetics, and biotech. =&gt; enlever le tiret, je ne sais pas si regulated est le bon mot</li>
-<li>Strong track record in R / Shiny delivery, reproducible engineering, stakeholder-facing architecture, and technical ownership from discovery through deployment. =&gt; phase un peu trop compliquée, écris la comme tu la dirais</li>
-<li>with a strong bias toward maintainable delivery =&gt; je trouve que bias a une connotation trop négative, à remplacer par interest?</li>
-<li>cette dernière phase est très bien sinon</li>
-<li>Databricks — provisioning, access governance, and lifecycle management =&gt; le tireeet</li>
-<li>Owner and maintainer of a 20+ app catalog (R Shiny, Streamlit) used daily by R&amp;D scientists =&gt; ça c’est top, peut être à merger avec la première phrade ? Je développe 20+ applications et voici la diversité des usages</li>
-<li>oui je pense que c’est mieux de retirer et de merger la 3eme bullet point avec la première en mode dans l’ordre je dvp des apps shiny pour des application senso, acv etc =&gt;</li>
-<li>Data Scientist — Internal &amp; Consulting =&gt; inverse la bullet point 1 et 2 pour parler en premier du volet formation</li>
-<li>Data Scientist Sanofi R&amp;D · CMC Data Science · via Astek / IT&amp;M Stats =&gt; j’ai peut être loupé la définition de CMC, la 3ème bullet point me fais douter sur le sens “drug manufacturing” : simulate CMC plant capacity for manufacturing (plant capacity?) =&gt; je pense que cette expérience pourrait soit être résumée en deux bullet points soit ajouter une autre mission que tu as eu à ce moment là, mettre l’accent sur la gestion de projets (la formation que tu avais faite)?</li>
-<li>Passage l’oréal top!</li>
-</ul>
-
-
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
-  <guid>https://antoinelucasfra.github.io/posts/feedbacks.html</guid>
-  <pubDate>Tue, 17 Mar 2026 12:28:09 GMT</pubDate>
-</item>
 </channel>
 </rss>
