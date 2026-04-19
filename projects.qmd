@@ -1,5 +1,6 @@
 ---
 title: "Projects"
+description: "Selected public software, machine learning, and data projects spanning scientific tooling, internal-product style delivery, and reproducible engineering."
 title-block-banner: true
 listing:
   - id: projects
@@ -16,7 +17,7 @@ listing:
         categories: [Python, LLM, NLP, MLOps, Lab Automation]
       - path: projects/resources_catalog.qmd
         title: "Resources Catalog"
-        description: "A curated and searchable collection of 200+ data science resources for R, Python, and beyond. Filter by type, language, and category."
+        description: "A curated and searchable collection of 1,000+ data science resources for R, Python, and beyond. Filter by type, language, and category."
         date: "2025-12-13"
         categories: [R, Python, Resources]
 
@@ -55,7 +56,7 @@ Analysis of eye-tracking data to understand visual attention patterns, from prot
 
 **Technologies:** Quarto · R · GitHub Actions · GitHub Pages
 
-Source code for this portfolio site — blog, projects, resources catalog, and CV. Custom navy & gold theme, automatic deployment on push to main.
+Source code for this portfolio site — blog, projects, resources catalog, and CV. Custom light/dark Quarto theme, automated build pipeline, and GitHub Pages deployment.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io){.btn .btn-dark .btn-sm}
 
