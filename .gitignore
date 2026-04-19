@@ -1,5 +1,15 @@
-.gitignore for R / Quarto project
-# Keep important project files (lockfiles, site output) tracked; ignore local caches and installed libraries
+# .gitignore for R / Quarto project
+# Keep source files and lockfiles tracked; ignore rendered output, caches, and local environments
+
+# Python / local tooling
+.venv/
+**/.venv/
+.tools/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # R / RStudio
 .Rhistory
@@ -8,6 +18,7 @@
 .Ruserdata
 .Rproj.user/
 *.Rproj
+*.bak
 
 # renv (keep lockfile and activate script, ignore installed libraries)
 renv/library/
@@ -19,6 +30,7 @@ renv/cache/
 .quarto/
 .quarto-cache/
 _quarto/
+docs/
 
 # Quarto freeze (generated/temporary files)
 _freeze/
@@ -28,8 +40,7 @@ _freeze/
 Thumbs.db
 .idea/
 
-/.quarto/
-
 **/*.quarto_ipynb
 
-TODO.md
+/sandbox/**
+!/sandbox/gen_descriptions.py

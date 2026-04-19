@@ -19,7 +19,7 @@ Content license: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa
 - `projects/`: project case studies and the resources catalog
 - `assets/`: shared stylesheets, images, and client-side scripts
 - `_helpers/`: non-rendered helper code used during Quarto rendering
-- `docs/`: generated site output for GitHub Pages
+- `docs/`: local Quarto render output used by CI for GitHub Pages deployment, not committed
 - `scripts/`: automation for catalog maintenance and the Google Keep sync workflow
 
 The Quarto project now uses an explicit render allowlist in [_quarto.yml](_quarto.yml), so repository docs such as `TODO.md` and `CONTRIBUTING.md` are not published as website pages.
@@ -86,6 +86,6 @@ uv run python backfill.py --mode both
 
 ## Notes
 
-- `docs/` is generated output. Do not edit it manually.
+- `docs/` is generated output. Do not edit or commit it manually.
 - `data/resources.txt` is the source of truth for the resources catalog.
 - `data/resources.csv` is derived data and should not be edited by hand.

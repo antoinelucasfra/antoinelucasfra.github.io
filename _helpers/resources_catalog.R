@@ -43,53 +43,155 @@ parse_resources_md <- function(path) {
 
 super_rules <- list(
   "Machine Learning & AI" = c(
-    "machine learning", "deep learning", "nlp", "computer vision",
-    "neural", "transformer", "gan", "llm", "llms", "diffusion",
-    "mlops", "ai", "artificial intelligence", "reinforcement learning",
-    "classification", "clustering", "feature engineering"
+    "machine learning",
+    "deep learning",
+    "nlp",
+    "computer vision",
+    "neural",
+    "transformer",
+    "gan",
+    "llm",
+    "llms",
+    "diffusion",
+    "mlops",
+    "ai",
+    "artificial intelligence",
+    "reinforcement learning",
+    "classification",
+    "clustering",
+    "feature engineering"
   ),
   "Statistics" = c(
-    "statistics", "bayesian", "bayesian statistics", "mixed model",
-    "mixed models", "meta-analysis", "survival", "longitudinal",
-    "glmm", "causal", "spc", "regression", "econometrics",
-    "time series", "factor analysis", "probability", "inference",
-    "frequentist", "sampling", "simulation"
+    "statistics",
+    "bayesian",
+    "bayesian statistics",
+    "mixed model",
+    "mixed models",
+    "meta-analysis",
+    "survival",
+    "longitudinal",
+    "glmm",
+    "causal",
+    "spc",
+    "regression",
+    "econometrics",
+    "time series",
+    "factor analysis",
+    "probability",
+    "inference",
+    "frequentist",
+    "sampling",
+    "simulation"
   ),
   "R & Shiny" = c(
-    "shiny", "r markdown", "quarto", "renv", "golem", "ggplot2",
-    "tidyverse", "web development", "ggplot", "flexdashboard",
-    "pkgdown", "testthat", "devtools", "usethis", "programming",
-    "r package", "tidyr", "purrr", "dplyr"
+    "shiny",
+    "r markdown",
+    "quarto",
+    "renv",
+    "golem",
+    "ggplot2",
+    "tidyverse",
+    "web development",
+    "ggplot",
+    "flexdashboard",
+    "pkgdown",
+    "testthat",
+    "devtools",
+    "usethis",
+    "programming",
+    "r package",
+    "tidyr",
+    "purrr",
+    "dplyr"
   ),
   "Data Visualization" = c(
-    "visualization", "data visualization", "charts", "gallery",
-    "color", "dashboard", "dashboards", "plot", "mapping",
-    "cartography", "infographic", "d3", "plotly", "leaflet",
-    "ggplot2", "highcharts", "vega"
+    "visualization",
+    "data visualization",
+    "charts",
+    "gallery",
+    "color",
+    "dashboard",
+    "dashboards",
+    "plot",
+    "mapping",
+    "cartography",
+    "infographic",
+    "d3",
+    "plotly",
+    "leaflet",
+    "ggplot2",
+    "highcharts",
+    "vega"
   ),
   "Python & DevOps" = c(
-    "python", "docker", "git", "github actions", "deployment",
-    "reproducibility", "workflow", "best practices", "devops",
-    "kubernetes", "terraform", "ci/cd", "containers",
-    "version control", "github", "automation"
+    "python",
+    "docker",
+    "git",
+    "github actions",
+    "deployment",
+    "reproducibility",
+    "workflow",
+    "best practices",
+    "devops",
+    "kubernetes",
+    "terraform",
+    "ci/cd",
+    "containers",
+    "version control",
+    "github",
+    "automation"
   ),
   "Education" = c(
-    "tutorial", "course", "education", "guide", "reference",
-    "learning", "book", "books", "presentation", "presentations",
-    "workshop", "cheatsheet", "exercises"
+    "tutorial",
+    "course",
+    "education",
+    "guide",
+    "reference",
+    "learning",
+    "book",
+    "books",
+    "presentation",
+    "presentations",
+    "workshop",
+    "cheatsheet",
+    "exercises"
   ),
   "Community & Events" = c(
-    "community", "conference", "forum", "french", "social",
-    "newsletter", "blog", "meetup", "podcast"
+    "community",
+    "conference",
+    "forum",
+    "french",
+    "social",
+    "newsletter",
+    "blog",
+    "meetup",
+    "podcast"
   ),
   "Life Sciences" = c(
-    "pharma", "clinical", "ecology", "bioinformatics", "psychology",
-    "genetics", "biomedical", "behavioral", "neuroscience", "health",
-    "epidemiology", "genomics", "proteomics"
+    "pharma",
+    "clinical",
+    "ecology",
+    "bioinformatics",
+    "psychology",
+    "genetics",
+    "biomedical",
+    "behavioral",
+    "neuroscience",
+    "health",
+    "epidemiology",
+    "genomics",
+    "proteomics"
   ),
   "Research" = c(
-    "research", "paper", "preprint", "journal", "academic",
-    "arxiv", "publication", "reproducible research", "open science"
+    "research",
+    "paper",
+    "preprint",
+    "journal",
+    "academic",
+    "arxiv",
+    "publication",
+    "reproducible research",
+    "open science"
   )
 )
 
@@ -126,8 +228,18 @@ format_date_display <- function(date_str) {
   }
 
   month_names <- c(
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
   )
   parts <- stringr::str_split_1(date_str, "-")
 
@@ -150,13 +262,31 @@ format_date_display <- function(date_str) {
 }
 
 type_color <- function(type) {
-  switch(type,
-    "Package" = , "Tool" = , "App" = , "Platform" = , "Repository" = "primary",
-    "Course" = , "Tutorial" = , "Guide" = , "Workshop" = "success",
-    "Book" = , "Documentation" = , "Paper" = , "Journal" = ,
-    "Magazine" = , "Slides" = "info",
-    "Blog" = , "Website" = , "Video" = , "Gallery" = "warning",
-    "Community" = , "Forum" = , "Conference" = , "Social" = ,
+  switch(
+    type,
+    "Package" = ,
+    "Tool" = ,
+    "App" = ,
+    "Platform" = ,
+    "Repository" = "primary",
+    "Course" = ,
+    "Tutorial" = ,
+    "Guide" = ,
+    "Workshop" = "success",
+    "Book" = ,
+    "Documentation" = ,
+    "Paper" = ,
+    "Journal" = ,
+    "Magazine" = ,
+    "Slides" = "info",
+    "Blog" = ,
+    "Website" = ,
+    "Video" = ,
+    "Gallery" = "warning",
+    "Community" = ,
+    "Forum" = ,
+    "Conference" = ,
+    "Social" = ,
     "Newsletter" = "secondary",
     "dark"
   )
@@ -169,7 +299,8 @@ lang_chip <- function(lang_str) {
 
   parts <- stringr::str_split_1(lang_str, ";") |> stringr::str_trim()
   purrr::map(parts, function(lang) {
-    chip_class <- switch(tolower(lang),
+    chip_class <- switch(
+      tolower(lang),
       r = "chip chip-r",
       python = "chip chip-python",
       julia = "chip chip-julia",
@@ -266,30 +397,33 @@ make_resource_card <- function(row, uid) {
     NULL
   }
 
-  do.call(htmltools::tags$article, c(
-    data_attrs,
-    list(
-      htmltools::tags$div(
-        class = "card resource-card h-100",
+  do.call(
+    htmltools::tags$article,
+    c(
+      data_attrs,
+      list(
         htmltools::tags$div(
-          class = "card-body",
+          class = "card resource-card h-100",
           htmltools::tags$div(
-            class = "resource-meta-row",
-            badge,
-            htmltools::tags$div(class = "resource-language-chips", lang_chip(lang_str))
-          ),
-          htmltools::tags$div(
-            class = "resource-title-row",
-            htmltools::tags$div(class = "resource-title", title_link),
-            date_el
-          ),
-          description_el,
-          htmltools::tags$div(
-            class = "cat-chips",
-            c(cat_chips(cat_str, uid))
+            class = "card-body",
+            htmltools::tags$div(
+              class = "resource-meta-row",
+              badge,
+              htmltools::tags$div(class = "resource-language-chips", lang_chip(lang_str))
+            ),
+            htmltools::tags$div(
+              class = "resource-title-row",
+              htmltools::tags$div(class = "resource-title", title_link),
+              date_el
+            ),
+            description_el,
+            htmltools::tags$div(
+              class = "cat-chips",
+              c(cat_chips(cat_str, uid))
+            )
           )
         )
       )
     )
-  ))
+  )
 }
