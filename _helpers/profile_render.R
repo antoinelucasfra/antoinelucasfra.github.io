@@ -270,8 +270,14 @@ render_cv_entry_html <- function(entry) {
 
 render_cv_html <- function(profile) {
   identity <- profile$identity
-  selected_experience <- Filter(function(entry) identical(entry$section, "selected"), profile$experience)
-  earlier_experience <- Filter(function(entry) identical(entry$section, "earlier"), profile$experience)
+  selected_experience <- Filter(
+    function(entry) identical(entry$section, "selected"),
+    profile$experience
+  )
+  earlier_experience <- Filter(
+    function(entry) identical(entry$section, "earlier"),
+    profile$experience
+  )
 
   htmltools::tags$div(
     class = "cv-page",
@@ -461,8 +467,14 @@ render_cv_typst_skill <- function(group) {
 
 render_cv_typst <- function(profile) {
   identity <- profile$identity
-  selected_experience <- Filter(function(entry) identical(entry$section, "selected"), profile$experience)
-  earlier_experience <- Filter(function(entry) identical(entry$section, "earlier"), profile$experience)
+  selected_experience <- Filter(
+    function(entry) identical(entry$section, "selected"),
+    profile$experience
+  )
+  earlier_experience <- Filter(
+    function(entry) identical(entry$section, "earlier"),
+    profile$experience
+  )
 
   preamble <- paste(
     c(
@@ -553,9 +565,17 @@ render_cv_typst <- function(profile) {
     "  columns: (1fr, auto),",
     "  column-gutter: 14pt,",
     "  block(below: 0pt)[",
-    paste0("    #text(weight: \"bold\", size: 23pt, fill: navy)[", typst_escape(identity$name), "]"),
+    paste0(
+      "    #text(weight: \"bold\", size: 23pt, fill: navy)[",
+      typst_escape(identity$name),
+      "]"
+    ),
     "    #v(4pt)",
-    paste0("    #text(weight: \"bold\", size: 11pt, fill: gold)[", typst_escape(identity$title), "]"),
+    paste0(
+      "    #text(weight: \"bold\", size: 11pt, fill: gold)[",
+      typst_escape(identity$title),
+      "]"
+    ),
     "    #v(3pt)",
     paste0(
       "    #text(size: 9pt, fill: slate)[",
