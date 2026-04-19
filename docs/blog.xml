@@ -8,13 +8,13 @@
 <title>Antoine Lucas</title>
 <link>https://antoinelucasfra.github.io/blog.html</link>
 <atom:link href="https://antoinelucasfra.github.io/blog.xml" rel="self" type="application/rss+xml"/>
-<description>R and Shiny product engineering, statistical computing, and ML systems in scientific and regulated environments. Portfolio, blog, and projects.</description>
+<description>Field notes on scientific software engineering, reproducibility, R and Python tooling, statistical computing, and selective machine learning.</description>
 <image>
 <url>https://antoinelucasfra.github.io/assets/images/profile-pic.jpg</url>
 <title>Antoine Lucas</title>
 <link>https://antoinelucasfra.github.io/blog.html</link>
 </image>
-<generator>quarto-1.8.27</generator>
+<generator>quarto-1.9.37</generator>
 <lastBuildDate>Fri, 13 Mar 2026 23:00:00 GMT</lastBuildDate>
 <item>
   <title>Engineering Standards for Scientific Software</title>
@@ -1725,9 +1725,11 @@ font-style: inherit;">}</span></span><div class="code-annotation-gutter-bg"></di
 <section id="practical-tips" class="level2">
 <h2 class="anchored" data-anchor-id="practical-tips">Practical tips</h2>
 <p><strong>Pin image tags in production.</strong> The <code>devcontainer.json</code> above uses <code>latest</code>. This is convenient for development — you always get the newest image. For a project that needs to be reproducible for audit or regulatory purposes, pin to a SHA tag:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><span class="er" style="color: #AD0000;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"image":</span> <span class="er" style="color: #AD0000;
+font-style: inherit;">"image"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"ghcr.io/antoinelucasfra/quarto-devcontainer:sha-abc1234"</span></span></code></pre></div></div>
 <p>SHA tags are generated automatically by <code>docker/metadata-action</code> on every build. Find the right tag in your GHCR package page.</p>

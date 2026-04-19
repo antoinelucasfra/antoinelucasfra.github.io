@@ -1,5 +1,6 @@
 ---
 title: "Blog"
+description: "Field notes on scientific software engineering, reproducibility, R and Python tooling, statistical computing, and selective machine learning." 
 title-block-banner: true
 listing:
   - id: posts
