@@ -1,7 +1,7 @@
 [project]
 name = "antoinelucasfra-github-io"
 version = "0.1.0"
-description = "Add your description here"
+description = "Helper tooling and automation for the Quarto website source repository."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

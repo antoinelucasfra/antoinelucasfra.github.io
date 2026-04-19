@@ -1,13 +1,5 @@
 [
   {
-    "listing": "/projects.html",
-    "items": [
-      "/projects/voice-to-data.html",
-      "/projects/resources_catalog.html",
-      "/projects/fake-news-detection.html"
-    ]
-  },
-  {
     "listing": "/blog.html",
     "items": [
       "/posts/engineering-standards-scientific-software/index.html",
@@ -20,6 +12,14 @@
       "/posts/rv-modern-r-package-manager/index.html",
       "/posts/why-curate-resources/index.html",
       "/posts/quarto-getting-started/index.html"
+    ]
+  },
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/voice-to-data.html",
+      "/projects/resources_catalog.html",
+      "/projects/fake-news-detection.html"
     ]
   }
 ]

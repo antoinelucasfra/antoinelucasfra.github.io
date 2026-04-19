@@ -1,163 +1,22 @@
 ---
 title: "Antoine Lucas"
+description: "Portfolio and field notes on scientific software, R Shiny delivery, reproducible workflows, and machine learning in regulated R&D environments."
+lightbox: false
 format:
   html:
     toc: false
     grid:
       body-width: 1060px
+execute:
+  echo: false
 ---
 
-:::: {.hero-grid}
+```{r homepage}
+#| message: false
+#| warning: false
 
-::: {.hero-photo-col}
-![](assets/images/profile-pic.jpg){.hero-img}
-:::
+source(here::here("_helpers", "profile_render.R"))
 
-::: {.hero-text-col}
-::: {.hero-name}
-Antoine Lucas
-:::
-
-::: {.hero-tagline}
-R / Shiny Developer · Scientific Software & Data Products
-:::
-
-::: {.hero-location}
-Paris
-:::
-
-::: {.hero-links}
-[{{< fa envelope >}} Email](mailto:antoine.lucas.fra@gmail.com){.hero-link}
-[{{< fa brands linkedin >}} LinkedIn](https://www.linkedin.com/in/antoinelucasdata/){.hero-link}
-[{{< fa brands github >}} GitHub](https://github.com/antoinelucasfra){.hero-link}
-[{{< fa brands mastodon >}} Fosstodon](https://fosstodon.org/@antoineloucass){.hero-link}
-[{{< fa id-card >}} CV](cv.qmd){.hero-link .hero-link-cv}
-:::
-:::
-
-::::
-
----
-
-I trained as an agronomy engineer, specialised in applied statistics, and gradually moved into building software for scientific teams. R Shiny applications, internal data products, reproducible analysis workflows, and some machine learning when the problem actually calls for it. The path made sense at each step, even if it doesn't look obvious on paper.
-
-For the past 5+ years I've worked embedded in R&D and clinical teams at **L'Oréal**, **Sanofi**, **Abolis** (a microbiome biotech), and now **Chanel Parfums Beauté**, building things at the intersection of statistics, software engineering, and experimental science.
-
-::: {.highlight}
-Currently **Data Scientist & ML Engineer at Chanel Parfums Beauté R&D**, on mission via Astek / IT&M Stats. I build R Shiny dashboards, reproducible pipelines, and ML tools used by scientists in fragrance and cosmetics research.
-:::
-
-## What I do {.section-heading}
-
-::: {.what-i-do}
-
-::: {.wid-item}
-### R Shiny & internal products
-
-I design and ship internal tools for scientific teams: modular R Shiny apps, reporting workflows, and data interfaces that people can use without needing a walkthrough every time.
-:::
-
-::: {.wid-item}
-### Architecture, quality & delivery
-
-From early architecture decisions to documentation, validation, deployment, and ongoing support. I care about maintainability because scientific software has a way of outliving the original deadline by years.
-:::
-
-::: {.wid-item}
-### Statistical modeling & analysis
-
-Design of experiments, mixed models, biostatistics in GxP environments. I work across the full analytical chain, from raw assay data through to interpretation for regulatory submissions.
-:::
-
-::: {.wid-item}
-### Reproducible engineering & MLOps
-
-Everything in Git, runnable six months later with `uv sync` or `renv::restore()`, documented well enough to hand over. CI/CD, containers, environment pinning, and qualification-minded delivery show up in most of my projects.
-:::
-
-::: {.wid-item}
-### ML when it's the right tool
-
-Computer vision, NLP pipelines, LLM-assisted extraction for scientific applications. I like building ML systems, but I like shipping the right product more than fitting a model into a problem that doesn't need one.
-:::
-
-:::
-## Selected proof {.section-heading}
-
-- [Engineering Standards for Scientific Software](/posts/engineering-standards-scientific-software/): how I think about tests, documentation, CI/CD, handover, and technical training.
-- [Reproducible Environments for Everyone](/posts/devcontainers-reproducible-environments/): how I think about standards, onboarding, and maintainable delivery.
-- [Resources Catalog](/projects/resources_catalog.qmd): a public curation project that reflects how I document, teach, and structure knowledge.
-
-## How I work {.section-heading}
-
-- **End-to-end ownership.** I frame the problem, choose an architecture, build it, validate it, deploy it, and keep it running.
-- **Quality by default.** Tests, documentation, reproducibility, and honest trade-offs — not "it works on my machine".
-- **Handover is part of the job.** Mentoring, internal training, and documentation are built in, not bolted on.
-- **Staying close to users.** Workshops, iteration, and feedback loops with scientists, analysts, and operational teams.
-
-## Skills {.section-heading}
-
-::: {.skill-section}
-
-::: {.skill-group}
-**Languages**
-
-::: {.skill-pills}
-[Python]{.pill} [R]{.pill} [SQL]{.pill} [Bash]{.pill}
-:::
-:::
-
-::: {.skill-group}
-**ML & Python ecosystem**
-
-::: {.skill-pills}
-[scikit-learn]{.pill} [OpenCV]{.pill} [Pandas]{.pill} [FastAPI]{.pill} [uv]{.pill}
-:::
-:::
-
-::: {.skill-group}
-**Statistics & methods**
-
-::: {.skill-pills}
-[DoE]{.pill} [Mixed Models]{.pill} [Bayesian Optimisation]{.pill} [PLS]{.pill} [Survival Analysis]{.pill} [SPC]{.pill}
-:::
-:::
-
-::: {.skill-group}
-**R ecosystem**
-
-::: {.skill-pills}
-[Shiny]{.pill} [Tidyverse]{.pill} [ggplot2]{.pill} [renv]{.pill} [Quarto]{.pill}
-:::
-:::
-
-::: {.skill-group}
-**Deep learning & LLM**
-
-::: {.skill-pills}
-[PyTorch]{.pill} [Hugging Face]{.pill} [PEFT / LoRA]{.pill} [Instructor]{.pill} [faster-whisper]{.pill} [sentence-transformers]{.pill}
-:::
-:::
-
-::: {.skill-group}
-**MLOps & infrastructure**
-
-::: {.skill-pills}
-[Docker]{.pill} [GitHub Actions]{.pill} [Azure ML]{.pill} [Databricks]{.pill} [Posit Connect]{.pill} [GxP / Regulated]{.pill}
-:::
-:::
-
-:::
-
-## Education {.section-heading .education}
-
-- **Diplôme d'Ingénieur — Statistiques appliquées aux Sciences de la Vie** — *Institut Agro - Agrocampus Ouest, Rennes* · *2021*
-- **Master — Mathématiques Appliquées · Statistiques** — *INSA Rennes · Agrocampus Ouest · Université Rennes 2 · ENSAI · ENSAE (joint programme)* · *2021*
-
----
-
-::: {.site-nav-footer}
-[{{< fa pen >}} Blog](/blog.qmd) — field notes from real work ·
-[{{< fa folder >}} Projects](/projects.qmd) ·
-[{{< fa file-lines >}} Full CV](/cv.qmd)
-:::
+profile <- load_profile()
+render_homepage(profile)
+```
