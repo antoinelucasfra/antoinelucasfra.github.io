@@ -92,7 +92,7 @@ Three questions to navigate this table:
 2. **How many groups are you comparing?** Two or more?
 3. **Are observations independent?** Or paired/repeated?
 
-If you're unsure whether your data is "normal enough" for a parametric test: with n ≥ 30 per group, the central limit theorem covers you for most practical purposes. Below 30, check with a quantile-quantile (QQ) plot (`qqnorm()` + `qqline()`) and use a non-parametric alternative if in doubt. The non-parametric versions lose some power but make fewer assumptions.
+If you're unsure whether your data is "normal enough" for a parametric test: n ≥ 30 per group is a useful rule of thumb in many applied settings, not a law of nature. Below that, or when the data are clearly skewed or heavy-tailed, check with a quantile-quantile (QQ) plot (`qqnorm()` + `qqline()`) and use a non-parametric alternative if in doubt. The non-parametric versions lose some power but make fewer assumptions.
 
 ---
 
@@ -110,7 +110,7 @@ The assumptions to check: residuals normally distributed (QQ-plot of residuals),
 
 When your outcome is binary (success/failure, present/absent), linear regression is inappropriate — it predicts outside [0, 1] and the residuals are non-normal by construction. Logistic regression models the log-odds of the outcome. In R: `glm(outcome ~ predictors, family = binomial)`. Coefficients are on the log-odds scale; exponentiate them (`exp(coef(model))`) to get odds ratios, which are more interpretable.
 
-The key assumption that's often violated: logistic regression requires approximately 10 outcome events per predictor variable. If you have 50 cases of a disease and 8 predictors, you're on the edge. Be conservative.
+The key assumption that's often violated: logistic regression needs enough outcome events relative to model complexity. The old "10 events per predictor" rule is a rough heuristic, not a guarantee. If you have 50 cases of a disease and 8 predictors, you're already in territory where simpler models or more careful validation become important.
 
 ### Mixed models
 
@@ -155,7 +155,7 @@ In R: `p.adjust(p_values, method = "BH")` for Benjamini-Hochberg. Use it wheneve
 
 When you have a continuous classifier (a model score, a biomarker value, a threshold parameter) and a binary outcome, the ROC (Receiver Operating Characteristic) curve shows the trade-off between sensitivity and specificity across all possible thresholds.
 
-The area under the ROC curve (AUC) summarises classifier performance in a single number. AUC = 0.5 is a random classifier. AUC = 1.0 is a perfect classifier. In practice:
+The area under the ROC curve (AUC) summarises classifier performance in a single number. AUC = 0.5 is a random classifier. AUC = 1.0 is a perfect classifier. As a rough interpretation guide:
 
 - AUC > 0.9: excellent discrimination
 - AUC 0.7–0.9: acceptable

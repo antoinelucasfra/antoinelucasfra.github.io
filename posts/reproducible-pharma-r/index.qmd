@@ -19,7 +19,9 @@ custom-callout:
 
 ## Introduction
 
-In pharmaceutical data science, [reproducibility isn't just a best practice — it's a regulatory requirement]{.highlight bg-colour="gold" colour="navy"}. This post explores how to build reproducible analysis workflows using R, renv, and Quarto.
+In pharmaceutical data science, [reproducibility is not just good engineering hygiene — it is part of making an analysis defensible]{.highlight bg-colour="gold" colour="navy"}. If someone asks six months later which code, which package versions, and which report produced a result, you need a better answer than "it was in that script somewhere".
+
+This post is a practical pattern for R-based analysis work in regulated environments: version control, `renv`, Quarto, and a small amount of discipline around project structure.
 
 ## Why Reproducibility Matters in Pharma
 
@@ -30,10 +32,17 @@ Regulatory agencies like the U.S. Food and Drug Administration (FDA) and the Eur
 - **Reproducible** — The same inputs should produce the same outputs
 
 ::: {.callout-pharma-note}
-Under 21 CFR Part 11 and comparable EMA guidance, "reproducible" means more than running the same script twice. It means you can demonstrate, on demand and years later, exactly which software version produced a specific result — including system libraries, not just R packages.
+Under 21 CFR Part 11 and comparable EMA guidance, "reproducible" means more than running the same script twice. It means you can demonstrate, on demand and later on, exactly which code and which software stack produced a specific result.
 :::
 
 ## Key Tools for Reproducibility
+
+The minimum stack I would want for serious R analysis work is simple:
+
+1. **Git** for an auditable change history
+2. **`renv`** for package isolation and lockfiles
+3. **Quarto** for reports that combine code, narrative, and output
+4. **Project-relative paths** so the analysis is not tied to one machine
 
 ### 1. Version Control with Git
 
@@ -64,7 +73,64 @@ Always run `renv::snapshot()` **before** committing. The lockfile in your reposi
 
 ### 3. Documenting with Quarto
 
-Quarto ties the environment and the analysis together. Embed `sessionInfo()` or `renv::lockfile_read()` output directly in your reports so reviewers can see exactly what version of each package was used.
+Quarto ties the environment and the analysis together. Instead of emailing around screenshots or manually copied tables, you generate a report from source.
+
+In practice, I want each analysis report to answer four questions:
+
+1. What data was used?
+2. Which code produced the result?
+3. Which package environment was active?
+4. Which version of the report was reviewed?
+
+Embedding `sessionInfo()` in an appendix or footer is a pragmatic way to expose the execution context.
+
+## A practical project structure
+
+The project does not need to be elaborate, but it does need to be legible:
+
+```text
+analysis-project/
+├── data/
+│   ├── raw/
+│   └── derived/
+├── R/
+├── reports/
+├── renv.lock
+├── analysis.qmd
+└── README.md
+```
+
+What matters is the separation of concerns:
+
+- raw data stays untouched
+- derived data is generated, not edited by hand
+- reusable functions live outside the report
+- the report consumes code rather than containing every piece of logic inline
+
+## A workflow that holds up in practice
+
+For an individual analysis, my workflow is usually:
+
+1. Create the project and commit the skeleton.
+2. Initialise `renv`.
+3. Write reusable data preparation and analysis functions in `R/`.
+4. Build the final report in Quarto.
+5. Snapshot the environment once the report renders correctly.
+6. Commit the code, the lockfile, and the rendered deliverable if the review process requires it.
+
+That sequence is not glamorous, but it prevents the usual failure modes: undocumented package changes, report logic buried in a notebook, and results that cannot be regenerated after a handover.
+
+## What to include in the report itself
+
+At minimum, I would include:
+
+- a short description of the analysis objective
+- the input data version or extraction date
+- the main tables and figures generated from source
+- a footer or appendix with `sessionInfo()`
+- the Git commit hash if the workflow allows it
+
+If the work is high-stakes, add validation notes and explicit assumptions. Reproducibility is stronger when the report explains not only what ran, but what was assumed.
 
 ## Best Practices
 
@@ -72,10 +138,12 @@ Quarto ties the environment and the analysis together. Embed `sessionInfo()` or 
 2. **Document your environment** — Include session info in reports
 3. **Validate data inputs** — Check data quality before analysis
 4. **Version control everything** — Code, configuration, and documentation
+5. **Separate logic from reporting** — Keep reusable functions outside the report body
+6. **Treat the lockfile as part of the analysis** — It is not optional metadata
 
 ## Conclusion
 
-Building reproducible analyses requires upfront investment but [pays dividends in quality, compliance, and peace of mind]{.highlight bg-colour="teal" colour="snow"}.
+Building reproducible analyses in pharma does require more upfront structure than a one-off script, but that structure [pays dividends in quality, compliance, and handover]{.highlight bg-colour="teal" colour="snow"}. The stack does not need to be exotic. Git, `renv`, Quarto, and a clear project layout already get you a long way toward work that can be reviewed and rerun with confidence.
 
 ## Session Info
 

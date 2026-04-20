@@ -10,68 +10,122 @@ draft: true
 
 ## Introduction
 
-This guide provides a complete and reproducible path to installing R & Python along with a fully configured VS Code setup. It's meant to be definitive and fully reproducible.
+If you work across R and Python, the hard part is rarely installing the languages themselves. The hard part is ending up with a setup that is pleasant to use, consistent across projects, and close enough to modern practice that you do not have to relearn your tooling six months later.
 
-## First you need to install R :
+This guide is the setup I would recommend for a data scientist or applied statistician starting from a reasonably clean machine. It is opinionated on purpose: VS Code as the editor, Quarto for reporting, and a small set of formatting and dependency tools that remove avoidable friction.
 
--   Recommended way : you can install R via rig which is an installation manager https://github.com/r-lib/rig
+## 1. Install the language runtimes
 
-With rig you can very easily install multiple and handle different R versions.
+### R
 
--   you can follow the classic R installation via CRAN https://cran.rstudio.com/
+The cleanest way to manage R today is [rig](https://github.com/r-lib/rig), the R installation manager. It lets you install multiple R versions, switch defaults cleanly, and avoid the usual "which R is this project using?" confusion.
 
-## Then you need to install python :
+Typical workflow:
 
--   follow classic python installation, python is probably already available if you are with a linux system http://python.org/downloads/
+1. Install `rig`.
+2. Add the R versions you actually need.
+3. Set a sensible default for interactive work.
 
--   we recommend also to install pipx to handle python libvrary installation https://github.com/pypa/pipx
+If you do not want another tool, the fallback is the standard installer from [CRAN](https://cran.rstudio.com/). That is still perfectly fine. `rig` is mainly about making future version changes painless.
 
-## then we need to install our favorite IDE for developing
+### Python
 
-Here we VERY strongly recommend using vscode which allows a complete flexibility for developing in various languages (not only in R) : https://code.visualstudio.com/
+For Python itself, the standard installer from [python.org](https://www.python.org/downloads/) or your operating system package manager is enough to get started. What matters more is how you manage project environments afterward.
 
-You can use any other IDE (Rstudio, Pycharm, etc...) but only the configurations of VScode will be developed, feel free to search for your own guides & issues for other IDEs.
+My recommendation is:
 
-## Now we can install various tools for moden development
+1. Install Python 3.11 or newer.
+2. Add [uv](https://docs.astral.sh/uv/) for project environments and dependency management.
+3. Optionally add [pipx](https://github.com/pypa/pipx) if you like installing standalone Python CLI tools outside project environments.
 
-In R, we are using installation with a modern oriented development workflow.
+`uv` has become the easiest way to create isolated environments, pin dependencies, and run project commands without the usual mix of `venv`, `pip`, and ad hoc shell glue.
 
-To finish installation in vscode to have a complete R integration you need to follow the following steps : - follow R & vscode https://code.visualstudio.com/docs/languages/r
+## 2. Install the editor
 
-For this, we will be having various tools to ensure this workflow :
+My default recommendation is [VS Code](https://code.visualstudio.com/). It is not the only option, but it is the best fit if you move between R, Python, Quarto, shell work, and lightweight infrastructure tasks in the same week.
 
--   first we'll be using quarto for authoring, reporting and produce deliverables https://quarto.org/docs/get-started/ and you can install quarto vscode extention
+You can absolutely work in RStudio, Positron, or PyCharm. This guide stays with VS Code because the multi-language story is stronger and the extension ecosystem is better for mixed R and Python projects.
 
--   We can also install quarto wizard on vscode to healp us easy to use quarto extensions https://github.com/mcanouil/quarto-wizard
+Install these extensions first:
 
-To follow good principles of development, we'll be using tools to ensure that everything is on track :
+- [R](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)
+- [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
 
-For formatting/styling code :
+Optional but useful additions:
 
--   air for formatting R code https://posit-dev.github.io/air/editor-vscode.html (alternative to styler)
+- [air for VS Code](https://posit-dev.github.io/air/editor-vscode.html) for R formatting
+- [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff) for Python formatting and linting
+- [Quarto Wizard](https://github.com/mcanouil/quarto-wizard) if you write a lot of Quarto content
 
--   ruff for formatting python code https://docs.astral.sh/ruff/
+## 3. Install reporting and authoring tools
 
--   prettier for any other languages https://prettier.io/
+For reports, notebooks that should survive code review, and anything that becomes a deliverable, install [Quarto](https://quarto.org/docs/get-started/).
 
-For linting in both R & python you have the errorlens extension that is very complete and useful https://marketplace.visualstudio.com/items/?itemName=usernamehw.errorlens
+Quarto matters because it gives you one format for narrative text, code, figures, and final output. It is a better default than a pile of one-off notebooks if the work needs to be reproducible or handed over.
 
-For notebooks in python :
+If you like notebooks for exploratory Python work, I would evaluate [marimo](https://github.com/marimo-team/marimo) before defaulting to Jupyter. It stores notebooks as Python files, which makes version control much less painful.
 
--   if you want to use notebooks, we strongly recommend using https://github.com/marimo-team/marimo to write in notebooks
+## 4. Configure formatting and linting
 
--   otherwise there's still the classic jupyter alternatives https://jupyter.org/
+Formatting and linting are the difference between an environment that stays readable and one that gradually turns into a mess.
 
-There's infinite possibilities for vscode extensions, please install them according to your needs and care for trusted publishers. Here's an example command to list your installed extensions:
+For R:
+
+- use [air](https://posit-dev.github.io/air/editor-vscode.html) as the formatter
+- consider `lintr` or `jarl` for linting, depending on how strict you want the workflow to be
+
+For Python:
+
+- use [Ruff](https://docs.astral.sh/ruff/) for formatting and linting
+- rely on project-local environments managed by `uv`
+
+For both languages:
+
+- keep [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens) enabled so problems stay visible while you edit
+
+## 5. Validate the setup
+
+Once the tools are installed, check that the machine can do the basic tasks you care about.
+
+Typical validation commands:
 
 ```bash
+R --version
+python --version
+uv --version
+quarto --version
 code --list-extensions
 ```
 
-For reproducible environments and library to manage and handle we have :
+Then create a small test project:
 
--   uv in python, which is a (COMPLETE AND SUPERIOR) alternative to pyenv and other python pkg management tools https://docs.astral.sh/uv/
+1. Create a Quarto document.
+2. Render it successfully.
+3. Create a Python environment with `uv`.
+4. Open an R script and confirm the VS Code extension sees your R installation.
 
--   renv to handle R pkg management which is the most common admitted tool to use in R community BUT there's a new tool in town called rv https://github.com/A2-ai/ that is meant to be the uv for R
+If those four things work, the setup is already good enough for most data work.
 
-other resources and setup R/VScode : https://rolkra.github.io/R-VSCode/ https://renkun.me/2022/03/06/my-recommendations-of-vs-code-extensions-for-r/ and more globally various blog posts : https://renkun.me/
+## 6. What I would use in practice
+
+If you want the short version, this is the stack I would actually put on a new machine:
+
+- `rig` for R versions
+- Python 3.11+ plus `uv`
+- VS Code with the R, Python, Quarto, and Error Lens extensions
+- Quarto for reports and deliverables
+- `air` for R formatting
+- Ruff for Python formatting and linting
+
+That setup is not the only valid one. It is just a combination that scales well from personal projects to more serious collaborative work.
+
+## Further resources
+
+- [R in VS Code documentation](https://code.visualstudio.com/docs/languages/r)
+- [rig](https://github.com/r-lib/rig)
+- [uv](https://docs.astral.sh/uv/)
+- [Quarto](https://quarto.org/docs/get-started/)
+- [R-VSCode guide](https://rolkra.github.io/R-VSCode/)
+- [Renkun's VS Code extension recommendations for R](https://renkun.me/2022/03/06/my-recommendations-of-vs-code-extensions-for-r/)

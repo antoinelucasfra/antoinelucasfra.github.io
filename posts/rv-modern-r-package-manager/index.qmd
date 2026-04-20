@@ -11,14 +11,14 @@ image: "../../assets/images/blog-placeholder.svg"
 
 I've been using `renv` for years to manage R dependencies, and while it gets the job done, I've always felt something was missing. The iterative workflow, the occasional dependency conflicts, the slow installations... it works, but it doesn't feel *modern*.
 
-Then I discovered **rv** — a declarative R package manager written in Rust — and it immediately clicked. If you've been following the Python ecosystem like I have, you've probably seen [uv](https://docs.astral.sh/uv/) revolutionize Python package management. Well, `rv` brings that same philosophy to R: **declarative configuration, fast execution, and true reproducibility**. This is exactly what I've been waiting for.
+Then I discovered **rv** — a declarative R package manager written in Rust — and it immediately clicked. If you've been following the Python ecosystem like I have, you've probably seen [uv](https://docs.astral.sh/uv/) change expectations around Python package management. `rv` brings that same philosophy to R: **declarative configuration, fast execution, and a more reproducibility-oriented workflow**. This is exactly what I've been waiting for.
 
 ## What is rv?
 
 `rv` is an R package manager that takes a fundamentally different approach from traditional tools:
 
 - **Declarative** — You describe the *desired state* of your project, not the steps to get there
-- **Written in Rust** — Compiled for speed (25x faster than alternatives in benchmarks)
+- **Written in Rust** — Compiled for speed; the exact performance gain depends on package mix, binaries, and network conditions
 - **Holistic resolution** — Resolves the entire dependency tree before installing anything
 - **Lock at install time** — Captures all installation information when it happens, not retroactively
 
@@ -147,7 +147,7 @@ rv sync
 | Lock timing | After installation (snapshot) | At installation |
 | Compatibility check | None (trust the process) | Full tree resolution |
 | Written in | R | Rust |
-| Speed | Slower | ~25x faster |
+| Speed | Usually slower on large restores | Often faster in practice |
 | Config format | R code + JSON lockfile | TOML + lockfile |
 
 ### Migrating from renv
