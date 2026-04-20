@@ -7,56 +7,68 @@ categories: [Quarto, Tutorial, Reproducibility]
 image: "../../assets/images/blog-placeholder.svg"
 ---
 
-## What is Quarto?
+## Why Quarto is worth learning
 
-Quarto is an open-source scientific and technical publishing system that lets you create:
+Quarto is the tool I reach for when an analysis needs to be more than a notebook and less than a full application. It lets you keep narrative, code, figures, and output in one plain-text document that can render to HTML, PDF, Word, slides, or an entire website.
 
-- Documents (HTML, PDF, Word)
-- Presentations
-- Websites and blogs
-- Books
+That combination matters for data work because it solves a common problem cleanly: the code that produced the result and the text that explains the result live in the same file.
 
-It supports multiple programming languages including R, Python, Julia, and Observable.
+## Your first useful document
 
-## Getting Started
-
-### Installation
-
-Download Quarto from [quarto.org](https://quarto.org/docs/get-started/).
-
-### Your First Quarto Document
-
-Create a file named `report.qmd`:
+Create a file called `report.qmd`:
 
 ````markdown
 ---
-title: "My First Report"
+title: "Exploratory Fuel Efficiency Report"
 author: "Antoine Lucas"
+format: html
+execute:
+  echo: true
+  warning: false
 date: today
 format: html
 ---
 
-## Introduction
+## Question
 
-This is my first Quarto document.
+How does vehicle weight relate to fuel efficiency in the `mtcars` dataset?
 
 ```{{r}}
 library(ggplot2)
 ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
-  labs(title = "Car Weight vs. Fuel Efficiency")
+  geom_smooth(method = "lm", se = FALSE, color = "steelblue") +
+  labs(
+    title = "Heavier cars tend to have lower fuel efficiency",
+    x = "Weight (1000 lbs)",
+    y = "Miles per gallon"
+  )
 ```
 ````
 
-### Rendering
+That is enough for a real first report: a title, a short question, and a code chunk that produces an interpretable figure.
+
+## Render it
 
 ```bash
 quarto render report.qmd
 ```
 
-## Key Features
+You now have an HTML report that can be shared, versioned, and rerun.
 
-### Code Execution Options
+## The pieces that matter
+
+### YAML header
+
+The header between the `---` lines controls document-level behavior:
+
+- `title`, `author`, and `date` are document metadata
+- `format: html` chooses the output format
+- `execute:` sets chunk defaults for the whole document
+
+### Code chunks
+
+Code chunks are where Quarto becomes useful instead of just pretty Markdown. In R, they look like this:
 
 ```yaml
 #| echo: true      # Show the code
@@ -66,9 +78,11 @@ quarto render report.qmd
 #| fig-height: 6   # Figure height
 ```
 
-### Cross-References
+These options let you decide what the reader sees and what the document executes.
 
-Reference figures, tables, and sections:
+### Cross-references
+
+Once you start writing longer reports, cross-references save time and reduce broken prose. Instead of writing "the chart below", label the figure and refer to it directly:
 
 ```markdown
 See @fig-scatter for the visualization.
@@ -81,26 +95,41 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 ```
 ```
 
-### Callouts
+Quarto handles the numbering for you.
+
+### Callouts that carry meaning
+
+Callouts are useful when they add interpretation or caution, not when they are decorative. For example:
 
 ::: {.callout-note}
-This is a note callout for additional information.
+If the document is going to be rerun by someone else, explain the data source and any preprocessing assumptions close to the code that depends on them.
 :::
 
 ::: {.callout-warning}
-This is a warning callout for important caveats.
+Do not use Quarto as a substitute for version control. The document is reproducible only if the code, input data, and environment are also under control.
 :::
 
-## Benefits for Data Science
+## When Quarto is the right choice
 
-1. **Single source of truth** — Code and narrative together
-2. **Multiple output formats** — One document, many formats
-3. **Reproducibility** — Anyone can re-run your analysis
-4. **Version control friendly** — Plain text format works well with Git
+Quarto is a strong default when:
+
+1. You need a report, not just exploration.
+2. The narrative around the analysis matters.
+3. The output needs to be reviewed or rerun later.
+4. You want one source file that works with Git.
+
+For pure exploration, a notebook may still be faster. For anything that becomes a deliverable, Quarto usually ages better.
+
+## Common first mistakes
+
+- Treating the document as presentation only and hiding too much code.
+- Using absolute file paths that only work on one machine.
+- Forgetting that the environment matters as much as the `.qmd` file.
+- Jumping to complex websites and books before writing one good report.
 
 ## Conclusion
 
-Quarto is an excellent tool for creating reproducible data science reports. Start with simple documents and gradually explore its advanced features.
+The best way to learn Quarto is not by memorizing every option. It is by writing one small report that answers one real question and renders cleanly from start to finish. Once that feels natural, features like cross-references, citations, websites, and PDFs start to make sense.
 
 ## Resources
 

@@ -219,7 +219,7 @@ uv sync # <3>
 ```
 1. Scaffold a new project: creates `pyproject.toml`, `README.md`, and a `hello.py` stub.
 2. Add packages to `pyproject.toml` and install them into the project's `.venv` in one step.
-3. Recreate `.venv` from the lockfile — ensures every collaborator gets bit-for-bit identical packages.
+3. Recreate `.venv` from the lockfile — ensures every collaborator starts from the same declared Python environment.
 
 The `pyproject.toml` becomes your single source of truth:
 
@@ -248,7 +248,7 @@ Key features that make `uv` essential:
 
 - **Lockfile (`uv.lock`)** — Captures exact versions for reproducibility
 - **Python version management** — No need for separate pyenv
-- **Blazing fast** — 10-100x faster than pip
+- **Fast in practice** — often noticeably faster than a plain pip workflow, especially with warm caches
 - **Declarative** — Describe what you want, not how to get there
 
 ```bash
@@ -689,7 +689,7 @@ my-project/
 
 ---
 
-## Summary: The Modern Reproducibility Toolkit
+## Conclusion
 
 | Need | Python | R |
 |------|--------|---|
@@ -701,15 +701,9 @@ my-project/
 | Formatting | ruff | air |
 | Linting | ruff | lintr |
 
-## Conclusion
+Reproducibility is no longer optional for serious data work, but it is also not all-or-nothing. The right stack depends on who needs to reproduce the work, how long it needs to stay runnable, and what happens if the result is challenged.
 
-Reproducibility is no longer optional — it's table stakes for professional data science. The tooling has matured to the point where reproducible workflows are not just possible but practical.
-
-But remember: **reproducibility is a spectrum, not a binary**. The right approach depends on your context — who needs to reproduce the work, for how long, and at what stakes.
-
-Start with package management (`uv` for Python, `rv` or `renv` for R), add language version control (`rig`, `uv python`), and when system dependencies become complex, embrace devcontainers. Layer in Snakemake for complex multi-step pipelines, and document everything with Quarto.
-
-The investment in reproducibility pays dividends: faster onboarding, fewer "works on my machine" incidents, easier debugging, and the confidence that your results can be verified and trusted. Just make sure you're investing the right amount for your actual needs.
+Start with the lowest layer that removes real risk: lock packages with `uv`, `rv`, or `renv`; pin language versions with `rig` or `uv`; add devcontainers when system dependencies start to matter; and document the workflow with Quarto. The goal is not maximum ceremony. It is enough traceability and enough automation for the stakes of the project.
 
 ## Resources
 

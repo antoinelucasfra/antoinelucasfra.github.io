@@ -8,14 +8,39 @@ format:
       body-width: 820px
 ---
 
-    ```{r}
-    #| label: about-page
-    #| echo: false
-    #| message: false
-    #| warning: false
+```{r}
+#| label: about-profile
+#| include: false
+#| message: false
+#| warning: false
 
-    source("_helpers/profile_render.R")
-    profile <- load_profile()
+source(here::here("_helpers", "profile_render.R"))
+profile <- load_profile()
+```
 
-    render_about(profile)
-    ```
+## How I got here {.about-section}
+
+```{r}
+#| label: about-story
+#| echo: false
+
+render_about_story(profile)
+```
+
+## What I care about at work {.about-section}
+
+```{r}
+#| label: about-work-focus
+#| echo: false
+
+render_about_work_focus(profile)
+```
+
+## Get in touch {.about-section}
+
+```{r}
+#| label: about-contact
+#| echo: false
+
+render_about_contact(profile)
+```

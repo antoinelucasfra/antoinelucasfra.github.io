@@ -62,4 +62,4 @@ Source code for this portfolio site — blog, projects, resources catalog, and C
 
 :::
 
-See also: [Academic projects from engineering school →](projects/academic_projects.qmd)
+See also: [Academic projects from engineering school →](/projects/academic_projects.html)
