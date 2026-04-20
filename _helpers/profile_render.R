@@ -167,14 +167,14 @@ render_homepage <- function(profile) {
   )
 }
 
-render_about <- function(profile) {
-  identity <- profile$identity
+render_about_story <- function(profile) {
+  htmltools::tagList(
+    lapply(profile$about$story, function(paragraph) htmltools::tags$p(paragraph))
+  )
+}
 
-  htmltools::tags$div(
-    class = "about-body",
-    htmltools::tags$h2("How I got here"),
-    lapply(profile$about$story, function(paragraph) htmltools::tags$p(paragraph)),
-    htmltools::tags$h2("What I care about at work"),
+render_about_work_focus <- function(profile) {
+  htmltools::tagList(
     lapply(
       profile$about$work_focus,
       function(item) {
@@ -184,8 +184,14 @@ render_about <- function(profile) {
           item$body
         )
       }
-    ),
-    htmltools::tags$h2("Get in touch"),
+    )
+  )
+}
+
+render_about_contact <- function(profile) {
+  identity <- profile$identity
+
+  htmltools::tagList(
     htmltools::tags$ul(
       htmltools::tags$li(
         htmltools::tags$strong("Email"),
@@ -241,6 +247,18 @@ render_about <- function(profile) {
       ),
       " unless stated otherwise."
     )
+  )
+}
+
+render_about <- function(profile) {
+  htmltools::tags$div(
+    class = "about-body",
+    htmltools::tags$h2("How I got here"),
+    render_about_story(profile),
+    htmltools::tags$h2("What I care about at work"),
+    render_about_work_focus(profile),
+    htmltools::tags$h2("Get in touch"),
+    render_about_contact(profile)
   )
 }
 
@@ -465,6 +483,28 @@ render_cv_typst_skill <- function(group) {
   )
 }
 
+render_cv_typst_detail_block <- function(title, items, trailing_comma = FALSE) {
+  block_lines <- c(
+    "  block[",
+    paste0("    #text(weight: \"bold\", size: 9.5pt)[", typst_escape(title), "]"),
+    "    #v(5pt)"
+  )
+
+  for (index in seq_along(items)) {
+    if (index > 1) {
+      block_lines <- c(block_lines, "    #v(3pt)")
+    }
+
+    block_lines <- c(
+      block_lines,
+      paste0("    #text(size: 9pt)[", typst_escape(items[[index]]), "]")
+    )
+  }
+
+  closing_line <- if (trailing_comma) "  ]," else "  ]"
+  c(block_lines, closing_line)
+}
+
 render_cv_typst <- function(profile) {
   identity <- profile$identity
   selected_experience <- Filter(
@@ -632,20 +672,12 @@ render_cv_typst <- function(profile) {
     "#grid(",
     "  columns: (1fr, 1fr),",
     "  column-gutter: 16pt,",
-    "  block[",
-    "    #text(weight: \"bold\", size: 9.5pt)[Certifications]",
-    "    #v(5pt)",
-    paste0("    #text(size: 9pt)[", typst_escape(profile$additional$certifications[[1]]), "]"),
-    "    #v(3pt)",
-    paste0("    #text(size: 9pt)[", typst_escape(profile$additional$certifications[[2]]), "]"),
-    "  ],",
-    "  block[",
-    "    #text(weight: \"bold\", size: 9.5pt)[Languages]",
-    "    #v(5pt)",
-    paste0("    #text(size: 9pt)[", typst_escape(profile$additional$languages[[1]]), "]"),
-    "    #v(3pt)",
-    paste0("    #text(size: 9pt)[", typst_escape(profile$additional$languages[[2]]), "]"),
-    "  ],",
+    render_cv_typst_detail_block(
+      "Certifications",
+      profile$additional$certifications,
+      trailing_comma = TRUE
+    ),
+    render_cv_typst_detail_block("Languages", profile$additional$languages),
     ")"
   )
 

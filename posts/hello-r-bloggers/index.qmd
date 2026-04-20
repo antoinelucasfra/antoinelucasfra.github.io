@@ -24,12 +24,12 @@ beginner tutorials — notes from actual use.
 
 **Three posts to start with:**
 
-- [Building Reproducible Analyses in Pharma with R](/posts/reproducible-pharma-r/) —
-  how I structure R projects in regulated environments, from `renv` to audit-ready
-  reporting
+- [Statistical Tests Demystified: A Practical Guide for Scientists and Engineers](/posts/stats-theory-frequentist/) —
+  a practical walkthrough of p-values, test selection, regression, and the mistakes
+  that matter in applied work
 - [rv: The Modern R Package Manager for Reproducible Workflows](/posts/rv-modern-r-package-manager/) —
   a look at the Rust-backed package manager that is quietly replacing my `renv` workflow
 - [Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog](https://antoinelucasfra.github.io/posts/why-curate-resources/) —
   on curation as a practice, and the catalog of 200+ data science resources I maintain
 
-The [full blog listing](/blog.qmd) has everything, filtered by category.
+The [full blog listing](/blog.html) has everything, filtered by category.

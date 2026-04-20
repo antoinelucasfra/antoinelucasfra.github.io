@@ -41,7 +41,7 @@ I needed something better: a structured, searchable, categorized collection that
 
 ## Building the Resources Catalog
 
-That's why I created the [Resources Catalog](/projects/resources_catalog.qmd) — a curated collection of data science resources organized by type, language, and category.
+That's why I created the [Resources Catalog](/projects/resources_catalog.html) — a curated collection of data science resources organized by type, language, and category.
 
 ### The Philosophy
 
@@ -208,11 +208,13 @@ A well-maintained resource collection is infrastructure for this kind of continu
 
 The pace of change in data science, ML, and AI isn't slowing down. Having a system to navigate that change — rather than being overwhelmed by it — is increasingly valuable.
 
-Browse my [Resources Catalog](/projects/resources_catalog.qmd). Fork it, adapt it, build your own. The goal isn't to have *my* collection — it's to have *a* collection that serves your learning journey.
+Browse my [Resources Catalog](/projects/resources_catalog.html). Fork it, adapt it, build your own. The goal isn't to have *my* collection — it's to have *a* collection that serves your learning journey.
+
+That is the real payoff of curation: not a prettier bookmark list, but a working system for staying oriented in a field that changes faster than memory alone can handle.
 
 ---
 
-## Resources for Resource Curation
+## Further Resources for Resource Curation
 
 Some meta-resources on learning and knowledge management:
 
@@ -224,4 +226,4 @@ Some meta-resources on learning and knowledge management:
 
 ---
 
-*The [Resources Catalog](/projects/resources_catalog.qmd) is continuously updated. Contributions welcome via [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io).*
+*The [Resources Catalog](/projects/resources_catalog.html) is updated in public. Contributions are welcome via [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io).*

@@ -12,6 +12,19 @@ execute:
   echo: false
 ---
 
+## Overview
+
+This project turns a plain-text resource list into a searchable front end for curated data science references across R, Python, statistics, visualization, research workflows, and life sciences.
+
+It is intentionally both a curation project and a small product-engineering exercise: define a lightweight schema, keep the source easy to edit, and ship a fast browsing experience without introducing a heavyweight backend.
+
+## What This Project Includes
+
+- A hand-curated catalog stored in `data/resources.txt`, with each entry typed, categorized, and optionally annotated with a short description
+- A Quarto + R generation layer that builds the filter controls, cards, counters, and pagination from a single source of truth
+- Lightweight client-side search and filtering for language, topic, type, layout, and sort order
+- A low-friction contribution workflow based on small YAML blocks and documented pull requests
+
 ```{r resource-catalog-setup}
 #| message: false
 #| warning: false

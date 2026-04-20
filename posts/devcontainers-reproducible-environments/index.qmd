@@ -3,7 +3,7 @@ title: "Reproducible Environments for Everyone: DevContainers for Data Science T
 author: "Antoine Lucas"
 date: "2025-11-28"
 categories: [DevContainers, Docker, R, Python, Reproducibility, VS Code]
-description: "How to use devcontainers and a pre-built personal image to give every team member — including non-developers — an identical, zero-setup R + Python environment."
+description: "How to use devcontainers and a pre-built personal image to give every team member — including non-developers — an identical, low-setup R + Python environment."
 image: "../../assets/images/blog-placeholder.svg"
 ---
 
@@ -13,7 +13,7 @@ image: "../../assets/images/blog-placeholder.svg"
 
 The gap between "the analysis worked on the statistician's laptop" and "the analysis can be reproduced six months later by a different person" is a real reproducibility problem in R&D contexts. `renv` locks R packages. `uv` locks Python packages. But neither handles the runtime environment: R version, system libraries, Quarto CLI version, or the formatter that enforces code style.
 
-DevContainers solve this layer. Every team member opens the project and gets exactly the same environment — the same R version, the same tools, the same VS Code configuration — in one click, without any manual setup.
+DevContainers solve this layer. Once the editor integration and container runtime are installed, every team member can open the project and get the same R version, the same tools, and the same VS Code configuration with very little project-specific setup.
 
 ---
 
@@ -240,20 +240,20 @@ Key choices:
 
 ---
 
-## Making it work for non-developers
+## Making it work for people who are not primarily developers
 
 The setup above sounds like a lot of infrastructure. The experience from the user's side is:
 
 1. Install VS Code and the Dev Containers extension (`ms-vscode-remote.remote-containers`).
-2. Install Docker Desktop.
+2. Install Docker Desktop or another compatible Docker runtime.
 3. Open the project folder in VS Code.
 4. Click "Reopen in Container" when prompted.
 5. Wait ~2 minutes for the pre-built image to pull and features to install (first time only; subsequent opens are instant).
 6. Work normally.
 
-That's it. No `install.packages()`, no Python virtualenv management, no Quarto CLI version mismatch, no TinyTeX setup. The environment is identical to everyone else's on the team.
+After that initial machine setup, the project-specific friction drops sharply. No `install.packages()`, no Python virtualenv management, no Quarto CLI version mismatch, no TinyTeX setup guide. The environment is effectively the same for everyone on the team.
 
-For a team of biostatisticians or computational biologists who are comfortable with R but not with devops tooling, this is a significant reduction in onboarding friction. The alternative is a 10-page "Environment Setup" document that is never fully correct.
+For a team of biostatisticians or computational biologists who are comfortable with R but not with devops tooling, this is a significant reduction in onboarding friction. The alternative is usually a long "Environment Setup" document that still leaves enough room for drift and local quirks.
 
 ---
 

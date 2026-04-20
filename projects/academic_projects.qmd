@@ -1,16 +1,16 @@
 ---
 title: "Academic Projects"
-subtitle: "Engineering School – Final Year (2020-2021)"
+subtitle: "Engineering School Projects (M1-M2, 2019-2021)"
 title-block-banner: true
 toc: true
 toc-depth: 2
 ---
 
-A collection of projects completed during my final year of engineering school (M2 — second year of Master's), covering machine learning, data visualization, statistical analysis, and web application development.
+A selection of academic projects completed during engineering school, spanning applied statistics, machine learning, data visualization, and web application development. Most were team projects; the summaries below focus on the problem space, methods, and tools used.
 
 ---
 
-## 🧠 Machine Learning & Statistics
+## M2 Projects
 
 ::: {.callout-note appearance="minimal" icon=false}
 
@@ -18,27 +18,9 @@ A collection of projects completed during my final year of engineering school (M
 
 **Technologies:** R, Statistical Modeling, Signal Processing
 
-Analysis of eye-tracking data to understand visual attention patterns. This project involved processing gaze data, computing fixation metrics, and applying statistical methods to draw insights from visual behavior experiments.
-We have conducted the project from the protocol development to the data analysis and the report writing with data harvesting using Tobii Pro Lab software and statistical analysis in R.
+Analysis of eye-tracking data to study visual attention patterns from end to end: protocol design, data acquisition in Tobii Pro Lab, fixation metric computation, and statistical analysis in R.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/eye-tracking_M2){.btn .btn-dark .btn-sm}
-
-:::
-
-::: {.callout-note appearance="minimal" icon=false}
-
-### Machine Learning Project
-
-**Technologies:** Python, Scikit-learn, Pandas, NumPy
-
-::: {.callout-caution}
-## 📅 M1 Project
-This project was completed during the first year of Master's degree (M1), not during the final year.
-:::
-
-A comprehensive machine learning project covering the full ML pipeline: data preprocessing, feature engineering, model selection, hyperparameter tuning, and evaluation. Applied various algorithms including regression, classification, and ensemble methods.
-
-[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/ML_project_M1){.btn .btn-dark .btn-sm}
 
 :::
 
@@ -48,58 +30,61 @@ A comprehensive machine learning project covering the full ML pipeline: data pre
 
 **Technologies:** R, Multivariate Statistics, ade4
 
-Implementation and application of co-inertia analysis methods for studying relationships between two data tables. This project explored coupling structures between datasets using factorial methods.
-Presentation of the project with xaringan html slides.
+Application of co-inertia analysis to study relationships between paired data tables with ade4 and related multivariate methods. The deliverable included both the statistical study and a xaringan slide presentation.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/co-inertia_project){.btn .btn-dark .btn-sm}
 
 :::
 
----
-
-## 📊 Data Visualization
-
-::: {.callout-tip appearance="minimal" icon=false}
+::: {.callout-note appearance="minimal" icon=false}
 
 ### Interactive Visualization Project
 
 **Technologies:** R, JavaScript, HTML/CSS
 
-Development of interactive data visualizations to communicate complex information effectively. Focus on user experience, storytelling with data, and creating engaging visual narratives.
+Development of interactive visualizations to communicate complex results more clearly, with emphasis on usability, narrative flow, and exploratory interaction.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/visu_project){.btn .btn-dark .btn-sm}
 
 :::
 
----
-
-## 🌐 Web Applications
-
-::: {.callout-important appearance="minimal" icon=false}
+::: {.callout-note appearance="minimal" icon=false}
 
 ### Shiny Web Application (M2)
 
 **Technologies:** R, Shiny, shinydashboard, ggplot2
 
-Development of an interactive web application using R Shiny for data exploration and visualization. The application provides dynamic filtering, real-time computations, and responsive visualizations.
+Development of an interactive R Shiny application for data exploration and visualization, with dynamic filtering, reactive summaries, and user-facing plots.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/shinyappM2Proj){.btn .btn-dark .btn-sm}
 
 :::
 
----
-
-## 🔧 Data Engineering
-
-::: {.callout-warning appearance="minimal" icon=false}
+::: {.callout-note appearance="minimal" icon=false}
 
 ### Redis Database Project
 
 **Technologies:** Redis, Python, NoSQL
 
-Implementation of a data solution using Redis, an in-memory data structure store. This project covered key-value operations, data persistence, caching strategies, and real-time data handling.
+Implementation of a small Redis-backed data workflow to explore key-value operations, persistence, caching strategies, and real-time data handling from Python.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/redis_project){.btn .btn-dark .btn-sm}
+
+:::
+
+---
+
+## Earlier Master's Work
+
+::: {.callout-note appearance="minimal" icon=false}
+
+### Machine Learning Project (M1)
+
+**Technologies:** Python, Scikit-learn, Pandas, NumPy
+
+Course project completed during the first year of the Master's programme. It covers the full ML pipeline: data preprocessing, feature engineering, model selection, hyperparameter tuning, and evaluation across regression, classification, and ensemble methods.
+
+[<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/ML_project_M1){.btn .btn-dark .btn-sm}
 
 :::
 
@@ -124,16 +109,17 @@ Implementation of a data solution using Redis, an in-memory data structure store
 - Shiny / shinydashboard
 - Scikit-learn
 - ggplot2
-- Rmarkdown
+- R Markdown
 :::
 
 ::: {.g-col-6 .g-col-md-4}
 **Methods**
 
 - Machine Learning
+- Statistical Modeling
 - Multivariate Statistics
 - Data Visualization
-- NoSQL Databases
+- NoSQL Systems
 :::
 
 :::
