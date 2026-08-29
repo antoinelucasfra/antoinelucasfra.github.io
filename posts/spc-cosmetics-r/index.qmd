@@ -4,8 +4,7 @@ description: "How to implement SPC charts in R for quality monitoring in cosmeti
 author: "Antoine Lucas"
 date: "2024-09-20"
 categories: [R, Quality Control, Cosmetics, SPC]
-image: "../../assets/images/blog-placeholder.svg"
-draft: true
+image: ../../assets/images/covers/spc-cosmetics-r.svg
 ---
 
 ## Introduction

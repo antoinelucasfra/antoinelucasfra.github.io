@@ -12,7 +12,6 @@ execute:
 ```{r cv-html}
 #| message: false
 #| warning: false
-
 source(here::here("_helpers", "profile_render.R"))
 
 profile <- load_profile()

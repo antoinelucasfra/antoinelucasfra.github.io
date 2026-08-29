@@ -4,8 +4,7 @@ description: "Exploring the fusion of programming, DJing, and data-driven creati
 author: "Antoine Lucas"
 date: "2024-12-13"
 categories: [Creative Coding, Music, Art, Data]
-image: "../../assets/images/blog-placeholder.svg"
-draft: true
+image: ../../assets/images/covers/livecoding-algorithmic-music.svg
 ---
 
 ## The Emergence of a New Artistic Medium

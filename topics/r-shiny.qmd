@@ -1,0 +1,20 @@
+---
+title: "R & Shiny"
+description: "Shiny application engineering, package-first development, deployment, and R package management."
+---
+
+```{r}
+#| label: topic-listing
+#| echo: false
+#| message: false
+source(here::here("_helpers", "topic_listing.R"))
+library(yaml)
+library(htmltools)
+render_topic(
+  "R & Shiny",
+  "Shiny application engineering, package-first development, deployment, and R package management.",
+  c("Shiny", "ShinyProxy", "Package Management", "Quarto")
+)
+```
+
+[← All topics](../topics/index.qmd) · [All posts](../blog.qmd)

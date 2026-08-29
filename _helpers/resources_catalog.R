@@ -1,9 +1,9 @@
 `%||%` <- function(a, b) if (!is.null(a)) a else b
 
+# ── Parse resources.txt (--- delimited YAML blocks) ─────────────────────
 parse_resources_md <- function(path) {
   raw <- readLines(path, encoding = "UTF-8")
   sep_idx <- which(raw == "---")
-
   if (length(sep_idx) < 2) {
     return(tibble::tibble())
   }
@@ -15,17 +15,12 @@ parse_resources_md <- function(path) {
     if (start > end) {
       next
     }
-
-    block_lines <- raw[start:end]
     parsed <- tryCatch(
-      yaml::yaml.load(paste(block_lines, collapse = "\n")),
+      yaml::yaml.load(paste(raw[start:end], collapse = "\n")),
       error = function(e) NULL
     )
-    if (!is.null(parsed)) {
-      records[[i]] <- parsed
-    }
+    if (!is.null(parsed)) records[[i]] <- parsed
   }
-
   records <- Filter(Negate(is.null), records)
 
   dplyr::bind_rows(lapply(records, function(record) {
@@ -41,6 +36,8 @@ parse_resources_md <- function(path) {
   }))
 }
 
+# ── Super-category lookup: category keyword → parent group ──────────────
+# ponytail: inline data, fine for ~80 rarely-changing keywords
 super_rules <- list(
   "Machine Learning & AI" = c(
     "machine learning",
@@ -199,20 +196,74 @@ assign_super <- function(category_str) {
   if (is.na(category_str) || category_str == "") {
     return("General")
   }
-
   cats <- stringr::str_split_1(category_str, ";") |>
     stringr::str_trim() |>
     tolower()
-
   for (name in names(super_rules)) {
-    if (any(cats %in% super_rules[[name]])) {
-      return(name)
-    }
+    if (any(cats %in% super_rules[[name]])) return(name)
   }
-
   "General"
 }
 
+# ── Data mappings ───────────────────────────────────────────────────────
+# ponytail: named vectors, not switches
+
+TYPE_COLORS <- c(
+  "Package" = "primary",
+  "Tool" = "primary",
+  "App" = "primary",
+  "Platform" = "primary",
+  "Repository" = "primary",
+  "Course" = "success",
+  "Tutorial" = "success",
+  "Guide" = "success",
+  "Workshop" = "success",
+  "Book" = "info",
+  "Documentation" = "info",
+  "Paper" = "info",
+  "Journal" = "info",
+  "Magazine" = "info",
+  "Slides" = "info",
+  "Blog" = "warning",
+  "Website" = "warning",
+  "Video" = "warning",
+  "Gallery" = "warning",
+  "Community" = "secondary",
+  "Forum" = "secondary",
+  "Conference" = "secondary",
+  "Social" = "secondary",
+  "Newsletter" = "secondary"
+)
+
+type_color <- function(type) {
+  if (is.na(type)) {
+    return("dark")
+  }
+  r <- TYPE_COLORS[type]
+  if (is.na(r)) "dark" else r
+}
+
+LANG_CHIP_STYLES <- c(
+  "r" = "color: #1a579d; border-color: rgba(26,87,157,0.4);",
+  "python" = "color: #3a7a20; border-color: rgba(55,125,34,0.4);",
+  "julia" = "color: #8b33b3; border-color: rgba(149,57,191,0.4);",
+  "other" = "color: #555f6a; border-color: rgba(108,117,125,0.35);"
+)
+
+SUPER_CHIP_LABELS <- c(
+  "machine learning & ai" = "ML & AI",
+  "statistics" = "Statistics",
+  "r & shiny" = "R & Shiny",
+  "data visualization" = "Viz",
+  "python & devops" = "Python & DevOps",
+  "education" = "Education",
+  "community & events" = "Community",
+  "life sciences" = "Life Sciences",
+  "research" = "Research",
+  "general" = "General"
+)
+
+# ── Load and prepare catalog data ───────────────────────────────────────
 load_resources_catalog <- function(path) {
   parse_resources_md(path) |>
     dplyr::mutate(
@@ -222,81 +273,64 @@ load_resources_catalog <- function(path) {
     dplyr::arrange(type, title)
 }
 
+# ── Display helpers ────────────────────────────────────────────────────
 format_date_display <- function(date_str) {
   if (is.na(date_str) || date_str == "") {
     return("")
   }
-
-  month_names <- c(
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  )
   parts <- stringr::str_split_1(date_str, "-")
-
   if (length(parts) == 3) {
-    day <- as.integer(parts[3])
+    day <- suppressWarnings(as.integer(parts[3]))
     month <- suppressWarnings(as.integer(parts[2]))
     year <- parts[1]
-    if (!is.na(month) && month >= 1 && month <= 12) {
-      return(paste(day, month_names[month], year))
+    if (!is.na(day) && !is.na(month) && month >= 1 && month <= 12) {
+      return(paste(day, month.abb[month], year))
     }
   } else if (length(parts) == 2) {
     month <- suppressWarnings(as.integer(parts[2]))
     year <- parts[1]
     if (!is.na(month) && month >= 1 && month <= 12) {
-      return(paste(month_names[month], year))
+      return(paste(month.abb[month], year))
     }
   }
-
   date_str
 }
 
-type_color <- function(type) {
-  switch(
-    type,
-    "Package" = ,
-    "Tool" = ,
-    "App" = ,
-    "Platform" = ,
-    "Repository" = "primary",
-    "Course" = ,
-    "Tutorial" = ,
-    "Guide" = ,
-    "Workshop" = "success",
-    "Book" = ,
-    "Documentation" = ,
-    "Paper" = ,
-    "Journal" = ,
-    "Magazine" = ,
-    "Slides" = "info",
-    "Blog" = ,
-    "Website" = ,
-    "Video" = ,
-    "Gallery" = "warning",
-    "Community" = ,
-    "Forum" = ,
-    "Conference" = ,
-    "Social" = ,
-    "Newsletter" = "secondary",
-    "dark"
-  )
+normalise_date <- function(date_str) {
+  if (is.na(date_str) || date_str == "") {
+    return("")
+  }
+  parts <- stringr::str_split_1(date_str, "-")
+  if (length(parts) == 3) {
+    values <- suppressWarnings(as.integer(parts))
+    if (!anyNA(values) && values[2] %in% 1:12 && values[3] %in% 1:31) {
+      return(sprintf("%04d-%02d-%02d", values[1], values[2], values[3]))
+    }
+  }
+  if (length(parts) == 2) {
+    values <- suppressWarnings(as.integer(parts))
+    if (!anyNA(values) && values[2] %in% 1:12) {
+      return(sprintf("%04d-%02d-01", values[1], values[2]))
+    }
+  }
+  ""
 }
 
+resource_domain <- function(link) {
+  if (is.na(link) || link == "") {
+    return("")
+  }
+  host <- sub("^https?://([^/?#]+).*$", "\\1", link, ignore.case = TRUE)
+  host <- sub(":[0-9]+$", "", host)
+  host <- sub("^www\\.", "", host, ignore.case = TRUE)
+  if (grepl("^[A-Za-z0-9.-]+$", host)) stringr::str_to_lower(host) else ""
+}
+
+# ── Language chip (one span per language) ──────────────────────────────
 lang_chip <- function(lang_str) {
   if (is.na(lang_str) || lang_str == "") {
     return(NULL)
   }
-
   parts <- stringr::str_split_1(lang_str, ";") |> stringr::str_trim()
   purrr::map(parts, function(lang) {
     chip_class <- switch(
@@ -310,42 +344,18 @@ lang_chip <- function(lang_str) {
   })
 }
 
-cat_chips <- function(cat_str, uid, max_shown = 3L) {
+# ── Category chips (one span per category, all visible) ────────────────
+cat_chips <- function(cat_str) {
   if (is.na(cat_str) || cat_str == "") {
     return(NULL)
   }
-
   parts <- stringr::str_split_1(cat_str, ";") |> stringr::str_trim()
-  shown <- parts[seq_len(min(max_shown, length(parts)))]
-  extra <- if (length(parts) > max_shown) parts[(max_shown + 1L):length(parts)] else character(0L)
-  extra_id <- paste0("extra-", uid)
-
-  visible_chips <- purrr::map(shown, function(category) {
+  purrr::map(parts, function(category) {
     htmltools::tags$span(class = "chip chip-cat", category)
   })
-
-  if (length(extra) == 0L) {
-    return(visible_chips)
-  }
-
-  extra_chips <- purrr::map(extra, function(category) {
-    htmltools::tags$span(
-      class = "chip chip-cat d-none",
-      `data-extra` = extra_id,
-      category
-    )
-  })
-
-  expand_btn <- htmltools::tags$button(
-    class = "category-expand-toggle",
-    type = "button",
-    `data-id` = extra_id,
-    paste0("+", length(extra))
-  )
-
-  list(visible_chips, extra_chips, expand_btn)
 }
 
+# ── Render one resource card ────────────────────────────────────────────
 make_resource_card <- function(row, uid) {
   row <- purrr::map(as.list(row), function(value) {
     if (length(value) == 0 || is.na(value[[1]])) {
@@ -354,43 +364,44 @@ make_resource_card <- function(row, uid) {
     as.character(value[[1]])
   })
 
-  type <- row$type %||% ""
-  title_text <- row$title %||% ""
-  link <- row$link %||% ""
-  lang_str <- row$language %||% ""
-  cat_str <- row$category %||% ""
-  super <- row$super %||% ""
-  desc <- row$description %||% ""
-  date_raw <- row$date %||% ""
-  date_display <- format_date_display(date_raw)
+  date_norm <- normalise_date(row$date %||% "")
+  search_terms <- paste(
+    row$title %||% "",
+    row$description %||% "",
+    row$category %||% "",
+    row$type %||% "",
+    resource_domain(row$link %||% ""),
+    sep = " "
+  )
 
   data_attrs <- list(
     class = "catalog-item",
-    `data-type` = tolower(type),
-    `data-language` = tolower(lang_str),
-    `data-categories` = tolower(cat_str),
-    `data-super` = tolower(super),
-    `data-date` = date_raw
+    `data-type` = tolower(row$type %||% ""),
+    `data-language` = tolower(row$language %||% ""),
+    `data-categories` = tolower(row$category %||% ""),
+    `data-super` = tolower(row$super %||% ""),
+    `data-date` = date_norm,
+    `data-search` = tolower(search_terms),
+    `data-domain` = resource_domain(row$link %||% "")
   )
 
   badge <- htmltools::tags$span(
-    class = paste0("badge resource-type bg-", type_color(type)),
-    type
+    class = paste0("badge resource-type bg-", type_color(row$type %||% "")),
+    row$type %||% ""
   )
 
   title_link <- htmltools::tags$a(
-    href = link,
+    href = row$link %||% "",
     target = "_blank",
     rel = "noopener noreferrer",
-    title_text
+    row$title %||% ""
   )
 
-  description_el <- if (nzchar(desc)) {
-    htmltools::tags$p(class = "resource-desc", desc)
-  } else {
-    NULL
-  }
+  desc <- row$description %||% ""
+  description_el <- if (nzchar(desc)) htmltools::tags$p(class = "resource-desc", desc) else NULL
 
+  date_raw <- row$date %||% ""
+  date_display <- format_date_display(date_raw)
   date_el <- if (nzchar(date_display)) {
     htmltools::tags$span(class = "resource-date", date_display)
   } else {
@@ -409,7 +420,10 @@ make_resource_card <- function(row, uid) {
             htmltools::tags$div(
               class = "resource-meta-row",
               badge,
-              htmltools::tags$div(class = "resource-language-chips", lang_chip(lang_str))
+              htmltools::tags$div(
+                class = "resource-language-chips",
+                lang_chip(row$language %||% "")
+              )
             ),
             htmltools::tags$div(
               class = "resource-title-row",
@@ -417,10 +431,7 @@ make_resource_card <- function(row, uid) {
               date_el
             ),
             description_el,
-            htmltools::tags$div(
-              class = "cat-chips",
-              c(cat_chips(cat_str, uid))
-            )
+            htmltools::tags$div(class = "cat-chips", c(cat_chips(row$category %||% "")))
           )
         )
       )

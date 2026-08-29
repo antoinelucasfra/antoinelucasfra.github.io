@@ -1,0 +1,65 @@
+---
+title: "Case Study: A Capacity Planning Platform for Global Manufacturing"
+description: "Anonymized walkthrough of an R Shiny platform I built end-to-end to predict and simulate manufacturing plant resource capacity across global sites — architecture, trade-offs, and lessons."
+author: "Antoine Lucas"
+date: "2025-12-15"
+categories: [R, Shiny, Case Study, Manufacturing]
+image: ../../assets/images/covers/shiny-capacity-platform.svg
+---
+
+## The problem
+
+A global pharma company runs drug production planning across a network of manufacturing sites. Each site has finite resources — production lines, skilled operators, quality-control capacity — and each new product launch or demand shift reshuffles the whole picture.
+
+Planning this was done in spreadsheets. Every planner had their own file, their own assumptions, and their own version of the truth. Questions like *can site X absorb product Y next year?* took days of manual consolidation and still produced answers nobody fully trusted.
+
+The ask: a shared tool to **predict and simulate resource capacity across all sites**, good enough to drive real production-planning decisions.
+
+## Constraints that shaped everything
+
+This was regulated pharma R&D-adjacent work, which means:
+
+- **Traceability over cleverness.** Every figure shown to a decision-maker had to be explainable back to source data.
+- **No cloud dependency.** The tool ran on internal infrastructure only.
+- **Heterogeneous users.** Plant planners, central forecasting teams, and managers — different vocabularies, different levels of statistical comfort.
+- **One developer.** Me, embedded as sole data scientist and Scrum Master, so scope discipline mattered as much as code.
+
+## Architecture
+
+I shipped it as a modular **R Shiny application** backed by R and Python simulation engines:
+
+```
+Data layer      → ETL from plant systems into a clean relational model
+Simulation core → R + Python models for capacity prediction & scenario runs
+Shiny app       → golem-structured, module-per-domain
+Deployment      → internal server, pinned environments, scripted releases
+```
+
+Decisions worth highlighting:
+
+**golem from day one.** The app was structured as an R package with modules per business domain. That paid off every time a new site or product category was added — it was a new module, not a refactor.
+
+**Separation of computation and UI.** Simulation logic lived outside the app, callable from scripts. When stakeholders needed batch scenario runs for annual planning, we generated reports from the same engine without touching the interface.
+
+**Scenario comparison over point predictions.** The most-used screen wasn't the forecast — it was side-by-side scenario views. Users didn't want one number; they wanted to argue about assumptions. The tool's job was to make those arguments concrete.
+
+## Working as sole dev and Scrum Master
+
+Owning backlog and ceremonies for your own product sounds redundant, but with stakeholders across research, plants, and management it wasn't. Running explicit sprint reviews kept scope honest: every feature request had to survive contact with the people who would actually use it monthly.
+
+The workflow that held up:
+
+1. Frame the question with planners using their vocabulary.
+2. Prototype against last quarter's real data — if the tool can't reproduce what actually happened, nothing else matters.
+3. UAT with the people whose jobs the output touches.
+4. Document before the next feature, not after the project.
+
+## What I'd do differently
+
+- **Invest earlier in data contracts upstream.** Late changes to source-system definitions caused more rework than any code issue.
+- **Add automated back-testing from the start.** I built it mid-project; it should have been day-one infrastructure.
+- **Say no faster.** The features I deferred hardest were the ones nobody missed.
+
+## Outcome
+
+The platform replaced spreadsheet planning for capacity questions across global sites and drove actual production-planning decisions — requirements through deployment, with documentation and handover that outlived my mission. It remains the clearest proof I have that *useful* software is harder and more valuable than merely *correct* software.
