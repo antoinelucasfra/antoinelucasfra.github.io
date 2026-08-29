@@ -25,8 +25,11 @@ jobs:
           r-version: 4.5.2
           use-public-rspm: true
 
-      - name: Setup renv
-        uses: r-lib/actions/setup-renv@v2
+      - name: Install rv
+        run: install.packages("rv", repos="https://packagemanager.posit.co/cran/latest")
+
+      - name: Restore R dependencies with rv
+        run: rv sync
 
       - name: Render Quarto project
         run: quarto render
