@@ -42,3 +42,4 @@ Thumbs.db
 !/sandbox/gen_descriptions.py
 
 /.quarto/
+_test_listing_files/
