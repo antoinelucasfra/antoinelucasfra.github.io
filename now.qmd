@@ -1,0 +1,33 @@
+---
+title: "Now"
+description: "What I'm currently working on, learning, and thinking about."
+format:
+  html:
+    toc: false
+    grid:
+      body-width: 720px
+---
+
+What I'm focused on right now. Updated periodically; inspired by [nownownow.com](https://nownownow.com/){.external}.
+
+## Working on
+
+- ML tooling and R Shiny applications for fragrance & cosmetics R&D at Chanel Parfums Beauté.
+- Growing this site: case studies, reproducibility field notes, and the [Resources Catalog](/projects/resources_catalog.html).
+- Internal training material on Bayesian statistics with R.
+
+## Learning
+
+- Deeper MLOps on Azure ML and Databricks.
+- Interpretable ML for regulated environments.
+
+## Reading / listening
+
+- Statistical theory refreshers — mixed models and Bayesian workflow.
+- Live coding music with [Strudel](https://strudel.cc/) when the brain needs a different mode entirely.
+
+## Location
+
+Paris, France. Open to interesting conversations about scientific software, R/Shiny delivery, and statistics in R&D — [email me](mailto:antoine.lucas.fra@gmail.com).
+
+*Last updated: February 2026.*

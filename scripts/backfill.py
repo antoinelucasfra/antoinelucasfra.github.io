@@ -116,115 +116,98 @@ _FETCH_DELAY = 0.4
 # Rules are checked in order; first match wins.
 _CLASSIFICATION_RULES: list[tuple[str, str, str, str, str]] = [
     # (domain_contains, path_contains, type, language, category)
-
     # --- Repositories / code hosts ---
-    ("gist.github.com",     "",                  "Repository", "Other",  "General"),
-    ("github.com",          "",                  "Repository", "Other",  "General"),
-    ("gitlab.com",          "",                  "Repository", "Other",  "General"),
-
+    ("gist.github.com", "", "Repository", "Other", "General"),
+    ("github.com", "", "Repository", "Other", "General"),
+    ("gitlab.com", "", "Repository", "Other", "General"),
     # --- HuggingFace ---
-    ("huggingface.co",      "/spaces/",          "Website",    "Python", "Machine Learning"),
-    ("huggingface.co",      "/blog/",            "Blog",       "Python", "Machine Learning"),
-    ("huggingface.co",      "/docs/",            "Website",    "Python", "Machine Learning"),
-    ("huggingface.co",      "",                  "Website",    "Python", "Machine Learning"),
-
+    ("huggingface.co", "/spaces/", "Website", "Python", "Machine Learning"),
+    ("huggingface.co", "/blog/", "Blog", "Python", "Machine Learning"),
+    ("huggingface.co", "/docs/", "Website", "Python", "Machine Learning"),
+    ("huggingface.co", "", "Website", "Python", "Machine Learning"),
     # --- App stores ---
-    ("apps.apple.com",      "",                  "Website",    "Other",  "General"),
-    ("play.google.com",     "",                  "Website",    "Other",  "General"),
-
+    ("apps.apple.com", "", "Website", "Other", "General"),
+    ("play.google.com", "", "Website", "Other", "General"),
     # --- VSCode marketplace ---
-    ("marketplace.visualstudio.com", "",         "Website",    "Other",  "Development"),
-
+    ("marketplace.visualstudio.com", "", "Website", "Other", "Development"),
     # --- R-specific blog / documentation sites ---
-    ("r-bloggers.com",      "",                  "Blog",       "R",      "General"),
-    ("rviews.rstudio.com",  "",                  "Blog",       "R",      "General"),
-    ("posit.co",            "/blog/",            "Blog",       "R",      "General"),
-    ("posit.co",            "",                  "Website",    "R",      "General"),
-    ("tidyverse.org",       "",                  "Website",    "R",      "General"),
-    ("rstudio.com",         "",                  "Website",    "R",      "General"),
-    ("rfortherestofus.com", "",                  "Blog",       "R",      "General"),
-    ("r-project.org",       "",                  "Website",    "R",      "General"),
-    ("thinkr.fr",           "",                  "Blog",       "R",      "General"),
-    ("r-lib.org",           "",                  "Website",    "R",      "General"),
-    ("emilyriederer.com",   "",                  "Blog",       "R",      "General"),
-    ("dominicroye.github.io","",                 "Website",    "R",      "Visualization"),
-    ("walker-data.com",     "",                  "Website",    "R",      "GIS"),
-    ("productive-r-workflow.com", "",            "Website",    "R",      "Tutorial"),
-    ("lindeloev.github.io", "",                  "Website",    "R",      "Statistics"),
-    ("cynkra.github.io",    "",                  "Website",    "R",      "General"),
-    ("futurize.futureverse.org", "",             "Website",    "R",      "General"),
-    ("ragnar.tidyverse.org","",                  "Website",    "R",      "General"),
-    ("indrajeetpatil.github.io", "",             "Website",    "R",      "Packages"),
-    ("rwarehouse.netlify.app","",                "Website",    "R",      "General"),
-    ("ggsql.org",           "",                  "Website",    "R",      "General"),
-
+    ("r-bloggers.com", "", "Blog", "R", "General"),
+    ("rviews.rstudio.com", "", "Blog", "R", "General"),
+    ("posit.co", "/blog/", "Blog", "R", "General"),
+    ("posit.co", "", "Website", "R", "General"),
+    ("tidyverse.org", "", "Website", "R", "General"),
+    ("rstudio.com", "", "Website", "R", "General"),
+    ("rfortherestofus.com", "", "Blog", "R", "General"),
+    ("r-project.org", "", "Website", "R", "General"),
+    ("thinkr.fr", "", "Blog", "R", "General"),
+    ("r-lib.org", "", "Website", "R", "General"),
+    ("emilyriederer.com", "", "Blog", "R", "General"),
+    ("dominicroye.github.io", "", "Website", "R", "Visualization"),
+    ("walker-data.com", "", "Website", "R", "GIS"),
+    ("productive-r-workflow.com", "", "Website", "R", "Tutorial"),
+    ("lindeloev.github.io", "", "Website", "R", "Statistics"),
+    ("cynkra.github.io", "", "Website", "R", "General"),
+    ("futurize.futureverse.org", "", "Website", "R", "General"),
+    ("ragnar.tidyverse.org", "", "Website", "R", "General"),
+    ("indrajeetpatil.github.io", "", "Website", "R", "Packages"),
+    ("rwarehouse.netlify.app", "", "Website", "R", "General"),
+    ("ggsql.org", "", "Website", "R", "General"),
     # --- Python-specific ---
-    ("py-pkgs.org",         "",                  "Book",       "Python", "Packages"),
-    ("docs.langchain.com",  "",                  "Website",    "Python", "Machine Learning"),
-    ("probabl.ai",          "",                  "Blog",       "Python", "Machine Learning"),
-
+    ("py-pkgs.org", "", "Book", "Python", "Packages"),
+    ("docs.langchain.com", "", "Website", "Python", "Machine Learning"),
+    ("probabl.ai", "", "Blog", "Python", "Machine Learning"),
     # --- Posit/Quarto/R tooling ---
-    ("posit-dev.github.io", "",                  "Website",    "R",      "General"),
-    ("quarto.org",          "",                  "Website",    "Other",  "General"),
-    ("opencode.ai",         "",                  "Website",    "Other",  "Development"),
-
+    ("posit-dev.github.io", "", "Website", "R", "General"),
+    ("quarto.org", "", "Website", "Other", "General"),
+    ("opencode.ai", "", "Website", "Other", "Development"),
     # --- Shiny ---
-    ("shinyapps.io",        "",                  "Website",    "R",      "Shiny"),
-    ("shinylive.io",        "",                  "Website",    "R",      "Shiny"),
-    ("connect.posit.cloud", "",                  "Website",    "R",      "Shiny"),
-    ("pub.current.posit.team","",               "Website",    "R",      "Shiny"),
-    ("blockr.cloud",        "",                  "Website",    "R",      "Shiny"),
-    ("bristolmyerssquibb.github.io", "",         "Website",    "R",      "Shiny"),
-
+    ("shinyapps.io", "", "Website", "R", "Shiny"),
+    ("shinylive.io", "", "Website", "R", "Shiny"),
+    ("connect.posit.cloud", "", "Website", "R", "Shiny"),
+    ("pub.current.posit.team", "", "Website", "R", "Shiny"),
+    ("blockr.cloud", "", "Website", "R", "Shiny"),
+    ("bristolmyerssquibb.github.io", "", "Website", "R", "Shiny"),
     # --- Data science / ML ---
-    ("developer.nvidia.com","",                  "Website",    "Other",  "Machine Learning"),
-    ("databrickslabs.github.io","",              "Website",    "Python", "Machine Learning"),
-    ("agents.md",           "",                  "Website",    "Other",  "Machine Learning"),
-    ("modelcontextprotocol.io","",               "Website",    "Other",  "Machine Learning"),
-    ("bmad-method.org",     "",                  "Website",    "Other",  "Machine Learning"),
-
+    ("developer.nvidia.com", "", "Website", "Other", "Machine Learning"),
+    ("databrickslabs.github.io", "", "Website", "Python", "Machine Learning"),
+    ("agents.md", "", "Website", "Other", "Machine Learning"),
+    ("modelcontextprotocol.io", "", "Website", "Other", "Machine Learning"),
+    ("bmad-method.org", "", "Website", "Other", "Machine Learning"),
     # --- French tech blogs ---
-    ("korben.info",         "",                  "Blog",       "Other",  "General"),
-    ("mathieugrenier.fr",   "",                  "Blog",       "Other",  "General"),
-    ("sspcloud.fr",         "",                  "Website",    "R",      "General"),
-    ("ssm-agriculture.github.io","",             "Website",    "R",      "General"),
-
+    ("korben.info", "", "Blog", "Other", "General"),
+    ("mathieugrenier.fr", "", "Blog", "Other", "General"),
+    ("sspcloud.fr", "", "Website", "R", "General"),
+    ("ssm-agriculture.github.io", "", "Website", "R", "General"),
     # --- Communities / forums ---
-    ("lobste.rs",           "",                  "Community",  "Other",  "Development"),
-    ("news.ycombinator.com","",                  "Community",  "Other",  "General"),
-    ("reddit.com",          "",                  "Community",  "Other",  "General"),
-
+    ("lobste.rs", "", "Community", "Other", "Development"),
+    ("news.ycombinator.com", "", "Community", "Other", "General"),
+    ("reddit.com", "", "Community", "Other", "General"),
     # --- Personal / portfolio sites ---
-    ("henry.codes",         "",                  "Blog",       "Other",  "General"),
-    ("mbuffett.com",        "",                  "Blog",       "Other",  "General"),
-    ("bioinfo.kaibitz.com", "",                  "Website",    "Other",  "Bioinformatics"),
-    ("gexijin.github.io",   "",                  "Website",    "R",      "Bioinformatics"),
-
+    ("henry.codes", "", "Blog", "Other", "General"),
+    ("mbuffett.com", "", "Blog", "Other", "General"),
+    ("bioinfo.kaibitz.com", "", "Website", "Other", "Bioinformatics"),
+    ("gexijin.github.io", "", "Website", "R", "Bioinformatics"),
     # --- Data / art / other ---
-    ("data-to-art.com",     "",                  "Website",    "Other",  "Visualization"),
-    ("datanovia.com",       "",                  "Website",    "R",      "Statistics"),
-
+    ("data-to-art.com", "", "Website", "Other", "Visualization"),
+    ("datanovia.com", "", "Website", "R", "Statistics"),
     # --- Tools / apps ---
-    ("vert.sh",             "",                  "Website",    "Other",  "Development"),
-    ("openapps.sh",         "",                  "Website",    "Other",  "Development"),
-    ("wizwand.com",         "",                  "Website",    "Other",  "Machine Learning"),
-    ("zeroclawlabs.ai",     "",                  "Website",    "Other",  "Machine Learning"),
-    ("zensical.org",        "",                  "Website",    "Other",  "Development"),
-    ("smallweb.cc",         "",                  "Website",    "Other",  "Development"),
-    ("chat.z.ai",           "",                  "Website",    "Other",  "Machine Learning"),
-
+    ("vert.sh", "", "Website", "Other", "Development"),
+    ("openapps.sh", "", "Website", "Other", "Development"),
+    ("wizwand.com", "", "Website", "Other", "Machine Learning"),
+    ("zeroclawlabs.ai", "", "Website", "Other", "Machine Learning"),
+    ("zensical.org", "", "Website", "Other", "Development"),
+    ("smallweb.cc", "", "Website", "Other", "Development"),
+    ("chat.z.ai", "", "Website", "Other", "Machine Learning"),
     # --- Documentation / learning ---
-    ("loreabad6.github.io", "",                  "Website",    "R",      "GIS"),
-    ("ivelasq-r-pharma",    "",                  "Website",    "R",      "General"),
-    ("m.canouil.dev",       "",                  "Website",    "R",      "General"),
-
+    ("loreabad6.github.io", "", "Website", "R", "GIS"),
+    ("ivelasq-r-pharma", "", "Website", "R", "General"),
+    ("m.canouil.dev", "", "Website", "R", "General"),
     # --- Catch-all GitHub Pages (after specific rules above) ---
-    (".github.io",          "",                  "Website",    "Other",  "General"),
-
+    (".github.io", "", "Website", "Other", "General"),
     # --- Codecentric / enterprise blogs ---
-    ("codecentric.de",      "",                  "Blog",       "Other",  "General"),
-    ("blog.",               "",                  "Blog",       "Other",  "General"),
-    ("davisvaughan.com",    "",                  "Blog",       "R",      "General"),
+    ("codecentric.de", "", "Blog", "Other", "General"),
+    ("blog.", "", "Blog", "Other", "General"),
+    ("davisvaughan.com", "", "Blog", "R", "General"),
 ]
 
 
@@ -235,7 +218,9 @@ def _classify_url(url: str) -> tuple[str, str, str]:
     Returns ('Website', 'Other', 'General') as the fallback.
     """
     parsed = urlparse(url)
-    domain = parsed.netloc.lower().lstrip("www.")
+    domain = parsed.netloc.lower()
+    if domain.startswith("www."):
+        domain = domain[4:]
     path = parsed.path.lower()
 
     for domain_frag, path_frag, rtype, lang, cat in _CLASSIFICATION_RULES:
@@ -249,7 +234,7 @@ def _classify_url(url: str) -> tuple[str, str, str]:
     return "Website", "Other", "General"
 
 
-def _infer_title(url: str, downloaded: "bytes | str | None") -> str:
+def _infer_title(url: str, downloaded: bytes | str | None) -> str:
     """Extract page title from downloaded HTML, falling back to the domain."""
     if downloaded:
         try:
@@ -258,12 +243,17 @@ def _infer_title(url: str, downloaded: "bytes | str | None") -> str:
                 title = meta.title.strip()
                 if title:
                     return title[:120]
-        except Exception:
-            pass
+        except Exception as exc:
+            print(
+                f"  WARNING: trafilatura.extract_metadata failed: {exc}",
+                file=sys.stderr,
+            )
 
     # Fallback: domain + path fragment
     parsed = urlparse(url)
-    domain = parsed.netloc.lstrip("www.")
+    domain = parsed.netloc
+    if domain.startswith("www."):
+        domain = domain[4:]
     path_parts = [p for p in parsed.path.strip("/").split("/") if p]
     if path_parts:
         slug = path_parts[-1].replace("-", " ").replace("_", " ").title()
@@ -292,7 +282,7 @@ def _extract_urls_from_args(raw: list[str]) -> list[str]:
     result: list[str] = []
     for token in raw:
         token = token.strip().strip(".,")
-        if token.startswith("http://") or token.startswith("https://"):
+        if token.startswith(("http://", "https://")):
             norm = _normalise_url(token)
             if norm not in seen:
                 seen.add(norm)
@@ -317,7 +307,7 @@ def _read_urls_file(path: str) -> list[str]:
         line = line.strip()
         if not line or line.startswith("#"):
             continue
-        if line.startswith("http://") or line.startswith("https://"):
+        if line.startswith(("http://", "https://")):
             urls.append(line)
         else:
             print(f"  WARNING: ignoring non-URL line: {line!r}")
@@ -363,8 +353,11 @@ def _check_resources(
         link = _normalise_url(block.get("link", ""))
         link_positions.setdefault(link, []).append(idx)
 
-    dupe_links = {link: positions for link, positions in link_positions.items()
-                  if len(positions) > 1}
+    dupe_links = {
+        link: positions
+        for link, positions in link_positions.items()
+        if len(positions) > 1
+    }
 
     if dupe_links:
         print(f"\nDuplicate URLs ({len(dupe_links)} links appear more than once):")
@@ -386,10 +379,21 @@ def _check_resources(
                 if not val:
                     issues.append((idx, field, "type is empty"))
                 elif val not in KNOWN_TYPES:
-                    issues.append((idx, field, f"unknown type {val!r} — valid: {sorted(KNOWN_TYPES)}"))
-            elif field == "date" and val:
-                if not _DATE_RE.match(val):
-                    issues.append((idx, field, f"malformed date {val!r} (expected YYYY, YYYY-MM, or YYYY-MM-DD)"))
+                    issues.append(
+                        (
+                            idx,
+                            field,
+                            f"unknown type {val!r} — valid: {sorted(KNOWN_TYPES)}",
+                        )
+                    )
+            elif field == "date" and val and not _DATE_RE.match(val):
+                issues.append(
+                    (
+                        idx,
+                        field,
+                        f"malformed date {val!r} (expected YYYY, YYYY-MM, or YYYY-MM-DD)",
+                    )
+                )
 
     if issues:
         print(f"\nField issues ({len(issues)} problems):")
@@ -402,7 +406,9 @@ def _check_resources(
 
     print(f"\nTotal entries: {len(blocks)}")
     if dupe_links:
-        print(f"Duplicate groups: {len(dupe_links)} ({sum(len(v) - 1 for v in dupe_links.values())} extra copies)")
+        print(
+            f"Duplicate groups: {len(dupe_links)} ({sum(len(v) - 1 for v in dupe_links.values())} extra copies)"
+        )
     print("=========================\n")
 
     # ── Apply fix-dupes ───────────────────────────────────────────────────
@@ -416,7 +422,9 @@ def _check_resources(
             original_count = len(blocks)
             blocks = [b for i, b in enumerate(blocks, start=1) if i in kept_indices]
             removed = original_count - len(blocks)
-            print(f"Removed {removed} duplicate entries (kept first occurrence of each).")
+            print(
+                f"Removed {removed} duplicate entries (kept first occurrence of each)."
+            )
 
     return blocks
 
@@ -459,8 +467,9 @@ def _backfill(
         to_process = [b for b in blocks if _needs_date(b) or _needs_desc(b)]
 
     if url_filter:
-        to_process = [b for b in to_process
-                      if _normalise_url(b.get("link", "")) in url_filter]
+        to_process = [
+            b for b in to_process if _normalise_url(b.get("link", "")) in url_filter
+        ]
 
     total = len(to_process)
     already_done = len(blocks) - total
@@ -587,7 +596,9 @@ def _add_urls(
         else:
             new_urls.append(url)
 
-    print(f"  {len(urls)} provided → {len(deduped)} after batch dedup → {len(new_urls)} new")
+    print(
+        f"  {len(urls)} provided → {len(deduped)} after batch dedup → {len(new_urls)} new"
+    )
     print()
 
     if not new_urls:
@@ -751,7 +762,7 @@ def main() -> None:
     print(f"Resources file: {resources_path}")
 
     # ── Load and always validate ──────────────────────────────────────────
-    print(f"Loading entries ...")
+    print("Loading entries ...")
     blocks = parse_resources(resources_path)
 
     # Validation runs on every invocation
@@ -792,7 +803,9 @@ def main() -> None:
             _add_urls(file_urls, resources_path, dry_run=args.dry_run)
 
     # ── Backfill mode ─────────────────────────────────────────────────────
-    if args.mode is not None or (not args.check and not args.add_urls and not args.urls_file):
+    if args.mode is not None or (
+        not args.check and not args.add_urls and not args.urls_file
+    ):
         ran_action = True
         mode = args.mode or "both"
 
@@ -812,7 +825,7 @@ def main() -> None:
         if not args.dry_run and updated > 0:
             print(f"Writing {resources_path} ...")
             write_resources(resources_path, blocks)
-            print(f"Done. Review changes with: git diff data/resources.txt\n")
+            print("Done. Review changes with: git diff data/resources.txt\n")
 
     if not ran_action:
         # --check was the only flag — report already printed above

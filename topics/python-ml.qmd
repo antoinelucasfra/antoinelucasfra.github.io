@@ -1,0 +1,20 @@
+---
+title: "Python & AI"
+description: "Python tooling, LLM-assisted development, machine learning workflows, and AI in scientific applications."
+---
+
+```{r}
+#| label: topic-listing
+#| echo: false
+#| message: false
+source(here::here("_helpers", "topic_listing.R"))
+library(yaml)
+library(htmltools)
+render_topic(
+  "Python & AI",
+  "Python tooling, LLM-assisted development, machine learning workflows, and AI in scientific applications.",
+  c("Python", "AI Tools", "LLM", "Data Science", "Machine Learning")
+)
+```
+
+[← All topics](../topics/index.qmd) · [All posts](../blog.qmd)

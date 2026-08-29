@@ -4,19 +4,21 @@ project:
   render:
     - "index.qmd"
     - "about.qmd"
+    - "now.qmd"
     - "blog.qmd"
     - "cv.qmd"
     - "cv-typst.qmd"
     - "projects.qmd"
     - "posts/**/*.qmd"
     - "projects/**/*.qmd"
+    - "topics/**/*.qmd"
 
-quarto-required: "1.9.37"
+quarto-required: ">=1.9.37"
 
 website:
   title: "Antoine Lucas"
   description: "R and Shiny product engineering, statistical computing, and ML systems in scientific and regulated environments. Portfolio, blog, and projects."
-  favicon: assets/images/profile-pic.jpg
+  favicon: assets/images/favicon.svg
   image: assets/images/profile-pic.jpg
   site-url: https://antoinelucasfra.github.io
   repo-url: https://github.com/antoinelucasfra/antoinelucasfra.github.io
@@ -31,14 +33,25 @@ website:
     center: |
       &copy; 2026 Antoine Lucas.
     right: |
-      License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
+      [RSS](/blog.xml){.bi .bi-rss-fill aria-label="RSS feed"} · License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
   navbar:
     title: "Antoine Lucas"
     search: true
     background: dark
     left:
       - text: Blog
-        href: blog.qmd
+        menu:
+          - text: All Posts
+            href: blog.qmd
+          - text: Now
+            href: now.qmd
+          - text: "---"
+          - text: R & Shiny
+            href: topics/r-shiny.qmd
+          - text: Reproducibility & DevOps
+            href: topics/reproducibility.qmd
+          - text: Python & AI
+            href: topics/python-ml.qmd
       - text: Projects
         href: projects.qmd
       - text: CV
@@ -53,8 +66,6 @@ website:
         href: "https://github.com/antoinelucasfra"
         aria-label: GitHub
 
-brand: _brand.yml
-
 format:
   html:
     grid:
@@ -62,14 +73,10 @@ format:
     theme:
       light:
         - cosmo
-        - brand
-        - assets/stylesheets/theme-shared.scss
-        - assets/stylesheets/theme.scss
+        - assets/stylesheets/al-brand-light.scss
       dark:
         - cosmo
-        - brand
-        - assets/stylesheets/theme-shared.scss
-        - assets/stylesheets/theme-dark.scss
+        - assets/stylesheets/al-brand-dark.scss
     lang: en
     date-format: "MMMM D, YYYY"
     highlight-style: dracula

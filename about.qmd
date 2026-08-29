@@ -12,8 +12,7 @@ format:
 #| label: about-profile
 #| include: false
 #| message: false
-#| warning: false
-
+#| #| warning: false
 source(here::here("_helpers", "profile_render.R"))
 profile <- load_profile()
 ```
@@ -23,7 +22,6 @@ profile <- load_profile()
 ```{r}
 #| label: about-story
 #| echo: false
-
 render_about_story(profile)
 ```
 
@@ -32,7 +30,6 @@ render_about_story(profile)
 ```{r}
 #| label: about-work-focus
 #| echo: false
-
 render_about_work_focus(profile)
 ```
 
@@ -41,6 +38,5 @@ render_about_work_focus(profile)
 ```{r}
 #| label: about-contact
 #| echo: false
-
 render_about_contact(profile)
 ```

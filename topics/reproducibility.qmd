@@ -1,0 +1,20 @@
+---
+title: "Reproducibility & DevOps"
+description: "Reproducible environments, DevContainers, Docker, CI/CD, deployment, and engineering standards."
+---
+
+```{r}
+#| label: topic-listing
+#| echo: false
+#| message: false
+source(here::here("_helpers", "topic_listing.R"))
+library(yaml)
+library(htmltools)
+render_topic(
+  "Reproducibility & DevOps",
+  "Reproducible environments, DevContainers, Docker, CI/CD, deployment, and engineering standards for scientific software.",
+  c("Reproducibility", "Docker", "DevContainers", "CI/CD", "Deployment", "Setup", "Best Practices")
+)
+```
+
+[← All topics](../topics/index.qmd) · [All posts](../blog.qmd)

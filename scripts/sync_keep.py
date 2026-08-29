@@ -63,7 +63,10 @@ def _parse_line(line: str) -> dict[str, str] | None:
     """
     parts = [p.strip() for p in line.split(SEPARATOR)]
     if len(parts) != 5:
-        return {"error": f"expected 5 fields separated by ' - ', got {len(parts)}", "raw": line}
+        return {
+            "error": f"expected 5 fields separated by ' - ', got {len(parts)}",
+            "raw": line,
+        }
 
     url, title, rtype, language, category = parts
 
@@ -118,8 +121,21 @@ def _write_step_summary(
     print(summary)
 
     if summary_path:
-        with open(summary_path, "a", encoding="utf-8") as fh:
-            fh.write(summary)
+        resolved = Path(summary_path).resolve()
+        runner_temp = Path(os.environ["RUNNER_TEMP"]).resolve()
+        if runner_temp not in resolved.parents and resolved != runner_temp:
+            print(
+                f"  WARNING: GITHUB_STEP_SUMMARY outside runner tmp, skipping: {resolved}",
+                file=sys.stderr,
+            )
+        else:
+            try:
+                resolved.parent.mkdir(parents=True, exist_ok=True)
+                resolved.write_text(summary, encoding="utf-8")
+            except OSError as exc:
+                print(
+                    f"  WARNING: could not write step summary: {exc}", file=sys.stderr
+                )
 
 
 # ---------------------------------------------------------------------------
@@ -166,7 +182,7 @@ def main() -> None:
     known = existing_links(resources_path)
 
     # -- Process each line ---------------------------------------------------
-    kept_lines: list[str] = []   # lines that stay in the note (invalid)
+    kept_lines: list[str] = []  # lines that stay in the note (invalid)
     new_blocks: list[dict[str, str]] = []
     added_urls: list[str] = []
     skipped_items: list[dict[str, str]] = []
@@ -216,7 +232,9 @@ def main() -> None:
 
     # -- Append new entries --------------------------------------------------
     if new_blocks:
-        print(f"\nAppending {len(new_blocks)} new entry/entries to {resources_path} ...")
+        print(
+            f"\nAppending {len(new_blocks)} new entry/entries to {resources_path} ..."
+        )
         append_blocks(resources_path, new_blocks)
     else:
         print("\nNo new entries to append.")

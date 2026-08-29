@@ -3,7 +3,7 @@ title: "Running ShinyProxy Well: Docker, Operations, and Packaged Shiny Apps"
 author: "Antoine Lucas"
 date: "2026-03-14"
 categories: [R, Shiny, ShinyProxy, Docker, Deployment]
-image: "../../assets/images/blog-placeholder.svg"
+image: ../../assets/images/covers/shinyproxy-admin-best-practices.svg
 description: "What actually matters when deploying packaged Shiny apps behind ShinyProxy: Docker images, persistence, observability, and the boring operational details that decide whether the setup is pleasant or painful."
 ---
 
