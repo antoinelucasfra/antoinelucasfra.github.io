@@ -4,7 +4,7 @@ description: "A clear, jargon-light walkthrough of frequentist statistics — p-
 author: "Antoine Lucas"
 date: "2025-03-15"
 categories: [Statistics, Tutorial, R, Reference, Biostatistics]
-image: "../../assets/images/blog-placeholder.svg"
+image: ../../assets/images/covers/stats-theory-frequentist.svg
 ---
 
 ## Why this matters

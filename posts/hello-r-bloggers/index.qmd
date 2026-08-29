@@ -4,7 +4,7 @@ author: "Antoine Lucas"
 date: "2026-02-24"
 categories: [R, Meta]
 description: "A short introduction for readers arriving via R-Bloggers — what I write about, who I am, and where to start."
-image: "../../assets/images/blog-placeholder.svg"
+image: ../../assets/images/covers/hello-r-bloggers.svg
 ---
 
 If you're arriving here from R-Bloggers, welcome. This is a quick orientation.

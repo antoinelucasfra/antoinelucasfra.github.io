@@ -1,7 +1,3 @@
-`%||%` <- function(value, default) {
-  if (is.null(value)) default else value
-}
-
 load_profile <- function(path = here::here("data", "profile.yml")) {
   yaml::read_yaml(path)
 }
@@ -31,9 +27,32 @@ icon_link <- function(href, icon, label, extra_class = NULL, external = FALSE) {
   )
 }
 
+render_stats_band <- function(stats) {
+  htmltools::tags$div(
+    class = "stats-band",
+    lapply(
+      stats,
+      function(s) {
+        htmltools::tags$div(
+          class = "stat-item",
+          htmltools::tags$div(class = "stat-value", s$value),
+          htmltools::tags$div(class = "stat-label", s$label)
+        )
+      }
+    )
+  )
+}
+
 render_homepage <- function(profile) {
   identity <- profile$identity
   current_role <- profile$home$current_role
+  n_posts <- length(list.dirs(here::here("posts"), recursive = FALSE))
+  stats <- list(
+    list(value = "5+", label = "years in pharma & cosmetics R&D"),
+    list(value = "20+", label = "production Shiny apps supported"),
+    list(value = "100+", label = "clinical studies analysed"),
+    list(value = paste0(n_posts, "+"), label = "field notes published")
+  )
 
   htmltools::tagList(
     htmltools::tags$div(
@@ -80,6 +99,7 @@ render_homepage <- function(profile) {
         current_role$summary
       )
     ),
+    render_stats_band(stats),
     htmltools::tags$h2(class = "section-heading", "What I do"),
     htmltools::tags$div(
       class = "what-i-do",
@@ -95,27 +115,37 @@ render_homepage <- function(profile) {
       )
     ),
     htmltools::tags$h2(class = "section-heading", "Selected proof"),
-    htmltools::tags$ul(
+    htmltools::tags$div(
+      class = "proof-grid",
       lapply(
         profile$home$selected_proof,
         function(item) {
-          htmltools::tags$li(
-            htmltools::tags$a(href = item$href, item$title),
-            ": ",
-            item$description
+          htmltools::tags$a(
+            class = "proof-card",
+            href = item$href,
+            htmltools::tags$h3(item$title),
+            htmltools::tags$p(item$description),
+            htmltools::tags$span(
+              class = "proof-card-more",
+              "Read →"
+            )
           )
         }
       )
     ),
     htmltools::tags$h2(class = "section-heading", "How I work"),
-    htmltools::tags$ul(
+    htmltools::tags$div(
+      class = "principles-grid",
       lapply(
         profile$home$work_principles,
         function(item) {
-          htmltools::tags$li(
-            htmltools::tags$strong(item$label),
-            " ",
-            item$body
+          htmltools::tags$div(
+            class = "principle-item",
+            htmltools::tags$p(
+              htmltools::tags$strong(item$label),
+              " ",
+              item$body
+            )
           )
         }
       )
@@ -250,17 +280,6 @@ render_about_contact <- function(profile) {
   )
 }
 
-render_about <- function(profile) {
-  htmltools::tags$div(
-    class = "about-body",
-    htmltools::tags$h2("How I got here"),
-    render_about_story(profile),
-    htmltools::tags$h2("What I care about at work"),
-    render_about_work_focus(profile),
-    htmltools::tags$h2("Get in touch"),
-    render_about_contact(profile)
-  )
-}
 
 render_cv_entry_html <- function(entry) {
   htmltools::tags$div(

@@ -1,0 +1,28 @@
+---
+title: "Topics"
+description: "Browse blog posts by topic — R & Shiny, reproducibility, Python, machine learning, and more."
+---
+
+The blog covers scientific software engineering, statistical computing, and ML tooling. These topic pages group related posts so you can follow a thread.
+
+:::: {.grid}
+
+::: {.g-col-12 .g-col-md-4}
+### [R & Shiny](r-shiny.qmd)
+
+Shiny application engineering, package-first development, deployment with ShinyProxy, and R package management.
+:::
+
+::: {.g-col-12 .g-col-md-4}
+### [Reproducibility & DevOps](reproducibility.qmd)
+
+DevContainers, environment pinning, CI/CD, Docker, setup guides, and engineering standards for scientific software.
+:::
+
+::: {.g-col-12 .g-col-md-4}
+### [Python & AI](python-ml.qmd)
+
+Python tooling, LLM-assisted development, machine learning workflows, and AI in scientific applications.
+:::
+
+::::

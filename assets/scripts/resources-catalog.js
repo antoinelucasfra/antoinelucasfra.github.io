@@ -1,344 +1,219 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const catalogRoot = document.getElementById("resource-catalog");
-  const controlsRoot = document.querySelector(".controls-wrapper");
-  if (!catalogRoot) {
-    return;
+(() => {
+  // ponytail: self-contained catalog controller, no deps
+
+  var PAGE_SIZE = 50;
+
+  function byId(id) {
+    return document.getElementById(id);
   }
 
-  const searchInput = document.getElementById("resource-search");
-  const typeSelect = document.getElementById("type-filter");
-  const clearBtn = document.getElementById("clear-filters");
-  const noResultsClear = document.getElementById("no-results-clear");
-  const noResultsMsg = document.getElementById("no-results-msg");
-  const countEl = document.getElementById("resources-count");
-  const paginationEl = document.getElementById("catalog-pagination");
-  const sortSelect = document.getElementById("sort-select");
-  const gridViewBtn = document.getElementById("grid-view-btn");
-  const listViewBtn = document.getElementById("list-view-btn");
-  const items = Array.from(catalogRoot.querySelectorAll(".catalog-item"));
-
-  if (!controlsRoot || !searchInput || !typeSelect || !paginationEl || items.length === 0) {
-    return;
-  }
-
-  const PAGE_SIZE = 50;
-  const activeFilters = {
-    language: new Set(),
-    super: new Set(),
+  var state = {
+    search: "",
+    type: "",
+    language: {},
+    super: {},
+    sort: "default",
+    page: 1,
   };
 
-  let currentPage = 1;
-  let visibleIndices = [];
+  var items = [];
+  var visibleIndices = [];
 
-  function getTitle(item) {
-    const anchor = item.querySelector(".resource-title a");
-    return anchor ? anchor.textContent.toLowerCase() : "";
-  }
+  function init() {
+    var catalogRoot = byId("resource-catalog");
+    if (!catalogRoot) return;
 
-  function getDescription(item) {
-    const description = item.querySelector(".resource-desc");
-    return description ? description.textContent.toLowerCase() : "";
-  }
+    items = Array.from(catalogRoot.querySelectorAll(".catalog-item"));
+    if (!items.length) return;
 
-  function getHref(item) {
-    const anchor = item.querySelector(".resource-title a");
-    return anchor ? (anchor.getAttribute("href") || "").toLowerCase() : "";
-  }
+    var searchInput = byId("resource-search");
+    var typeSelect = byId("type-filter");
+    var sortSelect = byId("sort-select");
+    var clearBtn = byId("clear-filters");
+    var countEl = byId("resources-count");
+    var noResultsMsg = byId("no-results-msg");
+    var resultsContainer = byId("catalog-results");
+    var paginationEl = byId("catalog-pagination");
+    var controlsRoot = document.querySelector(".controls-wrapper");
 
-  function updateViewMode(mode) {
-    catalogRoot.classList.toggle("catalog-view-grid", mode === "grid");
-    catalogRoot.classList.toggle("catalog-view-list", mode === "list");
-  }
+    if (!searchInput || !countEl || !resultsContainer) return;
 
-  function sortVisibleIndices(mode) {
-    if (mode === "default") {
-      return;
-    }
+    state.search = searchInput.value.trim();
+    if (typeSelect) state.type = typeSelect.value;
+    if (sortSelect) state.sort = sortSelect.value;
 
-    visibleIndices.sort(function (leftIndex, rightIndex) {
-      const leftDate = items[leftIndex].dataset.date || "";
-      const rightDate = items[rightIndex].dataset.date || "";
+    function applyFilters() {
+      var query = state.search.toLowerCase();
+      var typeVal = state.type;
 
-      if (!leftDate && !rightDate) {
-        return 0;
-      }
-      if (!leftDate) {
-        return 1;
-      }
-      if (!rightDate) {
-        return -1;
-      }
+      visibleIndices = items
+        .map((item, index) => index)
+        .filter((index) => {
+          var item = items[index];
+          var text = item.getAttribute("data-search") || "";
+          if (query && text.indexOf(query) === -1) return false;
+          if (typeVal && item.getAttribute("data-type") !== typeVal)
+            return false;
 
-      if (mode === "date-desc") {
-        return leftDate < rightDate ? 1 : leftDate > rightDate ? -1 : 0;
-      }
-      if (mode === "date-asc") {
-        return leftDate > rightDate ? 1 : leftDate < rightDate ? -1 : 0;
-      }
-      return 0;
-    });
-  }
+          var langFilters = state.language;
+          if (Object.keys(langFilters).length) {
+            var lang = item.getAttribute("data-language") || "";
+            var langs = lang
+              .split(";")
+              .map((s) => s.trim())
+              .filter(Boolean);
+            if (!langs.some((l) => langFilters[l])) return false;
+          }
 
-  function renderPagination(total, page) {
-    const totalPages = Math.ceil(total / PAGE_SIZE);
-    paginationEl.innerHTML = "";
-
-    if (totalPages <= 1) {
-      return;
-    }
-
-    const nav = document.createElement("nav");
-    nav.setAttribute("aria-label", "Resources pagination");
-
-    const list = document.createElement("ul");
-    list.className = "pagination";
-
-    function makeItem(label, targetPage, isActive, isDisabled, ariaLabel) {
-      const listItem = document.createElement("li");
-      listItem.className =
-        "page-item" +
-        (isActive ? " active" : "") +
-        (isDisabled ? " disabled" : "");
-
-      const link = document.createElement("a");
-      link.className = "page-link";
-      link.href = "#";
-      link.innerHTML = label;
-      if (ariaLabel) {
-        link.setAttribute("aria-label", ariaLabel);
-      }
-      if (isActive) {
-        link.setAttribute("aria-current", "page");
-      }
-
-      if (!isDisabled && !isActive) {
-        link.addEventListener("click", function (event) {
-          event.preventDefault();
-          renderPage(targetPage);
-          controlsRoot.scrollIntoView({ behavior: "smooth", block: "start" });
+          var superFilters = state.super;
+          if (Object.keys(superFilters).length) {
+            var sv = item.getAttribute("data-super") || "";
+            if (!superFilters[sv]) return false;
+          }
+          return true;
         });
-      } else {
-        link.addEventListener("click", function (event) {
-          event.preventDefault();
-        });
-      }
 
-      listItem.appendChild(link);
-      return listItem;
+      visibleIndices.sort((aIndex, bIndex) => {
+        if (state.sort === "date-desc" || state.sort === "date-asc") {
+          var da = items[aIndex].getAttribute("data-date") || "";
+          var db = items[bIndex].getAttribute("data-date") || "";
+          if (!da && !db) return 0;
+          if (!da) return 1;
+          if (!db) return -1;
+          return state.sort === "date-desc"
+            ? da < db
+              ? 1
+              : da > db
+                ? -1
+                : 0
+            : da < db
+              ? -1
+              : da > db
+                ? 1
+                : 0;
+        }
+        var ta = (
+          items[aIndex].getAttribute("data-search") || ""
+        ).toLowerCase();
+        var tb = (
+          items[bIndex].getAttribute("data-search") || ""
+        ).toLowerCase();
+        return ta < tb ? -1 : ta > tb ? 1 : 0;
+      });
+
+      var total = visibleIndices.length;
+      var startIndex = (state.page - 1) * PAGE_SIZE;
+      var endIndex = startIndex + PAGE_SIZE;
+      var pagedIndices = visibleIndices.slice(startIndex, endIndex);
+
+      items.forEach((el) => {
+        el.style.display = "none";
+      });
+      pagedIndices.forEach((index) => {
+        items[index].style.display = "";
+      });
+
+      if (countEl) countEl.textContent = String(pagedIndices.length);
+      if (noResultsMsg) noResultsMsg.style.display = total ? "none" : "";
+
+      renderPagination(total);
     }
 
-    list.appendChild(makeItem("&laquo;", page - 1, false, page === 1, "Previous page"));
-
-    const windowSize = 2;
-    const rangeStart = Math.max(1, page - windowSize);
-    const rangeEnd = Math.min(totalPages, page + windowSize);
-
-    if (rangeStart > 1) {
-      list.appendChild(makeItem("1", 1, false, false));
-      if (rangeStart > 2) {
-        const ellipsis = document.createElement("li");
-        ellipsis.className = "page-item disabled";
-        ellipsis.innerHTML = '<span class="page-link">&hellip;</span>';
-        list.appendChild(ellipsis);
-      }
-    }
-
-    for (let pageNumber = rangeStart; pageNumber <= rangeEnd; pageNumber += 1) {
-      list.appendChild(makeItem(String(pageNumber), pageNumber, pageNumber === page, false));
-    }
-
-    if (rangeEnd < totalPages) {
-      if (rangeEnd < totalPages - 1) {
-        const ellipsis = document.createElement("li");
-        ellipsis.className = "page-item disabled";
-        ellipsis.innerHTML = '<span class="page-link">&hellip;</span>';
-        list.appendChild(ellipsis);
-      }
-      list.appendChild(makeItem(String(totalPages), totalPages, false, false));
-    }
-
-    list.appendChild(makeItem("&raquo;", page + 1, false, page === totalPages, "Next page"));
-
-    nav.appendChild(list);
-    paginationEl.appendChild(nav);
-  }
-
-  function renderPage(page) {
-    const totalPages = Math.ceil(visibleIndices.length / PAGE_SIZE);
-    currentPage = Math.max(1, page);
-    if (totalPages > 0) {
-      currentPage = Math.min(currentPage, totalPages);
-    }
-
-    const start = (currentPage - 1) * PAGE_SIZE;
-    const end = start + PAGE_SIZE;
-    const pageSlice = new Set(visibleIndices.slice(start, end));
-
-    items.forEach(function (item, index) {
-      item.hidden = !pageSlice.has(index);
-    });
-
-    renderPagination(visibleIndices.length, currentPage);
-  }
-
-  function applyFilters(resetPage) {
-    const query = searchInput.value.trim().toLowerCase();
-    const typeValue = typeSelect.value.toLowerCase();
-
-    visibleIndices = [];
-
-    items.forEach(function (item, index) {
-      let show = true;
-
-      if (query) {
-        const title = getTitle(item);
-        const categories = (item.dataset.categories || "").toLowerCase();
-        const description = getDescription(item);
-        const href = getHref(item);
-        show =
-          title.includes(query) ||
-          categories.includes(query) ||
-          description.includes(query) ||
-          href.includes(query);
-      }
-
-      if (show && typeValue) {
-        show = (item.dataset.type || "") === typeValue;
-      }
-
-      if (show && activeFilters.language.size > 0) {
-        const languages = (item.dataset.language || "")
-          .split(";")
-          .map(function (value) {
-            return value.trim().toLowerCase();
-          })
-          .filter(Boolean);
-        show = Array.from(activeFilters.language).some(function (filterValue) {
-          return languages.includes(filterValue);
-        });
-      }
-
-      if (show && activeFilters.super.size > 0) {
-        show = activeFilters.super.has((item.dataset.super || "").toLowerCase());
-      }
-
-      if (show) {
-        visibleIndices.push(index);
-      }
-    });
-
-    sortVisibleIndices(sortSelect.value);
-
-    if (countEl) {
-      countEl.textContent = String(visibleIndices.length);
-    }
-
-    if (noResultsMsg) {
-      noResultsMsg.style.display = visibleIndices.length === 0 ? "block" : "none";
-    }
-
-    if (resetPage !== false) {
-      currentPage = 1;
-    }
-
-    renderPage(currentPage);
-  }
-
-  function clearAll() {
-    searchInput.value = "";
-    typeSelect.value = "";
-    sortSelect.value = "default";
-    activeFilters.language.clear();
-    activeFilters.super.clear();
-    document.querySelectorAll(".filter-chip.active").forEach(function (chip) {
-      chip.classList.remove("active");
-      chip.setAttribute("aria-pressed", "false");
-    });
-    applyFilters(true);
-  }
-
-  function debounce(callback, timeout) {
-    let timerId;
-    return function () {
-      clearTimeout(timerId);
-      timerId = setTimeout(callback, timeout);
-    };
-  }
-
-  searchInput.addEventListener(
-    "input",
-    debounce(function () {
-      applyFilters(true);
-    }, 280)
-  );
-
-  typeSelect.addEventListener("change", function () {
-    applyFilters(true);
-  });
-
-  sortSelect.addEventListener("change", function () {
-    applyFilters(true);
-  });
-
-  if (clearBtn) {
-    clearBtn.addEventListener("click", clearAll);
-  }
-
-  if (noResultsClear) {
-    noResultsClear.addEventListener("click", clearAll);
-  }
-
-  controlsRoot.addEventListener("click", function (event) {
-    const chip = event.target.closest(".filter-chip");
-    if (chip) {
-      const group = chip.dataset.filterGroup;
-      const value = chip.dataset.filterValue;
-      if (!group || !value) {
+    function renderPagination(total) {
+      if (!paginationEl) return;
+      var totalPages = Math.ceil(total / PAGE_SIZE);
+      if (totalPages <= 1) {
+        paginationEl.innerHTML = "";
         return;
       }
 
-      if (chip.classList.contains("active")) {
-        chip.classList.remove("active");
-        chip.setAttribute("aria-pressed", "false");
-        activeFilters[group].delete(value);
+      var remaining = total - state.page * PAGE_SIZE;
+      if (remaining > 0) {
+        var loadMore = document.createElement("button");
+        loadMore.id = "load-more";
+        loadMore.className = "btn btn-sm";
+        loadMore.textContent = "Load more";
+        loadMore.setAttribute("aria-label", "Load more resources");
+        loadMore.addEventListener("click", () => {
+          state.page += 1;
+          applyFilters();
+          var updated = byId("load-more");
+          if (updated) updated.focus();
+        });
+        paginationEl.innerHTML = "";
+        paginationEl.appendChild(loadMore);
       } else {
-        chip.classList.add("active");
-        chip.setAttribute("aria-pressed", "true");
-        activeFilters[group].add(value);
+        paginationEl.innerHTML = "";
       }
-
-      applyFilters(true);
     }
-  });
 
-  catalogRoot.addEventListener("click", function (event) {
-    const expandButton = event.target.closest(".category-expand-toggle");
-    if (expandButton) {
-      event.stopPropagation();
-      const targetId = expandButton.getAttribute("data-id");
-      catalogRoot.querySelectorAll('[data-extra="' + targetId + '"]').forEach(function (badge) {
-        badge.classList.remove("d-none");
+    function resetAll() {
+      state.search = "";
+      state.type = "";
+      state.language = {};
+      state.super = {};
+      state.sort = "default";
+      state.page = 1;
+      if (searchInput) searchInput.value = "";
+      if (typeSelect) typeSelect.value = "";
+      if (sortSelect) sortSelect.value = "default";
+      document.querySelectorAll(".filter-chip").forEach((el) => {
+        el.setAttribute("aria-pressed", "false");
       });
-      expandButton.style.display = "none";
+      applyFilters();
     }
-  });
 
-  if (gridViewBtn) {
-    gridViewBtn.addEventListener("change", function () {
-      if (gridViewBtn.checked) {
-        updateViewMode("grid");
+    if (controlsRoot) {
+      controlsRoot.addEventListener("click", (e) => {
+        var btn = e.target.closest(".filter-chip[data-filter-group]");
+        if (!btn) return;
+        var group = btn.getAttribute("data-filter-group");
+        var value = btn.getAttribute("data-filter-value");
+        var pressed = btn.getAttribute("aria-pressed") === "true";
+        btn.setAttribute("aria-pressed", pressed ? "false" : "true");
+        if (pressed) {
+          delete state[group][value];
+        } else {
+          state[group][value] = true;
+        }
+        state.page = 1;
+        applyFilters();
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener("input", () => {
+        state.search = searchInput.value.trim();
+        state.page = 1;
+        applyFilters();
+      });
+    }
+    if (typeSelect) {
+      typeSelect.addEventListener("change", () => {
+        state.type = typeSelect.value;
+        state.page = 1;
+        applyFilters();
+      });
+    }
+    if (sortSelect) {
+      sortSelect.addEventListener("change", () => {
+        state.sort = sortSelect.value;
+        state.page = 1;
+        applyFilters();
+      });
+    }
+    if (clearBtn) {
+      clearBtn.addEventListener("click", resetAll);
+    }
+    if (noResultsMsg) {
+      var noResultsClear = noResultsMsg.querySelector("button");
+      if (noResultsClear) {
+        noResultsClear.addEventListener("click", resetAll);
       }
-    });
+    }
+
+    applyFilters();
   }
 
-  if (listViewBtn) {
-    listViewBtn.addEventListener("change", function () {
-      if (listViewBtn.checked) {
-        updateViewMode("list");
-      }
-    });
-  }
-
-  updateViewMode("grid");
-  applyFilters(true);
-});
+  document.addEventListener("DOMContentLoaded", init);
+})();

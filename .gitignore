@@ -20,11 +20,7 @@ __pycache__/
 *.Rproj
 *.bak
 
-# renv (keep lockfile and activate script, ignore installed libraries)
-renv/library/
-renv/staging/
-renv/python/
-renv/cache/
+# rv (project library ignored via rv/.gitignore; rproject.toml + rv.lock tracked)
 
 # Quarto / rendering caches and temp files
 .quarto/
@@ -44,3 +40,5 @@ Thumbs.db
 
 /sandbox/**
 !/sandbox/gen_descriptions.py
+
+/.quarto/

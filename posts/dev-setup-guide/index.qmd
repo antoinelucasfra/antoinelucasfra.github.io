@@ -4,8 +4,7 @@ description: "A comprehensive guide to setting up R, Python, and VS Code for mod
 author: "Antoine Lucas"
 date: "2024-10-15"
 categories: [R, Python, VS Code, Setup, Tutorial]
-image: "../../assets/images/blog-placeholder.svg"
-draft: true
+image: ../../assets/images/covers/dev-setup-guide.svg
 ---
 
 ## Introduction

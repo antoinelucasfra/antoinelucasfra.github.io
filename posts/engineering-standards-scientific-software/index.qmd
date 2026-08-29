@@ -3,7 +3,7 @@ title: "Engineering Standards for Scientific Software"
 author: "Antoine Lucas"
 date: "2026-03-14"
 categories: [Engineering, Documentation, CI/CD, Standards]
-image: "../../assets/images/blog-placeholder.svg"
+image: ../../assets/images/covers/engineering-standards-scientific-software.svg
 description: "How I approach architecture, tests, documentation, CI/CD, handover, and technical training when building internal tools for scientific teams."
 ---
 
