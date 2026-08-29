@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Cover for Running ShinyProxy Well: Docker, Operations, and Packaged Shiny Apps">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F1117"/>
+      <stop offset="100%" stop-color="#161B22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity="0.18" stroke="#30363D" stroke-width="1">
+    <path d="M0 225H1600"/><path d="M0 450H1600"/><path d="M0 675H1600"/>
+    <path d="M400 0V900"/><path d="M800 0V900"/><path d="M1200 0V900"/>
+  </g>
+  <circle cx="1249" cy="202" r="240" fill="#0284C7" opacity="0.13"/>
+  <circle cx="1339" cy="242" r="130" fill="#38BDF8" opacity="0.10"/>
+  <rect x="120" y="130" width="68" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="154.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">R</text><rect x="212" y="130" width="156" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="290.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">SHINY</text>
+  <text x="120" y="398" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">RUNNING SHINYPROXY WELL:</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">DOCKER, OPERATIONS, AND PACKAGED</text><text x="120" y="562" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">SHINY APPS</text>
+  <rect x="120" y="640" width="220" height="14" rx="7" fill="url(#accent)"/>
+  <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas — field notes</text>
+</svg>

@@ -4,7 +4,7 @@ author: "Antoine Lucas"
 date: "2025-11-28"
 categories: [DevContainers, Docker, R, Python, Reproducibility, VS Code]
 description: "How to use devcontainers and a pre-built personal image to give every team member — including non-developers — an identical, low-setup R + Python environment."
-image: "../../assets/images/blog-placeholder.svg"
+image: ../../assets/images/covers/devcontainers-reproducible-environments.svg
 ---
 
 ## The problem

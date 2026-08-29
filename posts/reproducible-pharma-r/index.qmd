@@ -4,17 +4,7 @@ description: "A practical guide to creating reproducible data analysis workflows
 author: "Antoine Lucas"
 date: "2024-11-15"
 categories: [R, Pharma, Reproducibility, Best Practices]
-image: "../../assets/images/blog-placeholder.svg"
-draft: true
-custom-callout:
-  pharma-note:
-    title: "Regulatory Note"
-    color: "#17A89E"
-    icon-symbol: "fa-flask"
-  code-note:
-    title: "Code Pattern"
-    color: "#1a2a4a"
-    icon-symbol: "fa-code"
+image: ../../assets/images/covers/reproducible-pharma-r.svg
 ---
 
 ## Introduction
@@ -29,9 +19,7 @@ Regulatory agencies like the U.S. Food and Drug Administration (FDA) and the Eur
 
 - **Documented** — Clear records of what was done
 - **Traceable** — Ability to follow the analysis from raw data to conclusions
-- **Reproducible** — The same inputs should produce the same outputs
-
-::: {.callout-pharma-note}
+::: {.callout-important} title="Regulatory Note"
 Under 21 CFR Part 11 and comparable EMA guidance, "reproducible" means more than running the same script twice. It means you can demonstrate, on demand and later on, exactly which code and which software stack produced a specific result.
 :::
 
@@ -65,9 +53,7 @@ renv::restore()     # <3>
 ```
 1. Initialises renv for the project, creating `renv.lock` and the private library.
 2. Captures the current state of all installed packages into `renv.lock`.
-3. Installs the exact package versions recorded in `renv.lock` — use this on a new machine or after a `git pull`.
-
-::: {.callout-code-note}
+::: {.callout-tip} title="Code Pattern"
 Always run `renv::snapshot()` **before** committing. The lockfile in your repository should reflect the state of the library you just tested, not the state from last week.
 :::
 

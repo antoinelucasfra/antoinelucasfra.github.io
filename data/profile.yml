@@ -34,11 +34,14 @@ home:
         Design of experiments, mixed models, biostatistics in GxP environments. I work across the full analytical chain, from raw assay data through to interpretation for regulatory submissions.
     - title: Reproducible engineering & MLOps
       body: >
-        Everything in Git, runnable six months later with uv sync or renv::restore(), documented well enough to hand over. CI/CD, containers, environment pinning, and qualification-minded delivery show up in most of my projects.
+        Everything in Git, runnable six months later with uv sync or rv sync, documented well enough to hand over. CI/CD, containers, environment pinning, and qualification-minded delivery show up in most of my projects.
     - title: ML when it is the right tool
       body: >
         Computer vision, NLP pipelines, LLM-assisted extraction for scientific applications. I like building ML systems, but I like shipping the right product more than fitting a model into a problem that does not need one.
   selected_proof:
+    - title: "Case Study: Capacity Planning Platform"
+      href: /posts/shiny-capacity-platform/
+      description: end-to-end R Shiny platform for global manufacturing resource planning — architecture, trade-offs, and lessons.
     - title: Engineering Standards for Scientific Software
       href: /posts/engineering-standards-scientific-software/
       description: how I think about tests, documentation, CI/CD, handover, and technical training.
@@ -183,13 +186,42 @@ skills:
   - label: Applications & delivery
     items: [R Shiny (golem), FastAPI, Quarto, ggplot2, Plotly, Streamlit]
   - label: ML & AI
-    items: [scikit-learn, PyTorch, Hugging Face, PEFT / LoRA, sentence-transformers, faster-whisper, OpenCV]
+    items:
+      [
+        scikit-learn,
+        PyTorch,
+        Hugging Face,
+        PEFT / LoRA,
+        sentence-transformers,
+        faster-whisper,
+        OpenCV,
+      ]
   - label: Statistics & methods
-    items: [DoE, Mixed Models, Bayesian optimisation, PLS, PERMANOVA, survival analysis, SPC]
+    items:
+      [
+        DoE,
+        Mixed Models,
+        Bayesian optimisation,
+        PLS,
+        PERMANOVA,
+        survival analysis,
+        SPC,
+      ]
   - label: MLOps & infrastructure
-    items: [Docker, GitHub Actions, Azure ML, Databricks, Posit Connect, renv, uv]
+    items:
+      [Docker, GitHub Actions, Azure ML, Databricks, Posit Connect, renv, uv]
   - label: Engineering & domains
-    items: [Git, CI/CD, automated testing, architecture design, GxP, Clinical biostatistics, Multi-omics, Cosmetic R&D]
+    items:
+      [
+        Git,
+        CI/CD,
+        automated testing,
+        architecture design,
+        GxP,
+        Clinical biostatistics,
+        Multi-omics,
+        Cosmetic R&D,
+      ]
 
 additional:
   certifications:

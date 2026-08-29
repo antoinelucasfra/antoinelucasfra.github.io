@@ -4,7 +4,7 @@ description: "A beginner's guide to creating beautiful, reproducible reports usi
 author: "Antoine Lucas"
 date: "2024-07-10"
 categories: [Quarto, Tutorial, Reproducibility]
-image: "../../assets/images/blog-placeholder.svg"
+image: ../../assets/images/covers/quarto-getting-started.svg
 ---
 
 ## Why Quarto is worth learning
@@ -108,6 +108,22 @@ If the document is going to be rerun by someone else, explain the data source an
 ::: {.callout-warning}
 Do not use Quarto as a substitute for version control. The document is reproducible only if the code, input data, and environment are also under control.
 :::
+
+One syntax detail worth memorizing: when callouts (or any panels) nest, the outer fence needs **more colons** than the inner one — otherwise the first inner `:::` closes the outer block:
+
+```` markdown
+:::: {.callout-note}
+Outer callout.
+
+::: {.callout-tip}
+Nested callout.
+:::
+
+Still inside the outer callout.
+::::
+````
+
+Rule of thumb: count your nesting depth, add that many colons to the outermost fence.
 
 ## When Quarto is the right choice
 

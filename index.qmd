@@ -7,6 +7,15 @@ format:
     toc: false
     grid:
       body-width: 1060px
+listing:
+  - id: latest-posts
+    contents: posts
+    type: grid
+    grid-columns: 3
+    image-height: 150px
+    sort: "date desc"
+    page-size: 3
+    fields: [image, date, title]
 execute:
   echo: false
 ---
@@ -20,3 +29,10 @@ source(here::here("_helpers", "profile_render.R"))
 profile <- load_profile()
 render_homepage(profile)
 ```
+
+## Latest from the blog {.section-heading-latest}
+
+::: {#latest-posts}
+:::
+
+:[All posts →](/blog.html){.btn .btn-outline-secondary .btn-sm}

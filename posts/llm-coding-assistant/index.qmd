@@ -4,12 +4,7 @@ author: "Antoine Lucas"
 date: "2025-10-14"
 categories: [AI Tools, GitHub Copilot, LLM, Development, VS Code, Ollama, Workflow]
 description: "Honest notes on a three-layer AI stack — Copilot, OpenCode, and Ollama — from daily use in pharma and cosmetics R&D. Real gains, real failure modes."
-image: "../../assets/images/blog-placeholder.svg"
-custom-callout:
-  warning-stat:
-    title: "Statistical Caution"
-    color: "#C0392B"
-    icon-symbol: "fa-triangle-exclamation"
+image: ../../assets/images/covers/llm-coding-assistant.svg
 ---
 
 ## Honest preamble
@@ -101,9 +96,8 @@ A few patterns that work well:
 
 - **Statistical model selection.** Do not ask Copilot whether to use a mixed model or a generalized estimating equations (GEE) model for your longitudinal data. It will give you a plausible-sounding answer that may be wrong for your specific design. This requires domain judgment.
 - **P-value interpretation.** I've seen Copilot generate commentary like "the result is highly significant (p = 0.03)" in a context where 0.03 is borderline given the multiple testing burden. It doesn't know your correction strategy.
-- **Regulatory logic.** Any code that feeds into a regulatory document needs human-authored logic. Don't let Copilot scaffold the decision rules.
 
-::: {.callout-warning-stat}
+::: {.callout-warning} title="Statistical Caution"
 A model completing your statistical code has no understanding of your study design, missing data mechanism, or correction strategy. Plausible-looking code that chooses the wrong model or misinterprets an effect size can pass code review and still produce wrong conclusions. Statistical judgment is not delegable to autocomplete.
 :::
 
