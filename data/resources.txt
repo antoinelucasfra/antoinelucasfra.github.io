@@ -9484,3 +9484,1179 @@ category: "Machine Learning"
 description: "Meet Z.ai, your free AI-powered assistant. Build websites, create slides, analyze data, and get instant answers. Fast, smart, and reliable, powered by GLM-5."
 date: ""
 ---
+---
+title: "gram-lang"
+type: "Website"
+link: "https://gram-lang.org/fr/"
+language: "Other"
+category: "Tools;Domain Language"
+description: "Site officiel de gram-lang, DSL pour recettes et textes structurés bilingues."
+---
+---
+title: "jellydn/my-ai-tools cli.sh"
+type: "Repository"
+link: "https://github.com/jellydn/my-ai-tools/blob/main/cli.sh"
+language: "Other"
+category: "AI;CLI;Dotfiles"
+description: "Setup local agentic AI tooling via a single shell script."
+---
+---
+title: "cc-pricing.all-the.rest"
+type: "Website"
+link: "https://cc-pricing.all-the.rest/?sort=requests%3Adesc"
+language: "Other"
+category: "AI;Pricing"
+description: "Comparateur de prix de modèles AI / endpoints Claude-Compatibles, tri par requêtes."
+---
+---
+title: "shiny-prep"
+type: "Repository"
+link: "https://github.com/buddha2490/shiny-prep"
+language: "R"
+category: "Shiny"
+description: "Outils de préparation de données et d'apps Shiny."
+---
+---
+title: "engram"
+type: "Repository"
+link: "https://github.com/nagisanzenin/engram"
+language: "Other"
+category: "AI;Memory"
+description: "Mémoire pour agents IA."
+---
+---
+title: "Graft"
+type: "Repository"
+link: "https://github.com/NanoNets/Graft"
+language: "Python"
+category: "AI;OCR"
+description: "Outil NanoNets pour OCR / extraction structurée."
+---
+---
+title: "r-project-template"
+type: "Repository"
+link: "https://github.com/novica/r-project-template"
+language: "R"
+category: "Best Practices;Templates"
+description: "Template de projet R."
+---
+---
+title: "openmed"
+type: "Repository"
+link: "https://github.com/maziyarpanahi/openmed"
+language: "Python"
+category: "AI;Medical;NLP"
+description: "Pipelines et modèles LLM orientés médical open-source."
+---
+---
+title: "omp.sh"
+type: "Website"
+link: "https://omp.sh/"
+language: "Other"
+category: "AI;CLI;Tools"
+description: "OMP — outils AI / coding-agent."
+---
+---
+title: "awesome-pi.site"
+type: "Website"
+link: "https://awesome-pi.site/"
+language: "Other"
+category: "AI;CLI;Resources"
+description: "Liste curated de ressources pour pi coding-agent."
+---
+---
+title: "slidecraft-101"
+type: "Website"
+link: "https://emilhvitfeldt.com/project/slidecraft-101/"
+language: "Other"
+category: "Slides;Quarto"
+description: "Atelier slidecrafting de Emil Hvitfeldt."
+---
+---
+title: "slidecrafting-book.com"
+type: "Repository"
+link: "https://github.com/EmilHvitfeldt/slidecrafting-book.com"
+language: "Other"
+category: "Slides;Quarto;Book"
+description: "Source du livre slidecrafting de Emil Hvitfeldt."
+---
+---
+title: "pierrot.show"
+type: "Website"
+link: "https://pierrot.show/"
+language: "Other"
+category: "Slides;Quarto"
+description: "Démo / showcase de slides Quarto."
+---
+---
+title: "Rencontres R"
+type: "Website"
+link: "https://www.rencontresr.fr/rencontres.html"
+language: "R"
+category: "Conference;French"
+description: "Site des Rencontres R francophones."
+---
+---
+title: "awesome-copilot.github.com"
+type: "Community"
+link: "https://awesome-copilot.github.com/"
+language: "Other"
+category: "AI;GitHub Copilot;Resources"
+description: "Liste curated de ressources GitHub Copilot."
+---
+---
+title: "awesomeclaude.ai"
+type: "Community"
+link: "https://awesomeclaude.ai/"
+language: "Other"
+category: "AI;Claude;Resources"
+description: "Liste curated de ressources Claude / Claude Code."
+---
+---
+title: "github/awesome-copilot"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot"
+language: "Other"
+category: "AI;GitHub Copilot;Resources"
+description: "Collection communautaire d'instructions, prompts et hooks pour GitHub Copilot."
+---
+---
+title: "claude-code-best-practice"
+type: "Repository"
+link: "https://github.com/shanraisshan/claude-code-best-practice"
+language: "Other"
+category: "AI;Claude;Best Practices"
+description: "Recueil de bonnes pratiques pour Claude Code."
+---
+---
+title: "Transformers - Speech-to-Text"
+type: "Website"
+link: "https://huggingface.co/docs/transformers/model_doc/speech_to_text"
+language: "Python"
+category: "Deep Learning;Speech;Transformers"
+description: "Doc Hugging Face Transformers pour modèles speech-to-text."
+---
+---
+title: "SadTalker - Real-time ASR Streaming App"
+type: "Blog"
+link: "https://sadtalkerai.com/real-time-speech-text-streaming-app-hugging-face/"
+language: "Python"
+category: "Speech;Deep Learning;Tutorial"
+description: "Tutoriel app streaming speech-to-text temps réel sur Hugging Face."
+---
+---
+title: "GavinHuang/asr-demo"
+type: "Website"
+link: "https://huggingface.co/spaces/GavinHuang/asr-demo"
+language: "Python"
+category: "Speech;Demo"
+description: "Démo ASR sur Hugging Face Spaces."
+---
+---
+title: "yohann-data.fr - SweetAlert2"
+type: "Blog"
+link: "https://yohann-data.fr/posts/sweetalert2/"
+language: "R"
+category: "Shiny;Tutorial;French"
+description: "Article sur l'usage de SweetAlert2 dans Shiny."
+---
+---
+title: "leeroopedia"
+type: "Website"
+link: "https://leeroopedia.com/index.php/Main_Page"
+language: "Other"
+category: "AI;Knowledge Base"
+description: "Wiki encyclopédique orienté AI / LLM."
+---
+---
+title: "ColinFay/dockerstats"
+type: "Repository"
+link: "https://github.com/ColinFay/dockerstats"
+language: "R"
+category: "Docker;R"
+description: "Stats Docker par Colin Fay."
+---
+---
+title: "shinyloadtest"
+type: "Package"
+link: "https://rstudio.github.io/shinyloadtest/"
+language: "R"
+category: "Shiny;Performance;Testing"
+description: "Outil RStudio pour load-testing d'apps Shiny."
+---
+---
+title: "roborev.io"
+type: "Website"
+link: "https://www.roborev.io/"
+language: "Other"
+category: "AI;Code Review"
+description: "Service de revue de code assistée par AI."
+---
+---
+title: "rtk-ai/rtk"
+type: "Repository"
+link: "https://github.com/rtk-ai/rtk/"
+language: "Other"
+category: "AI;CLI"
+description: "Outil CLI pour réduire la verbosité des agents AI."
+---
+---
+title: "ivanleo - agentic search"
+type: "Blog"
+link: "https://ivanleo.com/blog/agentic-search"
+language: "Other"
+category: "AI;Search"
+description: "Réflexions sur la recherche agentique."
+---
+---
+title: "emilhvitfeldt - ast-grep + Claude Code"
+type: "Blog"
+link: "https://emilhvitfeldt.com/post/ast-grep-r-claude-code/"
+language: "R"
+category: "R;Tools;AI"
+description: "Usage d'ast-grep avec Claude Code côté R."
+---
+---
+title: "boristane - how I use Claude Code"
+type: "Blog"
+link: "https://boristane.com/blog/how-i-use-claude-code/"
+language: "Other"
+category: "AI;Workflow;Claude"
+description: "Workflow opinionated d'usage de Claude Code par Boris Tane."
+---
+---
+title: "awesome-copilot - azure-devops-pipelines instructions"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/instructions/azure-devops-pipelines.instructions.md"
+language: "Other"
+category: "Azure DevOps;AI;Instructions"
+description: "Instructions Copilot pour Azure DevOps Pipelines."
+---
+---
+title: "awesome-copilot - containerization-docker-best-practices"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/instructions/containerization-docker-best-practices.instructions.md"
+language: "Other"
+category: "Docker;Best Practices;AI"
+description: "Instructions Copilot pour Docker best practices."
+---
+---
+title: "awesome-copilot - context7 instructions"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/instructions/context7.instructions.md"
+language: "Other"
+category: "AI;Context7;Instructions"
+description: "Instructions Copilot pour Context7."
+---
+---
+title: "awesome-copilot - power-bi-dax-best-practices"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/instructions/power-bi-dax-best-practices.instructions.md"
+language: "Other"
+category: "Power BI;DAX;AI"
+description: "Instructions Copilot pour DAX Power BI."
+---
+---
+title: "awesome-copilot - power-bi-custom-visuals-development"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/instructions/power-bi-custom-visuals-development.instructions.md"
+language: "Other"
+category: "Power BI;Custom Visuals;AI"
+description: "Instructions Copilot pour dev de visuels Power BI custom."
+---
+---
+title: "awesome-copilot - power-bi-data-modeling-best-practices"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/instructions/power-bi-data-modeling-best-practices.instructions.md"
+language: "Other"
+category: "Power BI;Data Modeling;AI"
+description: "Instructions Copilot pour modélisation de données Power BI."
+---
+---
+title: "awesome-copilot - power-bi-devops-alm-best-practices"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/instructions/power-bi-devops-alm-best-practices.instructions.md"
+language: "Other"
+category: "Power BI;DevOps;AI"
+description: "Instructions Copilot pour ALM / DevOps Power BI."
+---
+---
+title: "awesome-copilot - power-bi-report-design-best-practices"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/instructions/power-bi-report-design-best-practices.instructions.md"
+language: "Other"
+category: "Power BI;Report Design;AI"
+description: "Instructions Copilot pour la conception de rapports Power BI."
+---
+---
+title: "awesome-copilot - rust instructions"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/instructions/rust.instructions.md"
+language: "Other"
+category: "Rust;AI;Instructions"
+description: "Instructions Copilot pour Rust."
+---
+---
+title: "awesome-copilot - README.hooks"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/docs/README.hooks.md"
+language: "Other"
+category: "AI;Hooks;Documentation"
+description: "Doc awesome-copilot sur les hooks."
+---
+---
+title: "awesome-copilot - session-auto-commit hook"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/hooks/session-auto-commit/README.md"
+language: "Other"
+category: "AI;Git;Hooks"
+description: "Hook d'auto-commit de session pour Copilot."
+---
+---
+title: "awesome-copilot - azure-cloud-development plugin"
+type: "Repository"
+link: "https://github.com/github/awesome-copilot/blob/main/plugins/azure-cloud-development/README.md"
+language: "Other"
+category: "Azure;Cloud;AI"
+description: "Plugin Copilot pour dev cloud Azure."
+---
+---
+title: "slidecrafting-book.com"
+type: "Website"
+link: "https://slidecrafting-book.com/"
+language: "Other"
+category: "Slides;Quarto;Book"
+description: "Site du livre slidecrafting."
+---
+---
+title: "gary149/llama-agent"
+type: "Repository"
+link: "https://github.com/gary149/llama-agent"
+language: "Python"
+category: "AI;Agents;Llama"
+description: "Agent Llama par gary149."
+---
+---
+title: "R Project Conference 2026 (Romania)"
+type: "Conference"
+link: "https://r-project.ro/conference2026.html#Registration"
+language: "R"
+category: "Conference;R"
+description: "Inscription à la conférence R 2026 (Roumanie)."
+---
+---
+title: "ollama-litellm-openwebui compose"
+type: "Repository"
+link: "https://github.com/ruanbekker/awesome-docker-compose/tree/main/ollama-litellm-openwebui"
+language: "Other"
+category: "Docker;AI;LLM"
+description: "Stack docker-compose Ollama + LiteLLM + Open WebUI."
+---
+---
+title: "docker/awesome-compose - postgresql-pgadmin"
+type: "Repository"
+link: "https://github.com/docker/awesome-compose/tree/master/postgresql-pgadmin"
+language: "Other"
+category: "Docker;PostgreSQL"
+description: "Compose officiel PostgreSQL + pgAdmin."
+---
+---
+title: "D4Vinci/Scrapling"
+type: "Repository"
+link: "https://github.com/D4Vinci/Scrapling"
+language: "Python"
+category: "Web Scraping"
+description: "Scraper web Python par D4Vinci."
+---
+---
+title: "statzhero/tidy-r-skill"
+type: "Repository"
+link: "https://github.com/statzhero/tidy-r-skill"
+language: "R"
+category: "R;Tidyverse;Skills"
+description: "Skill Claude/AI pour tidyverse R."
+---
+---
+title: "vllm-project/vllm"
+type: "Repository"
+link: "https://github.com/vllm-project/vllm"
+language: "Python"
+category: "AI;LLM;Inference"
+description: "Moteur de serving LLM haute perf."
+---
+---
+title: "onyx"
+type: "Repository"
+link: "https://github.com/onyx-dot-app/onyx"
+language: "Python"
+category: "AI;RAG;Search"
+description: "Plateforme RAG / enterprise search open-source."
+---
+---
+title: "Claude resources/tutorials"
+type: "Website"
+link: "https://claude.com/resources/tutorials"
+language: "Other"
+category: "AI;Claude;Tutorials"
+description: "Tutoriels officiels Anthropic Claude."
+---
+---
+title: "Jan"
+type: "Website"
+link: "https://www.jan.ai/"
+language: "Other"
+category: "AI;Local LLM"
+description: "Client desktop LLM local open-source."
+---
+---
+title: "rworks.dev - Claude skills for R users"
+type: "Blog"
+link: "https://rworks.dev/posts/claude-skills-for-r-users/"
+language: "R"
+category: "R;AI;Claude"
+description: "Article sur les skills Claude pour utilisateurs R."
+---
+---
+title: "drmowinckels.io - dotfiles coding agents"
+type: "Blog"
+link: "https://drmowinckels.io/blog/2026/dotfiles-coding-agents/"
+language: "R"
+category: "R;Dotfiles;AI"
+description: "Dotfiles pour coding-agents par Athaea MOWinckels."
+---
+---
+title: "quickSentiment"
+type: "Package"
+link: "https://cran.r-project.org/web/packages/quickSentiment/index.html"
+language: "R"
+category: "R;NLP;Sentiment"
+description: "Package R pour analyse de sentiment rapide."
+---
+---
+title: "korben.info - pyinfra"
+type: "Blog"
+link: "https://korben.info/pyinfra-automatisation-infrastructure-python.html"
+language: "French"
+category: "Python;DevOps;Infrastructure"
+description: "Article Korben sur pyinfra (automatisation infra Python)."
+---
+---
+title: "nyko.ai learn-ai-fast"
+type: "Course"
+link: "https://nyko.ai/learn-ai-fast/chapter/1"
+language: "Other"
+category: "AI;Course"
+description: "Cours accéléré AI / LLM par nyko.ai."
+---
+---
+title: "tabular-foundation"
+type: "Website"
+link: "https://tabular-foundation.christophmolnar.com/"
+language: "Other"
+category: "Machine Learning;Tabular"
+description: "Fondation Tabular par Christoph Molnar."
+---
+---
+title: "codegraphcontext"
+type: "Website"
+link: "https://codegraphcontext.vercel.app/"
+language: "Other"
+category: "AI;Code Search;Context"
+description: "Outil de contexte code-graph pour agents AI."
+---
+---
+title: "EmilHvitfeldt/quarto-revealjs-editable"
+type: "Repository"
+link: "https://github.com/EmilHvitfeldt/quarto-revealjs-editable"
+language: "R"
+category: "Quarto;Reveal.js;Slides"
+description: "Extension quarto-revealjs éditable par Emil Hvitfeldt."
+---
+---
+title: "jolars/panache"
+type: "Website"
+link: "https://jolars.github.io/panache/"
+language: "R"
+category: "R;Visualization"
+description: "Package panache (thèmes ggplot)."
+---
+---
+title: "karanbansal - Claude Code LSP"
+type: "Blog"
+link: "https://karanbansal.in/blog/claude-code-lsp/"
+language: "Other"
+category: "AI;LSP;Claude"
+description: "Intégration LSP pour Claude Code."
+---
+---
+title: "f/prompts.chat"
+type: "Repository"
+link: "https://github.com/f/prompts.chat"
+language: "Other"
+category: "AI;Prompts"
+description: "Collection / partage de prompts."
+---
+---
+title: "alibaba/OpenSandbox"
+type: "Repository"
+link: "https://github.com/alibaba/OpenSandbox"
+language: "Python"
+category: "AI;Sandbox;Agents"
+description: "Sandbox open-source Alibaba pour agents."
+---
+---
+title: "dein.fr - plan and checkout"
+type: "Blog"
+link: "https://www.dein.fr/posts/2026-01-08-write-and-checkout-the-plan"
+language: "French"
+category: "AI;Workflow;Plan"
+description: "Workflow 'write-and-checkout the plan' (dein.fr)."
+---
+---
+title: "pytogether playground"
+type: "Website"
+link: "https://pytogether.org/playground"
+language: "Python"
+category: "Python;Community"
+description: "Playground Python collaboratif."
+---
+---
+title: "aitransformer - AI model monitoring"
+type: "Blog"
+link: "https://aitransformer.online/ai-model-monitoring-strategy/"
+language: "Other"
+category: "AI;MLOps;Monitoring"
+description: "Stratégies de monitoring de modèles AI."
+---
+---
+title: "conductorquantum - Coda MCP"
+type: "Blog"
+link: "https://conductorquantum.substack.com/p/introducing-coda-mcp-quantum-tools-for-ai-agents"
+language: "Other"
+category: "AI;MCP;Quantum"
+description: "MCP Coda pour outils quantiques AI."
+---
+---
+title: "r-lib/Rapp"
+type: "Package"
+link: "https://github.com/r-lib/Rapp"
+language: "R"
+category: "R;CLI"
+description: "Package R pour CLI apps (Rapp)."
+---
+---
+title: "spicytakes.org"
+type: "Blog"
+link: "https://www.spicytakes.org/"
+language: "Other"
+category: "Industry;Opinion"
+description: "Blog d'opinions sur la tech."
+---
+---
+title: "spolu - no flow is the new flow"
+type: "Blog"
+link: "https://spolu.sh/notes/20260311_no_flow_is_the_new_flow.html"
+language: "Other"
+category: "AI;Workflow;Agents"
+description: "Notes sur le paradigme 'no flow is the new flow' (agents)."
+---
+---
+title: "Firefox GitHub Download Button Addon"
+type: "Repository"
+link: "https://addons.mozilla.org/en-US/firefox/addon/github-download-button-addon/"
+language: "Other"
+category: "Firefox;GitHub;Tools"
+description: "Module Firefox ajoutant un bouton de download GitHub."
+---
+---
+title: "r-mailing-lists.thecoatlessprofessor.com"
+type: "Community"
+link: "https://r-mailing-lists.thecoatlessprofessor.com/"
+language: "R"
+category: "R;Community;Mailing List"
+description: "Mirror / archive des mailing-lists R."
+---
+---
+title: "humanstatement.org"
+type: "Website"
+link: "https://humanstatement.org/"
+language: "Other"
+category: "Ethics;AI;Statement"
+description: "Site de la déclaration human-AI / human statement."
+---
+---
+title: "Elixir install (Linux)"
+type: "Website"
+link: "https://elixir-lang.org/install.html#gnulinux"
+language: "Other"
+category: "Elixir;Installation"
+description: "Instructions d'installation Elixir sur GNU/Linux."
+---
+---
+title: "share.streamlit.io - modeling-mindsets"
+type: "Website"
+link: "https://share.streamlit.io/-/auth/app?redirect_uri=https%3A%2F%2Fmodeling-mindsets.streamlit.app%2F"
+language: "Python"
+category: "Streamlit;Modeling"
+description: "Auth share Streamlit pour l'app modeling-mindsets."
+---
+---
+title: "mauriceboe/NOMAD"
+type: "Repository"
+link: "https://github.com/mauriceboe/NOMAD"
+language: "Other"
+category: "Tools;Misc"
+description: "Projet NOMAD (repository)."
+---
+---
+title: "data-goblin/power-bi-agentic-development"
+type: "Repository"
+link: "https://github.com/data-goblin/power-bi-agentic-development?tab=readme-ov-file"
+language: "Other"
+category: "Power BI;AI;Agents"
+description: "Développement agentic Power BI."
+---
+---
+title: "typst-in-production - crash course"
+type: "Course"
+link: "https://typst-in-production.com/crash-course/lesson-1/"
+language: "Other"
+category: "Typst;Tutorial"
+description: "Crash course Typst en production (lesson 1)."
+---
+---
+title: "TabArena leaderboard"
+type: "Website"
+link: "https://huggingface.co/spaces/TabArena/leaderboard"
+language: "Other"
+category: "Machine Learning;Tabular;Benchmark"
+description: "Leaderboard TabArena (données tabulaires)."
+---
+---
+title: "mlcontests.com"
+type: "Website"
+link: "https://mlcontests.com/"
+language: "Other"
+category: "Machine Learning;Competition"
+description: "Agrégateur de compétitions ML."
+---
+---
+title: "emantzoo/excel2r"
+type: "Repository"
+link: "https://github.com/emantzoo/excel2r"
+language: "R"
+category: "R;Excel;Migration"
+description: "Outil de conversion Excel -> R."
+---
+---
+title: "pi.dev"
+type: "Website"
+link: "https://pi.dev/"
+language: "Other"
+category: "AI;Coding Agent"
+description: "Site de pi coding-agent."
+---
+---
+title: "Transformers contributing with Codex"
+type: "Blog"
+link: "https://huggingface.co/blog/nielsr/contributing-to-transformers-with-codex"
+language: "Python"
+category: "Deep Learning;Transformers;AI"
+description: "Contribuer à Transformers avec Codex AI."
+---
+---
+title: "rworks.dev - skills in RStudio Posit Assistant"
+type: "Blog"
+link: "https://rworks.dev/posts/skills-in-rstudio-posit-assistant/"
+language: "R"
+category: "R;RStudio;AI"
+description: "Skills pour Posit Assistant dans RStudio."
+---
+---
+title: "ropensci - tree-sitter overview"
+type: "Blog"
+link: "https://ropensci.org/blog/2026/04/02/tree-sitter-overview/"
+language: "R"
+category: "R;Tree-sitter;Tools"
+description: "Aperçu tree-sitter côté R par rOpenSci."
+---
+---
+title: "RoggeOhta/awesome-codex-cli"
+type: "Repository"
+link: "https://github.com/RoggeOhta/awesome-codex-cli"
+language: "Other"
+category: "AI;Codex;CLI;Resources"
+description: "Liste curated de ressources pour Codex CLI."
+---
+---
+title: "open-vsx - vscode-flowr"
+type: "Package"
+link: "https://open-vsx.org/extension/code-inspect/vscode-flowr"
+language: "R"
+category: "R;VS Code;LSP"
+description: "Extension VS Code flowr (LSP R) sur open-vsx."
+---
+---
+title: "ggilles.dev"
+type: "Blog"
+link: "https://ggilles.dev/"
+language: "Other"
+category: "Blog;Data"
+description: "Blog personnel ggilles."
+---
+---
+title: "Bayesian Workflow - sharks case study"
+type: "Website"
+link: "https://avehtari.github.io/Bayesian-Workflow/sharks/sharks.html"
+language: "Other"
+category: "Statistics;Bayesian"
+description: "Cas d'étude workflow bayésien (sharks) par Aki Vehtari."
+---
+---
+title: "goose-docs"
+type: "Website"
+link: "https://goose-docs.ai/"
+language: "Other"
+category: "AI;Agents;Documentation"
+description: "Docs de Goose (coding agent AI)."
+---
+---
+title: "entire.io"
+type: "Website"
+link: "https://entire.io/"
+language: "Other"
+category: "AI;Codebase;Context"
+description: "Service Entire (contexte codebase pour AI)."
+---
+---
+title: "blankuzr/R-Skills - r-package-dev SKILL.md"
+type: "Repository"
+link: "https://github.com/blankuzr/R-Skills/blob/main/claude/.claude/skills/r-package-dev/SKILL.md"
+language: "R"
+category: "R;Claude;Skills"
+description: "Skill Claude pour dev package R (blankuzr)."
+---
+---
+title: "thedecipherist - docker developer workflow 2026"
+type: "Blog"
+link: "https://thedecipherist.com/articles/the_docker_developer_workflow_guide_2026/#docker-desktop-stop-treating-it-like-an-installer"
+language: "Other"
+category: "Docker;Workflow"
+description: "Guide workflow Docker pour devs (2026) par thedecipherist."
+---
+---
+title: "r-statistics.co - OOP in R"
+type: "Website"
+link: "https://r-statistics.co/OOP-in-R.html"
+language: "R"
+category: "R;OOP;Tutorial"
+description: "Tutorial OOP en R (S3/S4/R6)."
+---
+---
+title: "quarto-revealjs-editable (site)"
+type: "Website"
+link: "https://emilhvitfeldt.github.io/quarto-revealjs-editable/"
+language: "R"
+category: "Quarto;Reveal.js;Slides"
+description: "Démo site quarto-revealjs-editable."
+---
+---
+title: "vllm.ai"
+type: "Website"
+link: "https://vllm.ai/"
+language: "Python"
+category: "AI;LLM;Inference"
+description: "Site officiel vLLM."
+---
+---
+title: "Transformers to MLX"
+type: "Blog"
+link: "https://huggingface.co/blog/transformers-to-mlx"
+language: "Python"
+category: "Deep Learning;MLX;Transformers"
+description: "Convertir Transformers vers MLX (Apple Silicon)."
+---
+---
+title: "biinsight - agentic AI in Power BI & Fabric pt 2"
+type: "Blog"
+link: "https://biinsight.com/agentic-ai-in-power-bi-and-fabric-part-2-getting-started-with-vs-code-github-copilot-and-safe-mcp-setup/"
+language: "Other"
+category: "Power BI;Fabric;AI"
+description: "Partie 2 agentic AI dans Power BI / Fabric (Copilot + MCP)."
+---
+---
+title: "langchain-ai/deepagent"
+type: "Repository"
+link: "https://github.com/langchain-ai/deepagent"
+language: "Python"
+category: "AI;Agents;LangChain"
+description: "Deep agent framework par LangChain."
+---
+---
+title: "addyosmani/agent-skills"
+type: "Repository"
+link: "https://github.com/addyosmani/agent-skills"
+language: "Other"
+category: "AI;Skills;Agents"
+description: "Collection de skills d'agents par Addy Osmani."
+---
+---
+title: "eitsupi/arf"
+type: "Repository"
+link: "https://github.com/eitsupi/arf"
+language: "R"
+category: "R;CLI;Tools"
+description: "arf — outil CLI R par eitsupi."
+---
+---
+title: "deepwiki.com"
+type: "Website"
+link: "https://deepwiki.com/"
+language: "Other"
+category: "AI;Knowledge Base;Code"
+description: "Wiki deep / contextuelle pour code."
+---
+---
+title: "Mega4alik/ollm"
+type: "Repository"
+link: "https://github.com/Mega4alik/ollm"
+language: "Other"
+category: "AI;LLM;Local"
+description: "ollm — wrapper LLM local."
+---
+---
+title: "regisx001/Worklog"
+type: "Repository"
+link: "https://github.com/regisx001/Worklog"
+language: "Other"
+category: "Productivity;Worklog"
+description: "Outil de worklog / journal de travail."
+---
+---
+title: "theanshsonkar/carto"
+type: "Repository"
+link: "https://github.com/theanshsonkar/carto"
+language: "Other"
+category: "Tools;Misc"
+description: "Outil carto."
+---
+---
+title: "agentskills.io"
+type: "Website"
+link: "https://agentskills.io/home"
+language: "Other"
+category: "AI;Skills;Resources"
+description: "Site d'indexation des agent skills."
+---
+---
+title: "tidyverse blog - Rapp 0.3.0"
+type: "Blog"
+link: "https://tidyverse.org/blog/2026/02/rapp-0-3-0/"
+language: "R"
+category: "R;CLI;Release"
+description: "Notes de release Rapp 0.3.0 (tidyverse)."
+---
+---
+title: "biostatquest.com"
+type: "Website"
+link: "https://www.biostatquest.com/"
+language: "Other"
+category: "Biostatistics;Q&A"
+description: "Site Q&A biostatistiques."
+---
+---
+title: "whipson - maestro 1.1.0 release"
+type: "Blog"
+link: "https://whipson.github.io/data-in-flight/posts/maestro-1-1-0/maestro-1-1-0-release.html"
+language: "R"
+category: "R;Orchestration;Release"
+description: "Release notes maestro 1.1.0 (pipelines R orchestrés)."
+---
+---
+title: "repoinsider"
+type: "Website"
+link: "https://repoinsider.com/"
+language: "Other"
+category: "GitHub;Repository;Tools"
+description: "Insights / veille sur repositories GitHub."
+---
+---
+title: "prepare.sh trends"
+type: "Website"
+link: "https://prepare.sh/trends?country=EU&category=datascience&experience_level=mid"
+language: "Other"
+category: "Jobs;Trends;Data Science"
+description: "Tendances de prep d'entretien data science (EU, mid)."
+---
+---
+title: "openrouter state-of-ai"
+type: "Website"
+link: "https://openrouter.ai/state-of-ai"
+language: "Other"
+category: "AI;LLM;Benchmark"
+description: "Rapport state-of-ai par OpenRouter."
+---
+---
+title: "supabaseR"
+type: "Website"
+link: "https://deepanshkhurana.github.io/supabaseR/"
+language: "R"
+category: "R;Supabase;Database"
+description: "Wrapper R pour Supabase par Deepansh Khurana."
+---
+---
+title: "build.nvidia.com models"
+type: "Website"
+link: "https://build.nvidia.com/models?filters="
+language: "Other"
+category: "AI;NVIDIA;Models"
+description: "Catalogue de modèles NVIDIA NIM / build."
+---
+---
+title: "nicedreamzapp/claude-code-local"
+type: "Repository"
+link: "https://github.com/nicedreamzapp/claude-code-local"
+language: "Other"
+category: "AI;Claude;Local"
+description: "Setup local Claude Code."
+---
+---
+title: "johnlokerse - opencode + Copilot CLI BYOK"
+type: "Blog"
+link: "https://johnlokerse.dev/2026/04/23/use-opencode-go-models-in-github-copilot-cli-with-byok/"
+language: "Other"
+category: "AI;BYOK;CLI"
+description: "OpenCode + modèles Go dans Copilot CLI avec BYOK."
+---
+---
+title: "ai-declaration.md"
+type: "Website"
+link: "https://ai-declaration.md/en/0.1.2/"
+language: "Other"
+category: "AI;Ethics;Statement"
+description: "Déclaration AI (ai-declaration.md) v0.1.2."
+---
+---
+title: "sci-bot.ru"
+type: "Website"
+link: "https://sci-bot.ru/"
+language: "Other"
+category: "AI;Science;Tools"
+description: "Bot AI pour la science (sci-bot.ru)."
+---
+---
+title: "smolmachines.com"
+type: "Website"
+link: "https://smolmachines.com/"
+language: "Other"
+category: "AI;Small Models"
+description: "Site smolmachines (modèles compacts)."
+---
+---
+title: "zed 1.0 release blog"
+type: "Blog"
+link: "https://zed.dev/blog/zed-1-0"
+language: "Other"
+category: "Editor;Release"
+description: "Annonce Zed 1.0."
+---
+---
+title: "dgadacha/wax"
+type: "Website"
+link: "https://dgadacha.github.io/wax/#features"
+language: "Other"
+category: "Tools;UI"
+description: "Wax — outil/UI par dgadacha."
+---
+---
+title: "tylerfolkman - cut AI agent costs 7x"
+type: "Blog"
+link: "https://tylerfolkman.substack.com/p/i-cut-my-ai-agent-costs-7x-without?r=w7ji&utm_campaign=post-expanded-share&utm_medium=web&triedRedirect=true"
+language: "Other"
+category: "AI;Costs;Optimization"
+description: "Comment réduire les coûts d'agents AI de 7x."
+---
+---
+title: "jcarroll - targets vs dbt"
+type: "Blog"
+link: "https://jcarroll.com.au/2026/05/04/comparing-r-s-targets-and-dbt-for-data-engineering/"
+language: "R"
+category: "R;Data Engineering;targets;dbt"
+description: "Comparaison {targets} R et dbt pour data engineering."
+---
+---
+title: "fischerf/aar"
+type: "Website"
+link: "https://fischerf.github.io/aar/"
+language: "R"
+category: "R;Tools"
+description: "Outil aar par fischerf."
+---
+---
+title: "woheller69/FreeDroidWarn"
+type: "Repository"
+link: "https://github.com/woheller69/FreeDroidWarn#solutions"
+language: "Other"
+category: "Security;Android;Privacy"
+description: "Solutions FreeDroidWarn (warnings privacy Android)."
+---
+---
+title: "aipractitioner - LLMs in causal discovery"
+type: "Blog"
+link: "https://aipractitioner.substack.com/p/llms-in-causal-discovery-a-deep-dive?r=49ttp&utm_campaign=post&utm_medium=web&triedRedirect=true"
+language: "Other"
+category: "AI;Causality;LLM"
+description: "Plongée LLMs en causal discovery."
+---
+---
+title: "VectifyAI/PageIndex"
+type: "Repository"
+link: "https://github.com/VectifyAI/PageIndex"
+language: "Other"
+category: "AI;RAG;Indexing"
+description: "PageIndex par VectifyAI (indexation pour RAG)."
+---
+---
+title: "morphllm - vscode-multi-agent"
+type: "Website"
+link: "https://www.morphllm.com/vscode-multi-agent"
+language: "Other"
+category: "AI;VS Code;Agents"
+description: "Extension VS Code multi-agent par MorphLLM."
+---
+---
+title: "RConsortium/pharma-skills"
+type: "Repository"
+link: "https://github.com/RConsortium/pharma-skills"
+language: "R"
+category: "R;Pharma;Skills"
+description: "Skills pharma R par R Consortium."
+---
+---
+title: "rinpharma - genAI schedule"
+type: "Blog"
+link: "https://rinpharma.com/docs/blog/posts/2026-05-12-genAI-schedule/"
+language: "R"
+category: "R;Conference;GenAI"
+description: "Programme genAI de rinpharma 2026."
+---
+---
+title: "data.ina.fr"
+type: "Website"
+link: "https://data.ina.fr/"
+language: "French"
+category: "Data;Media;French"
+description: "Données INA (Institut National de l'Audiovisuel)."
+---
+---
+title: "ai-10-usd all-the-rest"
+type: "Website"
+link: "https://ai-10-usd.all-the.rest/?match=0"
+language: "Other"
+category: "AI;Pricing"
+description: "Liste de modèles AI à 10 USD (all-the-rest)."
+---
+---
+title: "sami-uysal - awesome open AI dev tools"
+type: "Website"
+link: "https://sami-uysal.github.io/awesome-open-ai-developer-tools/#open-source-alternatives-cheat-sheet"
+language: "Other"
+category: "AI;Open Source;Resources"
+description: "Cheat sheet alternatives open-source d'outils AI devs."
+---
+---
+title: "ahundt/ai-session-search"
+type: "Repository"
+link: "https://github.com/ahundt/ai-session-search"
+language: "Other"
+category: "AI;Search;Session"
+description: "Recherche dans sessions AI."
+---
+---
+title: "ArihantDeva/heimdall"
+type: "Repository"
+link: "https://github.com/ArihantDeva/heimdall"
+language: "Other"
+category: "AI;Tools;Agents"
+description: "Heimdall — outil AI par Arihant Deva."
+---
+---
+title: "llama.app"
+type: "Website"
+link: "https://llama.app/"
+language: "Other"
+category: "AI;Local;LLM"
+description: "Site officiel Llama app."
+---
+---
+title: "artificialanalysis - models leaderboard"
+type: "Website"
+link: "https://artificialanalysis.ai/leaderboards/models"
+language: "Other"
+category: "AI;Benchmark;Models"
+description: "Leaderboard de modèles AI par Artificial Analysis."
+---
+---
+title: "huggingbay.xyz"
+type: "Website"
+link: "https://huggingbay.xyz/"
+language: "Other"
+category: "Hugging Face;Models;Search"
+description: "Recherche modèles Hugging Face (huggingbay)."
+---
+---
+title: "benzi.fly.dev"
+type: "Website"
+link: "https://benzi.fly.dev/"
+language: "Other"
+category: "Tools;Misc"
+description: "Outil benzi (fly.dev)."
+---
+---
+title: "altdoc etiennebacher"
+type: "Website"
+link: "https://altdoc.etiennebacher.com/#/"
+language: "R"
+category: "R;Documentation;Tools"
+description: "altdoc — outil de doc R par Etienne Bacher."
+---
+---
+title: "bjarkehautop/reftip"
+type: "Website"
+link: "https://bjarkehautop.github.io/reftip/"
+language: "R"
+category: "R;References;Tutorial"
+description: "reftip — package R pour références."
+---
+---
+title: "coctostan/pi-hashline-readmap"
+type: "Repository"
+link: "https://github.com/coctostan/pi-hashline-readmap"
+language: "Other"
+category: "AI;pi;Tools"
+description: "Hashline readmap pour pi coding-agent."
+---
+---
+title: "modelscope.ai models"
+type: "Website"
+link: "https://modelscope.ai/models"
+language: "Other"
+category: "AI;Models;Hub"
+description: "Hub de modèles ModelScope."
+---
+---
+title: "slee-persis/GVS5H"
+type: "Repository"
+link: "https://github.com/slee-persis/GVS5H"
+language: "Other"
+category: "Tools;Misc"
+description: "Repository GVS5H par slee-persis."
+---
+---
+title: "hfviewer.com"
+type: "Website"
+link: "https://hfviewer.com/"
+language: "Other"
+category: "Hugging Face;Tools;View"
+description: "Viewer pour Hugging Face (hfviewer)."
+---
