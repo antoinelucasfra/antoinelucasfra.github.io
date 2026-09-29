@@ -13,6 +13,7 @@ format:
     font-size: 10pt
     template-partials:
       - typst-template.typ
+      - typst-preamble.typ
       - typst-show.typ
 execute:
   echo: false
