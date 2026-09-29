@@ -32,7 +32,6 @@ import trafilatura
 from utils import (
     KNOWN_TYPES,
     append_blocks,
-    build_block,
     existing_links,
     fetch_date,
     fetch_description,
@@ -217,15 +216,15 @@ def main() -> None:
         desc = fetch_description(url, downloaded=downloaded)
         date = fetch_date(url, downloaded=downloaded)
 
-        block = build_block(
-            title=parsed["title"],
-            rtype=parsed["type"],
-            link=url,
-            language=parsed["language"],
-            category=parsed["category"],
-            description=desc,
-            date=date,
-        )
+        block = {
+            "title": parsed["title"],
+            "type": parsed["type"],
+            "link": url,
+            "language": parsed["language"],
+            "category": parsed["category"],
+            "description": desc,
+            "date": date,
+        }
         new_blocks.append(block)
         added_urls.append(url)
         known.add(url)  # prevent within-run duplicates
