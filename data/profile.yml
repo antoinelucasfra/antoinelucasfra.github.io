@@ -1,6 +1,6 @@
 identity:
   name: Antoine Lucas
-  title: R / Shiny Engineer · Scientific Software & Data Products
+  title: Scientific Software & AI Engineer · R Shiny, LLM agents, MLOps
   location_short: Paris
   location_full: Paris, France
   sectors: Pharma · Cosmetics · Biotech
@@ -35,6 +35,12 @@ home:
     - title: Reproducible engineering & MLOps
       body: >
         Everything in Git, runnable six months later with uv sync or rv sync, documented well enough to hand over. CI/CD, containers, environment pinning, and qualification-minded delivery show up in most of my projects.
+    - title: AI-augmented scientific software
+      body: >
+        I build agentic workflows around the tools themselves: MCP servers and tool-calling
+        agents that run statistical analysis on demand, AI-assisted coding and review, and
+        tests that keep the result honest. It shortens the distance between a researcher's
+        question and a working, tested tool, without relaxing validation or review.
     - title: ML when it is the right tool
       body: >
         Computer vision, NLP pipelines, LLM-assisted extraction for scientific applications. I like building ML systems, but I like shipping the right product more than fitting a model into a problem that does not need one.
@@ -111,7 +117,12 @@ about:
 
 summary:
   cv: >
-    Research Engineer & Data Scientist with 5+ years building production-grade software and data products in pharma, cosmetics, and biotech. R / Shiny delivery, reproducible analysis, stakeholder-facing architecture, and technical ownership from discovery through deployment. Background spans statistical modelling, scientific computing, internal platform tooling, and ML systems, with a strong focus on maintainable delivery: documentation, validation, CI/CD, and handover for teams that need to keep using the product long after the first release.
+    Research engineer with 5+ years turning R&D problems into production software and data
+    products in pharma, cosmetics, and biotech. R Shiny and Python delivery, statistical
+    modelling (design of experiments, biostatistics, multi-omics), and an AI-augmented way of
+    working: I build LLM agents and MCP tools that make scientific software faster to write,
+    test, and maintain. Reproducible by default (uv, rv, tests, CI/CD, containers), and
+    qualifiable and auditable in GxP environments.
 
 experience:
   - section: selected
@@ -195,6 +206,18 @@ skills:
         sentence-transformers,
         faster-whisper,
         OpenCV,
+      ]
+  - label: LLM & agentic engineering
+    items:
+      [
+        MCP servers,
+        tool-calling agents,
+        agentic workflows,
+        LLM evaluation,
+        RAG,
+        structured extraction,
+        Cursor,
+        Codex,
       ]
   - label: Statistics & methods
     items:
