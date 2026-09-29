@@ -5,6 +5,11 @@ title-block-banner: true
 listing:
   - id: projects
     contents:
+      - path: projects/shiny-platform-gxp.qmd
+        title: "Shiny Platform for GxP Manufacturing Workflows"
+        description: "NDA-safe case study of a modular R Shiny platform for pilot manufacturing in regulated R&D: 100+ clinical projects, 50+ daily users, Posit Connect deployment, qualification-oriented delivery."
+        date: "2026-03-14"
+        categories: [R, Shiny, Product Engineering, GxP, Deployment]
       - path: projects/fake-news-detection.qmd
         title: "LLM Fine-Tuning: Phi-3 on Claim Verification"
         description: "Fine-tuning Microsoft Phi-3-mini with LoRA/QLoRA on the LIAR dataset for binary claim verification. +19.5pp accuracy over zero-shot baseline. Full pipeline: data prep, LoRA training, evaluation, inference."
