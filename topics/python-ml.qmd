@@ -1,20 +1,21 @@
 ---
 title: "Python & AI"
 description: "Python tooling, LLM-assisted development, machine learning workflows, and AI in scientific applications."
+listing:
+  - id: topic-posts
+    contents:
+      - ../posts/devcontainers-reproducible-environments/index.qmd
+      - ../posts/llm-coding-assistant/index.qmd
+      - ../posts/reproducibility-modern-tools/index.qmd
+      - ../posts/why-curate-resources/index.qmd
+      - ../posts/dev-setup-guide/index.qmd
+    type: grid
+    grid-columns: 3
+    sort: "date desc"
+    fields: [date, title, description, reading-time]
 ---
 
-```{r}
-#| label: topic-listing
-#| echo: false
-#| message: false
-source(here::here("_helpers", "topic_listing.R"))
-library(yaml)
-library(htmltools)
-render_topic(
-  "Python & AI",
-  "Python tooling, LLM-assisted development, machine learning workflows, and AI in scientific applications.",
-  c("Python", "AI Tools", "LLM", "Data Science", "Machine Learning")
-)
-```
+::: {#topic-posts}
+:::
 
 [← All topics](../topics/index.qmd) · [All posts](../blog.qmd)

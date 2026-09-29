@@ -27,22 +27,6 @@ icon_link <- function(href, icon, label, extra_class = NULL, external = FALSE) {
   )
 }
 
-render_stats_band <- function(stats) {
-  htmltools::tags$div(
-    class = "stats-band",
-    lapply(
-      stats,
-      function(s) {
-        htmltools::tags$div(
-          class = "stat-item",
-          htmltools::tags$div(class = "stat-value", s$value),
-          htmltools::tags$div(class = "stat-label", s$label)
-        )
-      }
-    )
-  )
-}
-
 render_homepage <- function(profile) {
   identity <- profile$identity
   current_role <- profile$home$current_role
@@ -99,7 +83,19 @@ render_homepage <- function(profile) {
         current_role$summary
       )
     ),
-    render_stats_band(stats),
+    htmltools::tags$div(
+      class = "stats-band",
+      lapply(
+        stats,
+        function(s) {
+          htmltools::tags$div(
+            class = "stat-item",
+            htmltools::tags$div(class = "stat-value", s$value),
+            htmltools::tags$div(class = "stat-label", s$label)
+          )
+        }
+      )
+    ),
     htmltools::tags$h2(class = "section-heading", "What I do"),
     htmltools::tags$div(
       class = "what-i-do",
