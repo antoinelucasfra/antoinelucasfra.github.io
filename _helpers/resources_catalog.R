@@ -1,5 +1,3 @@
-`%||%` <- function(a, b) if (!is.null(a)) a else b
-
 # ── Parse resources.txt (--- delimited YAML blocks) ─────────────────────
 parse_resources_md <- function(path) {
   raw <- readLines(path, encoding = "UTF-8")

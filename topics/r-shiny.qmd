@@ -1,20 +1,21 @@
 ---
 title: "R & Shiny"
 description: "Shiny application engineering, package-first development, deployment, and R package management."
+listing:
+  - id: topic-posts
+    contents:
+      - ../posts/shiny-capacity-platform/index.qmd
+      - ../posts/shinyproxy-admin-best-practices/index.qmd
+      - ../posts/rv-modern-r-package-manager/index.qmd
+      - ../posts/reproducibility-modern-tools/index.qmd
+      - ../posts/quarto-getting-started/index.qmd
+    type: grid
+    grid-columns: 3
+    sort: "date desc"
+    fields: [date, title, description, reading-time]
 ---
 
-```{r}
-#| label: topic-listing
-#| echo: false
-#| message: false
-source(here::here("_helpers", "topic_listing.R"))
-library(yaml)
-library(htmltools)
-render_topic(
-  "R & Shiny",
-  "Shiny application engineering, package-first development, deployment, and R package management.",
-  c("Shiny", "ShinyProxy", "Package Management", "Quarto")
-)
-```
+::: {#topic-posts}
+:::
 
 [← All topics](../topics/index.qmd) · [All posts](../blog.qmd)
