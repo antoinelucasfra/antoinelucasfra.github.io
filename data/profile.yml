@@ -45,6 +45,9 @@ home:
       body: >
         Computer vision, NLP pipelines, LLM-assisted extraction for scientific applications. I like building ML systems, but I like shipping the right product more than fitting a model into a problem that does not need one.
   selected_proof:
+    - title: "Case Study: Agentic Stats (MCP)"
+      href: /projects/agentic-stats.html
+      description: MCP server and FastAPI app exposing typed statistical tools to LLM agents — one implementation, two transports, tested.
     - title: "Case Study: Capacity Planning Platform"
       href: /posts/shiny-capacity-platform/
       description: end-to-end R Shiny platform for global manufacturing resource planning — architecture, trade-offs, and lessons.
