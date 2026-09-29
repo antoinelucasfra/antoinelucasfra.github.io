@@ -1,7 +1,7 @@
 # Compatible with `pre-commit` and `prek` (https://prek.j178.dev).
 # R:      air (format) + jarl (lint)
 # Python: ruff (format + lint) + uv (lockfile sync)
-exclude: '^(renv|\.venv|venv|packrat|\.git)/'
+exclude: '^(\.venv|venv|rv|\.git)/'
 
 repos:
   - repo: https://github.com/posit-dev/air-pre-commit
@@ -24,3 +24,6 @@ repos:
     rev: 0.11.29
     hooks:
       - id: uv-lock
+        args: ["--directory", "scripts"]
+        files: ^scripts/(uv\.lock|pyproject\.toml)$
+        pass_filenames: false

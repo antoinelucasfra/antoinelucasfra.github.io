@@ -9,8 +9,8 @@ Content license: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa
 ## Stack
 
 - Quarto `1.9.37`
-- R `4.5.2` with `renv.lock`
-- Python `3.13` for helper tooling via `uv`
+- R `4.5.2` with `rv.lock` (managed by [`rv`](https://github.com/A2-ai/rv))
+- Python `3.13` for helper tooling via `uv` (single environment in `scripts/`)
 
 ## Repository Layout
 
@@ -31,25 +31,19 @@ The Quarto project now uses an explicit render allowlist in [_quarto.yml](_quart
 From the repository root:
 
 ```sh
-Rscript -e 'renv::restore()'
+rv sync
 ```
 
-### 2. Restore the Python helper environments
+### 2. Restore the Python helper environment
 
-The repository intentionally has two Python environments:
-
-- root `pyproject.toml` for repo-level helper tooling
-- `scripts/pyproject.toml` for the Google Keep sync and resource backfill automation
-
-From the repository root:
+All Python tooling lives in `scripts/`:
 
 ```sh
-uv sync
 cd scripts
 uv sync
 ```
 
-Both environments are pinned to Python `3.13` via `.python-version` files.
+The environment is pinned to Python `3.13` via `scripts/.python-version`.
 
 ## Common Commands
 
@@ -80,12 +74,11 @@ uv run python backfill.py --mode both
 
 ## Automation
 
-- `.github/workflows/validate-site.yml`: renders the site on pull requests and checks that repo-only documents are not published
-- `.github/workflows/publish.yml`: renders and deploys the site to GitHub Pages on pushes to `main`
+- `.github/workflows/site.yml`: renders the site on pull requests (checks that repo-only documents are not published) and deploys to GitHub Pages on pushes to `main`
 - `.github/workflows/sync-keep.yml`: syncs catalog entries from Google Keep into `data/resources.txt`
 
 ## Notes
 
 - `docs/` is generated output. Do not edit or commit it manually.
 - `data/resources.txt` is the source of truth for the resources catalog.
-- `data/resources.csv` is derived data and should not be edited by hand.
+- `scripts/make_covers.py` regenerates the post cover SVGs in `assets/images/covers/`.

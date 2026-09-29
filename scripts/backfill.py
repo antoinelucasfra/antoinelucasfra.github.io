@@ -1,77 +1,14 @@
 """
-backfill.py — unified local script for managing resources.txt.
+backfill.py — manage data/resources.txt: validate entries, backfill missing
+dates/descriptions, add new URLs (fetch metadata, classify, dedupe, append).
 
-Replaces backfill_dates.py and backfill_descriptions.py. Supports:
-  • Backfilling missing dates and/or descriptions for existing entries
-  • Adding new URLs (auto-fetches metadata, deduplicates, appends)
-  • Validating and repairing the file (duplicate links, missing fields, bad values)
-
-Run from the repo root:
+Run from scripts/:
 
     cd scripts/
     uv sync
-    uv run python backfill.py [options]
+    uv run python backfill.py --help
 
-────────────────────────────────────────────────────────────────────────────
-USAGE
-────────────────────────────────────────────────────────────────────────────
-
-  # Validate the file (always runs; explicit flag makes report-only mode)
-  uv run python backfill.py --check
-  uv run python backfill.py --check --fix-dupes          # also remove duplicates
-
-  # Backfill missing dates and descriptions for ALL entries
-  uv run python backfill.py --mode both
-
-  # Backfill only dates, only for specific URLs
-  uv run python backfill.py --mode dates --urls https://example.com https://other.org
-
-  # Force-re-fetch descriptions for all entries (even those that already have one)
-  uv run python backfill.py --mode descriptions --force
-
-  # Add new URLs (auto-fetch metadata, deduplicate, append)
-  uv run python backfill.py --add-urls https://example.com https://other.org
-
-  # Dry-run: see what would happen without writing anything
-  uv run python backfill.py --add-urls https://example.com --dry-run
-  uv run python backfill.py --mode both --dry-run
-
-  # Limit fetches for quick testing
-  uv run python backfill.py --mode both --limit 5
-
-────────────────────────────────────────────────────────────────────────────
-OPTIONS
-────────────────────────────────────────────────────────────────────────────
-
-  PATH                     Path to resources.txt.
-                           Default: ../data/resources.txt relative to this
-                           script, or $RESOURCES_PATH environment variable.
-
-  --mode {dates,descriptions,both}
-                           Which fields to backfill for existing entries.
-                           Default: both.
-
-  --add-urls URL [URL …]   Add new URLs: fetch title/description/date, classify
-                           type/language/category automatically, deduplicate
-                           against existing entries, and append to the file.
-
-  --urls URL [URL …]       Restrict backfill (--mode) to only these URLs.
-                           Exact match after stripping trailing slashes.
-
-  --check                  Run full validation: duplicates, missing fields,
-                           invalid type values, malformed dates.
-
-  --fix-dupes              When combined with --check (or always on --add-urls),
-                           remove duplicate entries automatically, keeping the
-                           first occurrence.
-
-  --force                  Re-fetch even entries that already have a value.
-
-  --dry-run                Print what would change without writing anything.
-
-  --limit N                Stop after fetching N URLs (useful for testing).
-
-────────────────────────────────────────────────────────────────────────────
+Usage, options and examples: `uv run python backfill.py --help`.
 """
 
 from __future__ import annotations
