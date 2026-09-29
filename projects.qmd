@@ -5,6 +5,11 @@ title-block-banner: true
 listing:
   - id: projects
     contents:
+      - path: projects/agentic-stats.qmd
+        title: "Agentic Stats: MCP Tools for R&D Analysis"
+        description: "An MCP server and FastAPI app exposing three typed statistical tools (dataset profiling, mixed models, ANOVA with effect size) to LLM agents, so an agent answers a design-of-experiments question without executing arbitrary code."
+        date: "2026-03-21"
+        categories: [Python, MCP, LLM, Agents, Statistics, MLOps]
       - path: projects/shiny-platform-gxp.qmd
         title: "Shiny Platform for GxP Manufacturing Workflows"
         description: "NDA-safe case study of a modular R Shiny platform for pilot manufacturing in regulated R&D: 100+ clinical projects, 50+ daily users, Posit Connect deployment, qualification-oriented delivery."

@@ -1,0 +1,119 @@
+---
+title: "Agentic Stats: MCP Tools for R&D Analysis"
+description: "An MCP server and FastAPI app that expose three typed statistical tools (dataset profiling, mixed models, ANOVA with effect size) to LLM agents, so an agent answers a design-of-experiments question without executing arbitrary code."
+date: "2026-03-21"
+categories: [Python, MCP, LLM, Agents, Statistics, MLOps]
+image: "../assets/images/blog-placeholder.svg"
+---
+
+## Overview
+
+Most "AI does statistics" demos hand a model a Python interpreter and hope for the best. That works until the model invents a column, silently drops rows, or writes a one-liner that nobody can reproduce six months later.
+
+This project takes the opposite position: give the agent **three typed tools** and nothing else. No filesystem, no shell, no code generation. Every call is a bounded statistical operation with a validated schema, and every result comes back as structured data — REML estimates with confidence intervals, variance components, effect sizes.
+
+Ask it a real question:
+
+> *Does formulation B actually matter, once we account for batch-to-batch variation?*
+
+The agent profiles the dataset, notices that readings repeat within pilot batches, picks a linear mixed model over a plain ANOVA, and answers with the effect estimate, its interval, and the variance decomposition.
+
+---
+
+## Architecture
+
+```
+                    ┌───────────────────────────┐
+   user question ──▶│  agent.py                 │
+                    │  tool-calling loop        │
+                    └──────────┬────────────────┘
+                               │ MCP (stdio, JSON-RPC)
+                               ▼
+                    ┌───────────────────────────┐
+                    │  mcp_server.py            │   3 tools, JSON Schema
+                    └──────────┬────────────────┘
+                               ▼
+                    ┌───────────────────────────┐
+                    │  stats_tools.py           │◀──────▶ data/doe_experiment.csv
+                    │  describe / mixedlm /     │        1728 rows, seed 42
+                    │  anova (pydantic models) │
+                    └──────────▲────────────────┘
+                               │
+                    ┌──────────┴────────────────┐
+                    │  api.py (FastAPI)         │  same functions over HTTP
+                    └───────────────────────────┘
+```
+
+**One implementation, two transports.** `stats_tools.py` holds plain functions; the MCP server and the HTTP API both call them. The tests therefore cover shipped code rather than a parallel mock of it.
+
+---
+
+## The tools
+
+| Tool | Signature | Answers |
+| --- | --- | --- |
+| `describe_dataset` | `()` | Columns, dtypes, missing values, ranges; which are factors, which numeric |
+| `fit_mixed_model` | `(response, fixed_effects, group="batch")` | REML fixed effects with 95% CIs, between-group and residual variance, convergence flag |
+| `anova_effect` | `(response, factor)` | F-test, p-value, omega-squared, per-level means |
+
+Errors are written for a model to recover from, which is the part that matters in practice:
+
+```text
+Unknown column(s): ['formulation_id']. Available columns: ['batch', 'formulation', 'dose', ...]
+```
+
+Over HTTP the same message becomes a `400`. One behaviour, two interfaces.
+
+---
+
+## The statistical substance
+
+The demo dataset is generated, not collected: 12 pilot batches x 3 formulations x 4 dose levels
+x 3 operators x 4 replicates = **1728 rows** of continuous `assay_signal`, with a real batch
+random effect on top of residual noise. The tests assert the models recover that structure, so
+the demo cannot silently rot while the code underneath it changes.
+
+Real numbers from the current build, useful as a regression check:
+
+- `anova_effect("assay_signal", "formulation")` → omega-squared **0.388**, level means A 21.44 / B 24.78 / C 19.71
+- `fit_mixed_model("assay_signal", ["formulation", "dose"])` → converged, B-vs-A **+3.34** (95% CI 3.16–3.51), batch variance **1.59** against 2.26 residual
+
+That last pair is the actual payoff of the mixed model: batch-to-batch variation is large enough
+to matter, so an ANOVA that ignores it would be answering a different question.
+
+---
+
+## Engineering choices
+
+**The agent loop is a pure function.** `run_tool_loop(question, tools, chat, call_tool)` takes
+its "talk to the model" and "run a tool" callables as arguments, so the loop is tested with fakes
+and no network: tool-call routing, error feedback to the model, and the turn limit are all covered
+by fast unit tests. The MCP wiring gets one integration test that spawns the server for real.
+
+**Deliberately small surface.** No planning, no memory, no retries beyond feeding an error back.
+The interesting engineering is in the tool contracts, not in the orchestration.
+
+**Reproducible by construction.** Seeded dataset generator, `uv` lockfile, 16 tests, ruff,
+GitHub Actions, one Docker image. `docker compose up --build` gives the HTTP surface with no keys
+and no network access.
+
+---
+
+## Limitations
+
+Stated up front, because a demo that hides its edges is not much of a demo:
+
+- Synthetic data. The statistics are real, the biology is not.
+- No authentication, rate limiting, or streaming: a reference implementation, not a service.
+- Single-host statistics, no distributed fitting.
+- The LLM backend is Ollama (local, offline). The tool layer is model-agnostic; the chat backend
+  is the only Ollama-specific piece.
+
+---
+
+## Links
+
+[<i class="bi bi-github"></i> GitHub Repository](https://github.com/antoinelucasfra/agentic-stats){.btn .btn-dark .btn-sm}
+
+Stack: Python 3.12 · mcp 2.x (`MCPServer`, stdio) · FastAPI · pydantic · pandas · statsmodels ·
+uv · pytest · ruff · Docker.
