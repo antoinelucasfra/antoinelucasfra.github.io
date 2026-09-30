@@ -73,10 +73,10 @@ format:
     theme:
       light:
         - cosmo
-        - assets/stylesheets/al-brand-light.scss
+        - _extensions/antoinelucasfra/al-brand/al-brand-light.scss
       dark:
         - cosmo
-        - assets/stylesheets/al-brand-dark.scss
+        - _extensions/antoinelucasfra/al-brand/al-brand-dark.scss
     lang: en
     date-format: "MMMM D, YYYY"
     highlight-style: dracula

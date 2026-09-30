@@ -11,7 +11,7 @@ Personal website and blog at [antoinelucasfra.github.io](https://antoinelucasfra
 ```
 _quarto.yml                    # Project config: pages, theme, navbar, listing
 _extensions/antoinelucasfra/al-brand/  # AL Brand extension (canonical): brand.yml + SCSS suite
-assets/stylesheets/            # Thin theme wrappers (al-brand-light/dark.scss) + resources-catalog.css
+assets/stylesheets/            # resources-catalog.css (theme entries live in the al-brand extension)
 _helpers/                      # R helper scripts sourced during render
 _extensions/                   # Quarto extensions (iconify, fontawesome, custom-callout, highlight-text)
 data/                          # Source data: profile.yml, resources.txt
@@ -36,7 +36,7 @@ Rendering flow: `quarto render` reads `.qmd` files, processes R/Python code chun
  | `topics/` | Topic-filtered blog listings (`index.qmd` hub + `r-shiny.qmd`, `reproducibility.qmd`, `python-ml.qmd`) |
  | `_extensions/` | Quarto extension: `custom-callout` (removed — replaced with native Quarto callouts) |
  | `_helpers/` | R helper code sourced during Quarto rendering (`profile_render.R`, `resources_catalog.R`) |
-| `assets/stylesheets/` | Thin wrappers importing the al-brand extension (`al-brand-light.scss`, `al-brand-dark.scss`) and `resources-catalog.css` |
+| `assets/stylesheets/` | Resources catalog stylesheet; the al-brand theme entries live in `_extensions/antoinelucasfra/al-brand/` |
 | `assets/images/` | Profile picture, blog placeholder SVG |
 | `assets/scripts/` | Client-side JS (`resources-catalog.js`) |
 | `data/` | `profile.yml`, `resources.txt` (source of truth for catalog) |

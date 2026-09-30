@@ -287,7 +287,6 @@ body {
   }
 }
 
-.about-body,
 .about-section {
   max-width: 820px;
   margin: 2rem auto;
@@ -314,27 +313,6 @@ body {
 
     &:hover {
       border-left-color: var(--education-hover-border);
-    }
-  }
-}
-
-.interests ul {
-  columns: 2;
-  column-gap: 2rem;
-  list-style-type: none;
-  padding-left: 0;
-
-  li {
-    padding: 0.2rem 0 0.2rem 1.2em;
-    position: relative;
-
-    &::before {
-      content: "▸";
-      color: var(--interest-bullet-color);
-      font-size: 0.72em;
-      position: absolute;
-      left: 0;
-      top: 0.28em;
     }
   }
 }
