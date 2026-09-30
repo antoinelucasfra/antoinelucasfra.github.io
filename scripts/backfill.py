@@ -62,7 +62,6 @@ _CLASSIFICATION_RULES: list[tuple[str, str, str, str, str]] = [
     ("huggingface.co", "", "Website", "Python", "Machine Learning"),
     # --- App stores ---
     ("apps.apple.com", "", "Website", "Other", "General"),
-    ("play.google.com", "", "Website", "Other", "General"),
     # --- VSCode marketplace ---
     ("marketplace.visualstudio.com", "", "Website", "Other", "Development"),
     # --- R-specific blog / documentation sites ---
