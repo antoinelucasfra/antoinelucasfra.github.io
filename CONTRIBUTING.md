@@ -4,7 +4,7 @@ The catalog at [antoinelucasfra.github.io/projects/resources_catalog](https://an
 
 There are two ways to add a resource:
 
-- **Personal workflow** — via a Google Keep note that syncs automatically every Monday (see [Automated workflow](#automated-workflow-google-keep-sync))
+- **Personal workflow** — via a Google Keep note, synced locally with `scripts/sync_keep.py` (see [Google Keep workflow](#google-keep-workflow-run-locally))
 - **PR path** — fork the repo, edit `data/resources.txt`, open a pull request (see [Contributing via PR](#contributing-via-pr))
 
 ---
@@ -49,16 +49,16 @@ description: "The online version of Mastering Shiny, a book that teaches you to 
 
 ---
 
-## Automated workflow — Google Keep sync
+## Google Keep workflow (run locally)
 
-This is the personal day-to-day workflow for adding resources from curation to the catalog without touching any file manually.
+This is the personal workflow for adding resources from curation to the catalog without editing the file by hand. It runs **on demand, locally** — there is no scheduled job.
 
 ### How it works end-to-end
 
 ```
 You add a line to the Keep note
         ↓
-Every Monday 07:00 UTC — GitHub Actions runs sync_keep.py
+You run `uv run python sync_keep.py` from scripts/
         ↓
 Script parses each line, fetches the URL, extracts a real description
         ↓
@@ -66,12 +66,12 @@ Valid new entries are appended to data/resources.txt
         ↓
 Processed lines are removed from the Keep note
         ↓
-The commit triggers site.yml → quarto render → GitHub Pages redeploy
+Commit and push data/resources.txt through the normal branch → PR flow
 ```
 
 ### Keep note format
 
-Create a note in Google Keep with the title you stored in the `KEEP_NOTE_TITLE` secret. Add one resource per line using **exactly 5 fields separated by ` - `** (space-dash-space):
+Create a note in Google Keep with the title you export as `KEEP_NOTE_TITLE`. Add one resource per line using **exactly 5 fields separated by ` - `** (space-dash-space):
 
 ```
 https://mastering-shiny.org/ - Mastering Shiny - Book - R - Shiny;Web Development
@@ -91,11 +91,11 @@ The `description` field is **not** written in the note — it is fetched automat
 | **Duplicate** | URL already exists in `resources.txt` | Silently removed from note |
 | **Kept in note** | Malformed (wrong field count, bad URL, unknown type) | Left in note unchanged — fix and it will be picked up next run |
 
-Invalid lines and a description of why they were skipped appear in the GitHub Actions run summary.
+Invalid lines and the reason they were skipped are printed in the run summary.
 
 ### One-time setup: obtain the master token
 
-`gkeepapi` authenticates with a **master token**, not your password. Obtain it once and store it as a secret.
+`gkeepapi` authenticates with a **master token**, not your password. Obtain it once and export it as `KEEP_MASTER_TOKEN` when running the sync.
 
 **Prerequisites:** Docker installed locally.
 
@@ -113,19 +113,29 @@ print(gpsoauth.exchange_token(email, oauth_token, android_id))
 
 To get the **OAuth Token** and **Android ID** needed above, follow the [gpsoauth alternative flow documentation](https://github.com/simon-weber/gpsoauth#alternative-flow).
 
-### GitHub secrets to configure
+### Environment variables
 
-Go to **GitHub → Settings → Secrets and variables → Actions → New repository secret**:
+Export these in the shell you run the script from:
 
-| Secret name | Value |
+| Variable | Value |
 |---|---|
 | `KEEP_EMAIL` | Your Gmail address |
 | `KEEP_MASTER_TOKEN` | The master token obtained above |
 | `KEEP_NOTE_TITLE` | Exact title of your curation note in Google Keep |
+| `RESOURCES_PATH` | Path to `data/resources.txt` |
 
-### Triggering the workflow manually
+### Running the sync
 
-Go to **GitHub → Actions → Sync Keep → resources → Run workflow**. This is useful to process a batch immediately without waiting for Monday.
+```sh
+cd scripts/
+uv sync
+export KEEP_EMAIL="you@example.com"
+export KEEP_MASTER_TOKEN="..."
+export KEEP_NOTE_TITLE="Resources inbox"
+RESOURCES_PATH=../data/resources.txt uv run python sync_keep.py
+```
+
+The run summary is printed to stdout. Review `git diff ../data/resources.txt` before committing.
 
 ### Backfilling descriptions on existing entries
 
