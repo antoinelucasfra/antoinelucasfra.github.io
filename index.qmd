@@ -1,6 +1,8 @@
 ---
 title: "Antoine Lucas"
 description: "Portfolio and field notes on scientific software, R Shiny delivery, reproducible workflows, and machine learning in regulated R&D environments."
+# This page renders data/profile.yml; never let a cached chunk outlive an edit there.
+freeze: false
 lightbox: false
 format:
   html:

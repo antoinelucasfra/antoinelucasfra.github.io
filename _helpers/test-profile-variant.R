@@ -50,4 +50,26 @@ stopifnot(
   length(real$skills) == length(load_profile()$skills)
 )
 
+# Regression guard: a YAML sequence item written as `- text: more text` parses as a
+# MAPPING, so unlist() keeps the left half as a name and the renderers drop it (they
+# print values only). Free-text list items must stay plain scalars: quote any text
+# containing ": ".
+plain_strings <- function(x) all(is.null(names(x)))
+for (variant in cv_variants) {
+  resolved <- load_profile(variant)
+  for (entry in resolved$experience) {
+    if (!plain_strings(entry$bullets)) {
+      stop(
+        "bullet written as a YAML mapping, losing its text before ': ' — role: ",
+        entry$role
+      )
+    }
+  }
+  for (group in resolved$skills) {
+    if (!plain_strings(group$items)) {
+      stop("skill item written as a YAML mapping — group: ", group$label)
+    }
+  }
+}
+
 cat("OK: variant overlay behaves as specified\n")

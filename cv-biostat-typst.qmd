@@ -1,5 +1,7 @@
 ---
 title: ""
+# reads data/profile.yml: always re-execute.
+freeze: false
 format:
   typst:
     output-file: cv-biostat.pdf
