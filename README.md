@@ -20,7 +20,7 @@ Content license: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa
 - `assets/`: shared stylesheets, images, and client-side scripts
 - `_helpers/`: non-rendered helper code used during Quarto rendering
 - `docs/`: local Quarto render output used by CI for GitHub Pages deployment, not committed
-- `scripts/`: automation for catalog maintenance and the Google Keep sync workflow
+- `scripts/`: automation for catalog maintenance, including the manual Google Keep sync
 
 The Quarto project now uses an explicit render allowlist in [_quarto.yml](_quarto.yml), so repository docs such as `TODO.md` and `CONTRIBUTING.md` are not published as website pages.
 
@@ -75,7 +75,6 @@ uv run python backfill.py --mode both
 ## Automation
 
 - `.github/workflows/site.yml`: renders the site on pull requests (checks that repo-only documents are not published) and deploys to GitHub Pages on pushes to `main`
-- `.github/workflows/sync-keep.yml`: syncs catalog entries from Google Keep into `data/resources.txt`
 
 ## Notes
 

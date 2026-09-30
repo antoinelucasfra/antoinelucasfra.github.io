@@ -23,7 +23,7 @@ docs/                          # Rendered output (quarto render -> docs/) - not 
 Rendering flow: `quarto render` reads `.qmd` files, processes R/Python code chunks (with `freeze: auto` caching), applies the brand/SCSS theme, and outputs to `docs/`. The index page (`index.qmd`) sources `_helpers/profile_render.R` to build a dynamic hero/profile section from `data/profile.yml`.
 
 **Key nuance — all Python tooling lives in `scripts/`:**
-- `scripts/pyproject.toml`: Google Keep sync + resource backfill automation (deps: `gkeepapi`, `gpsoauth`, `trafilatura`, `htmldate`)
+- `scripts/pyproject.toml`: resource backfill automation and the manual Google Keep sync helper (deps: `gkeepapi`, `gpsoauth`, `trafilatura`, `htmldate`)
 - There is no root Python project; run helpers from `scripts/` via `uv run`
 
 ## Key Directories
@@ -61,7 +61,7 @@ rv sync                         # Install R dependencies from rv.lock
 ```bash
 cd scripts && uv sync                        # Sync helper dependencies
 uv run python backfill.py --mode both        # Backfill resource metadata
-uv run python sync_keep.py                   # Sync catalog from Google Keep
+uv run python sync_keep.py                   # Manual Keep -> catalog sync (no scheduled job)
 ```
 
 ### Formatting
@@ -74,7 +74,6 @@ air format .    # R formatting (line-width 100, configured in air.toml)
 
 `.github/workflows/` contains:
 - `site.yml` — renders site on PRs (checks repo-only docs not published) and deploys to GitHub Pages on pushes to main
-- `sync-keep.yml` — scheduled sync of Google Keep -> `data/resources.txt`
 
 ## Code Conventions & Common Patterns
 
@@ -102,7 +101,7 @@ air format .    # R formatting (line-width 100, configured in air.toml)
 | `_helpers/profile_render.R` | R code that builds the homepage hero from `profile.yml` |
 | `_helpers/resources_catalog.R` | R code that emits the catalog listing items from `data/resources.txt` |
 | `scripts/backfill.py` | Backfill resource metadata |
-| `scripts/sync_keep.py` | Google Keep -> resources.txt sync |
+| `scripts/sync_keep.py` | Manual Google Keep -> resources.txt sync |
 | `TODO.md` | Ongoing tasks and completed items |
 | `air.toml` | R formatting config (line-width 100) |
 
@@ -112,7 +111,7 @@ air format .    # R formatting (line-width 100, configured in air.toml)
 - **Python**: `uv` exclusively. Never `pip`. Single environment in `scripts/`, pinned to Python 3.13 via `scripts/.python-version`.
 - **Quarto**: Version pinned to `>=1.9.37` in `_quarto.yml`. Freeze auto-enabled — cached computations in `_freeze/`.
 - **Git**: Conventional commits (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `refactor:`, `render:`). Feature branches from main, PRs to main. Never push to main directly.
-- **CI**: GitHub Actions (validate on PR, deploy on main push, scheduled Keep sync).
+- **CI**: GitHub Actions (validate on PR, deploy on main push).
 
 ## Testing & QA
 
