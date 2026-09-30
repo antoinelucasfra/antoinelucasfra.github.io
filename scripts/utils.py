@@ -30,6 +30,19 @@ KNOWN_TYPES: frozenset[str] = frozenset(
         "Forum",
         "Journal",
         "Repository",
+        "App",
+        "Cheatsheet",
+        "Documentation",
+        "Gallery",
+        "Game",
+        "Guide",
+        "Magazine",
+        "Platform",
+        "Slides",
+        "Social",
+        "Tool",
+        "Tutorial",
+        "Workshop",
     }
 )
 

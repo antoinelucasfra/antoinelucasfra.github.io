@@ -35,7 +35,7 @@ description: "The online version of Mastering Shiny, a book that teaches you to 
 
 ### Valid `type` values
 
-`Blog` · `Book` · `Website` · `Package` · `Video` · `Paper` · `Course` · `Community` · `Newsletter` · `Conference` · `Forum` · `Journal` · `Repository`
+`Blog` · `Book` · `Website` · `Package` · `Video` · `Paper` · `Course` · `Community` · `Newsletter` · `Conference` · `Forum` · `Journal` · `Repository` · `App` · `Cheatsheet` · `Documentation` · `Gallery` · `Game` · `Guide` · `Magazine` · `Platform` · `Slides` · `Social` · `Tool` · `Tutorial` · `Workshop`
 
 ### Valid `language` values
 
