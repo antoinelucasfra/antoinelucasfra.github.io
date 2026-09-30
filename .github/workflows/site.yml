@@ -47,11 +47,15 @@ jobs:
           rv --version
 
       # The P3M URL in rproject.toml serves sources on Linux, so packages with
-      # system-library requirements get compiled here. Let rv name them.
+      # system-library requirements get compiled here. Let rv name the ones it
+      # knows about, then add what pak needs to build its embedded `curl`,
+      # `cli` and `zip` copies (rv installs pak itself, so it comes first).
       - name: Install system dependencies for R packages
         run: |
           sudo apt-get update
-          sudo apt-get install -y $(rv sysdeps --only-absent)
+          sudo apt-get install -y \
+            $(rv sysdeps --only-absent) \
+            libcurl4-openssl-dev libssl-dev libxml2-dev
 
       - name: Restore R dependencies with rv
         run: rv sync
