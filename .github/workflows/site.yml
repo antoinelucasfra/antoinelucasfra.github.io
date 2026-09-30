@@ -32,8 +32,19 @@ jobs:
           r-version: 4.5.2
           use-public-rspm: true
 
+      # rv is a standalone Rust CLI shipped through GitHub releases, not an R
+      # package. Pinned and checksum-verified so the toolchain cannot drift.
       - name: Install rv
-        run: install.packages("rv", repos="https://packagemanager.posit.co/cran/latest")
+        env:
+          RV_VERSION: v0.23.1
+          RV_SHA256: 2b4064af50840f2902038928650d750f27f0e112032f2f37e42baa825b7ae814
+        run: |
+          curl -sSLo /tmp/rv.tar.gz \
+            "https://github.com/A2-ai/rv/releases/download/${RV_VERSION}/rv-${RV_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+          echo "${RV_SHA256}  /tmp/rv.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/rv.tar.gz -C /tmp
+          sudo install -m 0755 /tmp/rv /usr/local/bin/rv
+          rv --version
 
       - name: Restore R dependencies with rv
         run: rv sync
