@@ -1,6 +1,8 @@
 ---
 title: "Now"
 description: "What I'm currently working on, learning, and thinking about."
+date: last-modified
+date-format: "MMMM YYYY"
 format:
   html:
     toc: false
@@ -13,12 +15,15 @@ What I'm focused on right now. Updated periodically; inspired by [nownownow.com]
 ## Working on
 
 - ML tooling and R Shiny applications for fragrance & cosmetics R&D at Chanel Parfums Beauté.
+- My public [Agentic Stats](/projects/agentic-stats.html) demo: an MCP server and FastAPI app that expose typed statistical tools to LLM agents, tested and containerised.
 - Growing this site: case studies, reproducibility field notes, and the [Resources Catalog](/projects/resources_catalog.html).
+- Two CV variants generated from one profile source — a scientific software & AI track and a biostatistics track.
 - Internal training material on Bayesian statistics with R.
 
 ## Learning
 
 - Deeper MLOps on Azure ML and Databricks.
+- Tool-calling agents and evaluation methods for scientific RAG, so the results stay verifiable.
 - Interpretable ML for regulated environments.
 
 ## Reading / listening
@@ -28,6 +33,4 @@ What I'm focused on right now. Updated periodically; inspired by [nownownow.com]
 
 ## Location
 
-Paris, France. Open to interesting conversations about scientific software, R/Shiny delivery, and statistics in R&D — [email me](mailto:antoine.lucas.fra@gmail.com).
-
-*Last updated: February 2026.*
+Paris, France. Open to Scientific Software / AI, Data Science and Biostatistics roles across Île-de-France — hybrid, full remote or on-site. [Email me](mailto:antoine.lucas.fra@gmail.com) or find me on [LinkedIn](https://www.linkedin.com/in/antoinelucasdata/).
