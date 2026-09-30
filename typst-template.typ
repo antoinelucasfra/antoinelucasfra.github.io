@@ -1,7 +1,6 @@
 // Minimal Quarto Typst template for the CV.
 // Bypasses the default article wrapper (no floating title block, no brand fonts).
 // All layout is handled by typst-preamble.typ + the cv-typst.qmd raw typst block.
-// Only the parameters typst-show.typ actually passes are declared.
 
 #let article(
   lang: "en",
