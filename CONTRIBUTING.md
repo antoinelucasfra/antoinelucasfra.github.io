@@ -43,7 +43,7 @@ description: "The online version of Mastering Shiny, a book that teaches you to 
 
 ### `category` conventions
 
-- Use existing category tags when possible (check the catalog filter chips for current tags)
+- Use existing category tags when possible (check the catalog category filter for current tags)
 - Separate multiple tags with `;` and no surrounding spaces: `"Statistics;Mixed Models;GLMM"`
 - Tags are case-sensitive as written in the file — use title case
 

@@ -96,7 +96,6 @@ _CLASSIFICATION_RULES: list[tuple[str, str, str, str, str]] = [
     ("opencode.ai", "", "Website", "Other", "Development"),
     # --- Shiny ---
     ("shinyapps.io", "", "Website", "R", "Shiny"),
-    ("shinylive.io", "", "Website", "R", "Shiny"),
     ("connect.posit.cloud", "", "Website", "R", "Shiny"),
     ("pub.current.posit.team", "", "Website", "R", "Shiny"),
     ("blockr.cloud", "", "Website", "R", "Shiny"),
