@@ -272,46 +272,34 @@ load_resources_catalog <- function(path) {
 }
 
 # ── Display helpers ────────────────────────────────────────────────────
-format_date_display <- function(date_str) {
+# "YYYY[-MM[-DD]]" -> Date, NA when unparseable; month-precision dates anchor on the 1st
+as_catalog_date <- function(date_str) {
   if (is.na(date_str) || date_str == "") {
-    return("")
+    return(as.Date(NA))
   }
-  parts <- stringr::str_split_1(date_str, "-")
-  if (length(parts) == 3) {
-    day <- suppressWarnings(as.integer(parts[3]))
-    month <- suppressWarnings(as.integer(parts[2]))
-    year <- parts[1]
-    if (!is.na(day) && !is.na(month) && month >= 1 && month <= 12) {
-      return(paste(day, month.abb[month], year))
-    }
-  } else if (length(parts) == 2) {
-    month <- suppressWarnings(as.integer(parts[2]))
-    year <- parts[1]
-    if (!is.na(month) && month >= 1 && month <= 12) {
-      return(paste(month.abb[month], year))
-    }
+  suppressWarnings(as.Date(
+    sub("^(\\d{4}-\\d{1,2})$", "\\1-01", trimws(date_str)),
+    format = "%Y-%m-%d"
+  ))
+}
+
+# "2024-06-10" -> "10 Jun 2024", month precision -> "Jun 2024", unparseable -> input
+format_date_display <- function(date_str) {
+  date <- as_catalog_date(date_str)
+  if (is.na(date)) {
+    return(if (is.na(date_str) || date_str == "") "" else date_str)
   }
-  date_str
+  month <- month.abb[as.integer(format(date, "%m"))]
+  year <- format(date, "%Y")
+  if (grepl("^\\d{4}-\\d{1,2}$", trimws(date_str))) {
+    return(paste(month, year))
+  }
+  paste(as.integer(format(date, "%d")), month, year)
 }
 
 normalise_date <- function(date_str) {
-  if (is.na(date_str) || date_str == "") {
-    return("")
-  }
-  parts <- stringr::str_split_1(date_str, "-")
-  if (length(parts) == 3) {
-    values <- suppressWarnings(as.integer(parts))
-    if (!anyNA(values) && values[2] %in% 1:12 && values[3] %in% 1:31) {
-      return(sprintf("%04d-%02d-%02d", values[1], values[2], values[3]))
-    }
-  }
-  if (length(parts) == 2) {
-    values <- suppressWarnings(as.integer(parts))
-    if (!anyNA(values) && values[2] %in% 1:12) {
-      return(sprintf("%04d-%02d-01", values[1], values[2]))
-    }
-  }
-  ""
+  date <- as_catalog_date(date_str)
+  if (is.na(date)) "" else format(date, "%Y-%m-%d")
 }
 
 resource_domain <- function(link) {

@@ -73,31 +73,16 @@
           return true;
         });
 
+      var dateDir = state.sort === "date-asc" ? 1 : -1;
       visibleIndices.sort((aIndex, bIndex) => {
+        var da = items[aIndex].getAttribute("data-date") || "";
+        var db = items[bIndex].getAttribute("data-date") || "";
         if (state.sort === "date-desc" || state.sort === "date-asc") {
-          var da = items[aIndex].getAttribute("data-date") || "";
-          var db = items[bIndex].getAttribute("data-date") || "";
-          if (!da && !db) return 0;
-          if (!da) return 1;
-          if (!db) return -1;
-          return state.sort === "date-desc"
-            ? da < db
-              ? 1
-              : da > db
-                ? -1
-                : 0
-            : da < db
-              ? -1
-              : da > db
-                ? 1
-                : 0;
+          if (!da || !db) return da === db ? 0 : da ? -1 : 1;
+          return (da < db ? -1 : da > db ? 1 : 0) * dateDir;
         }
-        var ta = (
-          items[aIndex].getAttribute("data-search") || ""
-        ).toLowerCase();
-        var tb = (
-          items[bIndex].getAttribute("data-search") || ""
-        ).toLowerCase();
+        var ta = items[aIndex].getAttribute("data-search") || "";
+        var tb = items[bIndex].getAttribute("data-search") || "";
         return ta < tb ? -1 : ta > tb ? 1 : 0;
       });
 
