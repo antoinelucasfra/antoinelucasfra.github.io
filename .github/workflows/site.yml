@@ -46,6 +46,13 @@ jobs:
           sudo install -m 0755 /tmp/rv /usr/local/bin/rv
           rv --version
 
+      # The P3M URL in rproject.toml serves sources on Linux, so packages with
+      # system-library requirements get compiled here. Let rv name them.
+      - name: Install system dependencies for R packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y $(rv sysdeps --only-absent)
+
       - name: Restore R dependencies with rv
         run: rv sync
 
