@@ -7,7 +7,17 @@ format:
   html:
     toc: false
     page-layout: full
-    css: ../assets/stylesheets/resources-catalog.css
+listing:
+  - id: resources
+    contents: resources-items.yml
+    type: custom
+    template: catalog-card.ejs
+    sort: "title"
+    sort-ui: [date, title]
+    filter-ui: true
+    categories: true
+    page-size: 24
+    fields: [date, title, description, categories]
 execute:
   echo: false
 ---
@@ -21,122 +31,22 @@ It is intentionally both a curation project and a small product-engineering exer
 ## What This Project Includes
 
 - A hand-curated catalog stored in `data/resources.txt`, with each entry typed, categorized, and optionally annotated with a short description
-- A Quarto + R generation layer that builds the filter controls, cards, counters, and pagination from a single source of truth
-- Lightweight client-side search and filtering for language, topic, type, layout, and sort order
+- An R step that turns the catalog into a native Quarto listing at render time — text search, sorting, category filtering, and pagination included, with no custom JavaScript
 - A low-friction contribution workflow based on small YAML blocks and documented pull requests
 
-```{r resource-catalog-setup}
+```{r resource-catalog-items}
+#| echo: false
 #| message: false
 #| warning: false
-
-library(dplyr)
-library(htmltools)
-library(purrr)
-library(stringr)
-library(yaml)
-
+#| output: false
 source(here::here("_helpers", "resources_catalog.R"))
 
-resources <- load_resources_catalog(here::here("data", "resources.txt"))
-
-n_total <- nrow(resources)
-all_types <- sort(unique(resources$type))
-cards <- map(seq_len(n_total), function(index) {
-  make_resource_card(resources[index, ], index)
-})
+resources <- parse_resources_md(here::here("data", "resources.txt"))
+write_listing_items(resources, here::here("projects", "resources-items.yml"))
 ```
 
-```{r resource-catalog-controls}
-# ── Build chip filters ──────────────────────────────────────────────────
-
-make_chip <- function(value, label, group, extra_style = NULL) {
-  attrs <- list(
-    class = "btn filter-chip",
-    `data-filter-group` = group,
-    `data-filter-value` = value,
-    `aria-pressed` = "false"
-  )
-  if (!is.null(extra_style)) attrs$style <- extra_style
-  do.call(tags$button, c(attrs, list(label)))
-}
-
-lang_chips_html <- imap(LANG_CHIP_STYLES, function(style, lang) {
-  make_chip(lang, stringr::str_to_title(lang), "language", style)
-})
-
-super_chips_html <- imap(SUPER_CHIP_LABELS, function(label, value) {
-  make_chip(value, label, "super")
-})
-
-type_options <- c(
-  list(tags$option(value = "", "All types")),
-  map(all_types, function(t) tags$option(value = tolower(t), t))
-)
-
-tagList(
-  tags$div(
-    class = "controls-wrapper",
-    # Search
-    tags$div(
-      class = "resource-search-wrap input-group",
-      tags$span(class = "input-group-text", tags$i(class = "bi bi-search")),
-      tags$input(
-        type = "text", id = "resource-search", class = "form-control",
-        placeholder = paste0("Search ", n_total, " resources\u2026"),
-        `aria-label` = "Search resources"
-      )
-    ),
-    # Language chips
-    tags$div(class = "controls-chips-row",
-      tags$span(class = "filter-section-label", "Language"),
-      tags$div(class = "filter-divider"),
-      lang_chips_html
-    ),
-    # Super-category chips
-    tags$div(class = "controls-chips-row",
-      tags$span(class = "filter-section-label", "Topic"),
-      tags$div(class = "filter-divider"),
-      super_chips_html
-    ),
-    # Type dropdown + sort + clear + counter
-    tags$div(class = "controls-bottom-row",
-      do.call(tags$select, c(list(id = "type-filter"), type_options)),
-      tags$select(id = "sort-select",
-        tags$option(value = "default", "Sort: A \u2192 Z"),
-        tags$option(value = "date-desc", "Sort: Date \u2193 (newest)"),
-        tags$option(value = "date-asc",  "Sort: Date \u2191 (oldest)")
-      ),
-      tags$button(id = "clear-filters", class = "btn btn-sm",
-        style = "font-size: 0.78rem; border: 1.5px solid var(--bs-border-color, rgba(128,128,128,0.25)); border-radius: 0.375rem; padding: 0.25rem 0.65rem;",
-        tags$i(class = "bi bi-x-circle me-1"), "Clear"),
-      tags$div(class = "catalog-counter",
-        "Showing ", tags$strong(id = "resources-count", as.character(n_total)),
-        " of ", tags$strong(as.character(n_total)), " resources"
-      )
-    )
-  )
-)
-```
-
-```{r resource-catalog-cards}
-# ── Results view ────────────────────────────────────────────────────────
-tagList(
-  tags$div(id = "resource-catalog", class = "catalog-view",
-    tags$div(id = "catalog-results", class = "catalog-results", cards),
-    tags$div(id = "no-results-msg",
-      tags$i(class = "bi bi-search me-2"),
-      "No resources match your current filters.",
-      tags$button(id = "no-results-clear", class = "btn btn-link btn-sm p-0 ms-2",
-        style = "font-size: inherit;", "Clear filters")
-    )
-  ),
-  tags$div(id = "catalog-pagination")
-)
-```
-
-```{=html}
-<script src="../assets/scripts/resources-catalog.js"></script>
-```
+::: {#resources}
+:::
 
 :::: {.callout-note}
 ## Contributing
@@ -149,11 +59,11 @@ type: Book
 link: https://example.com
 language: R
 category: "Statistics;Tutorial"
-description: "A brief one-sentence description shown on hover and in search."
+description: "A brief one-sentence description shown on the card and in search."
 ---
 ```
 
-The `description` field is optional but recommended — it powers the hover tooltip on each card title and is included in the full-text search.
+The `description` field is optional but recommended — it appears on the card and is included in the full-text search.
 
 See [CONTRIBUTING.md](https://github.com/antoinelucasfra/antoinelucasfra.github.io/blob/main/CONTRIBUTING.md) for the full guide, including the automated workflow for adding resources via Google Keep.
 ::::

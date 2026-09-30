@@ -31,6 +31,9 @@ docs/
 # Quarto freeze (generated/temporary files)
 _freeze/
 
+# Generated listing source (rebuilt at render from data/resources.txt)
+projects/resources-items.yml
+
 # OS / editor
 .DS_Store
 Thumbs.db

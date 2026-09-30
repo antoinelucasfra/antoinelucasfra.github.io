@@ -11,7 +11,6 @@ Personal website and blog at [antoinelucasfra.github.io](https://antoinelucasfra
 ```
 _quarto.yml                    # Project config: pages, theme, navbar, listing
 _extensions/antoinelucasfra/al-brand/  # AL Brand extension (canonical): brand.yml + SCSS suite
-assets/stylesheets/            # resources-catalog.css (theme entries live in the al-brand extension)
 _helpers/                      # R helper scripts sourced during render
 _extensions/                   # Quarto extensions (iconify, fontawesome, custom-callout, highlight-text)
 data/                          # Source data: profile.yml, resources.txt
@@ -36,9 +35,7 @@ Rendering flow: `quarto render` reads `.qmd` files, processes R/Python code chun
  | `topics/` | Topic-filtered blog listings (`index.qmd` hub + `r-shiny.qmd`, `reproducibility.qmd`, `python-ml.qmd`) |
  | `_extensions/` | Quarto extension: `custom-callout` (removed — replaced with native Quarto callouts) |
  | `_helpers/` | R helper code sourced during Quarto rendering (`profile_render.R`, `resources_catalog.R`) |
-| `assets/stylesheets/` | Resources catalog stylesheet; the al-brand theme entries live in `_extensions/antoinelucasfra/al-brand/` |
 | `assets/images/` | Profile picture, blog placeholder SVG |
-| `assets/scripts/` | Client-side JS (`resources-catalog.js`) |
 | `data/` | `profile.yml`, `resources.txt` (source of truth for catalog) |
 | `scripts/` | Python automation: `backfill.py`, `sync_keep.py`, `utils.py` |
 | `docs/` | Quarto HTML output — do not edit manually |
@@ -84,7 +81,7 @@ air format .    # R formatting (line-width 100, configured in air.toml)
 - **Quarto pages** use YAML frontmatter with `title`, `description`, `format` overrides where needed.
 - **Blog posts** use native Quarto callouts (`callout-warning`, `callout-important`, `callout-tip`) instead of the custom-callout extension.
 - **Profile rendering**: `index.qmd` sources `_helpers/profile_render.R` which reads `data/profile.yml` and builds an HTML hero section using `htmltools`.
-- **Resources catalog**: `projects/resources_catalog.qmd` sources `_helpers/resources_catalog.R`, reads `data/resources.txt`.
+- **Resources catalog**: `projects/resources_catalog.qmd` emits a native-listing items file from `data/resources.txt` via `_helpers/resources_catalog.R`.
 - **R code** in `.qmd` files uses `here::here()` for paths, `yaml::read_yaml()` for YAML data.
 - **No global R package** — helpers are ad-hoc scripts, not a formal R package.
 - **Air config**: `air.toml` sets line-width 100.
@@ -103,7 +100,7 @@ air format .    # R formatting (line-width 100, configured in air.toml)
 | `data/profile.yml` | Profile data driving the homepage hero |
 | `data/resources.txt` | Source of truth for the resources catalog |
 | `_helpers/profile_render.R` | R code that builds the homepage hero from `profile.yml` |
-| `_helpers/resources_catalog.R` | R code that builds the resources catalog page |
+| `_helpers/resources_catalog.R` | R code that emits the catalog listing items from `data/resources.txt` |
 | `scripts/backfill.py` | Backfill resource metadata |
 | `scripts/sync_keep.py` | Google Keep -> resources.txt sync |
 | `TODO.md` | Ongoing tasks and completed items |
