@@ -1,6 +1,12 @@
 identity:
   name: Antoine Lucas
-  title: Scientific Software & AI Engineer · R Shiny, LLM agents, MLOps
+  # Base title feeds the homepage and About page: deliberately broad, no seniority label.
+  title: Scientific Software & Statistics Engineer · R Shiny, biostatistics, AI
+  title_ai: Scientific Software & AI Engineer · R Shiny, LLM agents, MLOps
+  title_biostat: Biostatistician & Data Scientist · Clinical R&D, DoE, mixed models
+  # CV PDF produced per variant (see _quarto.yml render list).
+  cv_pdf: cv.pdf
+  cv_pdf_biostat: cv-biostat.pdf
   location_short: Paris
   location_full: Paris, France
   sectors: Pharma · Cosmetics · Biotech
@@ -126,6 +132,14 @@ summary:
     working: I build LLM agents and MCP tools that make scientific software faster to write,
     test, and maintain. Reproducible by default (uv, rv, tests, CI/CD, containers), and
     qualifiable and auditable in GxP environments.
+  cv_biostat: >
+    Biostatistician and data scientist with 5+ years supporting clinical, cosmetic, and
+    microbiome R&D: more than 100 clinical studies analysed, statistical analysis plans and
+    blind review, design of experiments, mixed models, and multivariate or multi-omics methods
+    in R. I work across the whole chain, from study design and methodology to reproducible
+    pipelines, reporting, and the R Shiny tools that deliver them. Software engineering
+    practice comes with it (Git, CI/CD, containers, tests), plus a working command of LLM
+    and agentic tooling from an engineering rather than a hype angle.
 
 experience:
   - section: selected
@@ -137,6 +151,11 @@ experience:
       - Owned a catalog of 20+ R Shiny applications spanning clinical data visualisation, formulation process automation, and researcher-facing data lifecycle workflows.
       - Engineered reproducible MLOps and delivery infrastructure using Docker and Databricks.
       - Designed and deployed computer vision models (object segmentation) for cosmetics formulation and regulatory R&D applications.
+    bullets_biostat:
+      - Delivered machine learning and statistical modelling for fragrance and cosmetics R&D, from exploratory analysis and model validation through to deployment in researcher-facing tools.
+      - Designed and deployed computer vision models (object segmentation) for cosmetics formulation and regulatory R&D applications.
+      - Maintained a catalog of 20+ R Shiny applications used daily by researchers, covering clinical data visualisation and formulation process automation.
+      - Supported the delivery platform (Azure ML, Posit Connect, Databricks, Git) with reproducible environments, versioned code, and documented handover.
   - section: selected
     role: Data Scientist — Internal & Consulting
     organisation: Astek / IT&M Stats
@@ -146,6 +165,11 @@ experience:
       - Developed reusable internal R packages and Quarto automated reporting templates.
       - Contributed to internal data science projects by quickly adapting to the current team processes and tools, including Shiny app development, Python modules tooling, and data analysis.
       - Fine-tuned Microsoft Phi-3-mini-4k-instruct (3.8B) using LoRA (PEFT) on the climatecheck dataset for claim verification, from data preparation to evaluation.
+    bullets_biostat:
+      - Led internal training on Bayesian statistics with R for consultants, covering modelling workflow, prior specification, and interpretation of results.
+      - Developed reusable internal R packages and Quarto statistical reporting templates used across missions.
+      - Contributed to internal biostatistics and data science projects, including statistical programming in R and review of planned analyses.
+      - Fine-tuned Microsoft Phi-3-mini-4k-instruct (3.8B) with LoRA (PEFT) for claim verification, from data preparation through training and evaluation.
   - section: selected
     role: Data Scientist — Multi-omics
     organisation: Abolis · Microbiome Studio · via Astek / IT&M Stats
@@ -154,6 +178,10 @@ experience:
       - Delivered end-to-end pipelines in R and Python for tabular and large-scale omics data, including genomics, transcriptomics, and metabolomics.
       - Embedded as the sole data scientist in a fast-paced 8-person startup team building a SaaS product with a FastAPI backend and Vue.js front-end.
       - Participated in scientific discussions with agri-food partners, including experimental design, data analysis, and ML approaches for multi-omics integration.
+    bullets_biostat:
+      - Analysed large-scale multi-omics data (genomics, transcriptomics, metabolomics) end-to-end in R and Python, from quality control through to biological interpretation.
+      - Contributed statistical design and analysis strategy in partner-facing discussions with agri-food companies, covering experimental design and multi-omics integration.
+      - Worked as the sole data scientist in an 8-person startup team, delivering analyses and pipelines for a SaaS product with a FastAPI backend and Vue.js front-end.
   - section: selected
     role: Data Scientist
     organisation: Sanofi R&D · Manufacturing Chain · via Astek / IT&M Stats
@@ -161,6 +189,9 @@ experience:
     bullets:
       - Owned end-to-end delivery as sole R Shiny developer and Scrum Master, managing backlog, sprint ceremonies, and stakeholder alignment across researchers, managers, and project leads.
       - Built R and Python applications to predict and simulate manufacturing plant resource capacity across global sites, driving drug production planning and decision-making from requirements through deployment.
+    bullets_biostat:
+      - Built simulation and forecasting models in R and Python to predict manufacturing plant resource capacity across global sites, informing drug production planning.
+      - Owned delivery end-to-end as sole developer, from requirements and methodology through validation, workshops, UAT, and handover, and also acted as Scrum Master.
   - section: selected
     role: Biostatistician
     organisation: L'Oréal R&I · Scientific Computing · via Astek / IT&M Stats
@@ -170,6 +201,11 @@ experience:
       - Characterised clinical phenotypes with multi-block, integrative, multivariate, and variable-selection approaches.
       - Contributed to data-visualisation work, including Bayesian-network and other graphical approaches, while proposing suitable statistical methods.
       - Defined analysis methodologies for proof-of-concept clinical studies; wrote statistical analysis plans, supported blind-review meetings, programmed analyses in R, and delivered reports for more than 100 clinical studies.
+    bullets_biostat:
+      - Defined analysis methodologies and wrote statistical analysis plans for proof-of-concept clinical studies, programmed the analyses in R, and delivered reports for more than 100 studies.
+      - Supported blind-review meetings and clinical study reporting in a regulated R&D environment.
+      - Characterised clinical phenotypes with multi-block, integrative, multivariate, and variable-selection approaches on exposome, biophysical, omics, and microbiome data.
+      - Contributed methodology and data-visualisation work, including Bayesian-network and other graphical approaches, while proposing suitable statistical methods.
   - section: earlier
     role: Data Scientist Intern
     organisation: L'Oréal R&I · Augmented Beauty
@@ -194,12 +230,19 @@ education:
     school: INSA Rennes · Agrocampus Ouest · Université Rennes 2 · ENSAI · ENSAE (joint programme)
     year: "2021"
 
+# `order` ranks the section on the CV; `order_<variant>` overrides it for that variant.
 skills:
   - label: Programming
+    order: 4
+    order_biostat: 2
     items: [Python, R, SQL, Bash]
   - label: Applications & delivery
+    order: 2
+    order_biostat: 4
     items: [R Shiny (golem), FastAPI, Quarto, ggplot2, Plotly, Streamlit]
   - label: ML & AI
+    order: 5
+    order_biostat: 5
     items:
       [
         scikit-learn,
@@ -211,6 +254,8 @@ skills:
         OpenCV,
       ]
   - label: LLM & agentic engineering
+    order: 1
+    order_biostat: 7
     items:
       [
         MCP servers,
@@ -223,6 +268,8 @@ skills:
         Codex,
       ]
   - label: Statistics & methods
+    order: 6
+    order_biostat: 1
     items:
       [
         DoE,
@@ -234,9 +281,13 @@ skills:
         SPC,
       ]
   - label: MLOps & infrastructure
+    order: 3
+    order_biostat: 6
     items:
       [Docker, GitHub Actions, Azure ML, Databricks, Posit Connect, renv, uv]
   - label: Engineering & domains
+    order: 7
+    order_biostat: 3
     items:
       [
         Git,

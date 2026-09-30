@@ -1,0 +1,19 @@
+---
+title: "CV — AI & Scientific Software"
+description: "R Shiny and Python delivery, LLM agents and MCP tools, MLOps, and reproducible engineering in regulated R&D."
+format:
+  html:
+    toc: false
+    page-layout: full
+execute:
+  echo: false
+---
+
+```{r cv-html-ai}
+#| message: false
+#| warning: false
+source(here::here("_helpers", "profile_render.R"))
+
+profile <- load_profile("ai")
+render_cv_html(profile)
+```

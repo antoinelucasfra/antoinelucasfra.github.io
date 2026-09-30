@@ -2,7 +2,7 @@
 title: ""
 format:
   typst:
-    output-file: cv.pdf
+    output-file: cv-biostat.pdf
     papersize: a4
     page-numbering: false
     margin:
@@ -19,16 +19,14 @@ execute:
   echo: false
 ---
 
-```{r cv-typst}
+```{r cv-typst-biostat}
 #| results: asis
 #| message: false
 #| warning: false
 
 source(here::here("_helpers", "profile_render.R"))
 
-# AI / scientific software variant. Keeps the cv.pdf filename so existing links
-# (LinkedIn, mail signature, UIs that deep-link the CV) keep resolving.
-profile <- load_profile("ai")
+profile <- load_profile("biostat")
 
 cat("```{=typst}\n")
 cat(render_cv_typst(profile))
