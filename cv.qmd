@@ -1,19 +1,28 @@
 ---
 title: "Curriculum Vitae"
-description: "Experience, technical skills, and delivery background across R Shiny, scientific software, data products, and machine learning in pharma and cosmetics R&D."
+description: "Two CV variants of the same background: AI and scientific software engineering, or biostatistics and clinical R&D."
 format:
   html:
     toc: false
     page-layout: full
-execute:
-  echo: false
 ---
 
-```{r cv-html}
-#| message: false
-#| warning: false
-source(here::here("_helpers", "profile_render.R"))
+Same background, two emphases. Pick whichever matches the role you are hiring for.
 
-profile <- load_profile()
-render_cv_html(profile)
-```
+:::: {.columns}
+::: {.column width="50%"}
+### AI & scientific software
+
+R Shiny and Python delivery, LLM agents and MCP tools, MLOps, reproducible and GxP-qualifiable engineering.
+
+[Web CV](/cv-ai.html){.btn .btn-primary .btn-sm} [PDF](/cv.pdf){.btn .btn-outline-secondary .btn-sm}
+:::
+
+::: {.column width="50%"}
+### Biostatistics & clinical R&D
+
+Clinical study design and analysis, statistical analysis plans, DoE, mixed models, multi-omics, R programming.
+
+[Web CV](/cv-biostat.html){.btn .btn-primary .btn-sm} [PDF](/cv-biostat.pdf){.btn .btn-outline-secondary .btn-sm}
+:::
+::::

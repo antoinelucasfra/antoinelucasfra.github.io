@@ -1,5 +1,7 @@
 ---
 title: ""
+# reads data/profile.yml: always re-execute.
+freeze: false
 format:
   typst:
     output-file: cv.pdf
@@ -26,7 +28,9 @@ execute:
 
 source(here::here("_helpers", "profile_render.R"))
 
-profile <- load_profile()
+# AI / scientific software variant. Keeps the cv.pdf filename so existing links
+# (LinkedIn, mail signature, UIs that deep-link the CV) keep resolving.
+profile <- load_profile("ai")
 
 cat("```{=typst}\n")
 cat(render_cv_typst(profile))

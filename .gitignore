@@ -34,6 +34,9 @@ _freeze/
 # Generated listing source (rebuilt at render from data/resources.txt)
 projects/resources-items.yml
 
+# Local scratch / exploration notes (never committed)
+explore/
+
 # OS / editor
 .DS_Store
 Thumbs.db
