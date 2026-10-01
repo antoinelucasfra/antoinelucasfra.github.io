@@ -30,6 +30,11 @@ listing:
         description: "A curated and searchable collection of 1,000+ data science resources for R, Python, and beyond. Filter by type, language, and category."
         date: "2025-12-13"
         categories: [R, Python, Resources]
+      - path: projects/academic_projects.qmd
+        title: "Academic Projects: Statistics, ML and Data Apps"
+        description: "Earlier work from my engineering degree (M1-M2, 2019-2021): eye-tracking analysis, co-inertia analysis, a Shiny web application, a Redis-backed data project, and a first machine learning project."
+        date: "2021-09-01"
+        categories: [R, Python, Statistics, Machine Learning, Shiny]
 
     type: grid
     sort: "date desc"

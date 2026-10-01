@@ -132,7 +132,8 @@ render_homepage <- function(profile) {
         current_role$context,
         ". ",
         current_role$summary
-      )
+      ),
+      htmltools::tags$p(class = "availability", identity$availability)
     ),
     htmltools::tags$div(
       class = "stats-band",
@@ -269,6 +270,7 @@ render_about_contact <- function(profile) {
   identity <- profile$identity
 
   htmltools::tagList(
+    htmltools::tags$p(class = "availability", identity$availability),
     htmltools::tags$ul(
       htmltools::tags$li(
         htmltools::tags$strong("Email"),
@@ -406,6 +408,17 @@ render_cv_html <- function(profile) {
               list(
                 htmltools::tags$i(class = "bi bi-github"),
                 sub("^https://", "", identity$github)
+              )
+            )
+          ),
+          do.call(
+            htmltools::tags$a,
+            c(
+              list(href = identity$website),
+              external_link_attrs,
+              list(
+                htmltools::tags$i(class = "bi bi-globe"),
+                sub("^https://", "", identity$website)
               )
             )
           ),
@@ -627,6 +640,14 @@ render_cv_typst <- function(profile) {
       identity$github,
       "\")[",
       typst_escape(sub("^https://", "", identity$github)),
+      "]]"
+    ),
+    "    #linebreak()",
+    paste0(
+      "    #text(size: 9pt)[#link(\"",
+      identity$website,
+      "\")[",
+      typst_escape(sub("^https://", "", identity$website)),
       "]]"
     ),
     "  ],",

@@ -15,6 +15,9 @@ identity:
   github: https://github.com/antoinelucasfra
   mastodon: https://fosstodon.org/@antoineloucass
   photo: assets/images/profile-pic.jpg
+  # Job-search signal: rendered in the homepage hero and on the About page.
+  website: https://antoinelucasfra.github.io
+  availability: Open to Scientific Software / AI, Data Science and Biostatistics roles — Île-de-France, hybrid, full remote or on-site.
 
 home:
   intro:
