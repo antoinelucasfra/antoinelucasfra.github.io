@@ -38,6 +38,7 @@ from utils import (
     existing_links,
     fetch_date,
     fetch_description,
+    make_block,
 )
 
 # ---------------------------------------------------------------------------
@@ -88,58 +89,6 @@ def _parse_line(line: str) -> dict[str, str] | None:
     }
 
 
-def _write_step_summary(
-    added: list[str],
-    skipped: list[dict[str, str]],
-    duplicates: list[str],
-) -> None:
-    """Write a Markdown summary to $GITHUB_STEP_SUMMARY if available."""
-    summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
-    lines: list[str] = []
-
-    lines.append("## Keep Sync Summary\n")
-    lines.append(f"- **Added:** {len(added)}")
-    lines.append(f"- **Duplicates (skipped silently):** {len(duplicates)}")
-    lines.append(f"- **Invalid lines kept in note:** {len(skipped)}\n")
-
-    if added:
-        lines.append("### Added")
-        for url in added:
-            lines.append(f"- {url}")
-        lines.append("")
-
-    if skipped:
-        lines.append("### Invalid lines (still in note)")
-        lines.append("Fix these and they will be picked up on the next run.\n")
-        lines.append("| Line | Reason |")
-        lines.append("|---|---|")
-        for item in skipped:
-            raw = item.get("raw", "").replace("|", "\\|")
-            err = item.get("error", "").replace("|", "\\|")
-            lines.append(f"| `{raw}` | {err} |")
-        lines.append("")
-
-    summary = "\n".join(lines)
-    print(summary)
-
-    if summary_path:
-        resolved = Path(summary_path).resolve()
-        runner_temp = Path(os.environ["RUNNER_TEMP"]).resolve()
-        if runner_temp not in resolved.parents and resolved != runner_temp:
-            print(
-                f"  WARNING: GITHUB_STEP_SUMMARY outside runner tmp, skipping: {resolved}",
-                file=sys.stderr,
-            )
-        else:
-            try:
-                resolved.parent.mkdir(parents=True, exist_ok=True)
-                resolved.write_text(summary, encoding="utf-8")
-            except OSError as exc:
-                print(
-                    f"  WARNING: could not write step summary: {exc}", file=sys.stderr
-                )
-
-
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -186,9 +135,6 @@ def main() -> None:
     # -- Process each line ---------------------------------------------------
     kept_lines: list[str] = []  # lines that stay in the note (invalid)
     new_blocks: list[dict[str, str]] = []
-    added_urls: list[str] = []
-    skipped_items: list[dict[str, str]] = []
-    duplicate_urls: list[str] = []
 
     for line in lines:
         parsed = _parse_line(line)
@@ -196,7 +142,6 @@ def main() -> None:
         # Malformed line — keep in note, report
         if parsed is None or "error" in parsed:
             kept_lines.append(line)
-            skipped_items.append(parsed or {"error": "parse error", "raw": line})
             print(f"  SKIP  {line!r} — {(parsed or {}).get('error', 'parse error')}")
             continue
 
@@ -204,7 +149,6 @@ def main() -> None:
 
         # Duplicate — silently drop from note (already in catalog)
         if url in known:
-            duplicate_urls.append(url)
             print(f"  DUP   {url}")
             continue
 
@@ -216,20 +160,17 @@ def main() -> None:
             downloaded = None
         time.sleep(0.5)  # polite delay
 
-        desc = fetch_description(url, downloaded=downloaded)
-        date = fetch_date(url, downloaded=downloaded)
-
-        block = {
-            "title": parsed["title"],
-            "type": parsed["type"],
-            "link": url,
-            "language": parsed["language"],
-            "category": parsed["category"],
-            "description": desc,
-            "date": date,
-        }
-        new_blocks.append(block)
-        added_urls.append(url)
+        new_blocks.append(
+            make_block(
+                title=parsed["title"],
+                type=parsed["type"],
+                link=url,
+                language=parsed["language"],
+                category=parsed["category"],
+                description=fetch_description(url, downloaded=downloaded),
+                date=fetch_date(url, downloaded=downloaded),
+            )
+        )
         known.add(url)  # prevent within-run duplicates
 
     # -- Append new entries --------------------------------------------------
@@ -246,9 +187,6 @@ def main() -> None:
     keep.sync()
     remaining = len(kept_lines)
     print(f"Keep note updated — {remaining} line(s) remaining (invalid/unfixed).")
-
-    # -- Summary -------------------------------------------------------------
-    _write_step_summary(added_urls, skipped_items, duplicate_urls)
 
 
 if __name__ == "__main__":

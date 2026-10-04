@@ -1,5 +1,5 @@
 """
-Shared utilities for sync_keep.py, backfill_descriptions.py and backfill_dates.py.
+Shared utilities for sync_keep.py, backfill.py and make_covers.py.
 """
 
 from __future__ import annotations
@@ -162,6 +162,26 @@ def write_resources(path: Path, blocks: list[dict[str, str]]) -> None:
     """
     content = "\n".join(_format_block(b) for b in blocks) + "\n"
     path.write_text(content, encoding="utf-8")
+
+
+def make_block(
+    *,
+    title: str,
+    type: str,
+    link: str,
+    language: str,
+    category: str,
+    description: str = "",
+    date: str = "",
+) -> dict[str, str]:
+    """Build one catalog entry in the canonical field order."""
+    return dict(
+        zip(
+            FIELD_ORDER,
+            (title, type, link, language, category, description, date),
+            strict=True,
+        )
+    )
 
 
 def append_blocks(path: Path, new_blocks: list[dict[str, str]]) -> None:

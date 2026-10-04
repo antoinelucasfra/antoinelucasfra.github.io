@@ -32,6 +32,7 @@ from utils import (
     fetch_date,
     fetch_description,
     is_placeholder,
+    make_block,
     parse_resources,
     write_resources,
 )
@@ -208,18 +209,25 @@ def _normalise_url(url: str) -> str:
 
 def _extract_urls_from_args(raw: list[str]) -> list[str]:
     """
-    Given a list of raw string arguments (possibly with leading numbers, bullets,
-    whitespace), extract valid-looking URLs and return them deduplicated in order.
+    Extract URLs from argument tokens: bare URLs, or `@path` to read one URL per
+    line from a file (blank lines and # comments ignored). Order preserved, dupes
+    dropped.
     """
-    seen: set[str] = set()
-    result: list[str] = []
+    tokens: list[str] = []
     for token in raw:
         token = token.strip().strip(".,")
-        if token.startswith(("http://", "https://")):
-            norm = _normalise_url(token)
-            if norm not in seen:
-                seen.add(norm)
-                result.append(token)  # keep original for fetching
+        if token.startswith("@"):
+            tokens.extend(_read_urls_file(token[1:]))
+        elif token.startswith(("http://", "https://")):
+            tokens.append(token)
+
+    seen: set[str] = set()
+    result: list[str] = []
+    for token in tokens:
+        norm = _normalise_url(token)
+        if norm not in seen:
+            seen.add(norm)
+            result.append(token)  # keep original for fetching
     return result
 
 
@@ -232,7 +240,7 @@ def _read_urls_file(path: str) -> list[str]:
     """Read URLs from a file (one per line, blank lines and # comments ignored)."""
     p = Path(path)
     if not p.exists():
-        print(f"ERROR: --urls-file path not found: {p}", file=sys.stderr)
+        print(f"ERROR: URL file not found: {p}", file=sys.stderr)
         sys.exit(1)
     lines = p.read_text(encoding="utf-8").splitlines()
     urls: list[str] = []
@@ -564,16 +572,17 @@ def _add_urls(
             short = description[:70] + ("…" if len(description) > 70 else "")
             print(f"         desc  : {short}")
 
-        block = {
-            "title": title,
-            "type": rtype,
-            "link": url,
-            "language": language,
-            "category": category,
-            "description": description,
-            "date": date,
-        }
-        new_blocks.append(block)
+        new_blocks.append(
+            make_block(
+                title=title,
+                type=rtype,
+                link=url,
+                language=language,
+                category=category,
+                description=description,
+                date=date,
+            )
+        )
         time.sleep(_FETCH_DELAY)
 
     if not dry_run and new_blocks:
@@ -614,29 +623,21 @@ def _build_parser() -> argparse.ArgumentParser:
         "--mode",
         choices=["dates", "descriptions", "both"],
         default=None,
-        help="Which fields to backfill for existing entries (default: both).",
+        help="Which fields to backfill. Without it, the run only validates.",
     )
     mode_group.add_argument(
         "--add-urls",
         nargs="+",
-        metavar="URL",
+        metavar="URL|@FILE",
         dest="add_urls",
-        help="Add new URLs: fetch metadata, classify, deduplicate, append.",
-    )
-    mode_group.add_argument(
-        "--urls-file",
-        metavar="FILE",
-        dest="urls_file",
-        help="Like --add-urls but reads one URL per line from FILE. Blank lines and # comments ignored.",
+        help=(
+            "Add new URLs: fetch metadata, classify, deduplicate, append. "
+            "@FILE reads one URL per line (blank lines and # comments ignored)."
+        ),
     )
 
     # ── Validation ─────────────────────────────────────────────────────────
     val_group = p.add_argument_group("Validation")
-    val_group.add_argument(
-        "--check",
-        action="store_true",
-        help="Run validation checks (always runs implicitly; this flag makes it the only action).",
-    )
     val_group.add_argument(
         "--fix-dupes",
         action="store_true",
@@ -699,12 +700,7 @@ def main() -> None:
         print(f"Writing cleaned file to {resources_path} ...")
         write_resources(resources_path, blocks)
 
-    # ── Determine what actions to take ───────────────────────────────────
-    # If --check is the only flag, we're done (validation already ran above)
-    # If --add-urls is given, add new URLs
-    # If --mode is given (or neither --check nor --add-urls), run backfill
-
-    # ── Add URLs ─────────────────────────────────────────────────────────
+    # Actions: validation ran above; each flag adds one more step.
     if args.add_urls:
         clean_urls = _extract_urls_from_args(args.add_urls)
         if not clean_urls:
@@ -712,37 +708,28 @@ def main() -> None:
         else:
             _add_urls(clean_urls, resources_path, dry_run=args.dry_run)
 
-    # ── Add URLs from file ────────────────────────────────────────────────
-    if args.urls_file:
-        file_urls = _read_urls_file(args.urls_file)
-        if not file_urls:
-            print(f"WARNING: --urls-file {args.urls_file!r} contained no valid URLs.")
-        else:
-            _add_urls(file_urls, resources_path, dry_run=args.dry_run)
+    if args.mode is None:
+        if not args.add_urls and not args.fix_dupes:
+            print("Validation only. Pass --mode {dates,descriptions,both} to backfill.")
+        return
 
-    # ── Backfill mode ─────────────────────────────────────────────────────
-    if args.mode is not None or (
-        not args.check and not args.add_urls and not args.urls_file
-    ):
-        mode = args.mode or "both"
+    url_filter: set[str] | None = None
+    if args.urls:
+        url_filter = {_normalise_url(u) for u in args.urls}
 
-        url_filter: set[str] | None = None
-        if args.urls:
-            url_filter = {_normalise_url(u) for u in args.urls}
+    blocks, updated, _failed = _backfill(
+        blocks,
+        mode=args.mode,
+        force=args.force,
+        dry_run=args.dry_run,
+        limit=args.limit,
+        url_filter=url_filter,
+    )
 
-        blocks, updated, failed = _backfill(
-            blocks,
-            mode=mode,
-            force=args.force,
-            dry_run=args.dry_run,
-            limit=args.limit,
-            url_filter=url_filter,
-        )
-
-        if not args.dry_run and updated > 0:
-            print(f"Writing {resources_path} ...")
-            write_resources(resources_path, blocks)
-            print("Done. Review changes with: git diff data/resources.txt\n")
+    if not args.dry_run and updated > 0:
+        print(f"Writing {resources_path} ...")
+        write_resources(resources_path, blocks)
+        print("Done. Review changes with: git diff data/resources.txt\n")
 
 
 if __name__ == "__main__":
