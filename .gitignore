@@ -45,3 +45,4 @@ Thumbs.db
 **/*.quarto_ipynb
 
 /.quarto/
+_test_listing_files/

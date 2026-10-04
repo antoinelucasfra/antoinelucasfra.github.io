@@ -45,11 +45,6 @@ as_catalog_date <- function(date_str) {
   ))
 }
 
-normalise_date <- function(date_str) {
-  date <- as_catalog_date(date_str)
-  if (is.na(date)) "" else format(date, "%Y-%m-%d")
-}
-
 split_values <- function(x) {
   if (is.na(x) || x == "") {
     return(character(0))
@@ -72,12 +67,12 @@ write_listing_items <- function(resources, path) {
       link = row$link,
       categories = as.list(categories)
     )
-    date <- normalise_date(row$date)
-    if (nzchar(date)) {
-      item$date <- date
+    date <- as_catalog_date(row$date)
+    if (!is.na(date)) {
+      item$date <- format(date, "%Y-%m-%d")
       # Milliseconds since epoch for the native date sort (List.js reads
       # the data-listing-date-sort attribute the template emits for it)
-      item$datesort <- sprintf("%.0f", as.numeric(as.Date(date)) * 86400000)
+      item$datesort <- sprintf("%.0f", as.numeric(date) * 86400000)
     }
     item
   })

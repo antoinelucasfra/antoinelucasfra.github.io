@@ -1,11 +1,11 @@
-# Quarto site CI: validate on pull requests, publish on pushes to main.
+# Quarto site CI: validate on pull requests, publish on pushes to prod.
 # R dependencies are restored with rv for reproducibility.
 
 name: Site
 
 on:
   push:
-    branches: [main]
+    branches: [prod]
   pull_request:
   workflow_dispatch:
 
@@ -59,6 +59,9 @@ jobs:
 
       - name: Restore R dependencies with rv
         run: rv sync
+
+      - name: Check the CV variant overlay
+        run: Rscript _helpers/test-profile-variant.R
 
       - name: Render Quarto project
         run: quarto render
