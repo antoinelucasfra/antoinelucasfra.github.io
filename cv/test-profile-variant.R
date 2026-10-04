@@ -1,6 +1,6 @@
-# Self-check for the CV variant overlay in _helpers/profile_render.R.
-# Run from the repo root: Rscript _helpers/test-profile-variant.R
-source(here::here("_helpers", "profile_render.R"))
+# Self-check for the CV variant overlay in _helpers/profile.R.
+# Run from the repo root: Rscript cv/test-profile-variant.R
+source(here::here("_helpers", "profile.R"))
 
 profile <- list(
   identity = list(title = "base", cv_pdf = "cv.pdf"),

@@ -67,7 +67,7 @@ home:
       href: /posts/devcontainers-reproducible-environments/
       description: how I think about standards, onboarding, and maintainable delivery.
     - title: Resources Catalog
-      href: /projects/resources_catalog.html
+      href: /catalog/
       description: a public curation project that reflects how I document, teach, and structure knowledge.
   work_principles:
     - label: End-to-end ownership.

@@ -6,14 +6,15 @@ project:
     - "about.qmd"
     - "now.qmd"
     - "blog.qmd"
-    - "cv.qmd"
-    - "cv-ai.qmd"
-    - "cv-biostat.qmd"
-    - "cv-typst.qmd"
-    - "cv-biostat-typst.qmd"
+    - "cv/index.qmd"
+    - "cv/ai.qmd"
+    - "cv/biostat.qmd"
+    - "cv/typst-ai.qmd"
+    - "cv/typst-biostat.qmd"
     - "projects.qmd"
     - "posts/**/*.qmd"
     - "projects/**/*.qmd"
+    - "catalog/**/*.qmd"
     - "topics/**/*.qmd"
 
 quarto-required: ">=1.9.37"
@@ -60,17 +61,17 @@ website:
       - text: CV
         menu:
           - text: Overview
-            href: cv.qmd
+            href: cv/index.qmd
           - text: "---"
           - text: AI & scientific software
-            href: cv-ai.qmd
+            href: cv/ai.qmd
           - text: Biostatistics & clinical R&D
-            href: cv-biostat.qmd
+            href: cv/biostat.qmd
           - text: "---"
           - text: CV PDF — AI & software
-            href: /cv.pdf
+            href: /cv/cv.pdf
           - text: CV PDF — Biostatistics
-            href: /cv-biostat.pdf
+            href: /cv/cv-biostat.pdf
       - text: About
         href: about.qmd
     right:
