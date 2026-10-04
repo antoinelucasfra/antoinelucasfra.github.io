@@ -3,9 +3,9 @@
 // All layout is handled by typst-preamble.typ + the raw typst block in cv/typst-*.qmd.
 
 #let article(
+  doc,
   lang: "en",
   region: "US",
-  doc,
 ) = {
   set text(lang: lang, region: region)
   doc

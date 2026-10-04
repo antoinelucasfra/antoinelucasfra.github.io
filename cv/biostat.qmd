@@ -1,14 +1,10 @@
 ---
 title: "CV — Biostatistics & Clinical R&D"
 description: "Clinical study design and analysis, statistical analysis plans, DoE, mixed models, multi-omics, and statistical programming in R."
-# reads cv/profile.yml: always re-execute.
-freeze: false
 format:
   html:
     toc: false
     page-layout: full
-execute:
-  echo: false
 ---
 
 ```{r cv-html-biostat}

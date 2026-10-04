@@ -1,6 +1,1 @@
-#show: doc => article(
-$if(lang)$
-  lang: "$lang$",
-$endif$
-  doc,
-)
+#show: body => article(body)

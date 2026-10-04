@@ -3,27 +3,21 @@
 source(here::here("_helpers", "profile.R"))
 source(here::here("_helpers", "links.R"))
 
-render_cv_entry_html <- function(entry) {
+render_cv_entry_html <- function(role, organisation, period, body = NULL, class = "cv-entry") {
   htmltools::tags$div(
-    class = "cv-entry",
+    class = class,
     htmltools::tags$div(
       class = "cv-entry-head",
       htmltools::tags$div(
         class = "cv-entry-meta",
         htmltools::tags$p(
-          htmltools::tags$span(class = "cv-role", entry$role),
-          htmltools::tags$span(class = "cv-org", entry$organisation)
+          htmltools::tags$span(class = "cv-role", role),
+          htmltools::tags$span(class = "cv-org", organisation)
         )
       ),
-      htmltools::tags$p(class = "cv-period", entry$period)
+      htmltools::tags$p(class = "cv-period", period)
     ),
-    if (!is.null(entry$bullets)) {
-      htmltools::tags$ul(
-        lapply(entry$bullets, function(item) htmltools::tags$li(item))
-      )
-    } else {
-      htmltools::tags$p(class = "cv-inline-text", entry$summary)
-    }
+    body
   )
 }
 
@@ -79,29 +73,27 @@ render_cv_html <- function(profile) {
     htmltools::tags$div(class = "cv-rule"),
     htmltools::tags$p(class = "cv-summary", profile$summary$cv),
     htmltools::tags$h2(class = "cv-section-title", "Experience"),
-    lapply(selected_experience, render_cv_entry_html),
-    htmltools::tags$h2(class = "cv-section-title", "Earlier experience"),
-    lapply(earlier_experience, render_cv_entry_html),
-    htmltools::tags$h2(class = "cv-section-title", "Education"),
-    lapply(
-      profile$education,
-      function(entry) {
-        htmltools::tags$div(
-          class = "cv-entry cv-entry-edu",
-          htmltools::tags$div(
-            class = "cv-entry-head",
-            htmltools::tags$div(
-              class = "cv-entry-meta",
-              htmltools::tags$p(
-                htmltools::tags$span(class = "cv-role", entry$degree),
-                htmltools::tags$span(class = "cv-org", entry$school)
-              )
-            ),
-            htmltools::tags$p(class = "cv-period", entry$year)
-          )
-        )
+    lapply(selected_experience, function(entry) {
+      body <- if (is.null(entry$bullets)) {
+        htmltools::tags$p(class = "cv-inline-text", entry$summary)
+      } else {
+        htmltools::tags$ul(lapply(entry$bullets, function(item) htmltools::tags$li(item)))
       }
-    ),
+      render_cv_entry_html(entry$role, entry$organisation, entry$period, body)
+    }),
+    htmltools::tags$h2(class = "cv-section-title", "Earlier experience"),
+    lapply(earlier_experience, function(entry) {
+      body <- if (is.null(entry$bullets)) {
+        htmltools::tags$p(class = "cv-inline-text", entry$summary)
+      } else {
+        htmltools::tags$ul(lapply(entry$bullets, function(item) htmltools::tags$li(item)))
+      }
+      render_cv_entry_html(entry$role, entry$organisation, entry$period, body)
+    }),
+    htmltools::tags$h2(class = "cv-section-title", "Education"),
+    lapply(profile$education, function(entry) {
+      render_cv_entry_html(entry$degree, entry$school, entry$year, class = "cv-entry cv-entry-edu")
+    }),
     htmltools::tags$h2(class = "cv-section-title", "Technical Skills"),
     htmltools::tags$div(
       class = "cv-skills-grid",
@@ -118,21 +110,18 @@ render_cv_html <- function(profile) {
     ),
     htmltools::tags$div(
       class = "cv-inline-sections",
-      htmltools::tags$div(
-        class = "cv-inline-section",
-        htmltools::tags$h2(class = "cv-section-title", "Certifications"),
-        lapply(
-          profile$additional$certifications,
-          function(item) htmltools::tags$p(class = "cv-inline-text", item)
-        )
-      ),
-      htmltools::tags$div(
-        class = "cv-inline-section",
-        htmltools::tags$h2(class = "cv-section-title", "Languages"),
-        lapply(
-          profile$additional$languages,
-          function(item) htmltools::tags$p(class = "cv-inline-text", item)
-        )
+      lapply(
+        list(
+          c("Certifications", profile$additional$certifications),
+          c("Languages", profile$additional$languages)
+        ),
+        function(section) {
+          htmltools::tags$div(
+            class = "cv-inline-section",
+            htmltools::tags$h2(class = "cv-section-title", section[[1]]),
+            lapply(section[-1], function(item) htmltools::tags$p(class = "cv-inline-text", item))
+          )
+        }
       )
     )
   )
@@ -166,38 +155,29 @@ render_cv_typst_entry <- function(entry) {
   )
 }
 
-render_cv_typst_intern <- function(entry) {
+# One `#fn(` + bracketed args + `)` emitter: every Typst helper below it takes
+# plain text arguments.
+typst_call <- function(fn, args) {
   c(
-    "#intern_entry(",
-    paste0("  ", typst_bracket(entry$role), ","),
-    paste0("  ", typst_bracket(entry$organisation), ","),
-    paste0("  ", typst_bracket(entry$period), ","),
-    paste0("  ", typst_bracket(entry$summary), ","),
+    paste0("#", fn, "("),
+    vapply(args, function(arg) paste0("  ", typst_bracket(arg), ","), character(1)),
     ")"
   )
+}
+
+render_cv_typst_intern <- function(entry) {
+  typst_call("intern_entry", list(entry$role, entry$organisation, entry$period, entry$summary))
 }
 
 render_cv_typst_education <- function(entry) {
-  c(
-    "#edu_entry(",
-    paste0("  ", typst_bracket(entry$degree), ","),
-    paste0("  ", typst_bracket(entry$school), ","),
-    paste0("  ", typst_bracket(entry$year), ","),
-    ")"
-  )
+  typst_call("edu_entry", list(entry$degree, entry$school, entry$year))
 }
 
 render_cv_typst_skill <- function(group) {
-  paste0(
-    "#skill_row(",
-    typst_bracket(group$label),
-    ", ",
-    typst_bracket(paste(group$items, collapse = " · ")),
-    ")"
-  )
+  typst_call("skill_row", list(group$label, paste(group$items, collapse = " · ")))
 }
 
-render_cv_typst_detail_block <- function(title, items, trailing_comma = FALSE) {
+render_cv_typst_detail_block <- function(title, items) {
   block_lines <- c(
     "  block[",
     paste0("    #text(weight: \"bold\", size: 9.5pt)[", typst_escape(title), "]"),
@@ -215,8 +195,7 @@ render_cv_typst_detail_block <- function(title, items, trailing_comma = FALSE) {
     )
   }
 
-  closing_line <- if (trailing_comma) "  ]," else "  ]"
-  c(block_lines, closing_line)
+  c(block_lines, "  ],")
 }
 
 render_cv_typst <- function(profile, internships = c("keep", "drop")) {
@@ -302,10 +281,9 @@ render_cv_typst <- function(profile, internships = c("keep", "drop")) {
 
   selected_block <- unlist(lapply(selected_experience, render_cv_typst_entry), use.names = FALSE)
   education_block <- unlist(lapply(profile$education, render_cv_typst_education), use.names = FALSE)
-  skills_block <- vapply(profile$skills, render_cv_typst_skill, character(1))
+  skills_block <- unlist(lapply(profile$skills, render_cv_typst_skill), use.names = FALSE)
 
-  # Dropped at emission: a caller removing the lines afterwards leaves an empty
-  # "Earlier Experience" heading on a page of its own.
+  # Emitted only when kept, so no empty "Earlier Experience" heading is left.
   earlier_section <- if (identical(internships, "drop") || !length(earlier_experience)) {
     character(0)
   } else {
@@ -337,11 +315,7 @@ render_cv_typst <- function(profile, internships = c("keep", "drop")) {
     "#grid(",
     "  columns: (1fr, 1fr),",
     "  column-gutter: 16pt,",
-    render_cv_typst_detail_block(
-      "Certifications",
-      profile$additional$certifications,
-      trailing_comma = TRUE
-    ),
+    render_cv_typst_detail_block("Certifications", profile$additional$certifications),
     render_cv_typst_detail_block("Languages", profile$additional$languages),
     ")"
   )
