@@ -1,7 +1,5 @@
 ---
 title: ""
-# reads cv/profile.yml: always re-execute.
-freeze: false
 format:
   typst:
     output-file: cv.pdf
@@ -9,8 +7,6 @@ format:
       - typst-template.typ
       - typst-preamble.typ
       - typst-show.typ
-execute:
-  echo: false
 ---
 
 ```{r cv-typst}
@@ -20,8 +16,7 @@ execute:
 
 source(here::here("cv", "render.R"))
 
-# AI / scientific software variant. Keeps the cv.pdf filename so existing links
-# (LinkedIn, mail signature, UIs that deep-link the CV) keep resolving.
+# cv.pdf is the name the workflow republishes at /cv.pdf for older links.
 profile <- load_profile("ai")
 
 cat("```{=typst}\n")
