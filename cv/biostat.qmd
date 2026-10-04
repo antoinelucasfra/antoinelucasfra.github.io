@@ -1,7 +1,7 @@
 ---
 title: "CV — Biostatistics & Clinical R&D"
 description: "Clinical study design and analysis, statistical analysis plans, DoE, mixed models, multi-omics, and statistical programming in R."
-# reads data/profile.yml: always re-execute.
+# reads cv/profile.yml: always re-execute.
 freeze: false
 format:
   html:
@@ -14,7 +14,7 @@ execute:
 ```{r cv-html-biostat}
 #| message: false
 #| warning: false
-source(here::here("_helpers", "profile_render.R"))
+source(here::here("cv", "render.R"))
 
 profile <- load_profile("biostat")
 render_cv_html(profile)

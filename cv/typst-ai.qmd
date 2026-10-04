@@ -1,18 +1,10 @@
 ---
 title: ""
-# reads data/profile.yml: always re-execute.
+# reads cv/profile.yml: always re-execute.
 freeze: false
 format:
   typst:
     output-file: cv.pdf
-    papersize: a4
-    page-numbering: false
-    margin:
-      top: 1.5cm
-      bottom: 1.5cm
-      left: 1.8cm
-      right: 1.8cm
-    font-size: 10pt
     template-partials:
       - typst-template.typ
       - typst-preamble.typ
@@ -26,7 +18,7 @@ execute:
 #| message: false
 #| warning: false
 
-source(here::here("_helpers", "profile_render.R"))
+source(here::here("cv", "render.R"))
 
 # AI / scientific software variant. Keeps the cv.pdf filename so existing links
 # (LinkedIn, mail signature, UIs that deep-link the CV) keep resolving.

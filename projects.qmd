@@ -25,7 +25,7 @@ listing:
         description: "A voice-driven pipeline that turns laboratory bench recordings into structured, validated records — ASR (faster-whisper), LLM extraction (Instructor + Ollama), domain validation, and GxP-compliant audit trail."
         date: "2026-02-22"
         categories: [Python, LLM, NLP, MLOps, Lab Automation]
-      - path: projects/resources_catalog.qmd
+      - path: catalog/index.qmd
         title: "Resources Catalog"
         description: "A curated and searchable collection of 1,000+ data science resources for R, Python, and beyond. Filter by type, language, and category."
         date: "2025-12-13"
