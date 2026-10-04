@@ -1,5 +1,5 @@
 """
-backfill.py — manage data/resources.txt: validate entries, backfill missing
+backfill.py — manage catalog/resources.txt: validate entries, backfill missing
 dates/descriptions, add new URLs (fetch metadata, classify, dedupe, append).
 
 Run from scripts/:
@@ -263,7 +263,7 @@ def _resolve_path(path_arg: str | None) -> Path:
         if env:
             p = Path(env)
         else:
-            p = Path(__file__).parent.parent / "data" / "resources.txt"
+            p = Path(__file__).parent.parent / "catalog" / "resources.txt"
     if not p.exists():
         print(f"ERROR: resources file not found: {p}", file=sys.stderr)
         sys.exit(1)
@@ -614,7 +614,7 @@ def _build_parser() -> argparse.ArgumentParser:
         "path",
         nargs="?",
         metavar="PATH",
-        help="Path to resources.txt (default: ../data/resources.txt or $RESOURCES_PATH)",
+        help="Path to resources.txt (default: ../catalog/resources.txt or $RESOURCES_PATH)",
     )
 
     # ── Modes ──────────────────────────────────────────────────────────────
@@ -729,7 +729,7 @@ def main() -> None:
     if not args.dry_run and updated > 0:
         print(f"Writing {resources_path} ...")
         write_resources(resources_path, blocks)
-        print("Done. Review changes with: git diff data/resources.txt\n")
+        print("Done. Review changes with: git diff catalog/resources.txt\n")
 
 
 if __name__ == "__main__":

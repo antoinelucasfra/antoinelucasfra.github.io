@@ -31,8 +31,8 @@ docs/
 # Quarto freeze (generated/temporary files)
 _freeze/
 
-# Generated listing source (rebuilt at render from data/resources.txt)
-projects/resources-items.yml
+# Generated listing source (rebuilt at render from catalog/resources.txt)
+catalog/resources-items.yml
 
 # Local scratch / exploration notes (never committed)
 explore/

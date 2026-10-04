@@ -1,7 +1,7 @@
 ---
 title: "Antoine Lucas"
 description: "Portfolio and field notes on scientific software, R Shiny delivery, reproducible workflows, and machine learning in regulated R&D environments."
-# This page renders data/profile.yml; never let a cached chunk outlive an edit there.
+# This page renders cv/profile.yml; never let a cached chunk outlive an edit there.
 freeze: false
 lightbox: false
 format:
@@ -26,7 +26,7 @@ execute:
 #| message: false
 #| warning: false
 
-source(here::here("_helpers", "profile_render.R"))
+source(here::here("_helpers", "site-render.R"))
 
 profile <- load_profile()
 render_homepage(profile)

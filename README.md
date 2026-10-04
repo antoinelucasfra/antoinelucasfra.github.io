@@ -14,15 +14,19 @@ Content license: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa
 
 ## Repository Layout
 
-- `index.qmd`, `about.qmd`, `blog.qmd`, `projects.qmd`, `cv.qmd`: top-level site pages
+- `index.qmd`, `about.qmd`, `blog.qmd`, `projects.qmd`: top-level site pages
+- `cv/`: CV pages (`index`, `ai`, `biostat`) and the two Typst PDFs, plus the shared `profile.yml`, the renderer and the Typst partials
+- `catalog/`: the resources catalog — page, `resources.txt` source, listing engine and card template
 - `posts/`: blog posts
-- `projects/`: project case studies and the resources catalog
+- `projects/`: project case studies
+- `topics/`: topic landing pages
 - `assets/`: images, post cover art, and the favicon
-- `_helpers/`: non-rendered helper code used during Quarto rendering
+- `_helpers/`: non-rendered R helpers sourced by the pages (`profile.R`, `links.R`, `site-render.R`)
+- `scripts/`: Python tooling in a single `uv` environment (Keep sync, metadata backfill, cover generation)
+- `rv/`, `rproject.toml`, `rv.lock`: the R environment, managed by [`rv`](https://github.com/A2-ai/rv)
 - `docs/`: local Quarto render output used by CI for GitHub Pages deployment, not committed
-- `scripts/`: automation for catalog maintenance, including the manual Google Keep sync
 
-The Quarto project now uses an explicit render allowlist in [_quarto.yml](_quarto.yml), so repository docs such as `TODO.md` and `CONTRIBUTING.md` are not published as website pages.
+The Quarto project now uses an explicit render allowlist in [_quarto.yml](_quarto.yml), so repository docs such as `CONTRIBUTING.md` are not published as website pages.
 
 ## Local Setup
 
@@ -62,7 +66,7 @@ quarto render
 Render the PDF CV only:
 
 ```sh
-quarto render cv-typst.qmd
+quarto render cv/typst-ai.qmd
 ```
 
 Backfill resource metadata locally:

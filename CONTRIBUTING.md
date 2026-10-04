@@ -1,17 +1,17 @@
 # Contributing to the Resources Catalog
 
-The catalog at [antoinelucasfra.github.io/projects/resources_catalog](https://antoinelucasfra.github.io/projects/resources_catalog.html) is a curated list of data science resources for R, Python, and beyond.
+The catalog at [antoinelucasfra.github.io/catalog](https://antoinelucasfra.github.io/catalog/) is a curated list of data science resources for R, Python, and beyond.
 
 There are two ways to add a resource:
 
 - **Personal workflow** — via a Google Keep note, synced locally with `scripts/sync_keep.py` (see [Google Keep workflow](#google-keep-workflow-run-locally))
-- **PR path** — fork the repo, edit `data/resources.txt`, open a pull request (see [Contributing via PR](#contributing-via-pr))
+- **PR path** — fork the repo, edit `catalog/resources.txt`, open a pull request (see [Contributing via PR](#contributing-via-pr))
 
 ---
 
 ## Field Reference
 
-Every entry in `data/resources.txt` is a YAML block with **6 required fields**:
+Every entry in `catalog/resources.txt` is a YAML block with **6 required fields**:
 
 ```yaml
 ---
@@ -62,11 +62,11 @@ You run `uv run python sync_keep.py` from scripts/
         ↓
 Script parses each line, fetches the URL, extracts a real description
         ↓
-Valid new entries are appended to data/resources.txt
+Valid new entries are appended to catalog/resources.txt
         ↓
 Processed lines are removed from the Keep note
         ↓
-Commit and push data/resources.txt through the normal branch → PR flow
+Commit and push catalog/resources.txt through the normal branch → PR flow
 ```
 
 ### Keep note format
@@ -122,7 +122,7 @@ Export these in the shell you run the script from:
 | `KEEP_EMAIL` | Your Gmail address |
 | `KEEP_MASTER_TOKEN` | The master token obtained above |
 | `KEEP_NOTE_TITLE` | Exact title of your curation note in Google Keep |
-| `RESOURCES_PATH` | Path to `data/resources.txt` |
+| `RESOURCES_PATH` | Path to `catalog/resources.txt` |
 
 ### Running the sync
 
@@ -132,10 +132,10 @@ uv sync
 export KEEP_EMAIL="you@example.com"
 export KEEP_MASTER_TOKEN="..."
 export KEEP_NOTE_TITLE="Resources inbox"
-RESOURCES_PATH=../data/resources.txt uv run python sync_keep.py
+RESOURCES_PATH=../catalog/resources.txt uv run python sync_keep.py
 ```
 
-The run summary is printed to stdout. Review `git diff ../data/resources.txt` before committing.
+The run summary is printed to stdout. Review `git diff ../catalog/resources.txt` before committing.
 
 ### Backfilling descriptions on existing entries
 
@@ -145,17 +145,17 @@ The `backfill.py --mode descriptions` script replaces all auto-generated placeho
 # From the repo root
 cd scripts/
 uv sync
-RESOURCES_PATH=../data/resources.txt uv run python backfill.py --mode descriptions
+RESOURCES_PATH=../catalog/resources.txt uv run python backfill.py --mode descriptions
 ```
 
 Progress is printed to stdout. When it finishes:
 
 ```sh
 # Review changes before committing
-git diff data/resources.txt
+git diff catalog/resources.txt
 
 # If happy:
-git add data/resources.txt
+git add catalog/resources.txt
 git commit -m "chore: backfill resource descriptions"
 ```
 
@@ -168,7 +168,7 @@ Then push through the normal branch → PR flow.
 If you want to suggest a resource and you are not the repo owner:
 
 1. **Fork** the repository on GitHub
-2. **Edit** `data/resources.txt` — add your block at the end of the file, following the exact format:
+2. **Edit** `catalog/resources.txt` — add your block at the end of the file, following the exact format:
 
 ```yaml
 ---
