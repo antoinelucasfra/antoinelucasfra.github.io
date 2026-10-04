@@ -17,7 +17,7 @@ Content license: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa
 - `index.qmd`, `about.qmd`, `blog.qmd`, `projects.qmd`, `cv.qmd`: top-level site pages
 - `posts/`: blog posts
 - `projects/`: project case studies and the resources catalog
-- `assets/`: shared stylesheets, images, and client-side scripts
+- `assets/`: images, post cover art, and the favicon
 - `_helpers/`: non-rendered helper code used during Quarto rendering
 - `docs/`: local Quarto render output used by CI for GitHub Pages deployment, not committed
 - `scripts/`: automation for catalog maintenance, including the manual Google Keep sync
