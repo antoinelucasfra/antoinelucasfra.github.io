@@ -1,7 +1,5 @@
 ---
 title: ""
-# reads cv/profile.yml: always re-execute.
-freeze: false
 format:
   typst:
     output-file: cv-biostat.pdf
@@ -9,8 +7,6 @@ format:
       - typst-template.typ
       - typst-preamble.typ
       - typst-show.typ
-execute:
-  echo: false
 ---
 
 ```{r cv-typst-biostat}

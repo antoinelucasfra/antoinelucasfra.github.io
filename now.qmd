@@ -14,6 +14,7 @@ What I'm focused on right now. Updated periodically; inspired by [nownownow.com]
 
 ## Working on
 
+- Recently published *Sovereign Local AI*, a bilingual (French/English) book on the local-AI landscape, with runnable companions: [read it](https://antoinelucasfra.github.io/localai-review/).
 - ML tooling and R Shiny applications for fragrance & cosmetics R&D at Chanel Parfums Beauté.
 - My public [Agentic Stats](/projects/agentic-stats.html) demo: an MCP server and FastAPI app that expose typed statistical tools to LLM agents, tested and containerised.
 - Growing this site: case studies, reproducibility field notes, and the [Resources Catalog](/catalog/).
