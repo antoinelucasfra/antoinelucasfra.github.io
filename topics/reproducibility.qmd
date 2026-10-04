@@ -1,20 +1,25 @@
 ---
 title: "Reproducibility & DevOps"
 description: "Reproducible environments, DevContainers, Docker, CI/CD, deployment, and engineering standards."
+listing:
+  - id: topic-posts
+    contents:
+      - ../posts/devcontainers-reproducible-environments/index.qmd
+      - ../posts/reproducibility-modern-tools/index.qmd
+      - ../posts/reproducible-pharma-r/index.qmd
+      - ../posts/shinyproxy-admin-best-practices/index.qmd
+      - ../posts/rv-modern-r-package-manager/index.qmd
+      - ../posts/engineering-standards-scientific-software/index.qmd
+      - ../posts/quarto-getting-started/index.qmd
+      - ../posts/why-curate-resources/index.qmd
+      - ../posts/dev-setup-guide/index.qmd
+    type: grid
+    grid-columns: 3
+    sort: "date desc"
+    fields: [date, title, description, reading-time]
 ---
 
-```{r}
-#| label: topic-listing
-#| echo: false
-#| message: false
-source(here::here("_helpers", "topic_listing.R"))
-library(yaml)
-library(htmltools)
-render_topic(
-  "Reproducibility & DevOps",
-  "Reproducible environments, DevContainers, Docker, CI/CD, deployment, and engineering standards for scientific software.",
-  c("Reproducibility", "Docker", "DevContainers", "CI/CD", "Deployment", "Setup", "Best Practices")
-)
-```
+::: {#topic-posts}
+:::
 
 [← All topics](../topics/index.qmd) · [All posts](../blog.qmd)

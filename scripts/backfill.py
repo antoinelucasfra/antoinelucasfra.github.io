@@ -1,77 +1,14 @@
 """
-backfill.py — unified local script for managing resources.txt.
+backfill.py — manage data/resources.txt: validate entries, backfill missing
+dates/descriptions, add new URLs (fetch metadata, classify, dedupe, append).
 
-Replaces backfill_dates.py and backfill_descriptions.py. Supports:
-  • Backfilling missing dates and/or descriptions for existing entries
-  • Adding new URLs (auto-fetches metadata, deduplicates, appends)
-  • Validating and repairing the file (duplicate links, missing fields, bad values)
-
-Run from the repo root:
+Run from scripts/:
 
     cd scripts/
     uv sync
-    uv run python backfill.py [options]
+    uv run python backfill.py --help
 
-────────────────────────────────────────────────────────────────────────────
-USAGE
-────────────────────────────────────────────────────────────────────────────
-
-  # Validate the file (always runs; explicit flag makes report-only mode)
-  uv run python backfill.py --check
-  uv run python backfill.py --check --fix-dupes          # also remove duplicates
-
-  # Backfill missing dates and descriptions for ALL entries
-  uv run python backfill.py --mode both
-
-  # Backfill only dates, only for specific URLs
-  uv run python backfill.py --mode dates --urls https://example.com https://other.org
-
-  # Force-re-fetch descriptions for all entries (even those that already have one)
-  uv run python backfill.py --mode descriptions --force
-
-  # Add new URLs (auto-fetch metadata, deduplicate, append)
-  uv run python backfill.py --add-urls https://example.com https://other.org
-
-  # Dry-run: see what would happen without writing anything
-  uv run python backfill.py --add-urls https://example.com --dry-run
-  uv run python backfill.py --mode both --dry-run
-
-  # Limit fetches for quick testing
-  uv run python backfill.py --mode both --limit 5
-
-────────────────────────────────────────────────────────────────────────────
-OPTIONS
-────────────────────────────────────────────────────────────────────────────
-
-  PATH                     Path to resources.txt.
-                           Default: ../data/resources.txt relative to this
-                           script, or $RESOURCES_PATH environment variable.
-
-  --mode {dates,descriptions,both}
-                           Which fields to backfill for existing entries.
-                           Default: both.
-
-  --add-urls URL [URL …]   Add new URLs: fetch title/description/date, classify
-                           type/language/category automatically, deduplicate
-                           against existing entries, and append to the file.
-
-  --urls URL [URL …]       Restrict backfill (--mode) to only these URLs.
-                           Exact match after stripping trailing slashes.
-
-  --check                  Run full validation: duplicates, missing fields,
-                           invalid type values, malformed dates.
-
-  --fix-dupes              When combined with --check (or always on --add-urls),
-                           remove duplicate entries automatically, keeping the
-                           first occurrence.
-
-  --force                  Re-fetch even entries that already have a value.
-
-  --dry-run                Print what would change without writing anything.
-
-  --limit N                Stop after fetching N URLs (useful for testing).
-
-────────────────────────────────────────────────────────────────────────────
+Usage, options and examples: `uv run python backfill.py --help`.
 """
 
 from __future__ import annotations
@@ -87,10 +24,10 @@ from urllib.parse import urlparse
 import trafilatura
 
 from utils import (
+    DATE_RE,
     FIELD_ORDER,
     KNOWN_TYPES,
     append_blocks,
-    build_block,
     existing_links,
     fetch_date,
     fetch_description,
@@ -102,8 +39,6 @@ from utils import (
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-
-_DATE_RE = re.compile(r"^\d{4}(-\d{2}(-\d{2})?)?$")
 
 # Polite delay between HTTP requests (seconds)
 _FETCH_DELAY = 0.4
@@ -127,7 +62,6 @@ _CLASSIFICATION_RULES: list[tuple[str, str, str, str, str]] = [
     ("huggingface.co", "", "Website", "Python", "Machine Learning"),
     # --- App stores ---
     ("apps.apple.com", "", "Website", "Other", "General"),
-    ("play.google.com", "", "Website", "Other", "General"),
     # --- VSCode marketplace ---
     ("marketplace.visualstudio.com", "", "Website", "Other", "Development"),
     # --- R-specific blog / documentation sites ---
@@ -162,7 +96,6 @@ _CLASSIFICATION_RULES: list[tuple[str, str, str, str, str]] = [
     ("opencode.ai", "", "Website", "Other", "Development"),
     # --- Shiny ---
     ("shinyapps.io", "", "Website", "R", "Shiny"),
-    ("shinylive.io", "", "Website", "R", "Shiny"),
     ("connect.posit.cloud", "", "Website", "R", "Shiny"),
     ("pub.current.posit.team", "", "Website", "R", "Shiny"),
     ("blockr.cloud", "", "Website", "R", "Shiny"),
@@ -370,7 +303,6 @@ def _check_resources(
     # ── Missing / invalid fields ─────────────────────────────────────────
     issues: list[tuple[int, str, str]] = []  # (entry_num, field, message)
     for idx, block in enumerate(blocks, start=1):
-        link = block.get("link", "") or f"<entry #{idx}>"
         for field in FIELD_ORDER:
             val = block.get(field, "")
             if field == "link" and not val:
@@ -386,7 +318,7 @@ def _check_resources(
                             f"unknown type {val!r} — valid: {sorted(KNOWN_TYPES)}",
                         )
                     )
-            elif field == "date" and val and not _DATE_RE.match(val):
+            elif field == "date" and val and not DATE_RE.match(val):
                 issues.append(
                     (
                         idx,
@@ -632,15 +564,15 @@ def _add_urls(
             short = description[:70] + ("…" if len(description) > 70 else "")
             print(f"         desc  : {short}")
 
-        block = build_block(
-            title=title,
-            rtype=rtype,
-            link=url,
-            language=language,
-            category=category,
-            description=description,
-            date=date,
-        )
+        block = {
+            "title": title,
+            "type": rtype,
+            "link": url,
+            "language": language,
+            "category": category,
+            "description": description,
+            "date": date,
+        }
         new_blocks.append(block)
         time.sleep(_FETCH_DELAY)
 
@@ -667,16 +599,6 @@ def _build_parser() -> argparse.ArgumentParser:
             "descriptions, and add new URLs."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog=(
-            "Examples:\n"
-            "  uv run python backfill.py --check\n"
-            "  uv run python backfill.py --check --fix-dupes\n"
-            "  uv run python backfill.py --mode both\n"
-            "  uv run python backfill.py --mode dates --force --dry-run\n"
-            "  uv run python backfill.py --mode descriptions --urls https://example.com\n"
-            "  uv run python backfill.py --add-urls https://example.com https://other.org\n"
-            "  uv run python backfill.py --add-urls https://example.com --dry-run\n"
-        ),
     )
 
     p.add_argument(
@@ -782,11 +704,8 @@ def main() -> None:
     # If --add-urls is given, add new URLs
     # If --mode is given (or neither --check nor --add-urls), run backfill
 
-    ran_action = False
-
     # ── Add URLs ─────────────────────────────────────────────────────────
     if args.add_urls:
-        ran_action = True
         clean_urls = _extract_urls_from_args(args.add_urls)
         if not clean_urls:
             print("WARNING: --add-urls given but no valid URLs were parsed.")
@@ -795,7 +714,6 @@ def main() -> None:
 
     # ── Add URLs from file ────────────────────────────────────────────────
     if args.urls_file:
-        ran_action = True
         file_urls = _read_urls_file(args.urls_file)
         if not file_urls:
             print(f"WARNING: --urls-file {args.urls_file!r} contained no valid URLs.")
@@ -806,7 +724,6 @@ def main() -> None:
     if args.mode is not None or (
         not args.check and not args.add_urls and not args.urls_file
     ):
-        ran_action = True
         mode = args.mode or "both"
 
         url_filter: set[str] | None = None
@@ -826,10 +743,6 @@ def main() -> None:
             print(f"Writing {resources_path} ...")
             write_resources(resources_path, blocks)
             print("Done. Review changes with: git diff data/resources.txt\n")
-
-    if not ran_action:
-        # --check was the only flag — report already printed above
-        pass
 
 
 if __name__ == "__main__":

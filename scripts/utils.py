@@ -30,6 +30,19 @@ KNOWN_TYPES: frozenset[str] = frozenset(
         "Forum",
         "Journal",
         "Repository",
+        "App",
+        "Cheatsheet",
+        "Documentation",
+        "Gallery",
+        "Game",
+        "Guide",
+        "Magazine",
+        "Platform",
+        "Slides",
+        "Social",
+        "Tool",
+        "Tutorial",
+        "Workshop",
     }
 )
 
@@ -53,7 +66,7 @@ _PLACEHOLDER_RE = re.compile(
 )
 
 # Matches ISO-8601 dates: YYYY-MM-DD, YYYY-MM, or YYYY
-_DATE_RE = re.compile(r"^\d{4}(-\d{2}(-\d{2})?)?$")
+DATE_RE = re.compile(r"^\d{4}(-\d{2}(-\d{2})?)?$")
 
 
 def _fetch_page(url: str, downloaded: bytes | str | None = None) -> bytes | str | None:
@@ -100,7 +113,7 @@ def fetch_date(url: str, downloaded: bytes | str | None = None) -> str:
         meta = trafilatura.extract_metadata(page)
         if meta and meta.date:
             date_str = str(meta.date).strip()
-            if _DATE_RE.match(date_str):
+            if DATE_RE.match(date_str):
                 return date_str
     except Exception as exc:
         print(f"  WARNING: metadata extraction failed: {exc}", file=sys.stderr)
@@ -108,7 +121,7 @@ def fetch_date(url: str, downloaded: bytes | str | None = None) -> str:
         import htmldate
 
         date_str = htmldate.find_date(page, extensive_search=False)
-        if date_str and _DATE_RE.match(date_str):
+        if date_str and DATE_RE.match(date_str):
             return date_str
     except Exception as exc:
         print(f"  WARNING: date extraction failed: {exc}", file=sys.stderr)
@@ -163,28 +176,3 @@ def append_blocks(path: Path, new_blocks: list[dict[str, str]]) -> None:
 def existing_links(path: Path) -> set[str]:
     """Return the set of all link values already in *path*."""
     return {b["link"] for b in parse_resources(path)}
-
-
-# ---------------------------------------------------------------------------
-# Block construction
-# ---------------------------------------------------------------------------
-
-
-def build_block(
-    title: str,
-    rtype: str,
-    link: str,
-    language: str,
-    category: str,
-    description: str,
-    date: str = "",
-) -> dict[str, str]:
-    return {
-        "title": title,
-        "type": rtype,
-        "link": link,
-        "language": language,
-        "category": category,
-        "description": description,
-        "date": date,
-    }

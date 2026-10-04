@@ -10,6 +10,8 @@ import re
 import sys
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "images" / "covers"
 
@@ -29,15 +31,7 @@ def parse_fm(text: str) -> dict:
     m = re.match(r"^---\n(.*?)\n---", text, re.S)
     if not m:
         return {}
-    fm = {}
-    for line in m.group(1).splitlines():
-        kv = re.match(r'^(title|description):\s*"?(.*?)"?\s*$', line)
-        if kv:
-            fm[kv.group(1)] = kv.group(2).strip('"')
-        cats = re.match(r"^categories:\s*\[(.*)\]", line)
-        if cats:
-            fm["categories"] = [c.strip() for c in cats.group(1).split(",")]
-    return fm
+    return yaml.safe_load(m.group(1)) or {}
 
 
 def wrap(title: str, first=26, mid=34, last=30, max_lines=3):

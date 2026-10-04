@@ -11,10 +11,9 @@ Personal website and blog at [antoinelucasfra.github.io](https://antoinelucasfra
 ```
 _quarto.yml                    # Project config: pages, theme, navbar, listing
 _extensions/antoinelucasfra/al-brand/  # AL Brand extension (canonical): brand.yml + SCSS suite
-assets/stylesheets/            # Thin theme wrappers (al-brand-light/dark.scss) + resources-catalog.css
 _helpers/                      # R helper scripts sourced during render
 _extensions/                   # Quarto extensions (iconify, fontawesome, custom-callout, highlight-text)
-data/                          # Source data: profile.yml, resources.txt, resources.csv
+data/                          # Source data: profile.yml, resources.txt
 scripts/                       # Python automation (backfill, sync_keep)
 posts/                         # Blog post source (each subdir has index.qmd)
 projects/                      # Project pages: .qmd files
@@ -23,9 +22,9 @@ docs/                          # Rendered output (quarto render -> docs/) - not 
 
 Rendering flow: `quarto render` reads `.qmd` files, processes R/Python code chunks (with `freeze: auto` caching), applies the brand/SCSS theme, and outputs to `docs/`. The index page (`index.qmd`) sources `_helpers/profile_render.R` to build a dynamic hero/profile section from `data/profile.yml`.
 
-**Key nuance — two Python environments:**
-- Root `pyproject.toml` for repo-level helper tooling (dep: `trafilatura`)
-- `scripts/pyproject.toml` for Google Keep sync + resource backfill automation (deps: `gkeepapi`, `gpsoauth`, `trafilatura`)
+**Key nuance — all Python tooling lives in `scripts/`:**
+- `scripts/pyproject.toml`: resource backfill automation and the manual Google Keep sync helper (deps: `gkeepapi`, `gpsoauth`, `trafilatura`, `htmldate`)
+- There is no root Python project; run helpers from `scripts/` via `uv run`
 
 ## Key Directories
 
@@ -35,11 +34,9 @@ Rendering flow: `quarto render` reads `.qmd` files, processes R/Python code chun
  | `projects/` | Project case study pages (single `.qmd` files) |
  | `topics/` | Topic-filtered blog listings (`index.qmd` hub + `r-shiny.qmd`, `reproducibility.qmd`, `python-ml.qmd`) |
  | `_extensions/` | Quarto extension: `custom-callout` (removed — replaced with native Quarto callouts) |
- | `_helpers/` | R helper code sourced during Quarto rendering (`profile_render.R`, `resources_catalog.R`, `topic_listing.R`) |
-| `assets/stylesheets/` | Thin wrappers importing the al-brand extension (`al-brand-light.scss`, `al-brand-dark.scss`) and `resources-catalog.css` |
+ | `_helpers/` | R helper code sourced during Quarto rendering (`profile_render.R`, `resources_catalog.R`) |
 | `assets/images/` | Profile picture, blog placeholder SVG |
-| `assets/scripts/` | Client-side JS (`resources-catalog.js`) |
-| `data/` | `profile.yml`, `resources.txt` (source of truth for catalog), `resources.csv` (derived) |
+| `data/` | `profile.yml`, `resources.txt` (source of truth for catalog) |
 | `scripts/` | Python automation: `backfill.py`, `sync_keep.py`, `utils.py` |
 | `docs/` | Quarto HTML output — do not edit manually |
 
@@ -56,22 +53,15 @@ quarto render cv-typst.qmd  # Render PDF CV only
 ### R Environment
 
 ```bash
-Rscript -e 'renv::restore()'    # Install R dependencies from renv.lock
-Rscript -e 'devtools::load_all()'  # Not applicable — not an R package
+rv sync                         # Install R dependencies from rv.lock
 ```
 
-### Python Environment (root)
+### Python Environment (scripts/)
 
 ```bash
-uv sync                                      # Sync root Python helpers
-uv run python scripts/backfill.py --mode both  # Run resource backfill
-```
-
-### Python Environment (scripts/ — Google Keep sync)
-
-```bash
-cd scripts && uv sync                        # Sync sync_keep dependencies
-uv run python sync_keep.py                   # Sync catalog from Google Keep
+cd scripts && uv sync                        # Sync helper dependencies
+uv run python backfill.py --mode both        # Backfill resource metadata
+uv run python sync_keep.py                   # Manual Keep -> catalog sync (no scheduled job)
 ```
 
 ### Formatting
@@ -83,16 +73,14 @@ air format .    # R formatting (line-width 100, configured in air.toml)
 ### CI Workflows
 
 `.github/workflows/` contains:
-- `validate-site.yml` — renders site on PRs, checks repo-only docs not published
-- `publish.yml` — renders + deploys to GitHub Pages on pushes to main
-- `sync-keep.yml` — scheduled sync of Google Keep -> `data/resources.txt`
+- `site.yml` — renders site on PRs (checks repo-only docs not published) and deploys to GitHub Pages on pushes to main
 
 ## Code Conventions & Common Patterns
 
 - **Quarto pages** use YAML frontmatter with `title`, `description`, `format` overrides where needed.
 - **Blog posts** use native Quarto callouts (`callout-warning`, `callout-important`, `callout-tip`) instead of the custom-callout extension.
 - **Profile rendering**: `index.qmd` sources `_helpers/profile_render.R` which reads `data/profile.yml` and builds an HTML hero section using `htmltools`.
-- **Resources catalog**: `projects/resources_catalog.qmd` sources `_helpers/resources_catalog.R`, reads `data/resources.txt`.
+- **Resources catalog**: `projects/resources_catalog.qmd` emits a native-listing items file from `data/resources.txt` via `_helpers/resources_catalog.R`.
 - **R code** in `.qmd` files uses `here::here()` for paths, `yaml::read_yaml()` for YAML data.
 - **No global R package** — helpers are ad-hoc scripts, not a formal R package.
 - **Air config**: `air.toml` sets line-width 100.
@@ -103,7 +91,7 @@ air format .    # R formatting (line-width 100, configured in air.toml)
 | File | Purpose |
 |------|---------|
 | `_quarto.yml` | Site configuration: pages, output dir, theme, navbar, listing, extensions |
-| `_extensions/antoinelucasfra/al-brand/brand.yml` | Full brand identity: colors (void/sky/teal palette), fonts (Space Grotesk, DM Sans, JetBrains Mono), semantic roles, defaults. Publishable copy in `quarto-al-brand/` — sync with `scripts/sync_extension.sh` |
+| `_extensions/antoinelucasfra/al-brand/brand.yml` | Full brand identity: colors (void/sky/teal palette), fonts (Space Grotesk, DM Sans, JetBrains Mono), semantic roles, defaults |
 | `index.qmd` | Homepage with dynamic profile hero section |
 | `blog.qmd` | Blog listing with grid layout, pagination, categories, RSS feed |
 | `projects.qmd` | Projects listing page |
@@ -111,19 +99,19 @@ air format .    # R formatting (line-width 100, configured in air.toml)
 | `data/profile.yml` | Profile data driving the homepage hero |
 | `data/resources.txt` | Source of truth for the resources catalog |
 | `_helpers/profile_render.R` | R code that builds the homepage hero from `profile.yml` |
-| `_helpers/resources_catalog.R` | R code that builds the resources catalog page |
+| `_helpers/resources_catalog.R` | R code that emits the catalog listing items from `data/resources.txt` |
 | `scripts/backfill.py` | Backfill resource metadata |
-| `scripts/sync_keep.py` | Google Keep -> resources.txt sync |
+| `scripts/sync_keep.py` | Manual Google Keep -> resources.txt sync |
 | `TODO.md` | Ongoing tasks and completed items |
 | `air.toml` | R formatting config (line-width 100) |
 
 ## Runtime / Tooling Preferences
 
-- **R**: `renv::restore()` to install dependencies. `air` for formatting.
-- **Python**: `uv` exclusively. Never `pip`. Two environments (root + `scripts/`), both pinned to Python 3.13 via `.python-version`.
+- **R**: `rv sync` to install dependencies. `air` for formatting.
+- **Python**: `uv` exclusively. Never `pip`. Single environment in `scripts/`, pinned to Python 3.13 via `scripts/.python-version`.
 - **Quarto**: Version pinned to `>=1.9.37` in `_quarto.yml`. Freeze auto-enabled — cached computations in `_freeze/`.
 - **Git**: Conventional commits (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `refactor:`, `render:`). Feature branches from main, PRs to main. Never push to main directly.
-- **CI**: GitHub Actions (validate on PR, deploy on main push, scheduled Keep sync).
+- **CI**: GitHub Actions (validate on PR, deploy on main push).
 
 ## Testing & QA
 
