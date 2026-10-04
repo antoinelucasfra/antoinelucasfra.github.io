@@ -1,16 +1,19 @@
 """
-sync_keep.py — GitHub Actions script (runs weekly).
+sync_keep.py — manual sync of a Google Keep curation note into resources.txt.
+
+Run it yourself when you have a batch of resources to add; there is no scheduled
+Actions job.
 
 Reads a designated Google Keep note, parses each line as a resource entry,
 fetches a real description via trafilatura, deduplicates against the existing
 resources.txt, appends new entries, then clears processed lines from the note.
 
-Environment variables (set as GitHub Actions secrets):
+Environment variables (export before running):
     KEEP_EMAIL          Gmail address used for authentication
     KEEP_MASTER_TOKEN   Master token obtained via gpsoauth (see CONTRIBUTING.md)
     KEEP_NOTE_TITLE     Exact title of the Keep note used as the curation inbox
     RESOURCES_PATH      Absolute path to data/resources.txt
-                        (set to ${{ github.workspace }}/data/resources.txt)
+                        (e.g. ../data/resources.txt when run from scripts/)
 
 Keep note line format (one resource per line, 5 fields separated by " - "):
     https://example.com - Resource Title - Book - R - Statistics;Tutorial
@@ -32,7 +35,6 @@ import trafilatura
 from utils import (
     KNOWN_TYPES,
     append_blocks,
-    build_block,
     existing_links,
     fetch_date,
     fetch_description,
@@ -217,15 +219,15 @@ def main() -> None:
         desc = fetch_description(url, downloaded=downloaded)
         date = fetch_date(url, downloaded=downloaded)
 
-        block = build_block(
-            title=parsed["title"],
-            rtype=parsed["type"],
-            link=url,
-            language=parsed["language"],
-            category=parsed["category"],
-            description=desc,
-            date=date,
-        )
+        block = {
+            "title": parsed["title"],
+            "type": parsed["type"],
+            "link": url,
+            "language": parsed["language"],
+            "category": parsed["category"],
+            "description": desc,
+            "date": date,
+        }
         new_blocks.append(block)
         added_urls.append(url)
         known.add(url)  # prevent within-run duplicates

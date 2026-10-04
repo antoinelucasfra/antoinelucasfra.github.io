@@ -7,7 +7,10 @@ project:
     - "now.qmd"
     - "blog.qmd"
     - "cv.qmd"
+    - "cv-ai.qmd"
+    - "cv-biostat.qmd"
     - "cv-typst.qmd"
+    - "cv-biostat-typst.qmd"
     - "projects.qmd"
     - "posts/**/*.qmd"
     - "projects/**/*.qmd"
@@ -55,7 +58,19 @@ website:
       - text: Projects
         href: projects.qmd
       - text: CV
-        href: cv.qmd
+        menu:
+          - text: Overview
+            href: cv.qmd
+          - text: "---"
+          - text: AI & scientific software
+            href: cv-ai.qmd
+          - text: Biostatistics & clinical R&D
+            href: cv-biostat.qmd
+          - text: "---"
+          - text: CV PDF — AI & software
+            href: /cv.pdf
+          - text: CV PDF — Biostatistics
+            href: /cv-biostat.pdf
       - text: About
         href: about.qmd
     right:
@@ -73,10 +88,10 @@ format:
     theme:
       light:
         - cosmo
-        - assets/stylesheets/al-brand-light.scss
+        - _extensions/antoinelucasfra/al-brand/al-brand-light.scss
       dark:
         - cosmo
-        - assets/stylesheets/al-brand-dark.scss
+        - _extensions/antoinelucasfra/al-brand/al-brand-dark.scss
     lang: en
     date-format: "MMMM D, YYYY"
     highlight-style: dracula
