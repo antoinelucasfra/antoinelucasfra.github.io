@@ -1,11 +1,11 @@
-# Quarto site CI: validate on pull requests, publish on pushes to main.
+# Quarto site CI: validate on pull requests, publish on pushes to prod.
 # R dependencies are restored with rv for reproducibility.
 
 name: Site
 
 on:
   push:
-    branches: [main]
+    branches: [prod]
   pull_request:
   workflow_dispatch:
 

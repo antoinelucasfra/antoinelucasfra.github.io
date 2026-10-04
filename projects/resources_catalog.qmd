@@ -65,7 +65,7 @@ description: "A brief one-sentence description shown on the card and in search."
 
 The `description` field is optional but recommended — it appears on the card and is included in the full-text search.
 
-See [CONTRIBUTING.md](https://github.com/antoinelucasfra/antoinelucasfra.github.io/blob/main/CONTRIBUTING.md) for the full guide, including how resources are synced from Google Keep.
+See [CONTRIBUTING.md](https://github.com/antoinelucasfra/antoinelucasfra.github.io/blob/prod/CONTRIBUTING.md) for the full guide, including how resources are synced from Google Keep.
 ::::
 
 *Links to external websites are provided for convenience and informational purposes only.*
