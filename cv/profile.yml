@@ -17,61 +17,67 @@ identity:
   photo: assets/images/profile-pic.jpg
   # Job-search signal: rendered in the homepage hero and on the About page.
   website: https://antoinelucasfra.github.io
-  availability: Open to Scientific Software / AI, Data Science and Biostatistics roles — Île-de-France, hybrid, full remote or on-site.
+  availability: Open to Scientific Software / AI, Data Science and Biostatistics roles in Île-de-France, hybrid, full remote or on-site.
 
 home:
   intro:
     - >
       I trained as an agronomy engineer, specialised in applied statistics, and gradually moved into building software for scientific teams. R Shiny applications, internal data products, reproducible analysis workflows, and some machine learning when the problem actually calls for it. The path made sense at each step, even if it does not look obvious on paper.
     - >
-      For the past 5+ years I have worked embedded in R&D and clinical teams at L'Oréal, Sanofi, Abolis, and now Chanel Parfums Beauté, building things at the intersection of statistics, software engineering, and experimental science.
+      For the past 5+ years I have worked embedded in R&D and clinical teams at L'Oréal, Sanofi, Abolis, and now Chanel Parfums Beauté, building statistical software that scientists use every day.
   current_role:
     title: Data Scientist & ML Engineer
     organisation: Chanel Parfums Beauté R&D
     context: on mission via Astek / IT&M Stats
     summary: >
       I build R Shiny dashboards, reproducible pipelines, and ML tools used by scientists in fragrance and cosmetics research.
+  stats:
+    - value: "5+"
+      label: "years in pharma & cosmetics R&D"
+    - value: "20+"
+      label: "production Shiny apps supported"
+    - value: "100+"
+      label: "clinical studies analysed"
   what_i_do:
     - title: R Shiny & internal products
       body: >
         I design and ship internal tools for scientific teams: modular R Shiny apps, reporting workflows, and data interfaces that people can use without needing a walkthrough every time.
     - title: Architecture, quality & delivery
       body: >
-        From early architecture decisions to documentation, validation, deployment, and ongoing support. I care about maintainability because scientific software has a way of outliving the original deadline by years.
+        Architecture, documentation, validation, deployment, support. Scientific software routinely outlives the deadline that funded it, so maintainability is the default rather than a later phase.
     - title: Statistical modeling & analysis
       body: >
-        Design of experiments, mixed models, biostatistics in GxP environments. I work across the full analytical chain, from raw assay data through to interpretation for regulatory submissions.
+        Design of experiments, mixed models, biostatistics in GxP environments. I take raw assay data through to the interpretation that goes into a regulatory submission.
     - title: Reproducible engineering & MLOps
       body: >
-        Everything in Git, runnable six months later with uv sync or rv sync, documented well enough to hand over. CI/CD, containers, environment pinning, and qualification-minded delivery show up in most of my projects.
+        Everything in Git, runnable six months later with uv sync or rv sync, documented well enough that someone else can take it over. CI/CD, containers, pinned environments, and the evidence GxP qualification asks for.
     - title: AI-augmented scientific software
       body: >
         I build agentic workflows around the tools themselves: MCP servers and tool-calling
         agents that run statistical analysis on demand, AI-assisted coding and review, and
-        tests that keep the result honest. It shortens the distance between a researcher's
-        question and a working, tested tool, without relaxing validation or review.
+        tests that keep the result honest. Validation and review stay in place.
     - title: ML when it is the right tool
       body: >
         Computer vision, NLP pipelines, LLM-assisted extraction for scientific applications. I like building ML systems, but I like shipping the right product more than fitting a model into a problem that does not need one.
   selected_proof:
-    - title: "Sovereign Local AI — bilingual book"
+    - title: "Sovereign Local AI: bilingual book"
       href: https://antoinelucasfra.github.io/localai-review/
       description: a French/English book on running AI on your own hardware, written so the recipes stay runnable and the claims stay sourced.
     - title: "Case Study: Agentic Stats (MCP)"
       href: /projects/agentic-stats.html
-      description: MCP server and FastAPI app exposing typed statistical tools to LLM agents — one implementation, two transports, tested.
+      description: MCP server and FastAPI app exposing typed statistical tools to LLM agents. One implementation, two transports, tests.
     - title: "Case Study: Capacity Planning Platform"
       href: /posts/shiny-capacity-platform/
-      description: end-to-end R Shiny platform for global manufacturing resource planning — architecture, trade-offs, and lessons.
+      description: how I built an R Shiny platform for global manufacturing resource planning, and the trade-offs along the way.
     - title: Engineering Standards for Scientific Software
       href: /posts/engineering-standards-scientific-software/
       description: how I think about tests, documentation, CI/CD, handover, and technical training.
     - title: Reproducible Environments for Everyone
       href: /posts/devcontainers-reproducible-environments/
-      description: how I think about standards, onboarding, and maintainable delivery.
+      description: devcontainers, onboarding, and what keeps environments reproducible across a team.
     - title: Resources Catalog
       href: /catalog/
-      description: a public curation project that reflects how I document, teach, and structure knowledge.
+      description: 1200 curated data-science resources, tagged and searchable, with the workflow that keeps them current.
   work_principles:
     - label: End-to-end ownership.
       body: I frame the problem, choose an architecture, build it, validate it, deploy it, and keep it running.
@@ -80,14 +86,14 @@ home:
     - label: Handover is part of the job.
       body: Mentoring, internal training, and documentation are built in, not bolted on.
     - label: Staying close to users.
-      body: Workshops, iteration, and feedback loops with scientists, analysts, and operational teams.
+      body: Workshops and iteration with the scientists, analysts, and operational teams who use the tools.
 
 about:
   story:
     - >
-      I did not start out planning to become a data scientist. I studied agronomy engineering at Institut Agro - Agrocampus Ouest in Rennes, which is fundamentally about applying science to complex living systems, and during my statistics courses I realised that the analytical side was what excited me most. Not just running models, but understanding why a method works, and what it can and cannot tell you about the real world.
+      I did not start out planning to become a data scientist. I studied agronomy engineering at Institut Agro - Agrocampus Ouest in Rennes, which is fundamentally about applying science to complex living systems, and during my statistics courses I realised that the analytical side was what excited me most. What I wanted was to understand why a method works, and what it can and cannot tell you about the real world.
     - >
-      After finishing both my engineering degree and a master's in applied mathematics and statistics in 2021, I joined Astek / IT&M Stats, a consultancy that places statisticians and data scientists inside large R&D organisations. That structure shaped how I work: missions ranging from a few months to nearly two years, each bringing a new domain, a new team, and a new set of constraints. It forces you to get good at context-switching, at earning trust quickly, and at building things that still work when you are not in the room to explain them.
+      After finishing both my engineering degree and a master's in applied mathematics and statistics in 2021, I joined Astek / IT&M Stats, a consultancy that places statisticians and data scientists inside large R&D organisations. That structure shaped how I work: missions from a few months to nearly two years, each with a new domain, a new team, and a new set of constraints. You get good at context-switching, and at building things that still work when you are not in the room to explain them.
     - >
       My first mission was at L'Oréal R&I: two years of clinical biostatistics on ingredient efficacy and molecular safety studies. I covered hundreds of analyses, learned what a two-week turnaround really means under pressure, and built internal tooling that helped the team move faster. It was a good introduction to regulated science, the kind of work where you cannot hand-wave uncertainty.
     - >
@@ -95,7 +101,7 @@ about:
     - >
       After Sanofi came Abolis, a microbiome biotech startup. Six months, full autonomy, multi-omics data pipelines, no hand-holding. Very different energy from a pharma company, and a useful reminder that speed only helps when the foundations are still clear.
     - >
-      Now I am at Chanel Parfums Beauté R&D, working on machine learning, R Shiny applications, and internal data products for fragrance and cosmetics development. Still on mission via Astek / IT&M Stats, but it is the most technically ambitious role so far: production models, app catalogs, platform tooling, and software that scientists depend on daily.
+      Now I am at Chanel Parfums Beauté R&D, working on machine learning, R Shiny applications, and internal data products for fragrance and cosmetics development. It is the most technically ambitious role so far: production models, app catalogs, platform tooling, and software that scientists depend on daily.
     - >
       Outside work, I follow One Piece with unreasonable commitment, still make time for video games when I can, and have a lot of time for people who can say "I was wrong about that" and simply update their view.
   work_focus:
@@ -111,7 +117,7 @@ about:
     - label: Rigor over speed, mostly.
       body: >
         Working in pharma and cosmetics R&D means results matter in practical ways: regulatory submissions, manufacturing decisions, and product formulas. I have developed a healthy caution about overfitting, about p-values, and about claims that outrun the data.
-    - label: Understanding models, not just using them.
+    - label: Understanding the models I use.
       body: >
         I am drawn to the mathematical and statistical machinery underneath the tools I use, because understanding assumptions, failure modes, and trade-offs makes the judgment calls better.
     - label: Teaching scales teams.
@@ -125,7 +131,7 @@ about:
         I keep an active scientific watch across biostatistics, computational biology, and ML engineering. The field moves fast enough that distinguishing between durable tools and interesting experiments requires deliberate effort.
     - label: Open source tools and reproducible workflows.
       body: >
-        R, Python, Quarto, Git, Docker. Reproducibility is not just a preference; it is how you avoid the slow-motion failures that come from work nobody can reconstruct six months later.
+        R, Python, Quarto, Git, Docker. Reproducibility is how you avoid the slow-motion failure of work nobody can reconstruct six months later.
     - label: Remote collaboration requires explicitness.
       body: >
         I work well asynchronously, but I do not confuse remote work with silence. Clear writing, structured decisions, screen-sharing when useful, and explicit feedback loops matter a lot in distributed teams.
@@ -133,15 +139,16 @@ about:
 summary:
   cv: >
     Research engineer with 5+ years turning R&D problems into production software in pharma,
-    cosmetics, and biotech. 20+ R Shiny applications in daily use by researchers, statistical
-    modelling (design of experiments, mixed models, multi-omics), reproducible delivery
-    (tests, CI/CD, containers) qualifiable in GxP environments, and LLM agents / MCP tools
-    built on top of it.
+    cosmetics, and biotech. Own 20+ R Shiny applications in daily use by researchers, plus
+    statistical modelling (design of experiments, mixed models, multi-omics) and
+    GxP-qualifiable delivery with tests, CI/CD and containers. Build LLM agents and MCP
+    servers that put typed statistical tools in a model's hands.
   cv_biostat: >
     Biostatistician and data scientist with 5+ years in clinical, cosmetic, and microbiome R&D.
-    Statistical analysis plans, blind review, design of experiments, mixed models, and
-    multivariate or multi-omics methods in R, with the software engineering to deliver them
-    reproducibly (Git, tests, CI/CD, containers).
+    Write statistical analysis plans and analysis methodologies, program them in R, and carry
+    the results through blind review to study reports. Methods cover design of experiments,
+    mixed models, and multivariate and multi-omics analysis, delivered with the engineering
+    that makes them reproducible: Git, tests, CI/CD, containers.
 
 experience:
   - section: selected
@@ -149,80 +156,80 @@ experience:
     organisation: Chanel Parfums Beauté R&D · via Astek / IT&M Stats
     period: Sep 2025 – present
     bullets:
-      - "Own a catalog of 20+ R Shiny applications in daily use by researchers: clinical data visualisation, formulation automation, and data lifecycle workflows."
+      - Own the R Shiny application catalog used daily by researchers, covering clinical data visualisation, formulation automation, and data lifecycle workflows.
       - Designed and deployed object-segmentation computer vision models for cosmetics formulation and regulatory R&D.
-      - Run the delivery platform (Git, Azure ML, Posit Connect, Databricks) with reproducible environments, versioned code, and documented handover.
+      - "Own the delivery toolchain (Git, Azure ML, Posit Connect, Databricks): reproducible environments and documented handover."
     bullets_biostat:
       - Delivered statistical modelling and machine learning for fragrance and cosmetics R&D, from exploratory analysis and model validation to deployment in researcher-facing tools.
       - Designed and deployed object-segmentation models for cosmetics formulation and regulatory R&D.
-      - Maintain 20+ R Shiny applications in daily use by researchers, covering clinical data visualisation and formulation automation.
+      - Own 20+ R Shiny applications in daily use by researchers, covering clinical data visualisation and formulation automation.
   - section: selected
-    role: Data Scientist — Internal & Consulting
+    role: Data Scientist · Internal & Consulting
     organisation: Astek / IT&M Stats
     period: May – Sep 2025
     bullets:
-      - Led internal upskilling training on Bayesian statistics with R for consultants.
+      - Led internal training on Bayesian statistics in R for consultants.
       - Built reusable internal R packages and Quarto reporting templates used across missions.
-      - Fine-tuned Phi-3-mini (3.8B) with LoRA (PEFT) for claim verification, from data preparation to evaluation.
+      - Fine-tuned Phi-3-mini (3.8B) with LoRA (PEFT) for claim classification, from data preparation to evaluation.
     bullets_biostat:
-      - "Led internal training on Bayesian statistics with R: modelling workflow, prior specification, and interpretation of results."
+      - Led internal training on Bayesian statistics in R for consultants, covering the modelling workflow, prior specification, and interpretation.
       - Built reusable internal R packages and Quarto statistical reporting templates used across missions.
-      - Contributed statistical programming and review of planned analyses on internal biostatistics projects.
+      - Statistical programming and review of planned analyses for internal biostatistics projects.
   - section: selected
-    role: Data Scientist — Multi-omics
+    role: Data Scientist · Multi-omics
     organisation: Abolis · Microbiome Studio · via Astek / IT&M Stats
     period: Dec 2024 – May 2025
     bullets:
-      - "Delivered end-to-end R and Python pipelines for tabular and large-scale omics data: genomics, transcriptomics, and metabolomics."
-      - Embedded as the sole data scientist in an 8-person startup team shipping a SaaS product (FastAPI backend, Vue.js front-end).
-      - Ran scientific discussions with agri-food partners on experimental design, analysis, and ML for multi-omics integration.
+      - "Built R and Python pipelines for tabular and large-scale omics data: genomics, transcriptomics, and metabolomics."
+      - Embedded as the sole data scientist in an 8-person startup team shipping a SaaS product (FastAPI, Vue.js).
+      - Led scientific discussions with agri-food partners on experimental design, analysis, and ML for multi-omics integration.
     bullets_biostat:
-      - Analysed large-scale multi-omics data (genomics, transcriptomics, metabolomics) end-to-end in R and Python, from quality control to biological interpretation.
-      - Contributed statistical design and analysis strategy in partner-facing discussions with agri-food companies.
+      - Analysed genomics, transcriptomics and metabolomics data in R and Python, from quality control to biological interpretation.
+      - Advised on statistical design and analysis strategy in discussions with agri-food partners.
       - Sole data scientist in an 8-person startup team, delivering analyses and pipelines for a SaaS product.
   - section: selected
     role: Data Scientist
     organisation: Sanofi R&D · Manufacturing Chain · via Astek / IT&M Stats
     period: Jul 2023 – Nov 2024
     bullets:
-      - "Sole R Shiny developer and Scrum Master: built R and Python applications that simulate manufacturing plant resource capacity across global sites, informing drug production planning."
-      - Owned delivery end-to-end — requirements, methodology, validation, workshops, UAT, handover — with backlog and sprint ceremonies across researchers, managers, and project leads.
+      - "Sole R Shiny developer and Scrum Master. Built R and Python applications that simulate manufacturing plant resource capacity across global sites, informing drug production planning."
+      - "Owned delivery end to end: requirements, methodology, validation, workshops, UAT, and handover, with backlog and sprint ceremonies across researchers, managers, and project leads."
     bullets_biostat:
       - Built simulation and forecasting models in R and Python to predict manufacturing plant resource capacity across global sites, informing drug production planning.
-      - Owned delivery end-to-end as sole developer and Scrum Master — requirements, methodology, validation, workshops, UAT, handover.
+      - "Owned delivery end to end as sole developer and Scrum Master: requirements, methodology, validation, workshops, UAT, and handover."
   - section: selected
     role: Biostatistician
     organisation: L'Oréal R&I · Scientific Computing · via Astek / IT&M Stats
     period: Nov 2021 – Jul 2023
     bullets:
-      - Wrote analysis methodologies and statistical analysis plans for proof-of-concept clinical studies, programmed the analyses in R, and delivered reports for more than 100 studies.
-      - Characterised clinical phenotypes with multi-block, multivariate, and variable-selection approaches on exposome, biophysical, omics, and microbiome data.
-      - Proposed suitable statistical methods and built Bayesian-network and other graphical visualisations for clinical datasets, alongside a senior statistician.
+      - Wrote analysis methodologies and statistical analysis plans for proof-of-concept clinical studies and programmed the analyses in R. Delivered reports for more than 100 studies.
+      - Characterised clinical phenotypes across exposome, biophysical, omics, and microbiome data with multi-block, multivariate, and variable-selection methods.
+      - Proposed statistical methods with a senior statistician and built Bayesian-network and other graphical visualisations for clinical datasets.
     bullets_biostat:
-      - Wrote statistical analysis plans and analysis methodologies for proof-of-concept clinical studies, programmed the analyses in R, and delivered reports for more than 100 studies.
+      - Wrote statistical analysis plans and analysis methodologies for proof-of-concept clinical studies and programmed the analyses in R. Delivered reports for more than 100 studies.
       - Supported blind-review meetings and clinical study reporting in a regulated R&D environment.
-      - Characterised clinical phenotypes with multi-block, multivariate, and variable-selection approaches on exposome, biophysical, omics, and microbiome data.
+      - Characterised clinical phenotypes across exposome, biophysical, omics, and microbiome data with multi-block, multivariate, and variable-selection methods.
   - section: earlier
     role: Data Scientist Intern
     organisation: L'Oréal R&I · Augmented Beauty
     period: Feb 2021 – Aug 2021
-    summary: Personalised hair-recommendation models built from customer data.
+    summary: Built personalised hair-recommendation models from customer data.
   - section: earlier
     role: Biostatistics Project Officer Intern
     organisation: Da Volterra · Metagenomics Team
     period: Feb 2020 – Aug 2020
-    summary: Data management and non-parametric analysis of gut-microbiome clinical studies.
+    summary: Managed data and ran non-parametric analyses for gut-microbiome clinical studies.
   - section: earlier
     role: Data Scientist Intern
     organisation: Flinders University · Digital Health Research Center
     period: Sep 2019 – Jan 2020
-    summary: Wearables and digital-health studies in R, from questionnaire design to results.
+    summary: Analysed wearables and digital-health data in R, from questionnaire design to results.
 
 education:
-  - degree: Diplôme d'Ingénieur — Statistiques appliquées aux Sciences de la Vie
+  - degree: Diplôme d'Ingénieur, Statistiques appliquées aux Sciences de la Vie
     school: Institut Agro - Agrocampus Ouest, Rennes
     year: "2021"
-  - degree: Master — Mathématiques Appliquées · Statistiques
+  - degree: Master, Mathématiques Appliquées · Statistiques
     school: INSA Rennes · Agrocampus Ouest · Université Rennes 2 · ENSAI · ENSAE (joint programme)
     year: "2021"
 
@@ -291,8 +298,8 @@ skills:
 
 additional:
   certifications:
-    - GitHub Foundations — GitHub (2024)
-    - Scrum Master — Agilbee (2023)
+    - GitHub Foundations, GitHub (2024)
+    - Scrum Master, Agilbee (2023)
   languages:
     - French (native)
     - English (fluent, professional)
