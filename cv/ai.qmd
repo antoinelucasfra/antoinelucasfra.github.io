@@ -1,17 +1,164 @@
 ---
 title: "CV: AI & Scientific Software"
 description: "R Shiny and Python delivery, LLM agents and MCP tools, MLOps, and reproducible engineering in regulated R&D."
+cv_pdf: cv.pdf
 format:
   html:
     toc: false
     page-layout: full
+    section-divs: false
+  awesomecv-typst:
+    output-file: cv.pdf
+author:
+  firstname: Antoine
+  lastname: Lucas
+  address: Paris, France
+  position: Scientific Software & AI Engineer · R Shiny, LLM agents, MLOps
+  contacts:
+    - icon: icons/envelope-fill.svg
+      text: antoine.lucas.fra@gmail.com
+      url: "mailto:antoine.lucas.fra@gmail.com"
+    - icon: icons/linkedin.svg
+      text: in/antoinelucasdata
+      url: https://www.linkedin.com/in/antoinelucasdata/
+    - icon: icons/github.svg
+      text: github.com/antoinelucasfra
+      url: https://github.com/antoinelucasfra
+    - icon: icons/globe.svg
+      text: antoinelucasfra.github.io
+      url: https://antoinelucasfra.github.io
+style:
+  font-header: New Computer Modern
+  font-text: New Computer Modern
+  color-accent: "10243E"
+  color-link: "0284C7"
 ---
 
-```{r cv-html-ai}
-#| message: false
-#| warning: false
-source(here::here("cv", "render.R"))
+::: {.cv-page}
 
-profile <- load_profile("ai")
-render_cv_html(profile)
-```
+{{< include _header.inc.qmd >}}
+
+::: {.cv-summary}
+::: {.content-visible when-format="typst"}
+# Summary
+:::
+
+Research engineer with 5+ years turning R&D problems into production software in pharma, cosmetics, and biotech. Maintain 20+ R Shiny applications used daily by researchers, plus statistical modelling (design of experiments, mixed models, multi-omics) and GxP-qualifiable delivery with tests, CI/CD and containers. Build LLM agents and MCP servers that put typed statistical tools in a model's hands.
+:::
+
+# Experience {.cv-section-title}
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Data Scientist & ML Engineer {.cv-role}
+
+[*Chanel Parfums Beauté R&D · via Astek / IT&M Stats*]{.cv-org}
+:::
+
+### Sep 2025 – present {.cv-period}
+:::
+
+- Own the R Shiny application catalog used daily by researchers, covering clinical data visualisation, formulation automation, and data lifecycle workflows.
+- Designed and deployed computer-vision applications used by dozens of researchers and technicians to segment and annotate microscopy elements for cosmetics formulation and regulatory R&D.
+- Run the delivery toolchain (Git, Azure ML, Posit Connect, Databricks): reproducible environments and documented handover.
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Data Scientist · Internal & Consulting {.cv-role}
+
+[*Astek / IT&M Stats*]{.cv-org}
+:::
+
+### May – Sep 2025 {.cv-period}
+:::
+
+- Led internal training on Bayesian statistics in R for consultants.
+- Built reusable internal R packages and Quarto reporting templates used across missions.
+- Fine-tuned Phi-3-mini (3.8B) with LoRA (PEFT) for claim classification, from data preparation to evaluation.
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Data Scientist · Multi-omics {.cv-role}
+
+[*Abolis · Microbiome Studio · via Astek / IT&M Stats*]{.cv-org}
+:::
+
+### Dec 2024 – May 2025 {.cv-period}
+:::
+
+- Built R and Python pipelines for tabular and large-scale omics data: genomics, transcriptomics, and metabolomics.
+- Embedded as the sole data scientist in an 8-person startup team shipping a SaaS product (FastAPI, Vue.js).
+- Advised agri-food partners on experimental design, analysis, and ML for multi-omics integration.
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Data Scientist {.cv-role}
+
+[*Sanofi R&D · Manufacturing Chain · via Astek / IT&M Stats*]{.cv-org}
+:::
+
+### Jul 2023 – Nov 2024 {.cv-period}
+:::
+
+- Sole R Shiny developer and Scrum Master. Built R and Python applications that simulate manufacturing plant resource capacity across global sites, with 50+ daily users across 3 departments informing drug production planning.
+- Owned delivery end to end: requirements, methodology, validation, workshops, UAT, and handover, with backlog and sprint ceremonies across researchers, managers, and project leads.
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Biostatistician {.cv-role}
+
+[*L'Oréal R&I · Scientific Computing · via Astek / IT&M Stats*]{.cv-org}
+:::
+
+### Nov 2021 – Jul 2023 {.cv-period}
+:::
+
+- Wrote analysis methodologies and statistical analysis plans for proof-of-concept clinical studies and programmed the analyses in R. Delivered reports for more than 100 studies.
+- Characterised clinical phenotypes across exposome, biophysical, omics, and microbiome data with multi-block, multivariate, and variable-selection methods.
+- Proposed statistical methods with a senior statistician and built Bayesian-network visualisations for clinical datasets.
+:::
+
+# Earlier experience {.cv-section-title}
+
+::: {.cv-earlier}
+- **Data Scientist Intern**, L'Oréal R&I · Augmented Beauty (Feb 2021 – Aug 2021). Built personalised hair-recommendation models from customer data.
+- **Biostatistics Project Officer Intern**, Da Volterra · Metagenomics Team (Feb 2020 – Aug 2020). Prepared data and ran non-parametric analyses for gut-microbiome clinical studies.
+- **Data Scientist Intern**, Flinders University · Digital Health Research Center (Sep 2019 – Jan 2020). Analysed wearables and digital-health data in R, from questionnaire design to results.
+:::
+
+{{< include _education.inc.qmd >}}
+
+# Skills {.cv-section-title}
+
+::: {.cv-skills}
+LLM & agents
+: MCP servers · tool-calling agents · agentic workflows · LLM evaluation · RAG · structured extraction
+
+Apps & reporting
+: R Shiny (golem) · FastAPI · Quarto · ggplot2 · Plotly
+
+Engineering & infra
+: Git · CI/CD · automated testing · Docker · GitHub Actions · Azure ML · Databricks · Posit Connect · uv · rv
+
+Programming
+: Python · R · SQL · Bash
+
+ML & AI
+: scikit-learn · PyTorch · Hugging Face · PEFT / LoRA · OpenCV
+
+Statistics
+: DoE · mixed models · Bayesian optimisation · PLS · PERMANOVA · survival analysis · SPC
+:::
+
+{{< include _certs-languages.inc.qmd >}}
+
+:::

@@ -1,1 +1,0 @@
-#show: body => article(body)
