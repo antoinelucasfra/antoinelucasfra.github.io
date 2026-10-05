@@ -1,6 +1,6 @@
 ---
 title: "The Reproducibility Quest: Modern Tools for R and Python Data Science"
-description: "A comprehensive guide to achieving reproducible data science workflows — environment setup, package management, containerization, and what reproducibility actually means in GxP-regulated pharma contexts."
+description: "Reproducible data science workflows: environment setup, package management, containerization, and what reproducibility requires in GxP-regulated pharma."
 author: "Antoine Lucas"
 date: "2025-06-10"
 categories: [R, Python, Reproducibility, DevContainers, Docker, Package Management, Best Practices, VS Code, GxP, Pharma, Setup]
@@ -9,17 +9,17 @@ image: ../../assets/images/covers/reproducibility-modern-tools.svg
 
 ## Introduction
 
-Reproducibility is [the cornerstone of credible data science]{.highlight bg-colour="gold" colour="navy"}. Whether you're in academia, pharma, finance, or tech, the ability to recreate your analysis environment and results is essential. Yet achieving true reproducibility has historically been painful — a maze of version conflicts, missing dependencies, and the dreaded "works on my machine" syndrome.
+Reproducibility is [the cornerstone of credible data science]{.highlight bg-colour="gold" colour="navy"}. Yet achieving it has historically been painful: version conflicts, missing dependencies, and the dreaded "works on my machine" syndrome.
 
-The good news? We're living in a golden age of reproducibility tooling. Both R and Python ecosystems have evolved dramatically, offering modern solutions that make reproducible workflows not just possible, but practical. This post covers the complete picture: from setting up a solid development environment in the first place, through package management and containerization, to what reproducibility actually requires when you're working under regulatory constraints.
+The good news? Reproducibility tooling has caught up. Both R and Python now have modern tools that make reproducible workflows practical. This post covers the whole path: setting up a development environment, package management, containerization, and what reproducibility requires under regulatory constraints.
 
-But before diving into tools, let's address a crucial question: **how much reproducibility do you actually need?**
+But before diving into tools, let's address the first question: **how much reproducibility do you actually need?**
 
 ---
 
 ## Setting Up Your Environment
 
-Before you can have a reproducible workflow, you need a consistent development environment. This matters more than most people realise — subtle differences between machines (R versions, system libraries, editor settings) cause problems that are hard to debug and impossible to prevent without a baseline setup.
+Before you can have a reproducible workflow, you need a consistent development environment. This matters more than most people realise: subtle differences between machines, such as R versions, system libraries and editor settings, cause problems that are hard to debug and impossible to prevent without a baseline setup.
 
 ### VS Code as your polyglot IDE
 
@@ -30,9 +30,9 @@ The extensions that actually matter for a data science setup:
 | Extension | Purpose |
 |---|---|
 | `REditorSupport.r` | R language support, inline output, completion |
-| `Posit.air-vscode` | R formatter (air) — format-on-save |
+| `Posit.air-vscode` | R formatter (air): format-on-save |
 | `ms-python.python` | Python language support |
-| `charliermarsh.ruff` | Python formatter + linter (ruff) — format-on-save |
+| `charliermarsh.ruff` | Python formatter + linter (ruff): format-on-save |
 | `quarto.quarto` | Quarto rendering, preview, syntax |
 | `mcanouil.quarto-wizard` | Extension manager for Quarto |
 | `ms-toolsai.jupyter` | Jupyter kernel support |
@@ -57,13 +57,13 @@ A minimal `settings.json` that wires everything together:
   "editor.rulers": [88] // <7>
 }
 ```
-1. Use `air` (Posit's Rust-based formatter) as the default R formatter — replaces `styler`.
-2. Auto-format on every save — no manual `air format .` needed during editing.
-3. Use `ruff` as formatter for Python — one tool replaces `black`, `isort`, and `flake8`.
+1. Use `air` (Posit's Rust-based formatter) as the default R formatter: replaces `styler`.
+2. Auto-format on every save: no manual `air format .` needed during editing.
+3. Use `ruff` as formatter for Python: one tool replaces `black`, `isort`, and `flake8`.
 4. Tell the R extension to use the `renv` project library instead of the system library.
-5. Start R sessions without loading `.RData` — prevents stale objects from contaminating fresh runs.
-6. Point Python to the project-local `.venv` — ensures `uv`-managed packages are picked up.
-7. Draw a vertical ruler at column 88 — the default line-length limit used by `ruff`.
+5. Start R sessions without loading `.RData`: prevents stale objects from contaminating fresh runs.
+6. Point Python to the project-local `.venv`: ensures `uv`-managed packages are picked up.
+7. Draw a vertical ruler at column 88: the default line-length limit used by `ruff`.
 
 ### R: install via rig, not CRAN
 
@@ -80,9 +80,9 @@ curl -L https://rig.r-lib.org/rig-linux-latest.tar.gz | sudo tar xz -C /usr/loca
 rig add 4.5 # <3>
 rig default 4.5 # <4>
 ```
-1. Install `rig` via Homebrew on macOS — the one-time setup step.
+1. Install `rig` via Homebrew on macOS: the one-time setup step.
 2. Linux alternative: download and extract the binary to `/usr/local` with `sudo`.
-3. Install R 4.5 — `rig add` downloads and sets up that exact version without touching other installations.
+3. Install R 4.5: `rig add` downloads and sets up that exact version without touching other installations.
 4. Set R 4.5 as the default version system-wide.
 
 Never install R by downloading from CRAN. `rig` makes version switching trivial and doesn't pollute your system.
@@ -99,14 +99,14 @@ curl -LsSf https://astral.sh/uv/install.sh | sh # <1>
 uv python install 3.12 # <2>
 uv python pin 3.12 # <3>
 ```
-1. One-liner installer — writes a `uv` binary to `~/.cargo/bin` (or `~/.local/bin`). No admin rights needed.
-2. Download and install CPython 3.12 — managed entirely by `uv`, isolated from the system Python.
-3. Write a `.python-version` file pinning this project to 3.12 — respected by `uv run` and `uv sync`.
+1. One-liner installer: writes a `uv` binary to `~/.cargo/bin` (or `~/.local/bin`). No admin rights needed.
+2. Download and install CPython 3.12: managed entirely by `uv`, isolated from the system Python.
+3. Write a `.python-version` file pinning this project to 3.12: respected by `uv run` and `uv sync`.
 
 ### Formatting and linting
 
-- **R:** `air` — a Rust-based formatter from Posit. Fast, opinionated, and it replaces `styler`. Never use `formatR`. Configure via `air.toml` at project root.
-- **Python:** `ruff` — formatter and linter in one. Replaces `black`, `isort`, `flake8`. Configure via `pyproject.toml`.
+- **R:** `air`: a Rust-based formatter from Posit. Fast, opinionated, and it replaces `styler`. Never use `formatR`. Configure via `air.toml` at project root.
+- **Python:** `ruff`: formatter and linter in one. Replaces `black`, `isort`, `flake8`. Configure via `pyproject.toml`.
 
 Both integrate with VS Code for format-on-save. This matters for reproducibility in a non-obvious way: consistent formatting means diffs are about logic, not whitespace, which makes code review and change tracking actually useful.
 
@@ -164,23 +164,23 @@ Every level of reproducibility adds friction:
 - **L3→L4**: Container setup, debugging build issues (days initially)
 - **L4→L5**: Data versioning, workflow management, continuous integration/continuous deployment (CI/CD) (ongoing effort)
 
-The goal is to pay the *right* amount of tax for your context — not more, not less.
+The goal is to pay the *right* amount of tax for your context: not more, not less.
 
 ---
 
 ## The Convergence: R and Python Are Aligning
 
-Something remarkable is happening: the R and Python ecosystems are converging on similar reproducibility paradigms. This isn't coincidental — it reflects hard-won lessons about what works.
+Something remarkable is happening: the R and Python ecosystems are converging on similar reproducibility paradigms. This isn't coincidental; it reflects hard-won lessons about what works.
 
 ### Shared Principles
 
 Both communities have arrived at the same conclusions:
 
-1. **Declarative over imperative** — Define desired state, not installation steps
-2. **Lockfiles are essential** — Capture exact versions at installation time
-3. **TOML for configuration** — Human-readable, standardized format
-4. **Rust for tooling** — Performance matters for developer experience
-5. **Holistic resolution** — Solve the entire dependency tree before installing
+1. **Declarative over imperative**. Define desired state, not installation steps
+2. **Lockfiles are essential**. Capture exact versions at installation time
+3. **TOML for configuration**. Human-readable, standardized format
+4. **Rust for tooling**. Performance matters for developer experience
+5. **Holistic resolution**. Solve the entire dependency tree before installing
 
 ### The Modern Stack Comparison
 
@@ -219,7 +219,7 @@ uv sync # <3>
 ```
 1. Scaffold a new project: creates `pyproject.toml`, `README.md`, and a `hello.py` stub.
 2. Add packages to `pyproject.toml` and install them into the project's `.venv` in one step.
-3. Recreate `.venv` from the lockfile — ensures every collaborator starts from the same declared Python environment.
+3. Recreate `.venv` from the lockfile: ensures every collaborator starts from the same declared Python environment.
 
 The `pyproject.toml` becomes your single source of truth:
 
@@ -241,15 +241,15 @@ dev-dependencies = [ # <2>
     "ruff>=0.1",
 ]
 ```
-1. Minimum Python version constraint — `uv` enforces this and will refuse to create an incompatible environment.
-2. Dev-only dependencies not installed in production or CI — keeps the deployment environment lean.
+1. Minimum Python version constraint: `uv` enforces this and will refuse to create an incompatible environment.
+2. Dev-only dependencies not installed in production or CI: keeps the deployment environment lean.
 
 Key features that make `uv` essential:
 
-- **Lockfile (`uv.lock`)** — Captures exact versions for reproducibility
-- **Python version management** — No need for separate pyenv
-- **Fast in practice** — often noticeably faster than a plain pip workflow, especially with warm caches
-- **Declarative** — Describe what you want, not how to get there
+- **Lockfile (`uv.lock`)**. Captures exact versions for reproducibility
+- **Python version management**. No need for separate pyenv
+- **Fast in practice**: often noticeably faster than a plain pip workflow, especially with warm caches
+- **Declarative**. Describe what you want, not how to get there
 
 ```bash
 # uv can manage Python versions too
@@ -278,10 +278,10 @@ rv add tidyverse arrow DBI # <3>
 # Sync
 rv sync # <4>
 ```
-1. One-liner install — downloads the `rv` binary and places it on your `PATH`.
+1. One-liner install: downloads the `rv` binary and places it on your `PATH`.
 2. Initialise the project: creates `rproject.toml` with the current R version pre-filled.
-3. Add packages to `rproject.toml` — `rv` resolves and installs them immediately.
-4. Install all declared packages into the project library — the equivalent of `renv::restore()` but driven by a declarative manifest.
+3. Add packages to `rproject.toml`: `rv` resolves and installs them immediately.
+4. Install all declared packages into the project library: the equivalent of `renv::restore()` but driven by a declarative manifest.
 
 Your `rproject.toml`:
 
@@ -300,8 +300,8 @@ dependencies = [
     "DBI",
 ]
 ```
-1. Pins the exact R version — `rv` will warn if you try to sync on a different version.
-2. Use Posit Package Manager (PPM) instead of CRAN — provides pre-built binaries, dramatically faster installs on Linux.
+1. Pins the exact R version: `rv` will warn if you try to sync on a different version.
+2. Use Posit Package Manager (PPM) instead of CRAN: provides pre-built binaries, dramatically faster installs on Linux.
 
 ### renv: The Established Alternative
 
@@ -339,7 +339,7 @@ The key difference: `renv` is reactive (snapshot after installation), while `rv`
 
 ### R: rig
 
-[rig](https://github.com/r-lib/rig) is the R Installation Manager — think of it as pyenv for R:
+Think of [rig](https://github.com/r-lib/rig) as pyenv for R. It is the R Installation Manager:
 
 ```bash
 # Install rig (macOS)
@@ -427,14 +427,14 @@ A `.devcontainer/devcontainer.json` defines your environment:
     "postCreateCommand": "uv sync && rv sync" // <4>
 }
 ```
-1. Base image from the Rocker Project — a battle-tested R 4.4 environment with the tidyverse and system libraries pre-installed.
-2. Add Quarto CLI as a devcontainer feature — installs on top of the base image without modifying the Dockerfile.
-3. Add Python 3.11 as a feature — layered cleanly alongside R in the same container.
+1. Base image from the Rocker Project: a battle-tested R 4.4 environment with the tidyverse and system libraries pre-installed.
+2. Add Quarto CLI as a devcontainer feature: installs on top of the base image without modifying the Dockerfile.
+3. Add Python 3.11 as a feature: layered cleanly alongside R in the same container.
 4. Run after the container is created: restore the Python virtual environment and the R package library from their respective lockfiles.
 
 ### When to Use DevContainers
 
-DevContainers are **L4 reproducibility** — use them when:
+DevContainers are **L4 reproducibility**. Use them when:
 
 - System dependencies are complex (geospatial, databases, specific compilers)
 - Team onboarding needs to be instant
@@ -464,10 +464,10 @@ The [Rocker Project](https://rocker-project.org/) provides excellent base images
 
 Available images:
 
-- `rocker/r-ver` — Base R
-- `rocker/tidyverse` — R + tidyverse packages
-- `rocker/verse` — tidyverse + LaTeX
-- `rocker/geospatial` — Includes GDAL (Geospatial Data Abstraction Library), GEOS (Geometry Engine — Open Source), PROJ (cartographic projections library)
+- `rocker/r-ver`: Base R
+- `rocker/tidyverse`: R + tidyverse packages
+- `rocker/verse`: tidyverse + LaTeX
+- `rocker/geospatial`: Includes GDAL (Geospatial Data Abstraction Library), GEOS (Geometry Engine: Open Source), PROJ (cartographic projections library)
 
 ### Multi-Language DevContainer
 
@@ -544,7 +544,7 @@ rule train_model:
 
 [Quarto](https://quarto.org/) unifies documentation across R, Python, and Julia. A typical Quarto document combines markdown narrative with code chunks in either language.
 
-Key reproducibility feature: With `freeze: auto` in your YAML header, Quarto caches computational outputs, so documents can be re-rendered without re-executing all code — improving both reproducibility and build times.
+Key reproducibility feature: With `freeze: auto` in your YAML header, Quarto caches computational outputs, so documents can be re-rendered without re-executing all code, which improves both reproducibility and build times.
 
 Quarto documents use fenced code blocks with language specifiers like `{python}` or `{r}` to indicate executable code, and can output to HTML, PDF, Word, and many other formats.
 
@@ -565,32 +565,32 @@ Different teams within an organization may need different reproducibility levels
 
 ### Building a Reproducibility Culture
 
-1. **Start with templates** — Provide project templates at appropriate levels
-2. **Automate checks** — CI/CD that validates reproducibility
-3. **Document decisions** — Record *why* a certain level was chosen
-4. **Review periodically** — Projects may need to level up over time
+1. **Start with templates**. Provide project templates at appropriate levels
+2. **Automate checks**. CI/CD that validates reproducibility
+3. **Document decisions**. Record *why* a certain level was chosen
+4. **Review periodically**. Projects may need to level up over time
 
 ### The Cost-Benefit Reality
 
 The key insight: [match your investment to your actual needs]{.highlight bg-colour="navy-mid" colour="snow"}. Over-engineering reproducibility for a throwaway analysis wastes time. Under-engineering for a regulatory submission creates risk.
 
-As project risk and longevity increase, so should your reproducibility investment — from L1 (personal exploration) through L5 (regulatory/clinical).
+As project risk and longevity increase, so should your reproducibility investment, from L1 (personal exploration) through L5 (regulatory/clinical).
 
 ---
 
 ## Regulated Environments: Reproducibility in Pharma and Good Practices (GxP)
 
-Everything above applies to all data science work. But if you operate in a regulated environment — pharma, medical devices, clinical research — there are additional requirements that change the calculus significantly.
+Everything above applies to all data science work. But in a regulated environment such as pharma, medical devices or clinical research, additional requirements change the calculus.
 
 ### What FDA and EMA actually expect
 
-The FDA's 21 CFR Part 11 and the European Medicines Agency (EMA)'s comparable guidance don't prescribe specific tools. What they require is an audit trail: given a result in a regulatory submission, you must be able to demonstrate exactly which code, which data, and which environment produced it — and reproduce it on demand.
+The FDA's 21 CFR Part 11 and the European Medicines Agency (EMA)'s comparable guidance don't prescribe specific tools. What they require is an audit trail: given a result in a regulatory submission, you must be able to demonstrate exactly which code, which data, and which environment produced it, and reproduce it on demand.
 
 In practice, this means:
 
 - **Every analysis is traceable to a specific software version.** Not "R 4.x", but "R 4.4.2 with renv lockfile pinned to commit `abc123`".
 - **Changes are documented.** A git history is not optional; it's part of the validation evidence.
-- **The environment is validated.** IQ (Installation Qualification), OQ (Operational Qualification), PQ (Performance Qualification) aren't bureaucratic theatre — they're the documented proof that your platform behaves as expected.
+- **The environment is validated.** IQ (Installation Qualification), OQ (Operational Qualification), PQ (Performance Qualification) aren't bureaucratic theatre: they're the documented proof that your platform behaves as expected.
 
 ### sessionInfo() is necessary but not sufficient
 
@@ -606,27 +606,27 @@ But `sessionInfo()` alone doesn't let you reproduce the environment. It describe
 
 The validation stack for a Shiny platform running on Posit Connect looks like this when done right:
 
-1. **renv** — lockfile in the repository, pinned to an exact snapshot date. `renv::restore()` gives any auditor the exact library used in production.
-2. **Docker** — the base image is pinned (`rocker/r-ver:4.4.2`, not `rocker/r-ver:latest`). This ensures system libraries are frozen, not just R packages.
-3. **GitHub Actions** — CI runs the test suite and renders key reports on every push. The green CI badge is part of the OQ evidence.
-4. **Posit Connect** — deployment is version-controlled. Each deployed bundle has a manifest and can be rolled back.
+1. **renv**: lockfile in the repository, pinned to an exact snapshot date. `renv::restore()` gives any auditor the exact library used in production.
+2. **Docker**: the base image is pinned (`rocker/r-ver:4.4.2`, not `rocker/r-ver:latest`). This ensures system libraries are frozen, not just R packages.
+3. **GitHub Actions**. CI runs the test suite and renders key reports on every push. The green CI badge is part of the OQ evidence.
+4. **Posit Connect**: deployment is version-controlled. Each deployed bundle has a manifest and can be rolled back.
 
-The IQ document answers: *"Is the software correctly installed?"* — covered by the Docker image build log and the `renv::restore()` log.
+The IQ document answers: *"Is the software correctly installed?"*, covered by the Docker image build log and the `renv::restore()` log.
 
-The OQ document answers: *"Does it perform as specified?"* — covered by the automated test suite.
+The OQ document answers: *"Does it perform as specified?"*, covered by the automated test suite.
 
-The PQ document answers: *"Does it perform as required in production?"* — covered by UAT sign-off and monitoring dashboards.
+The PQ document answers: *"Does it perform as required in production?"*, covered by UAT sign-off and monitoring dashboards.
 
-This isn't a heavy process once it's set up. The overhead is in the documentation, not the tooling. The tooling is Git, renv, Docker, and a CI runner — none of which require purchasing a validated platform.
+This isn't a heavy process once it's set up. The overhead is in the documentation, not the tooling. The tooling is Git, renv, Docker, and a CI runner, none of which require purchasing a validated platform.
 
 ### The practical minimum for regulatory R work
 
 If you're not running a full validated platform but still need to produce defensible analyses (clinical biostatistics reports, ingredient safety dossiers, etc.):
 
-1. **Git** — every script in version control, analysis tied to a commit hash
-2. **renv** — lockfile committed alongside the code
-3. **`sessionInfo()` in every report** — as a footer, not optional
-4. **Quarto with `freeze: auto`** — computational outputs frozen and committed; the rendered report is reproducible without re-executing
+1. **Git**: every script in version control, analysis tied to a commit hash
+2. **renv**: lockfile committed alongside the code
+3. **`sessionInfo()` in every report**: as a footer, not optional
+4. **Quarto with `freeze: auto`**: computational outputs frozen and committed; the rendered report is reproducible without re-executing
 
 This gets you to L3/L4 on the reproducibility spectrum at low overhead. It won't satisfy IQ/OQ/PQ for a validated system, but it satisfies the traceability requirement for analytical work and will hold up to a reasonably thorough audit.
 

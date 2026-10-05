@@ -5,7 +5,6 @@ format:
     output-file: cv.pdf
     template-partials:
       - typst-template.typ
-      - typst-preamble.typ
       - typst-show.typ
 ---
 

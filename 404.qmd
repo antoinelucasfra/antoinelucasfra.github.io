@@ -1,0 +1,14 @@
+---
+title: "Page not found"
+description: "The page you asked for does not exist."
+format:
+  html:
+    toc: false
+---
+
+Nothing lives at this address. It was probably moved, renamed, or never existed.
+
+- [Home](/)
+- [Blog](/blog.html)
+- [Projects](/projects.html)
+- [CV](/cv/)
