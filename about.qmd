@@ -14,7 +14,7 @@ format:
 #| label: about-profile
 #| include: false
 #| message: false
-#| #| warning: false
+#| warning: false
 source(here::here("_helpers", "site-render.R"))
 profile <- load_profile()
 ```

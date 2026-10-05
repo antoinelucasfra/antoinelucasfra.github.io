@@ -6,11 +6,9 @@ render_homepage <- function(profile) {
   identity <- profile$identity
   current_role <- profile$home$current_role
   n_posts <- length(list.dirs(here::here("posts"), recursive = FALSE))
-  stats <- list(
-    list(value = "5+", label = "years in pharma & cosmetics R&D"),
-    list(value = "20+", label = "production Shiny apps supported"),
-    list(value = "100+", label = "clinical studies analysed"),
-    list(value = paste0(n_posts, "+"), label = "field notes published")
+  stats <- c(
+    profile$home$stats,
+    list(list(value = paste0(n_posts, "+"), label = "field notes published"))
   )
 
   htmltools::tagList(
@@ -149,7 +147,7 @@ render_homepage <- function(profile) {
         function(entry) {
           htmltools::tags$li(
             htmltools::tags$strong(entry$degree),
-            " — ",
+            " · ",
             htmltools::tags$em(entry$school),
             " · ",
             htmltools::tags$em(entry$year)
