@@ -60,9 +60,6 @@ jobs:
       - name: Restore R dependencies with rv
         run: rv sync
 
-      - name: Check the CV variant overlay
-        run: Rscript cv/test-profile-variant.R
-
       - name: Render Quarto project
         run: quarto render --profile full
 

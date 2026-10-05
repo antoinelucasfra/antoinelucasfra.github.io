@@ -343,6 +343,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0;
+
+  p {
+    margin: 0;
+  }
 }
 
 .cv-name {
@@ -362,6 +366,7 @@ body {
 }
 
 .cv-title {
+  display: block;
   font-family: "Space Grotesk", sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -370,6 +375,7 @@ body {
 }
 
 .cv-subtitle {
+  display: block;
   font-size: 0.85rem;
   color: var(--cv-subtitle-color);
   margin: 0 0 0.75rem 0;
@@ -379,6 +385,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.3rem 1.25rem;
+
+  > p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.25rem;
+    margin: 0;
+  }
 
   a {
     font-size: 0.82rem;
@@ -430,6 +443,10 @@ body {
   background: var(--cv-summary-bg);
   border-left: 2px solid var(--cv-summary-border);
   border-radius: 0 0.375rem 0.375rem 0;
+
+  p {
+    margin: 0;
+  }
 }
 
 .cv-section-title {
@@ -500,6 +517,7 @@ body {
   color: var(--cv-role-color);
   line-height: 1.25;
   display: block;
+  margin: 0;
 }
 
 .cv-org {
@@ -518,9 +536,11 @@ body {
   padding-top: 0.18rem;
   font-weight: 500;
   font-family: "JetBrains Mono", monospace;
+  margin: 0;
 }
 
-.cv-entry ul {
+.cv-entry ul,
+.cv-earlier ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -549,20 +569,14 @@ body {
   }
 }
 
-.cv-skills-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.42rem;
-}
-
-.cv-skill-row {
+.cv-skills dl {
   display: grid;
   grid-template-columns: 90px 1fr;
-  gap: 0.75rem;
-  align-items: baseline;
+  gap: 0.42rem 0.75rem;
+  margin: 0;
 }
 
-.cv-skill-label {
+.cv-skills dt {
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -572,7 +586,8 @@ body {
   padding-top: 0.1rem;
 }
 
-.cv-skill-value {
+.cv-skills dd {
+  margin: 0;
   font-size: 0.875rem;
   color: var(--cv-skill-value-color);
   line-height: 1.55;
@@ -588,12 +603,14 @@ body {
   }
 }
 
-.cv-inline-text {
+.cv-inline-section ul {
+  margin: 0;
+  padding-left: 1.1rem;
   font-size: 0.875rem;
   color: var(--cv-inline-text-color);
-  margin: 0;
   line-height: 1.55;
 }
+
 /* ── Homepage: stats band ──────────────────────────────────────────── */
 .stats-band {
   display: grid;

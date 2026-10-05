@@ -14,7 +14,8 @@ Content license: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa
 
 ## Repository Layout
 
-- `cv/`: CV pages (`index`, `ai`, `biostat`) and the two Typst PDFs, plus the shared `profile.yml`, the renderer, the Quarto Typst partials and the vendored `modern-cv.typ` layout
+- `cv/`: CV pages (`index`, `ai`, `biostat`) written as plain Quarto markdown; each CV renders to HTML and to a Typst PDF (`cv.pdf`, `cv-biostat.pdf`) from the same source. `_header.inc.qmd`, `_education.inc.qmd` and `_certs-languages.inc.qmd` hold the blocks both CVs share; `profile.yml` holds the homepage and About data, `icons/` the PDF contact icons
+- `_extensions/awesomecv/`: vendored [`quarto-awesomecv-typst`](https://github.com/kazuyanagimoto/quarto-awesomecv-typst) layout for the CV PDFs
 - `catalog/`: the resources catalog page, the `resources.txt` source, the listing engine and the card template
 - `posts/`, `projects/`, `topics/`: blog posts, project case studies, topic landing pages
 - `_helpers/`: non-rendered R helpers sourced by the pages (`profile.R`, `links.R`, `site-render.R`)
