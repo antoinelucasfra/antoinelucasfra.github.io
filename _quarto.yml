@@ -12,8 +12,6 @@ project:
     - "cv/index.qmd"
     - "cv/ai.qmd"
     - "cv/biostat.qmd"
-    - "cv/typst-ai.qmd"
-    - "cv/typst-biostat.qmd"
     - "projects.qmd"
     - "posts/**/*.qmd"
     - "projects/**/*.qmd"

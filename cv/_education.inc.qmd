@@ -1,0 +1,25 @@
+# Education {.cv-section-title}
+
+::: {.cv-entry .cv-entry-edu}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Diplôme d'Ingénieur, Statistiques appliquées aux Sciences de la Vie {.cv-role}
+
+[*Institut Agro - Agrocampus Ouest, Rennes*]{.cv-org}
+:::
+
+### 2021 {.cv-period}
+:::
+:::
+
+::: {.cv-entry .cv-entry-edu}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Master, Mathématiques Appliquées · Statistiques (double degree) {.cv-role}
+
+[*INSA Rennes · Agrocampus Ouest · Université Rennes 2 · ENSAI · ENSAE (joint programme)*]{.cv-org}
+:::
+
+### 2021 {.cv-period}
+:::
+:::

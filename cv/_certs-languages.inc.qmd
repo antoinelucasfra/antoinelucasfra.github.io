@@ -1,0 +1,15 @@
+::: {.cv-inline-sections}
+::: {.cv-inline-section}
+# Certifications {.cv-section-title}
+
+- GitHub Foundations, GitHub (2024)
+- Scrum Master, Agilbee (2023)
+:::
+
+::: {.cv-inline-section}
+# Languages {.cv-section-title}
+
+- French (native)
+- English (fluent)
+:::
+:::

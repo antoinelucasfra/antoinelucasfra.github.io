@@ -1,0 +1,22 @@
+::: {.content-visible when-format="html"}
+::: {.cv-header}
+::: {.cv-header-text}
+# Antoine Lucas {.cv-name}
+
+[{{< meta author.position >}}]{.cv-title}
+
+[Pharma · Cosmetics · Biotech · Paris, France]{.cv-subtitle}
+
+::: {.cv-contacts}
+[<i class="bi bi-envelope-fill" aria-hidden="true"></i> antoine.lucas.fra@gmail.com](mailto:antoine.lucas.fra@gmail.com) [<i class="bi bi-linkedin" aria-hidden="true"></i> in/antoinelucasdata](https://www.linkedin.com/in/antoinelucasdata/){target="_blank" rel="noopener noreferrer"} [<i class="bi bi-github" aria-hidden="true"></i> github.com/antoinelucasfra](https://github.com/antoinelucasfra){target="_blank" rel="noopener noreferrer"} [<i class="bi bi-globe" aria-hidden="true"></i> antoinelucasfra.github.io](https://antoinelucasfra.github.io){target="_blank" rel="noopener noreferrer"} [<i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> Download PDF]({{< meta cv_pdf >}})
+:::
+:::
+
+::: {.cv-header-photo}
+![](../assets/images/profile-pic.jpg){.cv-photo alt="Portrait of Antoine Lucas"}
+:::
+:::
+
+::: {.cv-rule}
+:::
+:::

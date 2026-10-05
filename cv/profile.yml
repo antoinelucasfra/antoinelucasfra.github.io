@@ -2,21 +2,13 @@ identity:
   name: Antoine Lucas
   # Base title feeds the homepage and About page: deliberately broad, no seniority label.
   title: Scientific Software & Statistics Engineer · R Shiny, biostatistics, AI
-  title_ai: Scientific Software & AI Engineer · R Shiny, LLM agents, MLOps
-  title_biostat: Biostatistician & Data Scientist · Clinical R&D, DoE, mixed models
-  # CV PDF produced per variant (see _quarto.yml render list).
-  cv_pdf: cv.pdf
-  cv_pdf_biostat: cv-biostat.pdf
   location_short: Paris
-  location_full: Paris, France
-  sectors: Pharma · Cosmetics · Biotech
   email: antoine.lucas.fra@gmail.com
   linkedin: https://www.linkedin.com/in/antoinelucasdata/
   github: https://github.com/antoinelucasfra
   mastodon: https://fosstodon.org/@antoineloucass
   photo: assets/images/profile-pic.jpg
   # Job-search signal: rendered in the homepage hero and on the About page.
-  website: https://antoinelucasfra.github.io
   availability: Open to Scientific Software / AI, Data Science and Biostatistics roles in Île-de-France, hybrid, full remote or on-site.
 
 home:
@@ -136,95 +128,6 @@ about:
       body: >
         I work well asynchronously, but I do not confuse remote work with silence. Clear writing, structured decisions, screen-sharing when useful, and explicit feedback loops matter a lot in distributed teams.
 
-summary:
-  cv: >
-    Research engineer with 5+ years turning R&D problems into production software in pharma,
-    cosmetics, and biotech. Maintain 20+ R Shiny applications used daily by researchers, plus
-    statistical modelling (design of experiments, mixed models, multi-omics) and
-    GxP-qualifiable delivery with tests, CI/CD and containers. Build LLM agents and MCP
-    servers that put typed statistical tools in a model's hands.
-  cv_biostat: >
-    Biostatistician and data scientist with 5+ years in clinical, cosmetic, and microbiome R&D.
-    Write statistical analysis plans and analysis methodologies, program them in R, and carry
-    the results through blind review to study reports. Methods cover design of experiments,
-    mixed models, and multivariate and multi-omics analysis, delivered with the engineering
-    that makes them reproducible: Git, tests, CI/CD, containers.
-
-experience:
-  - section: selected
-    role: Data Scientist & ML Engineer
-    organisation: Chanel Parfums Beauté R&D · via Astek / IT&M Stats
-    period: Sep 2025 – present
-    bullets:
-      - Own the R Shiny application catalog used daily by researchers, covering clinical data visualisation, formulation automation, and data lifecycle workflows.
-      - Designed and deployed computer-vision applications used by dozens of researchers and technicians to segment and annotate microscopy elements for cosmetics formulation and regulatory R&D.
-      - "Run the delivery toolchain (Git, Azure ML, Posit Connect, Databricks): reproducible environments and documented handover."
-    bullets_biostat:
-      - Delivered statistical modelling and machine learning for fragrance and cosmetics R&D, from exploratory analysis and model validation to deployment in researcher-facing tools.
-      - Designed and deployed object-segmentation models for cosmetics formulation and regulatory R&D, used by dozens of researchers and technicians to segment and annotate microscopy elements.
-      - Maintain 20+ R Shiny applications used daily by researchers, covering clinical data visualisation and formulation automation.
-  - section: selected
-    role: Data Scientist · Internal & Consulting
-    organisation: Astek / IT&M Stats
-    period: May – Sep 2025
-    bullets:
-      - Led internal training on Bayesian statistics in R for consultants.
-      - Built reusable internal R packages and Quarto reporting templates used across missions.
-      - Fine-tuned Phi-3-mini (3.8B) with LoRA (PEFT) for claim classification, from data preparation to evaluation.
-    bullets_biostat:
-      - Led internal training on Bayesian statistics in R for consultants, covering the modelling workflow, prior specification, and interpretation.
-      - Built reusable internal R packages and Quarto statistical reporting templates used across missions.
-      - Statistical programming and review of planned analyses for internal biostatistics projects.
-  - section: selected
-    role: Data Scientist · Multi-omics
-    organisation: Abolis · Microbiome Studio · via Astek / IT&M Stats
-    period: Dec 2024 – May 2025
-    bullets:
-      - "Built R and Python pipelines for tabular and large-scale omics data: genomics, transcriptomics, and metabolomics."
-      - Embedded as the sole data scientist in an 8-person startup team shipping a SaaS product (FastAPI, Vue.js).
-      - Advised agri-food partners on experimental design, analysis, and ML for multi-omics integration.
-    bullets_biostat:
-      - Analysed genomics, transcriptomics and metabolomics data in R and Python, from quality control to biological interpretation.
-      - Advised on statistical design and analysis strategy in discussions with agri-food partners.
-      - Sole data scientist in an 8-person startup team, delivering analyses and pipelines for a SaaS product.
-  - section: selected
-    role: Data Scientist
-    organisation: Sanofi R&D · Manufacturing Chain · via Astek / IT&M Stats
-    period: Jul 2023 – Nov 2024
-    bullets:
-      - "Sole R Shiny developer and Scrum Master. Built R and Python applications that simulate manufacturing plant resource capacity across global sites, with 50+ daily users across 3 departments informing drug production planning."
-      - "Owned delivery end to end: requirements, methodology, validation, workshops, UAT, and handover, with backlog and sprint ceremonies across researchers, managers, and project leads."
-    bullets_biostat:
-      - Built simulation and forecasting models in R and Python to predict manufacturing plant resource capacity across global sites, with 50+ daily users across 3 departments informing drug production planning.
-      - "Owned delivery end to end as sole developer and Scrum Master: requirements, methodology, validation, workshops, UAT, and handover."
-  - section: selected
-    role: Biostatistician
-    organisation: L'Oréal R&I · Scientific Computing · via Astek / IT&M Stats
-    period: Nov 2021 – Jul 2023
-    bullets:
-      - Wrote analysis methodologies and statistical analysis plans for proof-of-concept clinical studies and programmed the analyses in R. Delivered reports for more than 100 studies.
-      - Characterised clinical phenotypes across exposome, biophysical, omics, and microbiome data with multi-block, multivariate, and variable-selection methods.
-      - Proposed statistical methods with a senior statistician and built Bayesian-network visualisations for clinical datasets.
-    bullets_biostat:
-      - Wrote statistical analysis plans and analysis methodologies for proof-of-concept clinical studies and programmed the analyses in R. Delivered reports for more than 100 studies.
-      - Supported blind-review meetings and clinical study reporting in a regulated R&D environment.
-      - Characterised clinical phenotypes across exposome, biophysical, omics, and microbiome data with multi-block, multivariate, and variable-selection methods.
-  - section: earlier
-    role: Data Scientist Intern
-    organisation: L'Oréal R&I · Augmented Beauty
-    period: Feb 2021 – Aug 2021
-    summary: Built personalised hair-recommendation models from customer data.
-  - section: earlier
-    role: Biostatistics Project Officer Intern
-    organisation: Da Volterra · Metagenomics Team
-    period: Feb 2020 – Aug 2020
-    summary: Prepared data and ran non-parametric analyses for gut-microbiome clinical studies.
-  - section: earlier
-    role: Data Scientist Intern
-    organisation: Flinders University · Digital Health Research Center
-    period: Sep 2019 – Jan 2020
-    summary: Analysed wearables and digital-health data in R, from questionnaire design to results.
-
 education:
   - degree: Diplôme d'Ingénieur, Statistiques appliquées aux Sciences de la Vie
     school: Institut Agro - Agrocampus Ouest, Rennes
@@ -233,19 +136,12 @@ education:
     school: INSA Rennes · Agrocampus Ouest · Université Rennes 2 · ENSAI · ENSAE (joint programme)
     year: "2021"
 
-# `order` ranks the section on the CV; `order_<variant>` overrides it for that variant.
 skills:
   - label: Programming
-    order: 4
-    order_biostat: 2
     items: [Python, R, SQL, Bash]
   - label: Apps & reporting
-    order: 2
-    order_biostat: 4
     items: [R Shiny (golem), FastAPI, Quarto, ggplot2, Plotly]
   - label: ML & AI
-    order: 5
-    order_biostat: 5
     items:
       [
         scikit-learn,
@@ -255,8 +151,6 @@ skills:
         OpenCV,
       ]
   - label: LLM & agents
-    order: 1
-    order_biostat: 7
     items:
       [
         MCP servers,
@@ -266,10 +160,7 @@ skills:
         RAG,
         structured extraction,
       ]
-    items_biostat: [LLM evaluation, structured extraction]
   - label: Statistics
-    order: 6
-    order_biostat: 1
     items:
       [
         DoE,
@@ -281,8 +172,6 @@ skills:
         SPC,
       ]
   - label: Engineering & infra
-    order: 3
-    order_biostat: 3
     items:
       [
         Git,
@@ -297,10 +186,3 @@ skills:
         rv,
       ]
 
-additional:
-  certifications:
-    - GitHub Foundations, GitHub (2024)
-    - Scrum Master, Agilbee (2023)
-  languages:
-    - French (native)
-    - English (fluent)
