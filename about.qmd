@@ -1,7 +1,7 @@
 ---
 title: "About"
 description: "Background, working style, and technical focus across scientific software, regulated R&D, statistics, and internal product engineering."
-# reads data/profile.yml: always re-execute.
+# reads cv/profile.yml: always re-execute.
 freeze: false
 format:
   html:
@@ -14,8 +14,8 @@ format:
 #| label: about-profile
 #| include: false
 #| message: false
-#| #| warning: false
-source(here::here("_helpers", "profile_render.R"))
+#| warning: false
+source(here::here("_helpers", "site-render.R"))
 profile <- load_profile()
 ```
 

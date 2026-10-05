@@ -1,16 +1,17 @@
 project:
   type: website
   output-dir: docs
+  # Catalog page omitted here: it is the slow part of the build and only needed
+  # when its source or the site theme changes. CI publishes with --profile full.
   render:
     - "index.qmd"
     - "about.qmd"
     - "now.qmd"
     - "blog.qmd"
-    - "cv.qmd"
-    - "cv-ai.qmd"
-    - "cv-biostat.qmd"
-    - "cv-typst.qmd"
-    - "cv-biostat-typst.qmd"
+    - "404.qmd"
+    - "cv/index.qmd"
+    - "cv/ai.qmd"
+    - "cv/biostat.qmd"
     - "projects.qmd"
     - "posts/**/*.qmd"
     - "projects/**/*.qmd"
@@ -60,17 +61,17 @@ website:
       - text: CV
         menu:
           - text: Overview
-            href: cv.qmd
+            href: cv/index.qmd
           - text: "---"
           - text: AI & scientific software
-            href: cv-ai.qmd
+            href: cv/ai.qmd
           - text: Biostatistics & clinical R&D
-            href: cv-biostat.qmd
+            href: cv/biostat.qmd
           - text: "---"
-          - text: CV PDF — AI & software
-            href: /cv.pdf
-          - text: CV PDF — Biostatistics
-            href: /cv-biostat.pdf
+          - text: "CV PDF: AI & software"
+            href: /cv/cv.pdf
+          - text: "CV PDF: Biostatistics"
+            href: /cv/cv-biostat.pdf
       - text: About
         href: about.qmd
     right:

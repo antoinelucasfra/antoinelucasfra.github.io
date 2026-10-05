@@ -15,7 +15,7 @@ Same background, two emphases. Pick whichever matches the role you are hiring fo
 
 R Shiny and Python delivery, LLM agents and MCP tools, MLOps, reproducible and GxP-qualifiable engineering.
 
-[Web CV](/cv-ai.html){.btn .btn-primary .btn-sm} [PDF](/cv.pdf){.btn .btn-outline-secondary .btn-sm}
+[Web CV](/cv/ai.html){.btn .btn-primary .btn-sm} [PDF](/cv/cv.pdf){.btn .btn-outline-secondary .btn-sm}
 :::
 
 ::: {.column width="50%"}
@@ -23,6 +23,6 @@ R Shiny and Python delivery, LLM agents and MCP tools, MLOps, reproducible and G
 
 Clinical study design and analysis, statistical analysis plans, DoE, mixed models, multi-omics, R programming.
 
-[Web CV](/cv-biostat.html){.btn .btn-primary .btn-sm} [PDF](/cv-biostat.pdf){.btn .btn-outline-secondary .btn-sm}
+[Web CV](/cv/biostat.html){.btn .btn-primary .btn-sm} [PDF](/cv/cv-biostat.pdf){.btn .btn-outline-secondary .btn-sm}
 :::
 ::::

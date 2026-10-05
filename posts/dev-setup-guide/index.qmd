@@ -1,6 +1,6 @@
 ---
 title: "Complete Development Setup Guide for R & Python"
-description: "A comprehensive guide to setting up R, Python, and VS Code for modern data science development workflows."
+description: "Setting up R, Python, and VS Code for modern data science work."
 author: "Antoine Lucas"
 date: "2024-10-15"
 categories: [R, Python, VS Code, Setup, Tutorial]
@@ -41,9 +41,9 @@ My recommendation is:
 
 ## 2. Install the editor
 
-My default recommendation is [VS Code](https://code.visualstudio.com/). It is not the only option, but it is the best fit if you move between R, Python, Quarto, shell work, and lightweight infrastructure tasks in the same week.
+My default recommendation is [VS Code](https://code.visualstudio.com/). It is the best fit if you move between R, Python, Quarto, shell work, and lightweight infrastructure tasks in the same week.
 
-You can absolutely work in RStudio, Positron, or PyCharm. This guide stays with VS Code because the multi-language story is stronger and the extension ecosystem is better for mixed R and Python projects.
+You can work in RStudio, Positron, or PyCharm. This guide stays with VS Code because the multi-language story is stronger and the extension ecosystem is better for mixed R and Python projects.
 
 Install these extensions first:
 
@@ -118,7 +118,7 @@ If you want the short version, this is the stack I would actually put on a new m
 - `air` for R formatting
 - Ruff for Python formatting and linting
 
-That setup is not the only valid one. It is just a combination that scales well from personal projects to more serious collaborative work.
+That setup scales well from personal projects to serious collaborative work.
 
 ## Further resources
 

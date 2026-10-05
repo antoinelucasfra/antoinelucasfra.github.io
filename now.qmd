@@ -14,10 +14,11 @@ What I'm focused on right now. Updated periodically; inspired by [nownownow.com]
 
 ## Working on
 
+- Recently published *Sovereign Local AI*, a bilingual (French/English) book on running AI on your own hardware, with runnable companions: [read it](https://antoinelucasfra.github.io/localai-review/).
 - ML tooling and R Shiny applications for fragrance & cosmetics R&D at Chanel Parfums Beauté.
 - My public [Agentic Stats](/projects/agentic-stats.html) demo: an MCP server and FastAPI app that expose typed statistical tools to LLM agents, tested and containerised.
-- Growing this site: case studies, reproducibility field notes, and the [Resources Catalog](/projects/resources_catalog.html).
-- Two CV variants generated from one profile source — a scientific software & AI track and a biostatistics track.
+- Growing this site: case studies, reproducibility field notes, and the [Resources Catalog](/catalog/).
+- Two CV variants generated from one profile source: a scientific software & AI track and a biostatistics track.
 - Internal training material on Bayesian statistics with R.
 
 ## Learning
@@ -28,9 +29,9 @@ What I'm focused on right now. Updated periodically; inspired by [nownownow.com]
 
 ## Reading / listening
 
-- Statistical theory refreshers — mixed models and Bayesian workflow.
+- Statistical theory refreshers: mixed models and Bayesian workflow.
 - Live coding music with [Strudel](https://strudel.cc/) when the brain needs a different mode entirely.
 
 ## Location
 
-Paris, France. Open to Scientific Software / AI, Data Science and Biostatistics roles across Île-de-France — hybrid, full remote or on-site. [Email me](mailto:antoine.lucas.fra@gmail.com) or find me on [LinkedIn](https://www.linkedin.com/in/antoinelucasdata/).
+Paris, France. Open to Scientific Software / AI, Data Science and Biostatistics roles across Île-de-France, hybrid, full remote or on-site. [Email me](mailto:antoine.lucas.fra@gmail.com) or find me on [LinkedIn](https://www.linkedin.com/in/antoinelucasdata/).

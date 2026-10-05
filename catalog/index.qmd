@@ -30,7 +30,7 @@ It is intentionally both a curation project and a small product-engineering exer
 
 ## What This Project Includes
 
-- A hand-curated catalog stored in `data/resources.txt`, with each entry typed, categorized, and optionally annotated with a short description
+- A hand-curated catalog stored in `catalog/resources.txt`, with each entry typed, categorized, and optionally annotated with a short description
 - An R step that turns the catalog into a native Quarto listing at render time — text search, sorting, category filtering, and pagination included, with no custom JavaScript
 - A low-friction contribution workflow based on small YAML blocks and documented pull requests
 
@@ -39,10 +39,10 @@ It is intentionally both a curation project and a small product-engineering exer
 #| message: false
 #| warning: false
 #| output: false
-source(here::here("_helpers", "resources_catalog.R"))
+source(here::here("catalog", "resources.R"))
 
-resources <- parse_resources_md(here::here("data", "resources.txt"))
-write_listing_items(resources, here::here("projects", "resources-items.yml"))
+resources <- parse_resources_md(here::here("catalog", "resources.txt"))
+write_listing_items(resources, here::here("catalog", "resources-items.yml"))
 ```
 
 ::: {#resources}
@@ -50,7 +50,7 @@ write_listing_items(resources, here::here("projects", "resources-items.yml"))
 
 :::: {.callout-note}
 ## Contributing
-Want to add a resource? Edit `data/resources.txt` and open a PR on [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io). Each resource is a small YAML block:
+Want to add a resource? Edit `catalog/resources.txt` and open a PR on [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io). Each resource is a small YAML block:
 
 ```yaml
 ---

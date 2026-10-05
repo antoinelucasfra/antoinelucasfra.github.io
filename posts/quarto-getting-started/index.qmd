@@ -109,7 +109,7 @@ If the document is going to be rerun by someone else, explain the data source an
 Do not use Quarto as a substitute for version control. The document is reproducible only if the code, input data, and environment are also under control.
 :::
 
-One syntax detail worth memorizing: when callouts (or any panels) nest, the outer fence needs **more colons** than the inner one — otherwise the first inner `:::` closes the outer block:
+One syntax detail worth memorizing: when callouts (or any panels) nest, the outer fence needs **more colons** than the inner one, otherwise the first inner `:::` closes the outer block:
 
 ```` markdown
 :::: {.callout-note}
