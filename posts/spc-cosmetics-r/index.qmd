@@ -17,14 +17,14 @@ This post walks through a simple R workflow for subgrouped control charts, with 
 
 SPC uses control charts to monitor process behaviour over time. Key concepts:
 
-- **Center Line (CL)** — The process average
-- **Upper Control Limit (UCL)** — CL + 3σ
-- **Lower Control Limit (LCL)** — CL - 3σ
+- **Center Line (CL)**. The process average
+- **Upper Control Limit (UCL)**. CL + 3σ
+- **Lower Control Limit (LCL)**. CL - 3σ
 
 The important distinction is between:
 
-- **common-cause variation** — the ordinary fluctuation of a stable process
-- **special-cause variation** — a signal that something has changed and should be investigated
+- **common-cause variation**: the ordinary fluctuation of a stable process
+- **special-cause variation**: a signal that something has changed and should be investigated
 
 The purpose of a control chart is not to punish noise. It is to detect the second category without overreacting to the first.
 
@@ -68,10 +68,10 @@ The X-bar chart tells you whether the subgroup means are shifting. The R chart t
 
 Common patterns to watch for:
 
-1. **Points beyond control limits** — Immediate investigation needed
-2. **Run of 7+ points** — Process shift detected
-3. **Trends** — Gradual drift in process
-4. **Hugging the center line** — Possible measurement issues
+1. **Points beyond control limits**. Immediate investigation needed
+2. **Run of 7+ points**. Process shift detected
+3. **Trends**. Gradual drift in process
+4. **Hugging the center line**. Possible measurement issues
 
 In a cosmetics setting, these signals often map to practical questions:
 

@@ -1,0 +1,164 @@
+---
+title: "CV: Biostatistics & Clinical R&D"
+description: "Clinical study design and analysis, statistical analysis plans, DoE, mixed models, multi-omics, and statistical programming in R."
+cv_pdf: cv-biostat.pdf
+format:
+  html:
+    toc: false
+    page-layout: full
+    section-divs: false
+  awesomecv-typst:
+    output-file: cv-biostat.pdf
+author:
+  firstname: Antoine
+  lastname: Lucas
+  address: Paris, France
+  position: Biostatistician & Data Scientist · Clinical R&D, DoE, mixed models
+  contacts:
+    - icon: icons/envelope-fill.svg
+      text: antoine.lucas.fra@gmail.com
+      url: "mailto:antoine.lucas.fra@gmail.com"
+    - icon: icons/linkedin.svg
+      text: in/antoinelucasdata
+      url: https://www.linkedin.com/in/antoinelucasdata/
+    - icon: icons/github.svg
+      text: github.com/antoinelucasfra
+      url: https://github.com/antoinelucasfra
+    - icon: icons/globe.svg
+      text: antoinelucasfra.github.io
+      url: https://antoinelucasfra.github.io
+style:
+  font-header: New Computer Modern
+  font-text: New Computer Modern
+  color-accent: "10243E"
+  color-link: "0284C7"
+---
+
+::: {.cv-page}
+
+{{< include _header.inc.qmd >}}
+
+::: {.cv-summary}
+::: {.content-visible when-format="typst"}
+# Summary
+:::
+
+Biostatistician and data scientist with 5+ years in clinical, cosmetic, and microbiome R&D. Write statistical analysis plans and analysis methodologies, program them in R, and carry the results through blind review to study reports. Methods cover design of experiments, mixed models, and multivariate and multi-omics analysis, delivered with the engineering that makes them reproducible: Git, tests, CI/CD, containers.
+:::
+
+# Experience {.cv-section-title}
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Data Scientist & ML Engineer {.cv-role}
+
+[*Chanel Parfums Beauté R&D · via Astek / IT&M Stats*]{.cv-org}
+:::
+
+### Sep 2025 – present {.cv-period}
+:::
+
+- Delivered statistical modelling and machine learning for fragrance and cosmetics R&D, from exploratory analysis and model validation to deployment in researcher-facing tools.
+- Designed and deployed object-segmentation models for cosmetics formulation and regulatory R&D, used by dozens of researchers and technicians to segment and annotate microscopy elements.
+- Maintain 20+ R Shiny applications used daily by researchers, covering clinical data visualisation and formulation automation.
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Data Scientist · Internal & Consulting {.cv-role}
+
+[*Astek / IT&M Stats*]{.cv-org}
+:::
+
+### May – Sep 2025 {.cv-period}
+:::
+
+- Led internal training on Bayesian statistics in R for consultants, covering the modelling workflow, prior specification, and interpretation.
+- Built reusable internal R packages and Quarto statistical reporting templates used across missions.
+- Statistical programming and review of planned analyses for internal biostatistics projects.
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Data Scientist · Multi-omics {.cv-role}
+
+[*Abolis · Microbiome Studio · via Astek / IT&M Stats*]{.cv-org}
+:::
+
+### Dec 2024 – May 2025 {.cv-period}
+:::
+
+- Analysed genomics, transcriptomics and metabolomics data in R and Python, from quality control to biological interpretation.
+- Advised on statistical design and analysis strategy in discussions with agri-food partners.
+- Sole data scientist in an 8-person startup team, delivering analyses and pipelines for a SaaS product.
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Data Scientist {.cv-role}
+
+[*Sanofi R&D · Manufacturing Chain · via Astek / IT&M Stats*]{.cv-org}
+:::
+
+### Jul 2023 – Nov 2024 {.cv-period}
+:::
+
+- Built simulation and forecasting models in R and Python to predict manufacturing plant resource capacity across global sites, with 50+ daily users across 3 departments informing drug production planning.
+- Owned delivery end to end as sole developer and Scrum Master: requirements, methodology, validation, workshops, UAT, and handover.
+:::
+
+::: {.cv-entry}
+::: {.cv-entry-head}
+::: {.cv-entry-meta}
+## Biostatistician {.cv-role}
+
+[*L'Oréal R&I · Scientific Computing · via Astek / IT&M Stats*]{.cv-org}
+:::
+
+### Nov 2021 – Jul 2023 {.cv-period}
+:::
+
+- Wrote statistical analysis plans and analysis methodologies for proof-of-concept clinical studies and programmed the analyses in R. Delivered reports for more than 100 studies.
+- Supported blind-review meetings and clinical study reporting in a regulated R&D environment.
+- Characterised clinical phenotypes across exposome, biophysical, omics, and microbiome data with multi-block, multivariate, and variable-selection methods.
+:::
+
+# Earlier experience {.cv-section-title}
+
+::: {.cv-earlier}
+- **Data Scientist Intern**, L'Oréal R&I · Augmented Beauty (Feb 2021 – Aug 2021). Built personalised hair-recommendation models from customer data.
+- **Biostatistics Project Officer Intern**, Da Volterra · Metagenomics Team (Feb 2020 – Aug 2020). Prepared data and ran non-parametric analyses for gut-microbiome clinical studies.
+- **Data Scientist Intern**, Flinders University · Digital Health Research Center (Sep 2019 – Jan 2020). Analysed wearables and digital-health data in R, from questionnaire design to results.
+:::
+
+{{< include _education.inc.qmd >}}
+
+# Skills {.cv-section-title}
+
+::: {.cv-skills}
+Statistics
+: DoE · mixed models · Bayesian optimisation · PLS · PERMANOVA · survival analysis · SPC
+
+Programming
+: Python · R · SQL · Bash
+
+Engineering & infra
+: Git · CI/CD · automated testing · Docker · GitHub Actions · Azure ML · Databricks · Posit Connect · uv · rv
+
+Apps & reporting
+: R Shiny (golem) · FastAPI · Quarto · ggplot2 · Plotly
+
+ML & AI
+: scikit-learn · PyTorch · Hugging Face · PEFT / LoRA · OpenCV
+
+LLM & agents
+: LLM evaluation · structured extraction
+:::
+
+{{< include _certs-languages.inc.qmd >}}
+
+:::

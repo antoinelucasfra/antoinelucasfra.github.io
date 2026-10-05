@@ -1,0 +1,4 @@
+# Adds the slow catalog page back to the fast default in _quarto.yml.
+project:
+  render:
+    - "catalog/**/*.qmd"

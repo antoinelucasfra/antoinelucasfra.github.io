@@ -12,8 +12,8 @@ Environment variables (export before running):
     KEEP_EMAIL          Gmail address used for authentication
     KEEP_MASTER_TOKEN   Master token obtained via gpsoauth (see CONTRIBUTING.md)
     KEEP_NOTE_TITLE     Exact title of the Keep note used as the curation inbox
-    RESOURCES_PATH      Absolute path to data/resources.txt
-                        (e.g. ../data/resources.txt when run from scripts/)
+    RESOURCES_PATH      Absolute path to catalog/resources.txt
+                        (e.g. ../catalog/resources.txt when run from scripts/)
 
 Keep note line format (one resource per line, 5 fields separated by " - "):
     https://example.com - Resource Title - Book - R - Statistics;Tutorial

@@ -10,7 +10,7 @@ image: "../assets/images/blog-placeholder.svg"
 
 Most "AI does statistics" demos hand a model a Python interpreter and hope for the best. That works until the model invents a column, silently drops rows, or writes a one-liner that nobody can reproduce six months later.
 
-This project takes the opposite position: give the agent **three typed tools** and nothing else. No filesystem, no shell, no code generation. Every call is a bounded statistical operation with a validated schema, and every result comes back as structured data — REML estimates with confidence intervals, variance components, effect sizes.
+This project takes the opposite position: give the agent **three typed tools** and nothing else. No filesystem, no shell, no code generation. Every call is a bounded statistical operation with a validated schema, and every result comes back as structured data: REML estimates with confidence intervals, variance components, effect sizes.
 
 Ask it a real question:
 

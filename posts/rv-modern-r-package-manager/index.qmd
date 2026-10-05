@@ -11,16 +11,16 @@ image: ../../assets/images/covers/rv-modern-r-package-manager.svg
 
 I've been using `renv` for years to manage R dependencies, and while it gets the job done, I've always felt something was missing. The iterative workflow, the occasional dependency conflicts, the slow installations... it works, but it doesn't feel *modern*.
 
-Then I discovered **rv** — a declarative R package manager written in Rust — and it immediately clicked. If you've been following the Python ecosystem like I have, you've probably seen [uv](https://docs.astral.sh/uv/) change expectations around Python package management. `rv` brings that same philosophy to R: **declarative configuration, fast execution, and a more reproducibility-oriented workflow**. This is exactly what I've been waiting for.
+Then I discovered **rv**, a declarative R package manager written in Rust, and it immediately clicked. If you've been following the Python ecosystem like I have, you've probably seen [uv](https://docs.astral.sh/uv/) change expectations around Python package management. `rv` brings that same philosophy to R: **declarative configuration, fast execution, and a more reproducibility-oriented workflow**. This is what I've been waiting for.
 
 ## What is rv?
 
 `rv` is an R package manager that takes a fundamentally different approach from traditional tools:
 
-- **Declarative** — You describe the *desired state* of your project, not the steps to get there
-- **Written in Rust** — Compiled for speed; the exact performance gain depends on package mix, binaries, and network conditions
-- **Holistic resolution** — Resolves the entire dependency tree before installing anything
-- **Lock at install time** — Captures all installation information when it happens, not retroactively
+- **Declarative**. You describe the *desired state* of your project, not the steps to get there
+- **Written in Rust**. Compiled for speed; the exact performance gain depends on package mix, binaries, and network conditions
+- **Holistic resolution**. Resolves the entire dependency tree before installing anything
+- **Lock at install time**. Captures all installation information when it happens, not retroactively
 
 ```bash
 # Install rv (Linux/macOS)
@@ -30,8 +30,8 @@ curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/ins
 brew tap a2-ai/homebrew-tap
 brew install rv # <2>
 ```
-1. The curl installer is the universal method — works on both Linux and macOS, places the `rv` binary on your `PATH`.
-2. Homebrew install on macOS — preferred if you already use Homebrew; handles updates via `brew upgrade rv`.
+1. The curl installer is the universal method: works on both Linux and macOS, places the `rv` binary on your `PATH`.
+2. Homebrew install on macOS: preferred if you already use Homebrew; handles updates via `brew upgrade rv`.
 
 ## The Problem with Iterative Installation
 
@@ -47,8 +47,8 @@ renv::snapshot()  # Capture state after the fact
 
 I've run into two issues with this approach more times than I can count:
 
-1. **Incompatible versions** — Packages installed at different times may have conflicting dependencies. How many times have you had a working project break after updating one package?
-2. **Lost context** — By the time you snapshot, information about *how* packages were installed is lost. Where did that package come from again?
+1. **Incompatible versions**. Packages installed at different times may have conflicting dependencies. How many times have you had a working project break after updating one package?
+2. **Lost context**. By the time you snapshot, information about *how* packages were installed is lost. Where did that package come from again?
 
 ## rv's Declarative Approach
 
@@ -69,7 +69,7 @@ dependencies = [
     "tidyr",
 ]
 ```
-1. Pin the R version — `rv` will warn if the active R version does not match.
+1. Pin the R version: `rv` will warn if the active R version does not match.
 2. Posit Package Manager (PPM) serves pre-compiled binaries, making installs significantly faster than building from source.
 3. Declare only direct dependencies; `rv` resolves the full transitive dependency tree automatically.
 
@@ -79,7 +79,7 @@ Then synchronize your project:
 rv sync
 ```
 
-That's it. Seriously. `rv` resolves the complete dependency tree, ensures compatibility, installs everything, and creates a lockfile — all in one atomic operation. The first time I ran this, I was genuinely surprised at how fast it was.
+That's it. Seriously. `rv` resolves the complete dependency tree, ensures compatibility, installs everything, and creates a lockfile, all in one atomic operation. The first time I ran it, I was surprised at how fast it was.
 
 ## Quick Start
 
@@ -162,7 +162,7 @@ This converts your `renv.lock` to an `rv` configuration.
 
 ## The uv Parallel: Modern Package Management
 
-As someone who works in both R and Python, I find the parallels between `rv` and Python's `uv` striking — and clearly intentional:
+As someone who works in both R and Python, I find the parallels between `rv` and Python's `uv` striking, and clearly intentional:
 
 | Concept | Python (uv) | R (rv) |
 |---------|-------------|--------|
@@ -175,10 +175,10 @@ As someone who works in both R and Python, I find the parallels between `rv` and
 
 Both tools share the same vision, and honestly, it's refreshing to see R catching up:
 
-- **Speed through Rust** — Compiled performance beats interpreted languages
-- **Declarative configuration** — Describe the end state, not the steps
-- **Reproducibility first** — Lockfiles capture everything needed to recreate the environment
-- **Modern developer experience (DX)** — Clear CLI, helpful error messages, predictable behavior
+- **Speed through Rust**. Compiled performance beats interpreted languages
+- **Declarative configuration**. Describe the end state, not the steps
+- **Reproducibility first**. Lockfiles capture everything needed to recreate the environment
+- **Modern developer experience (DX)**. Clear CLI, helpful error messages, predictable behavior
 
 ## A Modern R Workflow: rig + rv
 
@@ -206,8 +206,8 @@ rig default 4.5 # <3>
 # List installed versions
 rig list # <4>
 ```
-1. Show all R versions available for download — useful for picking the right release before installing.
-2. Download and install R 4.5 — isolated from other installed versions, no system pollution.
+1. Show all R versions available for download: useful for picking the right release before installing.
+2. Download and install R 4.5: isolated from other installed versions, no system pollution.
 3. Make R 4.5 the active version returned by `R` and `Rscript` on the command line.
 4. Show all locally installed R versions and which is currently the default.
 
@@ -242,9 +242,9 @@ rv add tidyverse arrow DBI # <3>
 R
 # > library(tidyverse)  # Just works!
 ```
-1. Install R 4.5 if not already present — safe to re-run; `rig` skips the download if the version is already installed.
-2. Scaffold `rproject.toml` pre-filled with the current R version — ready to declare dependencies immediately.
-3. Add packages to `rproject.toml` and resolve + install them in one step — no separate `install.packages()` + `renv::snapshot()` cycle.
+1. Install R 4.5 if not already present: safe to re-run; `rig` skips the download if the version is already installed.
+2. Scaffold `rproject.toml` pre-filled with the current R version: ready to declare dependencies immediately.
+3. Add packages to `rproject.toml` and resolve + install them in one step: no separate `install.packages()` + `renv::snapshot()` cycle.
 
 ### Project-Specific R Versions
 
@@ -303,7 +303,7 @@ sf = ["--with-proj-share=/usr/local/share/proj"]
 
 ## Why This Matters for Reproducibility
 
-Having worked in pharma, I know how critical reproducibility is — it's not just nice to have, it's a regulatory requirement. The combination of declarative package management (`rv`) and explicit R version management (`rig`) solves the two problems I've spent countless hours debugging:
+Having worked in pharma, I know how critical reproducibility is. It isn't a nice-to-have; it's a regulatory requirement. The combination of declarative package management (`rv`) and explicit R version management (`rig`) solves the two problems I've spent countless hours debugging:
 
 1. **"Works on my machine"** → Lockfile captures exact package versions and sources
 2. **"Which R version?"** → `r_version` in config + `rig` for installation
@@ -323,8 +323,8 @@ rv sync # <2>
 
 # ✅ Identical environment, guaranteed
 ```
-1. Extract the `r_version` string from `rproject.toml` with `grep`/`cut` and pass it directly to `rig add` — one command installs the exact R version required by the project.
-2. Install all packages from the lockfile at the exact recorded versions — deterministic, no network guessing.
+1. Extract the `r_version` string from `rproject.toml` with `grep`/`cut` and pass it directly to `rig add`: one command installs the exact R version required by the project.
+2. Install all packages from the lockfile at the exact recorded versions: deterministic, no network guessing.
 
 ## Getting Started Today
 
@@ -348,7 +348,7 @@ rv sync # <2>
 
 ## Conclusion
 
-I'm genuinely excited about `rv`. It represents a paradigm shift in R package management — from iterative, reactive tooling to declarative, proactive workflows. Combined with `rig` for R version management, it finally gives us a modern development experience on par with what Python developers have enjoyed with `uv` and `pyenv`.
+I'm excited about `rv`. It changes how R packages are managed: from iterative, reactive tooling to declarative, proactive workflows. Combined with `rig` for R version management, it gives R a modern development experience on par with what Python developers have with `uv` and `pyenv`.
 
 The R ecosystem is evolving, and I'm here for it. Tools like `rv`, `rig`, and [air](https://posit-dev.github.io/air/) (the new R formatter) are bringing modern development practices to R. If you value reproducibility, speed, and developer experience like I do, give `rv` a try. I think you'll be as impressed as I was.
 
