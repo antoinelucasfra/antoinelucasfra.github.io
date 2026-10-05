@@ -1,6 +1,6 @@
 ---
 title: "Topics"
-description: "Browse blog posts by topic — R & Shiny, reproducibility, Python, machine learning, and more."
+description: "Browse blog posts by topic: R & Shiny, reproducibility, Python, machine learning, and more."
 ---
 
 The blog covers scientific software engineering, statistical computing, and ML tooling. These topic pages group related posts so you can follow a thread.

@@ -1,6 +1,6 @@
 ---
 title: "Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog"
-description: "In data science, machine learning, and AI, the pace of change is relentless. Here's why I maintain a curated collection of resources — and why you might want to do the same."
+description: "In data science, machine learning, and AI, the pace of change is relentless. Here's why I maintain a curated collection of resources: and why you might want to do the same."
 author: "Antoine Lucas"
 date: "2024-12-13"
 categories: [Data Science, Machine Learning, GenAI, Resources, Lifelong Learning, Best Practices]
@@ -9,17 +9,17 @@ image: ../../assets/images/covers/why-curate-resources.svg
 
 ## The Knowledge Debt Problem
 
-If you work in data science, statistics, machine learning, or AI, you know the feeling: you look away for a month, and suddenly there's a new paradigm, a new library that makes your favorite tool obsolete, or a paper that fundamentally changes how we think about a problem.
+If you work in data science, statistics, machine learning, or AI, you know the feeling: you look away for a month, and suddenly there's a new library that makes your favorite tool obsolete, or a paper that changes how you think about a problem.
 
 The field moves fast. Uncomfortably fast.
 
 - **Statistics**: New causal inference methods, Bayesian workflows, and effect estimation techniques emerge continuously
 - **Machine Learning**: Architecture innovations, training techniques, and interpretability methods evolve monthly
-- **Generative AI**: The pace since 2022 has been unprecedented — large language models (LLMs), diffusion models, multimodal systems
+- **Generative AI**: The pace since 2022 has been unprecedented: large language models (LLMs), diffusion models, multimodal systems
 - **Tooling**: Package managers, reproducibility tools, and development workflows get better every year
 - **Best practices**: What was considered "production-ready" five years ago may now be technical debt
 
-This creates what I call **knowledge debt** — the gap between what you know and what's available. Unlike technical debt, knowledge debt compounds silently. You don't realize you're behind until you try to solve a problem and discover everyone else is using tools you've never heard of.
+This creates what I call **knowledge debt**: the gap between what you know and what's available. Unlike technical debt, knowledge debt compounds silently. You don't realize you're behind until you try to solve a problem and discover everyone else is using tools you've never heard of.
 
 ---
 
@@ -29,11 +29,11 @@ Like many practitioners, I used to save interesting links in browser bookmarks. 
 
 The problems with bookmarks:
 
-1. **No context** — Why did I save this? What problem does it solve?
-2. **No categorization** — Is this about Bayesian statistics or Shiny deployment?
-3. **No language filtering** — Is this R, Python, or language-agnostic?
-4. **No discoverability** — I can't browse by topic when exploring
-5. **Link rot** — URLs die, and I never know until I need them
+1. **No context**. Why did I save this? What problem does it solve?
+2. **No categorization**. Is this about Bayesian statistics or Shiny deployment?
+3. **No language filtering**. Is this R, Python, or language-agnostic?
+4. **No discoverability**. I can't browse by topic when exploring
+5. **Link rot**. URLs die, and I never know until I need them
 
 I needed something better: a structured, searchable, categorized collection that I could actually *use*.
 
@@ -41,11 +41,11 @@ I needed something better: a structured, searchable, categorized collection that
 
 ## Building the Resources Catalog
 
-That's why I created the [Resources Catalog](/catalog/) — a curated collection of data science resources organized by type, language, and category.
+That's why I created the [Resources Catalog](/catalog/): a curated collection of data science resources organized by type, language, and category.
 
 ### The Philosophy
 
-The catalog isn't trying to be comprehensive. The internet already has "awesome lists" with thousands of links. Instead, it reflects my actual learning journey:
+The catalog isn't trying to be comprehensive. The internet already has "awesome lists" with thousands of links. Instead, it reflects what I actually use and learn from:
 
 - **Books** that shaped how I think about problems
 - **Packages** that I've found genuinely useful in practice
@@ -89,8 +89,7 @@ Resources like [Statistical Rethinking](https://github.com/rmcelreath/stat_rethi
 
 ### 2. Machine Learning & Deep Learning
 
-The ML landscape shifts constantly:
-
+The ML tooling shifts constantly:
 - **Transformers everywhere**: From NLP to computer vision to time series
 - **Foundation models**: Pre-trained models as starting points
 - **Interpretability**: Understanding what models actually learn
@@ -133,13 +132,13 @@ Resources like [Fundamentals of Data Visualization](https://clauswilke.com/datav
 
 ---
 
-## A Learning System, Not Just a List
+## A learning system
 
 The catalog is part of a broader learning system:
 
 ### 1. Capture
 
-When I encounter something interesting — a blog post, a package, a paper — I add it to the catalog immediately. The friction is low: just add a row to a CSV file.
+When I find something interesting, whether a blog post, a package or a paper, I add it to the catalog immediately. The friction is low: just add a row to a CSV file.
 
 ### 2. Categorize
 
@@ -147,7 +146,7 @@ Tagging forces me to think: What domain is this? What language? What problem doe
 
 ### 3. Review
 
-Periodically, I browse the catalog by category. This surfaces forgotten resources and helps me notice patterns (e.g., "I've saved a lot about Bayesian methods lately — maybe I should actually learn brms properly").
+Periodically, I browse the catalog by category. This surfaces forgotten resources and helps me notice patterns (e.g., "I've saved a lot about Bayesian methods lately, so maybe I should learn brms properly").
 
 ### 4. Apply
 
@@ -191,7 +190,7 @@ If you want to build a similar system, start simple:
 4. **Review regularly**: Browse your collection monthly
 5. **Share if useful**: Others might benefit; you'll be motivated to maintain it
 
-The key insight: **curation is a skill**. Like any skill, it improves with practice. Your first version will be imperfect. That's fine — iterate.
+The key insight: **curation is a skill**. Like any skill, it improves with practice. Your first version will be imperfect. That's fine: iterate.
 
 ---
 
@@ -206,9 +205,9 @@ Staying current isn't about knowing everything. It's about:
 
 A well-maintained resource collection is infrastructure for this kind of continuous learning. It's an investment that compounds over time.
 
-The pace of change in data science, ML, and AI isn't slowing down. Having a system to navigate that change — rather than being overwhelmed by it — is increasingly valuable.
+The pace of change in data science, ML, and AI isn't slowing down. Having a system to navigate that change, rather than being overwhelmed by it, is valuable.
 
-Browse my [Resources Catalog](/catalog/). Fork it, adapt it, build your own. The goal isn't to have *my* collection — it's to have *a* collection that serves your learning journey.
+Browse my [Resources Catalog](/catalog/). Fork it, adapt it, build your own. The goal isn't to have *my* collection, but *a* collection that serves your learning.
 
 That is the real payoff of curation: not a prettier bookmark list, but a working system for staying oriented in a field that changes faster than memory alone can handle.
 
@@ -218,11 +217,11 @@ That is the real payoff of curation: not a prettier bookmark list, but a working
 
 Some meta-resources on learning and knowledge management:
 
-- [The Turing Way](https://the-turing-way.netlify.app/) — Community handbook for reproducible research
-- [Big Book of R](https://www.bigbookofr.com/) — An excellent curated collection of R resources
-- [Awesome Lists](https://github.com/sindresorhus/awesome) — The original curated list concept
-- [Second Brain](https://www.buildingasecondbrain.com/) — Methodology for personal knowledge management
-- [Data Science Cheatsheet](https://github.com/aaronwangy/Data-Science-Cheatsheet) — Condensed reference material
+- [The Turing Way](https://the-turing-way.netlify.app/): Community handbook for reproducible research
+- [Big Book of R](https://www.bigbookofr.com/): An excellent curated collection of R resources
+- [Awesome Lists](https://github.com/sindresorhus/awesome): The original curated list concept
+- [Second Brain](https://www.buildingasecondbrain.com/): Methodology for personal knowledge management
+- [Data Science Cheatsheet](https://github.com/aaronwangy/Data-Science-Cheatsheet): Condensed reference material
 
 ---
 

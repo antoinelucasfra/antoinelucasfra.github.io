@@ -8,35 +8,34 @@ Content license: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa
 
 ## Stack
 
-- Quarto `1.9.37`
+- Quarto `1.9.37` pinned in CI (`_quarto.yml` requires `>=1.9.37`)
 - R `4.5.2` with `rv.lock` (managed by [`rv`](https://github.com/A2-ai/rv))
 - Python `3.13` for helper tooling via `uv` (single environment in `scripts/`)
 
 ## Repository Layout
 
-- `index.qmd`, `about.qmd`, `blog.qmd`, `projects.qmd`: top-level site pages
-- `cv/`: CV pages (`index`, `ai`, `biostat`) and the two Typst PDFs, plus the shared `profile.yml`, the renderer and the Typst partials
-- `catalog/`: the resources catalog — page, `resources.txt` source, listing engine and card template
-- `posts/`: blog posts
-- `projects/`: project case studies
-- `topics/`: topic landing pages
-- `assets/`: images, post cover art, and the favicon
+- `cv/`: CV pages (`index`, `ai`, `biostat`) and the two Typst PDFs, plus the shared `profile.yml`, the renderer, the Quarto Typst partials and the vendored `modern-cv.typ` layout
+- `catalog/`: the resources catalog page, the `resources.txt` source, the listing engine and the card template
+- `posts/`, `projects/`, `topics/`: blog posts, project case studies, topic landing pages
 - `_helpers/`: non-rendered R helpers sourced by the pages (`profile.R`, `links.R`, `site-render.R`)
 - `scripts/`: Python tooling in a single `uv` environment (Keep sync, metadata backfill, cover generation)
 - `rv/`, `rproject.toml`, `rv.lock`: the R environment, managed by [`rv`](https://github.com/A2-ai/rv)
-- `docs/`: local Quarto render output used by CI for GitHub Pages deployment, not committed
+- `docs/`: render output, ignored by git; CI uploads it to GitHub Pages
+- `_freeze/`: Quarto freeze cache, committed for `posts/` and `site_libs/` only
 
-The Quarto project now uses an explicit render allowlist in [_quarto.yml](_quarto.yml), so repository docs such as `CONTRIBUTING.md` are not published as website pages.
+`_quarto.yml` holds an explicit render allowlist, so repository docs such as `CONTRIBUTING.md` are not published.
 
 ## Local Setup
 
 ### 1. Restore the R environment
 
-From the repository root:
+Install [`rv`](https://github.com/A2-ai/rv) from its releases, put the binary on `PATH`, then:
 
 ```sh
 rv sync
 ```
+
+Without `rv`, `.Rprofile` prints `rv is not installed!` on every chunk and R falls back to the packages on the system library path.
 
 ### 2. Restore the Python helper environment
 
@@ -51,22 +50,28 @@ The environment is pinned to Python `3.13` via `scripts/.python-version`.
 
 ## Common Commands
 
-Preview the website locally:
-
-```sh
-quarto preview
-```
-
-Render the full site:
+Fast render, everything except the catalog:
 
 ```sh
 quarto render
 ```
 
-Render the PDF CV only:
+Live preview, rebuilds the page you edited:
 
 ```sh
-quarto render cv/typst-ai.qmd
+quarto preview
+```
+
+One page plus whatever lists it:
+
+```sh
+quarto render posts/my-post/index.qmd
+```
+
+Full published site, catalog included:
+
+```sh
+quarto render --profile full
 ```
 
 Backfill resource metadata locally:
@@ -76,12 +81,17 @@ cd scripts
 uv run python backfill.py --mode both
 ```
 
+## Freeze
+
+`execute: freeze: auto` caches chunk results in `_freeze/`; `_freeze/posts/` and `_freeze/site_libs/` are committed, the rest stays local. Delete an entry to force that chunk to run again. `.gitignore` records why the catalog is excluded.
+
 ## Automation
 
-- `.github/workflows/site.yml`: renders the site on pull requests (checks that repo-only documents are not published) and deploys to GitHub Pages on pushes to `main`
+- `.github/workflows/site.yml`: `quarto render --profile full` on pull requests (checks that repo-only documents are not published and that the CV PDFs and catalog exist) and on pushes to `prod`, which deploys to GitHub Pages
 
 ## Notes
 
 - `docs/` is generated output. Do not edit or commit it manually.
-- `data/resources.txt` is the source of truth for the resources catalog.
+- `catalog/resources.txt` is the source of truth for the resources catalog. See [CONTRIBUTING.md](CONTRIBUTING.md).
 - `scripts/make_covers.py` regenerates the post cover SVGs in `assets/images/covers/`.
+- If a render dies partway (OOM, Ctrl-C), delete `.quarto/` and render again.

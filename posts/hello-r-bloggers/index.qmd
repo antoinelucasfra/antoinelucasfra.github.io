@@ -1,17 +1,17 @@
 ---
-title: "Hello, R-Bloggers — What This Blog Is About"
+title: "Hello, R-Bloggers: What This Blog Is About"
 author: "Antoine Lucas"
 date: "2026-02-24"
 categories: [R, Meta]
-description: "A short introduction for readers arriving via R-Bloggers — what I write about, who I am, and where to start."
+description: "A short introduction for readers arriving via R-Bloggers: what I write about, who I am, and where to start."
 image: ../../assets/images/covers/hello-r-bloggers.svg
 ---
 
 If you're arriving here from R-Bloggers, welcome. This is a quick orientation.
 
 I'm an applied statistician and ML engineer based in Paris. For the past five years I've
-been embedded in R&D and clinical teams — at L'Oréal, Sanofi, a microbiome biotech, and
-currently Chanel Parfums Beauté — building data pipelines, statistical models, and ML
+been embedded in R&D and clinical teams at L'Oréal, Sanofi, a microbiome biotech, and
+currently Chanel Parfums Beauté, building data pipelines, statistical models, and ML
 systems in environments where reproducibility and auditability are not optional. R is
 my primary tool for statistical work, reporting, and Shiny applications; Python handles
 the ML side. Most posts here are field notes from that work: things I've worked out in
@@ -20,16 +20,16 @@ production and thought worth documenting, for my future self as much as anyone e
 The R content on this blog is practitioner-focused. You'll find posts on reproducibility
 in GxP-regulated environments, statistical methods applied to real formulation and
 clinical data, and R tooling that has earned its place in my daily workflow. Not
-beginner tutorials — notes from actual use.
+beginner tutorials, but notes from actual use.
 
 **Three posts to start with:**
 
-- [Statistical Tests Demystified: A Practical Guide for Scientists and Engineers](/posts/stats-theory-frequentist/) —
+- [Statistical Tests Demystified: A Practical Guide for Scientists and Engineers](/posts/stats-theory-frequentist/):
   a practical walkthrough of p-values, test selection, regression, and the mistakes
   that matter in applied work
-- [rv: The Modern R Package Manager for Reproducible Workflows](/posts/rv-modern-r-package-manager/) —
+- [rv: The Modern R Package Manager for Reproducible Workflows](/posts/rv-modern-r-package-manager/):
   a look at the Rust-backed package manager that is quietly replacing my `renv` workflow
-- [Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog](https://antoinelucasfra.github.io/posts/why-curate-resources/) —
+- [Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog](https://antoinelucasfra.github.io/posts/why-curate-resources/):
   on curation as a practice, and the catalog of 200+ data science resources I maintain
 
 The [full blog listing](/blog.html) has everything, filtered by category.

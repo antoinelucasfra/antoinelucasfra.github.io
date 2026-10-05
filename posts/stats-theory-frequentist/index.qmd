@@ -1,6 +1,6 @@
 ---
 title: "Statistical Tests Demystified: A Practical Guide for Scientists and Engineers"
-description: "A clear, jargon-light walkthrough of frequentist statistics — p-values, error types, test selection, regression, and the things textbooks don't tell you. Written for scientists and engineers who need to use statistics correctly, not just mechanically."
+description: "A clear, jargon-light walkthrough of frequentist statistics: p-values, error types, test selection, regression, and the things textbooks don't tell you. Written for scientists and engineers who need to use statistics correctly, not just mechanically."
 author: "Antoine Lucas"
 date: "2025-03-15"
 categories: [Statistics, Tutorial, R, Reference, Biostatistics]
@@ -13,7 +13,7 @@ A few years ago I reviewed an internal report where an ingredient had been decla
 
 The statistical test had been applied correctly. The statistical reasoning had failed entirely.
 
-This post is for the scientists, engineers, and product people who run statistical tests, interpret the results, and make decisions based on them — but who didn't train as statisticians. The goal isn't to make you a statistician. It's to give you enough understanding to avoid the category of mistake above, to ask better questions, and to know when to call someone who does this professionally.
+This post is for the scientists, engineers, and product people who run statistical tests, interpret the results, and make decisions based on them, but who didn't train as statisticians. The goal isn't to make you a statistician. It's to give you enough understanding to avoid the category of mistake above, to ask better questions, and to know when to call someone who does this professionally.
 
 ---
 
@@ -59,10 +59,10 @@ The fire alarm analogy: α is the rate at which the alarm goes off when there's 
 
 From these four cells you can derive four quantities that are far more useful than p-values in applied work:
 
-- **Sensitivity** = TP / (TP + FN) — probability the test fires when the effect is real
-- **Specificity** = TN / (TN + FP) — probability the test stays quiet when there's no effect
-- **PPV** (positive predictive value) = TP / (TP + FP) — probability the effect is real given significance
-- **NPV** (negative predictive value) = TN / (TN + FN) — probability there's no effect given non-significance
+- **Sensitivity** = TP / (TP + FN): probability the test fires when the effect is real
+- **Specificity** = TN / (TN + FP): probability the test stays quiet when there's no effect
+- **PPV** (positive predictive value) = TP / (TP + FP): probability the effect is real given significance
+- **NPV** (negative predictive value) = TN / (TN + FN): probability there's no effect given non-significance
 
 PPV is the one people most often forget to think about. In a field where most tested hypotheses are false (say, early-stage drug screening), even a specific test produces a lot of false positives. This is part of the replication crisis.
 
@@ -70,7 +70,7 @@ PPV is the one people most often forget to think about. In a field where most te
 
 ## Choosing the right test
 
-The most common source of error is not the calculation — R will do that correctly. It's choosing the wrong test for the question. Here's the key decision table:
+The most common source of error is not the calculation, since R will do that correctly. It's choosing the wrong test for the question. Here's the key decision table:
 
 | Situation | Test | R function |
 |---|---|---|
@@ -86,7 +86,7 @@ The most common source of error is not the calculation — R will do that correc
 | Correlation, normal | Pearson | `cor.test(x, y)` |
 | Correlation, non-normal or ordinal | Spearman | `cor.test(x, y, method = "spearman")` |
 
-Three questions to navigate this table:
+Three questions to ask of this table:
 
 1. **What is your outcome variable?** Continuous, binary, count, or ordinal?
 2. **How many groups are you comparing?** Two or more?
@@ -104,19 +104,19 @@ Tests of means and proportions cover simple comparisons. When you have multiple 
 
 Models a continuous outcome as a linear function of one or more predictors. Use when: your outcome is continuous and approximately normal given the predictors. The fundamental model is `lm(outcome ~ predictor1 + predictor2, data = df)`. Interactions between two variables are added with `*`: `lm(outcome ~ A * B)` fits main effects for A and B plus the A×B interaction.
 
-The assumptions to check: residuals normally distributed (QQ-plot of residuals), constant variance (residuals vs. fitted values plot), no multicollinearity among predictors (variance inflation factor). Missing any of these doesn't make the coefficients wrong — it makes the standard errors and p-values wrong.
+The assumptions to check: residuals normally distributed (QQ-plot of residuals), constant variance (residuals vs. fitted values plot), no multicollinearity among predictors (variance inflation factor). Missing any of these doesn't make the coefficients wrong; it makes the standard errors and p-values wrong.
 
 ### Logistic regression
 
-When your outcome is binary (success/failure, present/absent), linear regression is inappropriate — it predicts outside [0, 1] and the residuals are non-normal by construction. Logistic regression models the log-odds of the outcome. In R: `glm(outcome ~ predictors, family = binomial)`. Coefficients are on the log-odds scale; exponentiate them (`exp(coef(model))`) to get odds ratios, which are more interpretable.
+When your outcome is binary (success/failure, present/absent), linear regression is inappropriate: it predicts outside [0, 1] and the residuals are non-normal by construction. Logistic regression models the log-odds of the outcome. In R: `glm(outcome ~ predictors, family = binomial)`. Coefficients are on the log-odds scale; exponentiate them (`exp(coef(model))`) to get odds ratios, which are more interpretable.
 
 The key assumption that's often violated: logistic regression needs enough outcome events relative to model complexity. The old "10 events per predictor" rule is a rough heuristic, not a guarantee. If you have 50 cases of a disease and 8 predictors, you're already in territory where simpler models or more careful validation become important.
 
 ### Mixed models
 
-When observations are not independent — repeated measures on the same subjects, patients nested within hospitals, batches within production runs — standard regression underestimates uncertainty because it ignores the correlation structure. Mixed models (also called multilevel or hierarchical models) handle this by estimating both fixed effects (the parameters you care about) and random effects (the structure that creates correlation).
+When observations are not independent, for example repeated measures on the same subjects, patients nested within hospitals, or batches within production runs, standard regression underestimates uncertainty because it ignores the correlation structure. Mixed models (also called multilevel or hierarchical models) handle this by estimating both fixed effects (the parameters you care about) and random effects (the structure that creates correlation).
 
-In R, `lme4::lmer()` for continuous outcomes and `lme4::glmer()` for binary. These models require more thought to specify correctly — but using a standard regression when you have clustered data is not a conservative choice, it's a wrong one.
+In R, `lme4::lmer()` for continuous outcomes and `lme4::glmer()` for binary. These models require more thought to specify correctly, but using a standard regression when you have clustered data is not a conservative choice; it's a wrong one.
 
 ---
 
@@ -134,13 +134,13 @@ Always report effect sizes alongside p-values. "Statistically significant, p = 0
 
 ### Confidence intervals
 
-A 95% confidence interval is a range of plausible values for the true parameter. It's constructed so that, under repeated sampling, 95% of intervals computed this way would contain the true value. A wide confidence interval — even if it excludes zero — tells you the estimate is imprecise. In clinical or formulation work, precision matters as much as significance.
+A 95% confidence interval is a range of plausible values for the true parameter. It's constructed so that, under repeated sampling, 95% of intervals computed this way would contain the true value. A wide confidence interval, even one that excludes zero, tells you the estimate is imprecise. In clinical or formulation work, precision matters as much as significance.
 
 The confidence interval carries more information than the p-value. It tells you the direction, the magnitude, and the precision of the estimate simultaneously.
 
 ### Multiple comparisons
 
-Every test you run at α = 0.05 has a 5% false positive rate. Run 20 tests and you expect one false positive just by chance. This is not a hypothetical problem — it's routine in omics data, sensory profiling panels, and screening experiments.
+Every test you run at α = 0.05 has a 5% false positive rate. Run 20 tests and you expect one false positive just by chance. This is not a hypothetical problem; it's routine in omics data, sensory profiling panels, and screening experiments.
 
 Common corrections:
 
@@ -161,7 +161,7 @@ The area under the ROC curve (AUC) summarises classifier performance in a single
 - AUC 0.7–0.9: acceptable
 - AUC 0.5–0.7: poor
 
-In R: `pROC::roc(outcome, score)` then `auc()`. The ROC curve is useful precisely because it's threshold-agnostic — you can choose the operating threshold based on your acceptable trade-off between false positives and false negatives after seeing the curve, rather than committing upfront.
+In R: `pROC::roc(outcome, score)` then `auc()`. The ROC curve is useful precisely because it's threshold-agnostic: you choose the operating threshold based on the trade-off you accept between false positives and false negatives after seeing the curve, rather than committing upfront.
 
 One caution: AUC is an average over all thresholds. In some applications (rare event detection, high-cost false positives), the area under the precision-recall curve is more informative.
 
@@ -169,22 +169,22 @@ One caution: AUC is an average over all thresholds. In some applications (rare e
 
 ## Quick reference glossary
 
-**p-value** — Probability of observing data this extreme or more extreme, given H₀ is true. Not the probability that H₀ is true.
+**p-value**. Probability of observing data this extreme or more extreme, given H₀ is true. Not the probability that H₀ is true.
 
-**Null hypothesis (H₀)** — The baseline assumption of no effect, no difference, no relationship.
+**Null hypothesis (H₀)**. The baseline assumption of no effect, no difference, no relationship.
 
-**Type I error (α)** — Rejecting H₀ when it's true. False positive. Conventionally set to 0.05.
+**Type I error (α)**. Rejecting H₀ when it's true. False positive. Conventionally set to 0.05.
 
-**Type II error (β)** — Failing to reject H₀ when it's false. False negative. Power = 1 − β.
+**Type II error (β)**. Failing to reject H₀ when it's false. False negative. Power = 1 − β.
 
-**Power** — Probability of detecting a true effect of a given size. Increases with sample size and effect size, decreases with variance.
+**Power**. Probability of detecting a true effect of a given size. Increases with sample size and effect size, decreases with variance.
 
-**Effect size** — A standardised measure of the magnitude of an effect, independent of sample size.
+**Effect size**. A standardised measure of the magnitude of an effect, independent of sample size.
 
-**Confidence interval** — A range of plausible values for the true parameter. Width reflects estimation precision.
+**Confidence interval**. A range of plausible values for the true parameter. Width reflects estimation precision.
 
-**ANOVA** — Analysis of variance. Tests whether at least one group mean differs from the others. Does not tell you which groups differ — you need post-hoc tests (e.g. Tukey HSD) for that.
+**ANOVA**. Analysis of variance. Tests whether at least one group mean differs from the others. Does not tell you which groups differ: you need post-hoc tests (e.g. Tukey HSD) for that.
 
-**Odds ratio** — In logistic regression, the multiplicative change in the odds of the outcome per unit increase in a predictor. OR = 1 means no effect. OR > 1 means increased odds. OR < 1 means decreased odds.
+**Odds ratio**. In logistic regression, the multiplicative change in the odds of the outcome per unit increase in a predictor. OR = 1 means no effect. OR > 1 means increased odds. OR < 1 means decreased odds.
 
-**FDR** — False discovery rate. The expected proportion of significant results that are false positives. Used when running many tests simultaneously (genomics, screening, sensory analysis).
+**FDR**. False discovery rate. The expected proportion of significant results that are false positives. Used when running many tests simultaneously (genomics, screening, sensory analysis).

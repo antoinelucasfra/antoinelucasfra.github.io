@@ -1,6 +1,6 @@
 ---
 title: "LLM Fine-Tuning: Phi-3 on Claim Classification"
-description: "Fine-tuning Microsoft Phi-3-mini-4k-instruct with LoRA/QLoRA on the LIAR dataset for binary claim classification — +19.5pp accuracy over a zero-shot baseline. Full training pipeline: data preparation, LoRA adapter training, evaluation, and inference."
+description: "Fine-tuning Microsoft Phi-3-mini-4k-instruct with LoRA/QLoRA on the LIAR dataset for binary claim classification: +19.5pp accuracy over a zero-shot baseline. Full training pipeline: data preparation, LoRA adapter training, evaluation, and inference."
 date: "2025-09-01"
 categories: [Python, LLM, Deep Learning, NLP, PEFT]
 image: "../assets/images/blog-placeholder.svg"
@@ -10,7 +10,7 @@ image: "../assets/images/blog-placeholder.svg"
 
 Large language models generalize well but are often poorly calibrated for structured classification tasks in specific domains. This project fine-tunes [Microsoft Phi-3-mini-4k-instruct](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct) on the [LIAR dataset](https://huggingface.co/datasets/liar) for binary claim classification (`TRUE` / `FALSE`) using LoRA adapters via Hugging Face PEFT.
 
-The goal was to validate a lightweight methodology for adapting open-weight LLMs in compute-constrained environments, using the same adapter pattern later applied in an internal project on automated screening of regulatory product claims.
+The goal was to test whether LoRA adapters are a workable way to adapt open-weight LLMs on limited compute, the same pattern later used in an internal project screening regulatory product claims.
 
 This is supervised claim classification rather than end-to-end fact verification: the model predicts LIAR labels from benchmark examples without retrieval or external evidence lookup.
 
@@ -27,7 +27,7 @@ Evaluated on the LIAR test set after collapsing the original six labels into a b
 | **F1 FALSE** | 0.56 | 0.75 | +0.19 |
 | **F1 TRUE** | 0.47 | 0.70 | +0.23 |
 
-The gap is consistent across both classes, with slightly larger gains on the TRUE class — consistent with the base model's tendency to over-predict FALSE in zero-shot settings.
+The gap holds across both classes, with larger gains on TRUE, in line with the base model's tendency to over-predict FALSE in zero-shot settings.
 
 ---
 
@@ -35,7 +35,7 @@ The gap is consistent across both classes, with slightly larger gains on the TRU
 
 ### LoRA (Low-Rank Adaptation)
 
-LoRA injects trainable low-rank decomposition matrices into the frozen model's attention projections. Only ~0.5% of the model's parameters are updated during training — the base model weights are never modified.
+LoRA injects trainable low-rank decomposition matrices into the frozen model's attention projections. Only ~0.5% of the model's parameters are updated during training; the base model weights never change.
 
 | Parameter | Value |
 |---|---|
@@ -47,11 +47,11 @@ LoRA injects trainable low-rank decomposition matrices into the frozen model's a
 | Learning rate | 2e-4, cosine decay |
 | Epochs | 3 |
 
-**QLoRA variant** (4-bit NF4 quantization via `bitsandbytes`) is also supported for environments with limited VRAM — enables training on ~4GB instead of ~8GB.
+**QLoRA variant** (4-bit NF4 quantization via `bitsandbytes`) is also supported for environments with limited VRAM, bringing training down to ~4GB from ~8GB.
 
 ### Why Phi-3-mini?
 
-Phi-3-mini (3.8B parameters) is a pragmatic choice for regulated or air-gapped environments: strong instruction-following benchmarks, fits on a single consumer GPU, and is deployable on-premise without cloud API dependencies. The same adapter methodology applies directly to Phi-3-medium or Phi-3.5-mini with no code changes.
+Phi-3-mini (3.8B parameters) is a pragmatic choice for regulated or air-gapped environments: strong instruction-following benchmarks, fits on a single consumer GPU, and runs on-premise without cloud API dependencies. The same adapter methodology applies directly to Phi-3-medium or Phi-3.5-mini with no code changes.
 
 ---
 

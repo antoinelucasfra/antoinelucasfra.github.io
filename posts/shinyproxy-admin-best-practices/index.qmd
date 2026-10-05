@@ -27,7 +27,7 @@ There are at least three reasons people end up looking seriously at ShinyProxy:
 
 1. **You want explicit control.** The container boundary is a real boundary. That is attractive if you care about reproducibility or about isolating apps from one another.
 2. **You are running multiple apps.** Once a server becomes an internal app catalog rather than "the one Shiny app", lifecycle management matters more.
-3. **You prefer standard infrastructure primitives.** Docker images, reverse proxies, identity providers, mounted volumes, image registries — this is all boring infrastructure in the best possible sense.
+3. **You prefer standard infrastructure primitives.** Docker images, reverse proxies, identity providers, mounted volumes, image registries: this is all boring infrastructure in the best possible sense.
 
 What ShinyProxy gives you is not magic. It gives you a clean contract: *build an image that starts a Shiny app correctly, and I will orchestrate it for users*. That is a good contract.
 
@@ -194,7 +194,7 @@ The problem is simple:
 
 So for an app like this, you need to decide explicitly:
 
-### Option A — bind mount host storage
+### Option A: bind mount host storage
 
 This is the simplest path for a small internal setup.
 
@@ -210,7 +210,7 @@ Cons:
 - requires careful permissions
 - backup strategy becomes your problem immediately
 
-### Option B — move to a database
+### Option B: move to a database
 
 This is the better long-term model if the app becomes multi-user, concurrent, or operationally important.
 
@@ -336,7 +336,7 @@ If I were taking this exact app toward ShinyProxy, my path would be roughly:
 3. **Make storage explicit.** I would stop relying on implicit local paths and document a mounted data path clearly.
 4. **Introduce image tagging discipline early.** Even for a small app.
 5. **Write a minimal admin README** covering build, deploy, storage, and rollback.
-6. **Only then polish the broader ShinyProxy setup** — auth integration, nicer app catalog behavior, resource tuning, and so on.
+6. **Only then polish the broader ShinyProxy setup**: auth integration, nicer app catalog behavior, resource tuning, and so on.
 
 The big lesson is that I would not start from the proxy. I would start from the app's operational assumptions.
 

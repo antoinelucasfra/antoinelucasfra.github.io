@@ -1,5 +1,5 @@
 ---
-title: "CV — Biostatistics & Clinical R&D"
+title: "CV: Biostatistics & Clinical R&D"
 description: "Clinical study design and analysis, statistical analysis plans, DoE, mixed models, multi-omics, and statistical programming in R."
 format:
   html:

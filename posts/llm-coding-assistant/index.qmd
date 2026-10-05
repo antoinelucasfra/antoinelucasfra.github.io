@@ -3,7 +3,7 @@ title: "LLM-Assisted Development: A Data Scientist's Field Guide"
 author: "Antoine Lucas"
 date: "2025-10-14"
 categories: [AI Tools, GitHub Copilot, LLM, Development, VS Code, Ollama, Workflow]
-description: "Honest notes on a three-layer AI stack — Copilot, OpenCode, and Ollama — from daily use in pharma and cosmetics R&D. Real gains, real failure modes."
+description: "Honest notes on a three-layer AI stack: Copilot, OpenCode, and Ollama: from daily use in pharma and cosmetics R&D. Real gains, real failure modes."
 image: ../../assets/images/covers/llm-coding-assistant.svg
 ---
 
@@ -25,7 +25,7 @@ My stack has settled into three layers, each with a different trust level and ap
 | Agentic / repo-level | [OpenCode](https://opencode.ai) | Medium-High | Scaffolding, refactoring, multi-file tasks |
 | Local / private | Ollama + Continue | Low-Medium | Sensitive data contexts, offline work |
 
-Each layer has a different footprint. Copilot is always on — it suggests as you type. OpenCode operates at the repository level, understanding file structure and multi-step tasks. Ollama stays on-device, which matters when you're working with patient data or proprietary formulations.
+Each layer has a different footprint. Copilot is always on, suggesting as you type. OpenCode operates at the repository level, understanding file structure and multi-step tasks. Ollama stays on-device, which matters when you're working with patient data or proprietary formulations.
 
 ---
 
@@ -35,8 +35,8 @@ Each layer has a different footprint. Copilot is always on — it suggests as yo
 
 Install two extensions in VS Code:
 
-- `GitHub.copilot` — inline completions
-- `GitHub.copilot-chat` — sidebar chat and inline `/explain`, `/fix`, `/doc`
+- `GitHub.copilot`: inline completions
+- `GitHub.copilot-chat`: sidebar chat and inline `/explain`, `/fix`, `/doc`
 
 That's it. The defaults are good. The one thing worth doing immediately is writing a `.github/copilot-instructions.md` file at your project root.
 
@@ -55,9 +55,9 @@ Regulated context: results feed into regulatory submissions. <!-- <1> -->
 ## R conventions
 - tidyverse style throughout
 - Use `air` for formatting (never `styler`) <!-- <2> -->
-- Package management: `renv` — always `renv::snapshot()` after install
+- Package management: `renv`. Always run `renv::snapshot()` after install
 - Statistical tests: mixed models via `lme4`/`nlme`, never base `aov()` for repeated measures <!-- <3> -->
-- Report with `quarto` — `.qmd` files, never `.Rmd`
+- Report with `quarto`: `.qmd` files, never `.Rmd`
 
 ## Python conventions
 - `uv` for dependency management (never `pip install` directly) <!-- <4> -->
@@ -65,15 +65,15 @@ Regulated context: results feed into regulatory submissions. <!-- <1> -->
 - Type hints on all function signatures
 
 ## What NOT to do
-- Never suggest `p.adjust()` without context — ask which correction is appropriate <!-- <5> -->
+- Never suggest `p.adjust()` without context: ask which correction is appropriate <!-- <5> -->
 - Never suggest `lm()` on repeated measures data without flagging the assumption violation
 - Never install packages outside of `renv::install()` / `uv add`
 ```
-1. Regulatory context flag — Copilot uses this to avoid suggesting cloud APIs or non-reproducible patterns that would be inappropriate in a submission context.
-2. Explicit formatter preference — prevents suggestions to use `styler`, which conflicts with `air`.
-3. Force the right statistical approach for repeated measures — without this, Copilot frequently proposes `aov()` or `t.test()` on paired data.
-4. Lock down Python package management — prevents `pip install` suggestions that would bypass `uv`'s lockfile.
-5. Prevent uncontextualised multiple testing "fixes" — a critical guard for any analysis generating multiple p-values.
+1. Regulatory context flag: Copilot uses this to avoid suggesting cloud APIs or non-reproducible patterns that would be inappropriate in a submission context.
+2. Explicit formatter preference: prevents suggestions to use `styler`, which conflicts with `air`.
+3. Force the right statistical approach for repeated measures: without this, Copilot frequently proposes `aov()` or `t.test()` on paired data.
+4. Lock down Python package management: prevents `pip install` suggestions that would bypass `uv`'s lockfile.
+5. Prevent uncontextualised multiple testing "fixes": a critical guard for any analysis generating multiple p-values.
 
 The effect is immediate. Copilot stops suggesting `library(ggplot2)` when you already have a `tidyverse` import pattern, and it stops proposing base R testing functions when your project conventions are explicit.
 
@@ -83,7 +83,7 @@ A few patterns that work well:
 
 - **Data wrangling skeletons.** Start typing `df |> filter(` and Copilot will often complete the condition correctly from context. Accept with Tab, verify the column name.
 - **Test stubs.** Write the function name and a comment like `# Test: returns NA for empty input`, then let Copilot draft the `testthat::test_that()` block.
-- **Docstrings.** Place the cursor above a function definition and type `#'` — Copilot completes the roxygen skeleton from the function signature.
+- **Docstrings.** Place the cursor above a function definition and type `#'`: Copilot completes the roxygen skeleton from the function signature.
 
 ### Where Copilot earns its keep
 
@@ -126,7 +126,7 @@ R + Python data science project. Regulated context (pharma R&D).
 
 ## Hard rules
 - Never install R packages without updating renv.lock
-- Never edit files in docs/ — generated output only
+- Never edit files in docs/: generated output only
 - Never commit .Rhistory, .DS_Store, renv/library/
 - Statistical model selection is never delegated to AI
 ```
@@ -142,7 +142,7 @@ This file is worth spending 20 minutes on at project start. It will save you fro
 
 ### When Copilot is better
 
-OpenCode has overhead. For single-line completions, tab-completing a dplyr pipeline, or quickly looking up a function signature — Copilot is faster. Use OpenCode when the task has enough scope that describing it in prose is more efficient than typing it yourself.
+OpenCode has overhead. For single-line completions, tab-completing a dplyr pipeline, or looking up a function signature, Copilot is faster. Use OpenCode when the task has enough scope that describing it in prose is more efficient than typing it yourself.
 
 ---
 
@@ -150,7 +150,7 @@ OpenCode has overhead. For single-line completions, tab-completing a dplyr pipel
 
 Ollama runs LLMs locally. No data leaves your machine. For teams working with clinical trial data, patient samples, proprietary formulations, or anything subject to General Data Protection Regulation (GDPR) or Good Practices (GxP) data governance, this matters.
 
-Cloud LLM providers — including GitHub Copilot — process your code on external servers. In most enterprise pharma environments, this is either explicitly prohibited or sits in a legal grey zone. Ollama sidesteps this entirely.
+Cloud LLM providers, GitHub Copilot included, process your code on external servers. In most enterprise pharma environments, this is either explicitly prohibited or sits in a legal grey zone. Ollama sidesteps this entirely.
 
 ### Setup
 
@@ -183,9 +183,9 @@ Then install the [Continue](https://www.continue.dev/) VS Code extension (`Conti
   ]
 }
 ```
-1. Use the `ollama` provider — tells Continue to speak the Ollama API protocol instead of OpenAI's.
-2. Model name exactly as it appears in `ollama list` — must match what you pulled.
-3. Default Ollama endpoint — all traffic stays on `localhost`, nothing leaves the machine.
+1. Use the `ollama` provider: tells Continue to speak the Ollama API protocol instead of OpenAI's.
+2. Model name exactly as it appears in `ollama list`: must match what you pulled.
+3. Default Ollama endpoint: all traffic stays on `localhost`, nothing leaves the machine.
 
 ### Model selection
 
@@ -208,24 +208,24 @@ The trade-off is clear: if your data governance constraints are real, the capabi
 ### Do
 
 - **Write `AGENTS.md` and `copilot-instructions.md` before writing any prompts.** Five minutes of upfront context saves hours of correction downstream.
-- **Use AI for the first 80% of boilerplate.** The last 20% — the logic that's specific to your domain — write yourself.
+- **Use AI for the first 80% of boilerplate.** The last 20%: the logic that's specific to your domain: write yourself.
 - **Read every diff before accepting.** Every single one. This is not optional. Models produce plausible-looking errors.
 - **Write your tests against your own spec, then use AI to fill in the test bodies.** Never let AI define what "correct" means for your analysis.
 - **Treat AI output as a junior PR.** You'd review a junior colleague's code carefully. Same standard applies.
 
 ### Don't
 
-- **Delegate statistical test or model selection.** This requires domain knowledge the model does not have — experimental design, distributional assumptions, multiple testing context.
+- **Delegate statistical test or model selection.** This requires domain knowledge the model does not have: experimental design, distributional assumptions, multiple testing context.
 - **Use cloud tools on patient data, proprietary formulations, or anything under a non-disclosure agreement (NDA).** Even if the provider claims not to train on your data, your organization's data governance policy likely has an opinion.
 - **Accept code you don't understand.** If you can't explain what a generated block does, you cannot debug it when it breaks in production.
 - **Rely on AI for package version advice.** Training cutoffs mean models routinely suggest deprecated APIs. Always check the current documentation.
-- **Use AI to draft regulatory documents without expert review.** International Council for Harmonisation (ICH) E9, ISO 14971, 21 CFR Part 11 — these are not contexts for generated text without thorough human authorship and review.
+- **Use AI to draft regulatory documents without expert review.** International Council for Harmonisation (ICH) E9, ISO 14971, 21 CFR Part 11: these are not contexts for generated text without thorough human authorship and review.
 
 ---
 
 ## Configs
 
-### `.github/copilot-instructions.md` — R + Python data science project
+### `.github/copilot-instructions.md`: R + Python data science project
 
 ```markdown
 # Copilot Instructions
@@ -244,7 +244,7 @@ Formatters: air (R), ruff (Python).
 ## Python conventions  
 - Type hints on all function signatures
 - dataclasses or pydantic for data structures
-- Never suggest: pip install — always uv add
+- Never suggest `pip install`. Always `uv add`
 
 ## Sensitive context
 This project may handle R&D data. Do not suggest cloud storage solutions
@@ -300,20 +300,20 @@ or external API calls without flagging the data governance implications.
   ]
 }
 ```
-1. Maximum context window in tokens — set to match the model's actual capacity; larger values increase memory use.
-2. Separate model for inline tab-completion — use a lighter, faster model here to keep latency low while typing.
-3. Slash commands available in the Continue chat panel — `/edit` and `/explain` cover the most common interactive use cases.
+1. Maximum context window in tokens: set to match the model's actual capacity; larger values increase memory use.
+2. Separate model for inline tab-completion: use a lighter, faster model here to keep latency low while typing.
+3. Slash commands available in the Continue chat panel: `/edit` and `/explain` cover the most common interactive use cases.
 
 ---
 
 ## The deeper question
 
-The most significant shift LLM tools have introduced is not writing speed — it's the reading-to-writing ratio. A larger fraction of programming time is now spent reading and evaluating generated code rather than writing from scratch. This is not obviously an improvement. Writing forces you to think through the logic. Reading generated output creates a plausible-enough illusion of understanding that can be hard to distinguish from the real thing.
+The most significant shift LLM tools have introduced is the reading-to-writing ratio, not writing speed. A larger fraction of programming time is now spent reading and evaluating generated code rather than writing from scratch. This is not obviously an improvement. Writing forces you to think through the logic. Reading generated output creates a plausible-enough illusion of understanding that can be hard to distinguish from the real thing.
 
 There is a cognitive load trap. When a model produces a correct-looking solution quickly, it is easy to accept it without the slower thinking that would catch a subtle statistical error or an off-by-one in a loop. The speed gain is real; the risk is that you externalize the thinking that was doing useful work.
 
 The reproducibility paradox is related: you can reproduce the output (run the code again, get the same result), but you often cannot reproduce the reasoning. Why was this model chosen? Why this correction method? If the answer is "the AI suggested it," that's not a defensible answer in a regulated context, and it's not a good answer in a scientific one either.
 
-My honest read on where this leaves data scientists: the value of domain judgment has increased, not decreased. Anyone can now produce working boilerplate quickly. What differentiates good analytical work is the judgment about what question to ask, what method is appropriate, and what the result actually means — none of which AI tools handle well. Junior data scientists may find AI tools make them look more productive while slowing their development of that judgment. Senior practitioners benefit most, because they have the domain knowledge to catch the errors and direct the tools effectively.
+My honest read on where this leaves data scientists: the value of domain judgment has increased, not decreased. Anyone can now produce working boilerplate quickly. What differentiates good analytical work is the judgment about what question to ask, what method is appropriate, and what the result actually means, none of which AI tools handle well. Junior data scientists may find AI tools make them look more productive while slowing their development of that judgment. Senior practitioners benefit most, because they have the domain knowledge to catch the errors and direct the tools effectively.
 
 Use the tools. Read everything they produce. Keep the judgment to yourself.

@@ -64,7 +64,7 @@ jobs:
         run: Rscript cv/test-profile-variant.R
 
       - name: Render Quarto project
-        run: quarto render
+        run: quarto render --profile full
 
       - name: Verify published surface
         run: |
@@ -86,10 +86,12 @@ jobs:
         run: |
           cp docs/cv/cv.pdf docs/cv.pdf
           cp docs/cv/cv-biostat.pdf docs/cv-biostat.pdf
+          cp docs/cv/cv.pdf docs/Antoine-Lucas-CV-AI.pdf
+          cp docs/cv/cv-biostat.pdf docs/Antoine-Lucas-CV-Biostat.pdf
           printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=/cv/">\n' > docs/cv.html
           printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=/cv/ai.html">\n' > docs/cv-ai.html
           printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=/cv/biostat.html">\n' > docs/cv-biostat.html
-          test -f docs/cv.pdf && test -f docs/cv-biostat.pdf && test -f docs/cv.html
+          test -f docs/cv.pdf && test -f docs/cv-biostat.pdf && test -f docs/cv.html && test -f docs/Antoine-Lucas-CV-AI.pdf && test -f docs/Antoine-Lucas-CV-Biostat.pdf
 
       - name: Upload artifact
         if: github.event_name != 'pull_request'

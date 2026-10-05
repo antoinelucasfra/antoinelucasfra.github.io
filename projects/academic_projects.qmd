@@ -6,7 +6,7 @@ toc: true
 toc-depth: 2
 ---
 
-A selection of academic projects completed during engineering school, spanning applied statistics, machine learning, data visualization, and web application development. Most were team projects; the summaries below focus on the problem space, methods, and tools used.
+A selection of academic projects from engineering school: applied statistics, machine learning, data visualization, web application development. Most were team projects; the summaries below cover the problem, the methods, and the tools.
 
 ---
 
@@ -18,7 +18,7 @@ A selection of academic projects completed during engineering school, spanning a
 
 **Technologies:** R, Statistical Modeling, Signal Processing
 
-Analysis of eye-tracking data to study visual attention patterns from end to end: protocol design, data acquisition in Tobii Pro Lab, fixation metric computation, and statistical analysis in R.
+Analysis of eye-tracking data to study visual attention patterns: protocol design, data acquisition in Tobii Pro Lab, fixation metrics, statistical analysis in R.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/eye-tracking_M2){.btn .btn-dark .btn-sm}
 
@@ -30,7 +30,7 @@ Analysis of eye-tracking data to study visual attention patterns from end to end
 
 **Technologies:** R, Multivariate Statistics, ade4
 
-Application of co-inertia analysis to study relationships between paired data tables with ade4 and related multivariate methods. The deliverable included both the statistical study and a xaringan slide presentation.
+Co-inertia analysis with ade4, studying relationships between paired data tables. The deliverable was the statistical study plus a xaringan slide deck.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/co-inertia_project){.btn .btn-dark .btn-sm}
 
@@ -42,7 +42,7 @@ Application of co-inertia analysis to study relationships between paired data ta
 
 **Technologies:** R, JavaScript, HTML/CSS
 
-Development of interactive visualizations to communicate complex results more clearly, with emphasis on usability, narrative flow, and exploratory interaction.
+Interactive visualizations for communicating complex results, focused on usability, narrative flow, and exploratory interaction.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/visu_project){.btn .btn-dark .btn-sm}
 
@@ -54,7 +54,7 @@ Development of interactive visualizations to communicate complex results more cl
 
 **Technologies:** R, Shiny, shinydashboard, ggplot2
 
-Development of an interactive R Shiny application for data exploration and visualization, with dynamic filtering, reactive summaries, and user-facing plots.
+An interactive R Shiny app for data exploration with dynamic filtering, reactive summaries, and user-facing plots.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/shinyappM2Proj){.btn .btn-dark .btn-sm}
 
@@ -66,7 +66,7 @@ Development of an interactive R Shiny application for data exploration and visua
 
 **Technologies:** Redis, Python, NoSQL
 
-Implementation of a small Redis-backed data workflow to explore key-value operations, persistence, caching strategies, and real-time data handling from Python.
+A small Redis-backed workflow in Python: key-value operations, persistence, caching strategies, real-time data handling.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/redis_project){.btn .btn-dark .btn-sm}
 
@@ -82,7 +82,7 @@ Implementation of a small Redis-backed data workflow to explore key-value operat
 
 **Technologies:** Python, Scikit-learn, Pandas, NumPy
 
-Course project completed during the first year of the Master's programme. It covers the full ML pipeline: data preprocessing, feature engineering, model selection, hyperparameter tuning, and evaluation across regression, classification, and ensemble methods.
+First-year Master's course project: data preprocessing, feature engineering, model selection, hyperparameter tuning, and evaluation across regression, classification, and ensemble methods.
 
 [<i class="bi bi-github"></i> View on GitHub](https://github.com/antoinelucasfra/ML_project_M1){.btn .btn-dark .btn-sm}
 
