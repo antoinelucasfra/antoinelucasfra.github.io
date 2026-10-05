@@ -79,7 +79,7 @@ I work best when environments and delivery are explicit:
 - CI/CD to reduce manual drift
 - deployments that are boring on purpose
 
-In scientific environments, reproducibility is not just engineering hygiene. It is often the difference between a result being usable and a result being untrustworthy.
+In scientific environments, reproducibility is what makes a result usable instead of untrustworthy.
 
 ---
 

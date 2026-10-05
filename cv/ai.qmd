@@ -1,5 +1,5 @@
 ---
-title: "CV — AI & Scientific Software"
+title: "CV: AI & Scientific Software"
 description: "R Shiny and Python delivery, LLM agents and MCP tools, MLOps, and reproducible engineering in regulated R&D."
 format:
   html:

@@ -1,6 +1,6 @@
 ---
-title: "Sovereign Local AI: A Bilingual Book on the Local-AI Landscape"
-description: "A book in French and English on running AI on your own hardware: 19 chapters in 5 parts plus 5 appendices, with runnable companions — a fine-tuning pipeline, an evaluation gate, a minimal RAG and an Ollama Modelfile."
+title: "Sovereign Local AI: A Bilingual Book on Local AI"
+description: "A book in French and English on running AI on your own hardware: 19 chapters in 5 parts plus 5 appendices, with runnable companions: a fine-tuning pipeline, an evaluation gate, a minimal RAG and an Ollama Modelfile."
 date: "2026-08-26"
 categories: [LLM, Local AI, Quarto, Python, R]
 image: "../assets/images/blog-placeholder.svg"
@@ -8,17 +8,17 @@ image: "../assets/images/blog-placeholder.svg"
 
 ## Overview
 
-Running a capable model on your own machine stopped being a hobbyist exercise, and the field now moves faster than any book can follow. This one is written for that constraint: keep the *method* chapters durable (inference parameters, hyperparameters, retrieval, evaluation) and mark the parts that age — benchmarks, product facts — as an early-2026 snapshot with their sources.
+Running a capable model on your own machine stopped being a hobbyist exercise, and the field moves faster than any book can follow. This one is written for that constraint: the method chapters cover inference parameters, hyperparameters, retrieval and evaluation, while the parts that age, such as benchmarks and product facts, are marked as an early-2026 snapshot with their sources.
 
 It is one Quarto project rendered as **one book in two languages**, delivered as a readable site, a self-contained HTML file, a PDF, a DOCX and an EPUB.
 
 ## What is in it
 
-- **Part I — Foundations**: why now, choosing a model
-- **Part II — Running models**: ecosystem and install, Studio Chat, inference parameters
-- **Part III — Training**: fine-tuning pipeline, hyperparameters, data recipes
-- **Part IV — Developing and deploying**: export, coding agents, harnesses, Python, RAG cookbook, voice/vision/images, serving a team
-- **Part V — Governing**: evaluation, GDPR and hardening, business case, strategy paper
+- **Part I: Foundations**: why now, choosing a model
+- **Part II: Running models**: ecosystem and install, Studio Chat, inference parameters
+- **Part III: Training**: fine-tuning pipeline, hyperparameters, data recipes
+- **Part IV: Developing and deploying**: export, coding agents, harnesses, Python, RAG cookbook, voice/vision/images, serving a team
+- **Part V: Governing**: evaluation, GDPR and hardening, business case, strategy paper
 - **Appendices**: researcher primer, sources and limits, projects directory, hardware guide, DPIA template
 
 Every chapter also renders as a self-contained reveal deck with numbered, shareable URLs, plus its own PDF and HTML page. Companion code ships with each release: a fine-tuning script, an evaluation gate, a minimal RAG, an Ollama Modelfile. Chapter 3 embeds a WebLLM demo that runs in the browser with no install.
@@ -33,5 +33,5 @@ CI renders both languages on every push, publishes the site, attaches PDF/EPUB/D
 
 ## Read it
 
-- [The book](https://antoinelucasfra.github.io/localai-review/) — French or English
+- [The book](https://antoinelucasfra.github.io/localai-review/) in French or English
 - [Source and releases](https://github.com/antoinelucasfra/localai-review)

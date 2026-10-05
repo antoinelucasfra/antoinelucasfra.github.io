@@ -28,13 +28,26 @@ __pycache__/
 _quarto/
 docs/
 
-# Quarto freeze (generated/temporary files)
-_freeze/
+# Quarto freeze cache. Freely reusable chunks are committed so CI and fresh
+# clones do not re-execute them. The catalog is excluded on purpose: its chunk
+# writes catalog/resources-items.yml as a side effect, and a frozen chunk on a
+# fresh checkout would skip that write and leave the listing with no source.
+_freeze/*
+!_freeze/posts/
+!_freeze/site_libs/
+
+# Render intermediates written beside the sources by single-file or interrupted
+# renders. Published copies live in docs/.
+*-listing.json
+*.feed-*-staged
+/site_libs/
+*.html
+*.pdf
 
 # Generated listing source (rebuilt at render from catalog/resources.txt)
 catalog/resources-items.yml
 
-# Local scratch / exploration notes (never committed)
+# Local scratch / exploration notes
 explore/
 
 # OS / editor
