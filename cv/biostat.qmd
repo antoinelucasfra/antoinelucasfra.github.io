@@ -7,6 +7,8 @@ format:
     toc: false
     page-layout: full
     section-divs: false
+    # Header already links the PDF, so drop the duplicate "Other Formats" block.
+    format-links: false
   awesomecv-typst:
     output-file: cv-biostat.pdf
 author:
@@ -147,7 +149,7 @@ Programming
 : Python · R · SQL · Bash
 
 Engineering & infra
-: Git · CI/CD · automated testing · Docker · GitHub Actions · Azure ML · Databricks · Posit Connect · uv · rv
+: Git · CI/CD · automated testing · Docker · GitHub Actions · Azure ML · Databricks · GCP / Azure storage · LIMS · Posit Connect · uv · rv
 
 Apps & reporting
 : R Shiny (golem) · FastAPI · Quarto · ggplot2 · Plotly

@@ -7,6 +7,8 @@ format:
     toc: false
     page-layout: full
     section-divs: false
+    # Header already links the PDF, so drop the duplicate "Other Formats" block.
+    format-links: false
   awesomecv-typst:
     output-file: cv.pdf
 author:
@@ -60,8 +62,10 @@ Research engineer with 5+ years turning R&D problems into production software in
 :::
 
 - Own the R Shiny application catalog used daily by researchers, covering clinical data visualisation, formulation automation, and data lifecycle workflows.
+- Built agentic tooling for scientific workflows: MCP servers and tool-calling agents that run statistical analysis on demand.
 - Designed and deployed computer-vision applications used by dozens of researchers and technicians to segment and annotate microscopy elements for cosmetics formulation and regulatory R&D.
 - Run the delivery toolchain (Git, Azure ML, Posit Connect, Databricks): reproducible environments and documented handover.
+- Own access and operations for the catalog: single sign-on, platform permissions, and the release process.
 :::
 
 ::: {.cv-entry}
@@ -141,22 +145,22 @@ Research engineer with 5+ years turning R&D problems into production software in
 
 ::: {.cv-skills}
 LLM & agents
-: MCP servers · tool-calling agents · agentic workflows · LLM evaluation · RAG · structured extraction
+: MCP servers · tool-calling agents · agentic workflows · AI workflow orchestration · LLM evaluation · RAG · structured extraction
 
 Apps & reporting
-: R Shiny (golem) · FastAPI · Quarto · ggplot2 · Plotly
+: R Shiny (golem) · FastAPI · REST APIs · enterprise integration · Quarto · ggplot2 · Plotly
 
 Engineering & infra
-: Git · CI/CD · automated testing · Docker · GitHub Actions · Azure ML · Databricks · Posit Connect · uv · rv
+: Git · CI/CD · automated testing · Docker · GitHub Actions · Azure ML · Databricks · GCP · Posit Connect · uv · rv · local model runtimes · GxP · validation · auditability
 
 Programming
 : Python · R · SQL · Bash
 
 ML & AI
-: scikit-learn · PyTorch · Hugging Face · PEFT / LoRA · OpenCV
+: scikit-learn · PyTorch · Hugging Face · PEFT / LoRA · OpenCV · LLM APIs · computer vision · NLP pipelines
 
 Statistics
-: DoE · mixed models · Bayesian optimisation · PLS · PERMANOVA · survival analysis · SPC
+: DoE · mixed models · Bayesian optimisation · PLS · PERMANOVA · survival analysis · SPC · statistical modeling · multi-dimensional analysis
 :::
 
 {{< include _certs-languages.inc.qmd >}}

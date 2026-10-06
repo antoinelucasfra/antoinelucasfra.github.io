@@ -140,7 +140,7 @@ skills:
   - label: Programming
     items: [Python, R, SQL, Bash]
   - label: Apps & reporting
-    items: [R Shiny (golem), FastAPI, Quarto, ggplot2, Plotly]
+    items: [R Shiny (golem), FastAPI, REST APIs, enterprise integration, Quarto, ggplot2, Plotly]
   - label: ML & AI
     items:
       [
@@ -149,6 +149,9 @@ skills:
         Hugging Face,
         PEFT / LoRA,
         OpenCV,
+        LLM APIs,
+        computer vision,
+        NLP pipelines,
       ]
   - label: LLM & agents
     items:
@@ -156,6 +159,7 @@ skills:
         MCP servers,
         tool-calling agents,
         agentic workflows,
+        AI workflow orchestration,
         LLM evaluation,
         RAG,
         structured extraction,
@@ -170,6 +174,8 @@ skills:
         PERMANOVA,
         survival analysis,
         SPC,
+        statistical modeling,
+        multi-dimensional analysis,
       ]
   - label: Engineering & infra
     items:
@@ -181,8 +187,15 @@ skills:
         GitHub Actions,
         Azure ML,
         Databricks,
+        GCP,
+        LIMS,
         Posit Connect,
         uv,
         rv,
+        local model runtimes,
+        production monitoring,
+        access management,
+        GxP,
+        validation and auditability,
       ]
 
