@@ -551,7 +551,8 @@ body {
     font-size: 0.875rem;
     line-height: 1.62;
     color: var(--cv-entry-text-color);
-    margin-bottom: 0.28rem;
+    /* Gap must clear the wrapped-line leading (0.5425rem at line-height 1.62). */
+    margin-bottom: 0.5rem;
 
     &::before {
       content: "▸";

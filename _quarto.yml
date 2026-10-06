@@ -67,11 +67,6 @@ website:
             href: cv/ai.qmd
           - text: Biostatistics & clinical R&D
             href: cv/biostat.qmd
-          - text: "---"
-          - text: "CV PDF: AI & software"
-            href: /cv/cv.pdf
-          - text: "CV PDF: Biostatistics"
-            href: /cv/cv-biostat.pdf
       - text: About
         href: about.qmd
     right:
