@@ -2,7 +2,11 @@
 // Yanagimoto, https://github.com/kazuyanagimoto/quarto-awesomecv-typst).
 // Local changes are marked "Local tweak" and only tighten spacing so a full CV
 // fits two pages with this site's content volume.
+// ATS patches are marked "ATS patch" and must be re-applied after a `quarto add`.
 #import "@preview/fontawesome:0.6.2": *
+
+// Visual tweak: contacts print as underlined links, so the PDF shows what is clickable.
+#show link: it => underline(offset: 2pt, it)
 
 //------------------------------------------------------------------------------
 // Style
@@ -359,29 +363,16 @@
     size: 11pt,
     fill: color-darkgray,
     fallback: true,
+    // ATS patch: Typst split "evaluation" as "evalu-/ation", breaking the keyword match.
+    hyphenate: false,
   )
 
   set page(
     paper: "a4",
     margin: (left: 15mm, right: 15mm, top: 10mm, bottom: 10mm),
-    footer: context [
-      #set text(
-        fill: gray,
-        size: 8pt,
-      )
-      #__justify_align_3[
-        #smallcaps[#date]
-      ][
-        #smallcaps[
-          #author.firstname
-          #author.lastname
-          #sym.dot.c
-          CV
-        ]
-      ][
-        #counter(page).display()
-      ]
-    ],
+    // ATS patch: the footer printed "October 05, 2026 Antoine Lucas · CV 1" on
+    // every page as body text, and dropping it restores Typst's page number.
+    numbering: none,
   )
 
   // set paragraph spacing
@@ -433,9 +424,14 @@
 
   // Local tweak: CV bullets render at the 10pt resume-item size, with tighter
   // paragraph spacing and list gaps.
+  // Item gap must exceed the 0.65em line leading, or bullets read as one block.
   show list: set text(size: 10pt)
-  show list: set list(spacing: 0.4em, tight: true)
+  show list: set list(spacing: 0.9em, tight: true)
   set par(spacing: 0.7em)
+
+  // ATS patch: a hyphenated compound never breaks at its hyphen, so "non-negotiable"
+  // does not extract as "non-" + "negotiable".
+  show regex("[A-Za-z]+(-[A-Za-z]+)+"): it => box(it)
 
   // Other settings
   show link: set text(fill: color-link)
