@@ -17,7 +17,7 @@
   <circle cx="1162" cy="263" r="240" fill="#0EA5E9" opacity="0.13"/>
   <circle cx="1252" cy="303" r="130" fill="#38BDF8" opacity="0.10"/>
   <rect x="120" y="130" width="266" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="253.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">STATISTICS</text><rect x="410" y="130" width="222" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="521.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">TUTORIAL</text>
-  <text x="120" y="398" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">STATISTICAL TESTS</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">DEMYSTIFIED: A PRACTICAL GUIDE FOR</text><text x="120" y="562" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">SCIENTISTS AND ENGINEERS</text>
+  <text x="120" y="407" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">STATISTICAL TESTS</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">DEMYSTIFIED: A PRACTICAL GUIDE</text><text x="120" y="553" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">FOR SCIENTISTS AND ENGINEERS</text>
   <rect x="120" y="640" width="220" height="14" rx="7" fill="url(#accent)"/>
   <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas — field notes</text>
 </svg>

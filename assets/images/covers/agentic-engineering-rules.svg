@@ -14,10 +14,10 @@
     <path d="M0 225H1600"/><path d="M0 450H1600"/><path d="M0 675H1600"/>
     <path d="M400 0V900"/><path d="M800 0V900"/><path d="M1200 0V900"/>
   </g>
-  <circle cx="1239" cy="309" r="240" fill="#075985" opacity="0.13"/>
-  <circle cx="1329" cy="349" r="130" fill="#0EA5E9" opacity="0.10"/>
+  <circle cx="1262" cy="215" r="240" fill="#075985" opacity="0.13"/>
+  <circle cx="1352" cy="255" r="130" fill="#0EA5E9" opacity="0.10"/>
   <rect x="120" y="130" width="222" height="56" rx="28" fill="#0EA5E9" opacity="0.14"/><text x="231.0" y="170" fill="#0EA5E9" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">AI TOOLS</text><rect x="366" y="130" width="112" height="56" rx="28" fill="#0EA5E9" opacity="0.14"/><text x="422.0" y="170" fill="#0EA5E9" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">LLM</text>
   <text x="120" y="431" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">TEN RULES FOR AGENTIC</text><text x="120" y="529" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">ENGINEERING</text>
   <rect x="120" y="640" width="220" height="14" rx="7" fill="url(#accent)"/>
-  <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas — field notes</text>
+  <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas â€” field notes</text>
 </svg>
