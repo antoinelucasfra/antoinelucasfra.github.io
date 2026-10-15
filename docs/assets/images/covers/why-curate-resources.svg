@@ -17,7 +17,7 @@
   <circle cx="1305" cy="348" r="240" fill="#0369A1" opacity="0.13"/>
   <circle cx="1395" cy="388" r="130" fill="#7DD3FC" opacity="0.10"/>
   <rect x="120" y="130" width="310" height="56" rx="28" fill="#7DD3FC" opacity="0.14"/><text x="275.0" y="170" fill="#7DD3FC" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">DATA SCIENCE</text><rect x="454" y="130" width="398" height="56" rx="28" fill="#7DD3FC" opacity="0.14"/><text x="653.0" y="170" fill="#7DD3FC" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">MACHINE LEARNING</text>
-  <text x="120" y="398" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">STAYING CURRENT IN A</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">FAST-MOVING FIELD: WHY I BUILT A</text><text x="120" y="562" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">RESOURCES CATALOG</text>
+  <text x="120" y="407" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">STAYING CURRENT IN A</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">FAST-MOVING FIELD: WHY I BUILT</text><text x="120" y="553" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">A RESOURCES CATALOG</text>
   <rect x="120" y="640" width="220" height="14" rx="7" fill="url(#accent)"/>
   <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas — field notes</text>
 </svg>

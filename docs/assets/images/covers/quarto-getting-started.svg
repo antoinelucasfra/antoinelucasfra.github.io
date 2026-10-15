@@ -17,7 +17,7 @@
   <circle cx="1362" cy="333" r="240" fill="#0284C7" opacity="0.13"/>
   <circle cx="1452" cy="373" r="130" fill="#38BDF8" opacity="0.10"/>
   <rect x="120" y="130" width="178" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="209.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">QUARTO</text><rect x="322" y="130" width="222" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="433.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">TUTORIAL</text>
-  <text x="120" y="439" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">GETTING STARTED WITH</text><text x="120" y="521" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">QUARTO FOR DATA SCIENCE REPORTS</text>
+  <text x="120" y="382" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">GETTING STARTED WITH</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">QUARTO FOR DATA SCIENCE</text><text x="120" y="578" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">REPORTS</text>
   <rect x="120" y="640" width="220" height="14" rx="7" fill="url(#accent)"/>
   <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas — field notes</text>
 </svg>

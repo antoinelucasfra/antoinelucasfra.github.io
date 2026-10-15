@@ -17,7 +17,7 @@
   <circle cx="1220" cy="252" r="240" fill="#0284C7" opacity="0.13"/>
   <circle cx="1310" cy="292" r="130" fill="#38BDF8" opacity="0.10"/>
   <rect x="120" y="130" width="68" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="154.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">R</text><rect x="212" y="130" width="178" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="301.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">PYTHON</text>
-  <text x="120" y="398" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">THE REPRODUCIBILITY QUEST:</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">MODERN TOOLS FOR R AND PYTHON DATA</text><text x="120" y="562" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">SCIENCE</text>
+  <text x="120" y="407" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">THE REPRODUCIBILITY</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">QUEST: MODERN TOOLS FOR R AND</text><text x="120" y="553" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">PYTHON DATA SCIENCE</text>
   <rect x="120" y="640" width="220" height="14" rx="7" fill="url(#accent)"/>
   <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas — field notes</text>
 </svg>
