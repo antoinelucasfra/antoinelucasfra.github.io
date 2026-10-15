@@ -1,0 +1,17 @@
+# AI crawler stance: search and on-demand fetching welcome, model training not.
+# The Content-Signal line states the preference. The named groups below are what
+# crawlers obey, since a crawler follows only its most specific matching group.
+# Robots rules are requests, not enforcement: GitHub Pages has no bot management.
+
+User-agent: *
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+# Model training crawlers
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://antoinelucasfra.github.io/sitemap.xml
