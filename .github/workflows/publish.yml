@@ -19,6 +19,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Cheap and fail-fast: the covers are generated from post frontmatter, so a
+      # title edit that never regenerated its cover is caught here rather than by
+      # a reader noticing a stale thumbnail.
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Check post covers are current
+        run: uv run --project scripts python scripts/make_covers.py --check
+
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         env:
