@@ -42,7 +42,7 @@ home:
         Design of experiments, mixed models, biostatistics in GxP environments. I take raw assay data through to the interpretation that goes into a regulatory submission.
     - title: Reproducible engineering & MLOps
       body: >
-        Everything in Git, runnable six months later with uv sync or rv sync, documented well enough that someone else can take it over. CI/CD, containers, pinned environments, and the evidence GxP qualification asks for.
+        Everything in Git, runnable six months later with renv::restore() or uv sync, documented well enough that someone else can take it over. CI/CD, containers, pinned environments, and the evidence GxP qualification asks for.
     - title: AI-augmented scientific software
       body: >
         I build agentic workflows around the tools themselves: MCP servers and tool-calling
