@@ -28,6 +28,14 @@ jobs:
 
       # The R version comes from renv.lock, so CI and local development run the
       # same R. Bump it in the lockfile, not here.
+      #
+      # `use-public-rspm` points renv at Posit Package Manager's current Linux
+      # binaries, which are occasionally newer than the versions recorded in
+      # renv.lock: a version published after the lockfile was written, or a
+      # version PPM never built for this platform, resolves to the newest one
+      # available and restore prints each upgrade rather than failing. Pinning
+      # the exact locked versions would mean compiling from source against the
+      # dated snapshot, which is minutes of CI time for no rendering benefit.
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
         with:
@@ -75,6 +83,8 @@ jobs:
           test -f docs/cv/cv.pdf
           test -f docs/cv/cv-biostat.pdf
           test -f docs/catalog/index.html
+          test -s docs/llms.txt
+          grep -q '^Sitemap: ' docs/robots.txt
 
       - name: Keep the pre-reorganisation CV URLs alive
         # /cv.pdf, /cv-ai.html, /cv-biostat.html and /cv.html are linked from
