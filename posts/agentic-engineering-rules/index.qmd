@@ -1,0 +1,145 @@
+---
+title: "Ten rules for agentic engineering"
+author: "Antoine Lucas"
+date: "2026-10-20"
+categories: [AI Tools, LLM, Agentic Engineering, Best Practices, Workflow]
+image: ../../assets/images/covers/agentic-engineering-rules.svg
+description: "A working discipline for coding agents: measure the whole job, define done before delegating, bound the scope and the blast radius, keep context coherent, and never weaken a gate to get green. With R, Shiny and Quarto examples from real repos."
+draft: false
+---
+
+## Where this comes from
+
+Indrajeet Patil's slide decks [Golden Rules for Agentic Engineering](https://www.indrapatil.com/agentic-engineering-golden-rules/) and [Effective Claude Code Usage](https://www.indrapatil.com/effective-claude-code-usage/) say in twenty minutes what took me a year of daily agent use to work out the hard way. I sat with them and wrote down the rules I actually keep, plus the R, Shiny and Quarto examples where each one earned its place in my notes. The examples and the mistakes are mine. The framing is his.
+
+If you have not read the decks, this is the short version aimed at people who ship R code that other people depend on.
+
+---
+
+## The failure mode that started this
+
+Last year I asked an agent to clean up a Shiny app that had grown sideways. It produced 900 lines of diff across 14 files in about four minutes. Every gate passed. Review took three evenings, two of the changes turned out to contradict each other, and I reverted both.
+
+The lesson was not that the agent was bad. It was fast and mostly right. The lesson is that generation is not the bottleneck any more. Review is. Everything below is a way of keeping generation speed from outrunning the capacity of the person who has to sign off on the result.
+
+---
+
+## 1. Measure the whole job
+
+Time to a merged change is preparation plus generation plus verification plus review. Optimising generation while review doubles is not an improvement.
+
+Three ways to make fifteen post cover images: hand-draw them in a vector editor, prompt an agent to draw them one at a time, or write a script that turns each post's frontmatter into a deterministic SVG. I have [the script](https://github.com/antoinelucasfra/antoinelucasfra.github.io/blob/prod/scripts/make_covers.py). Not because it was fast to write, but because it is the only one of the three I can run again after adding a post, with no review step at all.
+
+Count review effort and maintenance burden, not just keystrokes saved. Most of the time the winner is a script or a better test, and the agent never enters the picture.
+
+## 2. DevEx is AgentEx
+
+If a human has to hunt for context, an agent burns tokens hunting for the same thing, and you pay for both.
+
+This repository has one setup path and one check path. [`renv::restore()`](https://rstudio.github.io/renv/) brings back the exact R library, `cd scripts && uv sync` brings back the Python tooling, and CI runs `quarto render --profile full` plus a verification step that asserts what actually got published. There is no third route that only works on my machine.
+
+The test is blunt. Can someone who has never seen the repo go from clone to a correct change by reading one file? If not, the agent will silently guess, and you will find out in review.
+
+## 3. Define done before you delegate
+
+State the outcome, what must stay unchanged, and the evidence that will show it worked. If I cannot write that sentence, I do not have a task yet.
+
+- Bug fix. Reproduce the failure first, as a test that fails, then fix it and show the same test passing. Then check the behaviour that was already correct.
+- UI change. A successful build proves nothing about a rendered Shiny interaction. Someone has to look at the actual control, including the keyboard path.
+- Performance. Measure before and after under comparable conditions, and state the workload. "It feels faster" is not evidence.
+
+Then the part that people skip: check the meaning of the tests. Implementation and assertions can agree with each other perfectly while both missing the requirement. A test that asserts what the code does is a change log, not a check.
+
+## 4. Small diffs beat heroic prompts
+
+Agents produce changes faster than reviewers can assess them. That asymmetry is the whole reason to keep each change small.
+
+One bug, one refactor, one test gap, one migration step. Each change reviewable, testable and revertible on its own. When the agent finds something else worth fixing, write it down as a follow-up and finish what you started. I broke this rule writing this very site: the R environment migration from `rv` to `renv` touched the lockfile, the workflow, the gitignore and three documents. It went in as one commit with one purpose, and the blog posts went in separately.
+
+A heroic prompt covering six concerns produces one diff that nobody can review properly, which means nobody did.
+
+## 5. Bound the blast radius
+
+Prefer limits that exist outside the prompt. A sentence asking the agent not to touch `.Renviron` is a wish. A deny rule for `.Renviron`, `renv.lock` and `docs/` is a boundary.
+
+Two things I had to learn separately:
+
+- Worktrees isolate edits, not actions. A runaway agent with network access and a shell is the same problem in every directory. Use a sandbox and explicit permissions for what it can read, change and execute.
+- Retrieved content is data, never instruction. Text that arrives from a web page, an issue or a file can carry instructions aimed at the agent. Content cannot grant permissions.
+
+Anything with a real effect gets a human checkpoint before it fires: publishing, deleting, sending, deploying. Everything else can be quick.
+
+## 6. Guardrails: fast feedback beats orchestration
+
+The harness is boring and it is the whole game. Format on save, lint on commit, tests in CI, and the same commands in both places.
+
+In R: `air format`, then `jarl check`, then `testthat`. A change that fails those goes back to the agent with the error text, and the next attempt is usually correct. That loop is cheaper and more reliable than any amount of prompt engineering about style.
+
+The trap is that agents optimise for green. A green pipeline is a reward signal, and weakening a check is the fastest way to reach it. Never do that. Repairing a gate that is genuinely wrong is deliberate, reviewed work, not a step you take at 6pm because a test is annoying.
+
+Human review still has to answer a question no gate can: did we solve the right problem?
+
+## 7. Session hygiene
+
+The context window is finite and what is in it decides what the agent can reason about. Full-file reads, verbose test output and long logs crowd it out, and as the window fills, earlier instructions get less attention. The symptoms look like stupidity and are usually just a full window.
+
+What I do:
+
+- One task per session. Unrelated work gets a fresh session.
+- Parallel tasks get separate worktrees, each with its own branch, so a half-finished edit cannot break another session's tests.
+- Durable conventions move out of chat and into `AGENTS.md` or `CLAUDE.md`. If a rule matters, it lives in the repo, not in a prompt I will forget to repeat.
+- Handoffs carry five things: the goal, the constraints, the relevant files, the approaches already ruled out, and the acceptance checks. The ruled-out list is the cheapest part to write and the one everybody omits, which is why the next session cheerfully tries the thing that failed yesterday.
+
+## 8. Know thy tools
+
+Read the changelog occasionally. Twice this year I found that a flag existed for something I had been doing by hand.
+
+The one that changed how I work is non-interactive mode. A coding agent stops being a chat window and becomes a Unix tool when you can pipe into it:
+
+```bash
+cat build.log | claude -p "explain the root cause"
+
+claude -p "fix the failing tests" --allowedTools "Bash,Read,Edit"
+
+claude -p "summarise this PR" --output-format json | jq -r .result
+```
+
+For CI, `--permission-mode dontAsk` denies anything not pre-approved, so nothing waits on a prompt that nobody can answer. `--bare` skips hooks, skills, custom commands, subagents, plugins, MCP servers, auto memory and `CLAUDE.md`, which makes a scripted call faster and reproducible. `--max-turns` and `--max-budget-usd` are the seatbelt.
+
+One warning worth keeping: `claude --help` does not list every flag, so absence from the help text does not mean a feature is missing. That is exactly why features stay invisible for months.
+
+## 9. Meta-automation
+
+When you have pasted the same multi-step instructions into a prompt twice, stop pasting. Turn it into something reusable.
+
+The ladder I use: a prompt for instructions that change, a skill for domain know-how, a slash command for a stable shortcut, and a workflow only when the plan itself needs loops, branching or many workers. Most work never gets past a skill.
+
+Two examples from this repository. The cover generator, so a new post never starts with a design decision. And a Python script that syncs a curated resource catalog from notes, so the catalog page stays current without me opening an editor.
+
+## 10. Be curious, be humble, be kind
+
+AI is not an excuse to become incompetent or disagreeable.
+
+Curious, because the agent is standing on fundamentals that you can quietly forget. Experiment, but keep learning why the thing works, otherwise you cannot tell a good answer from a fluent one. Humble, because agents are confidently wrong and so are we. Verify the output, and include your own prompt in that. Kind, because someone has to review agent-generated work carefully and human work kindly, and those two habits should not conflict.
+
+You still own the design, the code, the tests, the security implications, and the conversation with your team. None of that transfers to the model.
+
+---
+
+## Making it stick
+
+- Share what works. Someone on your team has already solved your annoyance, and a shared tip becomes a repo convention in a week.
+- Pick a real pain point, run it through rule 1, and use the simplest approach that improves the whole job.
+- Frontload planning when the whole team has an agent. Task division, coordination and reviewability matter more, not less.
+- Revisit the workflow as the tools change, and keep the changes that improve the outcome.
+
+The rules are not a checklist to run through every morning. They are the things I reach for when a change is going badly, which is usually a sign I skipped one of them.
+
+## Sources
+
+- Indrajeet Patil, [Golden Rules for Agentic Engineering](https://www.indrapatil.com/agentic-engineering-golden-rules/) and [Effective Claude Code Usage](https://www.indrapatil.com/effective-claude-code-usage/)
+- Simon Willison, [Agentic Engineering Patterns](https://simonwillison.net/guides/agentic-engineering-patterns/)
+- Anthropic, [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents), [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) and [Claude Code best practices](https://code.claude.com/docs/en/best-practices)
+- Birgitta Böckeler, [Harness engineering for coding agent users](https://martinfowler.com/articles/harness-engineering.html)
+- OWASP, [Excessive agency](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/) and [Prompt injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+- [AGENTS.md](https://agents.md/) and the [git worktree manual](https://git-scm.com/docs/git-worktree)
