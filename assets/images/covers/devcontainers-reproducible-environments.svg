@@ -17,7 +17,7 @@
   <circle cx="1168" cy="271" r="240" fill="#0284C7" opacity="0.13"/>
   <circle cx="1258" cy="311" r="130" fill="#38BDF8" opacity="0.10"/>
   <rect x="120" y="130" width="332" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="286.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">DEVCONTAINERS</text><rect x="476" y="130" width="178" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="565.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">DOCKER</text>
-  <text x="120" y="398" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">REPRODUCIBLE ENVIRONMENTS</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">FOR EVERYONE: DEVCONTAINERS FOR</text><text x="120" y="562" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">DATA SCIENCE TEAMS</text>
+  <text x="120" y="398" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">REPRODUCIBLE</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">ENVIRONMENTS FOR EVERYONE:</text><text x="120" y="562" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">DEVCONTAINERS FOR DATA…</text>
   <rect x="120" y="640" width="220" height="14" rx="7" fill="url(#accent)"/>
   <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas — field notes</text>
 </svg>
