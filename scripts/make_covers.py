@@ -110,7 +110,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     n = 0
     for post in sorted((ROOT / "posts").glob("*/index.qmd")):
-        text = post.read_text()
+        text = post.read_text(encoding="utf-8")
         if "draft: true" in text:
             continue
         fm = parse_fm(text)
