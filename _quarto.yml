@@ -87,9 +87,11 @@ format:
       light:
         - cosmo
         - _extensions/antoinelucasfra/al-brand/al-brand-light.scss
+        - _brand-extra.scss
       dark:
         - cosmo
         - _extensions/antoinelucasfra/al-brand/al-brand-dark.scss
+        - _brand-extra.scss
     lang: en
     date-format: "MMMM D, YYYY"
     highlight-style: dracula
