@@ -30,12 +30,11 @@ jobs:
       - name: Check post covers are current
         run: uv run --project scripts python scripts/make_covers.py --check
 
-      - name: Setup Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        env:
-          GH_TOKEN: ${{ github.token }}
-        with:
-          version: 1.9.37
+      # The runner image ships a current Quarto; the action's pinned install
+      # trips apt's downgrade guard. `quarto-required` in _quarto.yml gates the
+      # version floor instead of the workflow.
+      - name: Check Quarto
+        run: quarto --version
 
       # The R version comes from renv.lock, so CI and local development run the
       # same R. Bump it in the lockfile, not here.
@@ -81,7 +80,7 @@ jobs:
             any::sessioninfo
 
       - name: Render Quarto project
-        run: quarto render --profile full
+        run: quarto render
 
       - name: Verify published surface
         run: |
@@ -93,7 +92,6 @@ jobs:
           test -f docs/cv/biostat.html
           test -f docs/cv/cv.pdf
           test -f docs/cv/cv-biostat.pdf
-          test -f docs/catalog/index.html
           test -s docs/llms.txt
           grep -q '^Sitemap: ' docs/robots.txt
 
@@ -110,7 +108,11 @@ jobs:
           printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=/cv/">\n' > docs/cv.html
           printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=/cv/ai.html">\n' > docs/cv-ai.html
           printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=/cv/biostat.html">\n' > docs/cv-biostat.html
-          test -f docs/cv.pdf && test -f docs/cv-biostat.pdf && test -f docs/cv.html && test -f docs/Antoine-Lucas-CV-AI.pdf && test -f docs/Antoine-Lucas-CV-Biostat.pdf
+          # The resources catalog moved to its own project and site; /catalog/
+          # is linked from older posts and external notes.
+          mkdir -p docs/catalog
+          printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=https://antoinelucasfra.github.io/resources-catalog/">\n' > docs/catalog/index.html
+          test -f docs/cv.pdf && test -f docs/cv-biostat.pdf && test -f docs/cv.html && test -f docs/Antoine-Lucas-CV-AI.pdf && test -f docs/Antoine-Lucas-CV-Biostat.pdf && test -f docs/catalog/index.html
 
       - name: Upload artifact
         if: github.event_name != 'pull_request'

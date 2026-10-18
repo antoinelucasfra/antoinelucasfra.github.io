@@ -41,7 +41,7 @@ I needed something better: a structured, searchable, categorized collection that
 
 ## Building the Resources Catalog
 
-That's why I created the [Resources Catalog](/catalog/): a curated collection of data science resources organized by type, language, and category.
+That's why I created the [Resources Catalog](https://antoinelucasfra.github.io/resources-catalog/): a curated collection of data science resources organized by type, language, and category.
 
 ### The Philosophy
 
@@ -207,7 +207,7 @@ A well-maintained resource collection is infrastructure for this kind of continu
 
 The pace of change in data science, ML, and AI isn't slowing down. Having a system to navigate that change, rather than being overwhelmed by it, is valuable.
 
-Browse my [Resources Catalog](/catalog/). Fork it, adapt it, build your own. The goal isn't to have *my* collection, but *a* collection that serves your learning.
+Browse my [Resources Catalog](https://antoinelucasfra.github.io/resources-catalog/). Fork it, adapt it, build your own. The goal isn't to have *my* collection, but *a* collection that serves your learning.
 
 That is the real payoff of curation: not a prettier bookmark list, but a working system for staying oriented in a field that changes faster than memory alone can handle.
 
@@ -225,4 +225,4 @@ Some meta-resources on learning and knowledge management:
 
 ---
 
-*The [Resources Catalog](/catalog/) is updated in public. Contributions are welcome via [GitHub](https://github.com/antoinelucasfra/antoinelucasfra.github.io).*
+*The [Resources Catalog](https://antoinelucasfra.github.io/resources-catalog/) is updated in public. Contributions are welcome via [GitHub](https://github.com/antoinelucasfra/resources-catalog).*
