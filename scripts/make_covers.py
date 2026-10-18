@@ -24,6 +24,7 @@ and every committed cover is reshuffled.
 
 import argparse
 import hashlib
+import html
 import re
 import sys
 from collections.abc import Iterator
@@ -113,6 +114,7 @@ def palette(slug: str) -> tuple[str, str, int, int]:
 
 def make_svg(title: str, cats: list[str], slug: str) -> str:
     c1, c2, cx, cy = palette(slug)
+    c1, c2, cx, cy = palette(slug)
 
     tag_y = 170
     tags = []
@@ -122,7 +124,7 @@ def make_svg(title: str, cats: list[str], slug: str) -> str:
         tags.append(
             f'<rect x="{tx}" y="{tag_y - 40}" width="{w}" height="56" rx="28" fill="{c2}" opacity="0.14"/>'
             f'<text x="{tx + w / 2}" y="{tag_y}" fill="{c2}" font-family="{FONT_MONO}" '
-            f'font-size="28" font-weight="600" text-anchor="middle">{cat.upper()}</text>'
+            f'font-size="28" font-weight="600" text-anchor="middle">{html.escape(cat.upper())}</text>'
         )
         tx += w + 24
 
@@ -133,11 +135,11 @@ def make_svg(title: str, cats: list[str], slug: str) -> str:
 
     title_el = "".join(
         f'<text x="{TEXT_X}" y="{y0 + i * lh}" fill="#E6EDF3" font-family="{FONT_HEAD}" '
-        f'font-size="{size}" font-weight="700">{line}</text>'
+        f'font-size="{size}" font-weight="700">{html.escape(line)}</text>'
         for i, line in enumerate(lines)
     )
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS_W} 900" role="img" aria-label="Cover for {title}">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS_W} 900" role="img" aria-label="Cover for {html.escape(title)}">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0F1117"/>
@@ -166,9 +168,12 @@ def generate() -> Iterator[tuple[str, str]]:
     """Yield (slug, svg) for every published post, in a stable order."""
     for post in sorted((ROOT / "posts").glob("*/index.qmd")):
         text = post.read_text(encoding="utf-8")
-        if "draft: true" in text:
-            continue
         fm = parse_fm(text)
+        # Parse the frontmatter rather than substring-searching the file: a post
+        # quoting `draft: true` in its body must not be mistaken for a draft.
+        if fm.get("draft") is True:
+            print(f"skip (draft): {post}", file=sys.stderr)
+            continue
         if not fm.get("title"):
             print(f"skip (no title): {post}", file=sys.stderr)
             continue

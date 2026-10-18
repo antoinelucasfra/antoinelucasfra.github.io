@@ -5,6 +5,3 @@ requires-python = ">=3.11"
 dependencies = [
     "pyyaml",
 ]
-
-[tool.uv]
-dev-dependencies = []

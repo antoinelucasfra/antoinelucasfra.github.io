@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Cover for LLM-Assisted Development: A Data Scientist's Field Guide">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Cover for LLM-Assisted Development: A Data Scientist&#x27;s Field Guide">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0F1117"/>
@@ -17,7 +17,7 @@
   <circle cx="1199" cy="230" r="240" fill="#0284C7" opacity="0.13"/>
   <circle cx="1289" cy="270" r="130" fill="#38BDF8" opacity="0.10"/>
   <rect x="120" y="130" width="222" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="231.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">AI TOOLS</text><rect x="366" y="130" width="354" height="56" rx="28" fill="#38BDF8" opacity="0.14"/><text x="543.0" y="170" fill="#38BDF8" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">GITHUB COPILOT</text>
-  <text x="120" y="382" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">LLM-ASSISTED</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">DEVELOPMENT: A DATA</text><text x="120" y="578" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">SCIENTIST'S FIELD GUIDE</text>
+  <text x="120" y="382" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">LLM-ASSISTED</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">DEVELOPMENT: A DATA</text><text x="120" y="578" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">SCIENTIST&#x27;S FIELD GUIDE</text>
   <rect x="120" y="640" width="220" height="14" rx="7" fill="url(#accent)"/>
   <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas — field notes</text>
 </svg>
