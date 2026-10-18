@@ -68,7 +68,7 @@ home:
       href: /posts/devcontainers-reproducible-environments/
       description: devcontainers, onboarding, and what keeps environments reproducible across a team.
     - title: Resources Catalog
-      href: /catalog/
+      href: https://antoinelucasfra.github.io/resources-catalog/
       description: 1200 curated data-science resources, tagged and searchable, with the workflow that keeps them current.
   work_principles:
     - label: End-to-end ownership.
