@@ -1,5 +1,6 @@
 # .gitignore for R / Quarto project
-# Keep source files and lockfiles tracked; ignore rendered output, caches, and local environments
+# Keep sources, lockfiles, and the rendered site tracked; ignore caches and
+# local environments.
 
 # Python / local tooling
 .venv/
@@ -20,13 +21,13 @@ __pycache__/
 *.Rproj
 *.bak
 
-# rv (project library ignored via rv/.gitignore; rproject.toml + rv.lock tracked)
+# renv (library, staging, sandbox and the rest are ignored by renv/.gitignore;
+# renv.lock and the renv/ scaffolding are tracked)
 
 # Quarto / rendering caches and temp files
 .quarto/
 .quarto-cache/
 _quarto/
-docs/
 
 # Quarto freeze cache. Freely reusable chunks are committed so CI and fresh
 # clones do not re-execute them. The catalog is excluded on purpose: its chunk
@@ -37,12 +38,17 @@ _freeze/*
 !_freeze/site_libs/
 
 # Render intermediates written beside the sources by single-file or interrupted
-# renders. Published copies live in docs/.
+# renders.
 *-listing.json
 *.feed-*-staged
 /site_libs/
 *.html
 *.pdf
+
+# Render output is committed: `quarto render` writes docs/, and CI uploads that
+# directory as the Pages artifact. Re-include the generated pages and CV PDFs.
+!docs/**/*.html
+!docs/**/*.pdf
 
 # Generated listing source (rebuilt at render from catalog/resources.txt)
 catalog/resources-items.yml

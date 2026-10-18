@@ -1,0 +1,239 @@
+---
+title: "Designing for agent users: CLI, MCP, and the agentic web"
+author: "Antoine Lucas"
+date: "2026-10-27"
+categories: [AI, Agents, MCP, LLM, Quarto, Web, Best Practices]
+image: ../../assets/images/covers/agent-ready-software.svg
+description: "A second user class arrived: agents read text, call tools, and click only as a last resort. What that means for command-line tools, MCP servers, and a Quarto site, with the before and after receipts from this one."
+draft: false
+---
+
+## Where this comes from
+
+This post digests [Building Software Products for the Agentic Age](https://www.indrapatil.com/software-for-agentic-age/), a slide deck by Indrajeet Patil, and applies it to something I control: this website. The audit numbers are mine, measured with the commands shown, plus a few checks on other people's sites for comparison. The framing, and the ladder at the end, are his.
+
+---
+
+## A second user class
+
+For thirty years every user of your software arrived through a screen. Buttons, forms, menus, a tutorial. Now a growing share of the traffic arrives through an agent, and the agent has no screen. It has a context window, a tool loop, and a budget denominated in tokens.
+
+Three consequences follow, and they are all boringly practical:
+
+Text works best. Output, errors and documentation all end up in a context window. A table formatted for human eyes costs tokens that carry no information.
+
+Every token costs. Noisy output burns money and crowds out the task the agent was actually given.
+
+Nobody is at the keyboard. An interactive `y/N` confirmation stalls the loop until something times out. Approval has to come through whatever is hosting the agent, not from a prompt on stdin.
+
+The encouraging part: almost everything agents need is what good engineering already recommends. Structured output, clear errors, honest status codes and a documented setup path are not agent features. They are the same things that make a codebase pleasant for the person who inherits it.
+
+## What agents need that people do not
+
+| Need | Human | Agent |
+|---|---|---|
+| Input | Pixels on a screen | Text in a context window |
+| Navigation | Menus, clicks, scrolling | Commands, links, tool calls |
+| Learning the tool | Tutorials, tooltips | `--help`, schemas, `llms.txt` |
+| Errors | A red banner and a retry button | An exit code plus a message it can act on |
+| Login | Form, password, MFA prompt | A token in an environment variable |
+| Noise | Mildly annoying | Costs tokens and derails the task |
+
+---
+
+## Part 1: command-line tools an agent can drive
+
+The command line came back because models have read decades of shell scripts, output pipes into `jq` and `grep`, and `--help` is only read when it is needed. Nothing enters the context window until the command runs.
+
+An agent-friendly R script is mostly a matter of eight decisions:
+
+| Decision | Why an agent cares |
+|---|---|
+| `--json` output | Parse, do not scrape a printed table |
+| Field selection | Smaller output, fewer tokens |
+| Never block on input | Nobody is there to type `y` |
+| Headless auth | Agents cannot click "Sign in" |
+| Meaningful exit codes | Branch on success versus failure |
+| Actionable errors on stderr | Self-correct on the next turn |
+| Examples in `--help` | Learn usage on demand |
+| Stable, versioned output | Add fields, never rename them |
+
+A sketch, in R, because that is what I write. The interesting parts are the exit codes and the error text.
+
+```r
+#!/usr/bin/env Rscript
+# toy example: the shape matters, not the functionality
+args <- commandArgs(trailingOnly = TRUE)
+
+if (length(args) == 0 || args[1] == "--help") {
+  cat("Usage: analysis.R run|delete|list [--json] [--yes]\n")
+  cat("  list --json        machine-readable output\n")
+  cat("  delete <id> --yes  confirmation is required, deliberately\n")
+  quit(status = 0)
+}
+
+as_json <- "--json" %in% args
+confirmed <- "--yes" %in% args
+
+emit <- function(payload) {
+  if (as_json) cat(jsonlite::toJSON(payload, auto_unbox = TRUE), "\n")
+  else cat(payload, "\n")
+}
+
+list_jobs <- function() {
+  data.frame(id = 1:2, name = c("spc-cosmetics", "shiny-capacity"))
+}
+
+if (args[1] == "list") {
+  if (as_json) emit(list_jobs()) else print(list_jobs())
+  quit(status = 0)
+}
+
+if (args[1] == "delete") {
+  id <- suppressWarnings(as.integer(args[2]))
+  if (is.na(id)) {
+    message("error: delete needs a numeric id; run analysis.R list --json")
+    quit(status = 2)
+  }
+  if (!id %in% list_jobs()$id) {
+    message(sprintf("error: no job %s; run analysis.R list --json", id))
+    quit(status = 3)
+  }
+  if (!confirmed) {
+    message("error: deleting needs --yes")
+    quit(status = 4)
+  }
+  emit(list(deleted = id))
+  quit(status = 0)
+}
+
+message(sprintf("error: unknown command '%s'; run analysis.R --help", args[1]))
+quit(status = 2)
+```
+
+Four things to notice, none of which are about R:
+
+- Errors go to stderr, name the problem, and name the next command to run. An error that says what to try next is worth more than one that only says no.
+- Exit codes distinguish usage, not found, and refused. `0` success, `2` bad usage, `3` not found, `4` refused to act. The agent can branch without parsing prose.
+- Destructive actions require an explicit flag. An agent loop cannot answer a prompt, so the confirmation becomes an argument the caller has to pass on purpose.
+- `list --json` is the same command, not a second API to maintain.
+
+The exemplars are worth reading: GitHub's `gh` and Microsoft's `az` are human-friendly by default and machine-friendly by flag, with the full API one command away. That is the pattern to copy.
+
+## Part 2: MCP when there is no shell
+
+A coding agent has a terminal. A chat app does not. That is the entire reason the Model Context Protocol exists: an open standard for exposing tools and data to any agent host. The current specification revision is [2026-07-28](https://modelcontextprotocol.io/specification/versioning).
+
+Servers expose tools, resources and prompts, and a host discovers them with `tools/list`. Type hints and docstrings become the interface, so they need writing for a reader with no context.
+
+The design mistake is one tool per API endpoint. Cloudflare's own write-up of [Code Mode MCP](https://blog.cloudflare.com/code-mode-mcp/) puts numbers on it: their API has over 2,500 endpoints, an equivalent MCP server without Code Mode consumes 1.17 million tokens of tool definitions, and their `search()` plus `execute()` pair consumes around 1,000 tokens, a 99.9% reduction, measured with tiktoken. That is the difference between an agent that can hold your tool catalogue and one that spends its whole window reading it.
+
+Expose discoverable, task-shaped tools and let the agent search for detail on demand. Then handle credentials properly, because the agent is acting with your user's authority:
+
+- Fine-grained, short-lived, scoped tokens, read-only by default.
+- `--dry-run` first, and idempotency keys so a retry cannot write twice.
+- An explicit flag for anything destructive. Consent comes from the user, not the model.
+- Identify agent traffic and log what it does.
+
+And the rule that is easy to forget while building all of this: tool output is untrusted input. Text inside returned data can carry instructions aimed at the agent that called it.
+
+---
+
+## Part 3: the agentic web, applied here
+
+Agent-friendliness on the web builds on what already existed. Search fundamentals, accessibility, server-rendered HTML and honest status codes all still matter, and agent extras go on top. The ladder, as the deck frames it:
+
+| Level | What it means |
+|---|---|
+| 0 | Foundations: SEO, accessibility, performance, HTTPS |
+| 1 | Discoverable: `robots.txt` stance, sitemap, content signals |
+| 2 | Readable: server-rendered HTML, markdown, `llms.txt` |
+| 3 | Trustworthy: structured data, trust pages, honest status codes |
+| 4 | Operable: API catalogue, OAuth, MCP, WebMCP |
+
+This is a Quarto site on GitHub Pages which already had most of level 0 by construction. Here is what I found and what I changed.
+
+### Level 1: a stance, not a default
+
+Before, `robots.txt` was whatever Quarto generates for a site with a `site-url`: 55 bytes containing a single `Sitemap:` line. That is not a stance, it is an accident.
+
+Now the file declares one. The important mechanical detail is that a crawler obeys only its most specific matching group, so a blanket `Allow: /` under `*` is overridden by a named group that disallows, and adding a `Content-Signal` line does not block anything by itself. Signals state a preference. Named groups are what crawlers follow.
+
+```text
+User-agent: *
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://antoinelucasfra.github.io/sitemap.xml
+```
+
+The tokens come from vendor documentation rather than folklore: OpenAI names `GPTBot` for training and `OAI-SearchBot` for search, Anthropic names `ClaudeBot` and `Claude-SearchBot` separately, and Google's `Google-Extended` is a control token rather than a crawler, which is why it appears in a group even though it has no user agent string of its own. The `Content-Signal` line has three keys, `search`, `ai-input` and `ai-train`, each taking yes or no, and it was published by Cloudflare at [contentsignals.org](https://contentsignals.org/) in September 2025.
+
+The `User-agent: *` group also stays honest: search and on-demand fetching are welcome, training is not. For a personal site whose licence already forbids commercial use, that is a position rather than a default.
+
+### Level 2: content in the first response, plus a hint file
+
+Many fetchers never run JavaScript, so a client-rendered shell returns a page with nothing in it. Quarto server-renders, so this site was already fine, and a check confirms it:
+
+```bash
+curl -sL -A 'Claude-User/1.0' https://antoinelucasfra.github.io/blog.html | wc -c
+```
+
+What I added is a small `llms.txt`: a summary, a "when to use this" line, and links to the main sections. Twelve lines, curated by hand. I deliberately skipped the generated `llms-full.txt` that concatenates every page, because it is a crawler convenience rather than a website improvement, and it is one more artifact to keep in sync.
+
+I also skipped markdown twins for now, which is the honest gap in this post. GitHub Pages cannot do `Accept: text/markdown` content negotiation, so the substitute is a `.md` copy of each page plus a `link rel="alternate"` tag pointing at it. It is on the list. For scale, the payload difference is real: Vercel serves its own post about content negotiation as 645,351 bytes of HTML and 7,371 bytes of markdown from the same URL, and Cloudflare measured up to 80% token reduction from markdown in some cases.
+
+### Level 3: honest pages and honest status codes
+
+A missing page here returns a real 404 with a 404 status, not a 200 with an apology rendered inside an app shell. There are About, Projects and CV pages with substance. Two gaps I am not going to paper over: no structured data yet, and no privacy page, since the site runs no analytics to describe.
+
+### Level 4: skipped on purpose
+
+Level 4 is for advertising what agents can do with you: API catalogue, OAuth metadata, an MCP server card, WebMCP. There is nothing to call here, so a card would be a false signal, and a false signal is worse than none. A personal site with nothing to invoke should stop at level 3 and spend the remaining effort on writing.
+
+---
+
+## The audit, with receipts
+
+Measured with `curl`, before and after. The before column is from the morning of the change.
+
+| Check | Before | After |
+|---|---|---|
+| `robots.txt` | 200, 55 bytes, sitemap line only | 200, explicit stance, named groups, `Content-Signal`, sitemap line kept |
+| `llms.txt` | 404 | 200, curated, 12 lines |
+| `sitemap.xml` | 200, 5013 bytes | unchanged |
+| Missing path status | 404 | 404 |
+| Post page content without JavaScript | present, server-rendered | unchanged |
+
+```bash
+curl -sI -A 'Claude-User/1.0' https://antoinelucasfra.github.io/robots.txt
+curl -s -o /dev/null -w '%{http_code} %{size_download}\n' https://antoinelucasfra.github.io/llms.txt
+curl -s -o /dev/null -w '%{http_code}\n' https://antoinelucasfra.github.io/not-a-real-page-98765
+```
+
+For context on how much of the web has done even this much: Cloudflare scanned the 200,000 most visited domains in April 2026 and found 78% had a `robots.txt`, 4% declared AI usage preferences, 3.9% passed markdown negotiation, and `MCP Server Cards` and `API Catalogues` together appeared on fewer than 15 sites in the entire dataset. Most of the web stops at a sitemap line, which is exactly where this site started.
+
+## The honest limits
+
+`robots.txt` is a request, not a lock. GitHub Pages gives me no bot management and no WAF, so a crawler that ignores the file will simply proceed. What I control is the signal and the honesty of it.
+
+The scanners disagree with each other, which is a feature of the situation rather than a bug in either tool. Vercel's is-agentic gave stripe.com 71 out of 100, "Ready with a few material gaps", across 32 eligible checks, when I queried its API. Cloudflare's tool reportedly put the same site near 27. Two rubrics, two answers. Read the failing checks, not the number, and never quote a score without saying which tool produced it.
+
+## What a personal site can skip
+
+If visitors cannot do anything on your site, skip everything at level 4. No API catalogue, no OAuth metadata, no MCP card, no commerce protocol. Keep the foundations healthy, declare a stance, put content in the HTML, and write. The overlap between what humans and agents need is large, and it is called good engineering.
+
+## Sources
+
+- Indrajeet Patil, [Building Software Products for the Agentic Age](https://www.indrapatil.com/software-for-agentic-age/)
+- [Model Context Protocol specification](https://modelcontextprotocol.io/specification/versioning) and [Agent Skills](https://agentskills.io/)
+- Cloudflare, [Introducing the Agent Readiness score](https://blog.cloudflare.com/agent-readiness/) and [Code Mode MCP](https://blog.cloudflare.com/code-mode-mcp/)
+- [Content Signals](https://contentsignals.org/) and [Markdown for Agents](https://blog.cloudflare.com/markdown-for-agents/)
+- Vercel, [making agent-friendly pages with content negotiation](https://vercel.com/blog/making-agent-friendly-pages-with-content-negotiation) and [Is Agentic](https://is-agentic.com/)
+- OpenAI [bots documentation](https://platform.openai.com/docs/bots), Anthropic [crawler article](https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler), Google [common crawlers](https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers)

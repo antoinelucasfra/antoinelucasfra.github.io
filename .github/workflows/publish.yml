@@ -1,0 +1,137 @@
+# Quarto site CI: validate on pull requests, publish on pushes to prod.
+# R dependencies come from renv.lock; see README.md for the local dev loop.
+
+name: Site
+
+on:
+  push:
+    branches: [prod]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Cheap and fail-fast: the covers are generated from post frontmatter, so a
+      # title edit that never regenerated its cover is caught here rather than by
+      # a reader noticing a stale thumbnail.
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Check post covers are current
+        run: uv run --project scripts python scripts/make_covers.py --check
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        with:
+          version: 1.9.37
+
+      # The R version comes from renv.lock, so CI and local development run the
+      # same R. Bump it in the lockfile, not here.
+      #
+      # `use-public-rspm` points renv at Posit Package Manager's current Linux
+      # binaries, which are occasionally newer than the versions recorded in
+      # renv.lock: a version published after the lockfile was written, or a
+      # version PPM never built for this platform, resolves to the newest one
+      # available and restore prints each upgrade rather than failing. Pinning
+      # the exact locked versions would mean compiling from source against the
+      # dated snapshot, which is minutes of CI time for no rendering benefit.
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: renv
+          use-public-rspm: true
+
+      # System libraries for packages that compile from source. Binaries come
+      # from the dated PPM snapshot configured in .Rprofile; this is the
+      # fallback when a binary is unavailable for this platform.
+      - name: Install system dependencies for R packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libcurl4-openssl-dev libssl-dev libxml2-dev \
+            libfontconfig1-dev libfreetype6-dev libharfbuzz-dev \
+            libfribidi-dev libpng-dev libtiff5-dev libjpeg-dev
+
+      - name: Restore R dependencies from renv.lock
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 2
+
+      # Add R packages here when the render needs something that is not in
+      # renv.lock. Anything captured with `renv::snapshot()` is restored by the
+      # step above; `any::` accepts whatever version is already installed.
+      - name: Install extra R packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::quarto
+            any::rmarkdown
+            any::sessioninfo
+
+      - name: Render Quarto project
+        run: quarto render --profile full
+
+      - name: Verify published surface
+        run: |
+          test ! -e docs/TODO.html
+          test ! -e docs/CONTRIBUTING.html
+          ! grep -Eq 'TODO\.html|CONTRIBUTING\.html' docs/search.json docs/sitemap.xml docs/listings.json
+          test -f docs/cv/index.html
+          test -f docs/cv/ai.html
+          test -f docs/cv/biostat.html
+          test -f docs/cv/cv.pdf
+          test -f docs/cv/cv-biostat.pdf
+          test -f docs/catalog/index.html
+          test -s docs/llms.txt
+          grep -q '^Sitemap: ' docs/robots.txt
+
+      - name: Keep the pre-reorganisation CV URLs alive
+        # /cv.pdf, /cv-ai.html, /cv-biostat.html and /cv.html are linked from
+        # LinkedIn, mail signatures and older job-search letters. The CV now
+        # renders under /cv/, so publish copies and redirect stubs at the paths
+        # those links still point at.
+        run: |
+          cp docs/cv/cv.pdf docs/cv.pdf
+          cp docs/cv/cv-biostat.pdf docs/cv-biostat.pdf
+          cp docs/cv/cv.pdf docs/Antoine-Lucas-CV-AI.pdf
+          cp docs/cv/cv-biostat.pdf docs/Antoine-Lucas-CV-Biostat.pdf
+          printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=/cv/">\n' > docs/cv.html
+          printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=/cv/ai.html">\n' > docs/cv-ai.html
+          printf '<!doctype html>\n<meta http-equiv="refresh" content="0; url=/cv/biostat.html">\n' > docs/cv-biostat.html
+          test -f docs/cv.pdf && test -f docs/cv-biostat.pdf && test -f docs/cv.html && test -f docs/Antoine-Lucas-CV-AI.pdf && test -f docs/Antoine-Lucas-CV-Biostat.pdf
+
+      - name: Upload artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

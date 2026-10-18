@@ -17,7 +17,7 @@
   <circle cx="1360" cy="283" r="240" fill="#0369A1" opacity="0.13"/>
   <circle cx="1450" cy="323" r="130" fill="#7DD3FC" opacity="0.10"/>
   <rect x="120" y="130" width="288" height="56" rx="28" fill="#7DD3FC" opacity="0.14"/><text x="264.0" y="170" fill="#7DD3FC" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">ENGINEERING</text><rect x="432" y="130" width="332" height="56" rx="28" fill="#7DD3FC" opacity="0.14"/><text x="598.0" y="170" fill="#7DD3FC" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">DOCUMENTATION</text>
-  <text x="120" y="439" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">ENGINEERING STANDARDS FOR</text><text x="120" y="521" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">SCIENTIFIC SOFTWARE</text>
+  <text x="120" y="431" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">ENGINEERING STANDARDS</text><text x="120" y="529" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="88" font-weight="700">FOR SCIENTIFIC SOFTWARE</text>
   <rect x="120" y="640" width="220" height="14" rx="7" fill="url(#accent)"/>
   <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas — field notes</text>
 </svg>

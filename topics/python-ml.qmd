@@ -4,6 +4,8 @@ description: "Python tooling, LLM-assisted development, machine learning workflo
 listing:
   - id: topic-posts
     contents:
+      - ../posts/agentic-engineering-rules/index.qmd
+      - ../posts/agent-ready-software/index.qmd
       - ../posts/devcontainers-reproducible-environments/index.qmd
       - ../posts/llm-coding-assistant/index.qmd
       - ../posts/reproducibility-modern-tools/index.qmd
