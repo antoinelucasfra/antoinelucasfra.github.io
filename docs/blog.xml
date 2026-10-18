@@ -1362,7 +1362,7 @@ font-style: inherit;">"fitnessapp"</span>)</span></code></pre></div></div>
 <ul>
 <li><a href="../..\posts/stats-theory-frequentist/">Statistical Tests Demystified: A Practical Guide for Scientists and Engineers</a>: a practical walkthrough of p-values, test selection, regression, and the mistakes that matter in applied work</li>
 <li><a href="../..\posts/rv-modern-r-package-manager/">rv: The Modern R Package Manager for Reproducible Workflows</a>: a look at the Rust-backed package manager that is quietly replacing my <code>renv</code> workflow</li>
-<li><a href="https://antoinelucasfra.github.io/posts/why-curate-resources/">Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog</a>: on curation as a practice, and the catalog of 200+ data science resources I maintain</li>
+<li><a href="https://antoinelucasfra.github.io/posts/why-curate-resources/">Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog</a>: on curation as a practice, and the catalog of 1,000+ data science resources I maintain</li>
 </ul>
 <p>The <a href="../..\blog.html">full blog listing</a> has everything, filtered by category.</p>
 
