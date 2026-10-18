@@ -789,7 +789,7 @@ font-style: inherit;">-r</span> .result</span></code></pre></div></div>
 <h2 class="anchored" data-anchor-id="meta-automation">9. Meta-automation</h2>
 <p>When you have pasted the same multi-step instructions into a prompt twice, stop pasting. Turn it into something reusable.</p>
 <p>The ladder I use: a prompt for instructions that change, a skill for domain know-how, a slash command for a stable shortcut, and a workflow only when the plan itself needs loops, branching or many workers. Most work never gets past a skill.</p>
-<p>Two examples from this repository. The cover generator, so a new post never starts with a design decision. And a Python script that syncs a curated resource catalog from notes, so the catalog page stays current without me opening an editor.</p>
+<p>Two examples. The cover generator lives in this repository, so a new post never starts with a design decision. And the <a href="https://antoinelucasfra.github.io/resources-catalog/">Resources Catalog</a> is its own project: a Python script there syncs a curated resource list from notes, so the catalog page stays current without me opening an editor.</p>
 </section>
 <section id="be-curious-be-humble-be-kind" class="level2">
 <h2 class="anchored" data-anchor-id="be-curious-be-humble-be-kind">10. Be curious, be humble, be kind</h2>
@@ -1362,7 +1362,7 @@ font-style: inherit;">"fitnessapp"</span>)</span></code></pre></div></div>
 <ul>
 <li><a href="../..\posts/stats-theory-frequentist/">Statistical Tests Demystified: A Practical Guide for Scientists and Engineers</a>: a practical walkthrough of p-values, test selection, regression, and the mistakes that matter in applied work</li>
 <li><a href="../..\posts/rv-modern-r-package-manager/">rv: The Modern R Package Manager for Reproducible Workflows</a>: a look at the Rust-backed package manager that is quietly replacing my <code>renv</code> workflow</li>
-<li><a href="https://antoinelucasfra.github.io/posts/why-curate-resources/">Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog</a>: on curation as a practice, and the catalog of 200+ data science resources I maintain</li>
+<li><a href="https://antoinelucasfra.github.io/posts/why-curate-resources/">Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog</a>: on curation as a practice, and the catalog of 1,000+ data science resources I maintain</li>
 </ul>
 <p>The <a href="../..\blog.html">full blog listing</a> has everything, filtered by category.</p>
 
@@ -6548,7 +6548,7 @@ font-style: inherit;">"gm_acoustic_bass"</span>)</span><div class="code-annotati
 </section>
 <section id="building-the-resources-catalog" class="level2">
 <h2 class="anchored" data-anchor-id="building-the-resources-catalog">Building the Resources Catalog</h2>
-<p>That’s why I created the <a href="../..\catalog/">Resources Catalog</a>: a curated collection of data science resources organized by type, language, and category.</p>
+<p>That’s why I created the <a href="https://antoinelucasfra.github.io/resources-catalog/">Resources Catalog</a>: a curated collection of data science resources organized by type, language, and category.</p>
 <section id="the-philosophy" class="level3">
 <h3 class="anchored" data-anchor-id="the-philosophy">The Philosophy</h3>
 <p>The catalog isn’t trying to be comprehensive. The internet already has “awesome lists” with thousands of links. Instead, it reflects what I actually use and learn from:</p>
@@ -6723,7 +6723,7 @@ font-style: inherit;">"gm_acoustic_bass"</span>)</span><div class="code-annotati
 </ul>
 <p>A well-maintained resource collection is infrastructure for this kind of continuous learning. It’s an investment that compounds over time.</p>
 <p>The pace of change in data science, ML, and AI isn’t slowing down. Having a system to navigate that change, rather than being overwhelmed by it, is valuable.</p>
-<p>Browse my <a href="../..\catalog/">Resources Catalog</a>. Fork it, adapt it, build your own. The goal isn’t to have <em>my</em> collection, but <em>a</em> collection that serves your learning.</p>
+<p>Browse my <a href="https://antoinelucasfra.github.io/resources-catalog/">Resources Catalog</a>. Fork it, adapt it, build your own. The goal isn’t to have <em>my</em> collection, but <em>a</em> collection that serves your learning.</p>
 <p>That is the real payoff of curation: not a prettier bookmark list, but a working system for staying oriented in a field that changes faster than memory alone can handle.</p>
 <hr>
 </section>
@@ -6738,7 +6738,7 @@ font-style: inherit;">"gm_acoustic_bass"</span>)</span><div class="code-annotati
 <li><a href="https://github.com/aaronwangy/Data-Science-Cheatsheet">Data Science Cheatsheet</a>: Condensed reference material</li>
 </ul>
 <hr>
-<p><em>The <a href="../..\catalog/">Resources Catalog</a> is updated in public. Contributions are welcome via <a href="https://github.com/antoinelucasfra/antoinelucasfra.github.io">GitHub</a>.</em></p>
+<p><em>The <a href="https://antoinelucasfra.github.io/resources-catalog/">Resources Catalog</a> is updated in public. Contributions are welcome via <a href="https://github.com/antoinelucasfra/resources-catalog">GitHub</a>.</em></p>
 
 
 </section>

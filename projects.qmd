@@ -30,11 +30,6 @@ listing:
         description: "A voice-driven pipeline that turns laboratory bench recordings into structured, validated records: ASR (faster-whisper), LLM extraction (Instructor + Ollama), domain validation, and a GxP-compliant audit trail."
         date: "2026-02-22"
         categories: [Python, LLM, NLP, MLOps, Lab Automation]
-      - path: catalog/index.qmd
-        title: "Resources Catalog"
-        description: "A curated and searchable collection of 1,000+ data science resources for R, Python, and beyond. Filter by type, language, and category."
-        date: "2025-12-13"
-        categories: [R, Python, Resources]
       - path: projects/academic_projects.qmd
         title: "Academic Projects: Statistics, ML and Data Apps"
         description: "Earlier work from my engineering degree (M1-M2, 2019-2021): eye-tracking analysis, co-inertia analysis, a Shiny web application, a Redis-backed data project, and a first machine learning project."
@@ -55,6 +50,20 @@ A selection of software, data, and ML work I can share publicly. Most of what I 
 :::
 
 ---
+
+## Resources Catalog
+
+::: {.callout-note appearance="minimal" icon=false}
+
+### Resources Catalog
+
+**Technologies:** Quarto · R · Python · GitHub Actions
+
+A curated, searchable catalog of 1,000+ data science resources for R, Python, and beyond, with the sync workflow that keeps it current. It lives in its own project: [antoinelucasfra/resources-catalog](https://github.com/antoinelucasfra/resources-catalog).
+
+[<i class="bi bi-box-arrow-up-right"></i> Browse the catalog](https://antoinelucasfra.github.io/resources-catalog/){.btn .btn-dark .btn-sm}
+
+:::
 
 ## Academic & Open-Source
 

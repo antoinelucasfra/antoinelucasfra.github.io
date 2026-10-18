@@ -30,9 +30,7 @@ __pycache__/
 _quarto/
 
 # Quarto freeze cache. Freely reusable chunks are committed so CI and fresh
-# clones do not re-execute them. The catalog is excluded on purpose: its chunk
-# writes catalog/resources-items.yml as a side effect, and a frozen chunk on a
-# fresh checkout would skip that write and leave the listing with no source.
+# clones do not re-execute them.
 _freeze/*
 !_freeze/posts/
 !_freeze/site_libs/
@@ -49,9 +47,6 @@ _freeze/*
 # directory as the Pages artifact. Re-include the generated pages and CV PDFs.
 !docs/**/*.html
 !docs/**/*.pdf
-
-# Generated listing source (rebuilt at render from catalog/resources.txt)
-catalog/resources-items.yml
 
 # Local scratch / exploration notes
 explore/

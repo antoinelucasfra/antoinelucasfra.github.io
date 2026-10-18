@@ -1,50 +1,28 @@
 [
   {
-    "listing": "/catalog/index.html",
-    "items": []
-  },
-  {
-    "listing": "/topics/r-shiny.html",
+    "listing": "/topics/reproducibility.html",
     "items": [
       "/posts/shinyproxy-admin-best-practices/index.html",
-      "/posts/shiny-capacity-platform/index.html",
-      "/posts/reproducibility-modern-tools/index.html",
-      "/posts/rv-modern-r-package-manager/index.html",
-      "/posts/quarto-getting-started/index.html"
-    ]
-  },
-  {
-    "listing": "/projects.html",
-    "items": [
-      "/projects/localai-review.html",
-      "/projects/agentic-stats.html",
-      "/projects/shiny-platform-gxp.html",
-      "/projects/voice-to-data.html",
-      "/catalog/index.html",
-      "/projects/fake-news-detection.html",
-      "/projects/academic_projects.html"
-    ]
-  },
-  {
-    "listing": "/index.html",
-    "items": [
-      "/posts/agent-ready-software/index.html",
-      "/posts/agentic-engineering-rules/index.html",
       "/posts/engineering-standards-scientific-software/index.html",
-      "/posts/shinyproxy-admin-best-practices/index.html",
-      "/posts/hello-r-bloggers/index.html",
-      "/posts/shiny-capacity-platform/index.html",
       "/posts/devcontainers-reproducible-environments/index.html",
-      "/posts/llm-coding-assistant/index.html",
       "/posts/reproducibility-modern-tools/index.html",
-      "/posts/stats-theory-frequentist/index.html",
       "/posts/rv-modern-r-package-manager/index.html",
-      "/posts/livecoding-algorithmic-music/index.html",
       "/posts/why-curate-resources/index.html",
       "/posts/reproducible-pharma-r/index.html",
       "/posts/dev-setup-guide/index.html",
-      "/posts/spc-cosmetics-r/index.html",
       "/posts/quarto-getting-started/index.html"
+    ]
+  },
+  {
+    "listing": "/topics/python-ml.html",
+    "items": [
+      "/posts/agent-ready-software/index.html",
+      "/posts/agentic-engineering-rules/index.html",
+      "/posts/devcontainers-reproducible-environments/index.html",
+      "/posts/llm-coding-assistant/index.html",
+      "/posts/reproducibility-modern-tools/index.html",
+      "/posts/why-curate-resources/index.html",
+      "/posts/dev-setup-guide/index.html"
     ]
   },
   {
@@ -70,28 +48,45 @@
     ]
   },
   {
-    "listing": "/topics/python-ml.html",
+    "listing": "/index.html",
     "items": [
       "/posts/agent-ready-software/index.html",
       "/posts/agentic-engineering-rules/index.html",
+      "/posts/engineering-standards-scientific-software/index.html",
+      "/posts/shinyproxy-admin-best-practices/index.html",
+      "/posts/hello-r-bloggers/index.html",
+      "/posts/shiny-capacity-platform/index.html",
       "/posts/devcontainers-reproducible-environments/index.html",
       "/posts/llm-coding-assistant/index.html",
       "/posts/reproducibility-modern-tools/index.html",
-      "/posts/why-curate-resources/index.html",
-      "/posts/dev-setup-guide/index.html"
-    ]
-  },
-  {
-    "listing": "/topics/reproducibility.html",
-    "items": [
-      "/posts/shinyproxy-admin-best-practices/index.html",
-      "/posts/engineering-standards-scientific-software/index.html",
-      "/posts/devcontainers-reproducible-environments/index.html",
-      "/posts/reproducibility-modern-tools/index.html",
+      "/posts/stats-theory-frequentist/index.html",
       "/posts/rv-modern-r-package-manager/index.html",
+      "/posts/livecoding-algorithmic-music/index.html",
       "/posts/why-curate-resources/index.html",
       "/posts/reproducible-pharma-r/index.html",
       "/posts/dev-setup-guide/index.html",
+      "/posts/spc-cosmetics-r/index.html",
+      "/posts/quarto-getting-started/index.html"
+    ]
+  },
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/localai-review.html",
+      "/projects/agentic-stats.html",
+      "/projects/shiny-platform-gxp.html",
+      "/projects/voice-to-data.html",
+      "/projects/fake-news-detection.html",
+      "/projects/academic_projects.html"
+    ]
+  },
+  {
+    "listing": "/topics/r-shiny.html",
+    "items": [
+      "/posts/shinyproxy-admin-best-practices/index.html",
+      "/posts/shiny-capacity-platform/index.html",
+      "/posts/reproducibility-modern-tools/index.html",
+      "/posts/rv-modern-r-package-manager/index.html",
       "/posts/quarto-getting-started/index.html"
     ]
   }

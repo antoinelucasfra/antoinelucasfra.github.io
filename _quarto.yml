@@ -5,8 +5,6 @@ project:
   # curated hint file has to be declared here to reach the published site.
   resources:
     - llms.txt
-  # Catalog page omitted here: it is the slow part of the build and only needed
-  # when its source or the site theme changes. CI publishes with --profile full.
   render:
     - "index.qmd"
     - "about.qmd"
