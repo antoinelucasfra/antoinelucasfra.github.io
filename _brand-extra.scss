@@ -1,0 +1,10 @@
+/*-- scss:rules --*/
+// Site-specific styling that doesn't belong in the al-brand extension.
+// The extension vendored under _extensions/ stays verbatim upstream so
+// re-syncing is just `quarto add` — see CONTRIBUTING.md.
+
+.availability {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
