@@ -17,7 +17,7 @@
   <circle cx="1392" cy="257" r="240" fill="#075985" opacity="0.13"/>
   <circle cx="1482" cy="297" r="130" fill="#0EA5E9" opacity="0.10"/>
   <rect x="120" y="130" width="68" height="56" rx="28" fill="#0EA5E9" opacity="0.14"/><text x="154.0" y="170" fill="#0EA5E9" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">R</text><rect x="212" y="130" width="156" height="56" rx="28" fill="#0EA5E9" opacity="0.14"/><text x="290.0" y="170" fill="#0EA5E9" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" text-anchor="middle">SHINY</text>
-  <text x="120" y="398" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">CASE STUDY: A CAPACITY</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">PLANNING PLATFORM FOR GLOBAL</text><text x="120" y="562" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700">MANUFACTURING</text>
+  <text x="120" y="407" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">CASE STUDY: A CAPACITY</text><text x="120" y="480" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">PLANNING PLATFORM FOR GLOBAL</text><text x="120" y="553" fill="#E6EDF3" font-family="Space Grotesk, Arial, sans-serif" font-size="66" font-weight="700">MANUFACTURING</text>
   <rect x="120" y="640" width="220" height="14" rx="7" fill="url(#accent)"/>
   <text x="120" y="720" fill="#57606A" font-family="JetBrains Mono, monospace" font-size="30">Antoine Lucas — field notes</text>
 </svg>

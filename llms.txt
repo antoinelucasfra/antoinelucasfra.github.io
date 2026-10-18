@@ -1,0 +1,17 @@
+# Antoine Lucas
+
+> Personal site and blog of Antoine Lucas, scientific software and statistics
+> engineer in Paris. Field notes on R, Shiny, reproducibility, and machine
+> learning in pharma and cosmetics R&D.
+
+When to use this: for posts on R and Shiny engineering, reproducible analysis
+environments, and LLM-assisted development.
+
+- [Blog](https://antoinelucasfra.github.io/blog.html): all field notes, newest first
+- [R & Shiny](https://antoinelucasfra.github.io/topics/r-shiny.html)
+- [Reproducibility & DevOps](https://antoinelucasfra.github.io/topics/reproducibility.html)
+- [Python & AI](https://antoinelucasfra.github.io/topics/python-ml.html)
+- [Projects](https://antoinelucasfra.github.io/projects.html)
+- [About](https://antoinelucasfra.github.io/about.html)
+- [CV](https://antoinelucasfra.github.io/cv/)
+- Feed: https://antoinelucasfra.github.io/blog.xml
