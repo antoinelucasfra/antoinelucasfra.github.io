@@ -30,6 +30,6 @@ beginner tutorials, but notes from actual use.
 - [rv: The Modern R Package Manager for Reproducible Workflows](/posts/rv-modern-r-package-manager/):
   a look at the Rust-backed package manager that is quietly replacing my `renv` workflow
 - [Staying Current in a Fast-Moving Field: Why I Built a Resources Catalog](https://antoinelucasfra.github.io/posts/why-curate-resources/):
-  on curation as a practice, and the catalog of 200+ data science resources I maintain
+  on curation as a practice, and the catalog of 1,000+ data science resources I maintain
 
 The [full blog listing](/blog.html) has everything, filtered by category.
