@@ -67,6 +67,3 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [{ name = "pyyaml" }]
-
-[package.metadata.requires-dev]
-dev = []

@@ -33,7 +33,7 @@ format: html
 
 How does vehicle weight relate to fuel efficiency in the `mtcars` dataset?
 
-```{{r}}
+```{r}
 library(ggplot2)
 ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
@@ -87,7 +87,7 @@ Once you start writing longer reports, cross-references save time and reduce bro
 ```markdown
 See @fig-scatter for the visualization.
 
-```{{r}}
+```{r}
 #| label: fig-scatter
 #| fig-cap: "Scatter plot of weight vs mpg"
 ggplot(mtcars, aes(x = wt, y = mpg)) +
