@@ -1,6 +1,6 @@
 ---
 title: "CV: AI & Scientific Software"
-description: "R Shiny and Python delivery, LLM agents and MCP tools, MLOps, and reproducible engineering in regulated R&D."
+description: "R Shiny and Python delivery, applied AI and document tooling, MLOps, and reproducible engineering in regulated R&D."
 cv_pdf: cv.pdf
 format:
   html:
@@ -45,7 +45,7 @@ style:
 # Summary
 :::
 
-Research engineer with 5+ years turning R&D problems into production software in pharma, cosmetics, and biotech. Maintain 20+ R Shiny applications used daily by researchers, plus statistical modelling (design of experiments, mixed models, multi-omics) and GxP-qualifiable delivery with tests, CI/CD and containers. Build LLM agents and MCP servers that put typed statistical tools in a model's hands.
+Research engineer with 5+ years turning R&D problems into production software in pharma, cosmetics, and biotech. Maintain 20+ R Shiny applications used daily by researchers, plus statistical modelling (design of experiments, mixed models, multi-omics) and GxP-qualifiable delivery with tests, CI/CD and containers. Build the applied-AI tools scientists actually use, from statistical-analysis automation to document parsing (OCR) and RAG over PDF archives, each tested and approved with its future users.
 :::
 
 # Experience {.cv-section-title}
@@ -62,7 +62,7 @@ Research engineer with 5+ years turning R&D problems into production software in
 :::
 
 - Own the R Shiny application catalog used daily by researchers, covering clinical data visualisation, formulation automation, and data lifecycle workflows.
-- Built agentic tooling for scientific workflows: MCP servers and tool-calling agents that run statistical analysis on demand.
+- Built applied-AI tooling for scientific workflows, from analysis automation to document parsing and retrieval over PDF archives; every tool tested and approved in review with its future users.
 - Designed and deployed computer-vision applications used by dozens of researchers and technicians to segment and annotate microscopy elements for cosmetics formulation and regulatory R&D.
 - Run the delivery toolchain (Git, Azure ML, Posit Connect, Databricks): reproducible environments and documented handover.
 - Own access and operations for the catalog: single sign-on, platform permissions, and the release process.
@@ -111,7 +111,7 @@ Research engineer with 5+ years turning R&D problems into production software in
 ### Jul 2023 – Nov 2024 {.cv-period}
 :::
 
-- Sole R Shiny developer and Scrum Master. Built R and Python applications that simulate manufacturing plant resource capacity across global sites, with 50+ daily users across 3 departments informing drug production planning.
+- Sole R Shiny developer and Scrum Master. Built R and Python applications tracking the candidate-molecule portfolio from research to industrialization and the plants' production capacity, with 50+ daily users across 3 departments informing drug production planning.
 - Owned delivery end to end: requirements, methodology, validation, workshops, UAT, and handover, with backlog and sprint ceremonies across researchers, managers, and project leads.
 :::
 
@@ -145,7 +145,7 @@ Research engineer with 5+ years turning R&D problems into production software in
 
 ::: {.cv-skills}
 LLM & agents
-: MCP servers · tool-calling agents · agentic workflows · AI workflow orchestration · LLM evaluation · RAG · structured extraction
+: tool-calling agents · agentic workflows · AI workflow orchestration · LLM evaluation · RAG · structured extraction · document parsing (OCR)
 
 Apps & reporting
 : R Shiny (golem) · FastAPI · REST APIs · enterprise integration · Quarto · ggplot2 · Plotly
