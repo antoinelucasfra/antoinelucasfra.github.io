@@ -7301,19 +7301,10 @@ font-style: inherit;">)</span></span></code></pre></div></div>
   <title>Getting Started with Quarto for Data Science Reports</title>
   <dc:creator>Antoine Lucas</dc:creator>
   <link>https://antoinelucasfra.github.io/posts/quarto-getting-started/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<section id="why-quarto-is-worth-learning" class="level2">
-<h2 class="anchored" data-anchor-id="why-quarto-is-worth-learning">Why Quarto is worth learning</h2>
+  <description><![CDATA[ <section id="why-quarto-is-worth-learning" class="level2"><h2 class="anchored" data-anchor-id="why-quarto-is-worth-learning">Why Quarto is worth learning</h2>
 <p>Quarto is the tool I reach for when an analysis needs to be more than a notebook and less than a full application. It lets you keep narrative, code, figures, and output in one plain-text document that can render to HTML, PDF, Word, slides, or an entire website.</p>
 <p>That combination matters for data work because it solves a common problem cleanly: the code that produced the result and the text that explains the result live in the same file.</p>
-</section>
-<section id="your-first-useful-document" class="level2">
-<h2 class="anchored" data-anchor-id="your-first-useful-document">Your first useful document</h2>
+</section><section id="your-first-useful-document" class="level2"><h2 class="anchored" data-anchor-id="your-first-useful-document">Your first useful document</h2>
 <p>Create a file called <code>report.qmd</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -7364,13 +7355,16 @@ font-style: inherit;">## Question</span></span>
 background-color: null;
 font-style: inherit;">`mtcars`</span> dataset?</span>
 <span id="cb1-15"></span>
-<span id="cb1-16"><span class="in" style="color: #5E5E5E;
+<span id="cb1-16"></span>
+<span id="cb1-17">::: {.cell}</span>
+<span id="cb1-18"></span>
+<span id="cb1-19"><span class="in" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">```{r}</span></span>
-<span id="cb1-17"><span class="fu" style="color: #4758AB;
+font-style: inherit;">```{.r .cell-code}</span></span>
+<span id="cb1-20"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(ggplot2)</span>
-<span id="cb1-18"><span class="fu" style="color: #4758AB;
+<span id="cb1-21"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(mtcars, <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -7381,12 +7375,12 @@ background-color: null;
 font-style: inherit;">y =</span> mpg)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-19">  <span class="fu" style="color: #4758AB;
+<span id="cb1-22">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_point</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-20">  <span class="fu" style="color: #4758AB;
+<span id="cb1-23">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_smooth</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -7403,50 +7397,67 @@ background-color: null;
 font-style: inherit;">"steelblue"</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-21">  <span class="fu" style="color: #4758AB;
+<span id="cb1-24">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(</span>
-<span id="cb1-22">    <span class="at" style="color: #657422;
+<span id="cb1-25">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Heavier cars tend to have lower fuel efficiency"</span>,</span>
-<span id="cb1-23">    <span class="at" style="color: #657422;
+<span id="cb1-26">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Weight (1000 lbs)"</span>,</span>
-<span id="cb1-24">    <span class="at" style="color: #657422;
+<span id="cb1-27">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Miles per gallon"</span></span>
-<span id="cb1-25">  )</span>
-<span id="cb1-26"><span class="in" style="color: #5E5E5E;
+<span id="cb1-28">  )</span>
+<span id="cb1-29"><span class="in" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">```</span></span></code></pre></div></div>
+font-style: inherit;">```</span></span>
+<span id="cb1-30"></span>
+<span id="cb1-31">::: {.cell-output .cell-output-stderr}</span>
+<span id="cb1-32"></span>
+<span id="cb1-33"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb1-34"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">`geom_smooth()` using formula = 'y ~ x'</span></span>
+<span id="cb1-35"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span>
+<span id="cb1-36"></span>
+<span id="cb1-37"></span>
+<span id="cb1-38">:::</span>
+<span id="cb1-39"></span>
+<span id="cb1-40">::: {.cell-output-display}</span>
+<span id="cb1-41"><span class="al" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">![](index_files/figure-html/unnamed-chunk-1-1.png)</span>{width=672}</span>
+<span id="cb1-42">:::</span>
+<span id="cb1-43">:::</span></code></pre></div></div>
 <p>That is enough for a real first report: a title, a short question, and a code chunk that produces an interpretable figure.</p>
-</section>
-<section id="render-it" class="level2">
-<h2 class="anchored" data-anchor-id="render-it">Render it</h2>
+</section><section id="render-it" class="level2"><h2 class="anchored" data-anchor-id="render-it">Render it</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">quarto</span> render report.qmd</span></code></pre></div></div>
 <p>You now have an HTML report that can be shared, versioned, and rerun.</p>
-</section>
-<section id="the-pieces-that-matter" class="level2">
-<h2 class="anchored" data-anchor-id="the-pieces-that-matter">The pieces that matter</h2>
-<section id="yaml-header" class="level3">
-<h3 class="anchored" data-anchor-id="yaml-header">YAML header</h3>
+</section><section id="the-pieces-that-matter" class="level2"><h2 class="anchored" data-anchor-id="the-pieces-that-matter">The pieces that matter</h2>
+<section id="yaml-header" class="level3"><h3 class="anchored" data-anchor-id="yaml-header">YAML header</h3>
 <p>The header between the <code>---</code> lines controls document-level behavior:</p>
 <ul>
-<li><code>title</code>, <code>author</code>, and <code>date</code> are document metadata</li>
-<li><code>format: html</code> chooses the output format</li>
-<li><code>execute:</code> sets chunk defaults for the whole document</li>
-</ul>
-</section>
-<section id="code-chunks" class="level3">
-<h3 class="anchored" data-anchor-id="code-chunks">Code chunks</h3>
+<li>
+<code>title</code>, <code>author</code>, and <code>date</code> are document metadata</li>
+<li>
+<code>format: html</code> chooses the output format</li>
+<li>
+<code>execute:</code> sets chunk defaults for the whole document</li>
+</ul></section><section id="code-chunks" class="level3"><h3 class="anchored" data-anchor-id="code-chunks">Code chunks</h3>
 <p>Code chunks are where Quarto becomes useful instead of just pretty Markdown. In R, they look like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -7464,22 +7475,17 @@ font-style: inherit;">#| fig-width: 8    # Figure width</span></span>
 background-color: null;
 font-style: inherit;">#| fig-height: 6   # Figure height</span></span></code></pre></div></div>
 <p>These options let you decide what the reader sees and what the document executes.</p>
-</section>
-<section id="cross-references" class="level3">
-<h3 class="anchored" data-anchor-id="cross-references">Cross-references</h3>
+</section><section id="cross-references" class="level3"><h3 class="anchored" data-anchor-id="cross-references">Cross-references</h3>
 <p>Once you start writing longer reports, cross-references save time and reduce broken prose. Instead of writing “the chart below”, label the figure and refer to it directly:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1">See @fig-scatter for the visualization.</span>
 <span id="cb4-2"></span>
-<span id="cb4-3"><span class="in" style="color: #5E5E5E;
+<span id="cb4-3"></span>
+<span id="cb4-4">::: {.cell}</span>
+<span id="cb4-5"></span>
+<span id="cb4-6"><span class="in" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">```{r}</span></span>
-<span id="cb4-4"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#| label: fig-scatter</span></span>
-<span id="cb4-5"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#| fig-cap: "Scatter plot of weight vs mpg"</span></span>
-<span id="cb4-6"><span class="fu" style="color: #4758AB;
+font-style: inherit;">```{.r .cell-code}</span></span>
+<span id="cb4-7"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(mtcars, <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -7490,9 +7496,20 @@ background-color: null;
 font-style: inherit;">y =</span> mpg)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb4-7">  <span class="fu" style="color: #4758AB;
+<span id="cb4-8">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_point</span>()</span></code></pre></div></div>
+<div class="cell-output-display">
+<div id="fig-scatter" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-scatter-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Scatter plot of weight vs mpg"><img src="https://antoinelucasfra.github.io/posts/quarto-getting-started/index_files/figure-html/fig-scatter-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Scatter plot of weight vs mpg
+</figcaption></figure>
+</div>
+</div>
+<p>:::</p>
 <pre><code>
 Quarto handles the numbering for you.
 
@@ -7521,10 +7538,7 @@ Nested callout.
 Still inside the outer callout.
 ::::</code></pre>
 <p>Rule of thumb: count your nesting depth, add that many colons to the outermost fence.</p>
-</section>
-</section>
-<section id="when-quarto-is-the-right-choice" class="level2">
-<h2 class="anchored" data-anchor-id="when-quarto-is-the-right-choice">When Quarto is the right choice</h2>
+</section></section><section id="when-quarto-is-the-right-choice" class="level2"><h2 class="anchored" data-anchor-id="when-quarto-is-the-right-choice">When Quarto is the right choice</h2>
 <p>Quarto is a strong default when:</p>
 <ol type="1">
 <li>You need a report, not just exploration.</li>
@@ -7533,22 +7547,15 @@ Still inside the outer callout.
 <li>You want one source file that works with Git.</li>
 </ol>
 <p>For pure exploration, a notebook may still be faster. For anything that becomes a deliverable, Quarto usually ages better.</p>
-</section>
-<section id="common-first-mistakes" class="level2">
-<h2 class="anchored" data-anchor-id="common-first-mistakes">Common first mistakes</h2>
+</section><section id="common-first-mistakes" class="level2"><h2 class="anchored" data-anchor-id="common-first-mistakes">Common first mistakes</h2>
 <ul>
 <li>Treating the document as presentation only and hiding too much code.</li>
 <li>Using absolute file paths that only work on one machine.</li>
 <li>Forgetting that the environment matters as much as the <code>.qmd</code> file.</li>
 <li>Jumping to complex websites and books before writing one good report.</li>
-</ul>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+</ul></section><section id="conclusion" class="level2"><h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>The best way to learn Quarto is not by memorizing every option. It is by writing one small report that answers one real question and renders cleanly from start to finish. Once that feels natural, features like cross-references, citations, websites, and PDFs start to make sense.</p>
-</section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+</section><section id="resources" class="level2"><h2 class="anchored" data-anchor-id="resources">Resources</h2>
 <ul>
 <li><a href="https://quarto.org/docs/guide/">Quarto Documentation</a></li>
 <li><a href="https://quarto.org/docs/gallery/">Quarto Gallery</a></li>
@@ -7556,9 +7563,7 @@ Still inside the outer callout.
 </ul>
 
 
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Quarto</category>
   <category>Tutorial</category>
   <category>Reproducibility</category>

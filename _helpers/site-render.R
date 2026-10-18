@@ -5,7 +5,14 @@ source(here::here("_helpers", "links.R"))
 render_homepage <- function(profile) {
   identity <- profile$identity
   current_role <- profile$home$current_role
-  n_posts <- length(list.dirs(here::here("posts"), recursive = FALSE))
+  # Published posts only: a draft sitting in posts/ must not inflate the count.
+  post_files <- list.files(here::here("posts"), "index\\.qmd$",
+    recursive = TRUE, full.names = TRUE)
+  n_posts <- sum(vapply(post_files, function(f) {
+    txt <- paste(readLines(f, n = 40L, warn = FALSE), collapse = "\n")
+    fm <- regmatches(txt, regexpr("(?s)^---\\n.*?\\n---", txt, perl = TRUE))
+    !grepl("draft: true", fm, fixed = TRUE)
+  }, logical(1)))
   stats <- c(
     profile$home$stats,
     list(list(value = paste0(n_posts, "+"), label = "field notes published"))
@@ -212,7 +219,7 @@ render_about_contact <- function(profile) {
       htmltools::tags$li(
         htmltools::tags$strong("Fosstodon"),
         ": ",
-        external_link(identity$mastodon, "@antoineloucass")
+        external_link(identity$mastodon, sub("^.*/", "", identity$mastodon))
       )
     ),
     htmltools::tags$p(

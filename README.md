@@ -8,7 +8,7 @@ Content license: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa
 
 ## Stack
 
-- Quarto (local render tested on `1.9.38`; `_quarto.yml` requires `>=1.9.37`, CI uses the runner's preinstalled Quarto)
+- Quarto (local render tested on `1.9.38`; `_quarto.yml` requires `>=1.9.37`, CI installs the pinned `1.9.37` .deb, checksum-verified, in the workflow)
 - R `4.4.2`, restored from `renv.lock` with [`renv`](https://rstudio.github.io/renv/)
 - Python `3.13` for helper tooling via `uv` (single environment in `scripts/`)
 
